@@ -395,8 +395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 500
   soundToPlay: []
+  carryCooldownTime: 1
 --- !u!65 &163075521
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -730,8 +730,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 200
   soundToPlay: []
+  carryCooldownTime: 1
 --- !u!65 &259902352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -860,8 +860,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 200
   soundToPlay: []
+  carryCooldownTime: 1
 --- !u!65 &289673971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6205,8 +6205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 500
   soundToPlay: []
+  carryCooldownTime: 1
 --- !u!1 &1067126526
 GameObject:
   m_ObjectHideFlags: 0
@@ -6279,6 +6279,136 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1067126526}
   m_CullTransparentMesh: 0
+--- !u!1 &1070560202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070560203}
+  - component: {fileID: 1070560209}
+  - component: {fileID: 1070560208}
+  - component: {fileID: 1070560207}
+  - component: {fileID: 1070560206}
+  - component: {fileID: 1070560205}
+  - component: {fileID: 1070560204}
+  m_Layer: 0
+  m_Name: Cube (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070560203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1070560202}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.58, y: 2, z: 5.637725}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1613192731}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070560204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1070560202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65fab2b04a6159c48a4f792dab911ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 773190232}
+  playerCam: {fileID: 534669905}
+  soundToPlay: []
+  carryCooldownTime: 1
+--- !u!65 &1070560205
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1070560202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1070560206
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1070560202}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1070560207
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1070560202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1070560208
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1070560202}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1070560209
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1070560202}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1613192730
 GameObject:
   m_ObjectHideFlags: 0
@@ -6311,6 +6441,7 @@ Transform:
   - {fileID: 289673969}
   - {fileID: 2096784442}
   - {fileID: 1964602101}
+  - {fileID: 1070560203}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6430,8 +6561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 200
   soundToPlay: []
+  carryCooldownTime: 1
 --- !u!65 &1620685585
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6663,8 +6794,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 200
   soundToPlay: []
+  carryCooldownTime: 1
 --- !u!65 &1964602104
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6793,8 +6924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 200
   soundToPlay: []
+  carryCooldownTime: 1
 --- !u!65 &2075470969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6923,8 +7054,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 200
   soundToPlay: []
+  carryCooldownTime: 1
 --- !u!65 &2096784444
 BoxCollider:
   m_ObjectHideFlags: 0
