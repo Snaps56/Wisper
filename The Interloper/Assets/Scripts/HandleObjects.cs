@@ -5,7 +5,7 @@ public class HandleObjects : MonoBehaviour
 {
     public Transform player;
     public Transform playerCam;
-    float throwForce = 1000;
+    public float throwForce = 500;
     bool hasPlayer = false;
     bool beingCarried = false;
     public AudioClip[] soundToPlay;
@@ -86,6 +86,23 @@ public class HandleObjects : MonoBehaviour
                 startCooldown = false;
                 currentCooldownTime = carryCooldownTime;
             }
+        }
+
+        // Pressing Right Trigger while holding will throw objects
+        if (Input.GetAxis("TriggerR") > 0 && beingCarried == false && hasPlayer == true)
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+            transform.parent = null;
+            beingCarried = false;
+
+            // creates force vector so that player throws carried objects straight ahead rather than at ground
+            Vector3 forceVector = playerCam.forward * throwForce;
+            forceVector.y *= 0;
+            GetComponent<Rigidbody>().AddForce(forceVector);
+
+            // adds cooldown to objects to prevent them from being immediately picked up after throwing
+            startCooldown = true;
+            // RandomAudio();
         }
     }
     void RandomAudio()
