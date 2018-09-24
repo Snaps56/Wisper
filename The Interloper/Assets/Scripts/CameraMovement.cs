@@ -16,14 +16,19 @@ public class CameraMovement : MonoBehaviour
     {
 
         offsetX = new Vector3(0, height, distance);
-        offsetY = new Vector3(0, 0, distance);
+        offsetY = new Vector3(0, 0, 0);
     }
 
     void LateUpdate()
     {
         offsetX = Quaternion.AngleAxis(Input.GetAxis("HorizontalR") * turnSpeed, Vector3.up) * offsetX;
         offsetY = Quaternion.AngleAxis(Input.GetAxis("VerticalR") * turnSpeed, Vector3.right) * offsetY;
-        transform.position = player.position + offsetX;
+        if(offsetY.z > -0.1f)
+        {
+            offsetY.z = -0.1f;
+        }
+        transform.position = player.position + offsetY + offsetX;   
         transform.LookAt(player.position);
+
     }
 }

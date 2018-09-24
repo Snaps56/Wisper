@@ -88,7 +88,7 @@ public class HandleObjects : MonoBehaviour
             }
         }
 
-        // Pressing Right Trigger while holding will throw objects
+        // Pressing Right Trigger to push objects
         if (Input.GetAxis("TriggerR") > 0 && beingCarried == false && hasPlayer == true)
         {
             GetComponent<Rigidbody>().isKinematic = false;
