@@ -26,6 +26,12 @@ public class CameraControl : MonoBehaviour
         currentX += Input.GetAxis("HorizontalR");
         currentY += Input.GetAxis("VerticalR");
 
+        // mouse look
+        currentX += Input.GetAxis("Mouse X");
+        currentY += Input.GetAxis("Mouse Y");
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
     }
 
