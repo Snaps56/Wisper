@@ -69,6 +69,9 @@ public class Movement : MonoBehaviour
         //}
 
 
+
+
+
         //Go Up
         if (Input.GetKey(KeyCode.Space) || Input.GetButton("AButton")) {
             transform.Translate(Vector3.up * Time.deltaTime * speed/2, Space.World);
@@ -101,5 +104,15 @@ public class Movement : MonoBehaviour
             rb.AddForce(Camera.main.transform.right * Input.GetAxis("Horizontal") * speed);
         }
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Orb"))
+        {
+            other.gameObject.SetActive(false);
+            speed *= 2;
+            GetComponent<HandleObjects>().throwForce *= 2; 
+        }
     }
 }
