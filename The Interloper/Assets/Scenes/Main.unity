@@ -400,7 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 1000
+  throwForce: 300
   soundToPlay: []
   carryCooldownTime: 1
 --- !u!65 &163075521
@@ -561,6 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 0}
+  hasInteracted: 0
   dialogue:
   - You found my ball!
   name: Ethan
@@ -713,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 1000
+  throwForce: 300
   soundToPlay: []
   carryCooldownTime: 1
 --- !u!65 &259902352
@@ -844,7 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 1000
+  throwForce: 300
   soundToPlay: []
   carryCooldownTime: 1
 --- !u!65 &289673971
@@ -1021,6 +1022,7 @@ RectTransform:
   m_Children:
   - {fileID: 1067126527}
   - {fileID: 1525128627}
+  - {fileID: 1416380105}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1138,7 +1140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4124703, y: 0.07720442}
   m_AnchorMax: {x: 0.5893973, y: 0.28856552}
-  m_AnchoredPosition: {x: -1, y: -0.5999985}
+  m_AnchoredPosition: {x: -1, y: -0.6000061}
   m_SizeDelta: {x: 4, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380854251
@@ -1310,6 +1312,8 @@ MonoBehaviour:
   player: {fileID: 773190232}
   distance: 5
   height: 3
+  offsetX: {x: 0, y: 0, z: 0}
+  offsetY: {x: 0, y: 0, z: 0}
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1337,7 +1341,6 @@ GameObject:
   - component: {fileID: 773190231}
   - component: {fileID: 773190234}
   - component: {fileID: 773190235}
-  - component: {fileID: 773190230}
   - component: {fileID: 773190233}
   - component: {fileID: 773190236}
   m_Layer: 0
@@ -1347,17 +1350,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &773190230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 773190229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec0d8d0222149540a14ba3a30f0db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &773190231
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1467,6 +1459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  windPowerBar: {fileID: 2081836671}
 --- !u!198 &773190236
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -6352,7 +6345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1067126527
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6455,7 +6448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 1000
+  throwForce: 300
   soundToPlay: []
   carryCooldownTime: 1
 --- !u!65 &1070560205
@@ -6570,7 +6563,7 @@ Transform:
   - {fileID: 77770724}
   - {fileID: 951368023}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1273542510
 GameObject:
@@ -6625,7 +6618,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.52
+  orthographic size: 9
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -6654,6 +6647,76 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1416380104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416380105}
+  - component: {fileID: 1416380107}
+  - component: {fileID: 1416380106}
+  m_Layer: 0
+  m_Name: WindPowerBG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1416380105
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1416380104}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2081836670}
+  m_Father: {fileID: 312272253}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -20}
+  m_SizeDelta: {x: 12, y: 100}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1416380106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1416380104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.2784314}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1416380107
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1416380104}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1495835335
 Prefab:
   m_ObjectHideFlags: 0
@@ -6803,7 +6866,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -20, y: -20}
-  m_SizeDelta: {x: 170, y: 170}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1525128628
 MonoBehaviour:
@@ -6995,7 +7058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 1000
+  throwForce: 300
   soundToPlay: []
   carryCooldownTime: 1
 --- !u!65 &1620685585
@@ -7010,49 +7073,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1652305691
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1652305692}
-  - component: {fileID: 1652305693}
-  m_Layer: 0
-  m_Name: DialogSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1652305692
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1652305691}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 100}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1652305693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1652305691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c916f1a0c6442d84f890bda74305f8c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialoguePanel: {fileID: 1067126526}
-  npcName: 
-  dialogueLines: []
 --- !u!4 &1878273447 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4229321225789950, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11,
@@ -7249,7 +7269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 1000
+  throwForce: 300
   soundToPlay: []
   carryCooldownTime: 1
 --- !u!65 &1964602104
@@ -7380,7 +7400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 1000
+  throwForce: 300
   soundToPlay: []
   carryCooldownTime: 1
 --- !u!65 &2075470969
@@ -7395,6 +7415,75 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2081836669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2081836670}
+  - component: {fileID: 2081836672}
+  - component: {fileID: 2081836671}
+  m_Layer: 0
+  m_Name: WindPowerBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2081836670
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2081836669}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1416380105}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 12, y: 100}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &2081836671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2081836669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.18213654, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 206ef4befb43ac94ba97c76ce261b110, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 0
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &2081836672
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2081836669}
+  m_CullTransparentMesh: 0
 --- !u!1 &2096784437
 GameObject:
   m_ObjectHideFlags: 0
@@ -7511,7 +7600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
   playerCam: {fileID: 534669905}
-  throwForce: 1000
+  throwForce: 300
   soundToPlay: []
   carryCooldownTime: 1
 --- !u!65 &2096784444

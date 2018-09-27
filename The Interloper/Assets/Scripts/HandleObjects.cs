@@ -3,9 +3,12 @@ using System.Collections;
 
 public class HandleObjects : MonoBehaviour
 {
+    [Header("Linked Objects")]
     public Transform player;
     public Transform playerCam;
-    public float throwForce = 500;
+
+    [Header("Handling")]
+    public float throwForce;
     bool hasPlayer = false;
     bool beingCarried = false;
     public AudioClip[] soundToPlay;
@@ -20,6 +23,7 @@ public class HandleObjects : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        throwForce = 100;
     }
 
     void Update()
