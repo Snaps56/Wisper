@@ -13,7 +13,7 @@ public class ToggleWaterSpray : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.P)) {
+		if (Input.GetKey (KeyCode.P) || Input.GetButton("XButton")) {
 			WaterSpray.Play ();
 		} else {
 			WaterSpray.Stop ();

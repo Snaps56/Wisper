@@ -28,6 +28,7 @@ public class HandleObjects : MonoBehaviour
 
     void Update()
     {
+
         // check if Mouse Right Click is held down, used for lifting object
         if (!rightMouseDown)
         {
@@ -95,6 +96,8 @@ public class HandleObjects : MonoBehaviour
         {
             throwObject();
         }
+
+		IgnoreCollision ();
     }
     void throwObject()
     {
@@ -133,4 +136,8 @@ public class HandleObjects : MonoBehaviour
             touched = true;
         }
     }
+
+	void IgnoreCollision() {
+		Physics.IgnoreCollision (player.GetComponent<Collider>(), this.GetComponent<Collider>());
+	}
 }
