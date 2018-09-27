@@ -4,6 +4,7 @@ public class Movement : MonoBehaviour
 
     public float speed;
     private Rigidbody rb;
+    private float orbIncrement = 1.2f;
 
     void Start()
     {
@@ -95,14 +96,17 @@ public class Movement : MonoBehaviour
         {
             //Debug.Log("Running");
             rb.AddForce(Camera.main.transform.forward * Input.GetAxis("Vertical") * (speed * 2));
+            rb.AddForce(Camera.main.transform.up * Input.GetAxis("Vertical") * (speed * 2));
             rb.AddForce(Camera.main.transform.right * Input.GetAxis("Horizontal") * (speed * 2));
         }
         else
         {
             //Debug.Log("Walking");
             rb.AddForce(Camera.main.transform.forward * Input.GetAxis("Vertical") * speed);
+            rb.AddForce(Camera.main.transform.up * Input.GetAxis("Vertical") * speed);
             rb.AddForce(Camera.main.transform.right * Input.GetAxis("Horizontal") * speed);
         }
+        rb.AddForce(-rb.velocity);
 
     }
 
@@ -111,8 +115,8 @@ public class Movement : MonoBehaviour
         if (other.gameObject.CompareTag("Orb"))
         {
             other.gameObject.SetActive(false);
-            speed *= 2;
-            GetComponent<HandleObjects>().throwForce *= 2; 
+            speed *= orbIncrement;
+            GetComponent<HandleObjects>().throwForce *= orbIncrement; 
         }
     }
 }
