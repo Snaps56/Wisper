@@ -3,9 +3,12 @@ using System.Collections;
 
 public class HandleObjects : MonoBehaviour
 {
+    [Header("Linked Objects")]
     public Transform player;
     public Transform playerCam;
-    public float throwForce = 500;
+
+    [Header("Handling")]
+    public float throwForce;
     bool hasPlayer = false;
     bool beingCarried = false;
     public AudioClip[] soundToPlay;
@@ -20,10 +23,24 @@ public class HandleObjects : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        throwForce = 100;
     }
 
     void Update()
     {
+        // check if Mouse Right Click is held down, used for lifting object
+        if (!rightMouseDown)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                rightMouseDown = true;
+            }
+        }
+        if (rightMouseDown && Input.GetMouseButtonUp(1))
+        {
+            rightMouseDown = false;
+        }
+
         float dist = Vector3.Distance(gameObject.transform.position, player.position);
         if (dist <= 2f)
         {
@@ -35,7 +52,7 @@ public class HandleObjects : MonoBehaviour
         }
         // pick up any objects within range and that haven't been recently picked up;
         // Hold Right Trigger
-        if (hasPlayer && !startCooldown && (Input.GetAxis("TriggerL") > 0))
+        if (hasPlayer && !startCooldown && (Input.GetAxis("TriggerL") > 0 || rightMouseDown))
         {
             GetComponent<Rigidbody>().isKinematic = true;
             transform.parent = playerCam;
@@ -48,33 +65,18 @@ public class HandleObjects : MonoBehaviour
             transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime * 3);
             if (touched)
             {
-                GetComponent<Rigidbody>().isKinematic = false;
-                transform.parent = null;
-                beingCarried = false;
+                dropObject();
                 touched = false;
             }
             // Pressing Right Trigger while holding will throw objects
-            if (Input.GetAxis("TriggerR") > 0)
+            if (Input.GetAxis("TriggerR") > 0 || Input.GetMouseButton(0))
             {
-                GetComponent<Rigidbody>().isKinematic = false;
-                transform.parent = null;
-                beingCarried = false;
-
-                // creates force vector so that player throws carried objects straight ahead rather than at ground
-                Vector3 forceVector = playerCam.forward * throwForce;
-                forceVector.y *= 0;
-                GetComponent<Rigidbody>().AddForce(forceVector);
-
-                // adds cooldown to objects to prevent them from being immediately picked up after throwing
-                startCooldown = true;
-                // RandomAudio();
+                throwObject();
             }
             // drop item by letting go of left trigger
-            if (Input.GetAxis("TriggerL") == 0)
+            if (Input.GetAxis("TriggerL") == 0 && !rightMouseDown)
             {
-                GetComponent<Rigidbody>().isKinematic = false;
-                transform.parent = null;
-                beingCarried = false;
+                dropObject();
             }
         }
         // prevent objects from being immediately picked up after throwing
@@ -89,21 +91,30 @@ public class HandleObjects : MonoBehaviour
         }
 
         // Pressing Right Trigger to push objects
-        if (Input.GetAxis("TriggerR") > 0 && beingCarried == false && hasPlayer == true)
+        if ((Input.GetAxis("TriggerR") > 0 || Input.GetMouseButton(0)) && hasPlayer)
         {
-            GetComponent<Rigidbody>().isKinematic = false;
-            transform.parent = null;
-            beingCarried = false;
-
-            // creates force vector so that player throws carried objects straight ahead rather than at ground
-            Vector3 forceVector = playerCam.forward * throwForce;
-            forceVector.y *= 0;
-            GetComponent<Rigidbody>().AddForce(forceVector);
-
-            // adds cooldown to objects to prevent them from being immediately picked up after throwing
-            startCooldown = true;
-            // RandomAudio();
+            throwObject();
         }
+    }
+    void throwObject()
+    {
+        // drop object first before throwing
+        dropObject();
+
+        // creates force vector so that player throws carried objects straight ahead rather than at ground
+        Vector3 forceVector = playerCam.forward * throwForce;
+        forceVector.y *= 0;
+        GetComponent<Rigidbody>().AddForce(forceVector);
+
+        // adds cooldown to objects to prevent them from being immediately picked up after throwing
+        startCooldown = true;
+        // RandomAudio();
+    }
+    void dropObject()
+    {
+        GetComponent<Rigidbody>().isKinematic = false;
+        transform.parent = null;
+        beingCarried = false;
     }
     void RandomAudio()
     {
