@@ -9,7 +9,7 @@ public class ItemReturnEvent : MonoBehaviour
     public GameObject npc;
     private Rigidbody rb;
 
-    private float npcHeadPos;
+    public float npcHeadPos;
     private bool pick = false;
     Vector3 hatPos;
 

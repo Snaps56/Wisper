@@ -14,6 +14,7 @@ public class NPCMovement : MonoBehaviour
     float accuracyWP = 1.0f;
     float detect = 5.0f;
 
+    private float MaxRange = 5.0f;
 
     // Use this for initialization
 
