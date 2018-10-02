@@ -8,11 +8,8 @@ public class Mallory : MonoBehaviour
     private float windPower;
     private Rigidbody rb;
     private float orbIncrementSpeed = 1.2f;
-	private float treeSpeed;
-	private float treeSlow = 0.7f;
-	private bool isSlowedByTree = false;
+	private float treeSpeed = 0.7f;
 	private float originalSpeed;
-	private int triggerCount;
 
     [Header("UI")]
     public Image windPowerBar;
@@ -21,8 +18,6 @@ public class Mallory : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         windPower = 0;
-		originalSpeed = speed;
-		treeSpeed = treeSlow * originalSpeed;
     }
 
     void FixedUpdate()
@@ -72,26 +67,19 @@ public class Mallory : MonoBehaviour
             windPower += 100;
             windPowerBar.fillAmount = windPower / 500; 
             speed *= orbIncrementSpeed;
-			originalSpeed = speed;
-			treeSpeed = treeSlow * originalSpeed;
             //other.gameObject.GetComponent<HandleObjects>().throwForce *= 2;
 			HandleObjects.instance.throwForce *= 2;
 		} else if (other.gameObject.CompareTag ("Tree")) {
-			speed = treeSpeed;
-			triggerCount++;
-			Debug.Log ("Trigger Count: " + triggerCount);
+			originalSpeed = speed;
+			speed *= treeSpeed;
 			Debug.Log ("Speed is reduced to :" + speed);
 		}
     }
 
 	void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag ("Tree")) {
-			triggerCount--;
-			Debug.Log ("Trigger Count: " + triggerCount);
-			if (triggerCount == 0) {
-				speed = originalSpeed;
-				Debug.Log ("Speed is back to :" + speed);
-			}
+			speed = originalSpeed;
+			Debug.Log ("Speed is back to :" + speed);
 		}
 	}
 
