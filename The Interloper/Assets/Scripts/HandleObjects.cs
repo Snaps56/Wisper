@@ -9,6 +9,7 @@ public class HandleObjects : MonoBehaviour
 
     [Header("Handling")]
     public float throwForce;
+	public static HandleObjects instance;
     bool hasPlayer = false;
     bool beingCarried = false;
     public AudioClip[] soundToPlay;
@@ -24,6 +25,7 @@ public class HandleObjects : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
         throwForce = 100;
+		instance = this;
     }
 
     void Update()

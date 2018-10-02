@@ -8,6 +8,8 @@ public class Mallory : MonoBehaviour
     private float windPower;
     private Rigidbody rb;
     private float orbIncrementSpeed = 1.2f;
+	private float treeSpeed = 0.7f;
+	private float originalSpeed;
 
     [Header("UI")]
     public Image windPowerBar;
@@ -65,7 +67,26 @@ public class Mallory : MonoBehaviour
             windPower += 100;
             windPowerBar.fillAmount = windPower / 500; 
             speed *= orbIncrementSpeed;
-            other.gameObject.GetComponent<HandleObjects>().throwForce *= 2;
-        }
+            //other.gameObject.GetComponent<HandleObjects>().throwForce *= 2;
+			HandleObjects.instance.throwForce *= 2;
+		} else if (other.gameObject.CompareTag ("Tree")) {
+			originalSpeed = speed;
+			speed *= treeSpeed;
+			Debug.Log ("Speed is reduced to :" + speed);
+		}
     }
+
+	void OnTriggerExit(Collider other) {
+		if (other.gameObject.CompareTag ("Tree")) {
+			speed = originalSpeed;
+			Debug.Log ("Speed is back to :" + speed);
+		}
+	}
+
+	//void OnCollisionEnter(Collider other)
+	//{
+	//	if (other.tag == "PassThrough") {
+	//		Physics.IgnoreCollision(other.GetComponent<Collider>(), this.GetComponent<Collider>());
+	//	}
+	//}
 }
