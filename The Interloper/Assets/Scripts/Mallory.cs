@@ -5,6 +5,7 @@ public class Mallory : MonoBehaviour
 
     [Header("Movement")]
     public float speed;
+	public float throwPower;
     private float windPower;
     private Rigidbody rb;
     private float orbIncrementSpeed = 1.2f;
@@ -19,6 +20,7 @@ public class Mallory : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+		throwPower = 100;
         windPower = 0;
 		originalSpeed = speed;
 		treeSpeed = treeSlow * speed;
@@ -74,11 +76,15 @@ public class Mallory : MonoBehaviour
 			originalSpeed = speed;
 			treeSpeed = treeSlow * speed;
             //other.gameObject.GetComponent<HandleObjects>().throwForce *= 2;
-			HandleObjects.instance.throwForce *= 2;
+			//HandleObjects.throwForce *= 2;
+			//FindObjectOfType<HandleObjects> ().throwForce *= 2;
+			throwPower *= 2;
 		} else if (other.gameObject.CompareTag ("Tree")) {
 			speed = treeSpeed;
 			triggerCount++;
 			Debug.Log ("Speed is reduced to :" + speed);
+		} else if (other.gameObject.CompareTag ("PickUp")) {
+			other.gameObject.GetComponent<HandleObjects> ().throwForce = throwPower;
 		}
     }
 
