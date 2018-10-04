@@ -5,6 +5,7 @@ public class Mallory : MonoBehaviour
 
     [Header("Movement")]
     public float speed;
+	public float throwPower;
     private float windPower;
     private Rigidbody rb;
     private float orbIncrementSpeed = 1.2f;
@@ -23,6 +24,7 @@ public class Mallory : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+		throwPower = 100;
         windPower = 0;
 		originalSpeed = speed;
 		treeSpeed = treeSlow * speed;
@@ -70,49 +72,36 @@ public class Mallory : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Orb"))
-        {
+        if (other.gameObject.CompareTag("Orb")) {
             other.gameObject.SetActive(false);
             windPower += 100;
             windPowerBar.fillAmount = windPower / 500; 
             speed *= orbIncrementSpeed;
 			originalSpeed = speed;
 			treeSpeed = treeSlow * speed;
-            for(int i = 0; i < pickups.Length; i++)
-            {
-                pickups[i].GetComponent<HandleObjects>().throwForce *= 2;
-            }
-		}
-        else if(other.gameObject.CompareTag("Orb2"))
-        {
-            other.gameObject.SetActive(false);
-            windPower += 50;
-            windPowerBar.fillAmount = windPower / 500;
-            speed *= orbIncrementSpeed;
-            originalSpeed = speed;
-            treeSpeed = treeSlow * speed;
-            for (int i = 0; i < pickups.Length; i++)
-            {
-                pickups[i].GetComponent<HandleObjects>().throwForce *= 1.5f;
-            }
-        }
-        else if (other.gameObject.CompareTag("Orb3"))
-        {
-            other.gameObject.SetActive(false);
-            windPower += 25;
-            windPowerBar.fillAmount = windPower / 500;
-            speed *= orbIncrementSpeed;
-            originalSpeed = speed;
-            treeSpeed = treeSlow * speed;
-            for (int i = 0; i < pickups.Length; i++)
-            {
-                pickups[i].GetComponent<HandleObjects>().throwForce *= 1.25f;
-            }
-        }
-        else if (other.gameObject.CompareTag ("Tree")) {
+			throwPower *= 2;
+		} else if (other.gameObject.CompareTag("Orb2")) {
+			other.gameObject.SetActive(false);
+			windPower += 50;
+			windPowerBar.fillAmount = windPower / 500; 
+			speed *= orbIncrementSpeed;
+			originalSpeed = speed;
+			treeSpeed = treeSlow * speed;
+			throwPower *= 1.5f;
+		} else if (other.gameObject.CompareTag("Orb3")) {
+			other.gameObject.SetActive(false);
+			windPower += 25;
+			windPowerBar.fillAmount = windPower / 500; 
+			speed *= orbIncrementSpeed;
+			originalSpeed = speed;
+			treeSpeed = treeSlow * speed;
+			throwPower *= 1.25f;
+		} else if (other.gameObject.CompareTag ("Tree")) {
 			speed = treeSpeed;
 			triggerCount++;
 			Debug.Log ("Speed is reduced to :" + speed);
+		} else if (other.gameObject.CompareTag ("PickUp")) {
+			other.gameObject.GetComponent<HandleObjects> ().throwForce = throwPower;
 		}
     }
 
