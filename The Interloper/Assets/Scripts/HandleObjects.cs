@@ -8,7 +8,7 @@ public class HandleObjects : MonoBehaviour
     public Transform playerCam;
 
     [Header("Handling")]
-    public float throwForce;
+    public float throwForce = 100;
     bool hasPlayer = false;
     bool beingCarried = false;
     public AudioClip[] soundToPlay;
