@@ -80,46 +80,11 @@ public class Mallory : MonoBehaviour
             speed *= orbIncrementSpeed;
 			originalSpeed = speed;
 			treeSpeed = treeSlow * speed;
-<<<<<<< HEAD
             //other.gameObject.GetComponent<HandleObjects>().throwForce *= 2;
 			//HandleObjects.throwForce *= 2;
 			//FindObjectOfType<HandleObjects> ().throwForce *= 2;
 			throwPower *= 2;
 		} else if (other.gameObject.CompareTag ("Tree")) {
-=======
-            for(int i = 0; i < pickups.Length; i++)
-            {
-                pickups[i].GetComponent<HandleObjects>().throwForce *= 2;
-            }
-		}
-        else if(other.gameObject.CompareTag("Orb2"))
-        {
-            other.gameObject.SetActive(false);
-            windPower += 50;
-            windPowerBar.fillAmount = windPower / 500;
-            speed *= orbIncrementSpeed;
-            originalSpeed = speed;
-            treeSpeed = treeSlow * speed;
-            for (int i = 0; i < pickups.Length; i++)
-            {
-                pickups[i].GetComponent<HandleObjects>().throwForce *= 1.5f;
-            }
-        }
-        else if (other.gameObject.CompareTag("Orb3"))
-        {
-            other.gameObject.SetActive(false);
-            windPower += 25;
-            windPowerBar.fillAmount = windPower / 500;
-            speed *= orbIncrementSpeed;
-            originalSpeed = speed;
-            treeSpeed = treeSlow * speed;
-            for (int i = 0; i < pickups.Length; i++)
-            {
-                pickups[i].GetComponent<HandleObjects>().throwForce *= 1.25f;
-            }
-        }
-        else if (other.gameObject.CompareTag ("Tree")) {
->>>>>>> 2c2cb6a1d57109bd4f0cb3b703a1859afad18710
 			speed = treeSpeed;
 			triggerCount++;
 			Debug.Log ("Speed is reduced to :" + speed);
