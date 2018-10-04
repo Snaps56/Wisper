@@ -72,18 +72,30 @@ public class Mallory : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Orb"))
-        {
+        if (other.gameObject.CompareTag("Orb")) {
             other.gameObject.SetActive(false);
             windPower += 100;
             windPowerBar.fillAmount = windPower / 500; 
             speed *= orbIncrementSpeed;
 			originalSpeed = speed;
 			treeSpeed = treeSlow * speed;
-            //other.gameObject.GetComponent<HandleObjects>().throwForce *= 2;
-			//HandleObjects.throwForce *= 2;
-			//FindObjectOfType<HandleObjects> ().throwForce *= 2;
 			throwPower *= 2;
+		} else if (other.gameObject.CompareTag("Orb2")) {
+			other.gameObject.SetActive(false);
+			windPower += 50;
+			windPowerBar.fillAmount = windPower / 500; 
+			speed *= orbIncrementSpeed;
+			originalSpeed = speed;
+			treeSpeed = treeSlow * speed;
+			throwPower *= 1.5f;
+		} else if (other.gameObject.CompareTag("Orb3")) {
+			other.gameObject.SetActive(false);
+			windPower += 25;
+			windPowerBar.fillAmount = windPower / 500; 
+			speed *= orbIncrementSpeed;
+			originalSpeed = speed;
+			treeSpeed = treeSlow * speed;
+			throwPower *= 1.25f;
 		} else if (other.gameObject.CompareTag ("Tree")) {
 			speed = treeSpeed;
 			triggerCount++;
