@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab0c98be37b0aa448fc09ff4ddeb200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 1857111330}
 --- !u!1 &1635422168
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +935,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1635422168}
   m_CullTransparentMesh: 0
+--- !u!95 &1857111330 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95438040098157372, guid: 7932bd5163b096146bb361e301eeba89,
+    type: 2}
+  m_PrefabInternal: {fileID: 2138355614}
 --- !u!1 &1982718807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1224,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114011221220818968, guid: 7932bd5163b096146bb361e301eeba89,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1857111330}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7932bd5163b096146bb361e301eeba89, type: 2}
   m_IsPrefabAsset: 0
