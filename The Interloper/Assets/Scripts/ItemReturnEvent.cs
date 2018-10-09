@@ -9,7 +9,9 @@ public class ItemReturnEvent : MonoBehaviour
     public GameObject npc;
     private Rigidbody rb;
 
-    public float npcHeadPos;
+    public float npcHeadPosX = -0.31f;
+    public float npcHeadPosY = 1.25f;
+    public float npcHeadPosZ = 0.16f;
     private bool pick = false;
     Vector3 hatPos;
 
@@ -22,7 +24,7 @@ public class ItemReturnEvent : MonoBehaviour
     {
         if (col.gameObject.tag == "NPC")
         {
-            pick = true;
+            StartCoroutine(TwoSecond());
 
         }
     }
@@ -30,22 +32,34 @@ public class ItemReturnEvent : MonoBehaviour
     // Update is called once per frame
     void pickUp()
     {
-        hatPos = new Vector3(npc.transform.position.x, npc.transform.position.y + npcHeadPos, npc.transform.position.z);
+        // x = -.31 z = .16f y = 1.25
+        hatPos = new Vector3(npc.transform.position.x - npcHeadPosX, npc.transform.position.y + npcHeadPosY, npc.transform.position.z - npcHeadPosZ);
         hat.transform.position = hatPos;
+        //hat.transform.position = npc.transform.position;
         rb.isKinematic = true;
-        hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
-        hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY;
-        hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
+        //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
+        //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY;
+        //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
 
+        
 
     }
 
-    private void Update()
+    void Update()
     {
 
         if (pick == true)
         {
             pickUp();
+            GetComponent<HandleObjects>().enabled = false;
+            hat.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
+
+    IEnumerator TwoSecond()
+    {
+        yield return new WaitForSeconds(2.0f);
+        pick = true;
+    }
+   
 }
