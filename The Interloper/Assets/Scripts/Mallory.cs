@@ -6,6 +6,7 @@ public class Mallory : MonoBehaviour
     [Header("Movement")]
     public float speed;
 	public float throwPower;
+    public Transform camera;
     private float windPower;
     private Rigidbody rb;
     private float orbIncrementSpeed = 1.2f;
@@ -34,12 +35,15 @@ public class Mallory : MonoBehaviour
     void FixedUpdate()
     {
         //Go Up
-        if (Input.GetKey(KeyCode.Space) || Input.GetButton("AButton")) {
-            transform.Translate(Vector3.up * Time.deltaTime * speed/2, Space.World);
+        if (Input.GetButton("Jump") || Input.GetButton("AButton"))
+        {
+            rb.AddForce(Vector3.up * (speed * 20));
+            Debug.Log(Vector3.up * (speed * 20));
         }
         //Go Down
-        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetButton("BButton")) && transform.position.y > 3) {
-            transform.Translate(Vector3.down * Time.deltaTime * speed/2, Space.World);
+        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetButton("BButton")) && transform.position.y > 3)
+        {
+            rb.AddForce(-Vector3.up * (speed * 29));
         }
 
         //Top Speed Reset
@@ -55,16 +59,16 @@ public class Mallory : MonoBehaviour
         if (Input.GetButton("Sprint"))
         {
             //Debug.Log("Running");
-            rb.AddForce(Camera.main.transform.forward * Input.GetAxis("Vertical") * (speed * 2));
-            rb.AddForce(Camera.main.transform.up * Input.GetAxis("Vertical") * (speed * 2));
-            rb.AddForce(Camera.main.transform.right * Input.GetAxis("Horizontal") * (speed * 2));
+            rb.AddForce(camera.forward * Input.GetAxis("Vertical") * (speed * 2));
+            rb.AddForce(camera.up * Input.GetAxis("Vertical") * (speed * 2));
+            rb.AddForce(camera.right * Input.GetAxis("Horizontal") * (speed * 2));
         }
         else
         {
             //Debug.Log("Walking");
-            rb.AddForce(Camera.main.transform.forward * Input.GetAxis("Vertical") * speed);
-            rb.AddForce(Camera.main.transform.up * Input.GetAxis("Vertical") * speed);
-            rb.AddForce(Camera.main.transform.right * Input.GetAxis("Horizontal") * speed);
+            rb.AddForce(camera.forward * Input.GetAxis("Vertical") * speed);
+            rb.AddForce(camera.up * Input.GetAxis("Vertical") * speed);
+            rb.AddForce(camera.right * Input.GetAxis("Horizontal") * speed);
         }
         rb.AddForce(-rb.velocity);
 

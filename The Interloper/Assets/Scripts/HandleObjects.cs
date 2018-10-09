@@ -8,7 +8,7 @@ public class HandleObjects : MonoBehaviour
     public Transform playerCam;
 
     [Header("Handling")]
-    public float throwForce = 100;
+    public float throwForce = 10000;
     bool hasPlayer = false;
     bool beingCarried = false;
     public AudioClip[] soundToPlay;
@@ -23,7 +23,6 @@ public class HandleObjects : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
-        throwForce = 100;
     }
 
     void Update()
@@ -92,8 +91,9 @@ public class HandleObjects : MonoBehaviour
         }
 
         // Pressing Right Trigger to push objects
-        if ((Input.GetAxis("TriggerR") > 0 || Input.GetMouseButton(0)) && hasPlayer)
+        if ((Input.GetAxis("TriggerR") > 0 || Input.GetMouseButton(0)) && hasPlayer && !startCooldown)
         {
+            transform.position += new Vector3(0, liftHeight * 0.5f, 0);
             throwObject();
         }
 
@@ -103,6 +103,7 @@ public class HandleObjects : MonoBehaviour
     {
         // drop object first before throwing
         dropObject();
+        startCooldown = true;
 
         // creates force vector so that player throws carried objects straight ahead rather than at ground
         Vector3 forceVector = playerCam.forward * throwForce;
