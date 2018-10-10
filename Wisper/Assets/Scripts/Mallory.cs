@@ -62,7 +62,7 @@ public class Mallory : MonoBehaviour
         //Moving Forward and Backwards
         if (Input.GetButton("Sprint"))
         {
-            //Debug.Log("Running");
+            Debug.Log("Running");
             rb.AddForce(camera.forward * Input.GetAxis("Vertical") * (speed * 2));
             rb.AddForce(camera.up * Input.GetAxis("Vertical") * (speed * 2));
             rb.AddForce(camera.right * Input.GetAxis("Horizontal") * (speed * 2));
@@ -93,23 +93,15 @@ public class Mallory : MonoBehaviour
 			originalSpeed = speed;
 			treeSpeed = treeSlow * speed;
 			throwPower *= 2;
-		} else if (other.gameObject.CompareTag("Orb2")) {
-			other.gameObject.SetActive(false);
-			windPower += 50;
-			windPowerBar.fillAmount = windPower / 500; 
-			speed *= orbIncrementSpeed;
-			originalSpeed = speed;
-			treeSpeed = treeSlow * speed;
-			throwPower *= 1.5f;
-		} else if (other.gameObject.CompareTag("Orb3")) {
-			other.gameObject.SetActive(false);
-			windPower += 25;
-			windPowerBar.fillAmount = windPower / 500; 
-			speed *= orbIncrementSpeed;
-			originalSpeed = speed;
-			treeSpeed = treeSlow * speed;
-			throwPower *= 1.25f;
-		} else if (other.gameObject.CompareTag ("Tree")) {
+		//} else if (other.gameObject.CompareTag("Border"))
+  //      {
+  //          windPower -= 50;
+  //          windPowerBar.fillAmount = windPower / 500;
+  //          speed *= 0.5f;
+  //          originalSpeed = speed;
+  //          treeSpeed = treeSlow * speed;
+  //          throwPower /= 1.5f;
+        } else if (other.gameObject.CompareTag ("Tree")) {
 			speed = treeSpeed;
 			treeCount++;
 			Debug.Log ("Speed is reduced to :" + speed);
