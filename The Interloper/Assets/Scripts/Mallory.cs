@@ -12,7 +12,8 @@ public class Mallory : MonoBehaviour
 	private float treeSpeed;
 	private float treeSlow = 0.7f;
 	private float originalSpeed;
-	private int triggerCount = 0;
+	private int treeCount = 0;
+	private float vel;
 
     private GameObject[] pickups;
 
@@ -24,6 +25,8 @@ public class Mallory : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+		//rb.drag = 1;
+		//rb.angularDrag = 1;
 		throwPower = 100;
         windPower = 0;
 		originalSpeed = speed;
@@ -68,6 +71,7 @@ public class Mallory : MonoBehaviour
         }
         rb.AddForce(-rb.velocity);
 
+		ModeChange ();
     }
 
     void OnTriggerEnter(Collider other)
@@ -98,7 +102,7 @@ public class Mallory : MonoBehaviour
 			throwPower *= 1.25f;
 		} else if (other.gameObject.CompareTag ("Tree")) {
 			speed = treeSpeed;
-			triggerCount++;
+			treeCount++;
 			Debug.Log ("Speed is reduced to :" + speed);
 		} else if (other.gameObject.CompareTag ("PickUp")) {
 			other.gameObject.GetComponent<HandleObjects> ().throwForce = throwPower;
@@ -107,11 +111,18 @@ public class Mallory : MonoBehaviour
 
 	void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag ("Tree")) {
-			triggerCount--;
-			if (triggerCount == 0) {
+			treeCount--;
+			if (treeCount == 0) {
 				speed = originalSpeed;
 				Debug.Log ("Speed is back to :" + speed);
 			}
+		}
+	}
+
+	void ModeChange () {
+		Debug.Log ("Current Speed: " + rb.velocity);
+		if (rb.velocity.x > 10f || rb.velocity.z > 10f || rb.velocity.x < -10f || rb.velocity < -10f) {
+			Debug.Log ("Going fast!");
 		}
 	}
 
