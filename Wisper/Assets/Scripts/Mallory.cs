@@ -15,6 +15,7 @@ public class Mallory : MonoBehaviour
 	private float originalSpeed;
 	private int treeCount = 0;
 	private float vel;
+    public Vector3 currentMovementForce;
 
     private GameObject[] pickups;
 
@@ -75,7 +76,11 @@ public class Mallory : MonoBehaviour
         }
         rb.AddForce(-rb.velocity);
 
-		ModeChange ();
+        currentMovementForce = camera.forward * Input.GetAxis("Vertical") * speed +
+            camera.up * Input.GetAxis("Vertical") * speed +
+            camera.right * Input.GetAxis("Horizontal") * speed;
+
+        ModeChange ();
     }
 
     void OnTriggerEnter(Collider other)
@@ -125,7 +130,7 @@ public class Mallory : MonoBehaviour
 
 	void ModeChange () {
 		Debug.Log ("Current Speed: " + rb.velocity);
-		if (rb.velocity.x > 10f || rb.velocity.z > 10f || rb.velocity.x < -10f || rb.velocity < -10f) {
+		if (rb.velocity.x > 10f || rb.velocity.z > 10f || rb.velocity.x < -10f || rb.velocity.z < -10f) {
 			Debug.Log ("Going fast!");
 		}
 	}

@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class ObjectLift : MonoBehaviour {
 
-    public Collider radiusCollider;
+    [Header("Game Objects")]
+    public GameObject character;
+    public SphereCollider radiusCollider;
+    private Mallory movementScript;
+
+    [Header("Lift Mechanics")]
+    public float liftHeight;
+    public float liftCenterStrength;
+    public float liftedObjectMaxSpeed;
+    public float predictCharacterForceMultiplier;
+    public float maxHoldRadiusMultiplier;
 
     private bool isLiftingObjects = false;
+    private bool isThrowingObjects = false;
+    private Vector3 velocity = Vector3.zero;
+    private Vector3 targetPosition;
+    private Vector3 currentCharacterVector;
+    private float currentCharacterSpeed;
     List<GameObject> liftedObjects = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
-		
-	}
+        movementScript = character.GetComponent<Mallory>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -26,20 +41,68 @@ public class ObjectLift : MonoBehaviour {
             isLiftingObjects = false;
         }
 
-        if (isLiftingObjects)
+        if (Input.GetMouseButtonDown(0))
         {
-            /*
-            for (int i = 0; i < liftedObjects.Count; i++)
-            {
-                liftedObjects[i].transform.parent = transform;
-            }
-            */
+            isThrowingObjects = true;
+        }
+        if (isThrowingObjects && Input.GetMouseButtonUp(0))
+        {
+            isThrowingObjects = false;
+        }
+
+        if (isLiftingObjects && !isThrowingObjects)
+        {
+            targetPosition = transform.position + new Vector3(0, liftHeight, 0);
+            liftObjects();
         }
         else
         {
-            Debug.Log("Drop Objects");
-            liftedObjects.Clear();
+            dropObjects();
         }
+        currentCharacterVector = movementScript.currentMovementForce;
+        currentCharacterVector.y *= 0;
+        currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
+    }
+    void liftObjects()
+    {
+        Debug.Log(liftedObjects.Count);
+        for (int i = 0; i < liftedObjects.Count; i++)
+        {
+            float objectDistance = (targetPosition - liftedObjects[i].transform.position).magnitude;
+            Vector3 toCenterVector = (targetPosition - liftedObjects[i].transform.position);
+
+            Rigidbody liftedObjectRB = liftedObjects[i].GetComponent<Rigidbody>();
+            
+            if (liftedObjectRB.velocity.magnitude < liftedObjectMaxSpeed + currentCharacterSpeed)
+            {
+                liftedObjectRB.AddForce(currentCharacterVector * predictCharacterForceMultiplier);
+                liftedObjectRB.AddForce(toCenterVector * liftCenterStrength);
+                if (currentCharacterVector.x == 0)
+                {
+                    Vector3 zeroedX = new Vector3(1, 0, 0);
+                    liftedObjectRB.AddForce(liftedObjectRB.velocity.magnitude * zeroedX);
+                }
+                if (currentCharacterVector.z == 0)
+                {
+                    Vector3 zeroedZ = new Vector3(0, 0, 1);
+                    liftedObjectRB.AddForce(liftedObjectRB.velocity.magnitude * zeroedZ);
+                }
+            }
+            else
+            {
+                liftedObjectRB.AddForce(-liftedObjectRB.velocity);
+            }
+
+            if (objectDistance > radiusCollider.radius * maxHoldRadiusMultiplier)
+            {
+                liftedObjects.Remove(liftedObjects[i]);
+            }
+        }
+    }
+    void dropObjects()
+    {
+        liftedObjects.Clear();
+        liftedObjects.TrimExcess();
     }
     private void OnTriggerStay(Collider other)
     {
@@ -53,23 +116,20 @@ public class ObjectLift : MonoBehaviour {
     }
     void addToLiftedObjects(Collider other)
     {
-        Debug.Log("Size of List = " + liftedObjects.Count);
-        /*
-        if (liftedObjects.Count > 0)
+        if (liftedObjects.Count < 1)
         {
-            for (int i = 0; i < liftedObjects.Count; i++)
-            {
-                if (other.transform.gameObject != liftedObjects[i])
-                {
-                    liftedObjects.Add(other.transform.gameObject);
-                }
-            }
+            liftedObjects.Add(other.gameObject);
         }
         else
         {
-            liftedObjects.Add(other.transform.gameObject);
+            for (int i = 0; i < liftedObjects.Count; i++)
+            {
+                if (liftedObjects.IndexOf(other.gameObject) == -1)
+                {
+                    liftedObjects.Add(other.gameObject);
+                }
+            }
         }
-        */
-        liftedObjects.Add(other.transform.gameObject);
+        // liftedObjects.Add(other.transform.gameObject);
     }
 }

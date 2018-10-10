@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class ObjectThrow : MonoBehaviour {
 
-    public float throwForce = 1000;
+    [Header("Game Objects")]
     public Rigidbody playerCharacter;
     public Collider radiusCollider;
-    public float maxObjectThrowVelocity;
 
+    [Header("Throw Mechanics")]
+    public float throwForce;
+    public float maxObjectThrowSpeed;
+    public float liftComboMultiplier;
+    public float verticalAimAngle;
+
+    private bool isLiftingObjects = false;
     private bool isThrowingObjects = false;
     private Vector3 movementVector;
     private Vector3 deltaMovementVector;
@@ -25,6 +31,15 @@ public class ObjectThrow : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            isLiftingObjects = true;
+        }
+        if (isLiftingObjects && Input.GetMouseButtonUp(1))
+        {
+            isLiftingObjects = false;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             isThrowingObjects = true;
@@ -62,9 +77,15 @@ public class ObjectThrow : MonoBehaviour {
         {
             // use character's direction and speed to determine throw direction and throw strength
 
-            if (objectVelocity < maxObjectThrowVelocity)
+            if (objectVelocity < maxObjectThrowSpeed)
             {
-                forceVector = deltaMovementVector * throwForce;
+                float finalLiftMultiplier = 1;
+                if (isLiftingObjects)
+                {
+                    finalLiftMultiplier = liftComboMultiplier;
+                }
+                float throwAngle = verticalAimAngle / 90;
+                forceVector = (deltaMovementVector + new Vector3(0, throwAngle, 0)) * throwForce * finalLiftMultiplier;
                 other.GetComponent<Rigidbody>().AddForce(forceVector);
             }
         }
