@@ -15,7 +15,7 @@ public class ObjectThrow : MonoBehaviour {
     public float verticalAimAngle;
 
     private bool isLiftingObjects = false;
-    private bool isThrowingObjects = false;
+    public bool isThrowingObjects = false;
     private Vector3 movementVector;
     private Vector3 deltaMovementVector;
     private Vector3 forceVector;
@@ -63,6 +63,9 @@ public class ObjectThrow : MonoBehaviour {
             throwObject(other);
         }
     }
+	public bool GetBlowing() {
+		return isThrowingObjects;
+	}
     void throwObject(Collider other)
     {
         float objectVelocity = other.GetComponent<Rigidbody>().velocity.magnitude;
