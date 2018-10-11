@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-public class Mallory : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [Header("Player Controls")]
     public float speed;
 	public float throwPower;
     public Transform camera;
     public Vector3 currentMovementForce;
+
+	public bool nearShrine;
 
     private float windPower;
     private Rigidbody rb;
@@ -124,6 +126,9 @@ public class Mallory : MonoBehaviour
         if (other.gameObject.CompareTag ("PickUp")) {
 			other.gameObject.GetComponent<HandleObjects> ().throwForce = throwPower;
 		}
+		if (other.gameObject.CompareTag ("Shrine")) {
+			nearShrine = true;
+		}
     }
 
 	void OnTriggerExit(Collider other) {
@@ -139,6 +144,9 @@ public class Mallory : MonoBehaviour
             textBox.SetActive(false);
             speed = originalSpeed;
         }
+		if (other.gameObject.CompareTag ("Shrine")) {
+			nearShrine = false;
+		}
 	}
 
 	void ModeChange () {

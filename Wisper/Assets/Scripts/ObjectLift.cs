@@ -7,7 +7,7 @@ public class ObjectLift : MonoBehaviour {
     [Header("Game Objects")]
     public GameObject character;
     public SphereCollider radiusCollider;
-    private Mallory movementScript;
+    private Player movementScript;
 
     [Header("Lift Mechanics")]
     public float liftHeight;
@@ -26,7 +26,7 @@ public class ObjectLift : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        movementScript = character.GetComponent<Mallory>();
+        movementScript = character.GetComponent<Player>();
     }
 	
 	// Update is called once per frame
