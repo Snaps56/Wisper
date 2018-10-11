@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (verticalSpeed >= 0)
+            if (verticalSpeed > 0)
             {
                 verticalSpeed -= verticalAcceleration;
             }
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (verticalSpeed <= 0)
+            if (verticalSpeed < 0)
             {
                 verticalSpeed += verticalAcceleration;
             }

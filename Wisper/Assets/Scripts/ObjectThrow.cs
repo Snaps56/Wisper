@@ -53,6 +53,7 @@ public class ObjectThrow : MonoBehaviour {
         if (currentPlayerVelocity > 0)
         {
             deltaMovementVector = (transform.position - movementVector).normalized;
+            deltaMovementVector.y *= 0;
         }
         movementVector = transform.position;
     }
