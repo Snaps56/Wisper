@@ -10,7 +10,7 @@ public class Mallory : MonoBehaviour
 
     private float windPower;
     private Rigidbody rb;
-    private float orbIncrementSpeed = 1.2f;
+    private float orbIncrementSpeed = .1f;
 	private float treeSpeed;
 	private float treeSlow = 0.7f;
 	private float originalSpeed;
@@ -81,13 +81,16 @@ public class Mallory : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Orb")) {
-            other.gameObject.SetActive(false);
-            windPower += 100;
+            Destroy(other.gameObject);
+            while (windPower < 500)
+            {
+                windPower += 1;
+            }
             windPowerBar.fillAmount = windPower / 500; 
-            speed *= orbIncrementSpeed;
+            speed += orbIncrementSpeed;
 			originalSpeed = speed;
 			treeSpeed = treeSlow * speed;
-			throwPower *= 2;
+			throwPower += 2;
         }
         if (other.gameObject.CompareTag("Border"))
         {
