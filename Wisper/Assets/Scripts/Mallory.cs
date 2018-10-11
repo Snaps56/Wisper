@@ -19,6 +19,9 @@ public class Mallory : MonoBehaviour
     private GameObject[] pickups;
     private HandleObjects handleObjects;
 
+    private float verticalAcceleration = 0.001f;
+    private float verticalSpeed = 0;
+
     [Header("UI")]
     public Image windPowerBar;
     public GameObject textBox;
@@ -45,13 +48,29 @@ public class Mallory : MonoBehaviour
         //Go Up
         if (Input.GetButton("Jump") || Input.GetButton("AButton"))
         {
-            rb.AddForce(Vector3.up * (speed * 20));
-            Debug.Log(Vector3.up * (speed * 20));
+            // rb.AddForce(Vector3.up * (speed * 20));
+            verticalSpeed += verticalAcceleration;
         }
+        else
+        {
+            if (verticalSpeed >= 0)
+            {
+                verticalSpeed -= verticalAcceleration;
+            }
+        }
+        transform.position += Vector3.up * verticalSpeed;
         //Go Down
         if ((Input.GetKey(KeyCode.LeftControl) || Input.GetButton("BButton")) && transform.position.y > 3)
         {
-            rb.AddForce(-Vector3.up * (speed * 29));
+            // rb.AddForce(-Vector3.up * (speed * 29));
+            verticalSpeed -= verticalAcceleration;
+        }
+        else
+        {
+            if (verticalSpeed <= 0)
+            {
+                verticalSpeed += verticalAcceleration;
+            }
         }
         //Moving Forward and Backwards
         if (Input.GetButton("Sprint"))

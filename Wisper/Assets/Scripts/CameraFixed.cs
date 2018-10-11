@@ -18,11 +18,14 @@ public class CameraFixed : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
+        // camera can move with and has the character fixed at the center
+        // prevents player from manually rotating the camera
         if (cameraMovesWithCharacter)
         {
             newPosition = character.position - deltaPosition;
             transform.position = newPosition;
         }
+        // camera is stationary but rotates to have the character fixed at the center
         else
         {
             transform.LookAt(character);
