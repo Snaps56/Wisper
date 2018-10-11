@@ -18,13 +18,16 @@ public class Mallory : MonoBehaviour
 	private float vel;
     private GameObject[] pickups;
     private HandleObjects handleObjects;
-
+    private float timePassed, timeBetweenSteps = .1f;
     [Header("UI")]
     public Image windPowerBar;
     public GameObject textBox;
+    public GameObject miniMap;
+    
 
     void Start()
     {
+        miniMap.SetActive(true);
         rb = GetComponent<Rigidbody>();
 		//rb.drag = 1;
 		//rb.angularDrag = 1;
@@ -38,6 +41,7 @@ public class Mallory : MonoBehaviour
 
     void FixedUpdate()
     {
+        //MOVEMENT
         //Go Up
         if (Input.GetButton("Jump") || Input.GetButton("AButton"))
         {
@@ -49,16 +53,6 @@ public class Mallory : MonoBehaviour
         {
             rb.AddForce(-Vector3.up * (speed * 29));
         }
-
-        //Top Speed Reset
-        if (rb.velocity.magnitude > 15) {
-            //rb.velocity.magnitude = 15;
-        }
-
-
-        //XBOX MOVEMENT
-
-
         //Moving Forward and Backwards
         if (Input.GetButton("Sprint"))
         {
@@ -81,6 +75,28 @@ public class Mallory : MonoBehaviour
             camera.right * Input.GetAxis("Horizontal") * speed;
 
         ModeChange ();
+
+
+        //timePassed += Time.deltaTime;
+        ////MINIMAP
+        //if ((Input.GetKey(KeyCode.E) || Input.GetButton("BButton")))  {
+
+        //    if(timePassed >= timeBetweenSteps)
+        //    {
+        //        if (miniMap.active)
+        //        {
+        //            Debug.Log("MapNotActive");
+        //            miniMap.SetActive(false);
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("Map");
+        //            miniMap.SetActive(true);
+        //        }
+        //        timePassed = 0f;
+        //    }
+
+        //}
     }
 
     void OnTriggerEnter(Collider other)
@@ -125,12 +141,13 @@ public class Mallory : MonoBehaviour
 	}
 
 	void ModeChange () {
-		Debug.Log ("Current Speed: " + rb.velocity);
+		//Debug.Log ("Current Speed: " + rb.velocity);
 		if (rb.velocity.x > 10f || rb.velocity.z > 10f || rb.velocity.x < -10f || rb.velocity.z < -10f) {
-			Debug.Log ("Going fast!");
+			//Debug.Log ("Going fast!");
 		}
 	}
 
+    
 	//void OnCollisionEnter(Collider other)
 	//{
 	//	if (other.tag == "PassThrough") {
