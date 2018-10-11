@@ -18,7 +18,7 @@ public class Mallory : MonoBehaviour
 	private float vel;
     private GameObject[] pickups;
     private HandleObjects handleObjects;
-    private float timePassed, timeBetweenSteps = .1f;
+
     [Header("UI")]
     public Image windPowerBar;
     public GameObject textBox;
@@ -76,27 +76,6 @@ public class Mallory : MonoBehaviour
 
         ModeChange ();
 
-
-        //timePassed += Time.deltaTime;
-        ////MINIMAP
-        //if ((Input.GetKey(KeyCode.E) || Input.GetButton("BButton")))  {
-
-        //    if(timePassed >= timeBetweenSteps)
-        //    {
-        //        if (miniMap.active)
-        //        {
-        //            Debug.Log("MapNotActive");
-        //            miniMap.SetActive(false);
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("Map");
-        //            miniMap.SetActive(true);
-        //        }
-        //        timePassed = 0f;
-        //    }
-
-        //}
     }
 
     void OnTriggerEnter(Collider other)
