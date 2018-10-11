@@ -2,11 +2,12 @@
 using UnityEngine.UI;
 public class Mallory : MonoBehaviour
 {
-
-    [Header("Movement")]
+    [Header("Player Controls")]
     public float speed;
 	public float throwPower;
     public Transform camera;
+    public Vector3 currentMovementForce;
+
     private float windPower;
     private Rigidbody rb;
     private float orbIncrementSpeed = 1.2f;
@@ -15,14 +16,12 @@ public class Mallory : MonoBehaviour
 	private float originalSpeed;
 	private int treeCount = 0;
 	private float vel;
-    public Vector3 currentMovementForce;
-
     private GameObject[] pickups;
-
     private HandleObjects handleObjects;
 
     [Header("UI")]
     public Image windPowerBar;
+    public GameObject textBox;
 
     void Start()
     {
@@ -34,6 +33,7 @@ public class Mallory : MonoBehaviour
 		originalSpeed = speed;
 		treeSpeed = treeSlow * speed;
         pickups = GameObject.FindGameObjectsWithTag("PickUp");
+        textBox.SetActive(false);
     }
 
     void FixedUpdate()
@@ -62,7 +62,7 @@ public class Mallory : MonoBehaviour
         //Moving Forward and Backwards
         if (Input.GetButton("Sprint"))
         {
-            Debug.Log("Running");
+            //Debug.Log("Running");
             rb.AddForce(camera.forward * Input.GetAxis("Vertical") * (speed * 2));
             rb.AddForce(camera.up * Input.GetAxis("Vertical") * (speed * 2));
             rb.AddForce(camera.right * Input.GetAxis("Horizontal") * (speed * 2));
@@ -93,19 +93,18 @@ public class Mallory : MonoBehaviour
 			originalSpeed = speed;
 			treeSpeed = treeSlow * speed;
 			throwPower *= 2;
-		//} else if (other.gameObject.CompareTag("Border"))
-  //      {
-  //          windPower -= 50;
-  //          windPowerBar.fillAmount = windPower / 500;
-  //          speed *= 0.5f;
-  //          originalSpeed = speed;
-  //          treeSpeed = treeSlow * speed;
-  //          throwPower /= 1.5f;
-        } else if (other.gameObject.CompareTag ("Tree")) {
+        }
+        if (other.gameObject.CompareTag("Border"))
+        {
+            speed = speed * 0.1f;
+            textBox.SetActive(true);
+        }
+        if (other.gameObject.CompareTag ("Tree")) {
 			speed = treeSpeed;
 			treeCount++;
 			Debug.Log ("Speed is reduced to :" + speed);
-		} else if (other.gameObject.CompareTag ("PickUp")) {
+		}
+        if (other.gameObject.CompareTag ("PickUp")) {
 			other.gameObject.GetComponent<HandleObjects> ().throwForce = throwPower;
 		}
     }
@@ -118,6 +117,11 @@ public class Mallory : MonoBehaviour
 				Debug.Log ("Speed is back to :" + speed);
 			}
 		}
+        if(other.gameObject.CompareTag("Border"))
+        {
+            textBox.SetActive(false);
+            speed = originalSpeed;
+        }
 	}
 
 	void ModeChange () {
