@@ -21,8 +21,6 @@ public class ObjectThrow : MonoBehaviour {
     private Vector3 forceVector;
     private float currentPlayerVelocity;
 
-    // private float highestVelocity = 0; // used to test max object velocity
-    
     // Use this for initialization
     void Start () {
         movementVector = transform.position;
@@ -31,6 +29,7 @@ public class ObjectThrow : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        // check if player is pressing the lift button
         if (Input.GetMouseButtonDown(1))
         {
             isLiftingObjects = true;
@@ -40,6 +39,7 @@ public class ObjectThrow : MonoBehaviour {
             isLiftingObjects = false;
         }
 
+        // check if player is pressing the throw button
         if (Input.GetMouseButtonDown(0))
         {
             isThrowingObjects = true;
@@ -49,6 +49,7 @@ public class ObjectThrow : MonoBehaviour {
             isThrowingObjects = false;
         }
 
+        // obtain player movement vector to determine throw direction
         currentPlayerVelocity = playerCharacter.velocity.magnitude;
         if (currentPlayerVelocity > 0)
         {
@@ -57,6 +58,12 @@ public class ObjectThrow : MonoBehaviour {
         }
         movementVector = transform.position;
     }
+
+	public bool GetBlowing() {
+		return isThrowingObjects;
+    }
+
+    // detect if any pickable objects are within range
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "PickUp")
@@ -64,30 +71,27 @@ public class ObjectThrow : MonoBehaviour {
             throwObject(other);
         }
     }
-	public bool GetBlowing() {
-		return isThrowingObjects;
-	}
+
+    // throw objects that are within range
+    // parameter passed from OnTriggerStay method
     void throwObject(Collider other)
     {
         float objectVelocity = other.GetComponent<Rigidbody>().velocity.magnitude;
-        /* used to test max object velocity
-        if (objectVelocity > highestVelocity)
-        {
-            highestVelocity = currentPlayerVelocity;
-            Debug.Log(highestVelocity);
-        }
-        */
+
+        // check if the player is pressing the throw button
         if (isThrowingObjects)
         {
-            // use character's direction and speed to determine throw direction and throw strength
-
+            // apply throw force, however add a speed limit to thrown objects
             if (objectVelocity < maxObjectThrowSpeed)
             {
+                // throwing an object while lifting them will grant a throw power bonus
                 float finalLiftMultiplier = 1;
                 if (isLiftingObjects)
                 {
                     finalLiftMultiplier = liftComboMultiplier;
                 }
+
+                // throw force determined by last movement input, and thrown at an angle upwards
                 float throwAngle = verticalAimAngle / 90;
                 forceVector = (deltaMovementVector + new Vector3(0, throwAngle, 0)) * throwForce * finalLiftMultiplier;
                 other.GetComponent<Rigidbody>().AddForce(forceVector);
