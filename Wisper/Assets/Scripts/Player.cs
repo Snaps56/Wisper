@@ -20,9 +20,14 @@ public class Player : MonoBehaviour
 	private float vel;
     private GameObject[] pickups;
     private HandleObjects handleObjects;
+    private Vector3 positionStamp;
 
     private float verticalAcceleration = 0.001f;
     private float verticalSpeed = 0;
+
+    [Header("Collision Handeling")]
+    public Collider playerCollider;
+
 
     [Header("UI")]
     public Image windPowerBar;
@@ -99,24 +104,36 @@ public class Player : MonoBehaviour
 
     }
 
+
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Orb")) {
             Destroy(other.gameObject);
-            while (windPower < 500)
+            if (windPower < 500)
             {
                 windPower += 1;
             }
             windPowerBar.fillAmount = windPower / 500; 
             speed += orbIncrementSpeed;
+            //verticalSpeed += orbIncrementSpeed;
 			originalSpeed = speed;
 			treeSpeed = treeSlow * speed;
 			throwPower += 2;
+            Debug.Log("You collected " + windPower + " orbs.");
         }
         if (other.gameObject.CompareTag("Border"))
         {
-            speed = speed * 0.1f;
+            positionStamp = this.transform.position;
+            if (speed > 1 )
+            {
+                speed = speed * 0.1f;
+            }
             textBox.SetActive(true);
+        }
+        if (other.gameObject.CompareTag("BorderTele"))
+        {
+            this.transform.position = positionStamp;
         }
         if (other.gameObject.CompareTag ("Tree")) {
 			speed = treeSpeed;
