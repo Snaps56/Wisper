@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
 	public bool nearShrine;
 
-    private float windPower;
+    private float orbCount;
     private Rigidbody rb;
     private float orbIncrementSpeed = .1f;
 	private float treeSpeed;
@@ -47,13 +47,13 @@ public class Player : MonoBehaviour
 		//rb.drag = 1;
 		//rb.angularDrag = 1;
 		throwPower = 100;
-        windPower = 0;
+        orbCount = 0;
 		originalSpeed = speed;
         originalVAcceleration = verticalAcceleration;
 		treeSpeed = treeSlow * speed;
         pickups = GameObject.FindGameObjectsWithTag("PickUp");
         turnBackText.SetActive(false);
-        orbCountText.text = windPower.ToString()+"/500";
+        orbCountText.text = orbCount.ToString()+"/500";
         shakeAmount = 0.05f;
         shake = 0;
     }
@@ -119,11 +119,11 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Orb")) {
             Destroy(other.gameObject);
-            if (windPower < 500)
+            if (orbCount < 500)
             {
-                windPower += 1;
+                orbCount += 1;
             }
-            windPowerBar.fillAmount = windPower / 500; 
+            windPowerBar.fillAmount = orbCount / 500; 
             speed += orbIncrementSpeed;
             //Disabled increment verticalAcceleration because it caused the player to sink
             //verticalAcceleration += 0.0001f;
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
             originalVAcceleration = verticalAcceleration;
 			treeSpeed = treeSlow * speed;
 			throwPower += 2;
-            orbCountText.text = windPower.ToString() + "/500";
+			orbCountText.text = orbCount.ToString() + "/500";
         }
         if (other.gameObject.CompareTag("Border"))
         {
