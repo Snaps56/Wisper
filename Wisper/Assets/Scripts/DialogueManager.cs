@@ -4,105 +4,63 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
-    public static DialogueManager dialogueManager;
 
     private Text dialogueText;
-    private Text dialogueName;
     private Queue<string> sentences;
     private bool sentenceDisplayInProgress;
-    public bool dialogueBoxActive;
-    private GameObject dialogueBox;
-    
-    void Awake()
-    {
-        if (dialogueManager == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            dialogueManager = this;
-        }
-        else if (dialogueManager != this)
-        {
-            Destroy(gameObject);
-        }
-    }
 
-    // Use this for initialization
-    void Start () {
-        dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
+	// Use this for initialization
+	void Start () {
         sentences = new Queue<string>();
-        foreach(Text textField in GameObject.FindGameObjectWithTag("DialogueBox").GetComponents<Text>())
-        {
-            if(textField.name == "Name")
-            {
-                dialogueName = textField;
-            }
-            else if(textField.name == "Text")
-            {
-                dialogueText = textField;
-            }
-            else
-            {
-                Debug.Log("Unexpected text field found with name: " + textField.name);
-            }
-        }
-        if(dialogueName == null)
-        {
-            Debug.LogError("Dialogue display componenet not found: dialogueName");
-        }
-        if(dialogueText == null)
-        {
-            Debug.LogError("Dialogue display componenet not found: dialogueText");
-        }
+        dialogueText = this.gameObject.GetComponentInChildren<Text>();
         sentenceDisplayInProgress = false;
-        hideBox();
-    }
-
-    void startDialogue(Dialogue dialogue)
+	}
+	
+    public void StartDialogue (Dialogue dialogue)
     {
         Debug.Log("Recieved dialogue " + dialogue.dialogueName);
         sentences.Clear();
+        //dialogueText = speaker.GetComponentInChildren<Text>();
         foreach(string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
             Debug.Log("Enqued: " + sentence);
         }
-        showBox();
-        DisplayNextSentence();
+        DisplayNextSentence(2);
     }
 
-    public int DisplayNextSentence(float charDelay = 0.066F )
+    // Returns 0 when dialogue is over
+    public int DisplayNextSentence(int timeDelay)
     {
-        if (sentenceDisplayInProgress)
+        if(sentenceDisplayInProgress)
         {
-            // Could add a bool switch here to tell corutine to break and display all text at once.
             return 1;
         }
         else
         {
+            sentenceDisplayInProgress = true;
             if (sentences.Count == 0)
             {
+                Debug.Log("End of Dialogue, not displaying sentence");
                 EndDialogue();
                 return 0;
             }
-            else
-            {
-                sentenceDisplayInProgress = true;
-                string sentence = sentences.Dequeue();
-                StartCoroutine(DisplaySentence(sentence, charDelay));
-                return 1;
-            }
+            string sentence = sentences.Dequeue();
+            StartCoroutine(displaySentence(sentence, timeDelay));
+            return 1;
         }
     }
 
-    IEnumerator DisplaySentence(string sentence, float charDelay)
+    IEnumerator displaySentence(string sentence, int timeDelay)
     {
         Debug.Log("In coroutine displaySentence");
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(charDelay); //Wait 1 frame between each letter.
+            yield return null; //Wait 1 frame between each letter.
         }
+        yield return new WaitForSeconds(timeDelay);
         sentenceDisplayInProgress = false;
     }
 
@@ -111,15 +69,31 @@ public class DialogueManager : MonoBehaviour {
         Debug.Log("Conversation over");
         sentences.Clear();
         dialogueText.text = "";
-        hideBox();
+        sentenceDisplayInProgress = false;
     }
 
-    public void showBox()
+    //When a character triggers a condition that would change dialogue (e.g. completed a task), run this function to enable/disable dialogues.
+    public void UpdateDialogues(int conditionID)
     {
-        dialogueBox.SetActive(true);
-    }
-    public void hideBox()
-    {
-        dialogueBox.SetActive(false);
+        /* Assumptions:
+         *  There exists a table A with columns: DialogueName(string), DialogueID(numeric), Enabled(bool), ConditionCount(numeric)
+         *  There exists a table B with columns: DialogueID (numeric), ConditionName(string)
+         *  There exists a table C with columns: ConditionName(string), CondiionID(numeric), State(bool)
+         *  
+         *  Table A is generated on loading an area (at some point after C), and deleted upon leaving. Defaults derived from dialogue object.
+         *  Table B is generated after A, connecting A to C using conditions named in A.
+         *  Table C is generated on game launch, and is persistant for a save file. This may be used outside of dialogues.
+        */
+        /*
+         * Condition is met, this function has been called
+         * Find ConditionID in table C.
+         * Find all instances of this in table B.
+         * For each instance
+         *  find the corresponding tuple in A
+         *  find all instances of that tuple's DialogueID in table B
+         *
+         */
+        //Having conditions stored in table would allow for retention of dialogue status on reloading characters/areas.
+        //
     }
 }
