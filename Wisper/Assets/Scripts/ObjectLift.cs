@@ -32,6 +32,7 @@ public class ObjectLift : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        // check right mouse click
         if (Input.GetMouseButtonDown(1))
         {
             isLiftingObjects = true;
@@ -41,6 +42,7 @@ public class ObjectLift : MonoBehaviour {
             isLiftingObjects = false;
         }
 
+        // check left mouse click
         if (Input.GetMouseButtonDown(0))
         {
             isThrowingObjects = true;
@@ -50,6 +52,7 @@ public class ObjectLift : MonoBehaviour {
             isThrowingObjects = false;
         }
 
+        // lift objects when not throwing
         if (isLiftingObjects && !isThrowingObjects)
         {
             targetPosition = transform.position + new Vector3(0, liftHeight, 0);
@@ -59,40 +62,34 @@ public class ObjectLift : MonoBehaviour {
         {
             dropObjects();
         }
+        // obtain character movement data to help track movement for lifted objects
         currentCharacterVector = movementScript.currentMovementForce;
         currentCharacterVector.y *= 0;
         currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
     }
     void liftObjects()
     {
-        Debug.Log(liftedObjects.Count);
         for (int i = 0; i < liftedObjects.Count; i++)
         {
+            // apply force to all objects that are lifted
             float objectDistance = (targetPosition - liftedObjects[i].transform.position).magnitude;
-            Vector3 toCenterVector = (targetPosition - liftedObjects[i].transform.position);
+            Vector3 toCenterVector = (targetPosition - liftedObjects[i].transform.position).normalized;
 
             Rigidbody liftedObjectRB = liftedObjects[i].GetComponent<Rigidbody>();
             
+            // add force to object only if its not moving too fast
             if (liftedObjectRB.velocity.magnitude < liftedObjectMaxSpeed + currentCharacterSpeed)
             {
-                liftedObjectRB.AddForce(currentCharacterVector * predictCharacterForceMultiplier);
-                liftedObjectRB.AddForce(toCenterVector * liftCenterStrength);
-                if (currentCharacterVector.x == 0)
-                {
-                    Vector3 zeroedX = new Vector3(1, 0, 0);
-                    liftedObjectRB.AddForce(liftedObjectRB.velocity.magnitude * zeroedX);
-                }
-                if (currentCharacterVector.z == 0)
-                {
-                    Vector3 zeroedZ = new Vector3(0, 0, 1);
-                    liftedObjectRB.AddForce(liftedObjectRB.velocity.magnitude * zeroedZ);
-                }
+                liftedObjectRB.AddForce(currentCharacterVector * predictCharacterForceMultiplier); // movement prediction force
+                liftedObjectRB.AddForce(toCenterVector * liftCenterStrength); // orbit to center force
             }
             else
             {
+                // if object is moving to fast, add a cap to its speed
                 liftedObjectRB.AddForce(-liftedObjectRB.velocity);
             }
 
+            // remove lifted object if they stray to far from the player
             if (objectDistance > radiusCollider.radius * maxHoldRadiusMultiplier)
             {
                 liftedObjects.Remove(liftedObjects[i]);
@@ -116,6 +113,7 @@ public class ObjectLift : MonoBehaviour {
     }
     void addToLiftedObjects(Collider other)
     {
+        // add object to a list of all lifted objects
         if (liftedObjects.Count < 1)
         {
             liftedObjects.Add(other.gameObject);
@@ -130,6 +128,5 @@ public class ObjectLift : MonoBehaviour {
                 }
             }
         }
-        // liftedObjects.Add(other.transform.gameObject);
     }
 }
