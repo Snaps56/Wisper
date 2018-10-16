@@ -12,12 +12,17 @@ public class Shrine : MonoBehaviour {
 
 	private GameObject player;
 	private bool isClean;
-	public GameObject playerBlowing;
+	public GameObject playerAbilities;
+
+	private bool gettingBlown;
+	private double blowProgress;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
+		gettingBlown = false;
 		isClean = false;
+		blowProgress = 0;
 	}
 
 	// Update is called once per frame
@@ -25,7 +30,13 @@ public class Shrine : MonoBehaviour {
 		
 		if (player.GetComponent<Player> ().nearShrine) {
 			activationParticles.SetActive (true);
-			//isClean = playerBlowing.isThrowingObjects;
+			gettingBlown = playerAbilities.GetComponent<ObjectThrow>().isThrowingObjects;
+			if (gettingBlown) {
+				blowProgress += 20;
+			}
+			if (blowProgress >= 100) {
+				isClean = playerAbilities.GetComponent<ObjectThrow>().isThrowingObjects;
+			}
 		} else {
 			activationParticles.SetActive (false);
 		}

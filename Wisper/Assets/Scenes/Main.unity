@@ -6661,9 +6661,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAt: {fileID: 773190232}
   camTransform: {fileID: 534669905}
-  distance: 6
+  maxDistance: 10
   sensitivityX: 4
   sensitivityY: 2
+  minDistance: 1
+  collisionSmooth: 10
+  dollyDirAdjusted: {x: 0, y: 0, z: 0}
+  zoomRatio: 1
 --- !u!1 &567089925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7020,6 +7024,7 @@ MonoBehaviour:
   camera: {fileID: 1342754103}
   currentMovementForce: {x: 0, y: 0, z: 0}
   nearShrine: 0
+  playerCollider: {fileID: 0}
   windPowerBar: {fileID: 2081836671}
   textBox: {fileID: 657240400}
   miniMap: {fileID: 1525128626}
@@ -7641,12 +7646,12 @@ Prefab:
         type: 2}
       propertyPath: shrinePart1
       value: 
-      objectReference: {fileID: 1422321140}
+      objectReference: {fileID: 2096298530}
     - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
         type: 2}
       propertyPath: shrinePart2
       value: 
-      objectReference: {fileID: 2096298530}
+      objectReference: {fileID: 1422321140}
     - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
         type: 2}
       propertyPath: cleanShrine1
@@ -7657,6 +7662,11 @@ Prefab:
       propertyPath: cleanShrine2
       value: 
       objectReference: {fileID: 2100000, guid: ac90fe5f7988f1d4ab4fd2256f01f617, type: 2}
+    - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: playerAbilities
+      value: 
+      objectReference: {fileID: 1531182124}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec12d476aaa00444885af1da3a3ea13, type: 2}
   m_IsPrefabAsset: 0
@@ -14104,6 +14114,7 @@ MonoBehaviour:
   maxObjectThrowSpeed: 6
   liftComboMultiplier: 4
   verticalAimAngle: 22
+  isThrowingObjects: 0
 --- !u!135 &1531182127
 SphereCollider:
   m_ObjectHideFlags: 0
