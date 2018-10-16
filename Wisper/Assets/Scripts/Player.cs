@@ -111,10 +111,14 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Orb")) {
             Destroy(other.gameObject);
 <<<<<<< HEAD
+<<<<<<< HEAD
             while (windPower < 500)
 =======
             if (orbCount < 500)
 >>>>>>> 39ab2c9d7c919e034e2245322cba442cbd9288b0
+=======
+            if (orbCount < 500)
+>>>>>>> 6db6e8ff41aec6475d45e841c980e32a94dc899d
             {
                 orbCount += 1;
             }
@@ -124,9 +128,13 @@ public class Player : MonoBehaviour
 			treeSpeed = treeSlow * speed;
 			throwPower += 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			orbCountText.text = orbCount.ToString() + "/500";
 >>>>>>> 39ab2c9d7c919e034e2245322cba442cbd9288b0
+=======
+			orbCountText.text = orbCount.ToString() + "/500";
+>>>>>>> 6db6e8ff41aec6475d45e841c980e32a94dc899d
         }
         if (other.gameObject.CompareTag("Border"))
         {
