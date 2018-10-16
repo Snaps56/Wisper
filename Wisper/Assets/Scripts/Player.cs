@@ -16,18 +16,28 @@ public class Player : MonoBehaviour
 	private float treeSpeed;
 	private float treeSlow = 0.7f;
 	private float originalSpeed;
+    private float originalVAcceleration;
 	private int treeCount = 0;
 	private float vel;
     private GameObject[] pickups;
     private HandleObjects handleObjects;
+    private Vector3 positionStamp;
+    private float shake;
 
     private float verticalAcceleration = 0.001f;
     private float verticalSpeed = 0;
 
+    [Header("Collision Handeling")]
+    public Collider playerCollider;
+    public float shakeAmount;
+
+
+
     [Header("UI")]
     public Image windPowerBar;
-    public GameObject textBox;
+    public GameObject turnBackText;
     public GameObject miniMap;
+    public Text orbCountText;
     
 
     void Start()
@@ -39,9 +49,13 @@ public class Player : MonoBehaviour
 		throwPower = 100;
         windPower = 0;
 		originalSpeed = speed;
+        originalVAcceleration = verticalAcceleration;
 		treeSpeed = treeSlow * speed;
         pickups = GameObject.FindGameObjectsWithTag("PickUp");
-        textBox.SetActive(false);
+        turnBackText.SetActive(false);
+        orbCountText.text = windPower.ToString()+"/500";
+        shakeAmount = 0.05f;
+        shake = 0;
     }
 
     void FixedUpdate()
@@ -55,7 +69,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (verticalSpeed >= 0)
+            if (verticalSpeed > 0)
             {
                 verticalSpeed -= verticalAcceleration;
             }
@@ -69,7 +83,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (verticalSpeed <= 0)
+            if (verticalSpeed < 0)
             {
                 verticalSpeed += verticalAcceleration;
             }
@@ -99,24 +113,49 @@ public class Player : MonoBehaviour
 
     }
 
+
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Orb")) {
             Destroy(other.gameObject);
-            while (windPower < 500)
+            if (windPower < 500)
             {
                 windPower += 1;
             }
             windPowerBar.fillAmount = windPower / 500; 
             speed += orbIncrementSpeed;
+            //Disabled increment verticalAcceleration because it caused the player to sink
+            //verticalAcceleration += 0.0001f;
 			originalSpeed = speed;
+            originalVAcceleration = verticalAcceleration;
 			treeSpeed = treeSlow * speed;
 			throwPower += 2;
+            orbCountText.text = windPower.ToString() + "/500";
         }
         if (other.gameObject.CompareTag("Border"))
         {
-            speed = speed * 0.1f;
-            textBox.SetActive(true);
+            //shake = 1;
+            positionStamp = this.transform.position;
+            if (speed > originalSpeed/2 )
+            {
+                speed = speed * 0.1f;
+                verticalAcceleration = 0.001f;
+            }
+            //if (shake > 0)
+            //{
+            //    this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
+            //}
+            //else
+            //{
+            //    shake -= Time.deltaTime * 0.1f;
+            //}
+            turnBackText.SetActive(true);
+        }
+        if (other.gameObject.CompareTag("BorderTele"))
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            this.transform.position = positionStamp;
         }
         if (other.gameObject.CompareTag ("Tree")) {
 			speed = treeSpeed;
@@ -124,11 +163,27 @@ public class Player : MonoBehaviour
 			Debug.Log ("Speed is reduced to :" + speed);
 		}
         if (other.gameObject.CompareTag ("PickUp")) {
-			other.gameObject.GetComponent<HandleObjects> ().throwForce = throwPower;
+			other.gameObject.GetComponent<HandleObjects>().throwForce = throwPower;
 		}
 		if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = true;
 		}
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        shake = 1;
+        if (other.gameObject.CompareTag ("Border"))
+        {
+            if (shake > 0)
+            {
+                this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
+            }
+            else
+            {
+                shake -= Time.deltaTime * 0.1f;
+            }
+        }
     }
 
 	void OnTriggerExit(Collider other) {
@@ -141,10 +196,12 @@ public class Player : MonoBehaviour
 		}
         if(other.gameObject.CompareTag("Border"))
         {
-            textBox.SetActive(false);
+            turnBackText.SetActive(false);
             speed = originalSpeed;
+            verticalAcceleration = originalVAcceleration;
+            shake = 0;
         }
-		if (other.gameObject.CompareTag ("Shrine")) {
+        if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = false;
 		}
 	}
@@ -156,7 +213,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
-    
+
 	//void OnCollisionEnter(Collider other)
 	//{
 	//	if (other.tag == "PassThrough") {
