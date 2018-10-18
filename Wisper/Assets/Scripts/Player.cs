@@ -117,7 +117,8 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Orb")) {
+        float objectDistance = (transform.position - other.transform.position).magnitude;
+        if (other.gameObject.CompareTag("Orb") && objectDistance < 1f) {
             Destroy(other.gameObject);
             if (orbCount < 500)
             {
