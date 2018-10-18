@@ -14158,6 +14158,7 @@ GameObject:
   - component: {fileID: 1531182127}
   - component: {fileID: 1531182126}
   - component: {fileID: 1531182128}
+  - component: {fileID: 1531182129}
   m_Layer: 0
   m_Name: Abilities Prefab
   m_TagString: Untagged
@@ -14195,7 +14196,6 @@ MonoBehaviour:
   maxObjectThrowSpeed: 6
   liftComboMultiplier: 4
   verticalAimAngle: 22
-  isThrowingObjects: 0
 --- !u!135 &1531182127
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14226,6 +14226,18 @@ MonoBehaviour:
   liftedObjectMaxSpeed: 3
   predictCharacterForceMultiplier: 0.2
   maxHoldRadiusMultiplier: 1.5
+--- !u!114 &1531182129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1531182124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1a7e9ec6460564e8375f48463971fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSwirling: 0
 --- !u!1 &1531604106
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class ObjectThrow : MonoBehaviour {
     public float verticalAimAngle;
 
     private bool isLiftingObjects = false;
-    public bool isThrowingObjects = false;
+    private bool isThrowingObjects = false;
     private Vector3 movementVector;
     private Vector3 deltaMovementVector;
     private Vector3 forceVector;
