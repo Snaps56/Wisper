@@ -44,7 +44,7 @@ public class Shrine : MonoBehaviour {
 				}
 				if (cleanProgress >= 1.0f) {
 					isClean = true;
-					this.GetComponent<SpawnOrbs> ().DropOrbs (5);
+					this.GetComponent<SpawnOrbs> ().DropOrbs ();
 				}
 			}
 			if (Input.GetKeyDown (KeyCode.L) && isClean) {
