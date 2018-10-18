@@ -103,7 +103,7 @@ public class ObjectLift : MonoBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "PickUp")
+        if (other.tag == "PickUp" || other.tag == "Orb")
         {
             if (isLiftingObjects)
             {
