@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
     private float orbIncrementSpeed = .1f;
 	private float treeSpeed;
 	private float treeSlow = 0.7f;
-	private float preTreeSpeed;
 	private float originalSpeed;
+	private float startingSpeed;
     private float originalVAcceleration;
 	private int treeCount = 0;
 	private float vel;
@@ -47,8 +47,8 @@ public class Player : MonoBehaviour
 		//rb.angularDrag = 1;
 		throwPower = 100;
         orbCount = 0;
+		startingSpeed = speed;
 		originalSpeed = speed;
-		preTreeSpeed = speed;
         originalVAcceleration = verticalAcceleration;
 		treeSpeed = treeSlow * speed;
         pickups = GameObject.FindGameObjectsWithTag("PickUp");
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
             speed += orbIncrementSpeed;
             //Disabled increment verticalAcceleration because it caused the player to sink
             //verticalAcceleration += 0.0001f;
-			preTreeSpeed = speed;
+			originalSpeed = speed;
             originalVAcceleration = verticalAcceleration;
 			treeSpeed = treeSlow * speed;
 			throwPower += 2;
@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         {
             //shake = 1;
             positionStamp = this.transform.position;
-            if (speed > preTreeSpeed/2 )
+            if (speed > originalSpeed/2 )
             {
                 speed = speed * 0.1f;
                 verticalAcceleration = 0.001f;
@@ -191,14 +191,14 @@ public class Player : MonoBehaviour
 		if (other.gameObject.CompareTag ("Tree")) {
 			treeCount--;
 			if (treeCount == 0) {
-				speed = preTreeSpeed;
+				speed = originalSpeed;
 				Debug.Log ("Speed is back to :" + speed);
 			}
 		}
         if(other.gameObject.CompareTag("Border"))
         {
             turnBackText.SetActive(false);
-            speed = preTreeSpeed;
+            speed = originalSpeed;
             verticalAcceleration = originalVAcceleration;
             shake = 0;
         }
@@ -218,9 +218,9 @@ public class Player : MonoBehaviour
 		orbCount = newOrbCount;
 		windPowerBar.fillAmount = orbCount / 500;
 		//Assuming that the passed in newOrbCount is 0, which it should be
-		speed = originalSpeed;
-		preTreeSpeed = originalSpeed;
-		treeSpeed = treeSlow * originalSpeed;
+		speed = startingSpeed;
+		originalSpeed = startingSpeed;
+		treeSpeed = treeSlow * startingSpeed;
 		Debug.Log ("OrbCount = " + orbCount);
 		Debug.Log ("Speed is back to :" + speed);
 	}
