@@ -138,11 +138,12 @@ public class Player : MonoBehaviour
         {
             //shake = 1;
             positionStamp = this.transform.position;
-            if (speed > preTreeSpeed/2 )
-            {
-                speed = speed * 0.1f;
-                verticalAcceleration = 0.001f;
-            }
+            //if (speed > preTreeSpeed/2 )
+            //{
+            //    speed = speed * 0.1f;
+            //    verticalAcceleration = 0.001f;
+            //}
+
             //if (shake > 0)
             //{
             //    this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
@@ -174,7 +175,7 @@ public class Player : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         shake = 1;
-        if (other.gameObject.CompareTag ("Border"))
+        if (other.gameObject.CompareTag("Border"))
         {
             if (shake > 0)
             {
@@ -187,7 +188,7 @@ public class Player : MonoBehaviour
         }
     }
 
-	void OnTriggerExit(Collider other) {
+    void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag ("Tree")) {
 			treeCount--;
 			if (treeCount == 0) {
