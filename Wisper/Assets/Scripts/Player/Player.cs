@@ -138,20 +138,17 @@ public class Player : MonoBehaviour
         {
             //shake = 1;
             positionStamp = this.transform.position;
-<<<<<<< HEAD:Wisper/Assets/Scripts/Player.cs
             //if (speed > preTreeSpeed/2 )
             //{
             //    speed = speed * 0.1f;
             //    verticalAcceleration = 0.001f;
             //}
 
-=======
             if (speed > originalSpeed/2 )
             {
                 speed = speed * 0.1f;
                 verticalAcceleration = 0.001f;
             }
->>>>>>> 143f988c5f0461d722deba6add6e3bd52d553516:Wisper/Assets/Scripts/Player/Player.cs
             //if (shake > 0)
             //{
             //    this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
