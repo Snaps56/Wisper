@@ -37,4 +37,12 @@ public class SpawnOrbs : MonoBehaviour
             buttonPressed = false;
         }
     }
+
+	public void DropOrbs (){
+		for (int i = 0; i < orbCount; i++) {
+			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
+			GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
+			orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
+		}
+	}
 }
