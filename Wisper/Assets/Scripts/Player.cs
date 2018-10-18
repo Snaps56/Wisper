@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private float orbIncrementSpeed = .1f;
 	private float treeSpeed;
 	private float treeSlow = 0.7f;
+	private float preTreeSpeed;
 	private float originalSpeed;
     private float originalVAcceleration;
 	private int treeCount = 0;
@@ -30,8 +31,6 @@ public class Player : MonoBehaviour
     [Header("Collision Handeling")]
     public Collider playerCollider;
     public float shakeAmount;
-
-
 
     [Header("UI")]
     public Image windPowerBar;
@@ -49,6 +48,7 @@ public class Player : MonoBehaviour
 		throwPower = 100;
         orbCount = 0;
 		originalSpeed = speed;
+		preTreeSpeed = speed;
         originalVAcceleration = verticalAcceleration;
 		treeSpeed = treeSlow * speed;
         pickups = GameObject.FindGameObjectsWithTag("PickUp");
@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
             speed += orbIncrementSpeed;
             //Disabled increment verticalAcceleration because it caused the player to sink
             //verticalAcceleration += 0.0001f;
-			originalSpeed = speed;
+			preTreeSpeed = speed;
             originalVAcceleration = verticalAcceleration;
 			treeSpeed = treeSlow * speed;
 			throwPower += 2;
@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
         {
             //shake = 1;
             positionStamp = this.transform.position;
-            if (speed > originalSpeed/2 )
+            if (speed > preTreeSpeed/2 )
             {
                 speed = speed * 0.1f;
                 verticalAcceleration = 0.001f;
@@ -190,14 +190,14 @@ public class Player : MonoBehaviour
 		if (other.gameObject.CompareTag ("Tree")) {
 			treeCount--;
 			if (treeCount == 0) {
-				speed = originalSpeed;
+				speed = preTreeSpeed;
 				Debug.Log ("Speed is back to :" + speed);
 			}
 		}
         if(other.gameObject.CompareTag("Border"))
         {
             turnBackText.SetActive(false);
-            speed = originalSpeed;
+            speed = preTreeSpeed;
             verticalAcceleration = originalVAcceleration;
             shake = 0;
         }
@@ -211,6 +211,17 @@ public class Player : MonoBehaviour
 		if (rb.velocity.x > 10f || rb.velocity.z > 10f || rb.velocity.x < -10f || rb.velocity.z < -10f) {
 			//Debug.Log ("Going fast!");
 		}
+	}
+
+	public void SetOrbCount(float newOrbCount) {
+		orbCount = newOrbCount;
+		windPowerBar.fillAmount = orbCount / 500;
+		//Assuming that the passed in newOrbCount is 0, which it should be
+		speed = originalSpeed;
+		preTreeSpeed = originalSpeed;
+		treeSpeed = treeSlow * originalSpeed;
+		Debug.Log ("OrbCount = " + orbCount);
+		Debug.Log ("Speed is back to :" + speed);
 	}
 
 

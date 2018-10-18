@@ -42,7 +42,10 @@ public class Shrine : MonoBehaviour {
 				shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
 			}
 			if (cleanProgress >= 1.0f) {
-				isClean = playerAbilities.GetComponent<ObjectSwirl>().isSwirling;
+				isClean = true;
+			}
+			if (Input.GetKeyDown (KeyCode.L) && isClean) {
+				DepositOrbs();
 			}
 		} else {
 			activationParticles.SetActive (false);
@@ -52,5 +55,9 @@ public class Shrine : MonoBehaviour {
 			shrinePart1.GetComponent<MeshRenderer> ().material = cleanShrine1;
 			shrinePart2.GetComponent<MeshRenderer> ().material = cleanShrine2;
 		}
+	}
+
+	void DepositOrbs () {
+		player.GetComponent<Player> ().SetOrbCount (0);
 	}
 }
