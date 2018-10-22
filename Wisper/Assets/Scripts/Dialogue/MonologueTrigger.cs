@@ -15,7 +15,7 @@ public class MonologueTrigger : MonoBehaviour
             //TODO Pull the correct dialogue from the list and run start dialogue
             // Currently just uses the first dialogue of the list
 
-            // If there is not an active dialogue, start one
+            // If there is not an active monologue, start one
             // Else trigger next sentece, which has a 2 second delay before next one is displayed
             if (activeMonologue < 0)
             {
