@@ -15,7 +15,19 @@ public class ControlDetector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isUsingController)
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            if (!isUsingController)
+            {
+                isUsingController = true;
+            }
+            else if (isUsingController)
+            {
+                isUsingController = false;
+            }
+        }
+
+        if (isUsingController)
         {
             controllerObject.SetActive(true);
             keyboardMouseObject.SetActive(false);
