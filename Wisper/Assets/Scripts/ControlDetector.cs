@@ -8,34 +8,32 @@ public class ControlDetector : MonoBehaviour {
     public GameObject controllerObject;
     public GameObject keyboardMouseObject;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(Input.GetKeyDown(KeyCode.C))
+    // Use this for initialization
+    void Start () {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        string[] names = Input.GetJoystickNames();
+        for(int i = 0; i < names.Length; i++)
         {
-            if (!isUsingController)
+            if (names[i].Length > 0)
             {
-                isUsingController = true;
+                if (!isUsingController)
+                {
+                    isUsingController = true;
+                    controllerObject.SetActive(true);
+                    keyboardMouseObject.SetActive(false);
+                }
             }
-            else if (isUsingController)
+            else
             {
-                isUsingController = false;
+                controllerObject.SetActive(false);
+                keyboardMouseObject.SetActive(true);
             }
         }
 
-        if (isUsingController)
-        {
-            controllerObject.SetActive(true);
-            keyboardMouseObject.SetActive(false);
-        }
-        else
-        {
-            controllerObject.SetActive(false);
-            keyboardMouseObject.SetActive(true);
-        }
-	}
+    }
 }
