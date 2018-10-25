@@ -21,12 +21,9 @@ public class ControlDetector : MonoBehaviour {
         {
             if (names[i].Length > 0)
             {
-                if (!isUsingController)
-                {
-                    isUsingController = true;
-                    controllerObject.SetActive(true);
-                    keyboardMouseObject.SetActive(false);
-                }
+                isUsingController = true;
+                controllerObject.SetActive(true);
+                keyboardMouseObject.SetActive(false);
             }
             else
             {
