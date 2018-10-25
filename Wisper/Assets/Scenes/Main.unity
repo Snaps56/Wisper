@@ -889,11 +889,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologues:
   - dialogueName: Find the hat
-    enabled: 1
+    enabled: 0
+    enableConditions:
+    - String: ShamusHasHat
+      Bool: 0
     sentences:
     - "Where'd ma hat go?\t"
     - Can't find the darn thing!
     - Cost me a whole 30 clamolies!
+  - dialogueName: Hat was found
+    enabled: 0
+    enableConditions:
+    - String: ShamusHasHat
+      Bool: 1
+    sentences:
+    - All is right with the world again.
 --- !u!4 &231803580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400168, guid: b235179bd2a63d1468dd430670338c55,
@@ -7426,7 +7436,7 @@ SpriteRenderer:
   m_Size: {x: 14.79, y: 3.09}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &854378333
@@ -7576,6 +7586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
   orbCount: 5
+  player: {fileID: 773190229}
 --- !u!1001 &916215314
 Prefab:
   m_ObjectHideFlags: 0
@@ -12913,7 +12924,7 @@ SpriteRenderer:
   m_Size: {x: 14.83, y: 7.43}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1084453727
@@ -13213,7 +13224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875a0ff325523da49bf03f1bee1673c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBoxActive: 0
 --- !u!4 &1255717610
 Transform:
   m_ObjectHideFlags: 0
@@ -14009,6 +14019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
   orbCount: 10
+  player: {fileID: 773190229}
 --- !u!65 &1498936150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19959,7 +19970,7 @@ SpriteRenderer:
   m_Size: {x: 15.64, y: 7.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1994814106

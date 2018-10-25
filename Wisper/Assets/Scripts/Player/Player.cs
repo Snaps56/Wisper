@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private HandleObjects handleObjects;
     private Vector3 positionStamp;
     private float shake;
+    private DialogueManager dialogueManager;
 
     private float verticalAcceleration = 0.001f;
     private float verticalSpeed = 0;
@@ -56,10 +57,12 @@ public class Player : MonoBehaviour
         orbCountText.text = orbCount.ToString()+"/500";
         shakeAmount = 0.05f;
         shake = 0;
+        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
 
     void FixedUpdate()
     {
+
         //MOVEMENT
         //Go Up
         if (Input.GetButton("Jump") || Input.GetButton("AButton"))
@@ -118,7 +121,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         float objectDistance = (transform.position - other.transform.position).magnitude;
-        if (other.gameObject.CompareTag("Orb") && objectDistance < 1f) {
+        if (other.gameObject.CompareTag("Orb") && objectDistance < 2f) {
             Destroy(other.gameObject);
             if (orbCount < 500)
             {
@@ -169,12 +172,24 @@ public class Player : MonoBehaviour
 			treeCount++;
 			Debug.Log ("Speed is reduced to :" + speed);
 		}
-        if (other.gameObject.CompareTag ("PickUp")) {
-			other.gameObject.GetComponent<HandleObjects>().throwForce = throwPower;
-		}
+  //      if (other.gameObject.CompareTag ("PickUp")) {
+		//	other.gameObject.GetComponent<HandleObjects>().throwForce = throwPower;
+		//}
 		if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = true;
 		}
+        if (other.gameObject.CompareTag("NPC"))
+        {
+            NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
+            if (npcDialogues != null)   // If this npc has dialogues
+            {
+                if (!npcDialogues.getInDialogueRange())
+                {
+                    npcDialogues.setInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
+                    dialogueManager.addInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
+                }
+            }
+        }
     }
 
     void OnTriggerStay(Collider other)

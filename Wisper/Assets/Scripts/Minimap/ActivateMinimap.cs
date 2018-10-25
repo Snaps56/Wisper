@@ -20,21 +20,21 @@ public class ActivateMinimap : MonoBehaviour {
 
         timePassed += Time.deltaTime;
         //MINIMAP
-        if ((Input.GetKey(KeyCode.M) || Input.GetButton("BButton")))
+        if ((Input.GetKey(KeyCode.M) || Input.GetButton("YButton")))
         {
 
             if (timePassed >= timeBetweenSteps)
             {
                 if (!slid)
                 {
-                    Debug.Log("MapNotActive");
+                    //Debug.Log("MapNotActive");
                     //miniMap.SetActive(false);
                     slide.SetBool("SlideOut", true);
                     slid = true;
                 }
                 else
                 {
-                    Debug.Log("Map");
+                    //Debug.Log("Map");
                     //miniMap.SetActive(true);
                     slide.SetBool("SlideOut", false);
                     slid = false;
