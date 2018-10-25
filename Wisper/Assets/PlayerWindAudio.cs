@@ -22,7 +22,6 @@ public class PlayerWindAudio : MonoBehaviour {
         }
         else
         {
-            Debug.Log("idle");
             source.volume = 0.5f;
             source.pitch = 0.5f;
         }

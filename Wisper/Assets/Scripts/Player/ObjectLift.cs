@@ -17,7 +17,7 @@ public class ObjectLift : MonoBehaviour {
     public float maxHoldRadiusMultiplier;
 
     private bool isLiftingObjects = false;
-    private bool isThrowingObjects = false;
+    private bool isThrowingObjects;
     private Vector3 velocity = Vector3.zero;
     private Vector3 targetPosition;
     private Vector3 currentCharacterVector;
@@ -33,25 +33,19 @@ public class ObjectLift : MonoBehaviour {
 	void Update ()
     {
         // check right mouse click
-        if (Input.GetMouseButtonDown(1))
+        isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
+
+        // TRIGGERS TODO
+
+        if (Input.GetMouseButtonDown(1) || Input.GetAxis("TriggerL") > 0)
         {
             isLiftingObjects = true;
         }
-        if (isLiftingObjects && Input.GetMouseButtonUp(1))
+        if (isLiftingObjects && Input.GetMouseButtonUp(1) && Input.GetAxis("TriggerL") < 0.5f)
         {
             isLiftingObjects = false;
         }
-
-        // check left mouse click
-        if (Input.GetMouseButtonDown(0))
-        {
-            isThrowingObjects = true;
-        }
-        if (isThrowingObjects && Input.GetMouseButtonUp(0))
-        {
-            isThrowingObjects = false;
-        }
-
+        
         // lift objects when not throwing
         if (isLiftingObjects && !isThrowingObjects)
         {
@@ -67,11 +61,18 @@ public class ObjectLift : MonoBehaviour {
         currentCharacterVector.y *= 0;
         currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
     }
+    public bool GetIsLiftingObjects()
+    {
+        return isLiftingObjects;
+    }
+
+    // lift a nearby pickable object when the player presses the lift button
     void liftObjects()
     {
+        // use a for loop for every nearby object detected
         for (int i = 0; i < liftedObjects.Count; i++)
         {
-            // apply force to all objects that are lifted
+            // calculate the force needed to lift an object toward the player
             float objectDistance = (targetPosition - liftedObjects[i].transform.position).magnitude;
             Vector3 toCenterVector = (targetPosition - liftedObjects[i].transform.position).normalized;
 
@@ -83,43 +84,50 @@ public class ObjectLift : MonoBehaviour {
                 liftedObjectRB.AddForce(currentCharacterVector * predictCharacterForceMultiplier); // movement prediction force
                 liftedObjectRB.AddForce(toCenterVector * liftCenterStrength); // orbit to center force
             }
+            // if object is moving to fast, add a cap to its speed that it uses to follow the player
             else
             {
-                // if object is moving to fast, add a cap to its speed
                 liftedObjectRB.AddForce(-liftedObjectRB.velocity);
             }
 
-            // remove lifted object if they stray to far from the player
+            // remove lifted object that strays too far from the player
             if (objectDistance > radiusCollider.radius * maxHoldRadiusMultiplier)
             {
                 liftedObjects.Remove(liftedObjects[i]);
             }
         }
     }
+
+    // drop a nearby pickable object when the player releases the lift button
     void dropObjects()
     {
         liftedObjects.Clear();
         liftedObjects.TrimExcess();
     }
+
+    // detect if any pickable objects are nearby
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "PickUp" || other.tag == "Orb")
         {
+            // if the player is using the lift ability, add the object to an array of lifted objects
             if (isLiftingObjects)
             {
                 addToLiftedObjects(other);
             }
         }
     }
+
+    // add an object to the current array of lifted objects
     void addToLiftedObjects(Collider other)
     {
-        // add object to a list of all lifted objects
         if (liftedObjects.Count < 1)
         {
             liftedObjects.Add(other.gameObject);
         }
         else
         {
+            // double check if the new lifted object is not the same as another object already in the array
             for (int i = 0; i < liftedObjects.Count; i++)
             {
                 if (liftedObjects.IndexOf(other.gameObject) == -1)
