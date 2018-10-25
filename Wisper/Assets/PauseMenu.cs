@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-
+    // Resumes the game and resets the cursor lock
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
+    // Pauses the game and unlocks the cursor
     void Pause()
     {
         pauseMenuUI.SetActive(true);
@@ -42,12 +42,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-
-    public void LoadMenu()
-    {
-
-    }
-
+    // Quits the game! But why would you want to do that?
     public void QuitGame()
     {
         Debug.Log("QUIT!");
