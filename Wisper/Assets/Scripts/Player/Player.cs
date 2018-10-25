@@ -191,16 +191,19 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    //Trigger function activated while collision is being made
     void OnTriggerStay(Collider other)
     {
         shake = 1;
+        //Activates when the player enters the border
         if (other.gameObject.CompareTag("Border"))
         {
+            //Activate shake
             if (shake > 0)
             {
                 this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
             }
+            //Reduce shake
             else
             {
                 shake -= Time.deltaTime * 0.1f;
