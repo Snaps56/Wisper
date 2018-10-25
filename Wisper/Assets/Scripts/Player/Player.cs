@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+
         //MOVEMENT
         //Go Up
         if (Input.GetButton("Jump") || Input.GetButton("AButton"))
