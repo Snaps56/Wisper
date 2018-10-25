@@ -27,14 +27,14 @@ public class ActivateMinimap : MonoBehaviour {
             {
                 if (!slid)
                 {
-                    Debug.Log("MapNotActive");
+                    //Debug.Log("MapNotActive");
                     //miniMap.SetActive(false);
                     slide.SetBool("SlideOut", true);
                     slid = true;
                 }
                 else
                 {
-                    Debug.Log("Map");
+                    //Debug.Log("Map");
                     //miniMap.SetActive(true);
                     slide.SetBool("SlideOut", false);
                     slid = false;

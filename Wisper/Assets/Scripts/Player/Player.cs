@@ -172,9 +172,9 @@ public class Player : MonoBehaviour
 			treeCount++;
 			Debug.Log ("Speed is reduced to :" + speed);
 		}
-        if (other.gameObject.CompareTag ("PickUp")) {
-			other.gameObject.GetComponent<HandleObjects>().throwForce = throwPower;
-		}
+  //      if (other.gameObject.CompareTag ("PickUp")) {
+		//	other.gameObject.GetComponent<HandleObjects>().throwForce = throwPower;
+		//}
 		if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = true;
 		}
