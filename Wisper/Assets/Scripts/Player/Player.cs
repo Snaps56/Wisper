@@ -180,13 +180,16 @@ public class Player : MonoBehaviour
 		}
         if (other.gameObject.CompareTag("NPC"))
         {
+            Debug.Log("Detecting collision with NPC: " + other.name);
             NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
             if (npcDialogues != null)   // If this npc has dialogues
             {
+                //Debug.Log("NPC has dialogues");
                 if (!npcDialogues.getInDialogueRange())
                 {
                     npcDialogues.setInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
-                    dialogueManager.addInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
+                    dialogueManager.AddInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
+                    dialogueManager.UpdateDialogues(other.gameObject); // Updates list of dialogues on this npc, enabling and disabling based on various states
                 }
             }
         }
@@ -226,6 +229,10 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = false;
 		}
+        if (other.gameObject.CompareTag ("NPC"))
+        {
+            Debug.Log("Left NPC collision: " + other.name);
+        }
 	}
 
 	void ModeChange () {

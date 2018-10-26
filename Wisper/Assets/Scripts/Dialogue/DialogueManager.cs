@@ -17,7 +17,9 @@ public class DialogueManager : MonoBehaviour {
     
 
     private GameObject player;  // The player
-    private List<GameObject> inRangeNPC;    // List of all npc's in range of player collider. Stored here to avoid repetitive find operations each frame.
+    private List<GameObject> inRangeNPC = new List<GameObject>();    // List of all npc's in range of player collider. Stored here to avoid repetitive find operations each frame.
+    private GameObject nearestNPC;
+    private GameObject persistantStateData;
 
     void Awake()
     {
@@ -36,15 +38,21 @@ public class DialogueManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
-        sentences = new Queue<string>();
-        foreach(Text textField in GameObject.FindGameObjectWithTag("DialogueBox").GetComponents<Text>())
+        Debug.Log("Checking textfields in dialogueBox");
+        if(dialogueBox != null)
         {
-            if(textField.name == "Name")
+            Debug.Log("Found dialogueBox");
+        }
+        foreach(Text textField in dialogueBox.GetComponentsInChildren<Text>())
+        {
+            if(textField.gameObject.name == "Speaker")
             {
+                Debug.Log("Found textfield \"Speaker\"");
                 dialogueName = textField;
             }
-            else if(textField.name == "Text")
+            else if(textField.gameObject.name == "Dialogue")
             {
+                Debug.Log("Found textfield \"Dialogue\"");
                 dialogueText = textField;
             }
             else
@@ -60,17 +68,42 @@ public class DialogueManager : MonoBehaviour {
         {
             Debug.LogError("Dialogue display componenet not found: dialogueText");
         }
+
+        sentences = new Queue<string>();
+        
         sentenceDisplayInProgress = false;
+        dialogueBoxActive = false;
+
+
         player = GameObject.FindGameObjectWithTag("Player");
-        hideBox();
+        persistantStateData = GameObject.Find("PersistantStateData");
+        HideBox();
     }
 
     private void Update()
     {
+        // Debug.Log("inRangeNPC count: " + inRangeNPC.Count);
         if(inRangeNPC.Count != 0)
         {
             if(!dialogueBoxActive)
             {
+                try
+                {
+                    nearestNPC = GetClosestNPC();
+                    //TODO: Display interact button by this npc
+                    Debug.Log("DialogueManager: Checking for input");
+                    if (Input.GetKey(KeyCode.T))
+                    {
+                        Debug.Log("Detected input");
+                        dialogueBoxActive = true;
+                        StartDialogue(GetEnabledDialogue(nearestNPC)); //Determine dialogue to use, Activate dialogue
+                    }
+                }
+                catch(MissingReferenceException e)
+                {
+                    Debug.LogError(e.Message);
+                }
+                
                 // Find nearest npc and display dialogue interaction button above them
                 // If the player inputs this button, toggle dialogueBoxActive and start the dialogue for that npc
             }
@@ -82,13 +115,14 @@ public class DialogueManager : MonoBehaviour {
     }
 
     // Add an npc as in range of player
-    public void addInRangeNPC(GameObject npc)
+    public void AddInRangeNPC(GameObject npc)
     {
         inRangeNPC.Add(npc);
+        Debug.Log("NPC added to inRangeNPC");
     }
 
     // Remove npc as in range of player
-    public void removeInRangeNPC(GameObject npc)
+    public void RemoveInRangeNPC(GameObject npc)
     {
         inRangeNPC.Remove(npc);
     }
@@ -118,7 +152,26 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-    void startDialogue(Dialogue dialogue)
+    public void UpdateDialogues(GameObject npc)
+    {
+        // TODO: check the conditions of each dialogue option, and compare them to those with key matching the name of the condition in persistant state data
+        // TODO: decide what errors to throw and handle if more than one dialogue would be enabled
+    }
+
+    // Returns the first enabled dialogue
+    public Dialogue GetEnabledDialogue(GameObject npc)
+    {
+        foreach(Dialogue d in npc.GetComponent<NPCDialogues>().dialogues)
+        {
+            if(d.enabled)
+            {
+                return d;
+            }
+        }
+        throw new MissingReferenceException("No enabled dialogue on this NPC");
+    }
+
+    void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Recieved dialogue " + dialogue.dialogueName);
         sentences.Clear();
@@ -127,7 +180,7 @@ public class DialogueManager : MonoBehaviour {
             sentences.Enqueue(sentence);
             Debug.Log("Enqued: " + sentence);
         }
-        showBox();
+        ShowBox();
         DisplayNextSentence();
     }
 
@@ -140,14 +193,14 @@ public class DialogueManager : MonoBehaviour {
         }
         else
         {
-            if (sentences.Count == 0)
+            if (sentences.Count == 0)   // Dialogue is complete, end the dialogue interaction
             {
                 EndDialogue();
                 return 0;
             }
             else
             {
-                sentenceDisplayInProgress = true;
+                sentenceDisplayInProgress = true;   // Flags the sentence display coroutine as being in progress
                 string sentence = sentences.Dequeue();
                 StartCoroutine(DisplaySentence(sentence, charDelay));
                 return 1;
@@ -172,14 +225,14 @@ public class DialogueManager : MonoBehaviour {
         Debug.Log("Conversation over");
         sentences.Clear();
         dialogueText.text = "";
-        hideBox();
+        HideBox();
     }
 
-    public void showBox()
+    public void ShowBox()
     {
         dialogueBox.SetActive(true);
     }
-    public void hideBox()
+    public void HideBox()
     {
         dialogueBox.SetActive(false);
     }
