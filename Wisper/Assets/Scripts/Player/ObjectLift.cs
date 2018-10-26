@@ -17,6 +17,7 @@ public class ObjectLift : MonoBehaviour {
     public float maxHoldRadiusMultiplier;
 
     private bool isLiftingObjects = false;
+    private bool isHoldingButton = false;
     private bool isThrowingObjects;
     private Vector3 velocity = Vector3.zero;
     private Vector3 targetPosition;
@@ -32,20 +33,17 @@ public class ObjectLift : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        // check right mouse click
-        isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
-
-        // TRIGGERS TODO
-
         if (Input.GetMouseButtonDown(1) || Input.GetAxis("TriggerL") > 0)
         {
             isLiftingObjects = true;
         }
-        if (isLiftingObjects && Input.GetMouseButtonUp(1) && Input.GetAxis("TriggerL") < 0.5f)
+        if (isLiftingObjects && !Input.GetMouseButton(1) && Input.GetAxis("TriggerL") <= 0)
         {
             isLiftingObjects = false;
         }
-        
+
+        isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
+
         // lift objects when not throwing
         if (isLiftingObjects && !isThrowingObjects)
         {

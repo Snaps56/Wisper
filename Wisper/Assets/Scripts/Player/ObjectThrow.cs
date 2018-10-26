@@ -32,19 +32,17 @@ public class ObjectThrow : MonoBehaviour {
     {
         isLiftingObjects = character.GetComponentInChildren<ObjectLift>().GetIsLiftingObjects();
 
-        // TRIGGERS TODO
-
         // check if player is pressing the throw button
         if (Input.GetMouseButtonDown(0) || Input.GetAxis("TriggerR") > 0)
         {
-            Debug.Log("Throwing Objects!");
             isThrowingObjects = true;
         }
-        if (isThrowingObjects && Input.GetMouseButtonUp(0) && Input.GetAxis("TriggerR") < 0.5f)
+        if (isThrowingObjects && !Input.GetMouseButton(0) && Input.GetAxis("TriggerR") <= 0)
         {
-            Debug.Log("Not Throwing Objects!");
             isThrowingObjects = false;
         }
+
+
         character.GetComponent<Rigidbody>();
 
         // obtain player movement vector to determine throw direction
