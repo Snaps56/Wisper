@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
                 verticalSpeed += verticalAcceleration;
             }
         }
+		//Debug.Log (verticalSpeed);
         //Moving Forward and Backwards
         if (Input.GetButton("Sprint"))
         {
@@ -194,16 +195,19 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    //Trigger function activated while collision is being made
     void OnTriggerStay(Collider other)
     {
         shake = 1;
+        //Activates when the player enters the border
         if (other.gameObject.CompareTag("Border"))
         {
+            //Activate shake
             if (shake > 0)
             {
                 this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
             }
+            //Reduce shake
             else
             {
                 shake -= Time.deltaTime * 0.1f;
@@ -245,10 +249,13 @@ public class Player : MonoBehaviour
 	public void SetOrbCount(float newOrbCount) {
 		orbCount = newOrbCount;
 		windPowerBar.fillAmount = orbCount / 500;
+		orbCountText.text = orbCount.ToString() + "/500";
 		//Assuming that the passed in newOrbCount is 0, which it should be
+		verticalAcceleration = 0.001f;
 		speed = startingSpeed;
 		originalSpeed = startingSpeed;
 		treeSpeed = treeSlow * startingSpeed;
+		throwPower = 100;
 		Debug.Log ("OrbCount = " + orbCount);
 		Debug.Log ("Speed is back to :" + speed);
 	}

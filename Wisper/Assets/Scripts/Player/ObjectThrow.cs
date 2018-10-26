@@ -5,8 +5,9 @@ using UnityEngine;
 public class ObjectThrow : MonoBehaviour {
 
     [Header("Game Objects")]
-    public Rigidbody playerCharacter;
+    public GameObject character;
     public Collider radiusCollider;
+    private Player movementScript;
 
     [Header("Throw Mechanics")]
     public float throwForce;
@@ -14,7 +15,7 @@ public class ObjectThrow : MonoBehaviour {
     public float liftComboMultiplier;
     public float verticalAimAngle;
 
-    private bool isLiftingObjects = false;
+    private bool isLiftingObjects;
     private bool isThrowingObjects = false;
     private Vector3 movementVector;
     private Vector3 deltaMovementVector;
@@ -29,28 +30,23 @@ public class ObjectThrow : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        // check if player is pressing the lift button
-        if (Input.GetMouseButtonDown(1))
-        {
-            isLiftingObjects = true;
-        }
-        if (isLiftingObjects && Input.GetMouseButtonUp(1))
-        {
-            isLiftingObjects = false;
-        }
+        isLiftingObjects = character.GetComponentInChildren<ObjectLift>().GetIsLiftingObjects();
 
         // check if player is pressing the throw button
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetAxis("TriggerR") > 0)
         {
             isThrowingObjects = true;
         }
-        if (isThrowingObjects && Input.GetMouseButtonUp(0))
+        if (isThrowingObjects && !Input.GetMouseButton(0) && Input.GetAxis("TriggerR") <= 0)
         {
             isThrowingObjects = false;
         }
 
+
+        character.GetComponent<Rigidbody>();
+
         // obtain player movement vector to determine throw direction
-        currentPlayerVelocity = playerCharacter.velocity.magnitude;
+        currentPlayerVelocity = character.GetComponent<Rigidbody>().velocity.magnitude;
         if (currentPlayerVelocity > 0)
         {
             deltaMovementVector = (transform.position - movementVector).normalized;
@@ -59,7 +55,7 @@ public class ObjectThrow : MonoBehaviour {
         movementVector = transform.position;
     }
 
-	public bool GetBlowing() {
+	public bool GetIsThrowingObjects() {
 		return isThrowingObjects;
     }
 
