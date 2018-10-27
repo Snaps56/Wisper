@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OrbSequence : MonoBehaviour {
-	public GameObject player;
+	private GameObject player;
 
 	private Vector3 startPosition;
 	private Vector3 newPosition;
@@ -17,6 +17,7 @@ public class OrbSequence : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		player = GameObject.FindWithTag ("Player");
 		startPosition = transform.position;
 
 		riseHeight = 2.5f;

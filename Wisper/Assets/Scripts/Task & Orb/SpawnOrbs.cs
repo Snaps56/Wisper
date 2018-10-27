@@ -6,7 +6,7 @@ public class SpawnOrbs : MonoBehaviour
 {
     public GameObject orb;
     public float orbCount;
-	public GameObject player;
+	private GameObject player;
 
     private float launchSpeed = .1f;
     private Rigidbody rb;
@@ -24,6 +24,7 @@ public class SpawnOrbs : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		player = GameObject.FindWithTag ("Player");
         rb = orb.GetComponent<Rigidbody>();
 		riseHeight = 2.5f;
 		orbNum = 0;
@@ -76,7 +77,7 @@ public class SpawnOrbs : MonoBehaviour
 		for (int i = 0; i < orbCount; i++) {
 			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
 			GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
-			orbInstance.GetComponent<OrbSequence> ().setPlayer (player);
+			//orbInstance.GetComponent<OrbSequence> ().setPlayer (player);
 			orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
 		}
 	}
