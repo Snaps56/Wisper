@@ -46,7 +46,7 @@ public class NPCMovement : MonoBehaviour
             {
                 currentWP++;
                 
-                if (currentWP >= waypoints.Length - 1)
+                if (currentWP >= waypoints.Length)
                 {
                     
                     currentWP = 0;

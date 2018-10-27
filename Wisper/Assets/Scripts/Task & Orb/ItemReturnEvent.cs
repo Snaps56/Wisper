@@ -27,7 +27,9 @@ public class ItemReturnEvent : MonoBehaviour
     // Update is called once per frame
     void pickUp()
     {
-        npc.transform.GetChild(0).gameObject.SetActive(true);
+        // npc.transform.GetChild(0).gameObject.SetActive(true);
+        npc.transform.Find("garden_hat").gameObject.SetActive(true);
+
         npc.GetComponent<NPCMovement>().move = false;
         Destroy(this.gameObject);
         // x = -.31 z = .16f y = 1.25
