@@ -9,8 +9,10 @@ public class ControlDetector : MonoBehaviour {
     public GameObject keyboardMouseObject;
 
     // Use this for initialization
-    void Start () {
-
+    void Start ()
+    {
+        controllerObject.SetActive(false);
+        keyboardMouseObject.SetActive(true);
     }
 
     // Update is called once per frame

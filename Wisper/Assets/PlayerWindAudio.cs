@@ -17,13 +17,16 @@ public class PlayerWindAudio : MonoBehaviour {
 	void Update () {
         if (playerrigidbody.velocity.magnitude > 1)
         {
-            source.volume = 1 - 1 / playerrigidbody.velocity.magnitude;
-            source.pitch = 1 - 1 / playerrigidbody.velocity.magnitude;
+            if (1 - 1 / playerrigidbody.velocity.magnitude > 0.5)
+            {
+                source.volume = (1 - 1 / playerrigidbody.velocity.magnitude) * 0.5f;
+                source.pitch = (1 - 1 / playerrigidbody.velocity.magnitude) * 2;
+            }
         }
         else
         {
-            source.volume = 0.5f;
-            source.pitch = 0.5f;
+            source.volume = 0.25f;
+            source.pitch = 1f;
         }
 	}
 }
