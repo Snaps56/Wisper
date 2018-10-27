@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private HandleObjects handleObjects;
     private Vector3 positionStamp;
     private float shake;
-    private DialogueManager dialogueManager;
+    private GameObject dialogueManager;
 
     private float verticalAcceleration = 0.001f;
     private float verticalSpeed = 0;
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         orbCountText.text = orbCount.ToString()+"/500";
         shakeAmount = 0.05f;
         shake = 0;
-        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+        dialogueManager = GameObject.Find("DialogueManager");
     }
 
     void FixedUpdate()
@@ -181,16 +181,27 @@ public class Player : MonoBehaviour
 		}
         if (other.gameObject.CompareTag("NPC"))
         {
-            Debug.Log("Detecting collision with NPC: " + other.name);
+            // Debug.Log("Detecting collision with NPC: " + other.name);
+            if (dialogueManager == null)
+            {
+                // Debug.Log("null dialogueManager, checking again");
+                dialogueManager = GameObject.Find("DialogueManager");
+            }
             NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
             if (npcDialogues != null)   // If this npc has dialogues
             {
-                //Debug.Log("NPC has dialogues");
+                // Debug.Log("NPC has dialogues");
                 if (!npcDialogues.getInDialogueRange())
                 {
+                    
                     npcDialogues.setInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
-                    dialogueManager.AddInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
-                    dialogueManager.UpdateDialogues(other.gameObject); // Updates list of dialogues on this npc, enabling and disabling based on various states
+                    
+                    DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
+                    // Debug.Log("Updating " + other.name + " dialogues");
+                    managerScript.UpdateDialogues(other.gameObject); // Updates list of dialogues on this npc, enabling and disabling based on various states
+                    // Debug.Log("Adding " + other.name + " to dialogue manager");
+                    managerScript.AddInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
+                    
                 }
             }
         }
@@ -235,7 +246,21 @@ public class Player : MonoBehaviour
 		}
         if (other.gameObject.CompareTag ("NPC"))
         {
-            Debug.Log("Left NPC collision: " + other.name);
+            // Debug.Log("Left NPC collision: " + other.name);
+            NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
+            if (npcDialogues != null)   // If this npc has dialogues
+            {
+                // Debug.Log("NPC has dialogues");
+                if (npcDialogues.getInDialogueRange())
+                {
+
+                    npcDialogues.setInDialogueRange(false);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
+                    DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
+                    // Debug.Log("Removing " + other.name + " from dialogue manager");
+                    managerScript.RemoveInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
+
+                }
+            }
         }
 	}
 
