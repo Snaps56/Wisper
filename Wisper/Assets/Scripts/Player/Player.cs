@@ -75,6 +75,9 @@ public class Player : MonoBehaviour
             if (verticalSpeed > 0)
             {
                 verticalSpeed -= verticalAcceleration;
+				if (verticalSpeed < 0) {
+					verticalSpeed = 0;
+				}
             }
         }
         transform.position += Vector3.up * verticalSpeed;
@@ -89,6 +92,9 @@ public class Player : MonoBehaviour
             if (verticalSpeed < 0)
             {
                 verticalSpeed += verticalAcceleration;
+				if (verticalSpeed > 0) {
+					verticalSpeed = 0;
+				}
             }
         }
 		//Debug.Log (verticalSpeed);
@@ -131,7 +137,7 @@ public class Player : MonoBehaviour
             windPowerBar.fillAmount = orbCount / 500; 
             speed += orbIncrementSpeed;
             //Disabled increment verticalAcceleration because it caused the player to sink
-            //verticalAcceleration += 0.0001f;
+            verticalAcceleration += 0.0001f;
 			originalSpeed = speed;
             originalVAcceleration = verticalAcceleration;
 			treeSpeed = treeSlow * speed;
