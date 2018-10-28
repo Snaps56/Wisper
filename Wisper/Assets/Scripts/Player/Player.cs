@@ -4,15 +4,15 @@ public class Player : MonoBehaviour
 {
     [Header("Player Controls")]
     public float speed;
-	public float throwPower;
     public Transform camera;
     public Vector3 currentMovementForce;
 
 	public bool nearShrine;
 
+    private float orbMax = 50;
 	private float orbCount;
     private Rigidbody rb;
-    private float orbIncrementSpeed = .1f;
+    private float orbIncrementSpeed = 0.1f;
 	private float treeSpeed;
 	private float treeSlow = 0.7f;
 	private float originalSpeed;
@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 		//rb.drag = 1;
 		//rb.angularDrag = 1;
-		throwPower = 100;
         orbCount = 0;
 		startingSpeed = speed;
 		originalSpeed = speed;
@@ -54,7 +53,7 @@ public class Player : MonoBehaviour
 		treeSpeed = treeSlow * speed;
         pickups = GameObject.FindGameObjectsWithTag("PickUp");
         turnBackText.SetActive(false);
-        orbCountText.text = orbCount.ToString()+"/500";
+        orbCountText.text = orbCount.ToString()+"/" + orbMax;
         shakeAmount = 0.05f;
         shake = 0;
         dialogueManager = GameObject.Find("DialogueManager");
@@ -127,22 +126,40 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("TutorialMove"))
+        {
+            
+        }
+        else if (other.gameObject.CompareTag("TutorialLook"))
+        {
+
+        }
+        else if (other.gameObject.CompareTag("TutorialAscend"))
+        {
+
+        }
+        if (other.gameObject.CompareTag("TutorialLift"))
+        {
+
+        }
         float objectDistance = (transform.position - other.transform.position).magnitude;
         if (other.gameObject.CompareTag("Orb") && objectDistance < 2f) {
             Destroy(other.gameObject);
-            if (orbCount < 500)
+            if (orbCount < orbMax)
             {
                 orbCount += 1;
             }
-            windPowerBar.fillAmount = orbCount / 500; 
+            windPowerBar.fillAmount = orbCount / orbMax; 
             speed += orbIncrementSpeed;
-            //Disabled increment verticalAcceleration because it caused the player to sink
             verticalAcceleration += 0.0001f;
 			originalSpeed = speed;
             originalVAcceleration = verticalAcceleration;
 			treeSpeed = treeSlow * speed;
-			throwPower += 2;
-            orbCountText.text = orbCount.ToString() + "/500";
+            orbCountText.text = orbCount.ToString() + "/" + orbMax;
+
+            //These are causing problems.  I'll need to come back to it ~ Nick
+            //GetComponent<ObjectThrow>().throwForce += 15;
+            //GetComponent<ObjectLift>().liftCenterStrength += 10;
         }
         if (other.gameObject.CompareTag("Border"))
         {
@@ -279,14 +296,13 @@ public class Player : MonoBehaviour
 
 	public void SetOrbCount(float newOrbCount) {
 		orbCount = newOrbCount;
-		windPowerBar.fillAmount = orbCount / 500;
-		orbCountText.text = orbCount.ToString() + "/500";
+		windPowerBar.fillAmount = orbCount / orbMax;
+		orbCountText.text = orbCount.ToString() + "/" + orbMax;
 		//Assuming that the passed in newOrbCount is 0, which it should be
 		verticalAcceleration = 0.001f;
 		speed = startingSpeed;
 		originalSpeed = startingSpeed;
 		treeSpeed = treeSlow * startingSpeed;
-		throwPower = 100;
 		Debug.Log ("OrbCount = " + orbCount);
 		Debug.Log ("Speed is back to :" + speed);
 	}

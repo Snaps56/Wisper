@@ -35,19 +35,19 @@ public class SpawnOrbs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKey(KeyCode.Q) && buttonPressed == false)
+        if (Input.GetKey(KeyCode.Q) && buttonPressed == false)
         {
             //Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
             //buttonPressed = true;
             //for (int i = 0; i < orbCount; i++)
             //{
-                //GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
-                //orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
+            //GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
+            //orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
             //}
 
-			orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
-			orbInstance.GetComponent<OrbSequence> ().setPlayer (player);
-			//orbSpawned = true;
+            orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
+            orbInstance.GetComponent<OrbSequence>().setPlayer(player);
+            //orbSpawned = true;
 
         }
         if (timePassed >= timeBetweenSteps)

@@ -20,12 +20,13 @@ public class NPCMovement : MonoBehaviour
     public bool move = true;
     Vector3 npcPos;
     Vector3 hatPos;
+    Animator animator;
     //NavMeshAgent agent;
 
     // Use this for initialization
     void Start()
     {
-         
+        animator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -60,6 +61,8 @@ public class NPCMovement : MonoBehaviour
 
                     //Stop in place
                     move = false;
+                    animator.SetBool("Idle", true);
+                    GetComponent<SpawnOrbs>().DropOrbs();
                 }
 
             }
