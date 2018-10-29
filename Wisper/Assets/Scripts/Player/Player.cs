@@ -148,10 +148,10 @@ public class Player : MonoBehaviour
             if (orbCount < orbMax)
             {
                 orbCount += 1;
+                verticalAcceleration += 0.0001f;
+                speed += orbIncrementSpeed;
             }
             windPowerBar.fillAmount = orbCount / orbMax; 
-            speed += orbIncrementSpeed;
-            verticalAcceleration += 0.0001f;
 			originalSpeed = speed;
             originalVAcceleration = verticalAcceleration;
 			treeSpeed = treeSlow * speed;
