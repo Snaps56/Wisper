@@ -7663,71 +7663,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400052, guid: 5036837ca9ca581448cd2f68e800b67f,
     type: 3}
   m_PrefabInternal: {fileID: 372637300}
---- !u!114 &568461253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 568461251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d9b6f0d0424b9349926c90199c3724f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floatingTexts:
-  - dialogueName: Find my hat!
-    enabled: 0
-    enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
-    sentences:
-    - Where'd me hat go?
-    - Darn wind blew it right off me head
---- !u!114 &568461254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 568461251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogues:
-  - dialogueName: Find my hat!
-    enabled: 1
-    enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
-    sentences:
-    - Where the fuck is my hat bitch!?!
-  - dialogueName: My hat is found.
-    enabled: 0
-    enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
-    sentences:
-    - What the fuck did you just fucking say about me, you little bitch? I'll have
-      you know I graduated top of my class in the Navy Seals, and I've been involved
-      in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills.
-      I am trained in gorilla warfare and I'm the top sniper in the entire US armed
-      forces. You are nothing to me but just another target. I will wipe you the fuck
-      out with precision the likes of which has never been seen before on this Earth,
-      mark my fucking words. You think you can get away with saying that shit to me
-      over the Internet? Think again, fucker. As we speak I am contacting my secret
-      network of spies across the USA and your IP is being traced right now so you
-      better prepare for the storm, maggot. The storm that wipes out the pathetic
-      little thing you call your life. You're fucking dead, kid. I can be anywhere,
-      anytime, and I can kill you in over seven hundred ways, and that's just with
-      my bare hands. Not only am I extensively trained in unarmed combat, but I have
-      access to the entire arsenal of the United States Marine Corps and I will use
-      it to its full extent to wipe your miserable ass off the face of the continent,
-      you little shit. If only you could have known what unholy retribution your little
-      "clever" comment was about to bring down upon you, maybe you would have held
-      your fucking tongue. But you couldn't, you didn't, and now you're paying the
-      price, you goddamn idiot. I will shit fury all over you and you will drown in
-      it. You're fucking dead, kiddo.
 --- !u!114 &568461255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7763,17 +7698,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 773190232}
---- !u!114 &568461257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 568461251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9cc101eb2568f745b4a3a6855fac438, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &568461258
 CapsuleCollider:
   m_ObjectHideFlags: 0
