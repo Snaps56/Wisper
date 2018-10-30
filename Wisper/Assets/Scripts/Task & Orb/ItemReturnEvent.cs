@@ -31,6 +31,8 @@ public class ItemReturnEvent : MonoBehaviour
         npc.transform.Find("garden_hat").gameObject.SetActive(true);
 
         npc.GetComponent<NPCMovement>().move = false;
+        npc.GetComponent<Animator>().SetBool("Idle", true);
+        npc.GetComponent<SpawnOrbs>().DropOrbs();
         Destroy(this.gameObject);
         // x = -.31 z = .16f y = 1.25
         //hat.transform.position = npc.transform.position;

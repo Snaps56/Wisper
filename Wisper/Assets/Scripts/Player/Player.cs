@@ -171,11 +171,11 @@ public class Player : MonoBehaviour
             //    verticalAcceleration = 0.001f;
             //}
 
-            if (speed > originalSpeed/2 )
-            {
-                speed = speed * 0.1f;
-                verticalAcceleration = 0.001f;
-            }
+            //if (speed > originalSpeed/2 )
+            //{
+            //    speed = speed * 0.1f;
+            //    verticalAcceleration = 0.001f;
+            //}
             //if (shake > 0)
             //{
             //    this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
