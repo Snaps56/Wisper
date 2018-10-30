@@ -887,23 +887,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9b6f0d0424b9349926c90199c3724f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monologues:
-  - dialogueName: Find the hat
+  floatingTexts:
+  - dialogueName: Find my hat!
     enabled: 0
     enableConditions:
     - String: ShamusHasHat
       Bool: 0
     sentences:
-    - "Where'd ma hat go?\t"
-    - Can't find the darn thing!
-    - Cost me a whole 30 clamolies!
-  - dialogueName: Hat was found
-    enabled: 0
-    enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
-    sentences:
-    - All is right with the world again.
+    - Where'd me hat go?
+    - Darn wind blew it right off me head
 --- !u!4 &231803580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400168, guid: b235179bd2a63d1468dd430670338c55,
@@ -14508,7 +14500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbbd17f0147f74ba084f0879dd0a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1342754103}
+  mainCamera: {fileID: 534669905}
 --- !u!1 &1580530930
 GameObject:
   m_ObjectHideFlags: 0

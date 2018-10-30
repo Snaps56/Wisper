@@ -14,10 +14,13 @@ public class DialogueManager : MonoBehaviour {
 
     private bool sentenceDisplayInProgress; // A lock used with subroutines that update UI text elements
     private bool dialogueBoxActive; // A lock for preventing floating text or other UI elements from displaying during dialogue box use. Can be referenced for other things which need to be locked when dialogue box is active.
-    
+
+    private bool skipText = false; // Switch to fast forward text on player click
 
     private GameObject player;  // The player
-    private List<GameObject> inRangeNPC;    // List of all npc's in range of player collider. Stored here to avoid repetitive find operations each frame.
+    private List<GameObject> inRangeNPC = new List<GameObject>();    // List of all npc's in range of player collider. Stored here to avoid repetitive find operations each frame.
+    private GameObject nearestNPC;
+    private GameObject persistantStateData;
 
     void Awake()
     {
@@ -34,61 +37,106 @@ public class DialogueManager : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
-        sentences = new Queue<string>();
-        foreach(Text textField in GameObject.FindGameObjectWithTag("DialogueBox").GetComponents<Text>())
+        // Debug.Log("Checking textfields in dialogueBox");
+        if(dialogueBox != null)
         {
-            if(textField.name == "Name")
+            // Debug.Log("Found dialogueBox");
+        }
+        foreach(Text textField in dialogueBox.GetComponentsInChildren<Text>())
+        {
+            if(textField.gameObject.name == "Speaker")
             {
+                // Debug.Log("Found textfield \"Speaker\"");
                 dialogueName = textField;
             }
-            else if(textField.name == "Text")
+            else if(textField.gameObject.name == "Dialogue")
             {
+                // Debug.Log("Found textfield \"Dialogue\"");
                 dialogueText = textField;
             }
             else
             {
-                Debug.Log("Unexpected text field found with name: " + textField.name);
+                // Debug.Log("Unexpected text field found with name: " + textField.name);
             }
         }
         if(dialogueName == null)
         {
-            Debug.LogError("Dialogue display componenet not found: dialogueName");
+            // Debug.LogError("Dialogue display componenet not found: dialogueName");
         }
         if(dialogueText == null)
         {
-            Debug.LogError("Dialogue display componenet not found: dialogueText");
+            // Debug.LogError("Dialogue display componenet not found: dialogueText");
         }
+
+        sentences = new Queue<string>();
+        
         sentenceDisplayInProgress = false;
+        dialogueBoxActive = false;
+
+
         player = GameObject.FindGameObjectWithTag("Player");
-        hideBox();
+        persistantStateData = GameObject.Find("PersistantStateData");
+        HideBox();
     }
 
     private void Update()
     {
+        if (persistantStateData == null)
+        {
+            persistantStateData = GameObject.Find("PersistantStateData");
+        }
+
+        // Debug.Log("inRangeNPC count: " + inRangeNPC.Count);
         if(inRangeNPC.Count != 0)
         {
             if(!dialogueBoxActive)
             {
-                // Find nearest npc and display dialogue interaction button above them
-                // If the player inputs this button, toggle dialogueBoxActive and start the dialogue for that npc
+                try
+                {
+                    nearestNPC = GetClosestNPC();
+                    //TODO: Display interact button by this npc
+                    // Debug.Log("DialogueManager: Checking for input");
+                    if (Input.GetKeyDown(KeyCode.T))
+                    {
+                        // Debug.Log("Detected input");
+                        dialogueBoxActive = true;
+                        StartDialogue(GetEnabledDialogue(nearestNPC)); //Determine dialogue to use, Activate dialogue
+                    }
+                }
+                catch(MissingReferenceException e)
+                {
+                    Debug.LogError(e.Message);
+                }
             }
-            else
+            else    // Dialogue box is active, respond to input as necessary here.
             {
-                // Dialogue box is active, respond to input as necessary here.
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    if (sentenceDisplayInProgress)
+                    {
+                        skipText = true;
+                    }
+                    else
+                    {
+                        DisplayNextSentence();
+                    }
+                }
             }
         }
     }
 
     // Add an npc as in range of player
-    public void addInRangeNPC(GameObject npc)
+    public void AddInRangeNPC(GameObject npc)
     {
         inRangeNPC.Add(npc);
+        // Debug.Log(npc.name + " added to inRangeNPC");
     }
 
     // Remove npc as in range of player
-    public void removeInRangeNPC(GameObject npc)
+    public void RemoveInRangeNPC(GameObject npc)
     {
         inRangeNPC.Remove(npc);
     }
@@ -118,16 +166,73 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-    void startDialogue(Dialogue dialogue)
+    public void UpdateDialogues(GameObject npc)
     {
-        Debug.Log("Recieved dialogue " + dialogue.dialogueName);
+        // TODO: decide what errors to throw and handle if more than one dialogue would be enabled
+        NPCDialogues npcDialogues = npc.GetComponent<NPCDialogues>();
+        bool tempCheck = true;
+        foreach(Dialogue d in npcDialogues.dialogues)
+        {
+            foreach (StringBoolPairs condition in d.enableConditions)
+            {
+                if (tempCheck) // If the previous conditions have held
+                {
+                    if(!CheckCondition(condition))
+                    {
+                        tempCheck = false;  // If this condition does not match the value in persistant state, tempCheck is false
+                    }
+                }
+            }
+            if (tempCheck)
+            {
+                d.enabled = true;   // If all conditions are met, enable dialog
+            }
+            else
+            {
+                d.enabled = false;
+            }
+            tempCheck = true;   // Reset tempCheck for next dialogue
+        }
+    }
+
+    private bool CheckCondition(StringBoolPairs condition)
+    {
+        string conditionName = condition.String;
+        bool conditionValue = condition.Bool;
+        if ((bool)persistantStateData.GetComponent<PersistantStateData>().stateConditions[conditionName] == conditionValue)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // Returns the first enabled dialogue
+    public Dialogue GetEnabledDialogue(GameObject npc)
+    {
+        foreach(Dialogue d in npc.GetComponent<NPCDialogues>().dialogues)
+        {
+            if(d.enabled)
+            {
+                return d;
+            }
+        }
+        throw new MissingReferenceException("No enabled dialogue on this NPC");
+    }
+
+    void StartDialogue(Dialogue dialogue)
+    {
+        nearestNPC.GetComponent<FloatingTextManager>().disableFloatingText = true; // Disable the floating text for this npc
+        // Debug.Log("Recieved dialogue " + dialogue.dialogueName);
         sentences.Clear();
         foreach(string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
-            Debug.Log("Enqued: " + sentence);
+            // Debug.Log("Enqued: " + sentence);
         }
-        showBox();
+        ShowBox();
         DisplayNextSentence();
     }
 
@@ -135,19 +240,18 @@ public class DialogueManager : MonoBehaviour {
     {
         if (sentenceDisplayInProgress)
         {
-            // Could add a bool switch here to tell corutine to break and display all text at once.
             return 1;
         }
         else
         {
-            if (sentences.Count == 0)
+            if (sentences.Count == 0)   // Dialogue is complete, end the dialogue interaction
             {
                 EndDialogue();
                 return 0;
             }
             else
             {
-                sentenceDisplayInProgress = true;
+                sentenceDisplayInProgress = true;   // Flags the sentence display coroutine as being in progress
                 string sentence = sentences.Dequeue();
                 StartCoroutine(DisplaySentence(sentence, charDelay));
                 return 1;
@@ -157,29 +261,40 @@ public class DialogueManager : MonoBehaviour {
 
     IEnumerator DisplaySentence(string sentence, float charDelay)
     {
-        Debug.Log("In coroutine displaySentence");
+        // Debug.Log("In coroutine displaySentence");
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
+            if (skipText)
+            {
+                dialogueText.text = sentence;
+                break;
+            }
             dialogueText.text += letter;
-            yield return new WaitForSeconds(charDelay); //Wait 1 frame between each letter.
+            yield return new WaitForSeconds(charDelay); //Wait charDelay seconds between each letter.
+        }
+        if (skipText)
+        {
+            skipText = !skipText;
         }
         sentenceDisplayInProgress = false;
     }
 
     public void EndDialogue()
     {
-        Debug.Log("Conversation over");
+        // Debug.Log("Conversation over");
         sentences.Clear();
         dialogueText.text = "";
-        hideBox();
+        HideBox();
+        nearestNPC.GetComponent<FloatingTextManager>().disableFloatingText = false;
+        dialogueBoxActive = false;
     }
 
-    public void showBox()
+    public void ShowBox()
     {
         dialogueBox.SetActive(true);
     }
-    public void hideBox()
+    public void HideBox()
     {
         dialogueBox.SetActive(false);
     }

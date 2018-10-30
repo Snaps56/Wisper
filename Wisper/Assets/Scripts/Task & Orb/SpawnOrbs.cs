@@ -6,7 +6,7 @@ public class SpawnOrbs : MonoBehaviour
 {
     public GameObject orb;
     public float orbCount;
-	public GameObject player;
+	private GameObject player;
 
     private float launchSpeed = .1f;
     private Rigidbody rb;
@@ -24,6 +24,7 @@ public class SpawnOrbs : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		player = GameObject.FindWithTag ("Player");
         rb = orb.GetComponent<Rigidbody>();
 		riseHeight = 2.5f;
 		orbNum = 0;
@@ -34,19 +35,19 @@ public class SpawnOrbs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKey(KeyCode.Q) && buttonPressed == false)
+        if (Input.GetKey(KeyCode.Q) && buttonPressed == false)
         {
             //Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
             //buttonPressed = true;
             //for (int i = 0; i < orbCount; i++)
             //{
-                //GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
-                //orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
+            //GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
+            //orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
             //}
 
-			orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
-			orbInstance.GetComponent<OrbSequence> ().setPlayer (player);
-			//orbSpawned = true;
+            orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
+            orbInstance.GetComponent<OrbSequence>().setPlayer(player);
+            //orbSpawned = true;
 
         }
         if (timePassed >= timeBetweenSteps)
@@ -76,7 +77,7 @@ public class SpawnOrbs : MonoBehaviour
 		for (int i = 0; i < orbCount; i++) {
 			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
 			GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
-			orbInstance.GetComponent<OrbSequence> ().setPlayer (player);
+			//orbInstance.GetComponent<OrbSequence> ().setPlayer (player);
 			orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
 		}
 	}

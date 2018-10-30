@@ -27,8 +27,6 @@ public class Swing : MonoBehaviour
     {
 
         
-
-        
         rightSwing.transform.RotateAround(topBeam.transform.position, Vector3.forward, 20 * Time.deltaTime * speed);
         
         if(leftSwing.transform.position.y <= maxY && leftSwing.transform.position.z <= maxZ)

@@ -4,15 +4,15 @@ public class Player : MonoBehaviour
 {
     [Header("Player Controls")]
     public float speed;
-	public float throwPower;
     public Transform camera;
     public Vector3 currentMovementForce;
 
 	public bool nearShrine;
 
+    private float orbMax = 50;
 	private float orbCount;
     private Rigidbody rb;
-    private float orbIncrementSpeed = .1f;
+    private float orbIncrementSpeed = 0.1f;
 	private float treeSpeed;
 	private float treeSlow = 0.7f;
 	private float originalSpeed;
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private HandleObjects handleObjects;
     private Vector3 positionStamp;
     private float shake;
-    private DialogueManager dialogueManager;
+    private GameObject dialogueManager;
 
     private float verticalAcceleration = 0.001f;
     private float verticalSpeed = 0;
@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 		//rb.drag = 1;
 		//rb.angularDrag = 1;
-		throwPower = 100;
         orbCount = 0;
 		startingSpeed = speed;
 		originalSpeed = speed;
@@ -54,10 +53,10 @@ public class Player : MonoBehaviour
 		treeSpeed = treeSlow * speed;
         pickups = GameObject.FindGameObjectsWithTag("PickUp");
         turnBackText.SetActive(false);
-        orbCountText.text = orbCount.ToString()+"/500";
+        orbCountText.text = orbCount.ToString()+"/" + orbMax;
         shakeAmount = 0.05f;
         shake = 0;
-        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+        dialogueManager = GameObject.Find("DialogueManager");
     }
 
     void FixedUpdate()
@@ -75,6 +74,9 @@ public class Player : MonoBehaviour
             if (verticalSpeed > 0)
             {
                 verticalSpeed -= verticalAcceleration;
+				if (verticalSpeed < 0) {
+					verticalSpeed = 0;
+				}
             }
         }
         transform.position += Vector3.up * verticalSpeed;
@@ -89,8 +91,12 @@ public class Player : MonoBehaviour
             if (verticalSpeed < 0)
             {
                 verticalSpeed += verticalAcceleration;
+				if (verticalSpeed > 0) {
+					verticalSpeed = 0;
+				}
             }
         }
+		//Debug.Log (verticalSpeed);
         //Moving Forward and Backwards
         if (Input.GetButton("Sprint"))
         {
@@ -120,22 +126,40 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("TutorialMove"))
+        {
+            
+        }
+        else if (other.gameObject.CompareTag("TutorialLook"))
+        {
+
+        }
+        else if (other.gameObject.CompareTag("TutorialAscend"))
+        {
+
+        }
+        if (other.gameObject.CompareTag("TutorialLift"))
+        {
+
+        }
         float objectDistance = (transform.position - other.transform.position).magnitude;
         if (other.gameObject.CompareTag("Orb") && objectDistance < 2f) {
             Destroy(other.gameObject);
-            if (orbCount < 500)
+            if (orbCount < orbMax)
             {
                 orbCount += 1;
+                verticalAcceleration += 0.0001f;
+                speed += orbIncrementSpeed;
             }
-            windPowerBar.fillAmount = orbCount / 500; 
-            speed += orbIncrementSpeed;
-            //Disabled increment verticalAcceleration because it caused the player to sink
-            //verticalAcceleration += 0.0001f;
+            windPowerBar.fillAmount = orbCount / orbMax; 
 			originalSpeed = speed;
             originalVAcceleration = verticalAcceleration;
 			treeSpeed = treeSlow * speed;
-			throwPower += 2;
-            orbCountText.text = orbCount.ToString() + "/500";
+            orbCountText.text = orbCount.ToString() + "/" + orbMax;
+
+            //These are causing problems.  I'll need to come back to it ~ Nick
+            //GetComponent<ObjectThrow>().throwForce += 15;
+            //GetComponent<ObjectLift>().liftCenterStrength += 10;
         }
         if (other.gameObject.CompareTag("Border"))
         {
@@ -147,11 +171,11 @@ public class Player : MonoBehaviour
             //    verticalAcceleration = 0.001f;
             //}
 
-            if (speed > originalSpeed/2 )
-            {
-                speed = speed * 0.1f;
-                verticalAcceleration = 0.001f;
-            }
+            //if (speed > originalSpeed/2 )
+            //{
+            //    speed = speed * 0.1f;
+            //    verticalAcceleration = 0.001f;
+            //}
             //if (shake > 0)
             //{
             //    this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
@@ -180,27 +204,44 @@ public class Player : MonoBehaviour
 		}
         if (other.gameObject.CompareTag("NPC"))
         {
+            // Debug.Log("Detecting collision with NPC: " + other.name);
+            if (dialogueManager == null)
+            {
+                // Debug.Log("null dialogueManager, checking again");
+                dialogueManager = GameObject.Find("DialogueManager");
+            }
             NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
             if (npcDialogues != null)   // If this npc has dialogues
             {
+                // Debug.Log("NPC has dialogues");
                 if (!npcDialogues.getInDialogueRange())
                 {
+                    
                     npcDialogues.setInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
-                    dialogueManager.addInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
+                    
+                    DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
+                    // Debug.Log("Updating " + other.name + " dialogues");
+                    managerScript.UpdateDialogues(other.gameObject); // Updates list of dialogues on this npc, enabling and disabling based on various states
+                    // Debug.Log("Adding " + other.name + " to dialogue manager");
+                    managerScript.AddInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
+                    
                 }
             }
         }
     }
-
+    //Trigger function activated while collision is being made
     void OnTriggerStay(Collider other)
     {
         shake = 1;
+        //Activates when the player enters the border
         if (other.gameObject.CompareTag("Border"))
         {
+            //Activate shake
             if (shake > 0)
             {
                 this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
             }
+            //Reduce shake
             else
             {
                 shake -= Time.deltaTime * 0.1f;
@@ -226,6 +267,24 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = false;
 		}
+        if (other.gameObject.CompareTag ("NPC"))
+        {
+            // Debug.Log("Left NPC collision: " + other.name);
+            NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
+            if (npcDialogues != null)   // If this npc has dialogues
+            {
+                // Debug.Log("NPC has dialogues");
+                if (npcDialogues.getInDialogueRange())
+                {
+
+                    npcDialogues.setInDialogueRange(false);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
+                    DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
+                    // Debug.Log("Removing " + other.name + " from dialogue manager");
+                    managerScript.RemoveInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
+
+                }
+            }
+        }
 	}
 
 	void ModeChange () {
@@ -237,8 +296,10 @@ public class Player : MonoBehaviour
 
 	public void SetOrbCount(float newOrbCount) {
 		orbCount = newOrbCount;
-		windPowerBar.fillAmount = orbCount / 500;
+		windPowerBar.fillAmount = orbCount / orbMax;
+		orbCountText.text = orbCount.ToString() + "/" + orbMax;
 		//Assuming that the passed in newOrbCount is 0, which it should be
+		verticalAcceleration = 0.001f;
 		speed = startingSpeed;
 		originalSpeed = startingSpeed;
 		treeSpeed = treeSlow * startingSpeed;

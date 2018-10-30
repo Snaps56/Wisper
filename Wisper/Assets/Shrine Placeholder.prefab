@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4486085015654082}
   - component: {fileID: 136754995917394688}
   - component: {fileID: 114222633452821690}
+  - component: {fileID: 114304447302339248}
   m_Layer: 0
   m_Name: Shrine Placeholder
   m_TagString: Shrine
@@ -395,6 +396,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activationParticles: {fileID: 1341832865169482}
+  shrinePart1: {fileID: 0}
+  shrinePart2: {fileID: 0}
+  cleanShrine1: {fileID: 0}
+  cleanShrine2: {fileID: 0}
+  playerAbilities: {fileID: 0}
+  gettingCleaned: 0
+  cleanProgress: 0
+--- !u!114 &114304447302339248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030712164740974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ef5714087bb9745b350cdaf5a54e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orb: {fileID: 0}
+  orbCount: 0
+  player: {fileID: 0}
 --- !u!136 &136139404424953272
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -7,8 +7,6 @@ public class NPCDialogues : MonoBehaviour {
     public List<Dialogue> dialogues;
     private bool inDialogueRange;
     private int enabledDialogue = -1;
-    
-
 
     private void Start()
     {

@@ -36,6 +36,7 @@ public class PersistantStateData : MonoBehaviour
     public void populateStateConditions()
     {
         stateConditions.Add("ShamusHasHat", false);
+        stateConditions.Add("ShrineIsClean", false);
     }
 }
 
