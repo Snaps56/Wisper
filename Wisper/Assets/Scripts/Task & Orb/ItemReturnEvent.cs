@@ -27,7 +27,7 @@ public class ItemReturnEvent : MonoBehaviour
     // Update is called once per frame
     void pickUp()
     {
-        // npc.transform.GetChild(0).gameObject.SetActive(true);
+        
         npc.transform.Find("garden_hat").gameObject.SetActive(true);
 
         npc.GetComponent<NPCMovement>().move = false;
@@ -39,7 +39,7 @@ public class ItemReturnEvent : MonoBehaviour
         //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
         //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY;
         //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
-
+        // npc.transform.GetChild(0).gameObject.SetActive(true);
         
 
     }
