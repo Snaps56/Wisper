@@ -8,6 +8,7 @@ public class ObjectLift : MonoBehaviour {
     public GameObject character;
     public SphereCollider radiusCollider;
     private Player movementScript;
+	private float playerOrbCount;
 
     [Header("Lift Mechanics")]
     public float liftHeight;
@@ -28,6 +29,7 @@ public class ObjectLift : MonoBehaviour {
     // Use this for initialization
     void Start () {
         movementScript = character.GetComponent<Player>();
+		playerOrbCount = movementScript.GetOrbCount ();
     }
 	
 	// Update is called once per frame

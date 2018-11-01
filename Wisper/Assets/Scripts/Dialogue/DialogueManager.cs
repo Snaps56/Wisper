@@ -224,7 +224,9 @@ public class DialogueManager : MonoBehaviour {
 
     void StartDialogue(Dialogue dialogue)
     {
-        nearestNPC.GetComponent<FloatingTextManager>().disableFloatingText = true; // Disable the floating text for this npc
+		if (nearestNPC.GetComponent<FloatingTextManager> () != null) {
+        	nearestNPC.GetComponent<FloatingTextManager>().disableFloatingText = true; // Disable the floating text for this npc
+		}
         // Debug.Log("Recieved dialogue " + dialogue.dialogueName);
         sentences.Clear();
         foreach(string sentence in dialogue.sentences)
@@ -286,7 +288,9 @@ public class DialogueManager : MonoBehaviour {
         sentences.Clear();
         dialogueText.text = "";
         HideBox();
-        nearestNPC.GetComponent<FloatingTextManager>().disableFloatingText = false;
+		if (nearestNPC.GetComponent<FloatingTextManager> () != null) {
+			nearestNPC.GetComponent<FloatingTextManager> ().disableFloatingText = false;
+		}
         dialogueBoxActive = false;
     }
 

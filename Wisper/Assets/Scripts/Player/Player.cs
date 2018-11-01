@@ -202,7 +202,7 @@ public class Player : MonoBehaviour
 		if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = true;
 		}
-        if (other.gameObject.CompareTag("NPC"))
+		if (other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag ("Shrine"))
         {
             // Debug.Log("Detecting collision with NPC: " + other.name);
             if (dialogueManager == null)
@@ -305,6 +305,10 @@ public class Player : MonoBehaviour
 		treeSpeed = treeSlow * startingSpeed;
 		Debug.Log ("OrbCount = " + orbCount);
 		Debug.Log ("Speed is back to :" + speed);
+	}
+
+	public float GetOrbCount(){
+		return orbCount;
 	}
 
 
