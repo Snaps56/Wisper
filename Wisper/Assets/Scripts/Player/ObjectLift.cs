@@ -33,7 +33,7 @@ public class ObjectLift : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         if (Input.GetMouseButtonDown(1) || Input.GetAxis("TriggerL") > 0)
         {

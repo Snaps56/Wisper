@@ -30,7 +30,7 @@ public class ObjectThrow : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         isLiftingObjects = character.GetComponentInChildren<ObjectLift>().GetIsLiftingObjects();
 
