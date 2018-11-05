@@ -34,7 +34,8 @@ public class PlayerCollision : MonoBehaviour {
 
 	[Header("Collision Handeling")]
 	public Collider playerCollider;
-	public float shakeAmount;
+	private float shakeAmount;
+    private Vector3 terrainPosition;
 
 	[Header("UI")]
 	public Image windPowerBar;
@@ -63,7 +64,11 @@ public class PlayerCollision : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("TutorialMove"))
+        if (other.gameObject.CompareTag("Terrain"))
+        {
+            terrainPosition = other.transform.position;
+        }
+        if (other.gameObject.CompareTag("TutorialMove"))
 		{
 
 		}
@@ -184,7 +189,16 @@ public class PlayerCollision : MonoBehaviour {
 				shake -= Time.deltaTime * 0.1f;
 			}
 		}
-	}
+
+
+
+        //If player hits a wall
+        if (other.gameObject.CompareTag("Terrain"))
+        {
+            Vector3 reflectDirection = this.transform.position - terrainPosition;
+            this.rb.AddForce(reflectDirection*GetComponent<Player>().speed);
+        }
+    }
 
 	void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag ("Tree")) {
