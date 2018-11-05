@@ -196,7 +196,23 @@ public class PlayerCollision : MonoBehaviour {
         if (other.gameObject.CompareTag("Terrain"))
         {
             Vector3 reflectDirection = this.transform.position - terrainPosition;
+            float playerDistance = (this.terrainPosition - terrainPosition).magnitude;
+            //Adds force in opposite direction
             this.rb.AddForce(reflectDirection*GetComponent<Player>().speed);
+            
+            //Stops player rapidly
+            if (playerDistance < 0.1)
+            {
+                //    //if (speed > originalSpeed / 2)
+                //    //{
+                //        //speed = speed * 0.1f;
+                //        //verticalAcceleration = 0.001f;
+                //    //}
+                //    //rb.velocity = new Vector3(0, 0, 0);
+            }
+            
+            //Also stops players very rapidly
+            //this.rb.velocity = this.rb.velocity * 0.1f;
         }
     }
 
