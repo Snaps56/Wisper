@@ -69,22 +69,36 @@ public class PlayerCollision : MonoBehaviour {
             terrainPosition = other.transform.position;
         }
         if (other.gameObject.CompareTag("TutorialMove"))
-		{
+        {
+            if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+            {
+                //other.gameObject.GetComponent<SpriteRenderer>().color = new Color(19, 241, 25);
+                other.gameObject.SetActive(false);
+            }
+        }
+        else if (other.gameObject.CompareTag("TutorialLook"))
+        {
+            if (Input.GetAxis("HorizontalR") != 0 || Input.GetAxis("VerticalR") != 0 || Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            {
+                other.gameObject.SetActive(false);
+            }
+        }
+        else if (other.gameObject.CompareTag("TutorialAscend"))
+        {
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetButton("BButton") || Input.GetButton("Jump") || Input.GetButton("AButton"))
+            {
+                other.gameObject.SetActive(false);
+            }
 
-		}
-		else if (other.gameObject.CompareTag("TutorialLook"))
-		{
-
-		}
-		else if (other.gameObject.CompareTag("TutorialAscend"))
-		{
-
-		}
-		if (other.gameObject.CompareTag("TutorialLift"))
-		{
-
-		}
-		float objectDistance = (transform.position - other.transform.position).magnitude;
+        }
+        else if (other.gameObject.CompareTag("TutorialLift"))
+        {
+            if (Input.GetMouseButtonDown(1) || Input.GetAxis("TriggerL") > 0 || Input.GetMouseButtonDown(0) || Input.GetAxis("TriggerR") > 0)
+            {
+                other.gameObject.SetActive(false);
+            }
+        }
+        float objectDistance = (transform.position - other.transform.position).magnitude;
 		if (other.gameObject.CompareTag("Orb") && objectDistance < 2f) {
 			Destroy(other.gameObject);
 			if (orbCount < orbMax)

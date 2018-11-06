@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
     [Header("Player Controls")]
     public float speed;
     public Transform camera;
+    public Camera cutsceneCamera;
+    public Camera mainCamera;
     public Vector3 currentMovementForce;
 
 	//public bool nearShrine;
@@ -122,6 +124,20 @@ public class Player : MonoBehaviour
 
         ModeChange ();
 
+        if (Input.GetKey(KeyCode.N))
+        {
+            if (cutsceneCamera.gameObject.activeSelf == false)
+            {
+                mainCamera.gameObject.SetActive(false);
+                cutsceneCamera.gameObject.SetActive(true);
+                cutsceneCamera.GetComponent<Animation>().Play();
+                if (!cutsceneCamera.GetComponent<Animation>().isPlaying)
+                {
+                    mainCamera.gameObject.SetActive(true);
+                    cutsceneCamera.gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
 	void ModeChange () {
