@@ -59,8 +59,9 @@ public class NPCMovement : MonoBehaviour
             {
                 currentWP++;
                 
-                if (currentWP >= waypoints.Length)
-                //}
+				if (currentWP >= waypoints.Length) {
+					currentWP = 0;
+                }
                 //When he detects the hat
                if ((hat != null && Vector3.Distance(transform.position, hat.transform.position) < detection))
                 {
