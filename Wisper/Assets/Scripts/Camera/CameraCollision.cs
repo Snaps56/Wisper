@@ -29,7 +29,7 @@ public class CameraCollision : MonoBehaviour
 
         if (Physics.Linecast(transform.parent.position, desiredCameraPosition, out hit))
         {
-            if (!hit.collider.isTrigger)
+            if (!hit.collider.isTrigger && (hit.collider.CompareTag("Terrain") || hit.collider.CompareTag("LargeObject")))
             {
                 distance = Mathf.Clamp(hit.distance * zoomRatio, minDistance, maxDistance);
             }

@@ -8,6 +8,7 @@ public class ObjectThrow : MonoBehaviour {
     public GameObject character;
     public Collider radiusCollider;
     private Player movementScript;
+	private float playerOrbCount;
 
     [Header("Throw Mechanics")]
     public float throwForce;
@@ -25,10 +26,11 @@ public class ObjectThrow : MonoBehaviour {
     // Use this for initialization
     void Start () {
         movementVector = transform.position;
+		playerOrbCount = character.GetComponent<Player> ().GetOrbCount ();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         isLiftingObjects = character.GetComponentInChildren<ObjectLift>().GetIsLiftingObjects();
 
