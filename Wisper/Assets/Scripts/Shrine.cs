@@ -14,6 +14,7 @@ public class Shrine : MonoBehaviour {
 
 	private GameObject player;
 	private bool isClean;
+	private Component[] coloredParticles;
 	public GameObject playerAbilities;
 
 	[Header("Clean Stuff")]
@@ -28,6 +29,11 @@ public class Shrine : MonoBehaviour {
 		gettingCleaned = false;
 		isClean = false;
 		cleanProgress = 0;
+		coloredParticles = activationParticles.GetComponentsInChildren<ParticleSystem> ();
+		//foreach (ParticleSystem part in coloredParticles) {
+		//	part.Stop (true);
+		//}
+		//coloredParticles.Stop (true);
 	}
 
 	// Update is called once per frame
@@ -35,6 +41,11 @@ public class Shrine : MonoBehaviour {
 
 		if (player.GetComponent<PlayerCollision> ().nearShrine) {
 			activationParticles.SetActive (true);
+			//foreach (ParticleSystem partPlay in coloredParticles) {
+			//	Debug.Log (partPlay.name);
+			//	partPlay.Play ();
+			//}
+			//coloredParticles.Play(true);
 			gettingCleaned = playerAbilities.GetComponent<ObjectSwirl>().isSwirling;
 			if (!isClean) {
 				if (gettingCleaned && cleanProgress < 1.0f) {
@@ -52,6 +63,10 @@ public class Shrine : MonoBehaviour {
 			}
 		} else {
 			activationParticles.SetActive (false);
+			//foreach (ParticleSystem partStop in coloredParticles) {
+			//	partStop.Stop ();
+			//}
+			//coloredParticles.Stop(true);
 		}
 
 		if (isClean) {
