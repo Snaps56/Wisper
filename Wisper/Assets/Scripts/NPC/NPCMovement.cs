@@ -28,12 +28,24 @@ public class NPCMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.tag == "Player" && Input.GetKey(KeyCode.E))
+        {
+            move = false;
+            animator.SetBool("Idle", true);
+        }     
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        move = true;
+        animator.SetBool("Idle", false);
+    }
     // Update is called once per frame
     void Update()
     {
         //sets the last waypoint to the hat
         //waypoints[5].transform.position = hat.transform.position;
-
 
         Vector3 direction = player.transform.position - this.transform.position;
         if (hat != null)
@@ -48,10 +60,8 @@ public class NPCMovement : MonoBehaviour
                 currentWP++;
                 
                 if (currentWP >= waypoints.Length)
-                {
-                    
-                    currentWP = 0;
-                    
+                {                   
+                    currentWP = 0;                    
                 }
                 //When he detects the hat
                if ((hat != null && Vector3.Distance(transform.position, hat.transform.position) < detection))
@@ -64,15 +74,13 @@ public class NPCMovement : MonoBehaviour
                     animator.SetBool("Idle", true);
                     GetComponent<SpawnOrbs>().DropOrbs();
                 }
-
             }
             //if (/*currentWP == 5 && */ distanceFromHat.magnitude <= stopLength)
             //{
             //    move = false;
             //    direction = waypoints[currentWP].transform.position - transform.position;
             //    this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotSpeed * Time.deltaTime);
-            //    waypoints[5].SetActive(false);
-                
+            //    waypoints[5].SetActive(false);               
             //}
         }
 
@@ -82,12 +90,8 @@ public class NPCMovement : MonoBehaviour
             direction = waypoints[currentWP].transform.position - transform.position;
             this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotSpeed * Time.deltaTime);
             this.transform.Translate(0, 0, Time.deltaTime * speed);
-        }
-        
-
-        
+        }            
     }
-
 
 
 }
