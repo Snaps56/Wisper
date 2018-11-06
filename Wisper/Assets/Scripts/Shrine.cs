@@ -33,7 +33,7 @@ public class Shrine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (player.GetComponent<Player> ().nearShrine) {
+		if (player.GetComponent<PlayerCollision> ().nearShrine) {
 			activationParticles.SetActive (true);
 			gettingCleaned = playerAbilities.GetComponent<ObjectSwirl>().isSwirling;
 			if (!isClean) {
@@ -61,6 +61,6 @@ public class Shrine : MonoBehaviour {
 	}
 
 	void DepositOrbs () {
-		player.GetComponent<Player> ().SetOrbCount (0);
+		player.GetComponent<PlayerCollision> ().SetOrbCount (0);
 	}
 }

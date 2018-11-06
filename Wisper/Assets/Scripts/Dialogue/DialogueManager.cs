@@ -37,7 +37,8 @@ public class DialogueManager : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
         // Debug.Log("Checking textfields in dialogueBox");
         if(dialogueBox != null)
@@ -223,6 +224,9 @@ public class DialogueManager : MonoBehaviour {
 
     void StartDialogue(Dialogue dialogue)
     {
+		if (nearestNPC.GetComponent<FloatingTextManager> () != null) {
+        	nearestNPC.GetComponent<FloatingTextManager>().disableFloatingText = true; // Disable the floating text for this npc
+		}
         // Debug.Log("Recieved dialogue " + dialogue.dialogueName);
         sentences.Clear();
         foreach(string sentence in dialogue.sentences)
@@ -284,6 +288,9 @@ public class DialogueManager : MonoBehaviour {
         sentences.Clear();
         dialogueText.text = "";
         HideBox();
+		if (nearestNPC.GetComponent<FloatingTextManager> () != null) {
+			nearestNPC.GetComponent<FloatingTextManager> ().disableFloatingText = false;
+		}
         dialogueBoxActive = false;
     }
 

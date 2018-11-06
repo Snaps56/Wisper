@@ -10,6 +10,8 @@ public class FloatingTextManager : MonoBehaviour {
     private bool sentenceDisplayInProgress;
     private bool clearingInProgress;
 
+    public bool disableFloatingText = false;   // Set true to prevent the floating text for the npc this is attached to.
+
     // Use this for initialization
     void Start () {
         sentences = new Queue<string>();
@@ -20,40 +22,51 @@ public class FloatingTextManager : MonoBehaviour {
 	
     public void StartFloatingText (Dialogue floatingText)
     {
-        // Debug.Log("Recieved floating text " + floatingText.dialogueName);
-        sentences.Clear();
-        //floatingText = speaker.GetComponentInChildren<Text>();
-        foreach(string sentence in floatingText.sentences)
+        if (!disableFloatingText)   // If disableFloatingText is set, the floating text will not be started
         {
-            sentences.Enqueue(sentence);
-            // Debug.Log("Enqued: " + sentence);
-        }
-        DisplayNextSentence(2);
+            // Debug.Log("Recieved floating text " + floatingText.dialogueName);
+            sentences.Clear();
+            //floatingText = speaker.GetComponentInChildren<Text>();
+            foreach (string sentence in floatingText.sentences)
+            {
+                sentences.Enqueue(sentence);
+                // Debug.Log("Enqued: " + sentence);
+            }
+            DisplayNextSentence(2);
+        } 
     }
 
     // Returns 0 when floating text is over
     public int DisplayNextSentence(int timeDelay, float charDelay = 0.066F)
     {
-        if(sentenceDisplayInProgress)
+        if (!disableFloatingText)
         {
-            return 1;
-        }
-        else
-        {
-            if (sentences.Count == 0)
+            if (sentenceDisplayInProgress)
             {
-                // Debug.Log("End of floating text, not displaying sentence");
-                EndFloatingText();
-                return 0;
+                return 1;
             }
             else
             {
-                sentenceDisplayInProgress = true;
-                string sentence = sentences.Dequeue();
-                // Debug.Log("Running corutine with sentence: " + sentence);
-                StartCoroutine(DisplaySentence(sentence, timeDelay, charDelay));
-                return 1;
+                if (sentences.Count == 0)
+                {
+                    // Debug.Log("End of floating text, not displaying sentence");
+                    EndFloatingText();
+                    return 0;
+                }
+                else
+                {
+                    sentenceDisplayInProgress = true;
+                    string sentence = sentences.Dequeue();
+                    // Debug.Log("Running corutine with sentence: " + sentence);
+                    StartCoroutine(DisplaySentence(sentence, timeDelay, charDelay));
+                    return 1;
+                }
             }
+        }
+        else
+        {
+            EndFloatingText();  // If floating text is active, but disableFloatingText was turned on, end the floating text.
+            return 0;
         }
     }
 
@@ -63,10 +76,18 @@ public class FloatingTextManager : MonoBehaviour {
         floatingText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
+            if (disableFloatingText)   // If disableFloatingText is turned on, clear out the text field and exit loop
+            {
+                floatingText.text = "";
+                break;
+            }
             floatingText.text += letter;
             yield return new WaitForSeconds(charDelay); //Wait charDelay seconds.
         }
-        yield return new WaitForSeconds(timeDelay);
+        if (!disableFloatingText) // Don't bother with delay if the floating text was disabled
+        {
+            yield return new WaitForSeconds(timeDelay); // Wait timeDelay seconds before allowing next sentence to display
+        }
         sentenceDisplayInProgress = false;
     }
 
@@ -83,9 +104,7 @@ public class FloatingTextManager : MonoBehaviour {
             // If the clear process was called the first time, set status bool and run corutine
             clearingInProgress = true;
             StartCoroutine(ClearFloatingText());
-
-        }
-        
+        }   
     }
 
     // Clears out the queue and text box
@@ -97,7 +116,12 @@ public class FloatingTextManager : MonoBehaviour {
         {
             yield return null;
         }
-        yield return new WaitForSeconds(1); // Leave text on screen 1 second afterward before wiping it
+
+        if (!disableFloatingText)   // Ignore delay if floating text was disabled
+        {
+            yield return new WaitForSeconds(2f); // Leave text on screen x second afterward before wiping it
+        }
+
         floatingText.text = "";
         this.gameObject.GetComponent<FloatingTextTrigger>().deactivateFloatingText(); // Informs the trigger that there is no longer an active.
         // Debug.Log("reseting clear status");
@@ -107,25 +131,6 @@ public class FloatingTextManager : MonoBehaviour {
     //When a character triggers a condition that would change dialogue (e.g. completed a task), run this function to enable/disable dialogues.
     public void UpdateDialogues(int conditionID)
     {
-        /* Assumptions:
-         *  There exists a table A with columns: DialogueName(string), DialogueID(numeric), Enabled(bool), ConditionCount(numeric)
-         *  There exists a table B with columns: DialogueID (numeric), ConditionName(string)
-         *  There exists a table C with columns: ConditionName(string), CondiionID(numeric), State(bool)
-         *  
-         *  Table A is generated on loading an area (at some point after C), and deleted upon leaving. Defaults derived from dialogue object.
-         *  Table B is generated after A, connecting A to C using conditions named in A.
-         *  Table C is generated on game launch, and is persistant for a save file. This may be used outside of dialogues.
-        */
-        /*
-         * Condition is met, this function has been called
-         * Find ConditionID in table C.
-         * Find all instances of this in table B.
-         * For each instance
-         *  find the corresponding tuple in A
-         *  find all instances of that tuple's DialogueID in table B
-         *
-         */
-        //Having conditions stored in table would allow for retention of dialogue status on reloading characters/areas.
-        //
+        
     }
 }

@@ -927,6 +927,7 @@ MonoBehaviour:
   accuracyWP: 0.5
   detection: 5
   stopLength: 1.25
+  move: 1
 --- !u!114 &231803582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,14 +941,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - dialogueName: Find my hat!
-    enabled: 1
+    enabled: 0
     enableConditions:
     - String: ShamusHasHat
       Bool: 0
     sentences:
     - Where the fuck is my hat bitch!?!
   - dialogueName: My hat is found.
-    enabled: 0
+    enabled: 1
     enableConditions:
     - String: ShamusHasHat
       Bool: 1
@@ -1017,11 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ed8d2f2a168d14ea806eee2f530880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hat: {fileID: 231805239}
   npc: {fileID: 231803573}
-  npcHeadPosX: 0.285
-  npcHeadPosY: 1.3
-  npcHeadPosZ: -0.185
 --- !u!114 &231805242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6507,6 +6504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profile: {fileID: 0}
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6879,7 +6877,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  throwPower: 0
   camera: {fileID: 1342754103}
   currentMovementForce: {x: 0, y: 0, z: 0}
   nearShrine: 0
@@ -7436,7 +7433,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
   orbCount: 5
-  player: {fileID: 773190229}
 --- !u!1001 &916215314
 Prefab:
   m_ObjectHideFlags: 0
@@ -13356,6 +13352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profile: {fileID: 0}
 --- !u!1 &1355317122
 GameObject:
   m_ObjectHideFlags: 0
@@ -13868,7 +13865,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
   orbCount: 10
-  player: {fileID: 773190229}
 --- !u!65 &1498936150
 BoxCollider:
   m_ObjectHideFlags: 0

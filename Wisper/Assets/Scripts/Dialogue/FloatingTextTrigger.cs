@@ -25,12 +25,7 @@ public class FloatingTextTrigger : MonoBehaviour
             }
             else
             {
-                // Should be called by floating text manager after text is cleared to avoid conflicting writes to text box.
-                /*if (this.gameObject.GetComponent<FloatingTextManager>().DisplayNextSentence(2) == 0)
-                {
-                    deactivateFloatingText();
-                } */
-                this.gameObject.GetComponent<FloatingTextManager>().DisplayNextSentence(2);
+                this.gameObject.GetComponent<FloatingTextManager>().DisplayNextSentence(3);
             }
 
         }
