@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject VideoMenu;
     public AudioMixer audioMixer;
+    public float CurrentVolume;
 
     // Update is called once per frame
     void Update()
@@ -38,6 +39,14 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        if (CurrentVolume == 0)
+        {
+            SetVolume(CurrentVolume);
+        }
+        else if (CurrentVolume <= -15)
+        {
+            SetVolume(CurrentVolume + 15);
+        }
     }
     // Pauses the game and unlocks the cursor
     void Pause()
@@ -47,6 +56,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        SetVolume(CurrentVolume - 15);
     }
     // Quits the game! But why would you want to do that?
     public void QuitGame()
@@ -54,9 +64,11 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("QUIT!");
         Application.Quit();
     }
+    // Function to set the master volume
     public void SetVolume (float volume)
     {
         audioMixer.SetFloat("volume", volume);
+        CurrentVolume = volume;
     }
 }
 

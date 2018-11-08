@@ -8,7 +8,7 @@ using UnityEngine;
 public class PersistantStateData : MonoBehaviour
 {
     public static PersistantStateData persistantStateData;
-
+    public int updateCount;         // A count of how many times the hashtable has been updated after game launched. Should be incremented when modifying hashtable. Need not be preserved after closing application.
     public Hashtable stateConditions;   // Hashtable containing key/value pairs of state conditions (probably limited to string/bool pairs).
 
     // When scene with this loads, initialize the static variable to object with this script if there is none. Object is persistant through scenes.
@@ -29,11 +29,12 @@ public class PersistantStateData : MonoBehaviour
     private void Start()
     {
         stateConditions = new Hashtable();
-        populateStateConditions();
+        PopulateStateConditions();
+        updateCount = 1;
     }
 
     // fills the persistantStateConditions with the various conditions. We can consider passing in arguments for initialization when considering save/load functionality.
-    public void populateStateConditions()
+    public void PopulateStateConditions()
     {
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("ShrineIsClean", false);

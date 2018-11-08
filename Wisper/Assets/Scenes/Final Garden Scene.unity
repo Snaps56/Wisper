@@ -1568,7 +1568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cc101eb2568f745b4a3a6855fac438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updatingFloatingTexts: 0
   disableFloatingText: 0
+  persistantStateDataUpdateCount: 0
 --- !u!114 &231803576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1629,6 +1631,7 @@ MonoBehaviour:
     sentences:
     - Where'd me hat go?
     - Darn wind blew it right off me head
+  range: 8
 --- !u!4 &231803580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400168, guid: b235179bd2a63d1468dd430670338c55,
@@ -10255,7 +10258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cc101eb2568f745b4a3a6855fac438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updatingFloatingTexts: 0
   disableFloatingText: 0
+  persistantStateDataUpdateCount: 0
 --- !u!114 &737896358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10341,7 +10346,14 @@ MonoBehaviour:
       Bool: 0
     sentences:
     - Where'd me hat go?
-    - Darn wind blew it right off me head
+  - dialogueName: Hat found!
+    enabled: 0
+    enableConditions:
+    - String: ShamusHasHat
+      Bool: 1
+    sentences:
+    - Hat got.
+  range: 8
 --- !u!114 &737896363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19913,6 +19925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b925ec2c0c4e2eb49a6683c0d32287e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateCount: 0
 --- !u!4 &1273547625
 Transform:
   m_ObjectHideFlags: 0
@@ -33122,6 +33135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b925ec2c0c4e2eb49a6683c0d32287e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateCount: 0
 --- !u!4 &1798550357
 Transform:
   m_ObjectHideFlags: 0

@@ -33,7 +33,8 @@ public class ItemReturnEvent : MonoBehaviour
         npc.GetComponent<NPCMovement>().move = false;
         npc.GetComponent<Animator>().SetBool("Idle", true);
         npc.GetComponent<SpawnOrbs>().DropOrbs();
-        GameObject.Find("PersistantStataData").GetComponent<PersistantStateData>().stateConditions["ShamusHasHat"] = true;
+        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().stateConditions["ShamusHasHat"] = true;
+        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().updateCount++;
         Destroy(this.gameObject);
         // x = -.31 z = .16f y = 1.25
         //hat.transform.position = npc.transform.position;
