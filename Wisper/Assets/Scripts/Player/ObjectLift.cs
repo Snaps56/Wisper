@@ -9,6 +9,7 @@ public class ObjectLift : MonoBehaviour {
     public SphereCollider radiusCollider;
     private Player movementScript;
 	private float playerOrbCount;
+	public ParticleSystem liftParticles;
 
     [Header("Lift Mechanics")]
     public float liftHeight;
@@ -51,10 +52,16 @@ public class ObjectLift : MonoBehaviour {
         {
             targetPosition = transform.position + new Vector3(0, liftHeight, 0);
             liftObjects();
+			if (!liftParticles.isPlaying) {
+				liftParticles.Play ();
+			}
         }
         else
         {
             dropObjects();
+			if (liftParticles.isPlaying) {
+				liftParticles.Stop ();
+			}
         }
         // obtain character movement data to help track movement for lifted objects
         currentCharacterVector = movementScript.currentMovementForce;

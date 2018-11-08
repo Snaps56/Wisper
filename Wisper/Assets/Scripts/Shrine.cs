@@ -49,7 +49,7 @@ public class Shrine : MonoBehaviour {
 				}
 			}
 			//coloredParticles.Play(true);
-			gettingCleaned = playerAbilities.GetComponent<ObjectSwirl>().isSwirling;
+			gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
 			if (!isClean) {
 				if (gettingCleaned && cleanProgress < 1.0f) {
 					cleanProgress += 0.1f;
