@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 public class Player : MonoBehaviour
 {
     [Header("Player Controls")]
@@ -40,6 +41,9 @@ public class Player : MonoBehaviour
     //public GameObject turnBackText;
     //public GameObject miniMap;
     //public Text orbCountText;
+
+    public GameObject rain;
+    public GameObject light;
     
 
     void Start()
@@ -57,11 +61,17 @@ public class Player : MonoBehaviour
         //pickups = GameObject.FindGameObjectsWithTag("PickUp");
         //turnBackText.SetActive(false);
         //orbCountText.text = orbCount.ToString()+"/" + orbMax;
-        //shakeAmount = 0.05f;
-        //shake = 0;
-        //dialogueManager = GameObject.Find("DialogueManager");
-    }
 
+        //dialogueManager = GameObject.Find("DialogueManager");
+
+        //rain.SetActive(false);
+
+
+    }
+    IEnumerator Wait()
+    {
+       yield return new WaitForSeconds(10f);
+    }
     void FixedUpdate()
     {
 		verticalAcceleration = GetComponent<PlayerCollision> ().GetVerticalAccel ();
@@ -70,7 +80,6 @@ public class Player : MonoBehaviour
         //Go Up
         if (Input.GetButton("Jump") || Input.GetButton("AButton"))
         {
-            // rb.AddForce(Vector3.up * (speed * 20));
             verticalSpeed += verticalAcceleration;
         }
         else
@@ -87,7 +96,6 @@ public class Player : MonoBehaviour
         //Go Down
         if ((Input.GetKey(KeyCode.LeftControl) || Input.GetButton("BButton")) && transform.position.y > 3)
         {
-            // rb.AddForce(-Vector3.up * (speed * 29));
             verticalSpeed -= verticalAcceleration;
         }
         else
@@ -100,7 +108,6 @@ public class Player : MonoBehaviour
 				}
             }
         }
-		//Debug.Log (verticalSpeed);
         //Moving Forward and Backwards
         if (Input.GetButton("Sprint"))
         {
@@ -124,13 +131,19 @@ public class Player : MonoBehaviour
 
         ModeChange ();
 
+        //Activate cutscene
         if (Input.GetKey(KeyCode.N))
         {
             if (cutsceneCamera.gameObject.activeSelf == false)
             {
                 mainCamera.gameObject.SetActive(false);
                 cutsceneCamera.gameObject.SetActive(true);
+                GameObject.Find("WindPowerBG").SetActive(false);
+                rain.SetActive(true);
+                light.GetComponent<Light>().color = Color.black;
                 cutsceneCamera.GetComponent<Animation>().Play();
+                StartCoroutine(Wait());
+                //GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
                 if (!cutsceneCamera.GetComponent<Animation>().isPlaying)
                 {
                     mainCamera.gameObject.SetActive(true);

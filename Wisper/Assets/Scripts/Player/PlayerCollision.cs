@@ -36,8 +36,9 @@ public class PlayerCollision : MonoBehaviour {
 	public Collider playerCollider;
 	private float shakeAmount;
     private Vector3 terrainPosition;
+    private Vector3 reflectDirection;
 
-	[Header("UI")]
+   [Header("UI")]
 	public Image windPowerBar;
 	public GameObject turnBackText;
 	public GameObject miniMap;
@@ -209,7 +210,9 @@ public class PlayerCollision : MonoBehaviour {
         //If player hits a wall
         if (other.gameObject.CompareTag("Terrain"))
         {
-            Vector3 reflectDirection = this.transform.position - terrainPosition;
+            reflectDirection = this.transform.position - terrainPosition;
+            Debug.Log("Reflection Direction: " + reflectDirection);
+
             float playerDistance = (this.terrainPosition - terrainPosition).magnitude;
             //Adds force in opposite direction
             this.rb.AddForce(reflectDirection*GetComponent<Player>().speed);
