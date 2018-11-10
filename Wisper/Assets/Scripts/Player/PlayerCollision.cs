@@ -170,10 +170,10 @@ public class PlayerCollision : MonoBehaviour {
 			if (npcDialogues != null)   // If this npc has dialogues
 			{
 				// Debug.Log("NPC has dialogues");
-				if (!npcDialogues.getInDialogueRange())
+				if (!npcDialogues.GetInDialogueRange())
 				{
 
-					npcDialogues.setInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
+					npcDialogues.SetInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
 
 					DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
 					// Debug.Log("Updating " + other.name + " dialogues");
@@ -255,10 +255,10 @@ public class PlayerCollision : MonoBehaviour {
 			if (npcDialogues != null)   // If this npc has dialogues
 			{
 				// Debug.Log("NPC has dialogues");
-				if (npcDialogues.getInDialogueRange())
+				if (npcDialogues.GetInDialogueRange())
 				{
 
-					npcDialogues.setInDialogueRange(false);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
+					npcDialogues.SetInDialogueRange(false);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
 					DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
 					// Debug.Log("Removing " + other.name + " from dialogue manager");
 					managerScript.RemoveInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range

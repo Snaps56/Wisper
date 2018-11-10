@@ -1078,10 +1078,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Greeting
     enabled: 1
     enableConditions: []
+    speedControls: []
     sentences:
     - Hello little whisper
 --- !u!1 &158545804
@@ -1626,8 +1628,9 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where'd me hat go?
     - Darn wind blew it right off me head
@@ -1675,19 +1678,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where the fuck is my hat bitch!?!
   - dialogueName: My hat is found.
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - What the fuck did you just fucking say about me, you little bitch? I'll have
       you know I graduated top of my class in the Navy Seals, and I've been involved
@@ -2287,6 +2293,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 566580111}
   VideoMenu: {fileID: 635232033}
   audioMixer: {fileID: 24100000, guid: 66155f7ede8feb04788df3e4419930e5, type: 2}
+  CurrentVolume: 0
 --- !u!1 &313045735
 GameObject:
   m_ObjectHideFlags: 0
@@ -10312,19 +10319,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: ShamusHasHat
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
   - dialogueName: My hat is found.
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
+    - conditionName: ShamusHasHat
+      conditionValue: 1
+    speedControls: []
     sentences:
     - Oh weee! My hat! I've been looking all over for this!
 --- !u!114 &737896361
@@ -10342,15 +10352,17 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: ShamusHasHat
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where'd me hat go?
   - dialogueName: Hat found!
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
+    - conditionName: ShamusHasHat
+      conditionValue: 1
+    speedControls: []
     sentences:
     - Hat got.
   range: 8
@@ -22377,6 +22389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 773190229}
   radiusCollider: {fileID: 1531182127}
+  liftParticles: {fileID: 0}
   liftHeight: 2
   liftCenterStrength: 10
   liftedObjectMaxSpeed: 3

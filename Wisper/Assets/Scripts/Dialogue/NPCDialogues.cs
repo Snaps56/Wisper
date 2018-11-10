@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class NPCDialogues : MonoBehaviour {
 
+    public float defaultCharDelay = 0.066F;
     public List<Dialogue> dialogues;
     private bool inDialogueRange;
+    
 
     private void Start()
     {
         inDialogueRange = false;
     }
 
-    public bool getInDialogueRange()
+    public bool GetInDialogueRange()
     {
         return inDialogueRange;
     }
 
-    public void setInDialogueRange(bool state)
+    public void SetInDialogueRange(bool state)
     {
         inDialogueRange = state;
     }
