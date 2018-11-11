@@ -44,7 +44,7 @@ public class ObjectLift : MonoBehaviour {
         {
             isLiftingObjects = false;
         }
-        Debug.Log("Lifting Objects: " + isLiftingObjects);
+        // Debug.Log("Lifting Objects: " + isLiftingObjects);
 
         isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
 

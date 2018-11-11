@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135295, g: 0.5009421, b: 0.57285845, a: 1}
+  m_IndirectSpecularColor: {r: 0.45135278, g: 0.50094235, b: 0.5728585, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -377,7 +377,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 29935072}
-  - component: {fileID: 29935073}
   m_Layer: 0
   m_Name: CameraFocus
   m_TagString: Untagged
@@ -392,30 +391,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 29935071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.14, y: 18.21, z: -48.34}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1102862351}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Children: []
+  m_Father: {fileID: 1779087190}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &29935073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 29935071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be2505df7de4fd40a756e98a5110952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraObj: {fileID: 1102862350}
-  playerObj: {fileID: 1779087189}
-  cameraMoveSpeed: 120
-  highClampAngle: 80
-  lowClampAngle: 0
-  inputSensitivity: 150
 --- !u!1 &31877408
 GameObject:
   m_ObjectHideFlags: 0
@@ -10062,7 +10043,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1779087190}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &729810876
 TrailRenderer:
@@ -11154,7 +11135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1779087190}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &898277524
 SphereCollider:
@@ -11181,9 +11162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   camera: {fileID: 1102862351}
-  currentMovementForce: {x: 0, y: 0, z: 0}
   nearShrine: 0
-  playerCollider: {fileID: 1779087196}
   windPowerBar: {fileID: 23049899}
   turnBackText: {fileID: 3670896}
   miniMap: {fileID: 33720045}
@@ -12478,6 +12457,7 @@ GameObject:
   - component: {fileID: 1102862354}
   - component: {fileID: 1102862353}
   - component: {fileID: 1102862352}
+  - component: {fileID: 1102862356}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12491,12 +12471,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102862350}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -36.14, y: 18.21, z: -58.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 29935072}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1102862352
 MonoBehaviour:
@@ -12516,7 +12496,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102862350}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd32997646cc5214588e397f958d6ac9, type: 3}
   m_Name: 
@@ -12572,6 +12552,25 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1102862356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102862350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be2505df7de4fd40a756e98a5110952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 29935072}
+  highClampAngle: 80
+  lowClampAngle: -80
+  inputSensitivity: 2
+  defaultDistance: 3
+  maxDistance: 10
+  minDistance: 3
+  zoomSensitivity: 3
 --- !u!1 &1164516057
 GameObject:
   m_ObjectHideFlags: 0
@@ -21226,7 +21225,7 @@ Transform:
   - {fileID: 1769782083}
   - {fileID: 1838633176}
   m_Father: {fileID: 1779087190}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1575068989
 Prefab:
@@ -21393,7 +21392,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1779087190}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1600232474
 MonoBehaviour:
@@ -31835,6 +31834,7 @@ GameObject:
   - component: {fileID: 1779087191}
   - component: {fileID: 1779087193}
   - component: {fileID: 1779087196}
+  - component: {fileID: 1779087197}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -31852,6 +31852,7 @@ Transform:
   m_LocalPosition: {x: -35.56, y: 13.81, z: -47.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 29935072}
   - {fileID: 1600232473}
   - {fileID: 729810875}
   - {fileID: 1565080360}
@@ -31980,9 +31981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   camera: {fileID: 1102862351}
-  currentMovementForce: {x: 0, y: 0, z: 0}
   nearShrine: 0
-  playerCollider: {fileID: 0}
   windPowerBar: {fileID: 23049899}
   turnBackText: {fileID: 3670896}
   miniMap: {fileID: 33720045}
@@ -31993,7 +31992,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1779087189}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
@@ -32015,10 +32014,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &1779087196
 SphereCollider:
@@ -32032,6 +32031,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1779087197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1779087189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d9506b0dc0a824f91eb4dcc1c8e885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1102862350}
+  movementSpeed: 6
+  sprintMultiplier: 2
+  stopMultiplier: 1
 --- !u!1 &1788764948
 GameObject:
   m_ObjectHideFlags: 0

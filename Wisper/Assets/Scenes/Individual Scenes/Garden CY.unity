@@ -963,10 +963,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Greeting
     enabled: 1
     enableConditions: []
+    speedControls: []
     sentences:
     - Hello little whisper
 --- !u!1 &158545804
@@ -1358,6 +1360,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 18.37
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
   m_IsPrefabAsset: 0
@@ -1645,8 +1651,9 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where'd me hat go?
     - Darn wind blew it right off me head
@@ -1694,19 +1701,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where the fuck is my hat bitch!?!
   - dialogueName: My hat is found.
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - What the fuck did you just fucking say about me, you little bitch? I'll have
       you know I graduated top of my class in the Navy Seals, and I've been involved
@@ -9791,19 +9801,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
   - dialogueName: My hat is found.
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Oh weee! My hat! I've been looking all over for this!
 --- !u!114 &737896361
@@ -9821,8 +9834,9 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where'd me hat go?
     - Darn wind blew it right off me head
@@ -10573,6 +10587,8 @@ MonoBehaviour:
   cutsceneCamera: {fileID: 0}
   mainCamera: {fileID: 0}
   currentMovementForce: {x: 0, y: 0, z: 0}
+  rain: {fileID: 0}
+  light: {fileID: 0}
 --- !u!114 &773190236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10586,9 +10602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   camera: {fileID: 534669905}
-  currentMovementForce: {x: 0, y: 0, z: 0}
   nearShrine: 0
-  playerCollider: {fileID: 773190231}
   windPowerBar: {fileID: 2081836671}
   turnBackText: {fileID: 657240400}
   miniMap: {fileID: 1525128626}
