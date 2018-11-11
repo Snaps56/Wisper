@@ -92,7 +92,6 @@ public class Player : MonoBehaviour
 				}
             }
         }
-        transform.position += Vector3.up * verticalSpeed;
         //Go Down
         if ((Input.GetKey(KeyCode.LeftControl) || Input.GetButton("BButton")) && transform.position.y > 3)
         {
@@ -108,6 +107,11 @@ public class Player : MonoBehaviour
 				}
             }
         }
+
+
+        //Move player vertically
+        transform.position += Vector3.up * verticalSpeed;
+
         //Moving Forward and Backwards
         if (Input.GetButton("Sprint"))
         {

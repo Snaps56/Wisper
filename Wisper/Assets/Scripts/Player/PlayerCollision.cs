@@ -8,7 +8,6 @@ public class PlayerCollision : MonoBehaviour {
 	[Header("Player Controls")]
 	public float speed;
 	public Transform camera;
-	public Vector3 currentMovementForce;
 
 	public bool nearShrine;
 
@@ -33,7 +32,6 @@ public class PlayerCollision : MonoBehaviour {
 	private float verticalSpeed = 0;
 
 	[Header("Collision Handeling")]
-	public Collider playerCollider;
 	private float shakeAmount;
     private Vector3 terrainPosition;
     private Vector3 reflectDirection;
@@ -210,24 +208,24 @@ public class PlayerCollision : MonoBehaviour {
         //If player hits a wall
         if (other.gameObject.CompareTag("Terrain"))
         {
-            reflectDirection = this.transform.position - terrainPosition;
+            reflectDirection = (this.transform.position - terrainPosition).normalized;
             Debug.Log("Reflection Direction: " + reflectDirection);
 
             float playerDistance = (this.terrainPosition - terrainPosition).magnitude;
             //Adds force in opposite direction
-            this.rb.AddForce(reflectDirection*GetComponent<Player>().speed);
-            
+            //GameObject.Find("Player").GetComponent<Rigidbody>().AddForce(reflectDirection*GameObject.Find("Player").GetComponent<Player>().speed);
+
             //Stops player rapidly
-            if (playerDistance < 0.1)
-            {
-                //    //if (speed > originalSpeed / 2)
-                //    //{
-                //        //speed = speed * 0.1f;
-                //        //verticalAcceleration = 0.001f;
-                //    //}
-                //    //rb.velocity = new Vector3(0, 0, 0);
-            }
-            
+            //if (playerDistance < 0.1)
+            //{
+            //    //if (speed > originalSpeed / 2)
+            //    //{
+            //        //speed = speed * 0.1f;
+            //        //verticalAcceleration = 0.001f;
+            //    //}
+            //    //rb.velocity = new Vector3(0, 0, 0);
+            //}
+
             //Also stops players very rapidly
             //this.rb.velocity = this.rb.velocity * 0.1f;
         }
