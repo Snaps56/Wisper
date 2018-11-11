@@ -23,11 +23,11 @@ public class CameraCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 desiredCameraPosition = transform.parent.TransformPoint(cameraDirection * maxDistance);
+        Vector3 desiredCameraPosition = transform.TransformPoint(cameraDirection * maxDistance);
 
         RaycastHit hit;
 
-        if (Physics.Linecast(transform.parent.position, desiredCameraPosition, out hit))
+        if (Physics.Linecast(transform.position, desiredCameraPosition, out hit))
         {
             if (!hit.collider.isTrigger && (hit.collider.CompareTag("Terrain") || hit.collider.CompareTag("LargeObject")))
             {

@@ -35,7 +35,7 @@ public class SpawnOrbs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q) && buttonPressed == false)
+        if (Input.GetButton("PC_Key_Orb") && buttonPressed == false)
         {
             //Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
             //buttonPressed = true;
