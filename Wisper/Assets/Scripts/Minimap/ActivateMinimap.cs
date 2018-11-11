@@ -20,7 +20,8 @@ public class ActivateMinimap : MonoBehaviour {
 
         timePassed += Time.deltaTime;
         //MINIMAP
-        if ((Input.GetKey(KeyCode.M) || Input.GetButton("YButton")))
+        // if ((Input.GetKey(KeyCode.M) || Input.GetButton("YButton")))
+        if ((Input.GetKey(KeyCode.M)))
         {
 
             if (timePassed >= timeBetweenSteps)
