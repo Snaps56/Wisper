@@ -116,7 +116,7 @@ public class ObjectLift : MonoBehaviour {
     // detect if any pickable objects are nearby
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "PickUp" || other.tag == "Orb")
+        if (other.tag == "PickUp")
         {
             // if the player is using the lift ability, add the object to an array of lifted objects
             if (isLiftingObjects)

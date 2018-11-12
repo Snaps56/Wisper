@@ -12,18 +12,23 @@ public class Shrine : MonoBehaviour {
 	private Material dirtyShrine1;
 	private Material dirtyShrine2;
 
-	private GameObject player;
+	public GameObject player;
 	private bool isClean;
 	public Component[] coloredParticles;
 	public GameObject playerAbilities;
 
-	[Header("Clean Stuff")]
+    [Header("Cutscene Objects")]
+    public Camera cutsceneCamera;
+    public Camera mainCamera;
+    public GameObject rain;
+    public GameObject light;
+
+    [Header("Clean Stuff")]
 	public bool gettingCleaned;
 	public float cleanProgress;
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.FindWithTag ("Player");
 		dirtyShrine1 = shrinePart1.GetComponent<MeshRenderer> ().material;
 		dirtyShrine2 = shrinePart2.GetComponent<MeshRenderer> ().material;
 		gettingCleaned = false;
@@ -39,7 +44,7 @@ public class Shrine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (player.GetComponent<PlayerCollision> ().nearShrine) {
+		if (player.GetComponentInChildren<PlayerCollision>().nearShrine) {
 			//activationParticles.SetActive (true);
 			//transform.Find("Blue Particles").gameObject.GetComponent<ParticleSystem>().Play();
 			foreach (ParticleSystem partPlay in coloredParticles) {
@@ -63,7 +68,22 @@ public class Shrine : MonoBehaviour {
 			}
 			if (Input.GetKeyDown (KeyCode.L) && isClean) {
 				DepositOrbs();
-			}
+                if (cutsceneCamera.gameObject.activeSelf == false)
+                {
+                    mainCamera.gameObject.SetActive(false);
+                    cutsceneCamera.gameObject.SetActive(true);
+                    GameObject.Find("WindPowerBG").SetActive(false);
+                    rain.SetActive(true);
+                    light.GetComponent<Light>().color = Color.black;
+                    cutsceneCamera.GetComponent<Animation>().Play();
+                    //GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
+                    if (!cutsceneCamera.GetComponent<Animation>().isPlaying)
+                    {
+                        mainCamera.gameObject.SetActive(true);
+                        cutsceneCamera.gameObject.SetActive(false);
+                    }
+                }
+            }
 		} else {
 			//activationParticles.SetActive (false);
 			foreach (ParticleSystem partStop in coloredParticles) {

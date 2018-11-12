@@ -150,6 +150,7 @@ public class Player : MonoBehaviour
                 //GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
                 if (!cutsceneCamera.GetComponent<Animation>().isPlaying)
                 {
+                    Debug.Log("Cutscene finished");
                     mainCamera.gameObject.SetActive(true);
                     cutsceneCamera.gameObject.SetActive(false);
                 }

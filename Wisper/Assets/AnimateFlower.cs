@@ -18,8 +18,8 @@ public class AnimateFlower : MonoBehaviour {
     void Update()
     {
 
-        //MINIMAP
-        if ((Input.GetKey(KeyCode.G) || Input.GetButton("YButton")))
+        //Flower
+        if ((Input.GetKey(KeyCode.G)))
         {
             if (!grown)
             {
