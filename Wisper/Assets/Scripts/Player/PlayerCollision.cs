@@ -67,6 +67,11 @@ public class PlayerCollision : MonoBehaviour {
         {
             terrainPosition = other.transform.position;
         }
+        if (other.gameObject.tag != "Terrain")
+        {
+            Debug.Log("Other Tag: " + other.gameObject.tag);
+            Physics.IgnoreCollision(other.GetComponent<Collider>(), GetComponent<Collider>());
+        }
         if (other.gameObject.CompareTag("TutorialMove"))
         {
             if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
@@ -203,13 +208,11 @@ public class PlayerCollision : MonoBehaviour {
 			}
 		}
 
-
-
         //If player hits a wall
         if (other.gameObject.CompareTag("Terrain"))
         {
             reflectDirection = (this.transform.position - terrainPosition).normalized;
-            Debug.Log("Reflection Direction: " + reflectDirection);
+            //Debug.Log("Reflection Direction: " + reflectDirection);
 
             float playerDistance = (this.terrainPosition - terrainPosition).magnitude;
             //Adds force in opposite direction
