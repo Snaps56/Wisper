@@ -9,6 +9,7 @@ public class ObjectLift : MonoBehaviour {
     public SphereCollider radiusCollider;
     private Player movementScript;
 	private float playerOrbCount;
+	public ParticleSystem liftParticles;
 
     [Header("Lift Mechanics")]
     public float liftHeight;
@@ -24,25 +25,28 @@ public class ObjectLift : MonoBehaviour {
     private Vector3 targetPosition;
     private Vector3 currentCharacterVector;
     private float currentCharacterSpeed;
+	private float originalLiftCenterStrength;
     List<GameObject> liftedObjects = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
         movementScript = character.GetComponent<Player>();
 		playerOrbCount = movementScript.GetOrbCount ();
+		originalLiftCenterStrength = liftCenterStrength;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        if (Input.GetMouseButtonDown(1) || Input.GetAxis("TriggerL") > 0)
+        if (Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0)
         {
             isLiftingObjects = true;
         }
-        if (isLiftingObjects && !Input.GetMouseButton(1) && Input.GetAxis("TriggerL") <= 0)
+        if (isLiftingObjects && !Input.GetButton("PC_Mouse_Click_R") && Input.GetAxis("XBOX_Trigger_L") <= 0)
         {
             isLiftingObjects = false;
         }
+        // Debug.Log("Lifting Objects: " + isLiftingObjects);
 
         isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
 
@@ -51,11 +55,21 @@ public class ObjectLift : MonoBehaviour {
         {
             targetPosition = transform.position + new Vector3(0, liftHeight, 0);
             liftObjects();
+			if (!liftParticles.isPlaying) {
+				liftParticles.Play ();
+			}
         }
         else
         {
             dropObjects();
+			if (liftParticles.isPlaying) {
+				liftParticles.Stop ();
+			}
         }
+
+		playerOrbCount = movementScript.GetOrbCount ();
+		liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
+
         // obtain character movement data to help track movement for lifted objects
         currentCharacterVector = movementScript.currentMovementForce;
         currentCharacterVector.y *= 0;
@@ -108,7 +122,7 @@ public class ObjectLift : MonoBehaviour {
     // detect if any pickable objects are nearby
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "PickUp" || other.tag == "Orb")
+        if (other.tag == "PickUp")
         {
             // if the player is using the lift ability, add the object to an array of lifted objects
             if (isLiftingObjects)

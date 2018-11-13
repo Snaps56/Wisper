@@ -5,62 +5,64 @@ using UnityEngine;
 public class CameraOptimized : MonoBehaviour
 {
 
-    [Header("Game Objects")]
-    public GameObject cameraObj;
-    public GameObject playerObj;
+    public Transform character;
 
     [Header("Camera Mechanics")]
-    public float cameraMoveSpeed;
     public float highClampAngle;
     public float lowClampAngle;
     public float inputSensitivity;
 
-    Vector3 followerPos;
-    private float mouseX;
+    [Header("Zoom Mechanics")]
+    public float defaultDistance;
+    public float maxDistance;
+    public float minDistance;
+    public float zoomSensitivity;
+
     private float mouseY;
-    private float finalInputX;
-    private float finalInputY;
-    private float rotationY;
-    private float rotationX;
+    private float mouseX;
+    private float distance;
 
     // Use this for initialization
     void Start()
     {
-        Vector3 rotation = transform.localRotation.eulerAngles;
-        rotationY = rotation.y;
-        rotationX = rotation.x;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
+        distance = defaultDistance;
+}
 
-    // Update is called once per frame
     void Update()
     {
         // setup rotation of sticks
-        float inputX = Input.GetAxis("HorizontalR");
-        float inputY = Input.GetAxis("VerticalR");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-        finalInputX = inputX + mouseX;
-        finalInputY = inputY + mouseY;
+        mouseX += Input.GetAxis("XBOX_Thumbstick_R_X") * inputSensitivity;
+        mouseY -= Input.GetAxis("XBOX_Thumbstick_R_Y") * inputSensitivity;
 
-        rotationY += finalInputX * inputSensitivity * Time.deltaTime;
-        rotationX += finalInputY * inputSensitivity * Time.deltaTime;
-        rotationX = Mathf.Clamp(rotationX, lowClampAngle, highClampAngle);
+        mouseX += Input.GetAxis("PC_Mouse_X") * inputSensitivity;
+        mouseY -= Input.GetAxis("PC_Mouse_Y") * inputSensitivity;
 
-        Quaternion localRotation = Quaternion.Euler(rotationX, rotationY, 0.0f);
-        transform.rotation = localRotation;
-    }
-    void LateUpdate()
-    {
-        CameraUpdater();
-    }
-    void CameraUpdater()
-    {
-        // set the target object to follow
-        Transform target = playerObj.transform;
-        //move toward the game object that is the target
-        float step = cameraMoveSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        mouseY = Mathf.Clamp(mouseY, lowClampAngle, highClampAngle);
+        
+        // allow camera zoom via mouse scroll, but only within boundaries
+        if (distance < maxDistance)
+        {
+            if (Input.GetAxis("PC_Mouse_Scroll") > 0)
+            {
+                distance += Input.GetAxis("PC_Mouse_Scroll") * zoomSensitivity;
+            }
+        }
+        if (distance > minDistance)
+        {
+            if (Input.GetAxis("PC_Mouse_Scroll") < 0)
+            {
+                distance += Input.GetAxis("PC_Mouse_Scroll") * zoomSensitivity;
+            }
+        }
+
+        // update camera's position and rotation
+        Vector3 direction = new Vector3(0, 0, -distance);
+        Quaternion rotation = Quaternion.Euler(mouseY, mouseX, 0);
+
+        transform.position = character.position + rotation * direction;
+        transform.LookAt(character.position);
+
     }
 }

@@ -35,7 +35,7 @@ public class SpawnOrbs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q) && buttonPressed == false)
+        if (Input.GetButton("PC_Key_Orb") && buttonPressed == false)
         {
             //Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
             //buttonPressed = true;
@@ -46,7 +46,7 @@ public class SpawnOrbs : MonoBehaviour
             //}
 
             orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
-            orbInstance.GetComponent<OrbSequence>().setPlayer(player);
+			orbInstance.GetComponent<OrbSequence>().setDestination(player, "player");
             //orbSpawned = true;
 
         }
@@ -77,7 +77,7 @@ public class SpawnOrbs : MonoBehaviour
 		for (int i = 0; i < orbCount; i++) {
 			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
 			GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
-			//orbInstance.GetComponent<OrbSequence> ().setPlayer (player);
+			orbInstance.GetComponent<OrbSequence> ().setDestination (player, "player");
 			orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
 		}
 	}

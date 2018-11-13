@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OrbSequence : MonoBehaviour {
-	private GameObject player;
+	private GameObject destination;
+	private string destID;
 
 	private Vector3 startPosition;
 	private Vector3 newPosition;
@@ -12,20 +13,20 @@ public class OrbSequence : MonoBehaviour {
 	private float riseSpeed;
 	private bool isRising;
 
-	private float moveToPlayerSpeed;
-	private bool isMovingToPlayer;
+	private float moveToDestSpeed;
+	private bool isMovingToDest;
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.FindWithTag ("Player");
+		//destination = GameObject.FindWithTag ("Player");
 		startPosition = transform.position;
 
 		riseHeight = 2.5f;
 		isRising = true;
-		isMovingToPlayer = false;
+		isMovingToDest = false;
 
 		riseSpeed = 1f;
-		moveToPlayerSpeed = 3f;
+		moveToDestSpeed = 3f;
 	}
 	
 	// Update is called once per frame
@@ -38,20 +39,26 @@ public class OrbSequence : MonoBehaviour {
 			// Once the orb finished rising, move to the next part of the sequence: Moving to the player
 			if (transform.position == newPosition) {
 				isRising = false;
-				isMovingToPlayer = true;
+				isMovingToDest = true;
 				//Debug.Log ("Orb Stopped");
 			}
 		}
 		// Check if the orb is in the moving part of the sequence
-		if (isMovingToPlayer) {
-			newPosition = player.transform.position;
-			transform.position = Vector3.MoveTowards (transform.position, newPosition, moveToPlayerSpeed * Time.deltaTime);
+		if (isMovingToDest) {
+			newPosition = destination.transform.position;
+			transform.position = Vector3.MoveTowards (transform.position, newPosition, moveToDestSpeed * Time.deltaTime);
 			//Debug.Log ("Orb Moving To Player");
 		}
 	}
 
 	// Sets the player for the orb to move to
-	public void setPlayer(GameObject player) {
-		this.player = player;
+	public void setDestination(GameObject destination, string destID) {
+		//Debug.Log ("destID: " + destID);
+		this.destID = destID;
+		this.destination = destination;
+	}
+
+	public void setStart(Vector3 start){
+		this.startPosition = start;
 	}
 }

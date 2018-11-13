@@ -9,6 +9,7 @@ public class ObjectThrow : MonoBehaviour {
     public Collider radiusCollider;
     private Player movementScript;
 	private float playerOrbCount;
+	public ParticleSystem throwParticles;
 
     [Header("Throw Mechanics")]
     public float throwForce;
@@ -22,11 +23,13 @@ public class ObjectThrow : MonoBehaviour {
     private Vector3 deltaMovementVector;
     private Vector3 forceVector;
     private float currentPlayerVelocity;
+	private float originalThrowForce;
 
     // Use this for initialization
     void Start () {
         movementVector = transform.position;
 		playerOrbCount = character.GetComponent<Player> ().GetOrbCount ();
+		originalThrowForce = throwForce;
     }
 
     // Update is called once per frame
@@ -35,17 +38,29 @@ public class ObjectThrow : MonoBehaviour {
         isLiftingObjects = character.GetComponentInChildren<ObjectLift>().GetIsLiftingObjects();
 
         // check if player is pressing the throw button
-        if (Input.GetMouseButtonDown(0) || Input.GetAxis("TriggerR") > 0)
+        if (Input.GetButton("PC_Mouse_Click_L") || Input.GetAxis("XBOX_Trigger_R") > 0)
         {
             isThrowingObjects = true;
         }
-        if (isThrowingObjects && !Input.GetMouseButton(0) && Input.GetAxis("TriggerR") <= 0)
+        if (isThrowingObjects && !Input.GetButton("PC_Mouse_Click_L") && Input.GetAxis("XBOX_Trigger_R") <= 0)
         {
             isThrowingObjects = false;
         }
-
-
+    
         character.GetComponent<Rigidbody>();
+
+		if (isThrowingObjects) {
+			if (!throwParticles.isPlaying) {
+				throwParticles.Play ();
+			}
+		} else {
+			if (throwParticles.isPlaying) {
+				throwParticles.Stop ();
+			}
+		}
+
+		playerOrbCount = character.GetComponent<Player> ().GetOrbCount ();
+		throwForce = originalThrowForce + playerOrbCount;
 
         // obtain player movement vector to determine throw direction
         currentPlayerVelocity = character.GetComponent<Rigidbody>().velocity.magnitude;
@@ -64,7 +79,7 @@ public class ObjectThrow : MonoBehaviour {
     // detect if any pickable objects are within range
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "PickUp" || other.tag == "Orb")
+        if (other.tag == "PickUp")
         {
             throwObject(other);
         }
