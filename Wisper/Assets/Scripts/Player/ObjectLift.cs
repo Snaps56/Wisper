@@ -38,11 +38,10 @@ public class ObjectLift : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        if (Input.GetMouseButtonDown(1) || Input.GetAxis("TriggerL") > 0)
         {
             isLiftingObjects = true;
         }
-        if (isLiftingObjects && !Input.GetMouseButton(1) && Input.GetAxis("TriggerL") <= 0)
+        if (isLiftingObjects && !Input.GetButton("PC_Mouse_Click_R") && Input.GetAxis("XBOX_Trigger_L") <= 0)
         {
             isLiftingObjects = false;
         }

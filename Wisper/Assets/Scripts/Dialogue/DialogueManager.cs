@@ -10,12 +10,15 @@ public class DialogueManager : MonoBehaviour {
     private Text dialogueText;  // Text field of dialogue box
     private Text dialogueName;  // Name field of dialogue box
 
+    private Dialogue activeDialogue;    // Reference to the active dialogue
     private Queue<string> sentences;    // Queue of sentences to display
+    private int sentenceIndex = 0;
 
     private bool sentenceDisplayInProgress; // A lock used with subroutines that update UI text elements
     private bool dialogueBoxActive; // A lock for preventing floating text or other UI elements from displaying during dialogue box use. Can be referenced for other things which need to be locked when dialogue box is active.
 
-    private bool skipText = false; // Switch to fast forward text on player click
+    private bool skipText = false;  // Switch to fast forward text on player click
+    private float charDelay;        // Delay between adding chars to display. Controls the "speed of speech"
 
     private GameObject player;  // The player
     private List<GameObject> inRangeNPC = new List<GameObject>();    // List of all npc's in range of player collider. Stored here to avoid repetitive find operations each frame.
@@ -103,6 +106,7 @@ public class DialogueManager : MonoBehaviour {
                     {
                         // Debug.Log("Detected input");
                         dialogueBoxActive = true;
+                        charDelay = nearestNPC.GetComponent<NPCDialogues>().defaultCharDelay;
                         StartDialogue(GetEnabledDialogue(nearestNPC)); //Determine dialogue to use, Activate dialogue
                     }
                 }
@@ -173,7 +177,7 @@ public class DialogueManager : MonoBehaviour {
         bool tempCheck = true;
         foreach(Dialogue d in npcDialogues.dialogues)
         {
-            foreach (StringBoolPairs condition in d.enableConditions)
+            foreach (TargetCondition condition in d.enableConditions)
             {
                 if (tempCheck) // If the previous conditions have held
                 {
@@ -195,11 +199,9 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-    private bool CheckCondition(StringBoolPairs condition)
+    private bool CheckCondition(TargetCondition condition)
     {
-        string conditionName = condition.String;
-        bool conditionValue = condition.Bool;
-        if ((bool)persistantStateData.GetComponent<PersistantStateData>().stateConditions[conditionName] == conditionValue)
+        if ((bool)persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] == condition.conditionValue)
         {
             return true;
         }
@@ -222,12 +224,55 @@ public class DialogueManager : MonoBehaviour {
         throw new MissingReferenceException("No enabled dialogue on this NPC");
     }
 
+    // Returns the next DialogueSpeedToken for the current sentenceIndex. If no such token exists, returns null.
+    private DialogueSpeedToken GetNextSpeedToken(DialogueSpeedToken currentToken)
+    {
+        if(activeDialogue != null)
+        {
+            DialogueSpeedToken nextToken = null;
+            foreach(DialogueSpeedToken token in activeDialogue.speedControls)
+            {
+                if(token.sentenceIndex == sentenceIndex)    // Only process tokens for the active sentence. (if none exist, null is returned)
+                {
+                    if (currentToken == null)
+                    {
+                        nextToken = token;  // If no token used yet for this sentence, any token for this sentence initializes nextToken.   
+                    }
+                    else
+                    {
+                        if (nextToken != null)
+                        {
+                            if (token.charIndex > currentToken.charIndex && token.charIndex < nextToken.charIndex)
+                            {
+                                nextToken = token;  // If charIndex is less than nextToken, but larger than currentToken, set it as nextToken
+                            }
+                        }
+                        else
+                        {
+                            if (token.charIndex > currentToken.charIndex)
+                            {
+                                nextToken = token;  // If a larger token has been found than currentToken, initialize nextToken to this
+                            }
+                        }
+                    }
+                }
+            }
+            return nextToken;
+        }
+        else
+        {
+            throw new MissingReferenceException("No active dialogue found in DialogueManager. Cannot retrieve DialogueSpeedToken");
+        }
+    }
+
     void StartDialogue(Dialogue dialogue)
     {
 		if (nearestNPC.GetComponent<FloatingTextManager> () != null) {
         	nearestNPC.GetComponent<FloatingTextManager>().disableFloatingText = true; // Disable the floating text for this npc
 		}
         // Debug.Log("Recieved dialogue " + dialogue.dialogueName);
+
+        activeDialogue = dialogue;
         sentences.Clear();
         foreach(string sentence in dialogue.sentences)
         {
@@ -238,7 +283,7 @@ public class DialogueManager : MonoBehaviour {
         DisplayNextSentence();
     }
 
-    public int DisplayNextSentence(float charDelay = 0.066F )
+    public int DisplayNextSentence()
     {
         if (sentenceDisplayInProgress)
         {
@@ -255,14 +300,22 @@ public class DialogueManager : MonoBehaviour {
             {
                 sentenceDisplayInProgress = true;   // Flags the sentence display coroutine as being in progress
                 string sentence = sentences.Dequeue();
-                StartCoroutine(DisplaySentence(sentence, charDelay));
+                StartCoroutine(DisplaySentence(sentence));
                 return 1;
             }
         }
     }
 
-    IEnumerator DisplaySentence(string sentence, float charDelay)
+    IEnumerator DisplaySentence(string sentence)
     {
+        DialogueSpeedToken nextSpeedToken = null;
+        int charIndex = 0;
+
+        if (activeDialogue.speedControls.Count > 0)
+        {
+            nextSpeedToken = GetNextSpeedToken(nextSpeedToken);
+        }
+
         // Debug.Log("In coroutine displaySentence");
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
@@ -272,13 +325,31 @@ public class DialogueManager : MonoBehaviour {
                 dialogueText.text = sentence;
                 break;
             }
-            dialogueText.text += letter;
+
+            if (nextSpeedToken != null )   // Updates charDelay and speed token, if any.
+            {
+                if (nextSpeedToken.charIndex == charIndex)
+                {
+                    charDelay += nextSpeedToken.charDelayChange;
+                    if (charDelay < 0)
+                    {
+                        charDelay = 0f; // charDelay cannot go negative.
+                    }
+                    nextSpeedToken = GetNextSpeedToken(nextSpeedToken);
+                }
+            }
+
             yield return new WaitForSeconds(charDelay); //Wait charDelay seconds between each letter.
+            dialogueText.text += letter;
+            charIndex++;
         }
+
         if (skipText)
         {
             skipText = !skipText;
         }
+
+        sentenceIndex++;
         sentenceDisplayInProgress = false;
     }
 
@@ -291,6 +362,9 @@ public class DialogueManager : MonoBehaviour {
 		if (nearestNPC.GetComponent<FloatingTextManager> () != null) {
 			nearestNPC.GetComponent<FloatingTextManager> ().disableFloatingText = false;
 		}
+
+        sentenceIndex = 0;
+        activeDialogue = null;
         dialogueBoxActive = false;
     }
 

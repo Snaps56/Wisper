@@ -8,7 +8,6 @@ public class PlayerCollision : MonoBehaviour {
 	[Header("Player Controls")]
 	public float speed;
 	public Transform camera;
-	public Vector3 currentMovementForce;
 
 	public bool nearShrine;
 
@@ -33,11 +32,11 @@ public class PlayerCollision : MonoBehaviour {
 	private float verticalSpeed = 0;
 
 	[Header("Collision Handeling")]
-	public Collider playerCollider;
 	private float shakeAmount;
     private Vector3 terrainPosition;
+    private Vector3 reflectDirection;
 
-	[Header("UI")]
+   [Header("UI")]
 	public Image windPowerBar;
 	public GameObject turnBackText;
 	public GameObject miniMap;
@@ -68,9 +67,14 @@ public class PlayerCollision : MonoBehaviour {
         {
             terrainPosition = other.transform.position;
         }
+        if (other.gameObject.tag != "Terrain")
+        {
+            Debug.Log("Other Tag: " + other.gameObject.tag);
+            Physics.IgnoreCollision(other.GetComponent<Collider>(), GetComponent<Collider>());
+        }
         if (other.gameObject.CompareTag("TutorialMove"))
         {
-            if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+            if (Input.GetButton("PC_Axis_MovementZ")|| Input.GetButton("PC_Axis_MovementX") || Input.GetAxis("XBOX_Thumbstick_L_X") != 0 || Input.GetAxis("XBOX_Thumbstick_L_Y") != 0)
             {
                 //other.gameObject.GetComponent<SpriteRenderer>().color = new Color(19, 241, 25);
                 other.gameObject.SetActive(false);
@@ -78,14 +82,14 @@ public class PlayerCollision : MonoBehaviour {
         }
         else if (other.gameObject.CompareTag("TutorialLook"))
         {
-            if (Input.GetAxis("HorizontalR") != 0 || Input.GetAxis("VerticalR") != 0 || Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            if (Input.GetAxis("XBOX_Thumbstick_R_X") != 0 || Input.GetAxis("XBOX_Thumbstick_R_Y") != 0 || Input.GetAxis("PC_Mouse_X") != 0 || Input.GetAxis("PC_Mouse_Y") != 0)
             {
                 other.gameObject.SetActive(false);
             }
         }
         else if (other.gameObject.CompareTag("TutorialAscend"))
         {
-            if (Input.GetKey(KeyCode.LeftControl) || Input.GetButton("BButton") || Input.GetButton("Jump") || Input.GetButton("AButton"))
+            if (Input.GetButton("PC_Axis_MovementY") || Input.GetButton("XBOX_Axis_MovementY"))
             {
                 other.gameObject.SetActive(false);
             }
@@ -93,7 +97,7 @@ public class PlayerCollision : MonoBehaviour {
         }
         else if (other.gameObject.CompareTag("TutorialLift"))
         {
-            if (Input.GetMouseButtonDown(1) || Input.GetAxis("TriggerL") > 0 || Input.GetMouseButtonDown(0) || Input.GetAxis("TriggerR") > 0)
+            if (Input.GetButton("PC_Mouse_Click_L") || Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0 || Input.GetAxis("XBOX_Trigger_R") > 0)
             {
                 other.gameObject.SetActive(false);
             }
@@ -170,10 +174,10 @@ public class PlayerCollision : MonoBehaviour {
 			if (npcDialogues != null)   // If this npc has dialogues
 			{
 				// Debug.Log("NPC has dialogues");
-				if (!npcDialogues.getInDialogueRange())
+				if (!npcDialogues.GetInDialogueRange())
 				{
 
-					npcDialogues.setInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
+					npcDialogues.SetInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
 
 					DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
 					// Debug.Log("Updating " + other.name + " dialogues");
@@ -204,27 +208,27 @@ public class PlayerCollision : MonoBehaviour {
 			}
 		}
 
-
-
         //If player hits a wall
         if (other.gameObject.CompareTag("Terrain"))
         {
-            Vector3 reflectDirection = this.transform.position - terrainPosition;
+            reflectDirection = (this.transform.position - terrainPosition).normalized;
+            //Debug.Log("Reflection Direction: " + reflectDirection);
+
             float playerDistance = (this.terrainPosition - terrainPosition).magnitude;
             //Adds force in opposite direction
-            this.rb.AddForce(reflectDirection*GetComponent<Player>().speed);
-            
+            //GameObject.Find("Player").GetComponent<Rigidbody>().AddForce(reflectDirection*GameObject.Find("Player").GetComponent<Player>().speed);
+
             //Stops player rapidly
-            if (playerDistance < 0.1)
-            {
-                //    //if (speed > originalSpeed / 2)
-                //    //{
-                //        //speed = speed * 0.1f;
-                //        //verticalAcceleration = 0.001f;
-                //    //}
-                //    //rb.velocity = new Vector3(0, 0, 0);
-            }
-            
+            //if (playerDistance < 0.1)
+            //{
+            //    //if (speed > originalSpeed / 2)
+            //    //{
+            //        //speed = speed * 0.1f;
+            //        //verticalAcceleration = 0.001f;
+            //    //}
+            //    //rb.velocity = new Vector3(0, 0, 0);
+            //}
+
             //Also stops players very rapidly
             //this.rb.velocity = this.rb.velocity * 0.1f;
         }
@@ -255,10 +259,10 @@ public class PlayerCollision : MonoBehaviour {
 			if (npcDialogues != null)   // If this npc has dialogues
 			{
 				// Debug.Log("NPC has dialogues");
-				if (npcDialogues.getInDialogueRange())
+				if (npcDialogues.GetInDialogueRange())
 				{
 
-					npcDialogues.setInDialogueRange(false);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
+					npcDialogues.SetInDialogueRange(false);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
 					DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
 					// Debug.Log("Removing " + other.name + " from dialogue manager");
 					managerScript.RemoveInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range

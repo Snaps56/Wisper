@@ -22,9 +22,9 @@ public class Dialogue{
 
     public bool enabled = false;    // Set to mark this dialogue as enabled.
 
-    public List<StringBoolPairs> enableConditions; // The conditions and what they should be set to for enabling this dialogue. Should be <string condition, bool desiredState>
-    
-    private bool active = false;    // May not be necessary
+    public List<TargetCondition> enableConditions; // The conditions and what they should be set to for enabling this dialogue. Should be <string condition, bool desiredState>
+
+    public List<DialogueSpeedToken> speedControls;
 
     [TextArea(1,3)]
     public string[] sentences;
@@ -37,15 +37,5 @@ public class Dialogue{
     public void setID(int dialogueID)
     {
         this.dialogueID = dialogueID;
-    }
-
-    public bool getActive()
-    {
-        return active;
-    }
-
-    public void setActive(bool state)
-    {
-        this.active = state;
     }
 }

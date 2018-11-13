@@ -201,7 +201,7 @@ public class FloatingTextManager : MonoBehaviour {
         bool tempCheck = true;
         foreach (Dialogue d in floatingTexts.floatingTexts)
         {
-            foreach (StringBoolPairs condition in d.enableConditions)
+            foreach (TargetCondition condition in d.enableConditions)
             {
                 if (tempCheck) // If the previous conditions have held
                 {
@@ -224,11 +224,9 @@ public class FloatingTextManager : MonoBehaviour {
         newFloatingText = getEnabledText();
     }
 
-    private bool CheckCondition(StringBoolPairs condition)
+    private bool CheckCondition(TargetCondition condition)
     {
-        string conditionName = condition.String;
-        bool conditionValue = condition.Bool;
-        if ((bool)persistantStateData.GetComponent<PersistantStateData>().stateConditions[conditionName] == conditionValue)
+        if ((bool)persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] == condition.conditionValue)
         {
             return true;
         }
