@@ -14,6 +14,8 @@ public class Shrine : MonoBehaviour {
 
 	private GameObject player;
 	private bool isClean;
+	private GameObject orbInstance;
+	public GameObject orb;
 	public Component[] coloredParticles;
 	public GameObject playerAbilities;
 
@@ -27,13 +29,10 @@ public class Shrine : MonoBehaviour {
 		dirtyShrine1 = shrinePart1.GetComponent<MeshRenderer> ().material;
 		dirtyShrine2 = shrinePart2.GetComponent<MeshRenderer> ().material;
 		gettingCleaned = false;
-		isClean = false;
+		//isClean = false;
+		//isClean = GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"];
 		cleanProgress = 0;
 		coloredParticles = activationParticles.GetComponentsInChildren<ParticleSystem> ();
-		//foreach (ParticleSystem part in coloredParticles) {
-		//	part.Stop (true);
-		//}
-		//coloredParticles.Stop (true);
 	}
 
 	// Update is called once per frame
@@ -50,19 +49,23 @@ public class Shrine : MonoBehaviour {
 			}
 			//coloredParticles.Play(true);
 			gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
-			if (!isClean) {
+			if (!(bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
 				if (gettingCleaned && cleanProgress < 1.0f) {
 					cleanProgress += 0.1f;
 					shrinePart1.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine1, cleanShrine1, cleanProgress);
 					shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
 				}
 				if (cleanProgress >= 1.0f) {
-					isClean = true;
+					//isClean = true;
+					GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"] = true;
+					GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().updateCount++;
 					this.GetComponent<SpawnOrbs> ().DropOrbs ();
 				}
 			}
-			if (Input.GetKeyDown (KeyCode.L) && isClean) {
+			if (Input.GetKeyDown (KeyCode.L) && (bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
 				DepositOrbs();
+				orbInstance = Instantiate(orb, player.transform.position + new Vector3 (0, 2f, 0), Quaternion.identity);
+				orbInstance.GetComponent<OrbSequence>().setDestination(this.gameObject, "shrine");
 			}
 		} else {
 			//activationParticles.SetActive (false);
@@ -74,7 +77,7 @@ public class Shrine : MonoBehaviour {
 			//coloredParticles.Stop(true);
 		}
 
-		if (isClean) {
+		if ((bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
 			shrinePart1.GetComponent<MeshRenderer> ().material = cleanShrine1;
 			shrinePart2.GetComponent<MeshRenderer> ().material = cleanShrine2;
 		}
