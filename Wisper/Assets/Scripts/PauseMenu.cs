@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject VideoMenu;
     public AudioMixer audioMixer;
-    public float CurrentVolume;
+    private float CurrentVolume;
 
     // Update is called once per frame
     void Update()
@@ -47,6 +47,7 @@ public class PauseMenu : MonoBehaviour
         {
             SetVolume(CurrentVolume + 15);
         }
+        FindObjectOfType<AudioManager>().Play("buttonSelect");
     }
     // Pauses the game and unlocks the cursor
     void Pause()
