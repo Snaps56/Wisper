@@ -11,12 +11,16 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private bool sprintMod;
     private float finalSpeed;
+    private OrbCount orbCountScript;
+    private float originalMoveSpeed;
 
     // Use this for initialization
     void Start()
     {
+        orbCountScript = GetComponent<OrbCount>();
         rb = GetComponent<Rigidbody>();
         finalSpeed = movementSpeed;
+        originalMoveSpeed = movementSpeed;
     }
 
     // Update is called once per frame
@@ -24,7 +28,10 @@ public class PlayerMovement : MonoBehaviour {
     {
         // transform.Translate(mainCamera.transform.right * Input.GetAxis("MovementX"));
         // transform.Translate(mainCamera.transform.forward * Input.GetAxis("MovementY"));
+        
 
+        movementSpeed = originalMoveSpeed + orbCountScript.GetOrbCount();
+        
         if (sprintMod == false && (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint")))
         {
             sprintMod = true;

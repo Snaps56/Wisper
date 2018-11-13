@@ -43,7 +43,7 @@ public class Shrine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (player.GetComponentInChildren<PlayerCollision>().nearShrine) {
+		if (player.GetComponentInChildren<InteractableCollision>().nearShrine) {
 			//activationParticles.SetActive (true);
 			//transform.Find("Blue Particles").gameObject.GetComponent<ParticleSystem>().Play();
 			foreach (ParticleSystem partPlay in coloredParticles) {
@@ -106,6 +106,6 @@ public class Shrine : MonoBehaviour {
 	}
 
 	void DepositOrbs () {
-		player.GetComponent<PlayerCollision> ().SetOrbCount (0);
+		player.GetComponent<OrbCount> ().SetOrbCount (0);
 	}
 }

@@ -7,7 +7,7 @@ public class ObjectThrow : MonoBehaviour {
     [Header("Game Objects")]
     public GameObject character;
     public Collider radiusCollider;
-    private Player movementScript;
+    private OrbCount orbcountScript;
 	private float playerOrbCount;
 	public ParticleSystem throwParticles;
 
@@ -28,7 +28,7 @@ public class ObjectThrow : MonoBehaviour {
     // Use this for initialization
     void Start () {
         movementVector = transform.position;
-		playerOrbCount = character.GetComponent<Player> ().GetOrbCount ();
+		playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
 		originalThrowForce = throwForce;
     }
 
@@ -59,7 +59,7 @@ public class ObjectThrow : MonoBehaviour {
 			}
 		}
 
-		playerOrbCount = character.GetComponent<Player> ().GetOrbCount ();
+		playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
 		throwForce = originalThrowForce + playerOrbCount;
 
         // obtain player movement vector to determine throw direction

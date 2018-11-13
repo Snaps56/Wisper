@@ -7,7 +7,7 @@ public class ObjectLift : MonoBehaviour {
     [Header("Game Objects")]
     public GameObject character;
     public SphereCollider radiusCollider;
-    private Player movementScript;
+    private OrbCount orbcountScript;
 	private float playerOrbCount;
 	public ParticleSystem liftParticles;
 
@@ -30,8 +30,8 @@ public class ObjectLift : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        movementScript = character.GetComponent<Player>();
-		playerOrbCount = movementScript.GetOrbCount ();
+        orbcountScript = character.GetComponent<OrbCount>();
+		playerOrbCount = orbcountScript.GetOrbCount ();
 		originalLiftCenterStrength = liftCenterStrength;
     }
 	
@@ -67,11 +67,11 @@ public class ObjectLift : MonoBehaviour {
 			}
         }
 
-		playerOrbCount = movementScript.GetOrbCount ();
+		playerOrbCount = orbcountScript.GetOrbCount ();
 		liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
 
         // obtain character movement data to help track movement for lifted objects
-        currentCharacterVector = movementScript.currentMovementForce;
+        //currentCharacterVector = orbcountScript.currentMovementForce;
         currentCharacterVector.y *= 0;
         currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
     }
