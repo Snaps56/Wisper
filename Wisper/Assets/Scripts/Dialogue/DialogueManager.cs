@@ -236,7 +236,8 @@ public class DialogueManager : MonoBehaviour {
                 {
                     if (currentToken == null)
                     {
-                        nextToken = token;  // If no token used yet for this sentence, any token for this sentence initializes nextToken.   
+                        nextToken = token;  // If no token used yet for this sentence, any token for this sentence initializes nextToken.
+                        break;
                     }
                     else
                     {
@@ -333,7 +334,7 @@ public class DialogueManager : MonoBehaviour {
                     charDelay += nextSpeedToken.charDelayChange;
                     if (charDelay < 0)
                     {
-                        charDelay = 0f; // charDelay cannot go negative.
+                        charDelay = 0f; // charDelay cannot go negative.;
                     }
                     nextSpeedToken = GetNextSpeedToken(nextSpeedToken);
                 }
