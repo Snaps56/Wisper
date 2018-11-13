@@ -965,10 +965,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Greeting
     enabled: 1
     enableConditions: []
+    speedControls: []
     sentences:
     - Hello little whisper
 --- !u!1 &158545804
@@ -1360,6 +1362,22 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 18.37
       objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100042, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
   m_IsPrefabAsset: 0
@@ -1647,8 +1665,9 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where'd me hat go?
     - Darn wind blew it right off me head
@@ -1696,19 +1715,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where the fuck is my hat bitch!?!
   - dialogueName: My hat is found.
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - What the fuck did you just fucking say about me, you little bitch? I'll have
       you know I graduated top of my class in the Navy Seals, and I've been involved
@@ -18074,6 +18096,7 @@ GameObject:
   - component: {fileID: 534669903}
   - component: {fileID: 534669908}
   - component: {fileID: 534669906}
+  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -18134,12 +18157,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -36.14, y: 18.21, z: -58.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2098870119}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
@@ -18153,13 +18176,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 7ff63ff685645924eb6b3aac0c6b991e, type: 2}
---- !u!114 &534669908
+--- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be2505df7de4fd40a756e98a5110952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 2098870119}
+  highClampAngle: 80
+  lowClampAngle: -80
+  inputSensitivity: 4
+  defaultDistance: 3
+  maxDistance: 10
+  minDistance: 3
+  zoomSensitivity: 3
+--- !u!114 &534669908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd32997646cc5214588e397f958d6ac9, type: 3}
   m_Name: 
@@ -19132,19 +19174,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCharDelay: 0.066
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
   - dialogueName: My hat is found.
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 1
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Oh weee! My hat! I've been looking all over for this!
 --- !u!114 &737896361
@@ -19162,8 +19207,9 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     enableConditions:
-    - String: ShamusHasHat
-      Bool: 0
+    - conditionName: 
+      conditionValue: 0
+    speedControls: []
     sentences:
     - Where'd me hat go?
     - Darn wind blew it right off me head
@@ -19472,6 +19518,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11,
         type: 2}
+    - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 773190229}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec12d476aaa00444885af1da3a3ea13, type: 2}
   m_IsPrefabAsset: 0
@@ -19750,6 +19801,8 @@ GameObject:
   - component: {fileID: 773190236}
   - component: {fileID: 773190230}
   - component: {fileID: 773190233}
+  - component: {fileID: 773190237}
+  - component: {fileID: 773190238}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -19880,6 +19933,7 @@ Transform:
   - {fileID: 1067575158}
   - {fileID: 1439928821}
   - {fileID: 1207069639}
+  - {fileID: 2098870119}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19909,7 +19963,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &773190235
 MonoBehaviour:
@@ -19917,7 +19971,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 773190229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
@@ -19927,7 +19981,27 @@ MonoBehaviour:
   cutsceneCamera: {fileID: 0}
   mainCamera: {fileID: 0}
   currentMovementForce: {x: 0, y: 0, z: 0}
+  rain: {fileID: 0}
+  light: {fileID: 0}
 --- !u!114 &773190236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 773190229}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69fbf4242bdbfe944925d80d91b8d227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  camera: {fileID: 534669905}
+  nearShrine: 0
+  windPowerBar: {fileID: 2081836671}
+  turnBackText: {fileID: 657240400}
+  miniMap: {fileID: 1525128626}
+  orbCountText: {fileID: 1012650059}
+--- !u!114 &773190237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19935,18 +20009,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 773190229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69fbf4242bdbfe944925d80d91b8d227, type: 3}
+  m_Script: {fileID: 11500000, guid: f7d9506b0dc0a824f91eb4dcc1c8e885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  camera: {fileID: 534669905}
-  currentMovementForce: {x: 0, y: 0, z: 0}
-  nearShrine: 0
-  playerCollider: {fileID: 773190231}
-  windPowerBar: {fileID: 2081836671}
-  turnBackText: {fileID: 657240400}
-  miniMap: {fileID: 1525128626}
-  orbCountText: {fileID: 1012650059}
+  mainCamera: {fileID: 534669902}
+  movementSpeed: 6
+  sprintMultiplier: 2
+  stopMultiplier: 1
+--- !u!114 &773190238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 773190229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f30034092c0859458d527bd77e9f897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repelForce: 5
 --- !u!1 &778154984
 GameObject:
   m_ObjectHideFlags: 0
@@ -57435,7 +57516,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098870119}
-  - component: {fileID: 2098870120}
   m_Layer: 0
   m_Name: CameraFocus
   m_TagString: Untagged
@@ -57450,30 +57530,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2098870118}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.14, y: 18.21, z: -48.34}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 534669905}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Children: []
+  m_Father: {fileID: 773190232}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2098870120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2098870118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be2505df7de4fd40a756e98a5110952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraObj: {fileID: 534669902}
-  playerObj: {fileID: 773190229}
-  cameraMoveSpeed: 120
-  highClampAngle: 80
-  lowClampAngle: 0
-  inputSensitivity: 150
 --- !u!1001 &2100992809
 Prefab:
   m_ObjectHideFlags: 0
