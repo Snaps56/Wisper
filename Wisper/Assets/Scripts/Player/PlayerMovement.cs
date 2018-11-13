@@ -46,6 +46,30 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(mainCamera.transform.up * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
 
         rb.AddForce(-rb.velocity * stopMultiplier);
-
+        currentForceVector();
+    }
+    public Vector3 currentVelocityVector()
+    {
+        return rb.velocity;
+    }
+    public float currentVelocityMagnitude()
+    {
+        return rb.velocity.magnitude;
+    }
+    public Vector3 currentForceVector()
+    {
+        Vector3 forceVector = Vector3.zero;
+        forceVector += mainCamera.transform.forward * Input.GetAxis("XBOX_Thumbstick_L_Y") * finalSpeed;
+        forceVector += mainCamera.transform.forward * Input.GetAxis("PC_Axis_MovementZ") * finalSpeed;
+        forceVector += mainCamera.transform.right * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed;
+        forceVector += mainCamera.transform.right * Input.GetAxis("PC_Axis_MovementX") * finalSpeed;
+        forceVector += mainCamera.transform.up * Input.GetAxis("PC_Axis_MovementY") * finalSpeed;
+        forceVector += mainCamera.transform.up * Input.GetAxis("XBOX_Axis_MovementY") * finalSpeed;
+        // Debug.Log(forceVector);
+        return forceVector;
+    }
+    public bool isSprinting()
+    {
+        return sprintMod;
     }
 }

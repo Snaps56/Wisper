@@ -9,6 +9,7 @@ public class ObjectThrow : MonoBehaviour {
     public Collider radiusCollider;
     private Player movementScript;
 	private float playerOrbCount;
+	public ParticleSystem throwParticles;
 
     [Header("Throw Mechanics")]
     public float throwForce;
@@ -22,11 +23,13 @@ public class ObjectThrow : MonoBehaviour {
     private Vector3 deltaMovementVector;
     private Vector3 forceVector;
     private float currentPlayerVelocity;
+	private float originalThrowForce;
 
     // Use this for initialization
     void Start () {
         movementVector = transform.position;
 		playerOrbCount = character.GetComponent<Player> ().GetOrbCount ();
+		originalThrowForce = throwForce;
     }
 
     // Update is called once per frame
@@ -46,6 +49,19 @@ public class ObjectThrow : MonoBehaviour {
     
         character.GetComponent<Rigidbody>();
 
+		if (isThrowingObjects) {
+			if (!throwParticles.isPlaying) {
+				throwParticles.Play ();
+			}
+		} else {
+			if (throwParticles.isPlaying) {
+				throwParticles.Stop ();
+			}
+		}
+
+		playerOrbCount = character.GetComponent<Player> ().GetOrbCount ();
+		throwForce = originalThrowForce + playerOrbCount;
+
         // obtain player movement vector to determine throw direction
         currentPlayerVelocity = character.GetComponent<Rigidbody>().velocity.magnitude;
         if (currentPlayerVelocity > 0)
@@ -63,7 +79,7 @@ public class ObjectThrow : MonoBehaviour {
     // detect if any pickable objects are within range
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "PickUp" || other.tag == "Orb")
+        if (other.tag == "PickUp")
         {
             throwObject(other);
         }

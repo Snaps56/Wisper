@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135295, g: 0.5009421, b: 0.57285845, a: 1}
+  m_IndirectSpecularColor: {r: 0.4513535, g: 0.50094336, b: 0.5728595, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21504,7 +21504,7 @@ SphereCollider:
   m_GameObject: {fileID: 1600232472}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
@@ -21947,49 +21947,69 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100018, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100012, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100028, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100046, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100044, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100042, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 100040, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 130b2793d826a3a4e9b2be03dfb03db4, type: 3}
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
@@ -22141,6 +22161,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bcae914220acd4907840a029bb9d9aec, type: 2}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcae914220acd4907840a029bb9d9aec, type: 2}
   m_IsPrefabAsset: 0
@@ -22149,6 +22173,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec,
     type: 2}
   m_PrefabInternal: {fileID: 1689481084}
+--- !u!1 &1689481086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: bcae914220acd4907840a029bb9d9aec,
+    type: 2}
+  m_PrefabInternal: {fileID: 1689481084}
+--- !u!65 &1689481087
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689481086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9999993, y: 0, z: 1.9999988}
+  m_Center: {x: -0.00000032782555, y: 0, z: 0.00000032875687}
 --- !u!1 &1694806249
 GameObject:
   m_ObjectHideFlags: 0
@@ -39361,8 +39402,33 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1030712164740974, guid: 1ec12d476aaa00444885af1da3a3ea13, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1779087189}
+    - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: cutsceneCamera
+      value: 
+      objectReference: {fileID: 1562149421}
+    - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1102862355}
+    - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: rain
+      value: 
+      objectReference: {fileID: 1327410940}
+    - target: {fileID: 114222633452821690, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 936196763}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec12d476aaa00444885af1da3a3ea13, type: 2}
   m_IsPrefabAsset: 0

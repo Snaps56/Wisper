@@ -25,12 +25,14 @@ public class ObjectLift : MonoBehaviour {
     private Vector3 targetPosition;
     private Vector3 currentCharacterVector;
     private float currentCharacterSpeed;
+	private float originalLiftCenterStrength;
     List<GameObject> liftedObjects = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
         movementScript = character.GetComponent<Player>();
 		playerOrbCount = movementScript.GetOrbCount ();
+		originalLiftCenterStrength = liftCenterStrength;
     }
 	
 	// Update is called once per frame
@@ -64,6 +66,10 @@ public class ObjectLift : MonoBehaviour {
 				liftParticles.Stop ();
 			}
         }
+
+		playerOrbCount = movementScript.GetOrbCount ();
+		liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
+
         // obtain character movement data to help track movement for lifted objects
         currentCharacterVector = movementScript.currentMovementForce;
         currentCharacterVector.y *= 0;
@@ -116,7 +122,7 @@ public class ObjectLift : MonoBehaviour {
     // detect if any pickable objects are nearby
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "PickUp" || other.tag == "Orb")
+        if (other.tag == "PickUp")
         {
             // if the player is using the lift ability, add the object to an array of lifted objects
             if (isLiftingObjects)
