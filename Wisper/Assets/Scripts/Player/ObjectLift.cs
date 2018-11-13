@@ -38,6 +38,7 @@ public class ObjectLift : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
+        if (Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0)
         {
             isLiftingObjects = true;
         }
@@ -45,6 +46,7 @@ public class ObjectLift : MonoBehaviour {
         {
             isLiftingObjects = false;
         }
+        // Debug.Log("Lifting Objects: " + isLiftingObjects);
 
         isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
 

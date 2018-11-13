@@ -71,8 +71,7 @@ public class Shrine : MonoBehaviour {
 				DepositOrbs();
 				orbInstance = Instantiate(orb, player.transform.position + new Vector3 (0, 2f, 0), Quaternion.identity);
 				orbInstance.GetComponent<OrbSequence>().setDestination(this.gameObject, "shrine");
-			}
-=======
+                /*
                 if (cutsceneCamera.gameObject.activeSelf == false)
                 {
                     mainCamera.gameObject.SetActive(false);
@@ -88,8 +87,8 @@ public class Shrine : MonoBehaviour {
                         cutsceneCamera.gameObject.SetActive(false);
                     }
                 }
+                */
             }
->>>>>>> 3d5cb3df0480cac036a09a391b5fd80d897a1208
 		} else {
 			//activationParticles.SetActive (false);
 			foreach (ParticleSystem partStop in coloredParticles) {
