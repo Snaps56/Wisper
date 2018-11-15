@@ -27,8 +27,8 @@ public class ObjectThrow : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        movementVector = transform.position;
-		playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
+        // movementVector = character.GetComponent<PlayerMovement>().GetVelocityVector();
+        playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
 		originalThrowForce = throwForce;
     }
 
@@ -66,10 +66,11 @@ public class ObjectThrow : MonoBehaviour {
         currentPlayerVelocity = character.GetComponent<Rigidbody>().velocity.magnitude;
         if (currentPlayerVelocity > 0)
         {
-            deltaMovementVector = (transform.position - movementVector).normalized;
+            movementVector = character.GetComponent<PlayerMovement>().GetVelocity();
+            deltaMovementVector = (movementVector.normalized - transform.position.normalized).normalized;
             deltaMovementVector.y *= 0;
         }
-        movementVector = transform.position;
+        // Debug.Log(deltaMovementVector);
     }
 
 	public bool GetIsThrowingObjects() {

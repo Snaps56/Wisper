@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // transform.Translate(mainCamera.transform.right * Input.GetAxis("MovementX"));
         // transform.Translate(mainCamera.transform.forward * Input.GetAxis("MovementY"));
@@ -38,18 +38,24 @@ public class PlayerMovement : MonoBehaviour {
             SetFollowTargetVelocity(followTarget);
         }
 
-        movementSpeed = originalMoveSpeed + orbCountScript.GetOrbCount();
+		movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount());
         
         if (sprintMod == false && (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint")))
         {
             sprintMod = true;
-            finalSpeed = movementSpeed * sprintMultiplier;
+            //finalSpeed = movementSpeed * sprintMultiplier;
         }
         else if (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint"))
         {
             sprintMod = false;
-            finalSpeed = movementSpeed;
+            //finalSpeed = movementSpeed;
         }
+
+		if (sprintMod) {
+			finalSpeed = movementSpeed * sprintMultiplier;
+		} else {
+			finalSpeed = movementSpeed;
+		}
 
         rb.AddForce(mainCamera.transform.right * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
         rb.AddForce(mainCamera.transform.right * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
@@ -61,20 +67,13 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(mainCamera.transform.up * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
 
         rb.AddForce(-rb.velocity * stopMultiplier);
-        currentForceVector();
     }
 
-    public Vector3 currentVelocityVector()
+    public Vector3 GetVelocity()
     {
         return rb.velocity;
     }
-
-    public float currentVelocityMagnitude()
-    {
-        return rb.velocity.magnitude;
-    }
-
-    public Vector3 currentForceVector()
+    public Vector3 GetForce()
     {
         Vector3 forceVector = Vector3.zero;
         forceVector += mainCamera.transform.forward * Input.GetAxis("XBOX_Thumbstick_L_Y") * finalSpeed;
@@ -87,7 +86,7 @@ public class PlayerMovement : MonoBehaviour {
         return forceVector;
     }
 
-    public bool isSprinting()
+    public bool GetIsSprinting()
     {
         return sprintMod;
     }
@@ -99,11 +98,12 @@ public class PlayerMovement : MonoBehaviour {
     {
         Vector3 followVel = new Vector3();
         float verticalError = 2;
-        float catchUpMag = 0.02f;
+        float catchUpMag = 0.05f;
         float yAdjustMag = 0.1f;
 
         if(target.GetComponent<Rigidbody>() != null)
         {
+            /*
             followVel = target.GetComponent<Rigidbody>().velocity;
 
             //Increases velocity proportial to distance to target if outside the follow distance. A "catch up" feature.
@@ -118,8 +118,12 @@ public class PlayerMovement : MonoBehaviour {
                 float yVal = (target.transform.position.y - transform.position.y) * yAdjustMag; // Adds a percentage of difference in y val to velocity vector
                 followVel += new Vector3(0, yVal, 0);
             }
-
-            rb.velocity = followVel;   // Sets the rb velocity to the follow velocity.
+            //Debug.Log("setting follow velocity on rb to x: " + followVel.x  + " y: " + followVel.y + " z: " + followVel.z);
+            //rb.velocity.Set(followVel.x, followVel.y, followVel.z);   // Sets the rb velocity to the follow velocity.
+            //Debug.Log("rb vel is  " + rb.velocity.x + " y: " + rb.velocity.y + " z: " + rb.velocity.z);
+            rb.AddForce(followVel);
+            */
+            transform.position = target.transform.position - 2 * target.transform.forward + new Vector3(0,1,0);
         } 
     }
 

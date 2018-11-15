@@ -23,9 +23,9 @@ public class RaycastCollision : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        playerForce = GetComponent<PlayerMovement>().currentForceVector();
-        playerVelocity = GetComponent<PlayerMovement>().currentVelocityVector();
-        isSprinting = GetComponent<PlayerMovement>().isSprinting();
+        playerForce = GetComponent<PlayerMovement>().GetForce();
+        playerVelocity = GetComponent<PlayerMovement>().GetVelocity();
+        isSprinting = GetComponent<PlayerMovement>().GetIsSprinting();
 
         RayCaster(Vector3.right, 'x');
         RayCaster(-Vector3.right, 'x');
@@ -58,7 +58,7 @@ public class RaycastCollision : MonoBehaviour {
 
         if (Physics.Raycast(transform.position, direction, out hit, radius))
         {
-            if (hit.collider.tag == "Terrain")
+            if (hit.collider.tag == "Terrain" || hit.collider.tag == "Water")
             {
                 Vector3 floatVector = transform.position - hit.point;
 

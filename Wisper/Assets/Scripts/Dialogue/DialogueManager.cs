@@ -126,7 +126,7 @@ public class DialogueManager : MonoBehaviour {
         // When dialogue is active, respond to input
         if(dialogueBoxActive)
         {
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
             {
                 if (sentenceDisplayInProgress)
                 {
@@ -146,7 +146,7 @@ public class DialogueManager : MonoBehaviour {
                 {
                     nearestNPC = GetClosestNPC();
                     //TODO: Display interact button by this npc
-                    if (Input.GetKeyDown(KeyCode.T) || GetEnabledDialogue(nearestNPC).forceOnEnable)
+                    if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X") || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
                         dialogueBoxActive = true;
                         activeNPC = nearestNPC;
@@ -162,19 +162,19 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-    // Add an npc as in range of player
+    // Add an npc as "in range" of player
     public void AddInRangeNPC(GameObject npc)
     {
         inRangeNPC.Add(npc);
     }
 
-    // Remove npc as in range of player
+    // Remove npc as "in range" of player
     public void RemoveInRangeNPC(GameObject npc)
     {
         inRangeNPC.Remove(npc);
     }
 
-    // Finds the closest npc to the player that has dialogue.
+    // Finds the closest npc to the player that has dialogue. (This NPC may not have any enabled however.
     private GameObject GetClosestNPC()
     {
         if (inRangeNPC.Count != 0)
@@ -199,11 +199,13 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
+    // Transforms the position of an object to the player. Used for moving dialogue triggers, particularly for "forceOnEnable" dialogues.
     private void TranslateToPlayer(GameObject dialogueTrigger)
     {
         dialogueTrigger.transform.SetPositionAndRotation(player.transform.position, dialogueTrigger.transform.rotation);
     }
 
+    // Updates all dialogues in NPCDialogues component attached to the given game object
     public void UpdateDialogues(GameObject npc)
     {
         // TODO: decide what errors to throw and handle if more than one dialogue would be enabled
@@ -341,7 +343,7 @@ public class DialogueManager : MonoBehaviour {
             sentences.Enqueue(sentence);
         }
         ShowBox();
-        //player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject);  // Set movement script to follow the "npc" the trigger is attached to.
+        player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject);  // Set movement script to follow the "npc" the trigger is attached to.
         DisplayNextSentence();
     }
 
@@ -423,7 +425,7 @@ public class DialogueManager : MonoBehaviour {
             activeNPC.transform.parent.GetComponent<FloatingTextManager> ().disableFloatingText = false;
 		}
 
-        //player.GetComponent<PlayerMovement>().RemoveFollowTarget(); // Ends following movement of player on target
+        player.GetComponent<PlayerMovement>().RemoveFollowTarget(); // Ends following movement of player on target
 
         OnEndConditionUpdates();
 

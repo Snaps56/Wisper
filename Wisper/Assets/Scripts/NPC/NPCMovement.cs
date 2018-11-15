@@ -30,11 +30,11 @@ public class NPCMovement : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Player" && Input.GetKey(KeyCode.E))
+        if(other.gameObject.tag == "Player" && (Input.GetButton("PC_Key_Interact") || Input.GetButton("XBOX_Button_X")))
         {
             move = false;
             animator.SetBool("Idle", true);
-        }     
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -67,6 +67,8 @@ public class NPCMovement : MonoBehaviour
                 {
                     //Go to last
                     //currentWP = waypoints.Length - 1;
+
+                    Debug.Log("OBTAINED HAT");
 
                     //Stop in place
                     move = false;
