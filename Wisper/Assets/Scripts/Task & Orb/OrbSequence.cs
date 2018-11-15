@@ -16,6 +16,8 @@ public class OrbSequence : MonoBehaviour {
 	private float moveToDestSpeed;
 	private bool isMovingToDest;
 
+	public GameObject[] curveNodes;
+
 	// Use this for initialization
 	void Start () {
 		//destination = GameObject.FindWithTag ("Player");

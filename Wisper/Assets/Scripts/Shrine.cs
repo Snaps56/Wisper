@@ -15,7 +15,9 @@ public class Shrine : MonoBehaviour {
 	public GameObject player;
 	private bool isClean;
 	private GameObject orbInstance;
+	private GameObject orbDepositInstance;
 	public GameObject orb;
+	public GameObject orbDeposit;
 	public Component[] coloredParticles;
 	public GameObject playerAbilities;
 
@@ -68,9 +70,11 @@ public class Shrine : MonoBehaviour {
 				}
 			}
 			if (Input.GetKeyDown (KeyCode.L) && (bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
-				DepositOrbs();
-				orbInstance = Instantiate(orb, player.transform.position + new Vector3 (0, 2f, 0), Quaternion.identity);
-				orbInstance.GetComponent<OrbSequence>().setDestination(this.gameObject, "shrine");
+				if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
+					DepositOrbs ();
+					orbDepositInstance = Instantiate (orbDeposit, player.transform.position + new Vector3 (0, 0f, 0), Quaternion.identity);
+					orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
+				}
                 /*
                 if (cutsceneCamera.gameObject.activeSelf == false)
                 {
@@ -106,6 +110,14 @@ public class Shrine : MonoBehaviour {
 	}
 
 	void DepositOrbs () {
-		player.GetComponent<OrbCount> ().SetOrbCount (0);
+		if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
+			player.GetComponent<OrbCount> ().SetOrbCount (player.GetComponent<OrbCount> ().GetOrbCount () - 1);
+		}
+	}
+
+	void OnTriggerEnter(Collider other){
+		if (other.gameObject.CompareTag ("OrbDeposit")) {
+			Destroy (other.gameObject);
+		}
 	}
 }

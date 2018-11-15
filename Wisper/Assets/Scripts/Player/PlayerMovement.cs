@@ -30,18 +30,24 @@ public class PlayerMovement : MonoBehaviour {
         // transform.Translate(mainCamera.transform.forward * Input.GetAxis("MovementY"));
         
 
-        movementSpeed = originalMoveSpeed + orbCountScript.GetOrbCount();
+		movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount());
         
         if (sprintMod == false && (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint")))
         {
             sprintMod = true;
-            finalSpeed = movementSpeed * sprintMultiplier;
+            //finalSpeed = movementSpeed * sprintMultiplier;
         }
         else if (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint"))
         {
             sprintMod = false;
-            finalSpeed = movementSpeed;
+            //finalSpeed = movementSpeed;
         }
+
+		if (sprintMod) {
+			finalSpeed = movementSpeed * sprintMultiplier;
+		} else {
+			finalSpeed = movementSpeed;
+		}
 
         rb.AddForce(mainCamera.transform.right * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
         rb.AddForce(mainCamera.transform.right * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
