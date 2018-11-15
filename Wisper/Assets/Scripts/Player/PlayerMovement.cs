@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour {
     private float finalSpeed;
     private OrbCount orbCountScript;
     private float originalMoveSpeed;
+    private float targetFollowDistance = 5;
+    private GameObject followTarget;
+
 
     // Use this for initialization
     void Start()
@@ -28,7 +31,12 @@ public class PlayerMovement : MonoBehaviour {
     {
         // transform.Translate(mainCamera.transform.right * Input.GetAxis("MovementX"));
         // transform.Translate(mainCamera.transform.forward * Input.GetAxis("MovementY"));
-        
+
+        // If there is a follow target, sets rigid body's velocity to a "following" velocity.
+        if (followTarget != null)
+        {
+            SetFollowTargetVelocity(followTarget);
+        }
 
         movementSpeed = originalMoveSpeed + orbCountScript.GetOrbCount();
         
@@ -55,14 +63,17 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(-rb.velocity * stopMultiplier);
         currentForceVector();
     }
+
     public Vector3 currentVelocityVector()
     {
         return rb.velocity;
     }
+
     public float currentVelocityMagnitude()
     {
         return rb.velocity.magnitude;
     }
+
     public Vector3 currentForceVector()
     {
         Vector3 forceVector = Vector3.zero;
@@ -75,8 +86,50 @@ public class PlayerMovement : MonoBehaviour {
         // Debug.Log(forceVector);
         return forceVector;
     }
+
     public bool isSprinting()
     {
         return sprintMod;
+    }
+
+
+
+    // Sets the velocity so that player follows a target. Use in the update block for proper functionality.
+    public void SetFollowTargetVelocity(GameObject target)
+    {
+        Vector3 followVel = new Vector3();
+        float verticalError = 2;
+        float catchUpMag = 0.02f;
+        float yAdjustMag = 0.1f;
+
+        if(target.GetComponent<Rigidbody>() != null)
+        {
+            followVel = target.GetComponent<Rigidbody>().velocity;
+
+            //Increases velocity proportial to distance to target if outside the follow distance. A "catch up" feature.
+            if (Vector3.Magnitude(transform.position - target.transform.position) > targetFollowDistance)
+            {
+                followVel += (target.transform.position - transform.position) * catchUpMag; // Adds a percentage of difference between position to velocity vector
+            }
+
+            //Alters velocity to move player within a range of vertical distance to the target.
+            if (transform.position.y > target.transform.position.y + verticalError || transform.position.y < target.transform.position.y - verticalError)
+            {
+                float yVal = (target.transform.position.y - transform.position.y) * yAdjustMag; // Adds a percentage of difference in y val to velocity vector
+                followVel += new Vector3(0, yVal, 0);
+            }
+
+            rb.velocity = followVel;   // Sets the rb velocity to the follow velocity.
+        } 
+    }
+
+    public void SetFollowTarget(GameObject target)
+    {
+        followTarget = target;
+    }
+
+    public void RemoveFollowTarget()
+    {
+        followTarget = null;
     }
 }

@@ -47,27 +47,25 @@ public class DialogueManager : MonoBehaviour {
     void Start ()
     {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
-        // Debug.Log("Checking textfields in dialogueBox");
-        if(dialogueBox != null)
+
+        /*if(dialogueBox != null)
         {
             // Debug.Log("Found dialogueBox");
-        }
+        }*/
         foreach(Text textField in dialogueBox.GetComponentsInChildren<Text>())
         {
             if(textField.gameObject.name == "Speaker")
             {
-                // Debug.Log("Found textfield \"Speaker\"");
                 dialogueName = textField;
             }
             else if(textField.gameObject.name == "Dialogue")
             {
-                // Debug.Log("Found textfield \"Dialogue\"");
                 dialogueText = textField;
             }
-            else
+            /*else
             {
-                // Debug.Log("Unexpected text field found with name: " + textField.name);
-            }
+                Debug.Log("Unexpected text field found with name: " + textField.name);
+            }*/
         }
         /*if(dialogueName == null)
         {
@@ -148,10 +146,8 @@ public class DialogueManager : MonoBehaviour {
                 {
                     nearestNPC = GetClosestNPC();
                     //TODO: Display interact button by this npc
-                    // Debug.Log("DialogueManager: Checking for input");
                     if (Input.GetKeyDown(KeyCode.T) || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
-                        // Debug.Log("Detected input");
                         dialogueBoxActive = true;
                         activeNPC = nearestNPC;
                         charDelay = activeNPC.GetComponent<NPCDialogues>().defaultCharDelay;
@@ -170,7 +166,6 @@ public class DialogueManager : MonoBehaviour {
     public void AddInRangeNPC(GameObject npc)
     {
         inRangeNPC.Add(npc);
-        // Debug.Log(npc.name + " added to inRangeNPC");
     }
 
     // Remove npc as in range of player
@@ -206,7 +201,6 @@ public class DialogueManager : MonoBehaviour {
 
     private void TranslateToPlayer(GameObject dialogueTrigger)
     {
-        Debug.Log("Moving dt to player for " + dialogueTrigger.transform.parent.name);
         dialogueTrigger.transform.SetPositionAndRotation(player.transform.position, dialogueTrigger.transform.rotation);
     }
 
@@ -255,7 +249,7 @@ public class DialogueManager : MonoBehaviour {
         }
         catch(System.NullReferenceException e)
         {
-            Debug.LogError("NullReferenceException generate on CheckCondition for " + condition.conditionName + " on " + 
+            Debug.LogWarning("NullReferenceException generate on CheckCondition for " + condition.conditionName + " on " + 
                 ". Here is the exception message: " + e.Message);
             return false;
         }
@@ -275,7 +269,7 @@ public class DialogueManager : MonoBehaviour {
     }
 
     // If condition updates set for active dialgoue, apply them. Also, if active dialogue was a forceOnEnable, reset it's position to the npc (FOE's enable condition(s) should be updated on its completion)
-    private void OnEndConditionUpdates(GameObject dialogueTrigger)
+    private void OnEndConditionUpdates()
     {
         if(activeDialogue.conditionChangeOnExit.Count > 0)
         {
@@ -300,7 +294,7 @@ public class DialogueManager : MonoBehaviour {
             DialogueSpeedToken nextToken = null;
             foreach(DialogueSpeedToken token in activeDialogue.speedControls)
             {
-                if(token.sentenceIndex == sentenceIndex)    // Only process tokens for the active sentence. (if none exist, null is returned)
+                if (token.sentenceIndex == sentenceIndex)    // Only process tokens for the active sentence. (if none exist, null is returned)
                 {
                     if (nextToken == null)
                     {
@@ -313,12 +307,16 @@ public class DialogueManager : MonoBehaviour {
                             nextToken = token;  // If currentToken existed and a larger token has been found than currentToken, initialize nextToken to this
                         }
                     }
-                    else
+                    else if (currentToken != null)
                     {
                         if (token.charIndex > currentToken.charIndex && token.charIndex < nextToken.charIndex)
                         {
-                            nextToken = token;  // If charIndex is less than nextToken, but larger than currentToken, set it as nextToken
-                        }
+                            nextToken = token;  // If charIndex is less than nextToken, set it as nextToken
+                        }  
+                    }
+                    else if (token.charIndex < nextToken.charIndex)
+                    {
+                        nextToken = token;  // If charIndex is less than nextToken, set it as nextToken
                     }
                 }
             }
@@ -335,16 +333,15 @@ public class DialogueManager : MonoBehaviour {
 		if (activeNPC.transform.parent.GetComponent<FloatingTextManager> () != null) {
             activeNPC.transform.parent.GetComponent<FloatingTextManager>().disableFloatingText = true; // Disable the floating text for this npc
 		}
-        // Debug.Log("Recieved dialogue " + dialogue.dialogueName);
-
+        
         activeDialogue = dialogue;
         sentences.Clear();
         foreach(string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
-            // Debug.Log("Enqued: " + sentence);
         }
         ShowBox();
+        //player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject);  // Set movement script to follow the "npc" the trigger is attached to.
         DisplayNextSentence();
     }
 
@@ -381,7 +378,6 @@ public class DialogueManager : MonoBehaviour {
             nextSpeedToken = GetNextSpeedToken(nextSpeedToken);
         }
 
-        // Debug.Log("In coroutine displaySentence");
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
@@ -420,7 +416,6 @@ public class DialogueManager : MonoBehaviour {
 
     public void EndDialogue()
     {
-        // Debug.Log("Conversation over");
         sentences.Clear();
         dialogueText.text = "";
         HideBox();
@@ -428,7 +423,9 @@ public class DialogueManager : MonoBehaviour {
             activeNPC.transform.parent.GetComponent<FloatingTextManager> ().disableFloatingText = false;
 		}
 
-        OnEndConditionUpdates(activeNPC);
+        //player.GetComponent<PlayerMovement>().RemoveFollowTarget(); // Ends following movement of player on target
+
+        OnEndConditionUpdates();
 
         sentenceIndex = 0;
         activeDialogue = null;
