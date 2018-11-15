@@ -21,8 +21,12 @@ public class Dialogue{
     private int dialogueID; // Used to find element by ID
 
     public bool enabled = false;    // Set to mark this dialogue as enabled.
+    public bool forceOnEnable = false;
+    
 
     public List<TargetCondition> enableConditions; // The conditions and what they should be set to for enabling this dialogue. Should be <string condition, bool desiredState>
+
+    public List<TargetCondition> conditionChangeOnExit;
 
     public List<DialogueSpeedToken> speedControls;
 

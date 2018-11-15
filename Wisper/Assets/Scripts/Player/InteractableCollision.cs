@@ -46,14 +46,15 @@ public class InteractableCollision : MonoBehaviour {
 
 
 
-		if (other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag ("Shrine"))
+		if (other.gameObject.CompareTag("DialogueTrigger"))
 		{
-			// Debug.Log("Detecting collision with NPC: " + other.name);
+			// make sure reference to DM is set
 			if (dialogueManager == null)
 			{
 				// Debug.Log("null dialogueManager, checking again");
 				dialogueManager = GameObject.Find("DialogueManager");
 			}
+
 			NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
 			if (npcDialogues != null)   // If this npc has dialogues
 			{
@@ -64,11 +65,11 @@ public class InteractableCollision : MonoBehaviour {
 					npcDialogues.SetInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
 
 					DialogueManager managerScript = dialogueManager.GetComponent<DialogueManager>();
-					// Debug.Log("Updating " + other.name + " dialogues");
-					managerScript.UpdateDialogues(other.gameObject); // Updates list of dialogues on this npc, enabling and disabling based on various states
-					// Debug.Log("Adding " + other.name + " to dialogue manager");
-					managerScript.AddInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
 
+					// The following update line may no longer be necessary (currently doesn't interfere though, and may be used depending on changes in requirements)
+					managerScript.UpdateDialogues(other.gameObject); // Updates list of dialogues on this npc, enabling and disabling based on various states
+					
+					managerScript.AddInRangeNPC(other.gameObject);    // Updates dialogue manager with all npcs in range
 				}
 			}
 		}
@@ -81,7 +82,7 @@ public class InteractableCollision : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = false;
 		}
-		if (other.gameObject.CompareTag ("NPC") || other.gameObject.CompareTag("Shrine"))
+		if (other.gameObject.CompareTag ("DialogueTrigger"))
 		{
 			// Debug.Log("Left NPC collision: " + other.name);
 			NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
