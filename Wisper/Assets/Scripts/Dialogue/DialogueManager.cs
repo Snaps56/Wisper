@@ -126,7 +126,7 @@ public class DialogueManager : MonoBehaviour {
         // When dialogue is active, respond to input
         if(dialogueBoxActive)
         {
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
             {
                 if (sentenceDisplayInProgress)
                 {
