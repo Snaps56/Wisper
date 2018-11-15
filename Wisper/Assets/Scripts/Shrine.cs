@@ -71,9 +71,10 @@ public class Shrine : MonoBehaviour {
 				DepositOrbs();
 				orbInstance = Instantiate(orb, player.transform.position + new Vector3 (0, 2f, 0), Quaternion.identity);
 				orbInstance.GetComponent<OrbSequence>().setDestination(this.gameObject, "shrine");
-                /*
+                
                 if (cutsceneCamera.gameObject.activeSelf == false)
                 {
+                    player.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                     mainCamera.gameObject.SetActive(false);
                     cutsceneCamera.gameObject.SetActive(true);
                     GameObject.Find("WindPowerBG").SetActive(false);
@@ -87,7 +88,7 @@ public class Shrine : MonoBehaviour {
                         cutsceneCamera.gameObject.SetActive(false);
                     }
                 }
-                */
+                
             }
 		} else {
 			//activationParticles.SetActive (false);

@@ -8596,7 +8596,6 @@ MonoBehaviour:
   settingsMenu: {fileID: 1164516057}
   VideoMenu: {fileID: 1456341285}
   audioMixer: {fileID: 0}
-  CurrentVolume: 0
 --- !u!114 &562406604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9350,6 +9349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875a0ff325523da49bf03f1bee1673c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistantStateDataUpdateCount: 0
 --- !u!1 &653902264
 GameObject:
   m_ObjectHideFlags: 0
@@ -22347,17 +22347,21 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Where the fuck is my hat bitch!?!
   - dialogueName: My hat is found.
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - What the fuck did you just fucking say about me, you little bitch? I'll have
@@ -22421,9 +22425,11 @@ MonoBehaviour:
   floatingTexts:
   - dialogueName: Find my hat!
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Where'd me hat go?
@@ -28385,6 +28391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875a0ff325523da49bf03f1bee1673c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistantStateDataUpdateCount: 0
 --- !u!4 &1364268191
 Transform:
   m_ObjectHideFlags: 0
@@ -30349,6 +30356,7 @@ GameObject:
   - component: {fileID: 1562149422}
   - component: {fileID: 1562149421}
   - component: {fileID: 1562149420}
+  - component: {fileID: 1562149423}
   m_Layer: 0
   m_Name: CutsceneCamera
   m_TagString: Untagged
@@ -30423,7 +30431,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 369, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 368.99677, z: 0}
+--- !u!114 &1562149423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1562149419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cda7e2654babb2498bb7cd95c8483e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  play: 0
+  end: 0
+  cutsceneCamera: {fileID: 0}
+  mainCamera: {fileID: 1102862355}
+  rain: {fileID: 1327410940}
+  light: {fileID: 936196763}
 --- !u!1 &1565080359
 GameObject:
   m_ObjectHideFlags: 0
@@ -45737,6 +45762,7 @@ GameObject:
   - component: {fileID: 1779087197}
   - component: {fileID: 1779087198}
   - component: {fileID: 1779087199}
+  - component: {fileID: 1779087200}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -45962,6 +45988,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnBackText: {fileID: 3670896}
+--- !u!114 &1779087200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1779087189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42d34697ae063645abfbaf4f925c7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneCamera: {fileID: 1562149421}
+  mainCamera: {fileID: 1102862355}
+  rain: {fileID: 1327410940}
+  light: {fileID: 936196763}
 --- !u!1 &1788764948
 GameObject:
   m_ObjectHideFlags: 0
@@ -51814,9 +51855,11 @@ MonoBehaviour:
   floatingTexts:
   - dialogueName: Find my hat!
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Where'd me hat go?
@@ -51837,17 +51880,21 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
   - dialogueName: My hat is found.
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Oh weee! My hat! I've been looking all over for this!
@@ -53277,7 +53324,9 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Greeting
     enabled: 1
+    forceOnEnable: 0
     enableConditions: []
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Hello little whisper
