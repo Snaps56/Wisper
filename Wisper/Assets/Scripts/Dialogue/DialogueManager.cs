@@ -23,7 +23,11 @@ public class DialogueManager : MonoBehaviour {
     private GameObject player;  // The player
     private List<GameObject> inRangeNPC = new List<GameObject>();    // List of all npc's in range of player collider. Stored here to avoid repetitive find operations each frame.
     private GameObject nearestNPC;
+    private GameObject activeNPC;
     private GameObject persistantStateData;
+
+    // Update info
+    public int persistantStateDataUpdateCount = 0; // Compared to the value in persistantStateData to determine if the dialogues need to check for updates
 
     void Awake()
     {
@@ -43,36 +47,34 @@ public class DialogueManager : MonoBehaviour {
     void Start ()
     {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
-        // Debug.Log("Checking textfields in dialogueBox");
-        if(dialogueBox != null)
+
+        /*if(dialogueBox != null)
         {
             // Debug.Log("Found dialogueBox");
-        }
+        }*/
         foreach(Text textField in dialogueBox.GetComponentsInChildren<Text>())
         {
             if(textField.gameObject.name == "Speaker")
             {
-                // Debug.Log("Found textfield \"Speaker\"");
                 dialogueName = textField;
             }
             else if(textField.gameObject.name == "Dialogue")
             {
-                // Debug.Log("Found textfield \"Dialogue\"");
                 dialogueText = textField;
             }
-            else
+            /*else
             {
-                // Debug.Log("Unexpected text field found with name: " + textField.name);
-            }
+                Debug.Log("Unexpected text field found with name: " + textField.name);
+            }*/
         }
-        if(dialogueName == null)
+        /*if(dialogueName == null)
         {
             // Debug.LogError("Dialogue display componenet not found: dialogueName");
         }
         if(dialogueText == null)
         {
             // Debug.LogError("Dialogue display componenet not found: dialogueText");
-        }
+        }*/
 
         sentences = new Queue<string>();
         
@@ -87,13 +89,56 @@ public class DialogueManager : MonoBehaviour {
 
     private void Update()
     {
+        // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {
             persistantStateData = GameObject.Find("PersistantStateData");
         }
 
-        // Debug.Log("inRangeNPC count: " + inRangeNPC.Count);
-        if(inRangeNPC.Count != 0)
+        // When PSD updates, run an update on all dialogues in the scene.
+        if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount)
+        {
+            Debug.Log("Updating NPCDialogues");
+            persistantStateDataUpdateCount = persistantStateData.GetComponent<PersistantStateData>().updateCount;
+            foreach (GameObject dt in GameObject.FindGameObjectsWithTag("DialogueTrigger"))
+            {
+                UpdateDialogues(dt);
+                Dialogue tmpDialogue = GetEnabledDialogue(dt);
+                if (tmpDialogue.forceOnEnable)
+                {
+                    TranslateToPlayer(dt);
+                }
+            }
+        }
+
+        // If any of the dialogues on the player are forceOnEnable, keep the trigger on the player each update cycle
+        if (inRangeNPC.Count != 0)
+        {
+            foreach(GameObject dt in inRangeNPC)
+            {
+                if(GetEnabledDialogue(dt).forceOnEnable)
+                {
+                    TranslateToPlayer(dt);
+                }
+            }
+        }
+
+        // When dialogue is active, respond to input
+        if(dialogueBoxActive)
+        {
+            if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
+            {
+                if (sentenceDisplayInProgress)
+                {
+                    skipText = true;
+                }
+                else
+                {
+                    DisplayNextSentence();
+                }
+            }
+        }
+        else if(inRangeNPC.Count != 0) // When dialogue triggers are in range & dialogue not active, handle input (or force dialogue to start if forceOnEnable set).
         {
             if(!dialogueBoxActive)
             {
@@ -101,13 +146,12 @@ public class DialogueManager : MonoBehaviour {
                 {
                     nearestNPC = GetClosestNPC();
                     //TODO: Display interact button by this npc
-                    // Debug.Log("DialogueManager: Checking for input");
-                    if (Input.GetKeyDown(KeyCode.T))
+                    if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X") || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
-                        // Debug.Log("Detected input");
                         dialogueBoxActive = true;
-                        charDelay = nearestNPC.GetComponent<NPCDialogues>().defaultCharDelay;
-                        StartDialogue(GetEnabledDialogue(nearestNPC)); //Determine dialogue to use, Activate dialogue
+                        activeNPC = nearestNPC;
+                        charDelay = activeNPC.GetComponent<NPCDialogues>().defaultCharDelay;
+                        StartDialogue(GetEnabledDialogue(activeNPC)); //Determine dialogue to use, Activate dialogue
                     }
                 }
                 catch(MissingReferenceException e)
@@ -115,37 +159,22 @@ public class DialogueManager : MonoBehaviour {
                     Debug.LogError(e.Message);
                 }
             }
-            else    // Dialogue box is active, respond to input as necessary here.
-            {
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    if (sentenceDisplayInProgress)
-                    {
-                        skipText = true;
-                    }
-                    else
-                    {
-                        DisplayNextSentence();
-                    }
-                }
-            }
         }
     }
 
-    // Add an npc as in range of player
+    // Add an npc as "in range" of player
     public void AddInRangeNPC(GameObject npc)
     {
         inRangeNPC.Add(npc);
-        // Debug.Log(npc.name + " added to inRangeNPC");
     }
 
-    // Remove npc as in range of player
+    // Remove npc as "in range" of player
     public void RemoveInRangeNPC(GameObject npc)
     {
         inRangeNPC.Remove(npc);
     }
 
-    // Finds the closest npc to the player that has dialogue.
+    // Finds the closest npc to the player that has dialogue. (This NPC may not have any enabled however.
     private GameObject GetClosestNPC()
     {
         if (inRangeNPC.Count != 0)
@@ -170,6 +199,13 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
+    // Transforms the position of an object to the player. Used for moving dialogue triggers, particularly for "forceOnEnable" dialogues.
+    private void TranslateToPlayer(GameObject dialogueTrigger)
+    {
+        dialogueTrigger.transform.SetPositionAndRotation(player.transform.position, dialogueTrigger.transform.rotation);
+    }
+
+    // Updates all dialogues in NPCDialogues component attached to the given game object
     public void UpdateDialogues(GameObject npc)
     {
         // TODO: decide what errors to throw and handle if more than one dialogue would be enabled
@@ -199,14 +235,24 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
+    // Checks if a given condition matches the value in persistant state data
     private bool CheckCondition(TargetCondition condition)
     {
-        if ((bool)persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] == condition.conditionValue)
+        try
         {
-            return true;
+            if ((bool)persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] == condition.conditionValue)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
+        catch(System.NullReferenceException e)
         {
+            Debug.LogWarning("NullReferenceException generate on CheckCondition for " + condition.conditionName + " on " + 
+                ". Here is the exception message: " + e.Message);
             return false;
         }
     }
@@ -221,7 +267,25 @@ public class DialogueManager : MonoBehaviour {
                 return d;
             }
         }
-        throw new MissingReferenceException("No enabled dialogue on this NPC");
+        throw new MissingReferenceException("No enabled dialogue on " + npc.transform.parent.name);
+    }
+
+    // If condition updates set for active dialgoue, apply them. Also, if active dialogue was a forceOnEnable, reset it's position to the npc (FOE's enable condition(s) should be updated on its completion)
+    private void OnEndConditionUpdates()
+    {
+        if(activeDialogue.conditionChangeOnExit.Count > 0)
+        {
+            foreach(TargetCondition condition in activeDialogue.conditionChangeOnExit)
+            {
+                persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] = condition.conditionValue;
+                persistantStateData.GetComponent<PersistantStateData>().updateCount++;
+            }
+            if(activeDialogue.forceOnEnable)
+            {
+                activeNPC.transform.position= activeNPC.transform.parent.transform.position;
+            }
+        }
+
     }
 
     // Returns the next DialogueSpeedToken for the current sentenceIndex. If no such token exists, returns null.
@@ -232,29 +296,29 @@ public class DialogueManager : MonoBehaviour {
             DialogueSpeedToken nextToken = null;
             foreach(DialogueSpeedToken token in activeDialogue.speedControls)
             {
-                if(token.sentenceIndex == sentenceIndex)    // Only process tokens for the active sentence. (if none exist, null is returned)
+                if (token.sentenceIndex == sentenceIndex)    // Only process tokens for the active sentence. (if none exist, null is returned)
                 {
-                    if (currentToken == null)
+                    if (nextToken == null)
                     {
-                        nextToken = token;  // If no token used yet for this sentence, any token for this sentence initializes nextToken.
-                        break;
+                        if (currentToken == null)
+                        {
+                            nextToken = token;  // If currentToken does not exist, any token for this sentence initializes nextToken.
+                        }
+                        else if (token.charIndex > currentToken.charIndex)
+                        {
+                            nextToken = token;  // If currentToken existed and a larger token has been found than currentToken, initialize nextToken to this
+                        }
                     }
-                    else
+                    else if (currentToken != null)
                     {
-                        if (nextToken != null)
+                        if (token.charIndex > currentToken.charIndex && token.charIndex < nextToken.charIndex)
                         {
-                            if (token.charIndex > currentToken.charIndex && token.charIndex < nextToken.charIndex)
-                            {
-                                nextToken = token;  // If charIndex is less than nextToken, but larger than currentToken, set it as nextToken
-                            }
-                        }
-                        else
-                        {
-                            if (token.charIndex > currentToken.charIndex)
-                            {
-                                nextToken = token;  // If a larger token has been found than currentToken, initialize nextToken to this
-                            }
-                        }
+                            nextToken = token;  // If charIndex is less than nextToken, set it as nextToken
+                        }  
+                    }
+                    else if (token.charIndex < nextToken.charIndex)
+                    {
+                        nextToken = token;  // If charIndex is less than nextToken, set it as nextToken
                     }
                 }
             }
@@ -268,19 +332,18 @@ public class DialogueManager : MonoBehaviour {
 
     void StartDialogue(Dialogue dialogue)
     {
-		if (nearestNPC.GetComponent<FloatingTextManager> () != null) {
-        	nearestNPC.GetComponent<FloatingTextManager>().disableFloatingText = true; // Disable the floating text for this npc
+		if (activeNPC.transform.parent.GetComponent<FloatingTextManager> () != null) {
+            activeNPC.transform.parent.GetComponent<FloatingTextManager>().disableFloatingText = true; // Disable the floating text for this npc
 		}
-        // Debug.Log("Recieved dialogue " + dialogue.dialogueName);
-
+        
         activeDialogue = dialogue;
         sentences.Clear();
         foreach(string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
-            // Debug.Log("Enqued: " + sentence);
         }
         ShowBox();
+        player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject);  // Set movement script to follow the "npc" the trigger is attached to.
         DisplayNextSentence();
     }
 
@@ -317,7 +380,6 @@ public class DialogueManager : MonoBehaviour {
             nextSpeedToken = GetNextSpeedToken(nextSpeedToken);
         }
 
-        // Debug.Log("In coroutine displaySentence");
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
@@ -356,17 +418,21 @@ public class DialogueManager : MonoBehaviour {
 
     public void EndDialogue()
     {
-        // Debug.Log("Conversation over");
         sentences.Clear();
         dialogueText.text = "";
         HideBox();
-		if (nearestNPC.GetComponent<FloatingTextManager> () != null) {
-			nearestNPC.GetComponent<FloatingTextManager> ().disableFloatingText = false;
+		if (activeNPC.transform.parent.GetComponent<FloatingTextManager> () != null) {
+            activeNPC.transform.parent.GetComponent<FloatingTextManager> ().disableFloatingText = false;
 		}
+
+        player.GetComponent<PlayerMovement>().RemoveFollowTarget(); // Ends following movement of player on target
+
+        OnEndConditionUpdates();
 
         sentenceIndex = 0;
         activeDialogue = null;
         dialogueBoxActive = false;
+        activeNPC = null;
     }
 
     public void ShowBox()
