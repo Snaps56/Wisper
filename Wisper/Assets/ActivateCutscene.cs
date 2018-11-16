@@ -16,6 +16,7 @@ public class ActivateCutscene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //Plays cutscene while pressing "N" on keyboard
         if (Input.GetKeyDown(KeyCode.N))
         {
             if (cutsceneCamera.gameObject.activeSelf == false)
@@ -24,14 +25,8 @@ public class ActivateCutscene : MonoBehaviour {
                 cutsceneCamera.gameObject.SetActive(true);
                 GameObject.Find("WindPowerBG").SetActive(false);
                 rain.SetActive(true);
-                //GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
                 light.GetComponent<Light>().color = Color.black;
                 cutsceneCamera.GetComponent<Animation>().Play();
-                //if (!cutsceneCamera.GetComponent<Animation>().isPlaying)
-                //{
-                //    mainCamera.gameObject.SetActive(true);
-                //    cutsceneCamera.gameObject.SetActive(false);
-                //}
             }
         }
     }
