@@ -12298,28 +12298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
   orbCount: 5
---- !u!114 &486810507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 486810505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff5416212b455e4496d2678d3b4b1c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &486810508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 486810505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff5416212b455e4496d2678d3b4b1c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &486810509
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19075,7 +19053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbbd17f0147f74ba084f0879dd0a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 1102862351}
 --- !u!1 &856960022
 GameObject:
   m_ObjectHideFlags: 0
@@ -22723,7 +22701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbbd17f0147f74ba084f0879dd0a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 1102862351}
 --- !u!1 &1082311405
 GameObject:
   m_ObjectHideFlags: 0
@@ -26763,12 +26741,12 @@ ParticleSystem:
         m_RotationOrder: 4
     inWorldSpace: 0
   InheritVelocityModule:
-    enabled: 0
+    enabled: 1
     m_Mode: 0
     m_Curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -41977,7 +41955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbbd17f0147f74ba084f0879dd0a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 1102862351}
 --- !u!1 &1422733999
 GameObject:
   m_ObjectHideFlags: 0
@@ -51394,7 +51372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbbd17f0147f74ba084f0879dd0a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 1102862351}
 --- !u!1 &1652992843
 GameObject:
   m_ObjectHideFlags: 0
@@ -52842,7 +52820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50257a4d5ff6bd04aac18f325538ddf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1779087190}
 --- !u!20 &1748916566
 Camera:
   m_ObjectHideFlags: 0
@@ -58052,7 +58030,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1779087189}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: -35.56, y: 13.81, z: -47.04}
+  m_LocalPosition: {x: -35.56, y: 14.265, z: -47.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 29935072}
@@ -58195,8 +58173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windPowerBar: {fileID: 0}
-  orbCountText: {fileID: 0}
+  windPowerBar: {fileID: 921488072}
+  orbCountText: {fileID: 1847881630}
 --- !u!54 &1779087195
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -58262,7 +58240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248c138e81e0e834695bcb01ffc5419e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnBackText: {fileID: 0}
+  turnBackText: {fileID: 988367687}
 --- !u!135 &1779087200
 SphereCollider:
   m_ObjectHideFlags: 0
