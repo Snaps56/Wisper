@@ -31,15 +31,21 @@ public class BorderCollision : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        //Detects the border
         if (other.gameObject.CompareTag("Border"))
         {
+            //Stores the position of the object when the player enters the border
             positionStamp = this.transform.position;
+            //Turns on "Turn Back" UI element
             turnBackText.SetActive(true);
         }
 
+        //Detects the border teleporter
         if (other.gameObject.CompareTag("BorderTele"))
         {
+            //Turns the player velocity back to zero so they don't move
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            //Returns the player back to the location at which they entered the collision box
             this.transform.position = positionStamp;
         }
         if (other.gameObject.CompareTag("Tree"))
@@ -82,9 +88,12 @@ public class BorderCollision : MonoBehaviour {
                 Debug.Log("Speed is back to :" + speed);
             }
         }
+        //Activates when the player is no longer touching the border
         if (other.gameObject.CompareTag("Border"))
         {
+            //Turns off the turn back UI Text
             turnBackText.SetActive(false);
+            //Turns off shake completly
             shake = 0;
         }
     }

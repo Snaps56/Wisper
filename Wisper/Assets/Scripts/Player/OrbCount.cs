@@ -13,16 +13,14 @@ public class OrbCount : MonoBehaviour {
     public Image windPowerBar;
     public Text orbCountText;
 
+    //Initilize Variables
     void Start()
     {
         orbCount = 0;
         orbCountText.text = orbCount.ToString() + "/" + orbMax;
     }
-    void Update()
-    {
-            
-    }
-    
+
+    //Sets the orb count
 	public void SetOrbCount(float newOrbCount) {
 		orbCount = newOrbCount;
         windPowerBar.fillAmount = orbCount / orbMax;
@@ -30,21 +28,30 @@ public class OrbCount : MonoBehaviour {
         Debug.Log ("OrbCount = " + orbCount);
 	}
 
+    //Triggers on collision
     private void OnTriggerEnter(Collider other)
     {
+        //Calculates the distance orb is from player
         float objectDistance = (transform.position - other.transform.position).magnitude;
+
+        //Gathers orb if orb is within range
         if (other.gameObject.CompareTag("Orb") && objectDistance < 2f)
         {
+            //Destroys Orb
             Destroy(other.gameObject);
+
+            ///Update UI
             if (orbCount < orbMax)
             {
                 orbCount += 1;
             }
             windPowerBar.fillAmount = orbCount / orbMax;
             orbCountText.text = orbCount.ToString() + "/" + orbMax;
+            ///End Update UI
         }
     }
 
+    //Gets the current orb count
     public float GetOrbCount(){
 		return orbCount;
 	}
