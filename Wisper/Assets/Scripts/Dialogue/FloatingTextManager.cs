@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class FloatingTextManager : MonoBehaviour {
 
     // Text related objects
-    private Text floatingTextBox;           // The object which renders its text component to the screen
+    private GameObject floatingTextCanvas;      // The object which renders the text and panel to the screen
+    private Text floatingTextBox;           // The object which contains the renderable text component to the screen
     private FloatingTexts floatingTexts;    // The component which contains all floating texts for this obj (usually an npc)
     private Dialogue activeFloatingText;    // The Dialogue object, which contains the text to write into the foating text box
     private Dialogue newFloatingText;       // The Dialogue object retrieved after updating the "enabled" Dialogues of floatingTexts. Essentially it is "what should be displayed."
@@ -31,8 +32,10 @@ public class FloatingTextManager : MonoBehaviour {
         sentences = new Queue<string>();
         floatingTextBox = this.gameObject.GetComponentInChildren<Text>();
         floatingTexts = this.GetComponent <FloatingTexts>();
+        floatingTextCanvas = transform.Find("Canvas").gameObject;
         sentenceDisplayInProgress = false;
         clearingInProgress = false;
+        floatingTextCanvas.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
 
     }
@@ -99,6 +102,7 @@ public class FloatingTextManager : MonoBehaviour {
     {
         if (!(disableFloatingText || killFloatingText))   // If disableFloatingText is set, the floating text will not be started
         {
+            floatingTextCanvas.SetActive(true);
             // Debug.Log("Recieved floating text " + floatingText.dialogueName);
             sentences.Clear();
             //floatingText = speaker.GetComponentInChildren<Text>();
@@ -191,6 +195,7 @@ public class FloatingTextManager : MonoBehaviour {
         }
 
         floatingTextBox.text = "";
+        floatingTextCanvas.SetActive(false);
         activeFloatingText = null; // Nulls the active floating text so that update knows to reset it to "newFloatingText", which may or may not have changed
         clearingInProgress = false; // Reset status bool after job is completed
     }

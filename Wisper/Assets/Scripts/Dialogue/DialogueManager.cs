@@ -3,35 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*  Note that npc and dialogueTrigger are mechanically synonymous in this class. An NPC with something to say will have a DialogueTrigger (prefab) as a child, which contains a
+ *      collider and NPCDialogues components. The DT prefab is used for detecting if the npc is in range and holding all data needed for the dialogue, so from this script's
+ *      perspective, it is the npc. However, sometimes this prefab is leveraged in ways intended to affect the DT itself and not so much the npc, and thus the term
+ *      DialogueTrigger is used to indicate this. 
+ *      EX: A function intended to move the DT but not the NPC it is attached to has its parameter called dialogueTrigger, whereas
+ *      a function which  updates which Dialogues are enabled for an NPC uses the parameter name npc.
+ */
 public class DialogueManager : MonoBehaviour {
     public static DialogueManager dialogueManager;
 
-    private GameObject dialogueBox; // The GameObject containing the dialogue box text elements
-    private Text dialogueText;  // Text field of dialogue box
-    private Text dialogueName;  // Name field of dialogue box
+    // UI elements
+    private GameObject dialogueBox;         // The GameObject containing the dialogue box text elements
+    private Text dialogueText;              // Text field of dialogue box
+    private Text dialogueName;              // Name field of dialogue box
 
-    private Dialogue activeDialogue;    // Reference to the active dialogue
-    private Queue<string> sentences;    // Queue of sentences to display
-    private int sentenceIndex = 0;
+    // Display time values & references
+    private GameObject activeNPC;           // Reference to NPC with active dialogue
+    private Dialogue activeDialogue;        // Reference to the active dialogue
+    private Queue<string> sentences;        // Queue of sentences to display
+    private int sentenceIndex = 0;          // Index for number of sentence from queue currently being displayed.
+    private float charDelay;                // Delay between adding chars to display. Controls the "speed of speech." Minimum delay is 1/framerate seconds for charDelay, which corresponds to the "fastest talking speed."
 
+    // Locks and controls
     private bool sentenceDisplayInProgress; // A lock used with subroutines that update UI text elements
-    private bool dialogueBoxActive; // A lock for preventing floating text or other UI elements from displaying during dialogue box use. Can be referenced for other things which need to be locked when dialogue box is active.
-
-    private bool skipText = false;  // Switch to fast forward text on player click
-    private float charDelay;        // Delay between adding chars to display. Controls the "speed of speech"
-
-    private GameObject player;  // The player
-    private List<GameObject> inRangeNPC = new List<GameObject>();    // List of all npc's in range of player collider. Stored here to avoid repetitive find operations each frame.
-    private GameObject nearestNPC;
-    private GameObject activeNPC;
-    private GameObject persistantStateData;
+    private bool dialogueBoxActive;         // A lock for preventing floating text or other UI elements from displaying during dialogue box use. Can be referenced for other things which need to be locked when dialogue box is active.
+    private bool skipText = false;          // Switch to fast forward text on player click
+    
+    // References to entities in scene
+    private GameObject player;                                      // Reference to the player
+    private List<GameObject> inRangeNPC = new List<GameObject>();   // List of all DialogueTriggers in range of player collider. Stored here to avoid repetitive find operations each frame.
+    private GameObject nearestNPC;                                  // Reference to the closest NPC DialogueTrigger with NPCDialogues
+    
+    // References to persistant state data
+    private GameObject persistantStateData;         // A reference stored here to prevent multiple find calls.
 
     // Update info
-    public int persistantStateDataUpdateCount = 0; // Compared to the value in persistantStateData to determine if the dialogues need to check for updates
+    public int persistantStateDataUpdateCount = 0; // Compared to the corresponding value in persistantStateData to determine if the dialogues need to check for updates
 
     void Awake()
     {
-        // Ensures there will only ever be 1 dialogue manager in a scene
+        // Ensures there will only ever be 1 dialogue manager in a scene. (Singleton pattern).
         if (dialogueManager == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -43,7 +55,7 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
+    // Use this for initialization. Some references to other gameobject will need to be initialized in Update.
     void Start ()
     {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
@@ -81,7 +93,6 @@ public class DialogueManager : MonoBehaviour {
         sentenceDisplayInProgress = false;
         dialogueBoxActive = false;
 
-
         player = GameObject.FindGameObjectWithTag("Player");
         persistantStateData = GameObject.Find("PersistantStateData");
         HideBox();
@@ -103,22 +114,36 @@ public class DialogueManager : MonoBehaviour {
             foreach (GameObject dt in GameObject.FindGameObjectsWithTag("DialogueTrigger"))
             {
                 UpdateDialogues(dt);
-                Dialogue tmpDialogue = GetEnabledDialogue(dt);
-                if (tmpDialogue.forceOnEnable)
+                try
                 {
-                    TranslateToPlayer(dt);
+                    Dialogue tmpDialogue = GetEnabledDialogue(dt);
+                    if (tmpDialogue.forceOnEnable)
+                    {
+                        TranslateToPlayer(dt);  // If any forceOnEnable Dialogues where enabled, move their DialogueTriggers to the player
+                    }
+                }
+                catch(MissingReferenceException e)
+                {
+                    Debug.LogWarning(e.Message);
                 }
             }
         }
 
-        // If any of the dialogues on the player are forceOnEnable, keep the trigger on the player each update cycle
+        // If any of the dialogues on the player are forceOnEnable, keep the DialogueTrigger on the player each update cycle
         if (inRangeNPC.Count != 0)
         {
             foreach(GameObject dt in inRangeNPC)
             {
-                if(GetEnabledDialogue(dt).forceOnEnable)
+                try
                 {
-                    TranslateToPlayer(dt);
+                    if (GetEnabledDialogue(dt).forceOnEnable)
+                    {
+                        TranslateToPlayer(dt);
+                    }
+                }
+                catch(MissingReferenceException e)
+                {
+                    Debug.LogWarning(e.Message);
                 }
             }
         }
@@ -156,25 +181,25 @@ public class DialogueManager : MonoBehaviour {
                 }
                 catch(MissingReferenceException e)
                 {
-                    Debug.LogError(e.Message);
+                    Debug.LogWarning(e.Message);
                 }
             }
         }
     }
 
-    // Add an npc as "in range" of player
+    // Add an npc as "in range" of player. Called by the InteractableCollision script on player.
     public void AddInRangeNPC(GameObject npc)
     {
         inRangeNPC.Add(npc);
     }
 
-    // Remove npc as "in range" of player
+    // Remove npc as "in range" of player. Called by the InteractableCollision script on player
     public void RemoveInRangeNPC(GameObject npc)
     {
         inRangeNPC.Remove(npc);
     }
 
-    // Finds the closest npc to the player that has dialogue. (This NPC may not have any enabled however.
+    // Finds the closest npc to the player that has dialogue. This NPC may not have any enabled however.
     private GameObject GetClosestNPC()
     {
         if (inRangeNPC.Count != 0)
@@ -257,7 +282,7 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-    // Returns the first enabled dialogue
+    // Returns the first enabled dialogue. Take care when setting dialogue conditions to try and only have one enabled for any npc.
     public Dialogue GetEnabledDialogue(GameObject npc)
     {
         foreach(Dialogue d in npc.GetComponent<NPCDialogues>().dialogues)
@@ -347,49 +372,52 @@ public class DialogueManager : MonoBehaviour {
         DisplayNextSentence();
     }
 
-    public int DisplayNextSentence()
+    // Runs DisplaySentence with next sentence from queue. Runs EndDialogue if queue is empty, and does nothing if sentenceDisplayInProgress is true
+    public void DisplayNextSentence()
     {
-        if (sentenceDisplayInProgress)
-        {
-            return 1;
-        }
-        else
+        if (!sentenceDisplayInProgress)
         {
             if (sentences.Count == 0)   // Dialogue is complete, end the dialogue interaction
             {
                 EndDialogue();
-                return 0;
             }
             else
             {
                 sentenceDisplayInProgress = true;   // Flags the sentence display coroutine as being in progress
                 string sentence = sentences.Dequeue();
                 StartCoroutine(DisplaySentence(sentence));
-                return 1;
             }
         }
     }
 
+    // Handles displaying of a sentence in the dialogueBox.
     IEnumerator DisplaySentence(string sentence)
     {
-        DialogueSpeedToken nextSpeedToken = null;
-        int charIndex = 0;
+        DialogueSpeedToken nextSpeedToken = null;   // A token used to determine when to change the display speed and by how much
+        int charIndex = 0;                          // An index to the current char within the sentence
 
         if (activeDialogue.speedControls.Count > 0)
         {
-            nextSpeedToken = GetNextSpeedToken(nextSpeedToken);
+            nextSpeedToken = GetNextSpeedToken(nextSpeedToken); // Initialize nextSpeedToken if there are any
         }
 
-        dialogueText.text = "";
+        dialogueText.text = ""; // Clear text field
+        
+        // This loop controls the display speed of a sentence.
         foreach (char letter in sentence.ToCharArray())
         {
-            if (skipText)
+            if (skipText)   // This value allows the player to override normal display speed and present the entire sentence at once.
             {
-                dialogueText.text = sentence;
-                break;
+                dialogueText.text = sentence;   // Set to display entire sentence immediately.
+                while(nextSpeedToken!= null)    // Applies all speed tokens that would have occured had the text not been skipped.
+                {
+                    charDelay += nextSpeedToken.charDelayChange;
+                    nextSpeedToken = GetNextSpeedToken(nextSpeedToken);
+                }
+                break;                          // Now that full sentence has been display, break out of loop.
             }
 
-            if (nextSpeedToken != null )   // Updates charDelay and speed token, if any.
+            if (nextSpeedToken != null )   // Updates charDelay and speed token, if any (more) exist.
             {
                 if (nextSpeedToken.charIndex == charIndex)
                 {
@@ -402,20 +430,21 @@ public class DialogueManager : MonoBehaviour {
                 }
             }
 
-            yield return new WaitForSeconds(charDelay); //Wait charDelay seconds between each letter.
+            yield return new WaitForSeconds(charDelay); //Wait charDelay seconds between each letter. 
             dialogueText.text += letter;
             charIndex++;
         }
 
         if (skipText)
         {
-            skipText = !skipText;
+            skipText = !skipText;   // Once sentence is display, turn off skip text so it doesn't automatically run on next sentence
         }
 
         sentenceIndex++;
         sentenceDisplayInProgress = false;
     }
 
+    // Resets and Updates values at completion of dialogue
     public void EndDialogue()
     {
         sentences.Clear();
@@ -435,10 +464,13 @@ public class DialogueManager : MonoBehaviour {
         activeNPC = null;
     }
 
+    // Activates the dialogueBox
     public void ShowBox()
     {
         dialogueBox.SetActive(true);
     }
+
+    // Deactivates the dialogueBox
     public void HideBox()
     {
         dialogueBox.SetActive(false);
