@@ -8,6 +8,8 @@ public class CameraOptimized : MonoBehaviour
     public Transform character;
 
     [Header("Camera Mechanics")]
+    public float defaultAngleY;
+    public float defaultAngleX;
     public float highClampAngle;
     public float lowClampAngle;
     public float inputSensitivity;
@@ -38,7 +40,10 @@ public class CameraOptimized : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
         distance = defaultDistance;
+        mouseY = defaultAngleY;
+        mouseX = defaultAngleX;
 
         playerRB = character.GetComponentInParent<Rigidbody>();
         defaultFOV = GetComponent<Camera>().fieldOfView;
@@ -50,6 +55,7 @@ public class CameraOptimized : MonoBehaviour
         mouseX += Input.GetAxis("XBOX_Thumbstick_R_X") * inputSensitivity;
         mouseY -= Input.GetAxis("XBOX_Thumbstick_R_Y") * inputSensitivity;
 
+        // setup rotation for mouse
         mouseX += Input.GetAxis("PC_Mouse_X") * inputSensitivity;
         mouseY -= Input.GetAxis("PC_Mouse_Y") * inputSensitivity;
 
@@ -77,17 +83,23 @@ public class CameraOptimized : MonoBehaviour
         Vector3 direction = new Vector3(0, 0, -finalDistance);
         Quaternion rotation = Quaternion.Euler(mouseY, mouseX, 0);
 
+        // apples all transformations to the camera
         transform.position = character.position + rotation * direction;
         transform.LookAt(character.position);
     }
+
+    // modify camera values based on player's speed
     void SpeedCameraChange()
     {
+        // take dot product of player's movement relative to camera direction to apply speed cam only in forward and backwards movement
         float vectorDot = Vector3.Dot(character.GetComponentInParent<PlayerMovement>().GetVelocity().normalized, transform.forward.normalized);
 
+        // modifies camera distance
         if (modifyDistance)
         {
             finalDistance = distance + playerRB.velocity.magnitude * distanceSpeedModifier * Time.deltaTime * vectorDot;
         }
+        // modifies camera field of view
         if (modifyFOV)
         {
             GetComponent<Camera>().fieldOfView = defaultFOV + (playerRB.velocity.magnitude * fovSpeedModifier) * Time.deltaTime * vectorDot;
