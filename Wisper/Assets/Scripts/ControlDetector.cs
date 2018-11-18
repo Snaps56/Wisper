@@ -18,6 +18,8 @@ public class ControlDetector : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        // check all detectable input controllers
+        // toggles objects active based on whether player is using controller or keyboard input
         string[] names = Input.GetJoystickNames();
         for(int i = 0; i < names.Length; i++)
         {
