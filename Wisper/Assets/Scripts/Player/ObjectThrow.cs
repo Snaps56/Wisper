@@ -27,7 +27,6 @@ public class ObjectThrow : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        // movementVector = character.GetComponent<PlayerMovement>().GetVelocityVector();
         playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
 		originalThrowForce = throwForce;
     }

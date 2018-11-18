@@ -8,10 +8,13 @@ public class PlayerMovement : MonoBehaviour {
     public float movementSpeed;
     public float sprintMultiplier;
     public float stopMultiplier;
+
     private Rigidbody rb;
     private bool sprintMod;
     private float finalSpeed;
+
     private OrbCount orbCountScript;
+    public float orbMovementIncrease;
     private float originalMoveSpeed;
     private float targetFollowDistance = 5;
     private GameObject followTarget;
@@ -29,9 +32,6 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        // transform.Translate(mainCamera.transform.right * Input.GetAxis("MovementX"));
-        // transform.Translate(mainCamera.transform.forward * Input.GetAxis("MovementY"));
-
         // If there is a follow target, sets rigid body's velocity to a "following" velocity.
         if (followTarget != null)
         {
@@ -39,7 +39,8 @@ public class PlayerMovement : MonoBehaviour {
         }
 
 		movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount());
-        
+
+        // check if player is pressing the sprint button
         if (sprintMod == false && (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint")))
         {
             sprintMod = true;
@@ -51,12 +52,14 @@ public class PlayerMovement : MonoBehaviour {
             //finalSpeed = movementSpeed;
         }
 
-		if (sprintMod) {
+        // if the player is pressing the sprint button, increase the player's movement speed
+        if (sprintMod) {
 			finalSpeed = movementSpeed * sprintMultiplier;
 		} else {
 			finalSpeed = movementSpeed;
 		}
 
+        // add forces to the player's rigidbody in all 3 movement axis to move the player
         rb.AddForce(mainCamera.transform.right * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
         rb.AddForce(mainCamera.transform.right * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
 
@@ -66,13 +69,17 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(mainCamera.transform.up * Input.GetAxis("XBOX_Axis_MovementY") * finalSpeed);
         rb.AddForce(mainCamera.transform.up * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
 
+        // add an opposing force that will automatically slow down the player and add a "cap" to force applied
         rb.AddForce(-rb.velocity * stopMultiplier);
     }
 
+    // returns the player's current velocity
     public Vector3 GetVelocity()
     {
         return rb.velocity;
     }
+
+    // returns the force that the player is applying to the character to move around
     public Vector3 GetForce()
     {
         Vector3 forceVector = Vector3.zero;
@@ -86,6 +93,7 @@ public class PlayerMovement : MonoBehaviour {
         return forceVector;
     }
 
+    // returns a boolean that checks whether if the player is sprinting or not
     public bool GetIsSprinting()
     {
         return sprintMod;
