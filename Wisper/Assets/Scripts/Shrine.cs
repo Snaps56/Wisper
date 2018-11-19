@@ -45,53 +45,62 @@ public class Shrine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (player.GetComponentInChildren<InteractableCollision>().nearShrine) {
-			//activationParticles.SetActive (true);
-			//transform.Find("Blue Particles").gameObject.GetComponent<ParticleSystem>().Play();
-			foreach (ParticleSystem partPlay in coloredParticles) {
-				//Debug.Log (partPlay.name);
-				if(!partPlay.isPlaying) {
-					partPlay.Play ();
-				}
-			}
-			//coloredParticles.Play(true);
-			gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
-			if (!(bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
-				if (gettingCleaned && cleanProgress < 1.0f) {
-					cleanProgress += 0.1f;
-					shrinePart1.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine1, cleanShrine1, cleanProgress);
-					shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
-				}
-				if (cleanProgress >= 1.0f) {
-					//isClean = true;
-					GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"] = true;
-					GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().updateCount++;
-					this.GetComponent<SpawnOrbs> ().DropOrbs ();
-				}
-			}
-			if (Input.GetKeyDown (KeyCode.L) && (bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
-				if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
-					DepositOrbs ();
-					orbDepositInstance = Instantiate (orbDeposit, player.transform.position + new Vector3 (0, 0f, 0), Quaternion.identity);
-					orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
-				}
-                /*
+        if (player.GetComponentInChildren<InteractableCollision>().nearShrine)
+        {
+            //activationParticles.SetActive (true);
+            //transform.Find("Blue Particles").gameObject.GetComponent<ParticleSystem>().Play();
+            foreach (ParticleSystem partPlay in coloredParticles)
+            {
+                //Debug.Log (partPlay.name);
+                if (!partPlay.isPlaying)
+                {
+                    partPlay.Play();
+                }
+            }
+            //coloredParticles.Play(true);
+            gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
+            if (!(bool)GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().stateConditions["ShrineIsClean"])
+            {
+                if (gettingCleaned && cleanProgress < 1.0f)
+                {
+                    cleanProgress += 0.1f;
+                    shrinePart1.GetComponent<MeshRenderer>().material.Lerp(dirtyShrine1, cleanShrine1, cleanProgress);
+                    shrinePart2.GetComponent<MeshRenderer>().material.Lerp(dirtyShrine2, cleanShrine2, cleanProgress);
+                }
+                if (cleanProgress >= 1.0f)
+                {
+                    //isClean = true;
+                    GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().stateConditions["ShrineIsClean"] = true;
+                    GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().updateCount++;
+                    this.GetComponent<SpawnOrbs>().DropOrbs();
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.L) && (bool)GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().stateConditions["ShrineIsClean"])
+            {
+
+                if (player.GetComponent<OrbCount>().GetOrbCount() > 0)
+                {
+                    DepositOrbs();
+                    orbDepositInstance = Instantiate(orbDeposit, player.transform.position + new Vector3(0, 0f, 0), Quaternion.identity);
+                    orbDepositInstance.GetComponent<OrbSequence>().setDestination(this.gameObject, "shrine");
+                }
+
+                //If the camera isn't active
                 if (cutsceneCamera.gameObject.activeSelf == false)
                 {
+                    //Deactivate main camera
                     mainCamera.gameObject.SetActive(false);
+                    //Activate Cutscene Camera
                     cutsceneCamera.gameObject.SetActive(true);
+                    //Find the UI Element for the Wind Power
                     GameObject.Find("WindPowerBG").SetActive(false);
+                    //Activate the rain particle system
                     rain.SetActive(true);
+                    //Change the directional light to be dimmer
                     light.GetComponent<Light>().color = Color.black;
+                    //Play the animation for the camera
                     cutsceneCamera.GetComponent<Animation>().Play();
-                    //GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
-                    if (!cutsceneCamera.GetComponent<Animation>().isPlaying)
-                    {
-                        mainCamera.gameObject.SetActive(true);
-                        cutsceneCamera.gameObject.SetActive(false);
-                    }
                 }
-                */
             }
 		} else {
 			//activationParticles.SetActive (false);

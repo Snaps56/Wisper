@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obj_FacePlayer : MonoBehaviour {
-    public Transform mainCamera;
+public class Cutscene2Events : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.rotation = mainCamera.rotation;
+		
 	}
 }
