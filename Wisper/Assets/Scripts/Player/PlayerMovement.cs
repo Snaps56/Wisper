@@ -14,7 +14,9 @@ public class PlayerMovement : MonoBehaviour {
     private float finalSpeed;
 
     private OrbCount orbCountScript;
+
     public float orbMovementIncrease;
+
     private float originalMoveSpeed;
     private float targetFollowDistance = 5;
     private GameObject followTarget;
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour {
             SetFollowTargetVelocity(followTarget);
         }
 
-		movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount());
+		movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount() * orbMovementIncrease);
 
         // check if player is pressing the sprint button
         if (sprintMod == false && (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint")))
