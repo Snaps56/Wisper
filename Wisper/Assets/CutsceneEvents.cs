@@ -17,6 +17,11 @@ public class CutsceneEvents : MonoBehaviour {
         GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
     }
 
+    void playCutscene2 ()
+    {
+        GetComponent<Animation>().Play("Cutscene2");
+    }
+
     //Event called when the animation should end
     void endAnimation()
     {
@@ -29,4 +34,6 @@ public class CutsceneEvents : MonoBehaviour {
         //Resets the rain tint back to normal
         light.GetComponent<Light>().color = Color.white;
     }
+
+    
 }

@@ -27,7 +27,16 @@ public class ActivateCutscene : MonoBehaviour {
                 rain.SetActive(true);
                 light.GetComponent<Light>().color = Color.black;
                 cutsceneCamera.GetComponent<Animation>().Play();
+
             }
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("Playing Intro");
+            mainCamera.gameObject.SetActive(false);
+            cutsceneCamera.gameObject.SetActive(true);
+            GameObject.Find("WindPowerBG").SetActive(false);
+            cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
         }
     }
 }
