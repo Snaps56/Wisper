@@ -267,6 +267,76 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &38349423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 38349424}
+  - component: {fileID: 38349426}
+  - component: {fileID: 38349425}
+  m_Layer: 0
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &38349424
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38349423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1205230008}
+  m_Father: {fileID: 1378498790}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &38349425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38349423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &38349426
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 38349423}
+  m_CullTransparentMesh: 0
 --- !u!1 &38604194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,7 +1603,7 @@ GameObject:
   - component: {fileID: 291008901}
   - component: {fileID: 291008900}
   m_Layer: 0
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1893,7 +1963,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2441,7 +2511,7 @@ GameObject:
   - component: {fileID: 365689832}
   - component: {fileID: 365689831}
   m_Layer: 0
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9638,7 +9708,7 @@ GameObject:
   - component: {fileID: 671489264}
   - component: {fileID: 671489263}
   m_Layer: 0
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9996,44 +10066,6 @@ MonoBehaviour:
   detection: 5
   stopLength: 1.25
   move: 1
---- !u!114 &737896360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 737896352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultCharDelay: 0.09
-  dialogues:
-  - dialogueName: Find my hat!
-    enabled: 1
-    enableConditions:
-    - conditionName: ShamusHasHat
-      conditionValue: 0
-    speedControls:
-    - sentenceIndex: 0
-      charIndex: 9
-      charDelayChange: -0.06
-    - sentenceIndex: 0
-      charIndex: 25
-      charDelayChange: 0.56
-    - sentenceIndex: 0
-      charIndex: 26
-      charDelayChange: -0.5
-    sentences:
-    - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
-  - dialogueName: My hat is found.
-    enabled: 0
-    enableConditions:
-    - conditionName: ShamusHasHat
-      conditionValue: 1
-    speedControls: []
-    sentences:
-    - Oh weee! My hat! I've been looking all over for this!
 --- !u!114 &737896361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10048,17 +10080,21 @@ MonoBehaviour:
   floatingTexts:
   - dialogueName: Find my hat!
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Where'd me hat go?
   - dialogueName: Hat found!
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Hat got.
@@ -10174,7 +10210,7 @@ GameObject:
   - component: {fileID: 745079504}
   - component: {fileID: 745079503}
   m_Layer: 0
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12564,6 +12600,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
   orbCount: 5
+--- !u!1 &985901247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985901248}
+  - component: {fileID: 985901250}
+  - component: {fileID: 985901249}
+  m_Layer: 0
+  m_Name: DialogueTrigger
+  m_TagString: DialogueTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &985901248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 985901247}
+  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 737896353}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &985901249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 985901247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCharDelay: 0.09
+  dialogues:
+  - dialogueName: Find my hat!
+    enabled: 1
+    forceOnEnable: 0
+    enableConditions:
+    - conditionName: ShamusHasHat
+      conditionValue: 0
+    conditionChangeOnExit: []
+    speedControls:
+    - sentenceIndex: 0
+      charIndex: 9
+      charDelayChange: -0.06
+    - sentenceIndex: 0
+      charIndex: 25
+      charDelayChange: 0.56
+    - sentenceIndex: 0
+      charIndex: 26
+      charDelayChange: -0.5
+    sentences:
+    - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
+  - dialogueName: My hat is found.
+    enabled: 0
+    forceOnEnable: 0
+    enableConditions:
+    - conditionName: ShamusHasHat
+      conditionValue: 1
+    conditionChangeOnExit: []
+    speedControls: []
+    sentences:
+    - Oh weee! My hat! I've been looking all over for this!
+--- !u!135 &985901250
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 985901247}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &987319589
 GameObject:
   m_ObjectHideFlags: 0
@@ -19316,16 +19436,16 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1205230007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1378498790}
+  m_Father: {fileID: 38349424}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00017881393}
   m_SizeDelta: {x: 1200, y: 675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1205230009
@@ -19360,7 +19480,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Hello world
 --- !u!222 &1205230010
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24895,7 +25015,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: a206e9d3998aaa445a268b96aed49ed9, type: 3}
-    m_FontSize: 40
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -24906,7 +25026,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Placeholder dialogue
+  m_Text: 'Placeholder dialogue. This is the maximum length for a line of text.......
+
+    You can fit up to 2 lines in one "sentence" of a Dialogue.'
 --- !u!222 &1320425467
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25121,8 +25243,8 @@ GameObject:
   - component: {fileID: 1361118313}
   - component: {fileID: 1361118312}
   m_Layer: 0
-  m_Name: ShrineDialogueTrigger
-  m_TagString: Untagged
+  m_Name: DialogueTrigger
+  m_TagString: DialogueTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25151,16 +25273,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCharDelay: 0.066
+  defaultCharDelay: 0.12
   dialogues:
   - dialogueName: Greeting
-    enabled: 1
+    enabled: 0
+    forceOnEnable: 1
     enableConditions:
-    - conditionName: 
+    - conditionName: StartupShrineDialogue
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: StartupShrineDialogue
       conditionValue: 0
-    speedControls: []
+    speedControls:
+    - sentenceIndex: 0
+      charIndex: 0
+      charDelayChange: 0.05
+    - sentenceIndex: 0
+      charIndex: 4
+      charDelayChange: 0.04
+    - sentenceIndex: 0
+      charIndex: 7
+      charDelayChange: -0.04
+    - sentenceIndex: 0
+      charIndex: 16
+      charDelayChange: 0.08
+    - sentenceIndex: 0
+      charIndex: 17
+      charDelayChange: -0.08
+    - sentenceIndex: 0
+      charIndex: 35
+      charDelayChange: 0.8
+    - sentenceIndex: 0
+      charIndex: 36
+      charDelayChange: -0.8
+    - sentenceIndex: 0
+      charIndex: 45
+      charDelayChange: 0.04
+    - sentenceIndex: 0
+      charIndex: 48
+      charDelayChange: -0.04
+    - sentenceIndex: 0
+      charIndex: 68
+      charDelayChange: 0.16
+    - sentenceIndex: 1
+      charIndex: 0
+      charDelayChange: -0.12
     sentences:
-    - Hello little whisper
+    - 'Come... find me. Can you hear me?...
+
+      Please... Come toward the light...'
+    - I'll be waiting for you...
 --- !u!135 &1361118313
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25271,7 +25433,7 @@ GameObject:
   - component: {fileID: 1378498792}
   - component: {fileID: 1378498791}
   m_Layer: 0
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25287,14 +25449,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0020000003, y: 0.0019999999, z: 1}
   m_Children:
-  - {fileID: 1205230008}
+  - {fileID: 38349424}
   m_Father: {fileID: 737896353}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 1200, y: 675}
+  m_SizeDelta: {x: 1200, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1378498791
 MonoBehaviour:
@@ -25949,7 +26111,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 12, y: 100}
+  m_SizeDelta: {x: 9.6, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1416380106
 MonoBehaviour:
@@ -27283,6 +27445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875a0ff325523da49bf03f1bee1673c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistantStateDataUpdateCount: 0
 --- !u!4 &1587594955
 Transform:
   m_ObjectHideFlags: 0
@@ -43156,8 +43319,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -136.9}
-  m_SizeDelta: {x: 928, y: 184.2}
+  m_AnchoredPosition: {x: 0, y: -110}
+  m_SizeDelta: {x: 800, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2043513210
 MonoBehaviour:
