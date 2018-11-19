@@ -32,8 +32,8 @@ public class NPCMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Player" && (Input.GetButton("PC_Key_Interact") || Input.GetButton("XBOX_Button_X")))
         {
-            move = false;
-            animator.SetBool("Idle", true);
+            //move = false;
+            //animator.SetBool("Idle", true);
         }
     }
     private void OnTriggerExit(Collider other)

@@ -102,7 +102,7 @@ public class CameraOptimized : MonoBehaviour
         // modifies camera field of view
         if (modifyFOV)
         {
-            GetComponent<Camera>().fieldOfView = defaultFOV + (playerRB.velocity.magnitude * fovSpeedModifier) * Time.deltaTime * vectorDot;
+            GetComponent<Camera>().fieldOfView = defaultFOV + (playerRB.velocity.magnitude * fovSpeedModifier) * vectorDot;
         }
     }
 }
