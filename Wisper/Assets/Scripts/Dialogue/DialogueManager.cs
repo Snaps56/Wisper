@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour {
     private GameObject dialogueBox;         // The GameObject containing the dialogue box text elements
     private Text dialogueText;              // Text field of dialogue box
     private Text dialogueName;              // Name field of dialogue box
+    private GameObject optionPanels;        // The gameobject that is a parent of the object panels.
 
     // Display time values & references
     private GameObject activeNPC;           // Reference to NPC with active dialogue
@@ -25,11 +26,21 @@ public class DialogueManager : MonoBehaviour {
     private int sentenceIndex = 0;          // Index for number of sentence from queue currently being displayed.
     private float charDelay;                // Delay between adding chars to display. Controls the "speed of speech." Minimum delay is 1/framerate seconds for charDelay, which corresponds to the "fastest talking speed."
 
+    private Option activeOption;            // Reference to the active option
+    private Choice activeChoice;            // Reference to the choice currently selected.
+    private int activeChoiceIndex = 0;          // Index of active choice within list of display choices
+    private List<Choice> displayChoices = new List<Choice>();    // List of choices to display on screen
+    private List<int> activeOptionPanels = new List<int>();   // List of which option panels are displayed by their number
+    private int selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
+    
+
     // Locks and controls
     private bool sentenceDisplayInProgress; // A lock used with subroutines that update UI text elements
     private bool dialogueBoxActive;         // A lock for preventing floating text or other UI elements from displaying during dialogue box use. Can be referenced for other things which need to be locked when dialogue box is active.
     private bool skipText = false;          // Switch to fast forward text on player click
-    
+    private bool optionActive = false;
+    private bool optionChangeOnCooldown = false;
+
     // References to entities in scene
     private GameObject player;                                      // Reference to the player
     private List<GameObject> inRangeNPC = new List<GameObject>();   // List of all DialogueTriggers in range of player collider. Stored here to avoid repetitive find operations each frame.
@@ -60,6 +71,7 @@ public class DialogueManager : MonoBehaviour {
     {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
 
+        optionPanels = GameObject.FindGameObjectWithTag("OptionPanels");
         /*if(dialogueBox != null)
         {
             // Debug.Log("Found dialogueBox");
@@ -79,14 +91,6 @@ public class DialogueManager : MonoBehaviour {
                 Debug.Log("Unexpected text field found with name: " + textField.name);
             }*/
         }
-        /*if(dialogueName == null)
-        {
-            // Debug.LogError("Dialogue display componenet not found: dialogueName");
-        }
-        if(dialogueText == null)
-        {
-            // Debug.LogError("Dialogue display componenet not found: dialogueText");
-        }*/
 
         sentences = new Queue<string>();
         
@@ -159,7 +163,54 @@ public class DialogueManager : MonoBehaviour {
                 }
                 else
                 {
-                    DisplayNextSentence();
+                    if (optionActive)
+                    {
+                        // TODO Handle what happens when dialogue is picked.
+                        foreach(TargetCondition condition in activeChoice.changeConditions)
+                        {
+                            ChangeCondition(condition); // Apply any condition changes attached to the active choice
+                        }
+                        foreach(int panelNum in activeOptionPanels)
+                        {
+                            UpdateOptionPanel(panelNum);    // Deactivates all the option panels
+                        }
+
+                        // Reset option variables
+                        activeOption = null;
+                        activeChoice = null;            // Reference to the choice currently selected.
+                        activeChoiceIndex = 0;          // Index of active choice within list of display choices
+                        displayChoices.Clear();
+                        activeOptionPanels.Clear();
+                        optionActive = false;
+                        selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
+                        DisplayNextSentence();
+                    }
+                    else
+                    {
+                        DisplayNextSentence();  //No options, so display next sentence;
+                    }
+                }
+            }
+            else if (optionActive)
+            {
+                //Debug.Log("Option active set true");
+                if (Input.GetAxis("XBOX_Thumbstick_L_Y") != 0 || Input.GetAxis("PC_Axis_MovementZ") != 0)
+                {
+                    Debug.Log("Detected input on forward/backward axis");
+                    if(!optionChangeOnCooldown)
+                    {
+                        Debug.Log("Cooldown is false");
+                        optionChangeOnCooldown = true;
+                        if(Input.GetAxis("XBOX_Thumbstick_L_Y") > 0 || Input.GetAxis("PC_Axis_MovementZ") > 0)
+                        {
+                            StartCoroutine(ChoiceScrollCoroutine("up"));
+                        }
+                        else if(Input.GetAxis("XBOX_Thumbstick_L_Y") < 0 || Input.GetAxis("PC_Axis_MovementZ") < 0)
+                        {
+                            StartCoroutine(ChoiceScrollCoroutine("down"));
+                        }
+                    }
+
                 }
             }
         }
@@ -254,7 +305,15 @@ public class DialogueManager : MonoBehaviour {
             }
             else
             {
-                d.enabled = false;
+                if(d.enabled)
+                {
+                    d.enabled = false;
+                    if(d.forceOnEnable)
+                    {
+                        npc.transform.localPosition = new Vector3(0, 0, 0); // If a forceOnEnable was deactivated, move its DialogueTrigger back to the parent's location  
+                    }
+                }
+                
             }
             tempCheck = true;   // Reset tempCheck for next dialogue
         }
@@ -295,6 +354,220 @@ public class DialogueManager : MonoBehaviour {
         throw new MissingReferenceException("No enabled dialogue on " + npc.transform.parent.name);
     }
 
+    // If an option would be active for the current sentence, set it for the active dialogue and initialize choices. Otherwise set as null.
+    private void SetActiveOption()
+    {
+        activeOption = null;
+        if(activeDialogue != null)
+        {
+            if(activeDialogue.options.Count!= 0)
+            {
+                foreach(Option o in activeDialogue.options)
+                {
+                    if(o.sentenceIndex == sentenceIndex)
+                    {
+                        activeOption = o;
+                        activeChoice = activeOption.choices[0]; // Set default choice to the first one.
+                        activeChoiceIndex = 0;
+                        InitializeDisplayedChoices();
+                    }
+                }
+            }
+        }
+    }
+
+    // Initializes the displayed choices
+    private void InitializeDisplayedChoices()
+    {
+        if(activeOption.choices.Count <= 4)
+        {
+            foreach(Choice c in activeOption.choices)
+            {
+                if(activeOption == null)
+                {
+                    Debug.Log("Active option is null");
+                }
+                else if(activeOption.choices == null)
+                {
+                    Debug.Log("Active option choices is null");
+                }
+                else if(c == null)
+                {
+                    Debug.Log("Choice c is null");
+                }
+                
+                displayChoices.Add(c);
+            }
+
+            if(displayChoices.Count < 3)
+            {
+                activeOptionPanels.Add(2); activeOptionPanels.Add(3); // Use middle 2 option panels
+            }
+            else if ( displayChoices.Count < 4)
+            {
+                activeOptionPanels.Add(2); activeOptionPanels.Add(3); activeOptionPanels.Add(4); // Use last 3 choice panels
+            }
+            else
+            {
+                activeOptionPanels.Add(1); activeOptionPanels.Add(2); activeOptionPanels.Add(3); activeOptionPanels.Add(4); // Use all 4 option panels
+            }
+        }
+        else
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                displayChoices.Add(activeOption.choices[i]);
+            }
+            activeOptionPanels.Add(1); activeOptionPanels.Add(2); activeOptionPanels.Add(3); activeOptionPanels.Add(4); // Use all 4 option pannels
+        }
+        selectedOptionPanelIndex = 0;
+    }
+    
+    IEnumerator ChoiceScrollCoroutine(string direction)
+    {
+        Debug.Log("inside scroll enumerator");
+        if(direction.ToLower() == "up")
+        {
+            Debug.Log("scrolling up");
+            ChoicesScrollUp();
+        }
+        else if(direction.ToLower() == "down")
+        {
+            Debug.Log("Scrolling down");
+            ChoicesScrollDown();
+        }
+        ShowChoices();
+        yield return new WaitForSeconds(0.4f); // Enforces a tiny cooldown when scrolling between options so player has some precision control;
+        optionChangeOnCooldown = false;
+    }
+    // Call when moving up option list. Will shift dialogue options if more than 4, and wraps to bottom option if the first option was selected.
+    private void ChoicesScrollUp()
+    {
+        if(activeChoiceIndex != 0)  // If the active choice was not the first choice, no "option wrapping" is required
+        {
+            activeChoiceIndex--;
+            activeChoice = activeOption.choices[activeChoiceIndex];
+            if(selectedOptionPanelIndex != 0)
+            {
+                selectedOptionPanelIndex--; // If the top option panel wasn't the selected panel, make the next highest option panel the selected one
+            }
+            else
+            {
+                if (activeOption.choices.Count > 4) // If there are more than 4 choices, have the displayed options "scroll up"
+                {
+                    for (int i = 2; i >= 0; i--)
+                    {
+                        displayChoices[i + 1] = displayChoices[i];  // Move each choice down in display order
+                    }
+                    displayChoices[0] = activeChoice; // Set top displayed choice to active choice
+                }
+            }
+        }
+        else // Active choice was the first one, wrap to last choice
+        {
+            activeChoiceIndex = activeOption.choices.Count - 1;         // Set the selected choice to the last one
+            selectedOptionPanelIndex = activeOptionPanels.Count - 1;    // Set selected panel to bottom one
+            if (activeOption.choices.Count > 4) // If there are more than 4 choices, setup the options to be the last 4
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    displayChoices[i] = activeOption.choices[activeChoiceIndex - (i + 1)]; // Populates top 3 choices with 3 choices above the last one                    
+                }
+                displayChoices[3] = activeChoice; // Set the last display choice to the active one
+            }
+        }   
+    }
+
+    // Call when moving down option list. Will shift dialogue options if more than 4, and wraps to top option if the last option was selected.
+    private void ChoicesScrollDown()
+    {
+        if (activeChoiceIndex != activeOption.choices.Count - 1)  // If the active choice was not the last choice, no "option wrapping" is required
+        {
+            activeChoiceIndex++;
+            activeChoice = activeOption.choices[activeChoiceIndex];
+            if (selectedOptionPanelIndex != activeOptionPanels.Count - 1)
+            {
+                selectedOptionPanelIndex++; // If the bottom option panel wasn't the selected panel, make the next lowest option panel the selected one
+            }
+            else
+            {
+                if (activeOption.choices.Count > 4) // If there are more than 4 choices, have the displayed options "scroll down"
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        displayChoices[i] = displayChoices[i+1];  // Move each choice up in display order
+                    }
+                    displayChoices[3] = activeChoice; // Set bottom displayed choice to active choice
+                }
+            }
+        }
+        else // Active choice was the last one, wrap to first choice
+        {
+            activeChoiceIndex = 0;         // Set the selected choice to the last one
+            selectedOptionPanelIndex = 0;    // Set selected panel to top one
+            if (activeOption.choices.Count > 4) // If there are more than 4 choices, setup the options to be the first 4
+            {
+                for (int i = 3; i > 0; i--)
+                {
+                    displayChoices[i] = activeOption.choices[(i + 1)]; // Populates bottom 3 choices with 3 choices below the first one                    
+                }
+                displayChoices[0] = activeChoice; // Set the last display choice to the active one
+            }
+        }
+    }
+
+    private void ShowChoices()
+    {
+        if(activeOption != null)
+        {
+            if(!optionActive)
+            {
+                optionActive = true;    // toggle lock for option active
+            }
+
+            int panelIter = 0;
+            foreach(Choice c in displayChoices)
+            {
+                UpdateOptionPanel(activeOptionPanels[panelIter], c);
+                panelIter++;
+            }
+        }
+    }
+
+    private void UpdateOptionPanel(int panelNum, Choice c = null)
+    {
+        GameObject optionPanel = optionPanels.transform.Find("Panel " + panelNum).gameObject;
+        if(c == null)
+        {
+            optionPanel.SetActive(false);   // If no choice argument, deactivate panel
+        }
+        else
+        {
+            optionPanel.GetComponentInChildren<Text>().text = c.reply;  // If choice argument passed, update text and activate panel
+            
+            if(panelNum == activeOptionPanels[selectedOptionPanelIndex])
+            {
+                Color tmpColor = optionPanel.GetComponent<Image>().color;
+                tmpColor.a = 1.0f;
+                optionPanel.GetComponent<Image>().color = tmpColor;
+            }
+            else
+            {
+                Color tmpColor = optionPanel.GetComponent<Image>().color;
+                tmpColor.a = 0.5f;
+                optionPanel.GetComponent<Image>().color = tmpColor;
+            }
+            optionPanel.SetActive(true);
+        }
+    }
+
+    // Change a target condition in PersistantStateData to the value of changeTarget
+    private void ChangeCondition(TargetCondition changeTarget)
+    {
+        persistantStateData.GetComponent<PersistantStateData>().stateConditions[changeTarget.conditionName] = changeTarget.conditionValue;
+        persistantStateData.GetComponent<PersistantStateData>().updateCount++;
+    }
+
     // If condition updates set for active dialgoue, apply them. Also, if active dialogue was a forceOnEnable, reset it's position to the npc (FOE's enable condition(s) should be updated on its completion)
     private void OnEndConditionUpdates()
     {
@@ -302,8 +575,9 @@ public class DialogueManager : MonoBehaviour {
         {
             foreach(TargetCondition condition in activeDialogue.conditionChangeOnExit)
             {
-                persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] = condition.conditionValue;
-                persistantStateData.GetComponent<PersistantStateData>().updateCount++;
+                ChangeCondition(condition);
+                //persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] = condition.conditionValue;
+                //persistantStateData.GetComponent<PersistantStateData>().updateCount++;
             }
             if(activeDialogue.forceOnEnable)
             {
@@ -384,6 +658,7 @@ public class DialogueManager : MonoBehaviour {
             else
             {
                 sentenceDisplayInProgress = true;   // Flags the sentence display coroutine as being in progress
+                SetActiveOption();
                 string sentence = sentences.Dequeue();
                 StartCoroutine(DisplaySentence(sentence));
             }
@@ -440,6 +715,7 @@ public class DialogueManager : MonoBehaviour {
             skipText = !skipText;   // Once sentence is display, turn off skip text so it doesn't automatically run on next sentence
         }
 
+        ShowChoices();    // Display choices after sentence has been printed.
         sentenceIndex++;
         sentenceDisplayInProgress = false;
     }
@@ -459,6 +735,8 @@ public class DialogueManager : MonoBehaviour {
         OnEndConditionUpdates();
 
         sentenceIndex = 0;
+
+
         activeDialogue = null;
         dialogueBoxActive = false;
         activeNPC = null;

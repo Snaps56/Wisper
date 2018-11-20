@@ -28,6 +28,8 @@ public class Dialogue{
 
     public List<TargetCondition> conditionChangeOnExit;
 
+    public List<Option> options;
+
     public List<DialogueSpeedToken> speedControls;
 
     [TextArea(1,3)]

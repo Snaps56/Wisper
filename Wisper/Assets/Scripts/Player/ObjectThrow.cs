@@ -9,6 +9,7 @@ public class ObjectThrow : MonoBehaviour {
     public Collider radiusCollider;
     private OrbCount orbcountScript;
 	private float playerOrbCount;
+	// Particles that play when player is throwing
 	public ParticleSystem throwParticles;
 
     [Header("Throw Mechanics")]
@@ -23,11 +24,14 @@ public class ObjectThrow : MonoBehaviour {
     private Vector3 deltaMovementVector;
     private Vector3 forceVector;
     private float currentPlayerVelocity;
+	// Base throw force
 	private float originalThrowForce;
 
     // Use this for initialization
     void Start () {
-        playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
+        movementVector = transform.position;
+		playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
+		// Initialize original throw force
 		originalThrowForce = throwForce;
     }
 
@@ -48,6 +52,7 @@ public class ObjectThrow : MonoBehaviour {
     
         character.GetComponent<Rigidbody>();
 
+		// Play particles when player is holding the throw button
 		if (isThrowingObjects) {
 			if (!throwParticles.isPlaying) {
 				throwParticles.Play ();
@@ -58,6 +63,8 @@ public class ObjectThrow : MonoBehaviour {
 			}
 		}
 
+
+		// Modify throw force based on orb count
 		playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
 		throwForce = originalThrowForce + playerOrbCount;
 
