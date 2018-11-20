@@ -21,11 +21,14 @@ public class Shrine : MonoBehaviour {
 	public Component[] coloredParticles;
 	public GameObject playerAbilities;
 
+    private PlayerMovement playerMovement;
+
     [Header("Cutscene Objects")]
     public Camera cutsceneCamera;
     public Camera mainCamera;
     public GameObject rain;
     public GameObject light;
+    public GameObject windPowerUI;
 
     [Header("Clean Stuff")]
 	public bool gettingCleaned;
@@ -85,22 +88,20 @@ public class Shrine : MonoBehaviour {
                     orbDepositInstance.GetComponent<OrbSequence>().setDestination(this.gameObject, "shrine");
                 }
 
-                //If the camera isn't active
-                if (cutsceneCamera.gameObject.activeSelf == false)
-                {
-                    //Deactivate main camera
-                    mainCamera.gameObject.SetActive(false);
-                    //Activate Cutscene Camera
-                    cutsceneCamera.gameObject.SetActive(true);
-                    //Find the UI Element for the Wind Power
-                    GameObject.Find("WindPowerBG").SetActive(false);
-                    //Activate the rain particle system
-                    rain.SetActive(true);
-                    //Change the directional light to be dimmer
-                    light.GetComponent<Light>().color = Color.black;
-                    //Play the animation for the camera
-                    cutsceneCamera.GetComponent<Animation>().Play("Deposit");
-                }
+
+                player.GetComponent<PlayerMovement>().ToggleMovement();
+                //Deactivate main camera
+                mainCamera.gameObject.SetActive(false);
+                //Activate Cutscene Camera
+                cutsceneCamera.gameObject.SetActive(true);
+                //Find the UI Element for the Wind Power
+                windPowerUI.SetActive(false);
+                //Activate the rain particle system
+                rain.SetActive(true);
+                //Change the directional light to be dimmer
+                light.GetComponent<Light>().color = Color.black;
+                //Play the animation for the camera
+                cutsceneCamera.GetComponent<Animation>().Play("Deposit");
             }
 		} else {
 			//activationParticles.SetActive (false);

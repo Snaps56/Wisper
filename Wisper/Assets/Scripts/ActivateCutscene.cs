@@ -8,6 +8,8 @@ public class ActivateCutscene : MonoBehaviour {
     public Camera mainCamera;
     public GameObject rain;
     public GameObject light;
+    public GameObject player;
+
 
     // Use this for initialization
     void Start () {
@@ -17,6 +19,7 @@ public class ActivateCutscene : MonoBehaviour {
     void Awake()
     {
         Debug.Log("Playing Intro");
+        player.GetComponent<PlayerMovement>().ToggleMovement();
         mainCamera.gameObject.SetActive(false);
         cutsceneCamera.gameObject.SetActive(true);
         GameObject.Find("WindPowerBG").SetActive(false);
