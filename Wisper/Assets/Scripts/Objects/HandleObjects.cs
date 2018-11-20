@@ -11,8 +11,6 @@ public class HandleObjects : MonoBehaviour
     public float throwForce = 10000;
     bool hasPlayer = false;
     bool beingCarried = false;
-    public AudioClip[] soundToPlay;
-    private AudioSource audio;
     private bool touched = false;
     public float carryCooldownTime = 1;
     float currentCooldownTime = 0;
@@ -22,7 +20,7 @@ public class HandleObjects : MonoBehaviour
 
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -41,6 +39,7 @@ public class HandleObjects : MonoBehaviour
             rightMouseDown = false;
         }
 
+        //Ditects the distance from the object to the player
         float dist = Vector3.Distance(gameObject.transform.position, player.position);
         if (dist <= 2f)
         {
@@ -62,6 +61,7 @@ public class HandleObjects : MonoBehaviour
         // objects are currently being carried
         if (beingCarried)
         {
+            //Rotates object while its being held
             transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime * 3);
             if (touched)
             {
@@ -99,6 +99,8 @@ public class HandleObjects : MonoBehaviour
 
 		IgnoreCollision ();
     }
+
+    //Throws the object
     void throwObject()
     {
         // drop object first before throwing
@@ -112,24 +114,17 @@ public class HandleObjects : MonoBehaviour
 
         // adds cooldown to objects to prevent them from being immediately picked up after throwing
         startCooldown = true;
-        // RandomAudio();
     }
+
+    //Drop the object
     void dropObject()
     {
         GetComponent<Rigidbody>().isKinematic = false;
         transform.parent = null;
         beingCarried = false;
     }
-    void RandomAudio()
-    {
-        if (audio.isPlaying)
-        {
-            return;
-        }
-        audio.clip = soundToPlay[Random.Range(0, soundToPlay.Length)];
-        audio.Play();
 
-    }
+    //Activate on collision with character
     void OnTriggerEnter()
     {
         if (beingCarried)
@@ -138,6 +133,7 @@ public class HandleObjects : MonoBehaviour
         }
     }
 
+    //Ignores collision with player
 	void IgnoreCollision() {
 		Physics.IgnoreCollision (player.GetComponent<Collider>(), this.GetComponent<Collider>());
 	}

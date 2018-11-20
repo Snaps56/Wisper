@@ -20,7 +20,7 @@ public class ObjectLift : MonoBehaviour {
     public float maxHoldRadiusMultiplier;
 
     private bool isLiftingObjects = false;
-    private bool isHoldingButton = false;
+
     private bool isThrowingObjects;
     private Vector3 velocity = Vector3.zero;
     private Vector3 targetPosition;
@@ -28,6 +28,7 @@ public class ObjectLift : MonoBehaviour {
     private float currentCharacterSpeed;
 	// Base lift strength
 	private float originalLiftCenterStrength;
+
     List<GameObject> liftedObjects = new List<GameObject>();
 
     // Use this for initialization
@@ -41,6 +42,7 @@ public class ObjectLift : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
+        // check if the player is currently pressing the lift button
         if (Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0)
         {
             isLiftingObjects = true;
@@ -76,10 +78,12 @@ public class ObjectLift : MonoBehaviour {
 		liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
 
         // obtain character movement data to help track movement for lifted objects
-        //currentCharacterVector = orbcountScript.currentMovementForce;
+        // currentCharacterVector = orbcountScript.currentMovementForce;
         currentCharacterVector.y *= 0;
         currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
     }
+
+    // returns bool that checks if the player is currently trying to lift objects
     public bool GetIsLiftingObjects()
     {
         return isLiftingObjects;

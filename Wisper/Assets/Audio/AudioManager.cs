@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+        // Makes sure that only one audiomanager is active at a time.
         if (instance == null)
         {
            instance = this;
@@ -26,6 +27,7 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        // Adds audiosource for each audio file with selected attributes
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -35,12 +37,13 @@ public class AudioManager : MonoBehaviour
             s.source.outputAudioMixerGroup = mixerGroup;
         }
     }
-
+    // Plays Main Theme
     void Start()
     {
         Play("windChimeSong");
     }
 
+    // Finds and plays the song
     public void Play(string sound)
     {
         Sound s = Array.Find(sounds, item => item.name == sound);
@@ -49,10 +52,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
-
-        s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
-        s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
-
         s.source.Play();
     }
 

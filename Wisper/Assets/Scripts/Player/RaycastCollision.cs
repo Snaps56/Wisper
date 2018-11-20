@@ -23,47 +23,65 @@ public class RaycastCollision : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        playerForce = GetComponent<PlayerMovement>().currentForceVector();
-        playerVelocity = GetComponent<PlayerMovement>().currentVelocityVector();
-        isSprinting = GetComponent<PlayerMovement>().isSprinting();
+        // 
+        playerForce = GetComponent<PlayerMovement>().GetForce();
+        playerVelocity = GetComponent<PlayerMovement>().GetVelocity();
+        isSprinting = GetComponent<PlayerMovement>().GetIsSprinting();
 
-        RayCaster(Vector3.right, 'x');
-        RayCaster(-Vector3.right, 'x');
-        RayCaster(Vector3.up, 'y');
-        RayCaster(-Vector3.up, 'y');
-        RayCaster(Vector3.forward, 'z');
-        RayCaster(-Vector3.forward, 'z');
+        // add raycast detection to all 3 axis of movement
+        RayCasterDiagonal(Vector3.right);
+        RayCasterDiagonal(-Vector3.right);
+
+        RayCasterDiagonal(Vector3.forward);
+        RayCasterDiagonal(-Vector3.forward);
+
+        RayCasterDiagonal(Vector3.up);
+        RayCasterDiagonal(-Vector3.up);
+
+        // add raycast detection for all flat diagonals
+        RayCasterDiagonal((Vector3.right + Vector3.forward).normalized);
+        RayCasterDiagonal((Vector3.right + -Vector3.forward).normalized);
+        RayCasterDiagonal((-Vector3.right + Vector3.forward).normalized);
+        RayCasterDiagonal((-Vector3.right + -Vector3.forward).normalized);
+
+        RayCasterDiagonal((Vector3.up + Vector3.forward).normalized);
+        RayCasterDiagonal((Vector3.up + -Vector3.forward).normalized);
+        RayCasterDiagonal((-Vector3.up + Vector3.forward).normalized);
+        RayCasterDiagonal((-Vector3.up + -Vector3.forward).normalized);
+
+        // add raycast detection for all perfect diagonals
+        RayCasterDiagonal((Vector3.up + Vector3.forward + Vector3.right).normalized);
+        RayCasterDiagonal((Vector3.up + Vector3.forward + -Vector3.right).normalized);
+        RayCasterDiagonal((Vector3.up + -Vector3.forward + Vector3.right).normalized);
+        RayCasterDiagonal((Vector3.up + -Vector3.forward + -Vector3.right).normalized);
+
+        RayCasterDiagonal((-Vector3.up + Vector3.forward + Vector3.right).normalized);
+        RayCasterDiagonal((-Vector3.up + Vector3.forward + -Vector3.right).normalized);
+        RayCasterDiagonal((-Vector3.up + -Vector3.forward + Vector3.right).normalized);
+        RayCasterDiagonal((-Vector3.up + -Vector3.forward + -Vector3.right).normalized);
     }
-    void RayCaster(Vector3 direction, char axis)
+
+    // creates a raycast that detects "collision" and adds a force in the opposite direction
+    void RayCasterDiagonal(Vector3 direction)
     {
         RaycastHit hit;
-        float movementForce = 0.0f;
-        float movementVelocity = 0.0f;
 
-        if (axis == 'x')
-        {
-            movementForce = Mathf.Abs(playerForce.x);
-            movementVelocity = Mathf.Abs(playerVelocity.x);
-        }
-        else if (axis == 'y')
-        {
-            movementForce = Mathf.Abs(playerForce.y);
-            movementVelocity = Mathf.Abs(playerVelocity.y);
-        }
-        else
-        {
-            movementForce = Mathf.Abs(playerForce.z);
-            movementVelocity = Mathf.Abs(playerVelocity.z);
-        }
+        // find dot product for player speed and momentum in direction of vector
+        float movementForce = Vector3.Dot(playerForce, direction);
+        float movementVelocity = Vector3.Dot(playerVelocity, direction);
 
+        // Use generated raycasts for collision detection
         if (Physics.Raycast(transform.position, direction, out hit, radius))
         {
-            if (hit.collider.tag == "Terrain")
+            // "collide" only when collider is detecting an object that has these tags
+            if (hit.collider.tag == "Terrain" || hit.collider.tag == "Water")
             {
+                // calculate repel force via distance from ground
                 Vector3 floatVector = transform.position - hit.point;
-
                 Vector3 repelVector = (-direction - floatVector) * repelForce;
-                
+
+                // modify repel force based on player's velocity and momentum
+
                 if (movementVelocity > 1)
                 {
                     repelVector += repelVector * movementVelocity;
@@ -77,7 +95,8 @@ public class RaycastCollision : MonoBehaviour {
                 {
                     repelVector *= movementForce;
                 }
-                
+
+                // apply repel force to player
                 rb.AddForce(repelVector);
             }
         }

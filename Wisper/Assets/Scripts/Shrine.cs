@@ -31,6 +31,8 @@ public class Shrine : MonoBehaviour {
 	// Here to check if player is using a certain ability
 	public GameObject playerAbilities;
 
+    private PlayerMovement playerMovement;
+
     [Header("Cutscene Objects")]
 	// Camera that is used for cutscene
     public Camera cutsceneCamera;
@@ -40,6 +42,7 @@ public class Shrine : MonoBehaviour {
     public GameObject rain;
 	// Lightning for the cutscene
     public GameObject light;
+    public GameObject windPowerUI;
 
     [Header("Clean Stuff")]
 	// Condition for when the shrine is in the process of being cleaned
@@ -97,7 +100,7 @@ public class Shrine : MonoBehaviour {
 				}
 			}
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
-			if (Input.GetKeyDown (KeyCode.L) && (bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
+			if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) && (bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
 				// Make sure the player has orbs to deposit
 				if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
 					// Function that changes orb count
@@ -107,23 +110,20 @@ public class Shrine : MonoBehaviour {
 					orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
 				}
 				// After depositing orbs, play a cutscene of the storm
-                /*
-                if (cutsceneCamera.gameObject.activeSelf == false)
-                {
-                    mainCamera.gameObject.SetActive(false);
-                    cutsceneCamera.gameObject.SetActive(true);
-                    GameObject.Find("WindPowerBG").SetActive(false);
-                    rain.SetActive(true);
-                    light.GetComponent<Light>().color = Color.black;
-                    cutsceneCamera.GetComponent<Animation>().Play();
-                    //GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
-                    if (!cutsceneCamera.GetComponent<Animation>().isPlaying)
-                    {
-                        mainCamera.gameObject.SetActive(true);
-                        cutsceneCamera.gameObject.SetActive(false);
-                    }
-                }
-                */
+
+                player.GetComponent<PlayerMovement>().ToggleMovement();
+                //Deactivate main camera
+                mainCamera.gameObject.SetActive(false);
+                //Activate Cutscene Camera
+                cutsceneCamera.gameObject.SetActive(true);
+                //Find the UI Element for the Wind Power
+                windPowerUI.SetActive(false);
+                //Activate the rain particle system
+                rain.SetActive(true);
+                //Change the directional light to be dimmer
+                light.GetComponent<Light>().color = Color.black;
+                //Play the animation for the camera
+                cutsceneCamera.GetComponent<Animation>().Play("Deposit");
             }
 		// If the player is not near the shrine, don't play particles
 		} else {
@@ -137,7 +137,7 @@ public class Shrine : MonoBehaviour {
 		// If the player is returning to the shrine after cleaning it, set the shrine materials to the clean ones
 		if ((bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
 			shrinePart1.GetComponent<MeshRenderer> ().material = cleanShrine1;
-			shrinePart2.GetComponent<MeshRenderer> ().material = cleanShrine2;
+			//shrinePart2.GetComponent<MeshRenderer> ().material = cleanShrine2;
 		}
 	}
 
