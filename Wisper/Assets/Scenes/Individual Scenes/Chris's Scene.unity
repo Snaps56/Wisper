@@ -1085,6 +1085,7 @@ MonoBehaviour:
     forceOnEnable: 0
     enableConditions: []
     conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Hello little whisper
@@ -1634,6 +1635,7 @@ MonoBehaviour:
     - conditionName: 
       conditionValue: 0
     conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Where'd me hat go?
@@ -1691,6 +1693,7 @@ MonoBehaviour:
     - conditionName: 
       conditionValue: 0
     conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Where the fuck is my hat bitch!?!
@@ -1701,6 +1704,7 @@ MonoBehaviour:
     - conditionName: 
       conditionValue: 0
     conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - What the fuck did you just fucking say about me, you little bitch? I'll have
@@ -9049,6 +9053,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 2098870119}
+  defaultAngleY: 0
+  defaultAngleX: 0
   highClampAngle: 80
   lowClampAngle: -80
   inputSensitivity: 4
@@ -9056,6 +9062,10 @@ MonoBehaviour:
   maxDistance: 10
   minDistance: 3
   zoomSensitivity: 3
+  modifyFOV: 0
+  modifyDistance: 0
+  fovSpeedModifier: 0
+  distanceSpeedModifier: 0
 --- !u!114 &534669908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10248,6 +10258,7 @@ MonoBehaviour:
     - conditionName: 
       conditionValue: 0
     conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
@@ -10258,6 +10269,7 @@ MonoBehaviour:
     - conditionName: 
       conditionValue: 0
     conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Oh weee! My hat! I've been looking all over for this!
@@ -10280,6 +10292,7 @@ MonoBehaviour:
     - conditionName: 
       conditionValue: 0
     conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Where'd me hat go?
@@ -10947,6 +10960,7 @@ MonoBehaviour:
   movementSpeed: 6
   sprintMultiplier: 2
   stopMultiplier: 1
+  orbMovementIncrease: 0
 --- !u!1 &785504065
 GameObject:
   m_ObjectHideFlags: 0
@@ -11735,7 +11749,7 @@ MonoBehaviour:
   m_MinValue: -50
   m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: -15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
