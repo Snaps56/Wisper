@@ -969,7 +969,9 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Greeting
     enabled: 1
+    forceOnEnable: 0
     enableConditions: []
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Hello little whisper
@@ -1664,9 +1666,11 @@ MonoBehaviour:
   floatingTexts:
   - dialogueName: Find my hat!
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Where'd me hat go?
@@ -1719,17 +1723,21 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Where the fuck is my hat bitch!?!
   - dialogueName: My hat is found.
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - What the fuck did you just fucking say about me, you little bitch? I'll have
@@ -19177,17 +19185,21 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
   - dialogueName: My hat is found.
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Oh weee! My hat! I've been looking all over for this!
@@ -19205,9 +19217,11 @@ MonoBehaviour:
   floatingTexts:
   - dialogueName: Find my hat!
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
     speedControls: []
     sentences:
     - Where'd me hat go?
@@ -19528,6 +19542,61 @@ Prefab:
       value: 
       objectReference: {fileID: 1702124250645596, guid: 9dde5c2ac66c67a4ab433f1be734553f,
         type: 2}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199703076679614128, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.sizeAffectsLifetime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.dieWithParticles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.worldSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.widthOverTrail.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].value
+      value: 0.29729694
+      objectReference: {fileID: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].inSlope
+      value: 0.19770238
+      objectReference: {fileID: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].outSlope
+      value: 0.19770238
+      objectReference: {fileID: 0}
+    - target: {fileID: 198380510178817326, guid: 1ec12d476aaa00444885af1da3a3ea13,
+        type: 2}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].outWeight
+      value: 0.06835443
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec12d476aaa00444885af1da3a3ea13, type: 2}
   m_IsPrefabAsset: 0
@@ -20012,7 +20081,6 @@ MonoBehaviour:
   movementSpeed: 6
   sprintMultiplier: 2
   stopMultiplier: 1
-  sprintMod: 0
 --- !u!114 &773190238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21032,6 +21100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875a0ff325523da49bf03f1bee1673c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistantStateDataUpdateCount: 0
 --- !u!4 &926362224
 Transform:
   m_ObjectHideFlags: 0
@@ -40753,6 +40822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875a0ff325523da49bf03f1bee1673c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistantStateDataUpdateCount: 0
 --- !u!4 &1587594955
 Transform:
   m_ObjectHideFlags: 0
