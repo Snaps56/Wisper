@@ -33,7 +33,7 @@ public class CurtainCheck : MonoBehaviour {
 	void Update () {
         isFading = !curtainAnimator.GetBool("FadeOut");
 
-        if (isFading && !doneFading)
+        if (!doneFading)
         {
             if (!initialTimeInitialized)
             {
@@ -42,7 +42,7 @@ public class CurtainCheck : MonoBehaviour {
             }
             timeCounter = Time.time - initialTime;
 
-            if (timeCounter > (initialTime + fadeDuration))
+            if (timeCounter > fadeDuration)
             {
                 UpdatePSD();
                 doneFading = true;
