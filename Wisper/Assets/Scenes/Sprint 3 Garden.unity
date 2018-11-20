@@ -24920,6 +24920,151 @@ Transform:
   m_Father: {fileID: 291217112}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1167512861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1167512862}
+  - component: {fileID: 1167512864}
+  - component: {fileID: 1167512863}
+  m_Layer: 0
+  m_Name: DialogueTrigger
+  m_TagString: DialogueTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1167512862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1167512861}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 64.920395, y: 1.910963, z: 50.75685}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_Children: []
+  m_Father: {fileID: 2101546118}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1167512863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1167512861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCharDelay: 0.12
+  dialogues:
+  - dialogueName: Greeting
+    enabled: 0
+    forceOnEnable: 1
+    enableConditions:
+    - conditionName: StartupShrineDialogue
+      conditionValue: 1
+    - conditionName: StartupShrineRepeat
+      conditionValue: 0
+    conditionChangeOnExit: []
+    options:
+    - sentenceIndex: 2
+      choices:
+      - reply: Yes
+        changeConditions:
+        - conditionName: StartupShrineRepeat
+          conditionValue: 1
+      - reply: No
+        changeConditions:
+        - conditionName: StartupShrineDialogue
+          conditionValue: 0
+        - conditionName: StartupShrineRepeat
+          conditionValue: 0
+    speedControls:
+    - sentenceIndex: 0
+      charIndex: 0
+      charDelayChange: 0.05
+    - sentenceIndex: 0
+      charIndex: 4
+      charDelayChange: 0.04
+    - sentenceIndex: 0
+      charIndex: 7
+      charDelayChange: -0.04
+    - sentenceIndex: 0
+      charIndex: 16
+      charDelayChange: 0.08
+    - sentenceIndex: 0
+      charIndex: 17
+      charDelayChange: -0.08
+    - sentenceIndex: 0
+      charIndex: 35
+      charDelayChange: 0.8
+    - sentenceIndex: 0
+      charIndex: 36
+      charDelayChange: -0.8
+    - sentenceIndex: 0
+      charIndex: 45
+      charDelayChange: 0.04
+    - sentenceIndex: 0
+      charIndex: 48
+      charDelayChange: -0.04
+    - sentenceIndex: 0
+      charIndex: 68
+      charDelayChange: 0.16
+    - sentenceIndex: 1
+      charIndex: 0
+      charDelayChange: -0.12
+    - sentenceIndex: 1
+      charIndex: 0
+      charDelayChange: -0.5
+    sentences:
+    - 'Come... find me. Can you hear me?...
+
+      Please... Come toward the light...'
+    - I'll be waiting for you...
+    - Do you have a choice?
+  - dialogueName: Repeat Greeting
+    enabled: 0
+    forceOnEnable: 1
+    enableConditions:
+    - conditionName: StartupShrineDialogue
+      conditionValue: 1
+    - conditionName: StartupShrineRepeat
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options:
+    - sentenceIndex: 0
+      choices:
+      - reply: Yes
+        changeConditions:
+        - conditionName: StartupShrineRepeat
+          conditionValue: 1
+      - reply: No
+        changeConditions:
+        - conditionName: StartupShrineDialogue
+          conditionValue: 0
+        - conditionName: StartupShrineRepeat
+          conditionValue: 0
+    speedControls: []
+    sentences:
+    - Let me ask again, do you have a choice?
+--- !u!135 &1167512864
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1167512861}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &1172000510
 GameObject:
   m_ObjectHideFlags: 0
@@ -53864,123 +54009,6 @@ Transform:
   m_Father: {fileID: 1849453413}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1710741430
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1710741431}
-  - component: {fileID: 1710741433}
-  - component: {fileID: 1710741434}
-  m_Layer: 0
-  m_Name: DialogueTrigger
-  m_TagString: DialogueTrigger
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1710741431
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710741430}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 64.920395, y: 1.910963, z: 50.75685}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_Children: []
-  m_Father: {fileID: 2101546118}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1710741433
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710741430}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: 0, y: 1.2, z: 0}
---- !u!114 &1710741434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710741430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultCharDelay: 0.12
-  dialogues:
-  - dialogueName: Greeting
-    enabled: 0
-    forceOnEnable: 1
-    enableConditions:
-    - conditionName: StartupShrineDialogue
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: StartupShrineDialogue
-      conditionValue: 0
-    options:
-    - sentenceIndex: 2
-      choices:
-      - reply: Yes
-        changeConditions:
-        - conditionName: StartupShrineDialogue
-          conditionValue: 0
-        - conditionName: StartupShrineDialogueRepeat
-          conditionValue: 1
-      - reply: No
-        changeConditions:
-        - conditionName: StartupShrineDialogue
-          conditionValue: 0
-    speedControls:
-    - sentenceIndex: 0
-      charIndex: 0
-      charDelayChange: 0.05
-    - sentenceIndex: 0
-      charIndex: 4
-      charDelayChange: 0.04
-    - sentenceIndex: 0
-      charIndex: 7
-      charDelayChange: -0.04
-    - sentenceIndex: 0
-      charIndex: 16
-      charDelayChange: 0.08
-    - sentenceIndex: 0
-      charIndex: 17
-      charDelayChange: -0.08
-    - sentenceIndex: 0
-      charIndex: 35
-      charDelayChange: 0.8
-    - sentenceIndex: 0
-      charIndex: 36
-      charDelayChange: -0.8
-    - sentenceIndex: 0
-      charIndex: 45
-      charDelayChange: 0.04
-    - sentenceIndex: 0
-      charIndex: 48
-      charDelayChange: -0.04
-    - sentenceIndex: 0
-      charIndex: 68
-      charDelayChange: 0.16
-    - sentenceIndex: 1
-      charIndex: 0
-      charDelayChange: -0.12
-    sentences:
-    - 'Come... find me. Can you hear me?...
-
-      Please... Come toward the light...'
-    - I'll be waiting for you...
-    - Do you have a choice?
 --- !u!1 &1715188191
 GameObject:
   m_ObjectHideFlags: 0
