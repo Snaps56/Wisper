@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
     private float targetFollowDistance = 5;
     private GameObject followTarget;
 
+    private bool movementToggledOff = false;
 
     // Use this for initialization
     void Start()
@@ -61,6 +62,24 @@ public class PlayerMovement : MonoBehaviour {
 			finalSpeed = movementSpeed;
 		}
 
+        // toggle player movement
+        if (movementToggledOff == false)
+        {
+            MovePlayer();
+        }
+        // debug key for testing toggle movement
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Debug.Log(movementToggledOff);
+            ToggleMovement();
+        }
+
+        // add an opposing force that will automatically slow down the player and add a "cap" to force applied
+        rb.AddForce(-rb.velocity * stopMultiplier);
+    }
+    // move player, function is called only when movement is toggled
+    void MovePlayer()
+    {
         // add forces to the player's rigidbody in all 3 movement axis to move the player
         rb.AddForce(mainCamera.transform.right * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
         rb.AddForce(mainCamera.transform.right * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
@@ -71,8 +90,6 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(mainCamera.transform.up * Input.GetAxis("XBOX_Axis_MovementY") * finalSpeed);
         rb.AddForce(mainCamera.transform.up * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
 
-        // add an opposing force that will automatically slow down the player and add a "cap" to force applied
-        rb.AddForce(-rb.velocity * stopMultiplier);
     }
 
     // returns the player's current velocity
@@ -146,4 +163,24 @@ public class PlayerMovement : MonoBehaviour {
     {
         followTarget = null;
     }
+
+    // Toggle whether if the player can move
+    public void ToggleMovement()
+    {
+        if (movementToggledOff == true)
+        {
+            movementToggledOff = false;
+        }
+        else
+        {
+            movementToggledOff = true;
+        }
+    }
+
+    // Return whether if player is able to move
+    public bool GetToggleMovement()
+    {
+        return movementToggledOff;
+    }
+
 }
