@@ -13,22 +13,27 @@ public class ActivateCutscene : MonoBehaviour {
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Awake()
+    {
+        Debug.Log("Playing Intro");
+        mainCamera.gameObject.SetActive(false);
+        cutsceneCamera.gameObject.SetActive(true);
+        GameObject.Find("WindPowerBG").SetActive(false);
+        cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
+    }
+
+    // Update is called once per frame
+    void Update () {
         //Plays cutscene while pressing "N" on keyboard
         if (Input.GetKeyDown(KeyCode.N))
         {
-            if (cutsceneCamera.gameObject.activeSelf == false)
-            {
-                mainCamera.gameObject.SetActive(false);
-                cutsceneCamera.gameObject.SetActive(true);
-                GameObject.Find("WindPowerBG").SetActive(false);
-                rain.SetActive(true);
-                light.GetComponent<Light>().color = Color.black;
-                cutsceneCamera.GetComponent<Animation>().Play();
-
-            }
+            mainCamera.gameObject.SetActive(false);
+            cutsceneCamera.gameObject.SetActive(true);
+            GameObject.Find("WindPowerBG").SetActive(false);
+            rain.SetActive(true);
+            light.GetComponent<Light>().color = Color.black;
+            cutsceneCamera.GetComponent<Animation>().Play();
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -36,7 +41,7 @@ public class ActivateCutscene : MonoBehaviour {
             mainCamera.gameObject.SetActive(false);
             cutsceneCamera.gameObject.SetActive(true);
             GameObject.Find("WindPowerBG").SetActive(false);
-            cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
+            cutsceneCamera.GetComponent<Animation>().Play("Cutscene3");
         }
     }
 }

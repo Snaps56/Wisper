@@ -9,6 +9,7 @@ public class CutsceneEvents : MonoBehaviour {
     public Camera mainCamera;
     public GameObject rain;
     public GameObject light;
+    public GameObject windPowerUI;
 
     //Event called when the flower is supposed to animate
     void playFlower()
@@ -22,6 +23,11 @@ public class CutsceneEvents : MonoBehaviour {
         GetComponent<Animation>().Play("Cutscene2");
     }
 
+    void playCutscene3 ()
+    {
+        GetComponent<Animation>().Play("Cutscene3");
+    }
+
     //Event called when the animation should end
     void endAnimation()
     {
@@ -29,6 +35,7 @@ public class CutsceneEvents : MonoBehaviour {
         mainCamera.gameObject.SetActive(true);
         //Turns this game object off
         this.gameObject.SetActive(false);
+        windPowerUI.SetActive(true);
         //Turned rain off
         rain.SetActive(false);
         //Resets the rain tint back to normal

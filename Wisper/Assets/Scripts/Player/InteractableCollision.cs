@@ -29,7 +29,7 @@ public class InteractableCollision : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		miniMap.SetActive(true);
+		//miniMap.SetActive(true);
 		rb = GetComponent<Rigidbody>();
 
 

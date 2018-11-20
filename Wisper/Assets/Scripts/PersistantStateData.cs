@@ -38,7 +38,7 @@ public class PersistantStateData : MonoBehaviour
     {
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("ShrineIsClean", false);
-        stateConditions.Add("StartupShrineDialogue", true);
+        stateConditions.Add("StartupShrineDialogue", false);
     }
 }
 

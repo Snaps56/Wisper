@@ -75,7 +75,7 @@ public class Shrine : MonoBehaviour {
                     this.GetComponent<SpawnOrbs>().DropOrbs();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.L) && (bool)GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().stateConditions["ShrineIsClean"])
+            if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) && (bool)GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().stateConditions["ShrineIsClean"])
             {
 
                 if (player.GetComponent<OrbCount>().GetOrbCount() > 0)
@@ -99,7 +99,7 @@ public class Shrine : MonoBehaviour {
                     //Change the directional light to be dimmer
                     light.GetComponent<Light>().color = Color.black;
                     //Play the animation for the camera
-                    cutsceneCamera.GetComponent<Animation>().Play();
+                    cutsceneCamera.GetComponent<Animation>().Play("Deposit");
                 }
             }
 		} else {
@@ -114,7 +114,7 @@ public class Shrine : MonoBehaviour {
 
 		if ((bool)GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"]) {
 			shrinePart1.GetComponent<MeshRenderer> ().material = cleanShrine1;
-			shrinePart2.GetComponent<MeshRenderer> ().material = cleanShrine2;
+			//shrinePart2.GetComponent<MeshRenderer> ().material = cleanShrine2;
 		}
 	}
 
