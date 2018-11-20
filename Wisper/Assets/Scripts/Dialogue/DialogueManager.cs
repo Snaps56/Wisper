@@ -174,6 +174,14 @@ public class DialogueManager : MonoBehaviour {
                         {
                             UpdateOptionPanel(panelNum);    // Deactivates all the option panels
                         }
+
+                        // Reset option variables
+                        activeOption = null;
+                        activeChoice = null;            // Reference to the choice currently selected.
+                        activeChoiceIndex = 0;          // Index of active choice within list of display choices
+                        displayChoices.Clear();
+                        activeOptionPanels.Clear();
+                        selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
                         DisplayNextSentence();
                     }
                     else
@@ -718,6 +726,8 @@ public class DialogueManager : MonoBehaviour {
         OnEndConditionUpdates();
 
         sentenceIndex = 0;
+
+
         activeDialogue = null;
         dialogueBoxActive = false;
         activeNPC = null;

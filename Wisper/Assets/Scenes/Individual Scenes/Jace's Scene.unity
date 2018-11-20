@@ -25862,21 +25862,21 @@ MonoBehaviour:
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: StartupShrineDialogue
+    - conditionName: StartupShrineRepeat
       conditionValue: 0
+    conditionChangeOnExit: []
     options:
     - sentenceIndex: 2
       choices:
       - reply: Yes
         changeConditions:
-        - conditionName: StartupShrineDialogue
-          conditionValue: 0
-        - conditionName: StartupShrineDialogueRepeat
+        - conditionName: StartupShrineRepeat
           conditionValue: 1
       - reply: No
         changeConditions:
         - conditionName: StartupShrineDialogue
+          conditionValue: 0
+        - conditionName: StartupShrineRepeat
           conditionValue: 0
     speedControls:
     - sentenceIndex: 0
@@ -25912,12 +25912,40 @@ MonoBehaviour:
     - sentenceIndex: 1
       charIndex: 0
       charDelayChange: -0.12
+    - sentenceIndex: 1
+      charIndex: 0
+      charDelayChange: -0.5
     sentences:
     - 'Come... find me. Can you hear me?...
 
       Please... Come toward the light...'
     - I'll be waiting for you...
     - Do you have a choice?
+  - dialogueName: Repeat Greeting
+    enabled: 0
+    forceOnEnable: 1
+    enableConditions:
+    - conditionName: StartupShrineDialogue
+      conditionValue: 1
+    - conditionName: StartupShrineRepeat
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options:
+    - sentenceIndex: 0
+      choices:
+      - reply: Yes
+        changeConditions:
+        - conditionName: StartupShrineRepeat
+          conditionValue: 1
+      - reply: No
+        changeConditions:
+        - conditionName: StartupShrineDialogue
+          conditionValue: 0
+        - conditionName: StartupShrineRepeat
+          conditionValue: 0
+    speedControls: []
+    sentences:
+    - Let me ask again, do you have a choice?
 --- !u!135 &1361118313
 SphereCollider:
   m_ObjectHideFlags: 0
