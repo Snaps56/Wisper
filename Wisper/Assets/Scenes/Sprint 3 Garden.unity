@@ -16812,109 +16812,6 @@ Transform:
   m_Father: {fileID: 290745049}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &710792473
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 710792474}
-  - component: {fileID: 710792476}
-  - component: {fileID: 710792475}
-  m_Layer: 0
-  m_Name: DialogueTrigger
-  m_TagString: DialogueTrigger
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &710792474
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 710792473}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_Children: []
-  m_Father: {fileID: 2101546118}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &710792475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 710792473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultCharDelay: 0.12
-  dialogues:
-  - dialogueName: Greeting
-    enabled: 0
-    forceOnEnable: 1
-    enableConditions:
-    - conditionName: StartupShrineDialogue
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: StartupShrineDialogue
-      conditionValue: 0
-    speedControls:
-    - sentenceIndex: 0
-      charIndex: 0
-      charDelayChange: 0.05
-    - sentenceIndex: 0
-      charIndex: 4
-      charDelayChange: 0.04
-    - sentenceIndex: 0
-      charIndex: 7
-      charDelayChange: -0.04
-    - sentenceIndex: 0
-      charIndex: 16
-      charDelayChange: 0.08
-    - sentenceIndex: 0
-      charIndex: 17
-      charDelayChange: -0.08
-    - sentenceIndex: 0
-      charIndex: 35
-      charDelayChange: 0.8
-    - sentenceIndex: 0
-      charIndex: 36
-      charDelayChange: -0.8
-    - sentenceIndex: 0
-      charIndex: 45
-      charDelayChange: 0.04
-    - sentenceIndex: 0
-      charIndex: 48
-      charDelayChange: -0.04
-    - sentenceIndex: 0
-      charIndex: 68
-      charDelayChange: 0.16
-    - sentenceIndex: 1
-      charIndex: 0
-      charDelayChange: -0.12
-    sentences:
-    - 'Come... find me. Can you hear me?...
-
-      Please... Come toward the light...'
-    - I'll be waiting for you...
---- !u!135 &710792476
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 710792473}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &715037584
 GameObject:
   m_ObjectHideFlags: 0
@@ -18577,7 +18474,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2101546118}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -1.417, y: 6.7390003, z: -3.2580001}
 --- !u!108 &814540654
 Light:
@@ -52752,6 +52649,123 @@ Transform:
   m_Father: {fileID: 1849453413}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1710741430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710741431}
+  - component: {fileID: 1710741433}
+  - component: {fileID: 1710741432}
+  m_Layer: 0
+  m_Name: DialogueTrigger
+  m_TagString: DialogueTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1710741431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710741430}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 64.920395, y: 1.910963, z: 50.75685}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_Children: []
+  m_Father: {fileID: 2101546118}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1710741432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710741430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCharDelay: 0.12
+  dialogues:
+  - dialogueName: Greeting
+    enabled: 0
+    forceOnEnable: 1
+    enableConditions:
+    - conditionName: StartupShrineDialogue
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: StartupShrineDialogue
+      conditionValue: 0
+    - conditionName: StartupShrineDialogueFinished
+      conditionValue: 1
+    speedControls:
+    - sentenceIndex: 0
+      charIndex: 0
+      charDelayChange: 0.05
+    - sentenceIndex: 0
+      charIndex: 4
+      charDelayChange: 0.04
+    - sentenceIndex: 0
+      charIndex: 7
+      charDelayChange: -0.04
+    - sentenceIndex: 0
+      charIndex: 16
+      charDelayChange: 0.08
+    - sentenceIndex: 0
+      charIndex: 17
+      charDelayChange: -0.08
+    - sentenceIndex: 0
+      charIndex: 35
+      charDelayChange: 0.8
+    - sentenceIndex: 0
+      charIndex: 36
+      charDelayChange: -0.8
+    - sentenceIndex: 0
+      charIndex: 45
+      charDelayChange: 0.04
+    - sentenceIndex: 0
+      charIndex: 48
+      charDelayChange: -0.04
+    - sentenceIndex: 0
+      charIndex: 68
+      charDelayChange: 0.16
+    - sentenceIndex: 1
+      charIndex: 0
+      charDelayChange: -0.12
+    sentences:
+    - 'Come... find me. Can you hear me?...
+
+      Please... Come toward the light...'
+    - I'll be waiting for you...
+  - dialogueName: Interact
+    enabled: 0
+    forceOnEnable: 0
+    enableConditions:
+    - conditionName: StartupShrineDialogueFinished
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: TutorialTalkedWithShrine
+      conditionValue: 1
+    speedControls: []
+    sentences:
+    - Hello, lil Wisper....
+--- !u!135 &1710741433
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710741430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &1715188191
 GameObject:
   m_ObjectHideFlags: 0
