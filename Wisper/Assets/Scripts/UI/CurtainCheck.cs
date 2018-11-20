@@ -5,10 +5,7 @@ using UnityEngine;
 public class CurtainCheck : MonoBehaviour {
 
     public float fadeDuration;
-
-    private Animator curtainAnimator;
-
-    private bool isFading;
+    
     private bool doneFading;
 
     private float initialTime;
@@ -20,7 +17,6 @@ public class CurtainCheck : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        curtainAnimator = GetComponent<Animator>();
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
 
         initialTime = 0;
@@ -31,7 +27,6 @@ public class CurtainCheck : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        isFading = !curtainAnimator.GetBool("FadeOut");
 
         if (!doneFading)
         {

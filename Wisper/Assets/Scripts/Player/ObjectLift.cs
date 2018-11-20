@@ -22,7 +22,6 @@ public class ObjectLift : MonoBehaviour {
     private bool isLiftingObjects = false;
 
     private bool isThrowingObjects;
-    private Vector3 velocity = Vector3.zero;
     private Vector3 targetPosition;
     private Vector3 currentCharacterVector;
     private float currentCharacterSpeed;
