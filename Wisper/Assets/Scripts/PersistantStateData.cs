@@ -36,9 +36,16 @@ public class PersistantStateData : MonoBehaviour
     // fills the persistantStateConditions with the various conditions. We can consider passing in arguments for initialization when considering save/load functionality.
     public void PopulateStateConditions()
     {
+        stateConditions.Add("StartupFadeFinished", false);
+        stateConditions.Add("StartupShrineDialogueFinished", false);
+
+        stateConditions.Add("StartupShrineDialogue", false);
+        stateConditions.Add("TutorialMovementFinished", false);
+        stateConditions.Add("TutorialTalkedWithShrine", false);
+        stateConditions.Add("TutorialInteractFinished", false);
+
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("ShrineIsClean", false);
-        stateConditions.Add("StartupShrineDialogue", false);
     }
 }
 
