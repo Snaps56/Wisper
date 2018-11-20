@@ -304,7 +304,15 @@ public class DialogueManager : MonoBehaviour {
             }
             else
             {
-                d.enabled = false;
+                if(d.enabled)
+                {
+                    d.enabled = false;
+                    if(d.forceOnEnable)
+                    {
+                        npc.transform.localPosition = new Vector3(0, 0, 0); // If a forceOnEnable was deactivated, move its DialogueTrigger back to the parent's location  
+                    }
+                }
+                
             }
             tempCheck = true;   // Reset tempCheck for next dialogue
         }
