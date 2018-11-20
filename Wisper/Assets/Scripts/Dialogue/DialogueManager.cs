@@ -181,6 +181,7 @@ public class DialogueManager : MonoBehaviour {
                         activeChoiceIndex = 0;          // Index of active choice within list of display choices
                         displayChoices.Clear();
                         activeOptionPanels.Clear();
+                        optionActive = false;
                         selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
                         DisplayNextSentence();
                     }
