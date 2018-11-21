@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour {
     private float finalSpeed;
 
     private OrbCount orbCountScript;
-
     public float orbMovementIncrease;
 
     private float originalMoveSpeed;
@@ -22,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
     private GameObject followTarget;
 
     private bool movementToggledOff = false;
+    private bool planalMovementOn = false;
 
     // Use this for initialization
     void Start()
@@ -33,40 +33,14 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-        // If there is a follow target, sets rigid body's velocity to a "following" velocity.
-        if (followTarget != null)
-        {
-            SetFollowTargetVelocity(followTarget);
-        }
+        movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount() * orbMovementIncrease);
 
-		movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount() * orbMovementIncrease);
+        SprintCheck();
 
-        // check if player is pressing the sprint button
-        if (sprintMod == false && (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint")))
-        {
-            sprintMod = true;
-            //finalSpeed = movementSpeed * sprintMultiplier;
-        }
-        else if (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint"))
-        {
-            sprintMod = false;
-            //finalSpeed = movementSpeed;
-        }
+        PlanalMovementCheck();
 
-        // if the player is pressing the sprint button, increase the player's movement speed
-        if (sprintMod) {
-			finalSpeed = movementSpeed * sprintMultiplier;
-		} else {
-			finalSpeed = movementSpeed;
-		}
-
-        // toggle player movement
-        if (movementToggledOff == false)
-        {
-            MovePlayer();
-        }
         // debug key for testing toggle movement
         if (Input.GetKeyDown(KeyCode.V))
         {
@@ -74,21 +48,105 @@ public class PlayerMovement : MonoBehaviour {
             ToggleMovement();
         }
 
+        // If there is a follow target, sets rigid body's velocity to a "following" velocity.
+        if (followTarget != null)
+        {
+            SetFollowTargetVelocity(followTarget);
+        }
+
+    }
+
+    // Physics-based Update
+    void FixedUpdate()
+    {
+        // toggle player movement, move player using forces if true
+        if (!movementToggledOff)
+        {
+            if (planalMovementOn)
+            {
+                PlanalMovement();
+            }
+            else
+            {
+                MovePlayer();
+            }
+        }
         // add an opposing force that will automatically slow down the player and add a "cap" to force applied
         rb.AddForce(-rb.velocity * stopMultiplier);
     }
+    void PlanalMovementCheck()
+    {
+        // toggle player movement relative to camera or relative to plane
+        if (Input.GetButtonDown("PC_Mouse_Click_Mid") || Input.GetButtonDown("XBOX_Thumbstick_R_Click"))
+        {
+            Debug.Log("PlanalMovement: " + planalMovementOn);
+            if (planalMovementOn)
+            {
+                planalMovementOn = false;
+            }
+            else
+            {
+                planalMovementOn = true;
+            }
+        }
+    }
+    void SprintCheck()
+    {
+        // check if player is pressing the sprint button
+        if (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint"))
+        {
+            Debug.Log("Sprinting: " + sprintMod);
+            if (!sprintMod)
+            {
+                sprintMod = true;
+            }
+            else
+            {
+                sprintMod = false;
+            }
+        }
+
+        // if the player is pressing the sprint button, increase the player's movement speed
+        if (sprintMod)
+        {
+            finalSpeed = movementSpeed * sprintMultiplier;
+        }
+        else
+        {
+            finalSpeed = movementSpeed;
+        }
+
+    }
+
+    void PlanalMovement()
+    {
+        rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
+        rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
+
+        Vector3 forwardVector = mainCamera.transform.forward.normalized;
+        forwardVector.y = 0;
+        forwardVector = forwardVector.normalized;
+        
+        rb.AddForce(forwardVector.normalized * Input.GetAxis("XBOX_Thumbstick_L_Y") * finalSpeed);
+        rb.AddForce(forwardVector.normalized * Input.GetAxis("PC_Axis_MovementZ") * finalSpeed);
+
+        rb.AddForce(Vector3.up.normalized * Input.GetAxis("XBOX_Axis_MovementY") * finalSpeed);
+        rb.AddForce(Vector3.up.normalized * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
+    }
+
     // move player, function is called only when movement is toggled
     void MovePlayer()
     {
+
         // add forces to the player's rigidbody in all 3 movement axis to move the player
-        rb.AddForce(mainCamera.transform.right * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
-        rb.AddForce(mainCamera.transform.right * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
+        rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
+        rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
 
-        rb.AddForce(mainCamera.transform.forward * Input.GetAxis("XBOX_Thumbstick_L_Y") * finalSpeed);
-        rb.AddForce(mainCamera.transform.forward * Input.GetAxis("PC_Axis_MovementZ") * finalSpeed);
+        rb.AddForce(mainCamera.transform.forward.normalized * Input.GetAxis("XBOX_Thumbstick_L_Y") * finalSpeed);
+        rb.AddForce(mainCamera.transform.forward.normalized * Input.GetAxis("PC_Axis_MovementZ") * finalSpeed);
 
-        rb.AddForce(mainCamera.transform.up * Input.GetAxis("XBOX_Axis_MovementY") * finalSpeed);
-        rb.AddForce(mainCamera.transform.up * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
+        rb.AddForce(mainCamera.transform.up.normalized * Input.GetAxis("XBOX_Axis_MovementY") * finalSpeed);
+        rb.AddForce(mainCamera.transform.up.normalized * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
 
     }
 
@@ -117,9 +175,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         return sprintMod;
     }
-
-
-
+    
     // Sets the velocity so that player follows a target. Use in the update block for proper functionality.
     public void SetFollowTargetVelocity(GameObject target)
     {
