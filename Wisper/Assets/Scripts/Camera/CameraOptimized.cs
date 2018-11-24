@@ -128,7 +128,7 @@ public class CameraOptimized : MonoBehaviour
         if (Physics.SphereCast(character.position, sphereCastRadius, direction, out hit, finalDistance))
         {
             // sphere cast only if the collider is an appropriate tag
-            if (hit.collider.tag == "Water" && hit.collider.tag == "Terrain")
+            if (hit.collider.tag == "Water" || hit.collider.tag == "Terrain")
             {
                 collisionDistance = (hit.point - character.position).magnitude;
                 finalDistance = collisionDistance;
