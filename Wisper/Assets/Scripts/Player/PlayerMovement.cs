@@ -120,6 +120,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void PlanalMovement()
     {
+        /*
         rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
         rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
 
@@ -132,12 +133,31 @@ public class PlayerMovement : MonoBehaviour {
 
         rb.AddForce(Vector3.up.normalized * Input.GetAxis("XBOX_Axis_MovementY") * finalSpeed);
         rb.AddForce(Vector3.up.normalized * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
+        */
+
+        Vector3 planalVector = mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X");
+        planalVector += mainCamera.transform.right.normalized * Input.GetAxis("PC_Axis_MovementX");
+
+        Vector3 forwardVector = mainCamera.transform.forward.normalized;
+        forwardVector.y = 0;
+        forwardVector = forwardVector.normalized;
+
+        planalVector += forwardVector.normalized * Input.GetAxis("XBOX_Thumbstick_L_Y");
+        planalVector += forwardVector.normalized * Input.GetAxis("PC_Axis_MovementZ");
+
+        planalVector += Vector3.up.normalized * Input.GetAxis("XBOX_Axis_MovementY");
+        planalVector += Vector3.up.normalized * Input.GetAxis("PC_Axis_MovementY");
+
+        planalVector = planalVector.normalized * finalSpeed;
+
+        rb.AddForce(planalVector);
     }
 
     // move player, function is called only when movement is toggled
     void MovePlayer()
     {
-
+        // this commented block has diagonal movement moving faster than normal directions
+        /*
         // add forces to the player's rigidbody in all 3 movement axis to move the player
         rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
         rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("PC_Axis_MovementX") * finalSpeed);
@@ -147,7 +167,23 @@ public class PlayerMovement : MonoBehaviour {
 
         rb.AddForce(mainCamera.transform.up.normalized * Input.GetAxis("XBOX_Axis_MovementY") * finalSpeed);
         rb.AddForce(mainCamera.transform.up.normalized * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
+        */
 
+
+        // diagonal movement is same speed as normal direction movement
+
+        Vector3 movementVector = mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X");
+        movementVector += mainCamera.transform.right.normalized * Input.GetAxis("PC_Axis_MovementX");
+
+        movementVector += mainCamera.transform.forward.normalized * Input.GetAxis("XBOX_Thumbstick_L_Y");
+        movementVector += mainCamera.transform.forward.normalized * Input.GetAxis("PC_Axis_MovementZ");
+
+        movementVector += mainCamera.transform.up.normalized * Input.GetAxis("XBOX_Axis_MovementY");
+        movementVector += mainCamera.transform.up.normalized * Input.GetAxis("PC_Axis_MovementY");
+
+        movementVector = movementVector.normalized * finalSpeed;
+
+        rb.AddForce(movementVector);
     }
 
     // returns the player's current velocity
