@@ -37,9 +37,9 @@ public class ObjectLift : MonoBehaviour {
 		// Initialize original lift strength
 		originalLiftCenterStrength = liftCenterStrength;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    // Update is called once per frame
+    private void Update()
     {
         // check if the player is currently pressing the lift button
         if (Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0)
@@ -50,10 +50,19 @@ public class ObjectLift : MonoBehaviour {
         {
             isLiftingObjects = false;
         }
-        // Debug.Log("Lifting Objects: " + isLiftingObjects);
-
         isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
 
+        // Modify lift strength based on orb count
+        playerOrbCount = orbcountScript.GetOrbCount();
+        liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
+
+        // obtain character movement data to help track movement for lifted objects
+        // currentCharacterVector = orbcountScript.currentMovementForce;
+        currentCharacterVector.y *= 0;
+        currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
+    }
+    void FixedUpdate ()
+    {
         // lift objects when not throwing
 		// Play particles when player is holding the lift button
         if (isLiftingObjects && !isThrowingObjects)
@@ -71,15 +80,6 @@ public class ObjectLift : MonoBehaviour {
 				liftParticles.Stop ();
 			}
         }
-
-		// Modify lift strength based on orb count
-		playerOrbCount = orbcountScript.GetOrbCount ();
-		liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
-
-        // obtain character movement data to help track movement for lifted objects
-        // currentCharacterVector = orbcountScript.currentMovementForce;
-        currentCharacterVector.y *= 0;
-        currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
     }
 
     // returns bool that checks if the player is currently trying to lift objects
