@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135278, g: 0.50094235, b: 0.5728585, a: 1}
+  m_IndirectSpecularColor: {r: 0.45135295, g: 0.5009421, b: 0.57285845, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -24279,7 +24279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCharDelay: 0.12
+  defaultCharDelay: 0.1
   dialogues:
   - dialogueName: Greeting
     enabled: 0
@@ -24308,13 +24308,13 @@ MonoBehaviour:
     speedControls:
     - sentenceIndex: 0
       charIndex: 0
-      charDelayChange: 0.05
+      charDelayChange: 0.06
     - sentenceIndex: 0
       charIndex: 4
-      charDelayChange: 0.04
+      charDelayChange: 0.08
     - sentenceIndex: 0
       charIndex: 7
-      charDelayChange: -0.04
+      charDelayChange: -0.08
     - sentenceIndex: 0
       charIndex: 16
       charDelayChange: 0.08
@@ -24347,7 +24347,7 @@ MonoBehaviour:
 
       Please... Come toward the light...'
     - I'll be waiting for you...
-    - Do you have a choice?
+    - Test option system?
   - dialogueName: Repeat Greeting
     enabled: 0
     forceOnEnable: 1
@@ -24372,7 +24372,7 @@ MonoBehaviour:
           conditionValue: 1
     speedControls: []
     sentences:
-    - Let me ask again, do you have a choice?
+    - Repeat this dialogue?
   - dialogueName: Interact
     enabled: 0
     forceOnEnable: 0

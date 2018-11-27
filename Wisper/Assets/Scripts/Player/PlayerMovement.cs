@@ -123,35 +123,30 @@ public class PlayerMovement : MonoBehaviour {
     // Sets the velocity so that player follows a target. Use in the update block for proper functionality.
     public void SetFollowTargetVelocity(GameObject target)
     {
-        Vector3 followVel = new Vector3();
-        float verticalError = 2;
-        float catchUpMag = 0.05f;
-        float yAdjustMag = 0.1f;
+        Vector3 toTargetVec = (target.transform.position - transform.position);
+        float toTargetMag = toTargetVec.magnitude;
+        Vector3 toTargetNorm = toTargetVec.normalized;
 
+        float insideFollowDistance = 0.5f;   // Within this distance, don't apply any following forces so that player isn't forced ontop of npc
+        float strongForceTetherDistance = 2f;   // Past this distance, apply stronger forces to move player to npc. Between this and insideFollowDistance, apply small force like standard movement
+
+        Vector3 velocityModifier = new Vector3(1,0,0);   //Vector magnitude 1. If npc has rigid body, make this their velocity. Used to scale "walking" vector when between strongForceTether and insideFollow
         if(target.GetComponent<Rigidbody>() != null)
         {
-            /*
-            followVel = target.GetComponent<Rigidbody>().velocity;
-
-            //Increases velocity proportial to distance to target if outside the follow distance. A "catch up" feature.
-            if (Vector3.Magnitude(transform.position - target.transform.position) > targetFollowDistance)
+            velocityModifier = 60 * target.GetComponent<Rigidbody>().velocity;
+        }
+        
+        if(toTargetMag > insideFollowDistance)  // Only applies forces when beyond the insideFollowDistance
+        {
+            if(toTargetMag <= strongForceTetherDistance)
             {
-                followVel += (target.transform.position - transform.position) * catchUpMag; // Adds a percentage of difference between position to velocity vector
+                rb.AddForce(velocityModifier.magnitude * toTargetNorm); // Add a simple force to keep player moving with target. Applies force with mag based on target velocity in direction of target from player
             }
-
-            //Alters velocity to move player within a range of vertical distance to the target.
-            if (transform.position.y > target.transform.position.y + verticalError || transform.position.y < target.transform.position.y - verticalError)
+            else
             {
-                float yVal = (target.transform.position.y - transform.position.y) * yAdjustMag; // Adds a percentage of difference in y val to velocity vector
-                followVel += new Vector3(0, yVal, 0);
+                rb.AddForce((toTargetMag - strongForceTetherDistance + 1 + velocityModifier.magnitude) * toTargetNorm); // Adds a force that scales linearly with distance from target. At boundary, starts at 1 + velocityModifier's magnitude
             }
-            //Debug.Log("setting follow velocity on rb to x: " + followVel.x  + " y: " + followVel.y + " z: " + followVel.z);
-            //rb.velocity.Set(followVel.x, followVel.y, followVel.z);   // Sets the rb velocity to the follow velocity.
-            //Debug.Log("rb vel is  " + rb.velocity.x + " y: " + rb.velocity.y + " z: " + rb.velocity.z);
-            rb.AddForce(followVel);
-            */
-            transform.position = target.transform.position - 2 * target.transform.forward + new Vector3(0,1,0);
-        } 
+        }
     }
 
     public void SetFollowTarget(GameObject target)
