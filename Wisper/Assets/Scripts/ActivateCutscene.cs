@@ -9,6 +9,7 @@ public class ActivateCutscene : MonoBehaviour {
     public GameObject rain;
     public GameObject light;
     public GameObject player;
+    public GameObject windPB;
 
 
     // Use this for initialization
@@ -33,7 +34,7 @@ public class ActivateCutscene : MonoBehaviour {
         {
             mainCamera.gameObject.SetActive(false);
             cutsceneCamera.gameObject.SetActive(true);
-            GameObject.Find("WindPowerBG").SetActive(false);
+            windPB.SetActive(false);
             rain.SetActive(true);
             light.GetComponent<Light>().color = Color.black;
             cutsceneCamera.GetComponent<Animation>().Play();
@@ -43,8 +44,16 @@ public class ActivateCutscene : MonoBehaviour {
             Debug.Log("Playing Intro");
             mainCamera.gameObject.SetActive(false);
             cutsceneCamera.gameObject.SetActive(true);
-            GameObject.Find("WindPowerBG").SetActive(false);
+            windPB.SetActive(false);
             cutsceneCamera.GetComponent<Animation>().Play("Cutscene3");
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach (AnimationState anim in cutsceneCamera.GetComponent<Animation>())
+            {
+                anim.time = anim.length;
+            }
+        }
+
     }
 }

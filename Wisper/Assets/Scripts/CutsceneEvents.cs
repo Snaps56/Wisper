@@ -14,6 +14,7 @@ public class CutsceneEvents : MonoBehaviour {
     public GameObject player;
 
 
+
     //Event called when the flower is supposed to animate
     void playFlower()
     {
