@@ -236,7 +236,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             else
             {
-                rb.AddForce((toTargetMag - strongForceTetherDistance + 1 + velocityModifier.magnitude) * toTargetNorm); // Adds a force that scales linearly with distance from target. At boundary, starts at 1 + velocityModifier's magnitude
+                rb.AddForce((Mathf.Pow((toTargetMag - strongForceTetherDistance),3) + 2 + velocityModifier.magnitude) * toTargetNorm); // Adds a force that scales linearly with distance from target. At boundary, starts at 1 + velocityModifier's magnitude
             }
         }
     }
