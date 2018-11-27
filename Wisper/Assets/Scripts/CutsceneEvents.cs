@@ -44,7 +44,7 @@ public class CutsceneEvents : MonoBehaviour {
         rain.SetActive(false);
         //Resets the rain tint back to normal
         Color tempColor = new Color(255, 147, 85, 255);
-        light.GetComponent<Light>().color = tempColor;
+        light.GetComponent<Light>().color = Color.white;
     }
 
     
