@@ -9,6 +9,7 @@ public class ObjectLift : MonoBehaviour {
     public SphereCollider radiusCollider;
     private OrbCount orbcountScript;
 	private float playerOrbCount;
+	// Particles that play when lift button is pressed
 	public ParticleSystem liftParticles;
 
     [Header("Lift Mechanics")]
@@ -21,10 +22,10 @@ public class ObjectLift : MonoBehaviour {
     private bool isLiftingObjects = false;
 
     private bool isThrowingObjects;
-    private Vector3 velocity = Vector3.zero;
     private Vector3 targetPosition;
     private Vector3 currentCharacterVector;
     private float currentCharacterSpeed;
+	// Base lift strength
 	private float originalLiftCenterStrength;
 
     List<GameObject> liftedObjects = new List<GameObject>();
@@ -33,6 +34,7 @@ public class ObjectLift : MonoBehaviour {
     void Start () {
         orbcountScript = character.GetComponent<OrbCount>();
 		playerOrbCount = orbcountScript.GetOrbCount ();
+		// Initialize original lift strength
 		originalLiftCenterStrength = liftCenterStrength;
     }
 	
@@ -53,6 +55,7 @@ public class ObjectLift : MonoBehaviour {
         isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
 
         // lift objects when not throwing
+		// Play particles when player is holding the lift button
         if (isLiftingObjects && !isThrowingObjects)
         {
             targetPosition = transform.position + new Vector3(0, liftHeight, 0);
@@ -69,6 +72,7 @@ public class ObjectLift : MonoBehaviour {
 			}
         }
 
+		// Modify lift strength based on orb count
 		playerOrbCount = orbcountScript.GetOrbCount ();
 		liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135295, g: 0.5009421, b: 0.57285845, a: 1}
+  m_IndirectSpecularColor: {r: 0.45135278, g: 0.50094235, b: 0.5728585, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -786,7 +786,7 @@ Transform:
   - {fileID: 18957189}
   - {fileID: 885833930}
   m_Father: {fileID: 1273300177}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &63083449
 GameObject:
@@ -9562,7 +9562,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f68dbcde2645c1c4ea44c69db78da742, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f68dbcde2645c1c4ea44c69db78da742, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10875,7 +10875,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1273300177}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &415381403
 GameObject:
@@ -11493,7 +11493,7 @@ GameObject:
   - component: {fileID: 441263244}
   - component: {fileID: 441263243}
   m_Layer: 0
-  m_Name: ConditionCheck (1)
+  m_Name: Condition Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12181,6 +12181,72 @@ Transform:
   m_Father: {fileID: 613021254}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &466679849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466679850}
+  - component: {fileID: 466679851}
+  m_Layer: 0
+  m_Name: Directional Light (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &466679850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 466679849}
+  m_LocalRotation: {x: 0.79455745, y: -0.270461, z: 0.5241098, w: 0.14435507}
+  m_LocalPosition: {x: 112.9, y: 26, z: 57.6}
+  m_LocalScale: {x: 1.0000005, y: 1.0000014, z: 1.000001}
+  m_Children: []
+  m_Father: {fileID: 1273300177}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 30.857002, y: -241.551, z: -161.07101}
+--- !u!108 &466679851
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 466679849}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &470919234
 GameObject:
   m_ObjectHideFlags: 0
@@ -16182,7 +16248,7 @@ Transform:
   - {fileID: 717686602}
   - {fileID: 2019510788}
   m_Father: {fileID: 1273300177}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684092405
 GameObject:
@@ -19719,7 +19785,7 @@ GameObject:
   - component: {fileID: 880661974}
   - component: {fileID: 880661973}
   m_Layer: 0
-  m_Name: Press Test (1)
+  m_Name: Press Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20557,7 +20623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &936196764
 Transform:
   m_ObjectHideFlags: 0
@@ -23125,7 +23191,6 @@ GameObject:
   - component: {fileID: 1102862351}
   - component: {fileID: 1102862355}
   - component: {fileID: 1102862354}
-  - component: {fileID: 1102862353}
   - component: {fileID: 1102862352}
   - component: {fileID: 1102862356}
   m_Layer: 0
@@ -23146,7 +23211,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -147.436, z: 0}
 --- !u!114 &1102862352
 MonoBehaviour:
@@ -23160,21 +23225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 7ff63ff685645924eb6b3aac0c6b991e, type: 2}
---- !u!114 &1102862353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1102862350}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd32997646cc5214588e397f958d6ac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDistance: 0.01
-  maxDistance: 5
-  smooth: 10
-  zoomRatio: 1
 --- !u!81 &1102862354
 AudioListener:
   m_ObjectHideFlags: 0
@@ -23239,14 +23289,17 @@ MonoBehaviour:
   highClampAngle: 80
   lowClampAngle: -80
   inputSensitivity: 2
-  defaultDistance: 4
+  defaultDistance: 5
   maxDistance: 10
-  minDistance: 4
+  minDistance: 5
   zoomSensitivity: 3
   modifyFOV: 1
   modifyDistance: 0
   fovSpeedModifier: 0.5
   distanceSpeedModifier: 20
+  collisionMinimum: 1
+  sphereCastRadius: 0.5
+  collisionMoveTime: 0
 --- !u!1 &1103614773
 GameObject:
   m_ObjectHideFlags: 0
@@ -24115,7 +24168,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 95512b95af4037647a977c2e7c4443c9, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 95512b95af4037647a977c2e7c4443c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -24326,7 +24379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCharDelay: 0.1
+  defaultCharDelay: 0.12
   dialogues:
   - dialogueName: Greeting
     enabled: 0
@@ -24355,13 +24408,13 @@ MonoBehaviour:
     speedControls:
     - sentenceIndex: 0
       charIndex: 0
-      charDelayChange: 0.06
+      charDelayChange: 0.05
     - sentenceIndex: 0
       charIndex: 4
-      charDelayChange: 0.08
+      charDelayChange: 0.04
     - sentenceIndex: 0
       charIndex: 7
-      charDelayChange: -0.08
+      charDelayChange: -0.04
     - sentenceIndex: 0
       charIndex: 16
       charDelayChange: 0.08
@@ -24394,7 +24447,7 @@ MonoBehaviour:
 
       Please... Come toward the light...'
     - I'll be waiting for you...
-    - Test option system?
+    - Do you have a choice?
   - dialogueName: Repeat Greeting
     enabled: 0
     forceOnEnable: 1
@@ -24419,7 +24472,7 @@ MonoBehaviour:
           conditionValue: 1
     speedControls: []
     sentences:
-    - Repeat this dialogue?
+    - Let me ask again, do you have a choice?
   - dialogueName: Interact
     enabled: 0
     forceOnEnable: 0
@@ -35477,6 +35530,7 @@ Transform:
   - {fileID: 2034680}
   - {fileID: 1585463246}
   - {fileID: 936196764}
+  - {fileID: 466679850}
   - {fileID: 415328958}
   - {fileID: 2069963398}
   - {fileID: 1689481085}
@@ -35810,7 +35864,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3df4453ec403d0647b089e2f3136dc38, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3df4453ec403d0647b089e2f3136dc38, type: 3}
       propertyPath: m_LocalScale.x
@@ -40830,7 +40884,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1273300177}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1331105964
 Prefab:
@@ -44242,7 +44296,7 @@ Transform:
   m_Children:
   - {fileID: 1563248934}
   m_Father: {fileID: 1273300177}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1509794678
 GameObject:
@@ -45590,7 +45644,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 20000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -51733,7 +51787,7 @@ Prefab:
     - target: {fileID: 114960577296837322, guid: 6c29db4de3cc9404fa2eacd3bd8a5041,
         type: 2}
       propertyPath: m_FontData.m_FontSize
-      value: 28
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c29db4de3cc9404fa2eacd3bd8a5041, type: 2}
@@ -52449,7 +52503,7 @@ Transform:
   - {fileID: 1548074204}
   - {fileID: 776025453}
   m_Father: {fileID: 1273300177}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1685344873
 GameObject:
@@ -52635,7 +52689,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec, type: 2}
       propertyPath: m_LocalScale.x
@@ -52678,7 +52732,7 @@ BoxCollider:
   m_GameObject: {fileID: 1689481086}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9999993, y: 0, z: 1.9999988}
   m_Center: {x: -0.00000032782555, y: 0, z: 0.00000032875687}
@@ -52706,7 +52760,7 @@ BoxCollider:
   m_GameObject: {fileID: 1689481086}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.9999993, y: 0, z: 1.9999988}
   m_Center: {x: -0.00000032782555, y: 0, z: 0.00000032875687}
@@ -59107,7 +59161,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.01
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1779087197
 MonoBehaviour:
@@ -59121,7 +59175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1102862350}
-  movementSpeed: 6
+  movementSpeed: 8
   sprintMultiplier: 2
   stopMultiplier: 1
   orbMovementIncrease: 0.15
@@ -68590,7 +68644,7 @@ Transform:
   - {fileID: 207873648}
   - {fileID: 1551595665}
   m_Father: {fileID: 1273300177}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074139990
 GameObject:
@@ -68971,7 +69025,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4486085015654082, guid: 1ec12d476aaa00444885af1da3a3ea13, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114304447302339248, guid: 1ec12d476aaa00444885af1da3a3ea13,
         type: 2}
@@ -69641,7 +69695,7 @@ Transform:
   m_LocalScale: {x: 8.66, y: 7.87, z: 8.5}
   m_Children: []
   m_Father: {fileID: 1273300177}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2145049787
 BoxCollider:

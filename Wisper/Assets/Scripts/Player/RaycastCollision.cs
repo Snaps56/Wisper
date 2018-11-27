@@ -12,7 +12,6 @@ public class RaycastCollision : MonoBehaviour {
 
     private Vector3 playerForce;
     private Vector3 playerVelocity;
-    private bool isSprinting;
 	
     // Use this for initialization
 	void Start () {
@@ -26,7 +25,6 @@ public class RaycastCollision : MonoBehaviour {
         // 
         playerForce = GetComponent<PlayerMovement>().GetForce();
         playerVelocity = GetComponent<PlayerMovement>().GetVelocity();
-        isSprinting = GetComponent<PlayerMovement>().GetIsSprinting();
 
         // add raycast detection to all 3 axis of movement
         RayCasterDiagonal(Vector3.right);

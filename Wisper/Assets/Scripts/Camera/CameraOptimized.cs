@@ -26,9 +26,17 @@ public class CameraOptimized : MonoBehaviour
     public float fovSpeedModifier;
     public float distanceSpeedModifier;
 
+    [Header("Collision")]
+    public float collisionMinimum;
+    public float sphereCastRadius;
+    public float collisionMoveTime;
+    private float collisionDistance;
+
     private float mouseY;
     private float mouseX;
     private float distance;
+
+    private Vector3 direction;
 
     // field of view based on player speed
     private Rigidbody playerRB;
@@ -79,13 +87,18 @@ public class CameraOptimized : MonoBehaviour
         finalDistance = distance;
         SpeedCameraChange();
 
+        // Camera collision
+        CameraCollision();
+
         // update camera's position and rotation
-        Vector3 direction = new Vector3(0, 0, -finalDistance);
+        direction = new Vector3(0, 0, -finalDistance);
+
         Quaternion rotation = Quaternion.Euler(mouseY, mouseX, 0);
 
         // apples all transformations to the camera
         transform.position = character.position + rotation * direction;
         transform.LookAt(character.position);
+
     }
 
     // modify camera values based on player's speed
@@ -103,6 +116,23 @@ public class CameraOptimized : MonoBehaviour
         if (modifyFOV)
         {
             GetComponent<Camera>().fieldOfView = defaultFOV + (playerRB.velocity.magnitude * fovSpeedModifier) * vectorDot;
+        }
+    }
+    // camera collides with environment using sphere cast
+    void CameraCollision()
+    {
+        RaycastHit hit;
+        Vector3 direction = transform.position - character.position;
+
+        // check sphere cast
+        if (Physics.SphereCast(character.position, sphereCastRadius, direction, out hit, finalDistance))
+        {
+            // sphere cast only if the collider is an appropriate tag
+            if (hit.collider.tag == "Water" || hit.collider.tag == "Terrain")
+            {
+                collisionDistance = (hit.point - character.position).magnitude;
+                finalDistance = collisionDistance;
+            }
         }
     }
 }

@@ -39,13 +39,11 @@ public class TutorialFader : MonoBehaviour {
     private bool dialogueEnabled;
     private Vector3 originalPosition;
     private Vector3 dialoguePosition;
-
-    private PersistantStateData persistantStateData;
+    
     private bool updatedPSD = false;
 
     // Use this for initialization
     void Start () {
-        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         originalPosition = transform.position;
 
         deltaAlphaInValue = 1 / fadeInDuration;
