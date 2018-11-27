@@ -23247,6 +23247,9 @@ MonoBehaviour:
   modifyDistance: 0
   fovSpeedModifier: 0.5
   distanceSpeedModifier: 20
+  collisionMinimum: 0
+  sphereCastRadius: 0
+  collisionMoveTime: 0
 --- !u!1 &1103614773
 GameObject:
   m_ObjectHideFlags: 0
@@ -24331,6 +24334,7 @@ MonoBehaviour:
   - dialogueName: Greeting
     enabled: 0
     forceOnEnable: 1
+    follow: 0
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -24398,6 +24402,7 @@ MonoBehaviour:
   - dialogueName: Repeat Greeting
     enabled: 0
     forceOnEnable: 1
+    follow: 0
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -24423,6 +24428,7 @@ MonoBehaviour:
   - dialogueName: Interact
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: StartupShrineDialogueFinished
       conditionValue: 1
@@ -34760,6 +34766,7 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 1
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -34771,6 +34778,7 @@ MonoBehaviour:
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -34840,6 +34848,7 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -65218,6 +65227,7 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 1
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -65238,6 +65248,7 @@ MonoBehaviour:
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -65597,6 +65608,7 @@ MonoBehaviour:
   rain: {fileID: 1327410940}
   light: {fileID: 936196763}
   player: {fileID: 1779087189}
+  windPB: {fileID: 0}
 --- !u!4 &1891414796
 Transform:
   m_ObjectHideFlags: 0
@@ -66238,6 +66250,7 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -66264,6 +66277,7 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 1
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -66275,6 +66289,7 @@ MonoBehaviour:
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -69109,6 +69124,7 @@ MonoBehaviour:
   - dialogueName: Greeting
     enabled: 1
     forceOnEnable: 0
+    follow: 1
     enableConditions: []
     conditionChangeOnExit: []
     options: []

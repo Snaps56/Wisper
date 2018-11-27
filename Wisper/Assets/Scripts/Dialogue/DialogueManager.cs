@@ -644,7 +644,11 @@ public class DialogueManager : MonoBehaviour {
             sentences.Enqueue(sentence);
         }
         ShowBox();
-        player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject);  // Set movement script to follow the "npc" the trigger is attached to.
+        if (activeDialogue.follow)
+        {
+            player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject);  // Set movement script to follow the "npc" the trigger is attached to.
+        }
+        
         DisplayNextSentence();
     }
 
