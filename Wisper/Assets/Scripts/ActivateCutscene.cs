@@ -20,6 +20,7 @@ public class ActivateCutscene : MonoBehaviour {
     void Awake()
     {
         Debug.Log("Playing Intro");
+        Cursor.visible = false;
         player.GetComponent<PlayerMovement>().ToggleMovement();
         mainCamera.gameObject.SetActive(false);
         cutsceneCamera.gameObject.SetActive(true);
