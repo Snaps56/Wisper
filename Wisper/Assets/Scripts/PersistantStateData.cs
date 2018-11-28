@@ -50,6 +50,8 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("ShrineIsClean", false);
 
         stateConditions.Add("SwingTaskDone", false);
+
+        stateConditions.Add("Cutscene1Started", false);
     }
 }
 

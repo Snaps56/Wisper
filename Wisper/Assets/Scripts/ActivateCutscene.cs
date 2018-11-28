@@ -10,26 +10,29 @@ public class ActivateCutscene : MonoBehaviour {
     public GameObject light;
     public GameObject player;
     public GameObject windPB;
+    public GameObject psData;
 
 
     // Use this for initialization
     void Start () {
-		
-	}
-
-    void Awake()
-    {
         Debug.Log("Playing Intro");
         Cursor.visible = false;
         player.GetComponent<PlayerMovement>().ToggleMovement();
         mainCamera.gameObject.SetActive(false);
         cutsceneCamera.gameObject.SetActive(true);
         GameObject.Find("WindPowerBG").SetActive(false);
-        cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
+        if (!(bool)psData.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"])
+        {
+            psData.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"] = true;
+            psData.GetComponent<PersistantStateData>().updateCount++;
+            cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
+        }
     }
+
 
     // Update is called once per frame
     void Update () {
+
         //Plays cutscene while pressing "N" on keyboard
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -48,7 +51,7 @@ public class ActivateCutscene : MonoBehaviour {
             windPB.SetActive(false);
             cutsceneCamera.GetComponent<Animation>().Play("Cutscene3");
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("XBOX_Button_X"))
         {
             foreach (AnimationState anim in cutsceneCamera.GetComponent<Animation>())
             {
