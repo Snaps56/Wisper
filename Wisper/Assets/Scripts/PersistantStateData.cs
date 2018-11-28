@@ -55,5 +55,32 @@ public class PersistantStateData : MonoBehaviour
 
         stateConditions.Add("Cutscene1Started", false);
     }
+
+    public void ChangeStateCondition(string key, bool value)
+    {
+        if((bool)stateConditions[key] != value)
+        {
+            stateConditions[key] = value;
+            updateCount++;
+        }
+    }
+
+    public void ChangeStateConditions(string key, int value)
+    {
+        if ((int)stateConditions[key] != value)
+        {
+            stateConditions[key] = value;
+            updateCount++;
+        }
+    }
+
+    public void ChangeStateConditions(string key, float value)
+    {
+        if ((float)stateConditions[key] != value)
+        {
+            stateConditions[key] = value;
+            updateCount++;
+        }
+    }
 }
 
