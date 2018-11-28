@@ -82,5 +82,23 @@ public class PersistantStateData : MonoBehaviour
             updateCount++;
         }
     }
+
+    public void ChangeStateConditions(Hashtable kvPairs)
+    {
+        bool modified = false;
+        foreach(string key in kvPairs)
+        {
+            if(stateConditions[key] != kvPairs[key])
+            {
+                stateConditions[key] = kvPairs[key];
+                modified = true;
+            }
+        }
+
+        if (modified)
+        {
+            updateCount++;
+        }
+    }
 }
 
