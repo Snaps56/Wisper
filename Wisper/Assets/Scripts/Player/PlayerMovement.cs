@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour {
     private bool movementToggledOff = false;
     private bool planalMovementOn = false;
 
+    private float insideFollowDistance = 0.5f; // Within this distance, don't apply any following forces so that player isn't forced ontop of npc
+    private float strongForceTetherDistance = 2f; // Past this distance, apply stronger forces to move player to npc. Between this and insideFollowDistance, apply small force like standard movement
+
     // Use this for initialization
     void Start()
     {
@@ -219,8 +222,8 @@ public class PlayerMovement : MonoBehaviour {
         float toTargetMag = toTargetVec.magnitude;
         Vector3 toTargetNorm = toTargetVec.normalized;
 
-        float insideFollowDistance = 0.5f;   // Within this distance, don't apply any following forces so that player isn't forced ontop of npc
-        float strongForceTetherDistance = 2f;   // Past this distance, apply stronger forces to move player to npc. Between this and insideFollowDistance, apply small force like standard movement
+        // Within this distance, don't apply any following forces so that player isn't forced ontop of npc
+        // Past this distance, apply stronger forces to move player to npc. Between this and insideFollowDistance, apply small force like standard movement
 
         Vector3 velocityModifier = new Vector3(1,0,0);   //Vector magnitude 1. If npc has rigid body, make this their velocity. Used to scale "walking" vector when between strongForceTether and insideFollow
         if(target.GetComponent<Rigidbody>() != null)
@@ -241,9 +244,11 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    public void SetFollowTarget(GameObject target)
+    public void SetFollowTarget(GameObject target, float tetherMin = 0.5f, float tetherStrong = 2f)
     {
         followTarget = target;
+        insideFollowDistance = tetherMin;
+        strongForceTetherDistance = tetherStrong;
     }
 
     public void RemoveFollowTarget()

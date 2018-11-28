@@ -19,6 +19,10 @@ public class PersistantStateData : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             persistantStateData = this;
+
+            stateConditions = new Hashtable();
+            PopulateStateConditions();
+            updateCount = 1;
         }
         else if (persistantStateData != this)
         {
@@ -28,9 +32,7 @@ public class PersistantStateData : MonoBehaviour
 
     private void Start()
     {
-        stateConditions = new Hashtable();
-        PopulateStateConditions();
-        updateCount = 1;
+        // All initialization moved to awake.
     }
 
     // fills the persistantStateConditions with the various conditions. We can consider passing in arguments for initialization when considering save/load functionality.

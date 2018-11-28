@@ -24330,6 +24330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.1
+  followTetherMinDistance: 5
+  followTetherStrongDistance: 7
   dialogues:
   - dialogueName: Greeting
     enabled: 0
@@ -24342,7 +24344,7 @@ MonoBehaviour:
       conditionValue: 0
     conditionChangeOnExit: []
     options:
-    - sentenceIndex: 2
+    - sentenceIndex: 3
       choices:
       - reply: Yes
         changeConditions:
@@ -24394,11 +24396,15 @@ MonoBehaviour:
       charIndex: 0
       charDelayChange: -0.5
     sentences:
-    - 'Come... find me. Can you hear me?...
-
-      Please... Come toward the light...'
-    - I'll be waiting for you...
-    - Test option system?
+    - speaker: 
+      line: Now this is a story all about how your life got flipped, turned upside
+        down
+    - speaker: 
+      line: And I'd like to take a minute, just sit right there
+    - speaker: 
+      line: I'll tell you how you became the wind in the air
+    - speaker: 
+      line: Continue?
   - dialogueName: Repeat Greeting
     enabled: 0
     forceOnEnable: 1
@@ -24424,7 +24430,8 @@ MonoBehaviour:
           conditionValue: 1
     speedControls: []
     sentences:
-    - Repeat this dialogue?
+    - speaker: 
+      line: Continue?
   - dialogueName: Interact
     enabled: 0
     forceOnEnable: 0
@@ -24438,7 +24445,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Hello, lil Wisper...
+    - speaker: 
+      line: 
 --- !u!135 &1167512864
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -34762,6 +34770,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.066
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
@@ -34774,7 +34784,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Where the fuck is my hat bitch!?!
+    - speaker: 
+      line: 
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
@@ -34786,26 +34797,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - What the fuck did you just fucking say about me, you little bitch? I'll have
-      you know I graduated top of my class in the Navy Seals, and I've been involved
-      in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills.
-      I am trained in gorilla warfare and I'm the top sniper in the entire US armed
-      forces. You are nothing to me but just another target. I will wipe you the fuck
-      out with precision the likes of which has never been seen before on this Earth,
-      mark my fucking words. You think you can get away with saying that shit to me
-      over the Internet? Think again, fucker. As we speak I am contacting my secret
-      network of spies across the USA and your IP is being traced right now so you
-      better prepare for the storm, maggot. The storm that wipes out the pathetic
-      little thing you call your life. You're fucking dead, kid. I can be anywhere,
-      anytime, and I can kill you in over seven hundred ways, and that's just with
-      my bare hands. Not only am I extensively trained in unarmed combat, but I have
-      access to the entire arsenal of the United States Marine Corps and I will use
-      it to its full extent to wipe your miserable ass off the face of the continent,
-      you little shit. If only you could have known what unholy retribution your little
-      "clever" comment was about to bring down upon you, maybe you would have held
-      your fucking tongue. But you couldn't, you didn't, and now you're paying the
-      price, you goddamn idiot. I will shit fury all over you and you will drown in
-      it. You're fucking dead, kiddo.
+    - speaker: 
+      line: 
 --- !u!114 &1232851899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34856,8 +34849,10 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Where'd me hat go?
-    - Darn wind blew it right off me head
+    - speaker: 
+      line: 
+    - speaker: 
+      line: 
   range: 8
 --- !u!114 &1232851901
 MonoBehaviour:
@@ -65223,6 +65218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.09
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
@@ -65244,7 +65241,8 @@ MonoBehaviour:
       charIndex: 26
       charDelayChange: -0.5
     sentences:
-    - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
+    - speaker: 
+      line: 
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
@@ -65256,7 +65254,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Oh weee! My hat! I've been looking all over for this!
+    - speaker: 
+      line: 
 --- !u!135 &1856278243
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -66258,8 +66257,10 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Where'd me hat go?
-    - Darn wind blew it right off me head
+    - speaker: 
+      line: 
+    - speaker: 
+      line: 
   range: 8
 --- !u!114 &1936945842
 MonoBehaviour:
@@ -66273,6 +66274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.066
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
@@ -66285,7 +66288,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
+    - speaker: 
+      line: 
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
@@ -66297,7 +66301,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Oh weee! My hat! I've been looking all over for this!
+    - speaker: 
+      line: 
 --- !u!114 &1936945843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69120,6 +69125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.066
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Greeting
     enabled: 1
@@ -69130,7 +69137,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Hello little whisper
+    - speaker: 
+      line: 
 --- !u!1 &2101803895
 GameObject:
   m_ObjectHideFlags: 0
