@@ -33,8 +33,8 @@ public class Dialogue{
 
     public List<DialogueSpeedToken> speedControls;
 
-    [TextArea(1,3)]
-    public string[] sentences;
+    
+    public List<Sentence> sentences;
 
     public int getID()
     {
@@ -45,4 +45,12 @@ public class Dialogue{
     {
         this.dialogueID = dialogueID;
     }
+}
+
+[System.Serializable]
+public class Sentence
+{
+    public string speaker;
+    [TextArea(1, 2)]
+    public string line;
 }
