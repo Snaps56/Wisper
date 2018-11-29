@@ -49,8 +49,8 @@ public class TutorialChecker : MonoBehaviour {
     {
         for (int i = 0; i < changeConditions.Length; i++)
         {
-            persistantStateData.stateConditions[changeConditions[i]] = true;
-            persistantStateData.updateCount++;
+            persistantStateData.ChangeStateCondition(changeConditions[i], true);
+            // Debug.Log(changeConditions[i] + ", " + (bool)persistantStateData.stateConditions[changeConditions[i]]);
         }
     }
 }

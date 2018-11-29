@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialDialogueCondition : MonoBehaviour {
+public class TutorialInteractCondition : MonoBehaviour {
 
     public string dependentCondition;
 
@@ -21,7 +21,7 @@ public class TutorialDialogueCondition : MonoBehaviour {
 	void Update ()
     {
         conditionCheck = (bool)persistantStateData.stateConditions[dependentCondition];
-        
+
         if (conditionCheck)
         {
             tutorialCondition.SetCondition(true);

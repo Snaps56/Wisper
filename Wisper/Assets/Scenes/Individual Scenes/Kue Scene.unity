@@ -1396,9 +1396,12 @@ MonoBehaviour:
   floatingTexts:
   - dialogueName: Find my hat!
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Where'd me hat go?
@@ -1451,17 +1454,23 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Where the fuck is my hat bitch!?!
   - dialogueName: My hat is found.
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - What the fuck did you just fucking say about me, you little bitch? I'll have
@@ -2159,7 +2168,7 @@ RectTransform:
   - {fileID: 2043513209}
   - {fileID: 1525128627}
   - {fileID: 1416380105}
-  - {fileID: 2092267845}
+  - {fileID: 770920148}
   - {fileID: 657240401}
   - {fileID: 1356112426}
   m_Father: {fileID: 1325637208}
@@ -2185,7 +2194,6 @@ MonoBehaviour:
   settingsMenu: {fileID: 0}
   VideoMenu: {fileID: 0}
   audioMixer: {fileID: 0}
-  CurrentVolume: 0
 --- !u!1 &313045735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,7 +2960,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 417471839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.94, y: -3.49, z: -15.06}
+  m_LocalPosition: {x: -9.94, y: -3.84, z: -15.06}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 973817153}
@@ -2965,7 +2973,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 417471839}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -8537,7 +8545,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &525633312
 BoxCollider:
@@ -8660,6 +8668,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 2098870119}
+  defaultAngleY: 0
+  defaultAngleX: 0
   highClampAngle: 80
   lowClampAngle: -80
   inputSensitivity: 4
@@ -8667,6 +8677,10 @@ MonoBehaviour:
   maxDistance: 10
   minDistance: 3
   zoomSensitivity: 3
+  modifyFOV: 0
+  modifyDistance: 0
+  fovSpeedModifier: 0
+  distanceSpeedModifier: 0
 --- !u!114 &534669908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9360,6 +9374,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &730775200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 770920147}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 770920148}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &737896351
 Prefab:
   m_ObjectHideFlags: 0
@@ -9549,17 +9578,23 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
   - dialogueName: My hat is found.
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Oh weee! My hat! I've been looking all over for this!
@@ -9577,9 +9612,12 @@ MonoBehaviour:
   floatingTexts:
   - dialogueName: Find my hat!
     enabled: 0
+    forceOnEnable: 0
     enableConditions:
     - conditionName: 
       conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
     speedControls: []
     sentences:
     - Where'd me hat go?
@@ -9598,6 +9636,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
   orbCount: 5
+--- !u!114 &737896364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 737896352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8965eac082767045bf559bfaae0f4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCMovements: {fileID: 737896359}
 --- !u!1 &743977224
 GameObject:
   m_ObjectHideFlags: 0
@@ -10149,6 +10199,21 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f47d3c44086c56544bdb8e1e03208355, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &770920148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 770920147}
+  m_GameObject: {fileID: 730775200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2092267845}
+  - {fileID: 1608381404}
+  m_Father: {fileID: 312272253}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773190229
 GameObject:
   m_ObjectHideFlags: 0
@@ -10336,13 +10401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  camera: {fileID: 534669905}
-  cutsceneCamera: {fileID: 0}
-  mainCamera: {fileID: 0}
-  currentMovementForce: {x: 0, y: 0, z: 0}
-  rain: {fileID: 0}
-  light: {fileID: 0}
+  windPowerBar: {fileID: 0}
+  orbCountText: {fileID: 0}
 --- !u!114 &773190236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10370,6 +10430,7 @@ MonoBehaviour:
   movementSpeed: 6
   sprintMultiplier: 2
   stopMultiplier: 1
+  orbMovementIncrease: 0
 --- !u!1 &785504065
 GameObject:
   m_ObjectHideFlags: 0
@@ -10979,7 +11040,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 861343543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1117454, y: -5.134, z: 10.86}
+  m_LocalPosition: {x: -2.1117454, y: -5.184, z: 10.86}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 973817153}
@@ -10992,7 +11053,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 861343543}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -11275,6 +11336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875a0ff325523da49bf03f1bee1673c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistantStateDataUpdateCount: 0
 --- !u!4 &926362224
 Transform:
   m_ObjectHideFlags: 0
@@ -12477,7 +12539,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1047888689}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.1, y: -4.614, z: 14.51}
+  m_LocalPosition: {x: 10.1, y: -4.667, z: 14.51}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 973817153}
@@ -12490,7 +12552,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1047888689}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -17205,7 +17267,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1068203413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.65, y: -5.2019997, z: 2.6}
+  m_LocalPosition: {x: -8.65, y: -5.27, z: 2.6}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 973817153}
@@ -17218,7 +17280,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1068203413}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -17785,7 +17847,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9
+      value: -16.78
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17793,7 +17855,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.5
+      value: 19.42
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -18046,7 +18108,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1204242534}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.54, y: -3.57, z: -20.62}
+  m_LocalPosition: {x: -3.54, y: -3.83, z: -20.62}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 973817153}
@@ -18059,7 +18121,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1204242534}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -18236,7 +18298,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1228861642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.55, y: -3.759, z: -14.37}
+  m_LocalPosition: {x: 4.55, y: -3.838, z: -14.37}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 973817153}
@@ -18249,7 +18311,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1228861642}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -21162,7 +21224,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1580530930}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.44, y: -4.72, z: 3.94}
+  m_LocalPosition: {x: 13.44, y: -4.859, z: 3.94}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 973817153}
@@ -21175,7 +21237,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1580530930}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -21227,6 +21289,35 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f68dbcde2645c1c4ea44c69db78da742,
     type: 3}
   m_PrefabInternal: {fileID: 1663464266}
+--- !u!1 &1608381403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 770920147}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1608381404}
+  - component: {fileID: 2092267842}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1608381404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 770920147}
+  m_GameObject: {fileID: 1608381403}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 770920148}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1609501607
 GameObject:
   m_ObjectHideFlags: 0
@@ -31268,7 +31359,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1815290321}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 6
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -31287,10 +31378,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6c21037059b8549bdb10ba3461e31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterLevel: 12
   floatHeight: 2
   waterDensity: 0.997
   downForce: 4
+  objects: []
+  cubeTest: {fileID: 0}
 --- !u!65 &1815290324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31352,7 +31444,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1815290321}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53.48, y: 16.91, z: -30.92}
+  m_LocalPosition: {x: -53.48, y: 42.5, z: -30.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -31946,11 +32038,27 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1918953549}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9999993, y: 1.9421457, z: 1.9999987}
   m_Center: {x: -0.00000032429168, y: -0.97107285, z: 0.00000032429168}
+--- !u!114 &1918953551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1918953549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6c21037059b8549bdb10ba3461e31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatHeight: 4
+  waterDensity: 0.997
+  downForce: 5
+  objects: []
+  cubeTest: {fileID: 0}
 --- !u!1 &1979519281
 GameObject:
   m_ObjectHideFlags: 0
@@ -32289,6 +32397,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: bcae914220acd4907840a029bb9d9aec,
     type: 2}
   m_PrefabInternal: {fileID: 983084773}
+--- !u!1 &2004046448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 770920147}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092267845}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &2031389252
 GameObject:
   m_ObjectHideFlags: 0
@@ -37717,16 +37840,44 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!95 &2092267842 stripped
+--- !u!95 &2092267842
 Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 95059890064654786, guid: f47d3c44086c56544bdb8e1e03208355,
     type: 2}
   m_PrefabInternal: {fileID: 770920147}
---- !u!224 &2092267845 stripped
+  m_GameObject: {fileID: 1608381403}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!224 &2092267845
 RectTransform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 224138262671219148, guid: f47d3c44086c56544bdb8e1e03208355,
     type: 2}
   m_PrefabInternal: {fileID: 770920147}
+  m_GameObject: {fileID: 2004046448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 770920148}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2098870118
 GameObject:
   m_ObjectHideFlags: 0
