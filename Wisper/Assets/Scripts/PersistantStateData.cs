@@ -44,6 +44,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("StartupShrineDialogue", false);
         stateConditions.Add("StartupShrineRepeat", false);
 
+        stateConditions.Add("TutorialFirstDialogueFinished", false);
         stateConditions.Add("TutorialMovementFinished", false);
         stateConditions.Add("TutorialTalkedWithShrine", false);
         stateConditions.Add("TutorialInteractFinished", false);
