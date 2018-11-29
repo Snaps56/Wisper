@@ -54,6 +54,8 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("SwingTaskDone", false);
 
         stateConditions.Add("Cutscene1Started", false);
+
+        stateConditions.Add("OrbDepositInProgress", false);
     }
 
     public void ChangeStateCondition(string key, bool value)

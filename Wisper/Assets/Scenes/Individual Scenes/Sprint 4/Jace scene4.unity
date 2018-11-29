@@ -24350,21 +24350,27 @@ MonoBehaviour:
     sentences:
     - speaker: 
       line: Continue?
-  - dialogueName: Interact
+  - dialogueName: Deposit prompt
     enabled: 0
     forceOnEnable: 0
-    follow: 1
+    follow: 0
     enableConditions:
-    - conditionName: StartupShrineDialogueFinished
+    - conditionName: ShrineIsCleaned
       conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: TutorialTalkedWithShrine
-      conditionValue: 1
-    options: []
+    conditionChangeOnExit: []
+    options:
+    - sentenceIndex: 0
+      choices:
+      - reply: Yes
+        changeConditions:
+        - conditionName: OrbDepositInProgress
+          conditionValue: 1
+      - reply: No
+        changeConditions: []
     speedControls: []
     sentences:
     - speaker: 
-      line: 
+      line: Deposit orbs?
 --- !u!135 &1167512864
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -45541,7 +45547,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 10.621468, y: 91.741104, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.671842, y: 87.30197, z: 0}
 --- !u!114 &1562149423
 MonoBehaviour:
   m_ObjectHideFlags: 0
