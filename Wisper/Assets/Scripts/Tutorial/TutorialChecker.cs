@@ -10,7 +10,6 @@ public class TutorialChecker : MonoBehaviour {
     private bool [] initialConditionBools;
 
     public string[] changeConditions; // conditions in persistant state data are changed after tutorial is finished
-    private bool[] changeConditionBools;
 
     private bool tutorialConditionMet;
 
@@ -20,7 +19,6 @@ public class TutorialChecker : MonoBehaviour {
     void Start () {
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         initialConditionBools = new bool[initialConditions.Length];
-        changeConditionBools = new bool[changeConditions.Length];
     }
 	
 	// Update is called once per frame

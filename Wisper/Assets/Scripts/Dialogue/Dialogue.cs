@@ -22,6 +22,7 @@ public class Dialogue{
 
     public bool enabled = false;    // Set to mark this dialogue as enabled.
     public bool forceOnEnable = false;
+    public bool follow = true;
     
 
     public List<TargetCondition> enableConditions; // The conditions and what they should be set to for enabling this dialogue. Should be <string condition, bool desiredState>
@@ -32,8 +33,8 @@ public class Dialogue{
 
     public List<DialogueSpeedToken> speedControls;
 
-    [TextArea(1,3)]
-    public string[] sentences;
+    
+    public List<Sentence> sentences;
 
     public int getID()
     {
@@ -44,4 +45,12 @@ public class Dialogue{
     {
         this.dialogueID = dialogueID;
     }
+}
+
+[System.Serializable]
+public class Sentence
+{
+    public string speaker;
+    [TextArea(1, 2)]
+    public string line;
 }

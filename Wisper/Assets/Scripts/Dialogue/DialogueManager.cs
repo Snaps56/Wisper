@@ -466,6 +466,7 @@ public class DialogueManager : MonoBehaviour {
         else // Active choice was the first one, wrap to last choice
         {
             activeChoiceIndex = activeOption.choices.Count - 1;         // Set the selected choice to the last one
+            activeChoice = activeOption.choices[activeChoiceIndex];     // Set the active choice to one pointed to by index
             selectedOptionPanelIndex = activeOptionPanels.Count - 1;    // Set selected panel to bottom one
             if (activeOption.choices.Count > 4) // If there are more than 4 choices, setup the options to be the last 4
             {
@@ -504,6 +505,7 @@ public class DialogueManager : MonoBehaviour {
         else // Active choice was the last one, wrap to first choice
         {
             activeChoiceIndex = 0;         // Set the selected choice to the last one
+            activeChoice = activeOption.choices[activeChoiceIndex]; 
             selectedOptionPanelIndex = 0;    // Set selected panel to top one
             if (activeOption.choices.Count > 4) // If there are more than 4 choices, setup the options to be the first 4
             {
@@ -637,12 +639,16 @@ public class DialogueManager : MonoBehaviour {
         
         activeDialogue = dialogue;
         sentences.Clear();
-        foreach(string sentence in dialogue.sentences)
+        foreach(Sentence sentence in dialogue.sentences)
         {
-            sentences.Enqueue(sentence);
+            sentences.Enqueue(sentence.line);
         }
         ShowBox();
-        player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject);  // Set movement script to follow the "npc" the trigger is attached to.
+        if (activeDialogue.follow)
+        {
+            player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject, activeNPC.GetComponent<NPCDialogues>().followTetherMinDistance, activeNPC.GetComponent<NPCDialogues>().followTetherStrongDistance);  // Set movement script to follow the "npc" the trigger is attached to.
+        }
+        
         DisplayNextSentence();
     }
 

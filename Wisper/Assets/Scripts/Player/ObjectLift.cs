@@ -9,6 +9,7 @@ public class ObjectLift : MonoBehaviour {
     public SphereCollider radiusCollider;
     private OrbCount orbcountScript;
 	private float playerOrbCount;
+	// Particles that play when lift button is pressed
 	public ParticleSystem liftParticles;
 
     [Header("Lift Mechanics")]
@@ -21,10 +22,10 @@ public class ObjectLift : MonoBehaviour {
     private bool isLiftingObjects = false;
 
     private bool isThrowingObjects;
-    private Vector3 velocity = Vector3.zero;
     private Vector3 targetPosition;
     private Vector3 currentCharacterVector;
     private float currentCharacterSpeed;
+	// Base lift strength
 	private float originalLiftCenterStrength;
 
     List<GameObject> liftedObjects = new List<GameObject>();
@@ -33,11 +34,12 @@ public class ObjectLift : MonoBehaviour {
     void Start () {
         orbcountScript = character.GetComponent<OrbCount>();
 		playerOrbCount = orbcountScript.GetOrbCount ();
+		// Initialize original lift strength
 		originalLiftCenterStrength = liftCenterStrength;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    // Update is called once per frame
+    private void Update()
     {
         // check if the player is currently pressing the lift button
         if (Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0)
@@ -48,11 +50,21 @@ public class ObjectLift : MonoBehaviour {
         {
             isLiftingObjects = false;
         }
-        // Debug.Log("Lifting Objects: " + isLiftingObjects);
-
         isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
 
+        // Modify lift strength based on orb count
+        playerOrbCount = orbcountScript.GetOrbCount();
+        liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
+
+        // obtain character movement data to help track movement for lifted objects
+        // currentCharacterVector = orbcountScript.currentMovementForce;
+        currentCharacterVector.y *= 0;
+        currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
+    }
+    void FixedUpdate ()
+    {
         // lift objects when not throwing
+		// Play particles when player is holding the lift button
         if (isLiftingObjects && !isThrowingObjects)
         {
             targetPosition = transform.position + new Vector3(0, liftHeight, 0);
@@ -68,14 +80,6 @@ public class ObjectLift : MonoBehaviour {
 				liftParticles.Stop ();
 			}
         }
-
-		playerOrbCount = orbcountScript.GetOrbCount ();
-		liftCenterStrength = originalLiftCenterStrength + (2 * playerOrbCount);
-
-        // obtain character movement data to help track movement for lifted objects
-        // currentCharacterVector = orbcountScript.currentMovementForce;
-        currentCharacterVector.y *= 0;
-        currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
     }
 
     // returns bool that checks if the player is currently trying to lift objects
