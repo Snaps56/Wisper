@@ -27,6 +27,7 @@ public class NPCMovement : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        
     }
     private void OnTriggerStay(Collider other)
     {
@@ -44,9 +45,9 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //sets the last waypoint to the hat
         //waypoints[5].transform.position = hat.transform.position;
-
         Vector3 direction = player.transform.position - this.transform.position;
         if (hat != null)
         {
@@ -58,7 +59,6 @@ public class NPCMovement : MonoBehaviour
             if (Vector3.Distance(waypoints[currentWP].transform.position, transform.position) < accuracyWP)
             {
                 currentWP++;
-                
 				if (currentWP >= waypoints.Length) {
 					currentWP = 0;
                 }
@@ -90,6 +90,8 @@ public class NPCMovement : MonoBehaviour
             direction = waypoints[currentWP].transform.position - transform.position;
             this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotSpeed * Time.deltaTime);
             this.transform.Translate(0, 0, Time.deltaTime * speed);
-    	}
+        }
 	}
+
+
 }
