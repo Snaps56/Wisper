@@ -50566,53 +50566,17 @@ MonoBehaviour:
       choices:
       - reply: Yes
         changeConditions:
-        - conditionName: StartupShrineRepeat
-          conditionValue: 1
-      - reply: No
-        changeConditions:
         - conditionName: StartupShrineDialogue
           conditionValue: 0
         - conditionName: StartupShrineRepeat
           conditionValue: 0
         - conditionName: StartupShrineDialogueFinished
           conditionValue: 1
-    speedControls:
-    - sentenceIndex: 0
-      charIndex: 0
-      charDelayChange: 0.06
-    - sentenceIndex: 0
-      charIndex: 4
-      charDelayChange: 0.08
-    - sentenceIndex: 0
-      charIndex: 7
-      charDelayChange: -0.08
-    - sentenceIndex: 0
-      charIndex: 16
-      charDelayChange: 0.08
-    - sentenceIndex: 0
-      charIndex: 17
-      charDelayChange: -0.08
-    - sentenceIndex: 0
-      charIndex: 35
-      charDelayChange: 0.8
-    - sentenceIndex: 0
-      charIndex: 36
-      charDelayChange: -0.8
-    - sentenceIndex: 0
-      charIndex: 45
-      charDelayChange: 0.04
-    - sentenceIndex: 0
-      charIndex: 48
-      charDelayChange: -0.04
-    - sentenceIndex: 0
-      charIndex: 68
-      charDelayChange: 0.16
-    - sentenceIndex: 1
-      charIndex: 0
-      charDelayChange: -0.12
-    - sentenceIndex: 1
-      charIndex: 0
-      charDelayChange: -0.5
+      - reply: No
+        changeConditions:
+        - conditionName: StartupShrineRepeat
+          conditionValue: 1
+    speedControls: []
     sentences:
     - speaker: 
       line: Now this is a story all about how your life got flipped, turned upside
@@ -50637,8 +50601,6 @@ MonoBehaviour:
     - sentenceIndex: 0
       choices:
       - reply: Yes
-        changeConditions: []
-      - reply: No
         changeConditions:
         - conditionName: StartupShrineDialogue
           conditionValue: 0
@@ -50646,6 +50608,8 @@ MonoBehaviour:
           conditionValue: 0
         - conditionName: StartupShrineDialogueFinished
           conditionValue: 1
+      - reply: No
+        changeConditions: []
     speedControls: []
     sentences:
     - speaker: 
