@@ -24206,177 +24206,6 @@ Transform:
   m_Father: {fileID: 291217112}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1167512861
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1167512862}
-  - component: {fileID: 1167512864}
-  - component: {fileID: 1167512863}
-  m_Layer: 0
-  m_Name: DialogueTrigger
-  m_TagString: DialogueTrigger
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1167512862
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1167512861}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 64.920395, y: 1.910963, z: 50.75685}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_Children: []
-  m_Father: {fileID: 2101546118}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1167512863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1167512861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultCharDelay: 0.1
-  followTetherMinDistance: 5
-  followTetherStrongDistance: 7
-  dialogues:
-  - dialogueName: Greeting
-    enabled: 0
-    forceOnEnable: 1
-    follow: 0
-    enableConditions:
-    - conditionName: StartupShrineDialogue
-      conditionValue: 1
-    - conditionName: StartupShrineRepeat
-      conditionValue: 0
-    conditionChangeOnExit: []
-    options:
-    - sentenceIndex: 3
-      choices:
-      - reply: Yes
-        changeConditions:
-        - conditionName: StartupShrineRepeat
-          conditionValue: 1
-      - reply: No
-        changeConditions:
-        - conditionName: StartupShrineDialogue
-          conditionValue: 0
-        - conditionName: StartupShrineRepeat
-          conditionValue: 0
-        - conditionName: StartupShrineDialogueFinished
-          conditionValue: 1
-    speedControls:
-    - sentenceIndex: 0
-      charIndex: 0
-      charDelayChange: 0.06
-    - sentenceIndex: 0
-      charIndex: 4
-      charDelayChange: 0.08
-    - sentenceIndex: 0
-      charIndex: 7
-      charDelayChange: -0.08
-    - sentenceIndex: 0
-      charIndex: 16
-      charDelayChange: 0.08
-    - sentenceIndex: 0
-      charIndex: 17
-      charDelayChange: -0.08
-    - sentenceIndex: 0
-      charIndex: 35
-      charDelayChange: 0.8
-    - sentenceIndex: 0
-      charIndex: 36
-      charDelayChange: -0.8
-    - sentenceIndex: 0
-      charIndex: 45
-      charDelayChange: 0.04
-    - sentenceIndex: 0
-      charIndex: 48
-      charDelayChange: -0.04
-    - sentenceIndex: 0
-      charIndex: 68
-      charDelayChange: 0.16
-    - sentenceIndex: 1
-      charIndex: 0
-      charDelayChange: -0.12
-    - sentenceIndex: 1
-      charIndex: 0
-      charDelayChange: -0.5
-    sentences:
-    - speaker: 
-      line: Now this is a story all about how your life got flipped, turned upside
-        down
-    - speaker: 
-      line: And I'd like to take a minute, just sit right there
-    - speaker: 
-      line: I'll tell you how you became the wind in the air
-    - speaker: 
-      line: Continue?
-  - dialogueName: Repeat Greeting
-    enabled: 0
-    forceOnEnable: 1
-    follow: 0
-    enableConditions:
-    - conditionName: StartupShrineDialogue
-      conditionValue: 1
-    - conditionName: StartupShrineRepeat
-      conditionValue: 1
-    conditionChangeOnExit: []
-    options:
-    - sentenceIndex: 0
-      choices:
-      - reply: Yes
-        changeConditions: []
-      - reply: No
-        changeConditions:
-        - conditionName: StartupShrineDialogue
-          conditionValue: 0
-        - conditionName: StartupShrineRepeat
-          conditionValue: 0
-        - conditionName: StartupShrineDialogueFinished
-          conditionValue: 1
-    speedControls: []
-    sentences:
-    - speaker: 
-      line: Continue?
-  - dialogueName: Interact
-    enabled: 0
-    forceOnEnable: 0
-    follow: 1
-    enableConditions:
-    - conditionName: StartupShrineDialogueFinished
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: TutorialTalkedWithShrine
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: 
-      line: 
---- !u!135 &1167512864
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1167512861}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &1172000510
 GameObject:
   m_ObjectHideFlags: 0
@@ -50708,6 +50537,183 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1592336171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592336172}
+  - component: {fileID: 1592336174}
+  - component: {fileID: 1592336173}
+  m_Layer: 0
+  m_Name: DialogueTrigger
+  m_TagString: DialogueTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1592336172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1592336171}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 64.920395, y: 1.910963, z: 50.75685}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_Children: []
+  m_Father: {fileID: 2101546118}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1592336173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1592336171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCharDelay: 0.1
+  followTetherMinDistance: 5
+  followTetherStrongDistance: 7
+  dialogues:
+  - dialogueName: Greeting
+    enabled: 0
+    forceOnEnable: 1
+    follow: 0
+    enableConditions:
+    - conditionName: StartupShrineDialogue
+      conditionValue: 1
+    - conditionName: StartupShrineRepeat
+      conditionValue: 0
+    conditionChangeOnExit: []
+    options:
+    - sentenceIndex: 3
+      choices:
+      - reply: Yes
+        changeConditions:
+        - conditionName: StartupShrineRepeat
+          conditionValue: 1
+      - reply: No
+        changeConditions:
+        - conditionName: StartupShrineDialogue
+          conditionValue: 0
+        - conditionName: StartupShrineRepeat
+          conditionValue: 0
+        - conditionName: StartupShrineDialogueFinished
+          conditionValue: 1
+    speedControls:
+    - sentenceIndex: 0
+      charIndex: 0
+      charDelayChange: 0.06
+    - sentenceIndex: 0
+      charIndex: 4
+      charDelayChange: 0.08
+    - sentenceIndex: 0
+      charIndex: 7
+      charDelayChange: -0.08
+    - sentenceIndex: 0
+      charIndex: 16
+      charDelayChange: 0.08
+    - sentenceIndex: 0
+      charIndex: 17
+      charDelayChange: -0.08
+    - sentenceIndex: 0
+      charIndex: 35
+      charDelayChange: 0.8
+    - sentenceIndex: 0
+      charIndex: 36
+      charDelayChange: -0.8
+    - sentenceIndex: 0
+      charIndex: 45
+      charDelayChange: 0.04
+    - sentenceIndex: 0
+      charIndex: 48
+      charDelayChange: -0.04
+    - sentenceIndex: 0
+      charIndex: 68
+      charDelayChange: 0.16
+    - sentenceIndex: 1
+      charIndex: 0
+      charDelayChange: -0.12
+    - sentenceIndex: 1
+      charIndex: 0
+      charDelayChange: -0.5
+    sentences:
+    - speaker: 
+      line: Now this is a story all about how your life got flipped, turned upside
+        down
+    - speaker: 
+      line: And I'd like to take a minute, just sit right there
+    - speaker: 
+      line: I'll tell you how you became the wind in the air
+    - speaker: 
+      line: Continue?
+  - dialogueName: Repeat Greeting
+    enabled: 0
+    forceOnEnable: 1
+    follow: 0
+    enableConditions:
+    - conditionName: StartupShrineDialogue
+      conditionValue: 1
+    - conditionName: StartupShrineRepeat
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options:
+    - sentenceIndex: 0
+      choices:
+      - reply: Yes
+        changeConditions: []
+      - reply: No
+        changeConditions:
+        - conditionName: StartupShrineDialogue
+          conditionValue: 0
+        - conditionName: StartupShrineRepeat
+          conditionValue: 0
+        - conditionName: StartupShrineDialogueFinished
+          conditionValue: 1
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: Continue?
+  - dialogueName: Deposit prompt
+    enabled: 0
+    forceOnEnable: 0
+    follow: 0
+    enableConditions:
+    - conditionName: ShrineIsClean
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options:
+    - sentenceIndex: 0
+      choices:
+      - reply: Yes
+        changeConditions:
+        - conditionName: OrbDepositInProgress
+          conditionValue: 1
+      - reply: No
+        changeConditions: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: Deposit orbs?
+--- !u!135 &1592336174
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1592336171}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &1593886671
 GameObject:
   m_ObjectHideFlags: 0
