@@ -15,6 +15,16 @@ public class CutsceneEvents : MonoBehaviour {
 
 
 
+    void PSDVariableOn(string key)
+    {
+        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateCondition(key, true);
+    }
+
+    void PSDVariableOff(string key)
+    {
+        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateCondition(key, false);
+    }
+
     //Event called when the flower is supposed to animate
     void playFlower()
     {
@@ -47,6 +57,11 @@ public class CutsceneEvents : MonoBehaviour {
         Color tempColor = new Color(255, 147, 85, 255);
         light.GetComponent<Light>().color = Color.white;
     }
+}
 
-    
+[System.Serializable]
+public class BooleanKeyValue
+{
+    public string key;
+    public bool value;
 }
