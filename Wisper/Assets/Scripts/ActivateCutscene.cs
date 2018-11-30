@@ -11,21 +11,25 @@ public class ActivateCutscene : MonoBehaviour {
     public GameObject player;
     public GameObject windPB;
     public GameObject psData;
+    public bool playOnStart;
 
 
     // Use this for initialization
     void Start () {
-        Debug.Log("Playing Intro");
-        Cursor.visible = false;
-        player.GetComponent<PlayerMovement>().ToggleMovement();
-        mainCamera.gameObject.SetActive(false);
-        cutsceneCamera.gameObject.SetActive(true);
-        GameObject.Find("WindPowerBG").SetActive(false);
-        if (!(bool)psData.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"])
+        if  (playOnStart)
         {
-            psData.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"] = true;
-            psData.GetComponent<PersistantStateData>().updateCount++;
-            cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
+            Debug.Log("Playing Intro");
+            Cursor.visible = false;
+            player.GetComponent<PlayerMovement>().ToggleMovement();
+            mainCamera.gameObject.SetActive(false);
+            cutsceneCamera.gameObject.SetActive(true);
+            GameObject.Find("WindPowerBG").SetActive(false);
+            if (!(bool)psData.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"])
+            {
+                psData.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"] = true;
+                psData.GetComponent<PersistantStateData>().updateCount++;
+                cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
+            }
         }
     }
 
