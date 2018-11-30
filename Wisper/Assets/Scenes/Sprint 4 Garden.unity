@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135295, g: 0.5009421, b: 0.57285845, a: 1}
+  m_IndirectSpecularColor: {r: 0.4513535, g: 0.50094336, b: 0.5728595, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23272,7 +23272,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102862350}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
@@ -45262,6 +45262,7 @@ GameObject:
   - component: {fileID: 1562149421}
   - component: {fileID: 1562149420}
   - component: {fileID: 1562149423}
+  - component: {fileID: 1562149424}
   m_Layer: 0
   m_Name: CutsceneCamera
   m_TagString: Untagged
@@ -45357,6 +45358,18 @@ MonoBehaviour:
   light: {fileID: 936196763}
   windPowerUI: {fileID: 441367797}
   player: {fileID: 1779087189}
+--- !u!114 &1562149424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1562149419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 7ff63ff685645924eb6b3aac0c6b991e, type: 2}
 --- !u!1 &1563248933
 GameObject:
   m_ObjectHideFlags: 0
@@ -65467,6 +65480,7 @@ MonoBehaviour:
   player: {fileID: 1779087189}
   windPB: {fileID: 441367797}
   psData: {fileID: 1776164367}
+  playOnStart: 1
 --- !u!4 &1891414796
 Transform:
   m_ObjectHideFlags: 0
