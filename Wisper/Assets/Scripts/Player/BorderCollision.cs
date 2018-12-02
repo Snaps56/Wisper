@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BorderCollision : MonoBehaviour {
-    private int treeCount = 0;
-    private float shake;
-    private float speed;
-    public GameObject turnBackText;
-    private float treeSpeed;
-	private float treeSlow = 0.7f;
-    private Vector3 positionStamp;
-    private PlayerMovement playermovementScript;
+
+
+    //Passthrough stuff
+    private float passThrough;
+	private float slowAmount = 0.9f;
+    private int objectCount = 0;
     private float originalSpeed;
-    [Header("Collision Handeling")]
+    private Vector3 velocityStamp;
+
+
+    //Border Stuff
+    private float shake;
+    private Vector3 positionStamp;
     private float shakeAmount;
+    public GameObject turnBackText;
 
     // Use this for initialization
     void Start () {
         turnBackText.SetActive(false);
         shakeAmount = 0.05f;
         shake = 0;
-        speed = GetComponent<Rigidbody>().velocity.magnitude;
-        treeSpeed = treeSlow * speed;
+        passThrough = slowAmount;
 
     }
 
@@ -48,12 +51,12 @@ public class BorderCollision : MonoBehaviour {
             //Returns the player back to the location at which they entered the collision box
             this.transform.position = positionStamp;
         }
-        if (other.gameObject.CompareTag("Tree"))
-        {
-            speed = treeSpeed;
-            treeCount++;
-            Debug.Log("Speed is reduced to :" + speed);
-        }
+
+        //if (!other.gameObject.CompareTag("Terrain") && !other.gameObject.CompareTag("Pickup"))
+        //{
+        //    velocityStamp = this.transform.position;
+        //}
+
     }
 
     //Trigger function activated while collision is being made
@@ -74,20 +77,27 @@ public class BorderCollision : MonoBehaviour {
                 shake -= Time.deltaTime * 0.1f;
             }
         }
+        //if (!other.gameObject.CompareTag("Terrain") && !other.gameObject.CompareTag("Pickup"))
+        //{
+        //    Debug.Log("Original Speed: " + GetComponent<Rigidbody>().velocity.magnitude);
+        //    GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * passThrough;
+        //    objectCount++;
+        //    Debug.Log("Speed is reduced to :" + GetComponent<Rigidbody>().velocity);
+        //}
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Tree"))
-        {
-            treeCount--;
-            if (treeCount == 0)
-            {
-                speed = originalSpeed;
-                Debug.Log("Speed is back to :" + speed);
-            }
-        }
+        //if (!other.gameObject.CompareTag("Terrain") && !other.gameObject.CompareTag("Pickup"))
+        //{
+        //    objectCount--;
+        //    if (objectCount == 0)
+        //    {
+        //        this.transform.position = positionStamp;
+        //        Debug.Log("Speed is back to :" + GetComponent<Rigidbody>().velocity);
+        //    }
+        //}
         //Activates when the player is no longer touching the border
         if (other.gameObject.CompareTag("Border"))
         {
