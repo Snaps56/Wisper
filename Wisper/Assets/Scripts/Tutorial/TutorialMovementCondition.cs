@@ -13,6 +13,7 @@ public class TutorialMovementCondition : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tutorialCondition = GetComponent<TutorialCondition>();
+
         playerDistanceTraveled = 0;
 	}
 	
