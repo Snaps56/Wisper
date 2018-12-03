@@ -44,6 +44,7 @@ public class CameraOptimized : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // disable mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -83,6 +84,8 @@ public class CameraOptimized : MonoBehaviour
             }
         }
         finalDistance = distance;
+
+        // Camera changing based on player speed
         SpeedCameraChange();
 
         // Camera collision

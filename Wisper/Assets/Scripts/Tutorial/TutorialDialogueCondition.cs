@@ -20,6 +20,7 @@ public class TutorialDialogueCondition : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        // update that tutorial is met if the dependent condition is true
         conditionCheck = (bool)persistantStateData.stateConditions[dependentCondition];
 
         if (conditionCheck)
