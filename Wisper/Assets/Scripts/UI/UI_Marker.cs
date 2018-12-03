@@ -15,6 +15,7 @@ public class UI_Marker : MonoBehaviour {
     public float yOffset; // offset the marker in the y direction
     public float minAlphaDistance; // distance where marker will have its maximum alpha value
     public float maxDrawDistance; // distance where marker will have its min alpha value
+    public float defaultAlpha; // alpha value when interactable
     public float highAlpha; // high alpha value
     public float lowAlpha; // lowest alpha value
 
@@ -66,7 +67,7 @@ public class UI_Marker : MonoBehaviour {
             }
             else
             {
-                waypoint.GetComponent<CanvasGroup>().alpha = highAlpha;
+                waypoint.GetComponent<CanvasGroup>().alpha = defaultAlpha;
             }
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialInteractCondition : MonoBehaviour {
+public class TutorialDialogueCondition : MonoBehaviour {
 
     public string dependentCondition;
 

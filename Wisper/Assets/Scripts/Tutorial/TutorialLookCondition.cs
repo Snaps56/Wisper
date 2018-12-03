@@ -32,8 +32,6 @@ public class TutorialLookCondition : MonoBehaviour
         //Player is looking at shrine
         if (Vector3.Dot(cameraForward.normalized, toShrine.normalized) > dotProductAngle)
         {
-            Debug.Log("DotProduct:" + Vector3.Dot(cameraForward.normalized, toShrine.normalized));
-
             tutorialCondition.SetCondition(true);
         }
     }
