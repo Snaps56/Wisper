@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
@@ -11,6 +12,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject StartMenu;
     public GameObject OptionsMenu;
     public GameObject Credits;
+    public GameObject Image;
 
     private int LeveltoLoad = 0;
     //private float horizontalSpeed = 2.0f;
@@ -52,6 +54,7 @@ public class MainMenu : MonoBehaviour {
             StartMenu.SetActive(true);
             OptionsMenu.SetActive(false);
             Credits.SetActive(false);
+            Image.SetActive(true);
         }
     }
 
