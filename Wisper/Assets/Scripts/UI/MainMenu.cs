@@ -38,14 +38,6 @@ public class MainMenu : MonoBehaviour {
         Application.Quit();
     }
 
-    public void Back ()
-    {
-        if (GameObject.V == false)
-        {
-
-        }
-    }
-
     //void Update()
     //{
         // Get the mouse delta. This is not in the range -1...1
