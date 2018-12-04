@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour {
     private bool movementToggledOff = false;
     private bool planalMovementOn = false;
 
+	public ParticleSystem screenParticles;
+	public GameObject playerDirection;
+
     // Use this for initialization
     void Start()
     {
@@ -71,6 +74,7 @@ public class PlayerMovement : MonoBehaviour {
                 MovePlayer();
             }
         }
+
         // add an opposing force that will automatically slow down the player and add a "cap" to force applied
         rb.AddForce(-rb.velocity * stopMultiplier);
     }
@@ -110,10 +114,16 @@ public class PlayerMovement : MonoBehaviour {
         if (sprintMod)
         {
             finalSpeed = movementSpeed * sprintMultiplier;
+			if (!screenParticles.isPlaying) {
+				screenParticles.Play ();
+			}
         }
         else
         {
             finalSpeed = movementSpeed;
+			if (screenParticles.isPlaying) {
+				screenParticles.Stop ();
+			}
         }
 
     }
@@ -182,6 +192,11 @@ public class PlayerMovement : MonoBehaviour {
         movementVector += mainCamera.transform.up.normalized * Input.GetAxis("PC_Axis_MovementY");
 
         movementVector = movementVector.normalized * finalSpeed;
+
+		if (movementVector.magnitude > 0) {
+			Quaternion playerRotation = Quaternion.LookRotation (movementVector, Vector3.up);
+			playerDirection.transform.rotation = playerRotation;
+		}
 
         rb.AddForce(movementVector);
     }
