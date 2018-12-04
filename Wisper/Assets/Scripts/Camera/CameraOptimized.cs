@@ -22,9 +22,7 @@ public class CameraOptimized : MonoBehaviour
 
     [Header("Speed Camera")]
     public bool modifyFOV;
-    public bool modifyDistance;
     public float fovSpeedModifier;
-    public float distanceSpeedModifier;
 
     [Header("Collision")]
     public float collisionMinimum;
@@ -46,6 +44,7 @@ public class CameraOptimized : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // disable mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -85,6 +84,8 @@ public class CameraOptimized : MonoBehaviour
             }
         }
         finalDistance = distance;
+
+        // Camera changing based on player speed
         SpeedCameraChange();
 
         // Camera collision
@@ -106,12 +107,7 @@ public class CameraOptimized : MonoBehaviour
     {
         // take dot product of player's movement relative to camera direction to apply speed cam only in forward and backwards movement
         float vectorDot = Vector3.Dot(character.GetComponentInParent<PlayerMovement>().GetVelocity().normalized, transform.forward.normalized);
-
-        // modifies camera distance
-        if (modifyDistance)
-        {
-            finalDistance = distance + playerRB.velocity.magnitude * distanceSpeedModifier * Time.deltaTime * vectorDot;
-        }
+        
         // modifies camera field of view
         if (modifyFOV)
         {

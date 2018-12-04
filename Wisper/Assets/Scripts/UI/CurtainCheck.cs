@@ -48,12 +48,13 @@ public class CurtainCheck : MonoBehaviour {
     {
         if (!updatedPSD)
         {
-            Debug.Log("Updated PSD");
             persistantStateData.stateConditions["StartupFadeFinished"] = true;
             persistantStateData.updateCount++;
 
-            persistantStateData.stateConditions["StartupShrineDialogue"] = true;
+            // Functionality moved to animation events
+            /*persistantStateData.stateConditions["StartupShrineDialogue"] = true;
             persistantStateData.updateCount++;
+            */
 
             updatedPSD = true;
         }

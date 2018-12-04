@@ -19,6 +19,10 @@ public class PersistantStateData : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             persistantStateData = this;
+
+            stateConditions = new Hashtable();
+            PopulateStateConditions();
+            updateCount = 1;
         }
         else if (persistantStateData != this)
         {
@@ -28,9 +32,7 @@ public class PersistantStateData : MonoBehaviour
 
     private void Start()
     {
-        stateConditions = new Hashtable();
-        PopulateStateConditions();
-        updateCount = 1;
+        // All initialization moved to awake.
     }
 
     // fills the persistantStateConditions with the various conditions. We can consider passing in arguments for initialization when considering save/load functionality.
@@ -42,12 +44,66 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("StartupShrineDialogue", false);
         stateConditions.Add("StartupShrineRepeat", false);
 
+        stateConditions.Add("TutorialFirstDialogueFinished", false);
+        stateConditions.Add("TutorialLookFinished", false);
         stateConditions.Add("TutorialMovementFinished", false);
+        stateConditions.Add("TutorialWithinShrineRange", false);
         stateConditions.Add("TutorialTalkedWithShrine", false);
         stateConditions.Add("TutorialInteractFinished", false);
 
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("ShrineIsClean", false);
+
+        stateConditions.Add("SwingTaskDone", false);
+
+        stateConditions.Add("Cutscene1Started", false);
+
+        stateConditions.Add("OrbDepositInProgress", false);
+    }
+
+    public void ChangeStateCondition(string key, bool value)
+    {
+        if((bool)stateConditions[key] != value)
+        {
+            stateConditions[key] = value;
+            updateCount++;
+        }
+    }
+
+    public void ChangeStateConditions(string key, int value)
+    {
+        if ((int)stateConditions[key] != value)
+        {
+            stateConditions[key] = value;
+            updateCount++;
+        }
+    }
+
+    public void ChangeStateConditions(string key, float value)
+    {
+        if ((float)stateConditions[key] != value)
+        {
+            stateConditions[key] = value;
+            updateCount++;
+        }
+    }
+
+    public void ChangeStateConditions(Hashtable kvPairs)
+    {
+        bool modified = false;
+        foreach(string key in kvPairs)
+        {
+            if(stateConditions[key] != kvPairs[key])
+            {
+                stateConditions[key] = kvPairs[key];
+                modified = true;
+            }
+        }
+
+        if (modified)
+        {
+            updateCount++;
+        }
     }
 }
 

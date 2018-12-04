@@ -36,7 +36,7 @@ public class ObjectThrow : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
         isLiftingObjects = character.GetComponentInChildren<ObjectLift>().GetIsLiftingObjects();
 
@@ -49,34 +49,34 @@ public class ObjectThrow : MonoBehaviour {
         {
             isThrowingObjects = false;
         }
-    
-        character.GetComponent<Rigidbody>();
-
-		// Play particles when player is holding the throw button
-		if (isThrowingObjects) {
-			if (!throwParticles.isPlaying) {
-				throwParticles.Play ();
-			}
-		} else {
-			if (throwParticles.isPlaying) {
-				throwParticles.Stop ();
-			}
-		}
-
-
-		// Modify throw force based on orb count
-		playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
-		throwForce = originalThrowForce + playerOrbCount;
+        // Play particles when player is holding the throw button
+        if (isThrowingObjects)
+        {
+            if (!throwParticles.isPlaying)
+            {
+                throwParticles.Play();
+            }
+        }
+        else
+        {
+            if (throwParticles.isPlaying)
+            {
+                throwParticles.Stop();
+            }
+        }
+        // Modify throw force based on orb count
+        playerOrbCount = character.GetComponent<OrbCount>().GetOrbCount();
+        throwForce = originalThrowForce + playerOrbCount;
 
         // obtain player movement vector to determine throw direction
         currentPlayerVelocity = character.GetComponent<Rigidbody>().velocity.magnitude;
+
         if (currentPlayerVelocity > 0)
         {
             movementVector = character.GetComponent<PlayerMovement>().GetVelocity();
             deltaMovementVector = (movementVector.normalized - transform.position.normalized).normalized;
             deltaMovementVector.y *= 0;
         }
-        // Debug.Log(deltaMovementVector);
     }
 
 	public bool GetIsThrowingObjects() {

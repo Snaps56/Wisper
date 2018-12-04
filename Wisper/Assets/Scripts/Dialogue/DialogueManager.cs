@@ -639,12 +639,16 @@ public class DialogueManager : MonoBehaviour {
         
         activeDialogue = dialogue;
         sentences.Clear();
-        foreach(string sentence in dialogue.sentences)
+        foreach(Sentence sentence in dialogue.sentences)
         {
-            sentences.Enqueue(sentence);
+            sentences.Enqueue(sentence.line);
         }
         ShowBox();
-        player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject);  // Set movement script to follow the "npc" the trigger is attached to.
+        if (activeDialogue.follow)
+        {
+            player.GetComponent<PlayerMovement>().SetFollowTarget(activeNPC.transform.parent.gameObject, activeNPC.GetComponent<NPCDialogues>().followTetherMinDistance, activeNPC.GetComponent<NPCDialogues>().followTetherStrongDistance);  // Set movement script to follow the "npc" the trigger is attached to.
+        }
+        
         DisplayNextSentence();
     }
 

@@ -59,6 +59,8 @@ public class TutorialFader : MonoBehaviour {
         DialogueOffset();
         DelayTutorial();
 
+
+        // if the delay timer is done, begin fade timers
         if (doneDelay)
         {
             if (!obtainedInitialTime)
@@ -72,12 +74,16 @@ public class TutorialFader : MonoBehaviour {
             FadeIn();
             FadeOut();
         }
+
+        // if the fading is finished, update the Persistant State Data variables
         if (doneFading && !updatedPSD)
         {
             tutorialCheckerScript.updatePSD();
             updatedPSD = true;
         }
     }
+
+    // delay the tutorial using a timer, begin fading only after this timer is done
     void DelayTutorial()
     {
         if (tutorialCheckerScript.InitialConditionsMet())
@@ -97,6 +103,8 @@ public class TutorialFader : MonoBehaviour {
         }
 
     }
+
+    // tutorial fade-in using a timer
     void FadeIn()
     {
         if (isFadingIn && !isFadingOut && alphaValue < 1)
@@ -110,6 +118,8 @@ public class TutorialFader : MonoBehaviour {
         }
 
     }
+
+    // tutorial fading-out only if fading-in timer is done
     void FadeOut()
     {
         bool durationCondition = false;
@@ -129,6 +139,7 @@ public class TutorialFader : MonoBehaviour {
             isFadingOut = true;
         }
 
+        // change alpha value of tutorial over time
         if (isFadingOut && alphaValue > 0)
         {
             alphaValue -= deltaAlphaOutValue * Time.deltaTime;
@@ -140,6 +151,8 @@ public class TutorialFader : MonoBehaviour {
             doneFading = true;
         }
     }
+
+    // tutorial is pushed upward if the dialogue box is active, otherwise return to original position
     void DialogueOffset()
     {
         if (dialogueBox.activeSelf)

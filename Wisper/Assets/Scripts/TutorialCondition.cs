@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class TutorialCondition : MonoBehaviour {
 
+    // this class can be referenced easily as a way to return whether if a tutorial has been completed
     private bool condition;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    
     public bool GetCondition()
     {
         return condition;

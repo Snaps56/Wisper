@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("XBOX_Button_Start"))
         {
             if (GameIsPaused)
             {
@@ -71,5 +71,6 @@ public class PauseMenu : MonoBehaviour
         audioMixer.SetFloat("volume", volume);
         CurrentVolume = volume;
     }
+
 }
 

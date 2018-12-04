@@ -14,6 +14,17 @@ public class CutsceneEvents : MonoBehaviour {
     public GameObject player;
 
 
+
+    void PSDVariableOn(string key)
+    {
+        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateCondition(key, true);
+    }
+
+    void PSDVariableOff(string key)
+    {
+        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateCondition(key, false);
+    }
+
     //Event called when the flower is supposed to animate
     void playFlower()
     {
@@ -44,8 +55,13 @@ public class CutsceneEvents : MonoBehaviour {
         rain.SetActive(false);
         //Resets the rain tint back to normal
         Color tempColor = new Color(255, 147, 85, 255);
-        light.GetComponent<Light>().color = tempColor;
+        light.GetComponent<Light>().color = Color.white;
     }
+}
 
-    
+[System.Serializable]
+public class BooleanKeyValue
+{
+    public string key;
+    public bool value;
 }

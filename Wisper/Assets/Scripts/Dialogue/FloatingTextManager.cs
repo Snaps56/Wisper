@@ -57,7 +57,7 @@ public class FloatingTextManager : MonoBehaviour {
 
         if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount && !updatingFloatingTexts)
         {
-            Debug.Log("Updating floating texts");
+            Debug.Log("Updating floating texts on " + this.gameObject.name);
             updatingFloatingTexts = true;
             persistantStateDataUpdateCount = persistantStateData.GetComponent<PersistantStateData>().updateCount;
             UpdateFloatingText();
@@ -106,9 +106,9 @@ public class FloatingTextManager : MonoBehaviour {
             // Debug.Log("Recieved floating text " + floatingText.dialogueName);
             sentences.Clear();
             //floatingText = speaker.GetComponentInChildren<Text>();
-            foreach (string sentence in fT.sentences)
+            foreach (Sentence sentence in fT.sentences)
             {
-                sentences.Enqueue(sentence);
+                sentences.Enqueue(sentence.line);
                 // Debug.Log("Enqued: " + sentence);
             }
             DisplayNextSentence(2);
