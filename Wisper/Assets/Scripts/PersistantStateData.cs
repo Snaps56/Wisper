@@ -52,7 +52,10 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("ShrineFirstConversationNo", false);    // If player refuses to help, this plays a dialogue
 
         // Variables control shrine dialogue after player has completed the Garden intro tasks
+        stateConditions.Add("ShrineFirstTurnIn", false);  // Marks the first turn in for the tutorial area
         stateConditions.Add("ShrineFirstTurnInNo", false);  // Player says no to the first turn in
+        stateConditions.Add("FirstTurnInCutsceneDialogue", false);  // Used to start Dialogue during trun in cutscene
+        stateConditions.Add("GoForth", false);  // Used to enable dialogue telling player to leave the garden
 
         stateConditions.Add("TutorialFirstDialogueFinished", false);
         stateConditions.Add("TutorialLookFinished", false);
