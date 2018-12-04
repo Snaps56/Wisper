@@ -11530,6 +11530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependentCondition: TutorialTalkedWithShrine
+  shrine: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &441263244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12010,7 +12012,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 453670481}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 950ec0524036c85409fd4a09ca7a6d1f, type: 3}
   m_Name: 
@@ -21633,6 +21635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shrine: {fileID: 2101546119}
   mainCamera: {fileID: 1102862355}
+  dotProductAngle: 0.9
 --- !u!1 &997173371
 GameObject:
   m_ObjectHideFlags: 0
@@ -23372,9 +23375,7 @@ MonoBehaviour:
   minDistance: 4
   zoomSensitivity: 3
   modifyFOV: 1
-  modifyDistance: 0
   fovSpeedModifier: 0.5
-  distanceSpeedModifier: 20
   collisionMinimum: 0
   sphereCastRadius: 0
   collisionMoveTime: 0
