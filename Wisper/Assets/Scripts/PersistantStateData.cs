@@ -41,8 +41,18 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("StartupFadeFinished", false);
         stateConditions.Add("StartupShrineDialogueFinished", false);
 
-        stateConditions.Add("StartupShrineDialogue", false);
-        stateConditions.Add("StartupShrineRepeat", false);
+        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
+        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
+        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
+
+        // Variables control dialogue of shrine the first time the player talks to it
+        stateConditions.Add("ShrineFirstConversation", false);  // Allows player to initiate conversation
+        stateConditions.Add("ShrineFirstConversation2", false); // After player fails to clean shrine, this enables the conversation to continue
+        stateConditions.Add("ShrineFirstConversationYes", false);   // If player agrees to help, this plays a dialogue
+        stateConditions.Add("ShrineFirstConversationNo", false);    // If player refuses to help, this plays a dialogue
+
+        // Variables control shrine dialogue after player has completed the Garden intro tasks
+        stateConditions.Add("ShrineFirstTurnInNo", false);  // Player says no to the first turn in
 
         stateConditions.Add("TutorialFirstDialogueFinished", false);
         stateConditions.Add("TutorialLookFinished", false);
