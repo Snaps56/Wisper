@@ -25,6 +25,19 @@ public class UI_Marker : MonoBehaviour {
     private float deltaDistance; // distance between minAlphaDistance and maxAlphaDistance
     private GameObject waypoint;
 
+    [Header("Animation")]
+    public float shakeDelay;
+    public float shakeMax;
+    public float shakeDuration;
+    private float currentShake;
+
+    private bool isAnimating;
+    private bool doneAnimating;
+    private float linearInterpolate = 0f;
+
+    private float initialTimer;
+    private float currentTimer;
+
 	// Use this for initialization
 	void Start () {
         waypoint = Instantiate(indicator);
@@ -34,11 +47,63 @@ public class UI_Marker : MonoBehaviour {
         // initialize alpha settings
         deltaDistance = maxDrawDistance - minAlphaDistance;
         deltaAlpha = (highAlpha - lowAlpha) / (deltaDistance);
+
+        initialTimer = Time.time;
+        isAnimating = false;
+        doneAnimating = false;
     }
 	
-	// Update is called once per frame
-	void Update () {
+    void IconShake()
+    {
+        if (currentShake < shakeMax && !doneAnimating)
+        {
+            if (linearInterpolate < 1)
+            {
+                linearInterpolate += (2 / shakeDuration) * Time.deltaTime;
+            }
+            currentShake = Mathf.Lerp(1, shakeMax, linearInterpolate);
+        }
+        else
+        {
+            doneAnimating = true;
+            if (linearInterpolate > 0)
+            {
+                linearInterpolate -= (2 / shakeDuration) * Time.deltaTime;
+            }
+            currentShake = Mathf.Lerp(1, shakeMax, linearInterpolate);
+        }
+
+        if (linearInterpolate <= 0 && doneAnimating)
+        {
+            linearInterpolate = 0f;
+            currentShake = Mathf.Lerp(1, shakeMax, linearInterpolate);
+            isAnimating = false;
+        }
+
+    }
+    void BeginTimer()
+    {
+        // Debug.Log("Cooldown: " + currentTimer + ", current Shake: " + currentShake);
+        currentTimer = Time.time - initialTimer;
+
+        if (currentTimer > shakeDelay)
+        {
+            doneAnimating = false;
+            isAnimating = true;
+            initialTimer = Time.time;
+        }
+
+        if (isAnimating)
+        {
+            IconShake();
+        }
+
+    }
+    // Update is called once per frame
+    void Update () {
         distance = Mathf.Abs((character.position - transform.position).magnitude);
+
+        Debug.Log(waypoint.transform.rotation);
 
         Vector3 rayCastDirection = (transform.position - mainCamera.transform.position).normalized;
         float rayCastCheck = Vector3.Dot(rayCastDirection, mainCamera.transform.forward);
@@ -57,9 +122,14 @@ public class UI_Marker : MonoBehaviour {
             waypoint.GetComponent<RectTransform>().position = mainCamera.WorldToScreenPoint(offsetPosition);
             waypoint.SetActive(true);
 
+            // Debug.Log(waypoint.transform.rotation);
+
             // alpha scaling with distance
             if (distance > minAlphaDistance)
             {
+                BeginTimer();
+                waypoint.transform.localScale = new Vector3(currentShake, currentShake, currentShake);
+
                 float distancePercent = deltaDistance - (distance - minAlphaDistance);
 
                 currentAlpha = distancePercent * deltaAlpha + lowAlpha;
@@ -67,6 +137,7 @@ public class UI_Marker : MonoBehaviour {
             }
             else
             {
+                waypoint.transform.localScale = new Vector3(shakeMax, shakeMax, shakeMax);
                 waypoint.GetComponent<CanvasGroup>().alpha = defaultAlpha;
             }
         }
