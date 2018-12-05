@@ -5,85 +5,65 @@ using UnityEngine;
 public class SpawnOrbs : MonoBehaviour
 {
     public GameObject orb;
+    public Transform player;
+
     public float orbCount;
-	private GameObject player;
+    public float initialForceMultiplier;
+    public float moveSpeedMultiplier;
+    public float slowMultiplier;
 
-    private float launchSpeed = .1f;
-    private Rigidbody rb;
-    private bool buttonPressed = false;
-    private float timePassed, timeBetweenSteps = 1f;
-
-	private Vector3 targetPosition;
-	private float riseHeight;
-	private float orbNum;
-	private bool orbSpawned;
 	private GameObject orbInstance;
-	private float speed;
-	private bool orbMovingToPlayer;
+
+    List<GameObject> orbsList = new List<GameObject>();
 
     // Use this for initialization
     void Start()
     {
-		player = GameObject.FindWithTag ("Player");
-        rb = orb.GetComponent<Rigidbody>();
-		riseHeight = 2.5f;
-		orbNum = 0;
-		speed = 1f;
-		orbSpawned = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("PC_Key_Orb") && buttonPressed == false)
+        // Debuggging drop orbs
+        if (Input.GetButtonDown("PC_Key_Orb"))
         {
-            //Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
-            //buttonPressed = true;
-            //for (int i = 0; i < orbCount; i++)
-            //{
-            //GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
-            //orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
-            //}
-
-            orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
-			orbInstance.GetComponent<OrbSequence>().setDestination(player, "player");
-            //orbSpawned = true;
-
+            DropOrbs();
         }
-        if (timePassed >= timeBetweenSteps)
-        {
-            timePassed = 0f;
-            buttonPressed = false;
-        }
-		if (orbSpawned) {
-			//targetPosition = transform.position + new Vector3 (0, riseHeight, 0);
-			//orbInstance.transform.position = Vector3.MoveTowards (orbInstance.transform.position, targetPosition, 1 * Time.deltaTime);
-			//orbNum++;
-			//Debug.Log("Orb Rising");
-			//if (orbInstance.transform.position == targetPosition) {
-			//	orbSpawned = false;
-			//	orbMovingToPlayer = true;
-			//	Debug.Log ("Orb Stopped");
-			//}
-		}
-
-		if (orbMovingToPlayer) {
-			//targetPosition = player.transform.position;
-			//orbInstance.transform.position = Vector3.MoveTowards (orbInstance.transform.position, targetPosition, 3 * Time.deltaTime);
-		}
+        // make sure orbs list does not contain emptry indices
+        orbsList.TrimExcess();
     }
+    private void FixedUpdate()
+    {
+        // for every orb generated
+        for (int i = 0; i < orbsList.Count; i++)
+        {
+            // make sure index in array is not null
+            if (orbsList[i] != null)
+            {
+                // obtain vector of orb and player
+                Rigidbody rb = orbsList[i].GetComponent<Rigidbody>();
+                Vector3 deltaPosition = player.position - orbsList[i].GetComponent<Transform>().position;
+                deltaPosition = deltaPosition.normalized;
 
-	public void DropOrbs (){
+                // obtain vector of player and object to scale speed
+                float distanceToBase = (player.position - transform.position).magnitude;
+
+                rb.AddForce(deltaPosition * moveSpeedMultiplier * distanceToBase);
+                rb.AddForce(-rb.velocity * slowMultiplier);
+            }
+        }
+    }
+    public void DropOrbs (){
 		for (int i = 0; i < orbCount; i++) {
-			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + transform.position;
-			GameObject orbInstance = Instantiate(orb, spawnPosition, Quaternion.identity);
-			orbInstance.GetComponent<OrbSequence> ().setDestination (player, "player");
-			orbInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
-		}
-	}
+            // Vector3 initialForce = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+            Vector3 initialForce = Random.insideUnitSphere;
+            initialForce = initialForce * initialForceMultiplier;
 
-	void OrbRise () {
-		GameObject orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
-		targetPosition = orbInstance.transform.position + new Vector3 (0, riseHeight, 0);
+            GameObject orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
+            orbsList.Add(orbInstance);
+
+            orbInstance.GetComponent<Rigidbody>().AddForce(initialForce);
+            // orbInstance.GetComponent<OrbSequence> ().setDestination (player, "player");
+        }
 	}
 }
