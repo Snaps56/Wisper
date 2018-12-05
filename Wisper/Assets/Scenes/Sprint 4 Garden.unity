@@ -17087,7 +17087,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 5
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!4 &486810507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5853ece0a8645ce4489dd8bd29bb3d63,
@@ -27997,9 +28001,7 @@ MonoBehaviour:
   zoomSensitivity: 3
   modifyFOV: 1
   fovSpeedModifier: 0.5
-  collisionMinimum: 0
   sphereCastRadius: 0
-  collisionMoveTime: 0
 --- !u!124 &1102862357
 Behaviour:
   m_ObjectHideFlags: 0
@@ -48870,6 +48872,9 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 1646133876}
   settingsMenu: {fileID: 287340338}
   VideoMenu: {fileID: 209008809}
+  MainEventSystem: {fileID: 0}
+  GraphicsEventSystem: {fileID: 0}
+  AudioEventSystem: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 66155f7ede8feb04788df3e4419930e5, type: 2}
 --- !u!114 &1516602859
 MonoBehaviour:
@@ -48990,7 +48995,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 10
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!65 &1518118548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55207,7 +55216,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1592336171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 64.920395, y: 1.910963, z: 50.75685}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 2101546118}
@@ -55228,50 +55237,273 @@ MonoBehaviour:
   followTetherMinDistance: 5
   followTetherStrongDistance: 7
   dialogues:
-  - dialogueName: Greeting
+  - dialogueName: Follow the light
     enabled: 0
     forceOnEnable: 1
     follow: 0
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
-    - conditionName: StartupShrineRepeat
+    conditionChangeOnExit:
+    - conditionName: StartupShrineDialogue
       conditionValue: 0
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: You.... Can you hear me?... Come, find me
+    - speaker: 
+      line: "Follow the light\u2026"
+  - dialogueName: Follow the light part 2
+    enabled: 0
+    forceOnEnable: 1
+    follow: 0
+    enableConditions:
+    - conditionName: StartupShrinePart2
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: StartupShrinePart2
+      conditionValue: 0
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: "Hmm\u2026you seem different somehow."
+    - speaker: 
+      line: "I wonder if you even realize what you\u2019ve gotten yourself into."
+    - speaker: 
+      line: '...'
+    - speaker: 
+      line: I doubt it.
+  - dialogueName: Are you following the light?
+    enabled: 0
+    forceOnEnable: 1
+    follow: 0
+    enableConditions:
+    - conditionName: StartupShrineRepeatDirections
+      conditionValue: 1
     conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: "Are you lost? Look for the light. I\u2019ll be waiting at the top of
+        the garden..."
+  - dialogueName: First Shrine Dialogue
+    enabled: 0
+    forceOnEnable: 0
+    follow: 1
+    enableConditions:
+    - conditionName: ShrineFirstConversation
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: Ah, yes...you found me!
+    - speaker: 
+      line: What was that? Who am I?
+    - speaker: 
+      line: Looks like I was right, I had a feeling you were new...
+    - speaker: 
+      line: Okay, I need you to hang tight and stay still while I explain a couple
+        things.
+    - speaker: 
+      line: "Hey, don\u2019t roll your eyes at me, I\u2019m just trying to help!"
+    - speaker: 
+      line: '...'
+    - speaker: 
+      line: "Excuse me?! What do you mean I\u2019m \u2018Just a dusty old rock\u2019?!
+        Wow, you\u2019ve got a real lip this time around..."
+    - speaker: 
+      line: "Look, pal, I don\u2019t know if you can tell but there\u2019s not a whole
+        lot of people around here for me to impress."
+    - speaker: 
+      line: '...No one even visits, anyway...'
+    - speaker: 
+      line: "Alright, well if you\u2019re so anxious to do something AND since you
+        felt compelled enough to insult how I look, go ahead and try dusting me off."
+  - dialogueName: First Shrine Dialogue part 2
+    enabled: 0
+    forceOnEnable: 0
+    follow: 1
+    enableConditions:
+    - conditionName: ShrineFirstConversation2
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: ShrineFirstConversation2
+      conditionValue: 0
     options:
-    - sentenceIndex: 3
+    - sentenceIndex: 5
       choices:
-      - reply: Yes
+      - reply: Yeah!
         changeConditions:
-        - conditionName: StartupShrineDialogue
-          conditionValue: 0
-        - conditionName: StartupShrineRepeat
-          conditionValue: 0
-        - conditionName: StartupShrineDialogueFinished
+        - conditionName: ShrineFirstConversationYes
           conditionValue: 1
-      - reply: No
+      - reply: Nope!
         changeConditions:
-        - conditionName: StartupShrineRepeat
+        - conditionName: ShrineFirstConversationNo
           conditionValue: 1
     speedControls: []
     sentences:
     - speaker: 
-      line: Now this is a story all about how your life got flipped, turned upside
-        down
+      line: Ha! Not so easy, huh?
     - speaker: 
-      line: And I'd like to take a minute, just sit right there
+      line: "Hmm, you\u2019re quite a bit weaker than most of the others."
     - speaker: 
-      line: I'll tell you how you became the wind in the air
+      line: "Okay, here\u2019s the deal."
     - speaker: 
-      line: Continue?
-  - dialogueName: Repeat Greeting
+      line: "You go back down to the garden, and help those kind Shellsters out. Thanks
+        to us, they\u2019ve always got a lot on their plate..."
+    - speaker: 
+      line: From up here, I can see someone lost their hat, so maybe start there.
+    - speaker: 
+      line: "Come back after you\u2019ve done a couple favors. Your strength should
+        be high enough to clean me off by then. Once you do, I\u2019ll explain everything
+        that\u2019s going on. Sound good?"
+  - dialogueName: First Shrine Dialogue Yes
+    enabled: 0
+    forceOnEnable: 1
+    follow: 1
+    enableConditions:
+    - conditionName: ShrineFirstConversationYes
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: ShrineFirstConversationYes
+      conditionValue: 0
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: Excellent. Now, hop to it!
+  - dialogueName: First Shrine Dialogue No
+    enabled: 0
+    forceOnEnable: 1
+    follow: 1
+    enableConditions:
+    - conditionName: ShrineFirstConversationNo
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: ShrineFirstConversationNo
+      conditionValue: 0
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: "Ha! Be stubborn all you want. I\u2019ll be here when you\u2019re ready."
+  - dialogueName: Clean me!
+    enabled: 0
+    forceOnEnable: 0
+    follow: 1
+    enableConditions:
+    - conditionName: ShamusHasHat
+      conditionValue: 1
+    - conditionName: SwingTaskDone
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: Welcome back! Looks like you managed to help some folks! Good for you.
+    - speaker: 
+      line: "You\u2019ve even looking gustier than before, I can tell you\u2019re
+        feeling a bit stronger!"
+    - speaker: 
+      line: Alright, then try dusting me off again!
+  - dialogueName: Baby's First Deposit
+    enabled: 0
+    forceOnEnable: 0
+    follow: 0
+    enableConditions:
+    - conditionName: ShrineIsClean
+      conditionValue: 1
+    - conditionName: ShrineFirstTurnIn
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: ShrineFirstTurnIn
+      conditionValue: 0
+    options:
+    - sentenceIndex: 1
+      choices:
+      - reply: Sure!
+        changeConditions:
+        - conditionName: OrbDepositInProgress
+          conditionValue: 1
+      - reply: No way!
+        changeConditions:
+        - conditionName: ShrineFirstTurnInNo
+          conditionValue: 1
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: "That\u2019s more like it! Thanks for pointing out how much I let this
+        place go, I forgot how nice this place is when it\u2019s tidy."
+    - speaker: 
+      line: Now, if you would kindly hand over those orbs.
+  - dialogueName: First Deposit Rejected
+    enabled: 0
+    forceOnEnable: 0
+    follow: 0
+    enableConditions:
+    - conditionName: ShrineFirstTurnInNo
+      conditionValue: 1
+    conditionChangeOnExit:
+    - conditionName: ShrineFirstTurnInNo
+      conditionValue: 0
+    - conditionName: OrbDepositInProgress
+      conditionValue: 1
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: "Okay, yes. I know you just collected them all on your own, but we need
+        to get rid of them. It\u2019ll make sense in a minute, I promise!"
+  - dialogueName: First Turn In Cutscene Dialogue
     enabled: 0
     forceOnEnable: 1
     follow: 0
     enableConditions:
-    - conditionName: StartupShrineDialogue
+    - conditionName: FirstTurnInCutsceneDialogue
       conditionValue: 1
-    - conditionName: StartupShrineRepeat
+    conditionChangeOnExit:
+    - conditionName: FirstTurnInCutsceneDialogue
+      conditionValue: 0
+    - conditionName: GoForth
+      conditionValue: 1
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: "Alright, to finally answer your first question, I\u2019m the guardian
+        of this island."
+    - speaker: 
+      line: "I\u2019m pretty proud of it, I think it\u2019s a nice place. The Shellsters
+        who live here seem to like it, too. They call it Sunshore."
+    - speaker: 
+      line: "Now, this island may be a beautiful paradise, but it\u2019s actually
+        located in a rather inconvenient and dangerous spot."
+    - speaker: 
+      line: "Wisps tend to migrate over Sunshore a lot for one reason or another.
+        They\u2019re also pretty rowdy, and brew one heck of a storm when they get
+        together!"
+    - speaker: 
+      line: "This is usually okay, but sometimes the storms can be really dangerous,
+        and it\u2019s my job to protect the island. So, when this happens, I shatter
+        the storm into hundreds of little pieces."
+    - speaker: 
+      line: Yup! Those orbs you just collected could have destroyed the entire island
+        last night!
+    - speaker: 
+      line: Luckily, when you bring them to me little by little, the storm manifests
+        in a much safer way
+  - dialogueName: Go forth!
+    enabled: 0
+    forceOnEnable: 1
+    follow: 0
+    enableConditions:
+    - conditionName: GoForth
       conditionValue: 1
     conditionChangeOnExit: []
     options:
@@ -55279,18 +55511,44 @@ MonoBehaviour:
       choices:
       - reply: Yes
         changeConditions:
-        - conditionName: StartupShrineDialogue
-          conditionValue: 0
-        - conditionName: StartupShrineRepeat
-          conditionValue: 0
-        - conditionName: StartupShrineDialogueFinished
+        - conditionName: OrbDepositInProgress
           conditionValue: 1
       - reply: No
         changeConditions: []
     speedControls: []
     sentences:
     - speaker: 
-      line: Continue?
+      line: Unfortunately, this...complicates things. No one except you and I can
+        see these orbs, but the Shellsters tend to feel their negative effects. Basically
+        when the orbs fall down to the island, everyone gets cursed.
+    - speaker: 
+      line: "It\u2019s mostly mundane things, but a curse is still a curse! You can\u2019t
+        just let those linger!\u201D\r\n\u201CThat\u2019s where you come in.\r"
+    - speaker: 
+      line: "I\u2019m getting too old to go collecting all of these myself, and it
+        takes a lot out of me to keep them under control."
+    - speaker: 
+      line: "Like I said, when you bring them to me, I\u2019m able to destroy them
+        for good. When that happens, a fraction of the storm reappears to rain down
+        onto the island."
+    - speaker: 
+      line: 'So in summary: Each time you help someone, their curse is lifted, you
+        collect some orbs and get a little stronger, then you bring me those orbs
+        so I can destroy them, and as a result the island stays safe and happy. Sound
+        good?'
+    - speaker: 
+      line: "Be careful though. Like I said, controlling these orbs isn\u2019t easy,
+        and these storms can still be quite strong if you bring me too many..."
+    - speaker: 
+      line: "Well, that\u2019s about all there is to that, so why don\u2019t we get
+        started gathering those orbs. In fact, I think I still sense one\u2026 actually,
+        let\u2019s not worry about that one now."
+    - speaker: 
+      line: "Why don\u2019t you see if there\u2019s any fun to be had in the city?
+        I\u2019m sure there are plenty of Shellsters there who need your help."
+    - speaker: 
+      line: "Have fun, Wisper! That\u2019s what I\u2019m going to be calling you from
+        now on, so get used to hearing it!"
   - dialogueName: Deposit prompt
     enabled: 0
     forceOnEnable: 0
@@ -55322,8 +55580,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 1.2, z: 0}
+  m_Radius: 6
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &1593886671
 GameObject:
   m_ObjectHideFlags: 0
@@ -70772,7 +71030,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 5
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!114 &1936945841
 MonoBehaviour:
   m_ObjectHideFlags: 0
