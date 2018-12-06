@@ -13539,6 +13539,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: SwingTaskDone
       conditionValue: 0
@@ -18501,6 +18503,106 @@ Transform:
   m_Father: {fileID: 813196997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &717553119
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 39.695
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -6.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224526221503911190, guid: b265e73def8358a4db7e21be704bb935,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b265e73def8358a4db7e21be704bb935, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &717686601
 Prefab:
   m_ObjectHideFlags: 0
@@ -30094,7 +30196,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102862350}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
@@ -57693,6 +57795,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -57729,6 +57833,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -57756,6 +57862,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShrineIsClean
       conditionValue: 1
@@ -66010,6 +66118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateCount: 0
+  globalTime: 0
+  pauseGlobalTimer: 0
 --- !u!4 &1776164369
 Transform:
   m_ObjectHideFlags: 0
@@ -72267,6 +72377,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -72290,6 +72402,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -73476,6 +73590,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -75796,7 +75912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ef5714087bb9745b350cdaf5a54e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  orb: {fileID: 1704531064911502, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 1779087190}
   orbCount: 5
   initialForceMultiplier: 400
@@ -76920,6 +77036,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions: []
     conditionChangeOnExit: []
     options: []
@@ -76942,12 +77060,16 @@ MonoBehaviour:
   character: {fileID: 1779087190}
   mainCanvas: {fileID: 1516602861}
   indicator: {fileID: 1257024435530406, guid: 628299dbfc981694cac47aef1f4e311f, type: 2}
-  yOffset: 4
+  farYOffset: 6
+  closeYOffset: 4
   minAlphaDistance: 5
   maxDrawDistance: 50
   defaultAlpha: 1
   highAlpha: 0.5
   lowAlpha: 0.4
+  shakeDelay: 2
+  shakeMax: 1.5
+  shakeDuration: 0.5
 --- !u!1 &2102680277
 GameObject:
   m_ObjectHideFlags: 0

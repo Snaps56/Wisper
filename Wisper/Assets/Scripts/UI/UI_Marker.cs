@@ -12,7 +12,10 @@ public class UI_Marker : MonoBehaviour {
     public GameObject indicator;
 
     [Header("Values")]
-    public float yOffset; // offset the marker in the y direction
+    public float farYOffset; // offset the marker in the y direction
+    public float closeYOffset;
+    private float finalYOffset;
+
     public float minAlphaDistance; // distance where marker will have its maximum alpha value
     public float maxDrawDistance; // distance where marker will have its min alpha value
     public float defaultAlpha; // alpha value when interactable
@@ -116,7 +119,10 @@ public class UI_Marker : MonoBehaviour {
         else
         {
             Vector3 offsetPosition = transform.position;
-            offsetPosition.y = transform.position.y + yOffset;
+
+            float distanceInterpolation = distance / maxDrawDistance;
+            finalYOffset = Mathf.Lerp(closeYOffset, farYOffset, distanceInterpolation);
+            offsetPosition.y = transform.position.y + finalYOffset;
 
             // draw marker onto the canvas at same relative location as target
             waypoint.GetComponent<RectTransform>().position = mainCamera.WorldToScreenPoint(offsetPosition);
