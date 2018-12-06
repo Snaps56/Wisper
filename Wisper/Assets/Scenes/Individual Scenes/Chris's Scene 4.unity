@@ -11172,6 +11172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateCount: 0
+  globalTime: 0
+  pauseGlobalTimer: 0
 --- !u!1 &433647401
 GameObject:
   m_ObjectHideFlags: 0
@@ -12027,25 +12029,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &453670490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453670481}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 950ec0524036c85409fd4a09ca7a6d1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftSwing: {fileID: 453670480}
-  rightSwing: {fileID: 453670477}
-  topBeam: {fileID: 453670478}
-  rotateX: 10
-  speed: 5
-  maxY: 20
-  maxZ: 14
-  minZ: 8
 --- !u!114 &453670499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12071,7 +12054,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 5
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!1 &456313542
 GameObject:
   m_ObjectHideFlags: 0
@@ -12514,7 +12501,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 5
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!136 &486810509
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23372,9 +23363,7 @@ MonoBehaviour:
   zoomSensitivity: 3
   modifyFOV: 1
   fovSpeedModifier: 0.5
-  collisionMinimum: 0
   sphereCastRadius: 0
-  collisionMoveTime: 0
 --- !u!1 &1103614773
 GameObject:
   m_ObjectHideFlags: 0
@@ -24462,6 +24451,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -24531,6 +24522,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -24558,6 +24551,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogueFinished
       conditionValue: 1
@@ -34968,6 +34963,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -34981,6 +34978,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -35033,6 +35032,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -44811,7 +44812,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 10
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!65 &1518118548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59265,6 +59270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateCount: 0
+  globalTime: 0
+  pauseGlobalTimer: 0
 --- !u!4 &1776164369
 Transform:
   m_ObjectHideFlags: 0
@@ -65596,6 +65603,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -65618,6 +65627,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -66606,7 +66617,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 5
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!114 &1936945841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66623,6 +66638,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -66654,6 +66671,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -66667,6 +66686,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -69493,6 +69514,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions: []
     conditionChangeOnExit: []
     options: []
