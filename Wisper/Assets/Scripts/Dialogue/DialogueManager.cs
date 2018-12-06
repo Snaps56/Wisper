@@ -794,4 +794,9 @@ public class DialogueManager : MonoBehaviour {
     {
         return activeDialogue;
     }
+
+    public bool IsDialogueActive()
+    {
+        return dialogueBoxActive;
+    }
 }
