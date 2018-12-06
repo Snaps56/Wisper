@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public Animator animator;
 
     public static bool GameIsPaused = false;
 
@@ -71,8 +73,13 @@ public class PauseMenu : MonoBehaviour
     // Quits the game! But why would you want to do that?
     public void QuitGame()
     {
-        Debug.Log("QUIT!");
-        Application.Quit();
+        Resume();
+        animator.SetTrigger("FadeOut");
+    }
+
+    public void OnFadeComplete()
+    {
+        SceneManager.LoadScene(0);
     }
     // Function to set the master volume
     public void SetVolume (float volume)

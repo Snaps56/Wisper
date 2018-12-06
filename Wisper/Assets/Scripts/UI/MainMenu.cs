@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
@@ -58,14 +57,5 @@ public class MainMenu : MonoBehaviour {
             Image.SetActive(true);
         }
     }
-
-    //void Update()
-    //{
-    // Get the mouse delta. This is not in the range -1...1
-    //float h = horizontalSpeed * Input.GetAxis("XBOX_Thumbstick_L_X");
-    //float v = verticalSpeed * Input.GetAxis("XBOX_Thumbstick_L_Y");
-    //
-    //      transform.Translate(v, h, 0);
-    //    }
 
 }
