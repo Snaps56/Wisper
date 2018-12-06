@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135278, g: 0.50094235, b: 0.5728585, a: 1}
+  m_IndirectSpecularColor: {r: 0.45135295, g: 0.5009421, b: 0.57285845, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -47642,7 +47642,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 3.2220325, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -3.187534, y: -0.20085621, z: -0.11167288}
+  m_ConnectedAnchor: {x: -3.1875336, y: -0.20086956, z: -0.11167556}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -47730,7 +47730,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 3.2220325, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.094466, y: -0.20085621, z: -0.11167288}
+  m_ConnectedAnchor: {x: 3.0944657, y: -0.20086956, z: -0.11167246}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -51245,6 +51245,10 @@ MonoBehaviour:
     conditionChangeOnExit:
     - conditionName: TutorialTalkedWithShrine
       conditionValue: 1
+    - conditionName: WaitingForCleanAttempt
+      conditionValue: 1
+    - conditionName: ShrineFirstConversation
+      conditionValue: 0
     options: []
     speedControls: []
     sentences:

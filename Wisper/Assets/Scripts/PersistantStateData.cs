@@ -57,6 +57,7 @@ public class PersistantStateData : MonoBehaviour
 
         // Variables control dialogue of shrine the first time the player talks to it
         stateConditions.Add("ShrineFirstConversation", false);  // Allows player to initiate conversation
+        stateConditions.Add("WaitingForCleanAttempt", false);   // Indicates that the shrine will respond once the player attempts to clean it.
         stateConditions.Add("ShrineFirstConversation2", false); // After player fails to clean shrine, this enables the conversation to continue
         stateConditions.Add("ShrineFirstConversationYes", false);   // If player agrees to help, this plays a dialogue
         stateConditions.Add("ShrineFirstConversationNo", false);    // If player refuses to help, this plays a dialogue
