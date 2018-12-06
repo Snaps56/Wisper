@@ -56,7 +56,10 @@ public class SpawnOrbs : MonoBehaviour
     public void DropOrbs (){
 		for (int i = 0; i < orbCount; i++) {
             // Vector3 initialForce = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
-            Vector3 initialForce = Random.insideUnitSphere;
+            Vector3 playerVector = player.transform.position - transform.position;
+
+            Vector3 crossVector = Vector3.ProjectOnPlane(Random.insideUnitSphere, playerVector);
+            Vector3 initialForce = crossVector.normalized;
             initialForce = initialForce * initialForceMultiplier;
 
             GameObject orbInstance = Instantiate(orb, transform.position, Quaternion.identity);

@@ -41,6 +41,12 @@ public class UI_Marker : MonoBehaviour {
     private float initialTimer;
     private float currentTimer;
 
+    [Header("Persistant State Data")]
+    public string[] updateConditions; // conditions in persistant state data are changed after tutorial is finished
+    private bool hasInteracted;
+
+    private PersistantStateData persistantStateData;
+    
 	// Use this for initialization
 	void Start () {
         waypoint = Instantiate(indicator);
@@ -54,6 +60,9 @@ public class UI_Marker : MonoBehaviour {
         initialTimer = Time.time;
         isAnimating = false;
         doneAnimating = false;
+            
+        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        hasInteracted = false;
     }
 	
     void IconShake()
@@ -105,8 +114,7 @@ public class UI_Marker : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         distance = Mathf.Abs((character.position - transform.position).magnitude);
-
-        Debug.Log(waypoint.transform.rotation);
+        
 
         Vector3 rayCastDirection = (transform.position - mainCamera.transform.position).normalized;
         float rayCastCheck = Vector3.Dot(rayCastDirection, mainCamera.transform.forward);
@@ -126,26 +134,48 @@ public class UI_Marker : MonoBehaviour {
 
             // draw marker onto the canvas at same relative location as target
             waypoint.GetComponent<RectTransform>().position = mainCamera.WorldToScreenPoint(offsetPosition);
-            waypoint.SetActive(true);
 
-            // Debug.Log(waypoint.transform.rotation);
-
-            // alpha scaling with distance
-            if (distance > minAlphaDistance)
+            if (!hasInteracted)
             {
-                BeginTimer();
-                waypoint.transform.localScale = new Vector3(currentShake, currentShake, currentShake);
-
-                float distancePercent = deltaDistance - (distance - minAlphaDistance);
-
-                currentAlpha = distancePercent * deltaAlpha + lowAlpha;
-                waypoint.GetComponent<CanvasGroup>().alpha = currentAlpha;
+                waypoint.SetActive(true);
+                UIAlpha();
             }
             else
             {
-                waypoint.transform.localScale = new Vector3(shakeMax, shakeMax, shakeMax);
-                waypoint.GetComponent<CanvasGroup>().alpha = defaultAlpha;
+                waypoint.SetActive(false);
             }
+
+            // Debug.Log(waypoint.transform.rotation);
+
+        }
+    }
+    void UIAlpha()
+    {
+        // alpha scaling with distance
+        if (distance > minAlphaDistance)
+        {
+            BeginTimer();
+            waypoint.transform.localScale = new Vector3(currentShake, currentShake, currentShake);
+
+            float distancePercent = deltaDistance - (distance - minAlphaDistance);
+
+            currentAlpha = distancePercent * deltaAlpha + lowAlpha;
+            waypoint.GetComponent<CanvasGroup>().alpha = currentAlpha;
+        }
+        else
+        {
+            waypoint.transform.localScale = new Vector3(shakeMax, shakeMax, shakeMax);
+            waypoint.GetComponent<CanvasGroup>().alpha = defaultAlpha;
+
+            if (Input.GetButton("PC_Key_Interact") || Input.GetButton("XBOX_Button_X"))
+            {
+                hasInteracted = true;
+                for (int i = 0; i < updateConditions.Length; i++)
+                {
+                    persistantStateData.ChangeStateConditions(updateConditions[i], true);
+                }
+            }
+
         }
     }
 }

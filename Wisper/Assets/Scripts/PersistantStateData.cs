@@ -71,8 +71,11 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TutorialLookFinished", false);
         stateConditions.Add("TutorialMovementFinished", false);
         stateConditions.Add("TutorialWithinShrineRange", false);
+        stateConditions.Add("TutorialFirstInteraction", false);
         stateConditions.Add("TutorialTalkedWithShrine", false);
         stateConditions.Add("TutorialInteractFinished", false);
+        stateConditions.Add("TutorialDialogueSkipped", false);
+        stateConditions.Add("TutorialAttemptedClean", false);
 
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("ShrineIsClean", false);
