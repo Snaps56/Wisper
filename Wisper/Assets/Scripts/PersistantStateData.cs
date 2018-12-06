@@ -10,6 +10,8 @@ public class PersistantStateData : MonoBehaviour
     public static PersistantStateData persistantStateData;
     public int updateCount;         // A count of how many times the hashtable has been updated after game launched. Should be incremented when modifying hashtable. Need not be preserved after closing application.
     public Hashtable stateConditions;   // Hashtable containing key/value pairs of state conditions (probably limited to string/bool pairs).
+    public float globalTime;       // The total elapsed time in seconds
+    public bool pauseGlobalTimer = false;
 
     // When scene with this loads, initialize the static variable to object with this script if there is none. Object is persistant through scenes.
     // Otherwise if persistantStateData is already loaded into the game/scene, don't overwrite it and delete this object. This enforces singleton status.
@@ -21,6 +23,7 @@ public class PersistantStateData : MonoBehaviour
             persistantStateData = this;
 
             stateConditions = new Hashtable();
+            globalTime = 0f;
             PopulateStateConditions();
             updateCount = 1;
         }
@@ -32,7 +35,14 @@ public class PersistantStateData : MonoBehaviour
 
     private void Start()
     {
-        // All initialization moved to awake.
+    }
+
+    private void Update()
+    {
+        if(!pauseGlobalTimer)
+        {
+            globalTime += Time.deltaTime;
+        }
     }
 
     // fills the persistantStateConditions with the various conditions. We can consider passing in arguments for initialization when considering save/load functionality.
@@ -74,7 +84,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("OrbDepositInProgress", false);
     }
 
-    public void ChangeStateCondition(string key, bool value)
+    public void ChangeStateConditions(string key, bool value)
     {
         if((bool)stateConditions[key] != value)
         {
@@ -104,11 +114,11 @@ public class PersistantStateData : MonoBehaviour
     public void ChangeStateConditions(Hashtable kvPairs)
     {
         bool modified = false;
-        foreach(string key in kvPairs)
+        foreach(DictionaryEntry de in kvPairs)
         {
-            if(stateConditions[key] != kvPairs[key])
+            if(stateConditions[de.Key] != de.Value)
             {
-                stateConditions[key] = kvPairs[key];
+                stateConditions[de.Key] = de.Value;
                 modified = true;
             }
         }

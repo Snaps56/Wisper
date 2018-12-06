@@ -25,12 +25,13 @@ public class DialogueManager : MonoBehaviour {
     private Queue<string> sentences;        // Queue of sentences to display
     private int sentenceIndex = 0;          // Index for number of sentence from queue currently being displayed.
     private float charDelay;                // Delay between adding chars to display. Controls the "speed of speech." Minimum delay is 1/framerate seconds for charDelay, which corresponds to the "fastest talking speed."
+    
 
     private Option activeOption;            // Reference to the active option
     private Choice activeChoice;            // Reference to the choice currently selected.
     private int activeChoiceIndex = 0;          // Index of active choice within list of display choices
     private List<Choice> displayChoices = new List<Choice>();    // List of choices to display on screen
-    private List<int> activeOptionPanels = new List<int>();   // List of which option panels are displayed by their number
+    private List<int> activeOptionPanels = new List<int>();   // List of which option panels are displayed by their number (1, 2, 3, 4)
     private int selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
     
 
@@ -40,7 +41,8 @@ public class DialogueManager : MonoBehaviour {
     private bool skipText = false;          // Switch to fast forward text on player click
     private bool optionActive = false;
     private bool optionChangeOnCooldown = false;
-
+    
+    private bool displayWhenDoneLock = false;   // A lock used to ensure only one call to the display next sentence when done coroutine is running.
     // References to entities in scene
     private GameObject player;                                      // Reference to the player
     private List<GameObject> inRangeNPC = new List<GameObject>();   // List of all DialogueTriggers in range of player collider. Stored here to avoid repetitive find operations each frame.
@@ -155,7 +157,7 @@ public class DialogueManager : MonoBehaviour {
         // When dialogue is active, respond to input
         if(dialogueBoxActive)
         {
-            if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
+            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && !activeDialogue.autoPlay)    // Standard dialogue progression behaviour
             {
                 if (sentenceDisplayInProgress)
                 {
@@ -163,37 +165,11 @@ public class DialogueManager : MonoBehaviour {
                 }
                 else
                 {
-                    if (optionActive)
-                    {
-                        // TODO Handle what happens when dialogue is picked.
-                        foreach(TargetCondition condition in activeChoice.changeConditions)
-                        {
-                            ChangeCondition(condition); // Apply any condition changes attached to the active choice
-                        }
-                        foreach(int panelNum in activeOptionPanels)
-                        {
-                            UpdateOptionPanel(panelNum);    // Deactivates all the option panels
-                        }
-
-                        // Reset option variables
-                        activeOption = null;
-                        activeChoice = null;            // Reference to the choice currently selected.
-                        activeChoiceIndex = 0;          // Index of active choice within list of display choices
-                        displayChoices.Clear();
-                        activeOptionPanels.Clear();
-                        optionActive = false;
-                        selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
-                        DisplayNextSentence();
-                    }
-                    else
-                    {
-                        DisplayNextSentence();  //No options, so display next sentence;
-                    }
+                    DisplayNextSentence();  //No options, so display next sentence;
                 }
             }
-            else if (optionActive)
+            else if (optionActive && !sentenceDisplayInProgress)    // Option selection behaviour
             {
-                //Debug.Log("Option active set true");
                 if (Input.GetAxis("XBOX_Thumbstick_L_Y") != 0 || Input.GetAxis("PC_Axis_MovementZ") != 0)
                 {
                     Debug.Log("Detected input on forward/backward axis");
@@ -210,7 +186,35 @@ public class DialogueManager : MonoBehaviour {
                             StartCoroutine(ChoiceScrollCoroutine("down"));
                         }
                     }
+                }
+                else if(Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
+                {
+                    foreach (TargetCondition condition in activeChoice.changeConditions)
+                    {
+                        ChangeCondition(condition); // Apply any condition changes attached to the active choice
+                    }
+                    foreach (int panelNum in activeOptionPanels)
+                    {
+                        UpdateOptionPanel(panelNum);    // Deactivates all the option panels
+                    }
 
+                    // Reset option variables
+                    activeOption = null;
+                    activeChoice = null;            // Reference to the choice currently selected.
+                    activeChoiceIndex = 0;          // Index of active choice within list of display choices
+                    displayChoices.Clear();
+                    activeOptionPanels.Clear();
+                    optionActive = false;
+                    selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
+                    DisplayNextSentence();
+                }
+            }
+            else if (activeDialogue.autoPlay)   // Auto play dialogue behaviour
+            {
+                if(!displayWhenDoneLock)
+                {
+                    displayWhenDoneLock = true;
+                    StartCoroutine(DisplayNextSentenceWhenDone(activeDialogue.autoPlayDelay));
                 }
             }
         }
@@ -671,6 +675,32 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
+    // Used by cutscenes. Fast forwards sentence, then displays the next one, ensuring that the next sentence is displayed when called.
+    public void CutsceneDislayNextSentence()
+    {
+        if (sentenceDisplayInProgress)
+        {
+            skipText = true;
+        }
+        DisplayNextSentenceWhenDone();
+    }
+
+    // Displays next sentence after the current one has finished without any input. Can set a delay 
+    IEnumerator DisplayNextSentenceWhenDone(float delayBetween = 0)
+    {
+        while(sentenceDisplayInProgress) { yield return new WaitForEndOfFrame(); } // Wait until sentence is fully displayed
+        if(delayBetween == 0)
+        {
+            DisplayNextSentence();
+        }
+        else
+        {
+            yield return new WaitForSeconds(delayBetween);
+            DisplayNextSentence();
+            displayWhenDoneLock = false;
+        }
+    }
+
     // Handles displaying of a sentence in the dialogueBox.
     IEnumerator DisplaySentence(string sentence)
     {
@@ -758,5 +788,10 @@ public class DialogueManager : MonoBehaviour {
     public void HideBox()
     {
         dialogueBox.SetActive(false);
+    }
+
+    public Dialogue GetActiveDialogue()
+    {
+        return activeDialogue;
     }
 }

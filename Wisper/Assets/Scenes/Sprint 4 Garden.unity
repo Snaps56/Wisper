@@ -17113,6 +17113,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: SwingTaskDone
       conditionValue: 0
@@ -50013,7 +50015,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 487.7, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.02, y: 179.734, z: 0}
 --- !u!114 &1562149423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55202,6 +55204,7 @@ GameObject:
   - component: {fileID: 1592336172}
   - component: {fileID: 1592336174}
   - component: {fileID: 1592336173}
+  - component: {fileID: 1592336175}
   m_Layer: 0
   m_Name: DialogueTrigger
   m_TagString: DialogueTrigger
@@ -55241,6 +55244,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 0
+    autoPlay: 1
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -55251,24 +55256,28 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: 
-      line: You.... Can you hear me?... Come, find me
+      line: You... Can you hear me?... Come, find me.
     - speaker: 
-      line: "Follow the light\u2026"
+      line: Follow the light...
   - dialogueName: Follow the light part 2
     enabled: 0
     forceOnEnable: 1
     follow: 0
+    autoPlay: 1
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrinePart2
       conditionValue: 1
     conditionChangeOnExit:
     - conditionName: StartupShrinePart2
       conditionValue: 0
+    - conditionName: ShrineFirstConversation
+      conditionValue: 1
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: "Hmm\u2026you seem different somehow."
+      line: Hmm... you seem different somehow.
     - speaker: 
       line: "I wonder if you even realize what you\u2019ve gotten yourself into."
     - speaker: 
@@ -55279,10 +55288,16 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 0
+    autoPlay: 1
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineRepeatDirections
       conditionValue: 1
-    conditionChangeOnExit: []
+    conditionChangeOnExit:
+    - conditionName: StartupShrineRepeatDirections
+      conditionValue: 0
+    - conditionName: ShrineFirstConversation
+      conditionValue: 1
     options: []
     speedControls: []
     sentences:
@@ -55293,6 +55308,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShrineFirstConversation
       conditionValue: 1
@@ -55328,6 +55345,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShrineFirstConversation2
       conditionValue: 1
@@ -55366,6 +55385,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShrineFirstConversationYes
       conditionValue: 1
@@ -55381,6 +55402,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShrineFirstConversationNo
       conditionValue: 1
@@ -55396,6 +55419,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -55416,6 +55441,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShrineIsClean
       conditionValue: 1
@@ -55446,6 +55473,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShrineFirstTurnInNo
       conditionValue: 1
@@ -55464,6 +55493,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: FirstTurnInCutsceneDialogue
       conditionValue: 1
@@ -55502,6 +55533,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: GoForth
       conditionValue: 1
@@ -55553,6 +55586,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 0
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShrineIsClean
       conditionValue: 1
@@ -55582,6 +55617,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 6
   m_Center: {x: 0, y: 3, z: 0}
+--- !u!114 &1592336175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1592336171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec539fec54577c44a6bce0c28179918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1593886671
 GameObject:
   m_ObjectHideFlags: 0
@@ -63687,6 +63733,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateCount: 0
+  globalTime: 0
+  pauseGlobalTimer: 0
 --- !u!4 &1776164369
 Transform:
   m_ObjectHideFlags: 0
@@ -70019,6 +70067,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -70042,6 +70092,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -71051,6 +71103,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -73890,6 +73944,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions: []
     conditionChangeOnExit: []
     options: []

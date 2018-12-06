@@ -57,7 +57,7 @@ public class FloatingTextManager : MonoBehaviour {
 
         if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount && !updatingFloatingTexts)
         {
-            Debug.Log("Updating floating texts on " + this.gameObject.name);
+            //Debug.Log("Updating floating texts on " + this.gameObject.name);
             updatingFloatingTexts = true;
             persistantStateDataUpdateCount = persistantStateData.GetComponent<PersistantStateData>().updateCount;
             UpdateFloatingText();
