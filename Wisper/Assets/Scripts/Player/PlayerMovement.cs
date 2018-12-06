@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
     private float insideFollowDistance = 0.5f; // Within this distance, don't apply any following forces so that player isn't forced ontop of npc
     private float strongForceTetherDistance = 2f; // Past this distance, apply stronger forces to move player to npc. Between this and insideFollowDistance, apply small force like standard movement
 
+	private bool isMoving = false;
 
     // Use this for initialization
     void Start()
@@ -163,6 +164,11 @@ public class PlayerMovement : MonoBehaviour {
 
         planalVector = planalVector.normalized * finalSpeed;
 
+		if (planalVector.magnitude > 0) {
+			Quaternion playerRotation = Quaternion.LookRotation (planalVector, Vector3.up);
+			playerDirection.transform.rotation = playerRotation;
+		}
+
         rb.AddForce(planalVector);
     }
 
@@ -229,6 +235,10 @@ public class PlayerMovement : MonoBehaviour {
     {
         return sprintMod;
     }
+
+	public bool GetIsMoving() {
+		return isMoving;
+	}
 
     // Sets the velocity so that player follows a target. Use in the update block for proper functionality.
     public void SetFollowTargetVelocity(GameObject target)

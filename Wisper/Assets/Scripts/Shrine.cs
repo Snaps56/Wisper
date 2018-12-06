@@ -103,7 +103,7 @@ public class Shrine : MonoBehaviour {
 				if (gettingCleaned && cleanProgress < cleanThreshold) {
 					cleanProgress += cleanTick;
 					shrinePart1.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine1, cleanShrine1, cleanProgress);
-					shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
+					//shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
 				}
 				// Once clean, drop the orb rewards and signal the PersistantStateData to change
 				if (cleanProgress >= cleanThreshold) {
@@ -114,17 +114,21 @@ public class Shrine : MonoBehaviour {
 				}
 			}
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
-			if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) && (bool)persistantStateData.stateConditions ["ShrineIsClean"]) {
+			if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) 
+				&& (bool)persistantStateData.stateConditions ["ShrineIsClean"] /*&& (bool)persistantStateData.stateConditions["OrbDepositInProgress"]*/) {
 				// Make sure the player has orbs to deposit
 				if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
 					orbDepositsInTransit = player.GetComponent<OrbCount> ().GetOrbCount ();
 					// Function that changes orb count
 					DepositOrbs (orbDepositsInTransit);
+
 					// Create an instance of an orb specifically for the deposit sequence
 					//orbDepositInstance = Instantiate (orbDeposit, player.transform.position + new Vector3 (0, 0f, 0), Quaternion.identity);
 					//orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
 				}
 				if (orbDepositsInTransit == 0) {
+					//persistantStateData.stateConditions ["OrbDepositInProgress"] = false;
+
 					// After depositing orbs, play a cutscene of the storm
 					/*
                 	player.GetComponent<PlayerMovement>().ToggleMovement();
