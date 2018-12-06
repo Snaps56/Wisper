@@ -17,12 +17,12 @@ public class CutsceneEvents : MonoBehaviour {
 
     void PSDVariableOn(string key)
     {
-        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateCondition(key, true);
+        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateConditions(key, true);
     }
 
     void PSDVariableOff(string key)
     {
-        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateCondition(key, false);
+        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateConditions(key, false);
     }
 
     //Event called when the flower is supposed to animate

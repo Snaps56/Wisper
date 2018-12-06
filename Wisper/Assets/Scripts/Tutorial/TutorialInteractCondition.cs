@@ -33,10 +33,14 @@ public class TutorialInteractCondition : MonoBehaviour {
         distance = (shrine.transform.position - player.position).magnitude;
         if (distance < maxDistanceTrigger)
         {
-            persistantStateData.ChangeStateCondition("TutorialWithinShrineRange", true);
+            persistantStateData.ChangeStateConditions("TutorialWithinShrineRange", true);
         }
         
         // check if tutorial is completed, then update the tutorials dependent conditions
+
+        bool debugCheck = (bool)persistantStateData.stateConditions["ShrineFirstConversation"];
+        Debug.Log("ShrineFirstConversation: " + debugCheck);
+
         conditionCheck = (bool)persistantStateData.stateConditions[dependentCondition];
         if (conditionCheck)
         {
