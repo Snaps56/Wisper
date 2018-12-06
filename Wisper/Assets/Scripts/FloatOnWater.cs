@@ -31,7 +31,7 @@ public class FloatOnWater : MonoBehaviour
     {
         if (other.gameObject.tag == "PickUp")
         {
-            Debug.Log("is Triggered");
+
             touchingWater = true;
         }
         else

@@ -6,50 +6,43 @@ public class Searching : MonoBehaviour {
 
     private float RandomNum;
     public NPCMovement NPCMovements;
-    private bool playedAnimation;
-    private Animator animator;
-    private int count;
+    private bool roll;
+
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        playedAnimation = false;
-
+        roll = false;
     }
     // Update is called once per frame
-
-    void OnTriggerEnter(Collider other)
-    {
-        //when touches the waypoints, roll a dice between 0 and 100
-        if(other.gameObject.tag == "WayPoint")
-        {
-            RandomNum = Random.Range(0, 100);
-            Debug.Log("random: " + RandomNum);
-        }
-        if (RandomNum > 60)
-        {
-            if (playedAnimation == false)
-            {
-                NPCMovements.move = false;
-                animator.SetBool("isSearching", true);
-                playedAnimation = true;
-                StartCoroutine(Search());
-            }
-        }  
+    void Update () {    
+        Stop();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {     
+            RandomNum = Random.Range(0, 100);
+            Debug.Log("random: " + RandomNum);
+        
+        Debug.Log(other.name);
+    }
 
+    public void Stop()
+    {       
+        for (int i = 0; i < 6; i++)
+        {           
+            if (Vector3.Distance(this.transform.position, NPCMovements.waypoints[i].transform.position) < NPCMovements.accuracyWP)
+            {              
+                if (RandomNum > 50)
+                {
+                    NPCMovements.move = false;
+                    StartCoroutine(Search());
+                }
+            } 
+        }
+    }
 
     IEnumerator Search()
-    {
-        //Debug.Log("Search");
-        
-        if(playedAnimation == true)
-        {
-            yield return new WaitForSeconds(5.0f);
-            //Debug.Log("isSearching");
-            animator.SetBool("isSearching", false);
-            NPCMovements.move = true;
-            playedAnimation = false; 
-        }
+    {       
+            yield return new WaitForSeconds(4);
+            NPCMovements.move = true;           
     }
 }
