@@ -23,7 +23,8 @@ public class Dialogue{
     public bool enabled = false;    // Set to mark this dialogue as enabled.
     public bool forceOnEnable = false;
     public bool follow = true;
-    
+    public bool autoPlay = false;          // Set dialogue to automatically progress through sentences.
+    public float autoPlayDelay = 1f;       // Delay between sentences when using autoPlay
 
     public List<TargetCondition> enableConditions; // The conditions and what they should be set to for enabling this dialogue. Should be <string condition, bool desiredState>
 

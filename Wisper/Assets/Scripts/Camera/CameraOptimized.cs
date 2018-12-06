@@ -14,6 +14,8 @@ public class CameraOptimized : MonoBehaviour
     public float lowClampAngle;
     public float inputSensitivity;
 
+    float currentDistance;
+
     [Header("Zoom Mechanics")]
     public float defaultDistance;
     public float maxDistance;
@@ -22,36 +24,34 @@ public class CameraOptimized : MonoBehaviour
 
     [Header("Speed Camera")]
     public bool modifyFOV;
-    public bool modifyDistance;
     public float fovSpeedModifier;
-    public float distanceSpeedModifier;
 
     [Header("Collision")]
-    public float collisionMinimum;
     public float sphereCastRadius;
-    public float collisionMoveTime;
     private float collisionDistance;
+    private float linearInterpolate = 0f;
+    private float linearInterpolateDiff = 1.5f;
 
-    private float mouseY;
-    private float mouseX;
-    private float distance;
+    private float cameraY;
+    private float cameraX;
 
     private Vector3 direction;
 
     // field of view based on player speed
     private Rigidbody playerRB;
     private float defaultFOV;
-    private float finalDistance;
 
     // Use this for initialization
     void Start()
     {
+        // disable mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        distance = defaultDistance;
-        mouseY = defaultAngleY;
-        mouseX = defaultAngleX;
+        currentDistance = defaultDistance;
+        collisionDistance = defaultDistance;
+        cameraY = defaultAngleY;
+        cameraX = defaultAngleX;
 
         playerRB = character.GetComponentInParent<Rigidbody>();
         defaultFOV = GetComponent<Camera>().fieldOfView;
@@ -60,15 +60,16 @@ public class CameraOptimized : MonoBehaviour
     void Update()
     {
         // setup rotation of sticks
-        mouseX += Input.GetAxis("XBOX_Thumbstick_R_X") * inputSensitivity;
-        mouseY -= Input.GetAxis("XBOX_Thumbstick_R_Y") * inputSensitivity;
+        cameraX += Input.GetAxis("XBOX_Thumbstick_R_X") * inputSensitivity;
+        cameraY -= Input.GetAxis("XBOX_Thumbstick_R_Y") * inputSensitivity;
 
         // setup rotation for mouse
-        mouseX += Input.GetAxis("PC_Mouse_X") * inputSensitivity;
-        mouseY -= Input.GetAxis("PC_Mouse_Y") * inputSensitivity;
+        cameraX += Input.GetAxis("PC_Mouse_X") * inputSensitivity;
+        cameraY -= Input.GetAxis("PC_Mouse_Y") * inputSensitivity;
 
-        mouseY = Mathf.Clamp(mouseY, lowClampAngle, highClampAngle);
+        cameraY = Mathf.Clamp(cameraY, lowClampAngle, highClampAngle);
         
+        /*
         // allow camera zoom via mouse scroll, but only within boundaries
         if (distance < maxDistance)
         {
@@ -84,16 +85,35 @@ public class CameraOptimized : MonoBehaviour
                 distance += Input.GetAxis("PC_Mouse_Scroll") * zoomSensitivity;
             }
         }
-        finalDistance = distance;
+        */
+        
+        // Camera changing based on player speed
         SpeedCameraChange();
 
         // Camera collision
         CameraCollision();
 
+        if (collisionDistance < defaultDistance)
+        {
+            if (linearInterpolate < 1)
+            {
+                linearInterpolate += linearInterpolateDiff * Time.deltaTime;
+            }
+            currentDistance = Mathf.Lerp(currentDistance, collisionDistance, linearInterpolate);
+        }
+        else
+        {
+            if (linearInterpolate > 0)
+            {
+                linearInterpolate -= linearInterpolateDiff * Time.deltaTime;
+            }
+            currentDistance = Mathf.Lerp(collisionDistance, currentDistance, linearInterpolate);
+        }
+        
         // update camera's position and rotation
-        direction = new Vector3(0, 0, -finalDistance);
+        direction = -new Vector3(0, 0, currentDistance);
 
-        Quaternion rotation = Quaternion.Euler(mouseY, mouseX, 0);
+        Quaternion rotation = Quaternion.Euler(cameraY, cameraX, 0);
 
         // apples all transformations to the camera
         transform.position = character.position + rotation * direction;
@@ -106,12 +126,7 @@ public class CameraOptimized : MonoBehaviour
     {
         // take dot product of player's movement relative to camera direction to apply speed cam only in forward and backwards movement
         float vectorDot = Vector3.Dot(character.GetComponentInParent<PlayerMovement>().GetVelocity().normalized, transform.forward.normalized);
-
-        // modifies camera distance
-        if (modifyDistance)
-        {
-            finalDistance = distance + playerRB.velocity.magnitude * distanceSpeedModifier * Time.deltaTime * vectorDot;
-        }
+        
         // modifies camera field of view
         if (modifyFOV)
         {
@@ -123,16 +138,62 @@ public class CameraOptimized : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 direction = transform.position - character.position;
-
+        
         // check sphere cast
-        if (Physics.SphereCast(character.position, sphereCastRadius, direction, out hit, finalDistance))
+        if (Physics.SphereCast(character.position, sphereCastRadius, direction, out hit, defaultDistance))
         {
             // sphere cast only if the collider is an appropriate tag
             if (hit.collider.tag == "Water" || hit.collider.tag == "Terrain")
             {
                 collisionDistance = (hit.point - character.position).magnitude;
-                finalDistance = collisionDistance;
+            }
+            // Debug.Log(hit.point);
+        }
+        else
+        {
+            collisionDistance = defaultDistance;
+        }
+        
+        /*
+        float softDistance = 3.0f;
+        float cameraShift = 0.5f;
+        float deltaDistance = (character.position - transform.position).magnitude;
+
+        float shiftStrength = Mathf.Abs(deltaDistance - softDistance);
+
+        if (deltaDistance < softDistance)
+        {
+            if (Physics.Raycast(transform.position, -transform.forward, out hit, softDistance))
+            {
+                if (!Physics.Raycast(character.position, character.up, out hit, softDistance))
+                {
+                    cameraY += cameraShift * shiftStrength;
+                }
+                if (!Physics.Raycast(character.position, -character.up, out hit, softDistance))
+                {
+                    cameraY -= cameraShift * shiftStrength;
+                }
+
+            }
+            
+            if (Physics.Raycast(transform.position, transform.up, out hit, softDistance * 0.5f))
+            {
+                cameraY -= cameraShift * shiftStrength;
+            }
+            if (Physics.Raycast(transform.position, -transform.up, out hit, softDistance * 0.5f))
+            {
+                cameraY += cameraShift * shiftStrength;
+            }
+
+            if (Physics.Raycast(transform.position, transform.right, out hit, softDistance))
+            {
+                cameraX += cameraShift * shiftStrength;
+            }
+            if (Physics.Raycast(transform.position, -transform.right, out hit, softDistance))
+            {
+                cameraX -= cameraShift * shiftStrength;
             }
         }
+        */
     }
 }

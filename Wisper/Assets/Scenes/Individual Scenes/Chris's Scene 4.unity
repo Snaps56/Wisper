@@ -7858,6 +7858,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1648818800}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1082311405}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &216132606
@@ -11529,6 +11551,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependentCondition: TutorialTalkedWithShrine
+  shrine: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &441263244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12564,7 +12588,7 @@ Prefab:
     - target: {fileID: 224327533994278122, guid: 97afd8270c3671e479ce4e84863cec6c,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224327533994278122, guid: 97afd8270c3671e479ce4e84863cec6c,
         type: 2}
@@ -14680,6 +14704,28 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1082311405}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1530600325}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -20732,6 +20778,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1530600325}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1082311405}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &937986832
@@ -22998,12 +23066,12 @@ GameObject:
   - component: {fileID: 1082311408}
   - component: {fileID: 1082311407}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: MainEventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1082311406
 Transform:
   m_ObjectHideFlags: 0
@@ -23046,7 +23114,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 577168806}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!1 &1082790534
@@ -23079,6 +23147,39 @@ Transform:
   m_Father: {fileID: 1850566776}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1083591261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083591262}
+  m_Layer: 0
+  m_Name: ToBeContinued
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1083591262
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1083591261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1516602857}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1088600618
 GameObject:
   m_ObjectHideFlags: 0
@@ -23270,9 +23371,7 @@ MonoBehaviour:
   minDistance: 4
   zoomSensitivity: 3
   modifyFOV: 1
-  modifyDistance: 0
   fovSpeedModifier: 0.5
-  distanceSpeedModifier: 20
   collisionMinimum: 0
   sphereCastRadius: 0
   collisionMoveTime: 0
@@ -24356,10 +24455,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.12
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Greeting
     enabled: 0
     forceOnEnable: 1
+    follow: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -24419,14 +24521,16 @@ MonoBehaviour:
       charIndex: 0
       charDelayChange: -0.5
     sentences:
-    - 'Come... find me. Can you hear me?...
-
-      Please... Come toward the light...'
-    - I'll be waiting for you...
-    - Do you have a choice?
+    - speaker: 
+      line: 
+    - speaker: 
+      line: 
+    - speaker: 
+      line: 
   - dialogueName: Repeat Greeting
     enabled: 0
     forceOnEnable: 1
+    follow: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -24448,10 +24552,12 @@ MonoBehaviour:
           conditionValue: 1
     speedControls: []
     sentences:
-    - Let me ask again, do you have a choice?
+    - speaker: 
+      line: 
   - dialogueName: Interact
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: StartupShrineDialogueFinished
       conditionValue: 1
@@ -24461,7 +24567,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Hello, lil Wisper...
+    - speaker: 
+      line: 
 --- !u!135 &1167512864
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24742,6 +24849,75 @@ Transform:
   m_Father: {fileID: 684092406}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1187417287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1187417288}
+  - component: {fileID: 1187417290}
+  - component: {fileID: 1187417289}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1187417288
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1187417287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1516602857}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1187417289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1187417287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1187417290
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1187417287}
+  m_CullTransparentMesh: 0
 --- !u!1 &1187777506
 GameObject:
   m_ObjectHideFlags: 0
@@ -34785,10 +34961,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.066
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -34796,10 +34975,12 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Where the fuck is my hat bitch!?!
+    - speaker: 
+      line: 
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -34807,26 +34988,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - What the fuck did you just fucking say about me, you little bitch? I'll have
-      you know I graduated top of my class in the Navy Seals, and I've been involved
-      in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills.
-      I am trained in gorilla warfare and I'm the top sniper in the entire US armed
-      forces. You are nothing to me but just another target. I will wipe you the fuck
-      out with precision the likes of which has never been seen before on this Earth,
-      mark my fucking words. You think you can get away with saying that shit to me
-      over the Internet? Think again, fucker. As we speak I am contacting my secret
-      network of spies across the USA and your IP is being traced right now so you
-      better prepare for the storm, maggot. The storm that wipes out the pathetic
-      little thing you call your life. You're fucking dead, kid. I can be anywhere,
-      anytime, and I can kill you in over seven hundred ways, and that's just with
-      my bare hands. Not only am I extensively trained in unarmed combat, but I have
-      access to the entire arsenal of the United States Marine Corps and I will use
-      it to its full extent to wipe your miserable ass off the face of the continent,
-      you little shit. If only you could have known what unholy retribution your little
-      "clever" comment was about to bring down upon you, maybe you would have held
-      your fucking tongue. But you couldn't, you didn't, and now you're paying the
-      price, you goddamn idiot. I will shit fury all over you and you will drown in
-      it. You're fucking dead, kiddo.
+    - speaker: 
+      line: 
 --- !u!114 &1232851899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34869,6 +35032,7 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -34876,8 +35040,10 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Where'd me hat go?
-    - Darn wind blew it right off me head
+    - speaker: 
+      line: 
+    - speaker: 
+      line: 
   range: 8
 --- !u!114 &1232851901
 MonoBehaviour:
@@ -44219,6 +44385,8 @@ Transform:
   - {fileID: 651800078}
   - {fileID: 430883741}
   - {fileID: 1082311406}
+  - {fileID: 1530600326}
+  - {fileID: 1648818801}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44494,7 +44662,9 @@ RectTransform:
   - {fileID: 1505633213}
   - {fileID: 1695431918}
   - {fileID: 275117120}
+  - {fileID: 1083591262}
   - {fileID: 1636081730}
+  - {fileID: 1187417288}
   m_Father: {fileID: 1947442175}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44514,9 +44684,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1636081733}
   pauseMenuUI: {fileID: 1646133876}
   settingsMenu: {fileID: 287340338}
   VideoMenu: {fileID: 209008809}
+  MainEventSystem: {fileID: 1082311405}
+  GraphicsEventSystem: {fileID: 1530600325}
+  AudioEventSystem: {fileID: 1648818800}
   audioMixer: {fileID: 24100000, guid: 66155f7ede8feb04788df3e4419930e5, type: 2}
 --- !u!114 &1516602859
 MonoBehaviour:
@@ -44898,6 +45072,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1082311405}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1648818800}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1527950838
@@ -44996,6 +45192,68 @@ Transform:
   m_Father: {fileID: 1640146719}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1530600325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1530600326}
+  - component: {fileID: 1530600328}
+  - component: {fileID: 1530600327}
+  m_Layer: 0
+  m_Name: GraphicsEventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1530600326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1530600325}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.2340856, y: -13.71791, z: 18.442204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1505067443}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1530600327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1530600325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1530600328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1530600325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 1008067968}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &1548074203
 GameObject:
   m_ObjectHideFlags: 0
@@ -51441,6 +51699,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 3
+--- !u!95 &1636081733 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95630560598363434, guid: 97afd8270c3671e479ce4e84863cec6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 487242940}
+--- !u!114 &1636081736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636081729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1636081733}
+  pauseMenuUI: {fileID: 0}
+  settingsMenu: {fileID: 0}
+  VideoMenu: {fileID: 0}
+  MainEventSystem: {fileID: 0}
+  GraphicsEventSystem: {fileID: 0}
+  AudioEventSystem: {fileID: 0}
+  audioMixer: {fileID: 0}
 --- !u!1 &1636449968
 GameObject:
   m_ObjectHideFlags: 0
@@ -51876,6 +52158,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 536, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1648818800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648818801}
+  - component: {fileID: 1648818803}
+  - component: {fileID: 1648818802}
+  m_Layer: 0
+  m_Name: AudioEventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1648818801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1648818800}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.2340856, y: -13.71791, z: 18.442204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1505067443}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1648818802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1648818800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1648818803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1648818800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 1550547819}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &1652992843
 GameObject:
   m_ObjectHideFlags: 0
@@ -59154,6 +59498,8 @@ MonoBehaviour:
   sprintMultiplier: 2
   stopMultiplier: 1
   orbMovementIncrease: 0.15
+  screenParticles: {fileID: 0}
+  playerDirection: {fileID: 0}
 --- !u!114 &1779087198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65243,10 +65589,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.09
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -65263,10 +65612,12 @@ MonoBehaviour:
       charIndex: 26
       charDelayChange: -0.5
     sentences:
-    - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
+    - speaker: 
+      line: 
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -65274,7 +65625,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Oh weee! My hat! I've been looking all over for this!
+    - speaker: 
+      line: 
 --- !u!135 &1856278243
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -65627,6 +65979,8 @@ MonoBehaviour:
   light: {fileID: 936196763}
   player: {fileID: 1779087189}
   windPB: {fileID: 0}
+  psData: {fileID: 0}
+  playOnStart: 0
 --- !u!4 &1891414796
 Transform:
   m_ObjectHideFlags: 0
@@ -66268,6 +66622,7 @@ MonoBehaviour:
   - dialogueName: Find my hat!
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -66275,8 +66630,10 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Where'd me hat go?
-    - Darn wind blew it right off me head
+    - speaker: 
+      line: 
+    - speaker: 
+      line: 
   range: 8
 --- !u!114 &1936945842
 MonoBehaviour:
@@ -66290,10 +66647,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.066
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Find my hat!
     enabled: 1
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -66301,10 +66661,12 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Oh dear, where is my hat? It doesn't seem to be anywhere near this playground...
+    - speaker: 
+      line: 
   - dialogueName: My hat is found.
     enabled: 0
     forceOnEnable: 0
+    follow: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -66312,7 +66674,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - Oh weee! My hat! I've been looking all over for this!
+    - speaker: 
+      line: 
 --- !u!114 &1936945843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69123,16 +69486,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCharDelay: 0.066
+  followTetherMinDistance: 0.5
+  followTetherStrongDistance: 2
   dialogues:
   - dialogueName: Greeting
     enabled: 1
     forceOnEnable: 0
+    follow: 1
     enableConditions: []
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - Hello little whisper
+    - speaker: 
+      line: 
 --- !u!1 &2101803895
 GameObject:
   m_ObjectHideFlags: 0
