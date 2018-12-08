@@ -161,7 +161,7 @@ public class DialogueManager : MonoBehaviour {
         // When dialogue is active, respond to input
         if(dialogueBoxActive)
         {
-            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && !activeDialogue.autoPlay)    // Standard dialogue progression behaviour
+            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && !activeDialogue.autoPlay && !optionActive)    // Standard dialogue progression behaviour
             {
                 if (sentenceDisplayInProgress)
                 {
@@ -307,7 +307,7 @@ public class DialogueManager : MonoBehaviour {
                     }
                 }
             }
-            if (tempCheck)
+            if (tempCheck && d.enableConditions.Count > 0)
             {
                 d.enabled = true;   // If all conditions are met, enable dialog
             }
