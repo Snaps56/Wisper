@@ -35,6 +35,8 @@ public class CameraOptimized : MonoBehaviour
     private float cameraY;
     private float cameraX;
 
+    private bool cameraEnabled = false;
+
     private Vector3 direction;
 
     // field of view based on player speed
@@ -59,15 +61,19 @@ public class CameraOptimized : MonoBehaviour
 
     void Update()
     {
-        // setup rotation of sticks
-        cameraX += Input.GetAxis("XBOX_Thumbstick_R_X") * inputSensitivity;
-        cameraY -= Input.GetAxis("XBOX_Thumbstick_R_Y") * inputSensitivity;
+        // update camera values only when camera is enabled
+        if (cameraEnabled)
+        {
+            // setup rotation of sticks
+            cameraX += Input.GetAxis("XBOX_Thumbstick_R_X") * inputSensitivity;
+            cameraY -= Input.GetAxis("XBOX_Thumbstick_R_Y") * inputSensitivity;
 
-        // setup rotation for mouse
-        cameraX += Input.GetAxis("PC_Mouse_X") * inputSensitivity;
-        cameraY -= Input.GetAxis("PC_Mouse_Y") * inputSensitivity;
+            // setup rotation for mouse
+            cameraX += Input.GetAxis("PC_Mouse_X") * inputSensitivity;
+            cameraY -= Input.GetAxis("PC_Mouse_Y") * inputSensitivity;
 
-        cameraY = Mathf.Clamp(cameraY, lowClampAngle, highClampAngle);
+            cameraY = Mathf.Clamp(cameraY, lowClampAngle, highClampAngle);
+        }
         
         /*
         // allow camera zoom via mouse scroll, but only within boundaries
@@ -153,47 +159,17 @@ public class CameraOptimized : MonoBehaviour
         {
             collisionDistance = defaultDistance;
         }
-        
-        /*
-        float softDistance = 3.0f;
-        float cameraShift = 0.5f;
-        float deltaDistance = (character.position - transform.position).magnitude;
-
-        float shiftStrength = Mathf.Abs(deltaDistance - softDistance);
-
-        if (deltaDistance < softDistance)
-        {
-            if (Physics.Raycast(transform.position, -transform.forward, out hit, softDistance))
-            {
-                if (!Physics.Raycast(character.position, character.up, out hit, softDistance))
-                {
-                    cameraY += cameraShift * shiftStrength;
-                }
-                if (!Physics.Raycast(character.position, -character.up, out hit, softDistance))
-                {
-                    cameraY -= cameraShift * shiftStrength;
-                }
-
-            }
-            
-            if (Physics.Raycast(transform.position, transform.up, out hit, softDistance * 0.5f))
-            {
-                cameraY -= cameraShift * shiftStrength;
-            }
-            if (Physics.Raycast(transform.position, -transform.up, out hit, softDistance * 0.5f))
-            {
-                cameraY += cameraShift * shiftStrength;
-            }
-
-            if (Physics.Raycast(transform.position, transform.right, out hit, softDistance))
-            {
-                cameraX += cameraShift * shiftStrength;
-            }
-            if (Physics.Raycast(transform.position, -transform.right, out hit, softDistance))
-            {
-                cameraX -= cameraShift * shiftStrength;
-            }
-        }
-        */
+    }
+    public void DisableCameraMovement()
+    {
+        cameraEnabled = false;
+    }
+    public void EnableCameraMovement()
+    {
+        cameraEnabled = true;
+    }
+    public bool GetCameraEnabled()
+    {
+        return cameraEnabled;
     }
 }

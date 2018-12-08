@@ -20,8 +20,8 @@ public class PlayerMovement : MonoBehaviour {
     private float targetFollowDistance = 5;
     private GameObject followTarget;
 
-    private bool movementToggledOff = false;
-    private bool planalMovementOn = false;
+    private bool movementToggledOff = true;
+    private bool planalMovementOn = true;
 
     public ParticleSystem screenParticles;
     public GameObject playerDirection;
@@ -309,7 +309,14 @@ public class PlayerMovement : MonoBehaviour {
             movementToggledOff = true;
         }
     }
-
+    public void EnableMovement()
+    {
+        movementToggledOff = false;
+    }
+    public void DisableMovement()
+    {
+        movementToggledOff = false;
+    }
     // Return whether if player is able to move
     public bool GetToggleMovement()
     {
