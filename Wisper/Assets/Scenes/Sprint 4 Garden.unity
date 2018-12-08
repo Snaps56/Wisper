@@ -20109,8 +20109,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lensFlare: {fileID: 614049221}
-  player: {fileID: 1779087189}
+  mainCamera: {fileID: 1102862355}
   dotProductAngle: 0.9
+  pulseDelay: 1
+  maxBrightness: 10
+  pulseDuration: 1
 --- !u!1 &622586342
 GameObject:
   m_ObjectHideFlags: 0
@@ -26882,7 +26885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &988367688
 RectTransform:
   m_ObjectHideFlags: 0
