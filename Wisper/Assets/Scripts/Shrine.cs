@@ -59,6 +59,10 @@ public class Shrine : MonoBehaviour {
 	public float cleanThreshold;
 	public float cleanTick;
 
+	private bool firstTime;
+	private float playerOrb;
+	private float orbLimit;
+
 	// Use this for initialization
 	void Start () {
 		// Dirty shrine look is the default materials
@@ -80,6 +84,10 @@ public class Shrine : MonoBehaviour {
 
 		nextDeposit = 0.0f;
 		orbDepositsInTransit = 0;
+
+		firstTime = false;
+		playerOrb = player.GetComponent<OrbCount> ().GetOrbCount ();
+		orbLimit = 1;
 	}
 
 	// Update is called once per frame
@@ -100,17 +108,22 @@ public class Shrine : MonoBehaviour {
 			// Is the shrine is not clean and the player is lifting, start cleaning the shrine
 			if (!(bool)persistantStateData.stateConditions ["ShrineIsClean"]) {
 				// Change the material of the shrine over time
-				if (gettingCleaned && cleanProgress < cleanThreshold) {
-					cleanProgress += cleanTick;
-					shrinePart1.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine1, cleanShrine1, cleanProgress);
-					//shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
-				}
-				// Once clean, drop the orb rewards and signal the PersistantStateData to change
-				if (cleanProgress >= cleanThreshold) {
-					//isClean = true;
-					persistantStateData.stateConditions ["ShrineIsClean"] = true;
-					persistantStateData.updateCount++;
-					this.GetComponent<SpawnOrbs> ().DropOrbs ();
+				if (playerOrb >= orbLimit) {
+					if (gettingCleaned && cleanProgress < cleanThreshold) {
+						cleanProgress += cleanTick;
+						shrinePart1.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine1, cleanShrine1, cleanProgress);
+						//shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
+					}
+					// Once clean, drop the orb rewards and signal the PersistantStateData to change
+					if (cleanProgress >= cleanThreshold) {
+						//isClean = true;
+						persistantStateData.ChangeStateConditions ("ShrineIsClean", true);
+						this.GetComponent<SpawnOrbs> ().DropOrbs ();
+					}
+				} else if (!firstTime && (bool)persistantStateData.stateConditions["WaitingForCleanAttempt"]) {
+					firstTime = true;
+					persistantStateData.ChangeStateConditions ("ShrineFirstConversation2", true);
+					persistantStateData.ChangeStateConditions ("WaitingForCleanAttempt", false);
 				}
 			}
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
@@ -127,6 +140,9 @@ public class Shrine : MonoBehaviour {
 					//orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
 				}
 				if (orbDepositsInTransit == 0) {
+					if (!(bool)persistantStateData.stateConditions ["ShrineFirstTurnIn"]) {
+						persistantStateData.ChangeStateConditions ("ShrineFirstTurnIn", true);
+					}
 					//persistantStateData.stateConditions ["OrbDepositInProgress"] = false;
 
 					// After depositing orbs, play a cutscene of the storm

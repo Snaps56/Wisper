@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour {
     void PlanalMovementCheck()
     {
         // toggle player movement relative to camera or relative to plane
-        if (Input.GetButtonDown("PC_Mouse_Click_Mid") || Input.GetButtonDown("XBOX_Thumbstick_R_Click"))
+        if (Input.GetButtonDown("PC_Key_Control") || Input.GetButtonDown("XBOX_Thumbstick_R_Click"))
         {
             Debug.Log("PlanalMovement: " + planalMovementOn);
             if (planalMovementOn)
@@ -229,6 +229,22 @@ public class PlayerMovement : MonoBehaviour {
         // Debug.Log(forceVector);
         return forceVector;
     }
+
+	public bool GetIsAccelerating() {
+		if (GetForce ().magnitude != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public bool GetIsStationary() {
+		if (GetVelocity ().magnitude == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
     // returns a boolean that checks whether if the player is sprinting or not
     public bool GetIsSprinting()
