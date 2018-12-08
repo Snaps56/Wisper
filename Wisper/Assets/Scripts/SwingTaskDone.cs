@@ -20,8 +20,8 @@ public class SwingTaskDone : MonoBehaviour {
     {
         float angle = leftSwing.transform.rotation.eulerAngles.y;
         float anglex = leftSwing.transform.rotation.eulerAngles.x;
-        Debug.Log("Angle y: " + angle);
-        Debug.Log("Angle x: " + anglex);
+        //Debug.Log("Angle y: " + angle);
+        //Debug.Log("Angle x: " + anglex);
 
         if (TaskisDone == false && ((leftSwing.transform.rotation.eulerAngles.x <= 290 && leftSwing.transform.rotation.eulerAngles.x >= 270) || (leftSwing.transform.rotation.eulerAngles.x >= 80 && leftSwing.transform.rotation.eulerAngles.x <= 90)))
         {

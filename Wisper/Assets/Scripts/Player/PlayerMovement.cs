@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour {
         // check if player is pressing the sprint button
         if (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint"))
         {
-            Debug.Log("Sprinting: " + sprintMod);
+            //Debug.Log("Sprinting: " + sprintMod);
             if (!sprintMod)
             {
                 sprintMod = true;

@@ -119,7 +119,7 @@ public class DialogueManager : MonoBehaviour {
         // When PSD updates, run an update on all dialogues in the scene.
         if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount)
         {
-            Debug.Log("Updating NPCDialogues");
+            //Debug.Log("Updating NPCDialogues");
             persistantStateDataUpdateCount = persistantStateData.GetComponent<PersistantStateData>().updateCount;
             foreach (GameObject dt in GameObject.FindGameObjectsWithTag("DialogueTrigger"))
             {
