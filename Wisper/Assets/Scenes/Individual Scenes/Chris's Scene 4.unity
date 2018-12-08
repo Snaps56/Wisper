@@ -11172,6 +11172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateCount: 0
+  globalTime: 0
+  pauseGlobalTimer: 0
 --- !u!1 &433647401
 GameObject:
   m_ObjectHideFlags: 0
@@ -12027,25 +12029,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &453670490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453670481}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 950ec0524036c85409fd4a09ca7a6d1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftSwing: {fileID: 453670480}
-  rightSwing: {fileID: 453670477}
-  topBeam: {fileID: 453670478}
-  rotateX: 10
-  speed: 5
-  maxY: 20
-  maxZ: 14
-  minZ: 8
 --- !u!114 &453670499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12071,7 +12054,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 5
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!1 &456313542
 GameObject:
   m_ObjectHideFlags: 0
@@ -12514,7 +12501,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 5
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!136 &486810509
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12588,7 +12579,7 @@ Prefab:
     - target: {fileID: 224327533994278122, guid: 97afd8270c3671e479ce4e84863cec6c,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224327533994278122, guid: 97afd8270c3671e479ce4e84863cec6c,
         type: 2}
@@ -23147,6 +23138,39 @@ Transform:
   m_Father: {fileID: 1850566776}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1083591261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083591262}
+  m_Layer: 0
+  m_Name: ToBeContinued
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1083591262
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1083591261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1516602857}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1088600618
 GameObject:
   m_ObjectHideFlags: 0
@@ -23339,9 +23363,7 @@ MonoBehaviour:
   zoomSensitivity: 3
   modifyFOV: 1
   fovSpeedModifier: 0.5
-  collisionMinimum: 0
   sphereCastRadius: 0
-  collisionMoveTime: 0
 --- !u!1 &1103614773
 GameObject:
   m_ObjectHideFlags: 0
@@ -24429,6 +24451,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -24498,6 +24522,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 1
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -24525,6 +24551,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: StartupShrineDialogueFinished
       conditionValue: 1
@@ -24816,6 +24844,75 @@ Transform:
   m_Father: {fileID: 684092406}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1187417287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1187417288}
+  - component: {fileID: 1187417290}
+  - component: {fileID: 1187417289}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1187417288
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1187417287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1516602857}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1187417289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1187417287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1187417290
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1187417287}
+  m_CullTransparentMesh: 0
 --- !u!1 &1187777506
 GameObject:
   m_ObjectHideFlags: 0
@@ -34866,6 +34963,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -34879,6 +34978,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -34931,6 +35032,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -44560,7 +44663,9 @@ RectTransform:
   - {fileID: 1505633213}
   - {fileID: 1695431918}
   - {fileID: 275117120}
+  - {fileID: 1083591262}
   - {fileID: 1636081730}
+  - {fileID: 1187417288}
   m_Father: {fileID: 1947442175}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44580,6 +44685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1636081733}
   pauseMenuUI: {fileID: 1646133876}
   settingsMenu: {fileID: 287340338}
   VideoMenu: {fileID: 209008809}
@@ -44706,7 +44812,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 10
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!65 &1518118548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51594,6 +51704,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 3
+--- !u!95 &1636081733 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95630560598363434, guid: 97afd8270c3671e479ce4e84863cec6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 487242940}
+--- !u!114 &1636081736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636081729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1636081733}
+  pauseMenuUI: {fileID: 0}
+  settingsMenu: {fileID: 0}
+  VideoMenu: {fileID: 0}
+  MainEventSystem: {fileID: 0}
+  GraphicsEventSystem: {fileID: 0}
+  AudioEventSystem: {fileID: 0}
+  audioMixer: {fileID: 0}
 --- !u!1 &1636449968
 GameObject:
   m_ObjectHideFlags: 0
@@ -59136,6 +59270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateCount: 0
+  globalTime: 0
+  pauseGlobalTimer: 0
 --- !u!4 &1776164369
 Transform:
   m_ObjectHideFlags: 0
@@ -65467,6 +65603,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -65489,6 +65627,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -66477,7 +66617,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11, type: 2}
+  player: {fileID: 0}
   orbCount: 5
+  initialForceMultiplier: 0
+  moveSpeedMultiplier: 0
+  slowMultiplier: 0
 --- !u!114 &1936945841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66494,6 +66638,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -66525,6 +66671,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -66538,6 +66686,8 @@ MonoBehaviour:
     enabled: 0
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions:
     - conditionName: 
       conditionValue: 0
@@ -69364,6 +69514,8 @@ MonoBehaviour:
     enabled: 1
     forceOnEnable: 0
     follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
     enableConditions: []
     conditionChangeOnExit: []
     options: []

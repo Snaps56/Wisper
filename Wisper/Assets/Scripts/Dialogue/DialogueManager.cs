@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour {
     private GameObject activeNPC;           // Reference to NPC with active dialogue
     private Dialogue activeDialogue;        // Reference to the active dialogue
     private Queue<string> sentences;        // Queue of sentences to display
+    private Queue<string> speakers;
     private int sentenceIndex = 0;          // Index for number of sentence from queue currently being displayed.
     private float charDelay;                // Delay between adding chars to display. Controls the "speed of speech." Minimum delay is 1/framerate seconds for charDelay, which corresponds to the "fastest talking speed."
     
@@ -83,10 +84,12 @@ public class DialogueManager : MonoBehaviour {
             if(textField.gameObject.name == "Speaker")
             {
                 dialogueName = textField;
+                Debug.Log("Dialogue panel speaker field found for DM");
             }
             else if(textField.gameObject.name == "Dialogue")
             {
                 dialogueText = textField;
+                Debug.Log("Dialogue panel dialogue field found for DM");
             }
             /*else
             {
@@ -95,6 +98,7 @@ public class DialogueManager : MonoBehaviour {
         }
 
         sentences = new Queue<string>();
+        speakers = new Queue<string>();
         
         sentenceDisplayInProgress = false;
         dialogueBoxActive = false;
@@ -643,9 +647,11 @@ public class DialogueManager : MonoBehaviour {
         
         activeDialogue = dialogue;
         sentences.Clear();
+        speakers.Clear();
         foreach(Sentence sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence.line);
+            speakers.Enqueue(sentence.speaker);
         }
         ShowBox();
         if (activeDialogue.follow)
@@ -670,7 +676,8 @@ public class DialogueManager : MonoBehaviour {
                 sentenceDisplayInProgress = true;   // Flags the sentence display coroutine as being in progress
                 SetActiveOption();
                 string sentence = sentences.Dequeue();
-                StartCoroutine(DisplaySentence(sentence));
+                string speaker = speakers.Dequeue();
+                StartCoroutine(DisplaySentence(sentence, speaker));
             }
         }
     }
@@ -702,7 +709,7 @@ public class DialogueManager : MonoBehaviour {
     }
 
     // Handles displaying of a sentence in the dialogueBox.
-    IEnumerator DisplaySentence(string sentence)
+    IEnumerator DisplaySentence(string sentence, string speaker)
     {
         DialogueSpeedToken nextSpeedToken = null;   // A token used to determine when to change the display speed and by how much
         int charIndex = 0;                          // An index to the current char within the sentence
@@ -711,7 +718,7 @@ public class DialogueManager : MonoBehaviour {
         {
             nextSpeedToken = GetNextSpeedToken(nextSpeedToken); // Initialize nextSpeedToken if there are any
         }
-
+        dialogueName.text = speaker;
         dialogueText.text = ""; // Clear text field
         
         // This loop controls the display speed of a sentence.
@@ -760,6 +767,7 @@ public class DialogueManager : MonoBehaviour {
     public void EndDialogue()
     {
         sentences.Clear();
+        speakers.Clear();
         dialogueText.text = "";
         HideBox();
 		if (activeNPC.transform.parent.GetComponent<FloatingTextManager> () != null) {
@@ -793,5 +801,10 @@ public class DialogueManager : MonoBehaviour {
     public Dialogue GetActiveDialogue()
     {
         return activeDialogue;
+    }
+
+    public bool IsDialogueActive()
+    {
+        return dialogueBoxActive;
     }
 }
