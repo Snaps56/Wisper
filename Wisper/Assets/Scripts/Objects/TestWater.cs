@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TestWater : MonoBehaviour {
 
+    public float buoyancyMultiplier;
+    public float buoyancyTorqueSlow;
+    public float verticalOffset;
+
     List<GameObject> buoyancyObjects = new List<GameObject>();
 
     // Use this for initialization
@@ -18,18 +22,17 @@ public class TestWater : MonoBehaviour {
         for (int i = 0; i < buoyancyObjects.Count; i++)
         {
             Vector3 positionInWater = buoyancyObjects[i].transform.position;
-            positionInWater.y = transform.position.y + 0.75f;
+            positionInWater.y = transform.position.y + verticalOffset;
 
             Vector3 deltaPosition = buoyancyObjects[i].transform.position - positionInWater;
             Debug.Log(deltaPosition);
-
-            float buoyancyMult = 10f;
-            Vector3 buoyancyForce = -deltaPosition * buoyancyMult;
+            
+            Vector3 buoyancyForce = -deltaPosition * buoyancyMultiplier;
             Rigidbody rb = buoyancyObjects[i].GetComponent<Rigidbody>();
 
             rb.AddForce(buoyancyForce * rb.mass);
             rb.AddForce(-rb.velocity * rb.mass);
-            rb.AddTorque(-rb.angularVelocity * rb.mass * 0.25f);
+            rb.AddTorque(-rb.angularVelocity * rb.mass * buoyancyTorqueSlow);
         }
     }
 
