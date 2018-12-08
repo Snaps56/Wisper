@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135295, g: 0.5009421, b: 0.57285845, a: 1}
+  m_IndirectSpecularColor: {r: 0.4513535, g: 0.50094336, b: 0.5728595, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -324,6 +324,10 @@ Prefab:
     - target: {fileID: 100000, guid: 194d0cd818624db4c92e0b29c4a8a818, type: 3}
       propertyPath: m_TagString
       value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 194d0cd818624db4c92e0b29c4a8a818, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194d0cd818624db4c92e0b29c4a8a818, type: 3}
@@ -9291,6 +9295,26 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d5d1cf467f32d8a47849aa8c27a4e53f, type: 2}
+    - target: {fileID: 100002, guid: 1bbc4220a01f53d4a99601170dbb67fd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1bbc4220a01f53d4a99601170dbb67fd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1bbc4220a01f53d4a99601170dbb67fd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1bbc4220a01f53d4a99601170dbb67fd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 1bbc4220a01f53d4a99601170dbb67fd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bbc4220a01f53d4a99601170dbb67fd, type: 3}
   m_IsPrefabAsset: 0
@@ -16560,7 +16584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773b748229ecd42449429c14f4799d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 0}
+  dialogueBox: {fileID: 749305298}
   dialogueOffset: 200
   delayTime: 1
   fadeInDuration: 1
@@ -17797,7 +17821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773b748229ecd42449429c14f4799d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 0}
+  dialogueBox: {fileID: 749305298}
   dialogueOffset: 200
   delayTime: 1
   fadeInDuration: 1
@@ -20023,6 +20047,8 @@ GameObject:
   m_Component:
   - component: {fileID: 614049220}
   - component: {fileID: 614049221}
+  - component: {fileID: 614049223}
+  - component: {fileID: 614049222}
   m_Layer: 0
   m_Name: Flare
   m_TagString: Untagged
@@ -20050,14 +20076,41 @@ LensFlare:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 614049219}
   m_Enabled: 1
-  m_Flare: {fileID: 12100000, guid: 54fbbf098d116effa00081aba8ad6659, type: 2}
+  m_Flare: {fileID: 12100000, guid: 9bdb18c49d114cb4300035184241aa39, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_Brightness: 0.2
-  m_FadeSpeed: 3
+  m_FadeSpeed: 20
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1543
   m_Directional: 0
+--- !u!114 &614049222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 614049219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6364fd18972694fb556fbb30e5f4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lensFlare: {fileID: 614049221}
+  player: {fileID: 1779087189}
+--- !u!114 &614049223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 614049219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4c4574f6f7fc44eb8438facd3447cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lensFlare: {fileID: 614049221}
+  player: {fileID: 1779087189}
+  dotProductAngle: 0.9
 --- !u!1 &622586342
 GameObject:
   m_ObjectHideFlags: 0
@@ -25113,6 +25166,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 103.270004
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 194d0cd818624db4c92e0b29c4a8a818, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194d0cd818624db4c92e0b29c4a8a818, type: 3}
   m_IsPrefabAsset: 0
@@ -27261,7 +27318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773b748229ecd42449429c14f4799d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 0}
+  dialogueBox: {fileID: 749305298}
   dialogueOffset: 200
   delayTime: 0
   fadeInDuration: 1
@@ -30246,6 +30303,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 28e1f8b4c9c22fa49935bbf1ce5900cf, type: 2}
+    - target: {fileID: 100000, guid: 95512b95af4037647a977c2e7c4443c9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95512b95af4037647a977c2e7c4443c9, type: 3}
   m_IsPrefabAsset: 0
@@ -46732,6 +46793,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d5d1cf467f32d8a47849aa8c27a4e53f, type: 2}
+    - target: {fileID: 100000, guid: 70f8c2667a0edc048b23c2c76f3031d6, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70f8c2667a0edc048b23c2c76f3031d6, type: 3}
   m_IsPrefabAsset: 0
@@ -47442,7 +47507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773b748229ecd42449429c14f4799d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 0}
+  dialogueBox: {fileID: 749305298}
   dialogueOffset: 200
   delayTime: 1
   fadeInDuration: 1
@@ -60091,7 +60156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773b748229ecd42449429c14f4799d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 0}
+  dialogueBox: {fileID: 749305298}
   dialogueOffset: 200
   delayTime: 0
   fadeInDuration: 1

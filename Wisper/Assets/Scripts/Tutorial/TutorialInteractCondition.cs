@@ -39,7 +39,7 @@ public class TutorialInteractCondition : MonoBehaviour {
         // check if tutorial is completed, then update the tutorials dependent conditions
 
         bool debugCheck = (bool)persistantStateData.stateConditions["ShrineFirstConversation"];
-        Debug.Log("ShrineFirstConversation: " + debugCheck);
+        //Debug.Log("ShrineFirstConversation: " + debugCheck);
 
         conditionCheck = (bool)persistantStateData.stateConditions[dependentCondition];
         if (conditionCheck)
