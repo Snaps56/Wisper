@@ -25,6 +25,11 @@ public class TutorialLookCondition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((bool)persistantStateData.stateConditions["StartupShrineDialogue"] && !(bool)persistantStateData.stateConditions["TutorialFirstDialogueFinished"])
+        {
+            mainCamera.GetComponent<CameraOptimized>().DisableCameraMovement();
+        }
+
         if ((bool)persistantStateData.stateConditions["TutorialFirstDialogueFinished"])
         {
             mainCamera.GetComponent<CameraOptimized>().EnableCameraMovement();
