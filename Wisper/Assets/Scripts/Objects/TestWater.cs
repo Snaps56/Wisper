@@ -25,7 +25,7 @@ public class TestWater : MonoBehaviour {
             positionInWater.y = transform.position.y + verticalOffset;
 
             Vector3 deltaPosition = buoyancyObjects[i].transform.position - positionInWater;
-            Debug.Log(deltaPosition);
+            //Debug.Log(deltaPosition);
             
             Vector3 buoyancyForce = -deltaPosition * buoyancyMultiplier;
             Rigidbody rb = buoyancyObjects[i].GetComponent<Rigidbody>();
@@ -33,9 +33,23 @@ public class TestWater : MonoBehaviour {
             rb.AddForce(buoyancyForce * rb.mass);
             rb.AddForce(-rb.velocity * rb.mass);
             rb.AddTorque(-rb.angularVelocity * rb.mass * buoyancyTorqueSlow);
+            
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "PickUp")
+        {
+            for (int i = 0; i < buoyancyObjects.Count; i++)
+            {
+                if (other.gameObject == buoyancyObjects[i])
+                {
+                    buoyancyObjects.Remove(buoyancyObjects[i]);
+                }
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PickUp")
