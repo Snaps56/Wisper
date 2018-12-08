@@ -35,7 +35,7 @@ public class CameraOptimized : MonoBehaviour
     private float cameraY;
     private float cameraX;
 
-    private bool cameraEnabled = false;
+    private bool cameraEnabled = true;
 
     private Vector3 direction;
 

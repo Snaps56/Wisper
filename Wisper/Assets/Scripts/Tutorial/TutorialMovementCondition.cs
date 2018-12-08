@@ -23,6 +23,11 @@ public class TutorialMovementCondition : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if ((bool)persistantStateData.stateConditions["StartupShrineDialogue"] && !(bool)persistantStateData.stateConditions["TutorialFirstDialogueFinished"])
+        {
+            player.GetComponent<PlayerMovement>().DisableMovement();
+        }
+
         if ((bool)persistantStateData.stateConditions["TutorialLookFinished"])
         {
             player.GetComponent<PlayerMovement>().EnableMovement();
