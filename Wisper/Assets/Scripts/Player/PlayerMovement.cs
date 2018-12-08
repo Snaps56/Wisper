@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount() * orbMovementIncrease);
 
+		//Debug.Log ("Planar Movement: " + planalMovementOn);
+
         SprintCheck();
 
         PlanalMovementCheck();
@@ -100,8 +102,10 @@ public class PlayerMovement : MonoBehaviour {
     }
     void SprintCheck()
     {
+		//Debug.Log ("Accel: " + GetIsAccelerating ());
+		//Debug.Log ("Stationary: " + GetIsStationary ());
         // check if player is pressing the sprint button
-        if (Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint"))
+		if ((Input.GetButtonDown("XBOX_Thumbstick_L_Click") || Input.GetButtonDown("PC_Key_Sprint")) && GetIsAccelerating())
         {
             //Debug.Log("Sprinting: " + sprintMod);
             if (!sprintMod)
@@ -113,6 +117,10 @@ public class PlayerMovement : MonoBehaviour {
                 sprintMod = false;
             }
         }
+
+		if (GetIsStationary()) {
+			sprintMod = false;
+		}
 
         // if the player is pressing the sprint button, increase the player's movement speed
         if (sprintMod)
