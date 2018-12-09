@@ -107,6 +107,7 @@ public class Shrine : MonoBehaviour {
 			gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
 			// Is the shrine is not clean and the player is lifting, start cleaning the shrine
 			if (!(bool)persistantStateData.stateConditions ["ShrineIsClean"]) {
+                playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
                 Debug.Log("hi 1");
 				// Change the material of the shrine over time
 				if (playerOrb >= orbLimit) {
@@ -134,8 +135,9 @@ public class Shrine : MonoBehaviour {
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
 			if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) 
 				&& (bool)persistantStateData.stateConditions ["ShrineIsClean"] /*&& (bool)persistantStateData.stateConditions["OrbDepositInProgress"]*/) {
-				// Make sure the player has orbs to deposit
-				if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
+                playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
+                // Make sure the player has orbs to deposit
+                if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
 					orbDepositsInTransit = player.GetComponent<OrbCount> ().GetOrbCount ();
 					// Function that changes orb count
 					DepositOrbs (orbDepositsInTransit);

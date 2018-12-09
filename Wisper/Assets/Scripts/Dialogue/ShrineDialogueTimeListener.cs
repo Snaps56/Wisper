@@ -10,7 +10,7 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
     private float followTheLightStartTime = 0;
     private float followTheLightCompleteTime = 0;
 
-    private float followTheLightPart2Time = 3;
+    private float followTheLightPart2Time = 2.5f;
     private float areYouFollowingTheLightRepeaterTime = 60;
 
     private bool disableAreYouFollowingTheLightRepeaterTime = false;

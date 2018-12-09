@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135278, g: 0.50094235, b: 0.5728585, a: 1}
+  m_IndirectSpecularColor: {r: 0.4513535, g: 0.50094336, b: 0.5728595, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10755,6 +10755,76 @@ Transform:
   m_Father: {fileID: 1823425206}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &362290341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 362290342}
+  - component: {fileID: 362290344}
+  - component: {fileID: 362290343}
+  m_Layer: 0
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &362290342
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362290341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1374232261}
+  m_Father: {fileID: 828159641}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &362290343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362290341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &362290344
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362290341}
+  m_CullTransparentMesh: 0
 --- !u!1 &364520197
 GameObject:
   m_ObjectHideFlags: 0
@@ -19187,7 +19257,7 @@ RectTransform:
   m_GameObject: {fileID: 589967544}
   m_LocalRotation: {x: -0, y: -0.4974804, z: -0, w: 0.8674752}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0020000003, y: 0.0019999999, z: 1}
+  m_LocalScale: {x: 0.003, y: 0.003, z: 1}
   m_Children:
   - {fileID: 1127772804}
   m_Father: {fileID: 1936945839}
@@ -24373,6 +24443,113 @@ Transform:
   m_Father: {fileID: 441074242}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &828159640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 828159641}
+  - component: {fileID: 828159645}
+  - component: {fileID: 828159644}
+  - component: {fileID: 828159643}
+  - component: {fileID: 828159642}
+  m_Layer: 0
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &828159641
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828159640}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: 0, z: 0.9}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 1}
+  m_Children:
+  - {fileID: 362290342}
+  m_Father: {fileID: 1894008124}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2.25}
+  m_SizeDelta: {x: 1200, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &828159642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828159640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75bbbd17f0147f74ba084f0879dd0a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1102862351}
+--- !u!114 &828159643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828159640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &828159644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828159640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &828159645
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828159640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &832655418
 GameObject:
   m_ObjectHideFlags: 0
@@ -43525,6 +43702,143 @@ Transform:
   m_Father: {fileID: 544706734}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1317133523
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1894008124}
+    m_Modifications:
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[1].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: followTetherMinDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: followTetherStrongDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: SwingTaskDone
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].dialogueName
+      value: Push me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].speaker
+      value: Suzie
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].line
+      value: Grandpa, the swing won't move! Push me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[1].dialogueName
+      value: Yay!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: SwingTaskDone
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].line
+      value: I'm swinging, yay!
+      objectReference: {fileID: 0}
+    - target: {fileID: 135310997485558492, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: m_Radius
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].speaker
+      value: Suzie
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!4 &1317133524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe,
+    type: 2}
+  m_PrefabInternal: {fileID: 1317133523}
 --- !u!1 &1318870742
 GameObject:
   m_ObjectHideFlags: 0
@@ -49028,6 +49342,81 @@ Transform:
   m_Father: {fileID: 1904695619}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1374232260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1374232261}
+  - component: {fileID: 1374232263}
+  - component: {fileID: 1374232262}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1374232261
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1374232260}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 362290342}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.00017881393}
+  m_SizeDelta: {x: 1200, y: 675}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1374232262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1374232260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: a206e9d3998aaa445a268b96aed49ed9, type: 3}
+    m_FontSize: 144
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 144
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Hello world
+--- !u!222 &1374232263
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1374232260}
+  m_CullTransparentMesh: 0
 --- !u!1 &1377244820
 GameObject:
   m_ObjectHideFlags: 0
@@ -50944,7 +51333,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1894008124}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1446294333
 SkinnedMeshRenderer:
@@ -53447,7 +53836,7 @@ Transform:
   m_GameObject: {fileID: 1521651133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1468365617}
   m_RootOrder: 3
@@ -53516,13 +53905,13 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Mysterious Voice
       line: Hmm... you seem different somehow.
-    - speaker: 
+    - speaker: Mysterious Voice
       line: "I wonder if you even realize what you\u2019ve gotten yourself into."
-    - speaker: 
+    - speaker: Mysterious Voice
       line: '...'
-    - speaker: 
+    - speaker: Mysterious Voice
       line: I doubt it.
   - dialogueName: Are you following the light?
     enabled: 0
@@ -53541,7 +53930,7 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Mysterious Voice
       line: "Are you lost? Look for the light. I\u2019ll be waiting at the top of
         the garden..."
   - dialogueName: First Shrine Dialogue
@@ -53563,28 +53952,28 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: Ah, yes...you found me!
-    - speaker: 
+    - speaker: Shrine
       line: What was that? Who am I?
-    - speaker: 
+    - speaker: Shrine
       line: Looks like I was right, I had a feeling you were new...
-    - speaker: 
+    - speaker: Shrine
       line: Okay, I need you to hang tight and stay still while I explain a couple
         things.
-    - speaker: 
+    - speaker: Shrine
       line: "Hey, don\u2019t roll your eyes at me, I\u2019m just trying to help!"
-    - speaker: 
+    - speaker: Shrine
       line: '...'
-    - speaker: 
+    - speaker: Shrine
       line: "Excuse me?! What do you mean I\u2019m \u2018Just a dusty old rock\u2019?!
         Wow, you\u2019ve got a real lip this time around..."
-    - speaker: 
+    - speaker: Shrine
       line: "Look, pal, I don\u2019t know if you can tell but there\u2019s not a whole
         lot of people around here for me to impress."
-    - speaker: 
+    - speaker: Shrine
       line: '...No one even visits, anyway...'
-    - speaker: 
+    - speaker: Shrine
       line: "Alright, well if you\u2019re so anxious to do something AND since you
         felt compelled enough to insult how I look, go ahead and try dusting me off."
   - dialogueName: First Shrine Dialogue part 2
@@ -53612,18 +54001,18 @@ MonoBehaviour:
           conditionValue: 1
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: Ha! Not so easy, huh?
-    - speaker: 
+    - speaker: Shrine
       line: "Hmm, you\u2019re quite a bit weaker than most of the others."
-    - speaker: 
+    - speaker: Shrine
       line: "Okay, here\u2019s the deal."
-    - speaker: 
+    - speaker: Shrine
       line: "You go back down to the garden, and help those kind Shellsters out. Thanks
         to us, they\u2019ve always got a lot on their plate..."
-    - speaker: 
+    - speaker: Shrine
       line: From up here, I can see someone lost their hat, so maybe start there.
-    - speaker: 
+    - speaker: Shrine
       line: "Come back after you\u2019ve done a couple favors. Your strength should
         be high enough to clean me off by then. Once you do, I\u2019ll explain everything
         that\u2019s going on. Sound good?"
@@ -53642,7 +54031,7 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: Excellent. Now, hop to it!
   - dialogueName: First Shrine Dialogue No
     enabled: 0
@@ -53659,7 +54048,7 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: "Ha! Be stubborn all you want. I\u2019ll be here when you\u2019re ready."
   - dialogueName: Clean me!
     enabled: 0
@@ -53672,16 +54061,18 @@ MonoBehaviour:
       conditionValue: 1
     - conditionName: SwingTaskDone
       conditionValue: 1
+    - conditionName: ShrineIsClean
+      conditionValue: 0
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: Welcome back! Looks like you managed to help some folks! Good for you.
-    - speaker: 
+    - speaker: Shrine
       line: "You\u2019ve even looking gustier than before, I can tell you\u2019re
         feeling a bit stronger!"
-    - speaker: 
+    - speaker: Shrine
       line: Alright, then try dusting me off again!
   - dialogueName: Baby's First Deposit
     enabled: 0
@@ -53710,14 +54101,14 @@ MonoBehaviour:
           conditionValue: 1
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: "That\u2019s more like it! Thanks for pointing out how much I let this
         place go, I forgot how nice this place is when it\u2019s tidy."
-    - speaker: 
+    - speaker: Shrine
       line: Now, if you would kindly hand over those orbs.
   - dialogueName: First Deposit Rejected
     enabled: 0
-    forceOnEnable: 0
+    forceOnEnable: 1
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
@@ -53732,7 +54123,7 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: "Okay, yes. I know you just collected them all on your own, but we need
         to get rid of them. It\u2019ll make sense in a minute, I promise!"
   - dialogueName: First Turn In Cutscene Dialogue
@@ -53752,27 +54143,27 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: "Alright, to finally answer your first question, I\u2019m the guardian
         of this island."
-    - speaker: 
+    - speaker: Shrine
       line: "I\u2019m pretty proud of it, I think it\u2019s a nice place. The Shellsters
         who live here seem to like it, too. They call it Sunshore."
-    - speaker: 
+    - speaker: Shrine
       line: "Now, this island may be a beautiful paradise, but it\u2019s actually
         located in a rather inconvenient and dangerous spot."
-    - speaker: 
+    - speaker: Shrine
       line: "Wisps tend to migrate over Sunshore a lot for one reason or another.
         They\u2019re also pretty rowdy, and brew one heck of a storm when they get
         together!"
-    - speaker: 
+    - speaker: Shrine
       line: "This is usually okay, but sometimes the storms can be really dangerous,
         and it\u2019s my job to protect the island. So, when this happens, I shatter
         the storm into hundreds of little pieces."
-    - speaker: 
+    - speaker: Shrine
       line: Yup! Those orbs you just collected could have destroyed the entire island
         last night!
-    - speaker: 
+    - speaker: Shrine
       line: Luckily, when you bring them to me little by little, the storm manifests
         in a much safer way
   - dialogueName: Go forth!
@@ -53788,36 +54179,36 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
+    - speaker: Shrine
       line: Unfortunately, this...complicates things. No one except you and I can
         see these orbs, but the Shellsters tend to feel their negative effects. Basically
         when the orbs fall down to the island, everyone gets cursed.
-    - speaker: 
+    - speaker: Shrine
       line: "It\u2019s mostly mundane things, but a curse is still a curse! You can\u2019t
         just let those linger!\u201D\r\n\u201CThat\u2019s where you come in.\r"
-    - speaker: 
+    - speaker: Shrine
       line: "I\u2019m getting too old to go collecting all of these myself, and it
         takes a lot out of me to keep them under control."
-    - speaker: 
+    - speaker: Shrine
       line: "Like I said, when you bring them to me, I\u2019m able to destroy them
         for good. When that happens, a fraction of the storm reappears to rain down
         onto the island."
-    - speaker: 
+    - speaker: Shrine
       line: 'So in summary: Each time you help someone, their curse is lifted, you
         collect some orbs and get a little stronger, then you bring me those orbs
         so I can destroy them, and as a result the island stays safe and happy. Sound
         good?'
-    - speaker: 
+    - speaker: Shrine
       line: "Be careful though. Like I said, controlling these orbs isn\u2019t easy,
         and these storms can still be quite strong if you bring me too many..."
-    - speaker: 
+    - speaker: Shrine
       line: "Well, that\u2019s about all there is to that, so why don\u2019t we get
         started gathering those orbs. In fact, I think I still sense one\u2026 actually,
         let\u2019s not worry about that one now."
-    - speaker: 
+    - speaker: Shrine
       line: "Why don\u2019t you see if there\u2019s any fun to be had in the city?
         I\u2019m sure there are plenty of Shellsters there who need your help."
-    - speaker: 
+    - speaker: Shrine
       line: "Have fun, Wisper! That\u2019s what I\u2019m going to be calling you from
         now on, so get used to hearing it!"
   - dialogueName: Deposit prompt
@@ -53851,8 +54242,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6
-  m_Center: {x: 0, y: 3, z: 0}
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &1522889350
 Prefab:
   m_ObjectHideFlags: 0
@@ -61325,7 +61716,7 @@ Transform:
   m_Children:
   - {fileID: 2066840781}
   m_Father: {fileID: 1894008124}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1645047891
 GameObject:
@@ -68888,7 +69279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbPickupRadius: 0.5
   windPowerBar: {fileID: 921488072}
   orbCountText: {fileID: 1847881630}
 --- !u!54 &1779087195
@@ -75439,10 +75829,8 @@ MonoBehaviour:
     options: []
     speedControls: []
     sentences:
-    - speaker: 
-      line: 'Me hat!
-
-        I best be getting back home now.'
+    - speaker: Shamus
+      line: Me hat! Little Suzie and I best be getting back home now.
 --- !u!135 &1856278243
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -75935,6 +76323,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1894008124}
   - component: {fileID: 1894008125}
+  - component: {fileID: 1894008127}
+  - component: {fileID: 1894008126}
   m_Layer: 0
   m_Name: shellster_idle
   m_TagString: Untagged
@@ -75953,6 +76343,8 @@ Transform:
   m_LocalPosition: {x: -0, y: -3.83, z: 1.8}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
+  - {fileID: 1317133524}
+  - {fileID: 828159641}
   - {fileID: 1644953930}
   - {fileID: 1446294332}
   m_Father: {fileID: 1076732387}
@@ -75977,6 +76369,63 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1894008126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894008123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9b6f0d0424b9349926c90199c3724f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingTexts:
+  - dialogueName: Push me
+    enabled: 0
+    forceOnEnable: 0
+    follow: 0
+    autoPlay: 0
+    autoPlayDelay: 0
+    enableConditions:
+    - conditionName: SwingTaskDone
+      conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: Grandpa, push me!
+  - dialogueName: Weee
+    enabled: 0
+    forceOnEnable: 0
+    follow: 0
+    autoPlay: 0
+    autoPlayDelay: 0
+    enableConditions:
+    - conditionName: SwingTaskDone
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: Weeeee!
+  range: 8
+--- !u!114 &1894008127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894008123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cc101eb2568f745b4a3a6855fac438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updatingFloatingTexts: 0
+  disableFloatingText: 0
+  persistantStateDataUpdateCount: 0
 --- !u!1 &1894910544
 GameObject:
   m_ObjectHideFlags: 0
@@ -76725,9 +77174,9 @@ GameObject:
   - component: {fileID: 1936945846}
   - component: {fileID: 1936945847}
   - component: {fileID: 1936945840}
-  - component: {fileID: 1936945841}
   - component: {fileID: 1936945843}
   - component: {fileID: 1936945844}
+  - component: {fileID: 1936945841}
   - component: {fileID: 1936945845}
   - component: {fileID: 1936945842}
   m_Layer: 0
@@ -76799,6 +77248,21 @@ MonoBehaviour:
     sentences:
     - speaker: 
       line: Where'd me hat go?
+  - dialogueName: Hat returned
+    enabled: 0
+    forceOnEnable: 0
+    follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
+    enableConditions:
+    - conditionName: ShamusHasHat
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: 
+      line: My hat!
   range: 8
 --- !u!95 &1936945842
 Animator:
