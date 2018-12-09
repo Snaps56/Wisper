@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45135278, g: 0.50094235, b: 0.5728585, a: 1}
+  m_IndirectSpecularColor: {r: 0.4513535, g: 0.50094336, b: 0.5728595, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -43727,7 +43727,7 @@ Prefab:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 2}
       propertyPath: dialogues.Array.data[0].enableConditions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 2}
@@ -43834,6 +43834,16 @@ Prefab:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 2}
       propertyPath: dialogues.Array.data[1].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[1].conditionName
+      value: ShrineFirstConversationOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[1].conditionValue
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -69345,7 +69355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbPickupRadius: 0.5
   windPowerBar: {fileID: 921488072}
   orbCountText: {fileID: 1847881630}
 --- !u!54 &1779087195
@@ -75867,6 +75876,8 @@ MonoBehaviour:
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
+    - conditionName: ShrineFirstConversationOver
+      conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls:
@@ -76457,6 +76468,8 @@ MonoBehaviour:
     enableConditions:
     - conditionName: SwingTaskDone
       conditionValue: 0
+    - conditionName: ShrineFirstConversationOver
+      conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
@@ -77309,6 +77322,8 @@ MonoBehaviour:
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
+    - conditionName: ShrineFirstConversationOver
+      conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []

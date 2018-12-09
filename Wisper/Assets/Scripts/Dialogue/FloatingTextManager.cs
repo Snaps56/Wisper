@@ -69,26 +69,33 @@ public class FloatingTextManager : MonoBehaviour {
         {
             if (!updatingFloatingTexts) // Wait for text to be updated
             {
-                if (newFloatingText == null) // If dialogue update was never called, set newDialogue.
+                try
                 {
-                    newFloatingText = getEnabledText();
-                }
-
-                if (activeFloatingText != newFloatingText) // If the dialogue finished (reset to null), or has changed since last time (doesn't match newFT after update)
-                {
-                    if (activeFloatingText != null) // If it changed, kill the current dialogue before proceeding.
+                    if (newFloatingText == null) // If dialogue update was never called, set newDialogue.
                     {
-                        killFloatingText = true;
-                        EndFloatingText();
-                        killFloatingText = false;
+                        newFloatingText = getEnabledText();
                     }
 
-                    activeFloatingText = newFloatingText;
-                    StartFloatingText(activeFloatingText);  // Start the new dialogue as active dialogue
+                    if (activeFloatingText != newFloatingText) // If the dialogue finished (reset to null), or has changed since last time (doesn't match newFT after update)
+                    {
+                        if (activeFloatingText != null) // If it changed, kill the current dialogue before proceeding.
+                        {
+                            killFloatingText = true;
+                            EndFloatingText();
+                            killFloatingText = false;
+                        }
+
+                        activeFloatingText = newFloatingText;
+                        StartFloatingText(activeFloatingText);  // Start the new dialogue as active dialogue
+                    }
+                    else // Display next sentence
+                    {
+                        DisplayNextSentence(3);
+                    }
                 }
-                else // Display next sentence
+                catch(System.NullReferenceException e)
                 {
-                    DisplayNextSentence(3);
+                    //Debug.LogWarning(e.Message);
                 }
             }
         }
@@ -206,17 +213,20 @@ public class FloatingTextManager : MonoBehaviour {
         bool tempCheck = true;
         foreach (Dialogue d in floatingTexts.floatingTexts)
         {
+            //Debug.Log("Checking dialogue: " + d.dialogueName);
             foreach (TargetCondition condition in d.enableConditions)
             {
+                //Debug.Log("checking condition: " + condition.conditionName);
                 if (tempCheck) // If the previous conditions have held
                 {
                     if (!CheckCondition(condition))
                     {
+                        //Debug.Log("Condition " + condition.conditionName + " failed the check");
                         tempCheck = false;  // If this condition does not match the value in persistant state, tempCheck is false
                     }
                 }
             }
-            if (tempCheck)
+            if (tempCheck && d.enableConditions.Count > 0)
             {
                 d.enabled = true;   // If all conditions are met, enable dialog
             }
@@ -226,7 +236,7 @@ public class FloatingTextManager : MonoBehaviour {
             }
             tempCheck = true;   // Reset tempCheck for next dialogue
         }
-        newFloatingText = getEnabledText();
+        //newFloatingText = getEnabledText();
     }
 
     private bool CheckCondition(TargetCondition condition)
@@ -250,6 +260,6 @@ public class FloatingTextManager : MonoBehaviour {
                 return d;
             }
         }
-        throw new MissingReferenceException("No enabled floating texts found for " + this.name);
+        throw new System.NullReferenceException("No enabled floating texts found for " + this.name);
     }
 }
