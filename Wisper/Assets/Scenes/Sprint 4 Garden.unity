@@ -54028,6 +54028,8 @@ MonoBehaviour:
     conditionChangeOnExit:
     - conditionName: ShrineFirstConversationYes
       conditionValue: 0
+    - conditionName: ShrineFirstConversationOver
+      conditionValue: 1
     options: []
     speedControls: []
     sentences:
@@ -54045,6 +54047,8 @@ MonoBehaviour:
     conditionChangeOnExit:
     - conditionName: ShrineFirstConversationNo
       conditionValue: 0
+    - conditionName: ShrineFirstConversationOver
+      conditionValue: 1
     options: []
     speedControls: []
     sentences:
@@ -54232,6 +54236,63 @@ MonoBehaviour:
     sentences:
     - speaker: 
       line: Deposit orbs?
+  - dialogueName: Not enough orbs
+    enabled: 0
+    forceOnEnable: 0
+    follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
+    enableConditions:
+    - conditionName: ShrineFirstConversationOver
+      conditionValue: 1
+    - conditionName: ShamusHasHat
+      conditionValue: 0
+    - conditionName: SwingTaskDone
+      conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: Shrine
+      line: You still aren't strong enough. You need to help some people.
+  - dialogueName: Not enough orbs
+    enabled: 0
+    forceOnEnable: 0
+    follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
+    enableConditions:
+    - conditionName: ShrineFirstConversationOver
+      conditionValue: 1
+    - conditionName: ShamusHasHat
+      conditionValue: 1
+    - conditionName: SwingTaskDone
+      conditionValue: 0
+    conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: Shrine
+      line: You still aren't strong enough. You need to help some people.
+  - dialogueName: Not enough orbs
+    enabled: 0
+    forceOnEnable: 0
+    follow: 1
+    autoPlay: 0
+    autoPlayDelay: 1
+    enableConditions:
+    - conditionName: ShrineFirstConversationOver
+      conditionValue: 1
+    - conditionName: ShamusHasHat
+      conditionValue: 0
+    - conditionName: SwingTaskDone
+      conditionValue: 1
+    conditionChangeOnExit: []
+    options: []
+    speedControls: []
+    sentences:
+    - speaker: Shrine
+      line: You still aren't strong enough. You need to help some people.
 --- !u!135 &1521651137
 SphereCollider:
   m_ObjectHideFlags: 0

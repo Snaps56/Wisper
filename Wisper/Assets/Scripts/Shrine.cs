@@ -87,7 +87,7 @@ public class Shrine : MonoBehaviour {
 
 		firstTime = false;
 		playerOrb = player.GetComponent<OrbCount> ().GetOrbCount ();
-		orbLimit = 1;
+		orbLimit = 10;
 	}
 
 	// Update is called once per frame
@@ -108,19 +108,15 @@ public class Shrine : MonoBehaviour {
 			// Is the shrine is not clean and the player is lifting, start cleaning the shrine
 			if (!(bool)persistantStateData.stateConditions ["ShrineIsClean"]) {
                 playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
-                Debug.Log("hi 1");
 				// Change the material of the shrine over time
-				if (playerOrb >= orbLimit) {
-                    Debug.Log("hi 2");
+				if (playerOrb >= orbLimit) {;
 					if (gettingCleaned && cleanProgress < cleanThreshold) {
-                        Debug.Log("hi 3");
                         cleanProgress += cleanTick;
 						shrinePart1.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine1, cleanShrine1, cleanProgress);
 						//shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
 					}
 					// Once clean, drop the orb rewards and signal the PersistantStateData to change
 					if (cleanProgress >= cleanThreshold) {
-                        Debug.Log("hi 4");
                         //isClean = true;
                         persistantStateData.ChangeStateConditions ("ShrineIsClean", true);
                         persistantStateData.ChangeStateConditions("ShrineFirstTurnIn", true);

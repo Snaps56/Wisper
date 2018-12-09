@@ -61,6 +61,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("ShrineFirstConversation2", false); // After player fails to clean shrine, this enables the conversation to continue
         stateConditions.Add("ShrineFirstConversationYes", false);   // If player agrees to help, this plays a dialogue
         stateConditions.Add("ShrineFirstConversationNo", false);    // If player refuses to help, this plays a dialogue
+        stateConditions.Add("ShrineFirstConversationOver", false);  // Signifies the first conversation has been completed.
 
         // Variables control shrine dialogue after player has completed the Garden intro tasks
         stateConditions.Add("ShrineFirstTurnIn", false);  // Marks the first turn in for the tutorial area
