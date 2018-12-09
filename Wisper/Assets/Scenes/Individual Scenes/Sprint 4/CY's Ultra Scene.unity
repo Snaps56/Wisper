@@ -30635,50 +30635,6 @@ Transform:
   m_Father: {fileID: 765827529}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &614049219
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 614049220}
-  - component: {fileID: 614049221}
-  m_Layer: 0
-  m_Name: Flare
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &614049220
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 614049219}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.391, y: 1.36, z: 0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1468365617}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!123 &614049221
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 614049219}
-  m_Enabled: 1
-  m_Flare: {fileID: 12100000, guid: 54fbbf098d116effa00081aba8ad6659, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Brightness: 0.2
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Directional: 0
 --- !u!1 &623973202
 GameObject:
   m_ObjectHideFlags: 0
@@ -39828,7 +39784,7 @@ Transform:
   - {fileID: 177337453}
   - {fileID: 2025924509}
   m_Father: {fileID: 1468365617}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1077482519
 GameObject:
@@ -40507,6 +40463,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e31726f2175a694e888d81b6686654b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1112761536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112761537}
+  - component: {fileID: 1112761540}
+  - component: {fileID: 1112761539}
+  - component: {fileID: 1112761538}
+  m_Layer: 0
+  m_Name: Flare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1112761537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112761536}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.3909998, y: 1.3600006, z: 0.28900146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1468365617}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1112761538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112761536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6364fd18972694fb556fbb30e5f4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lensFlare: {fileID: 1112761540}
+  player: {fileID: 1779087189}
+--- !u!114 &1112761539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112761536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4c4574f6f7fc44eb8438facd3447cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lensFlare: {fileID: 1112761540}
+  mainCamera: {fileID: 1102862355}
+  dotProductAngle: 0.9
+  pulseDelay: 1
+  maxBrightness: 10
+  pulseDuration: 1
+--- !u!123 &1112761540
+LensFlare:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112761536}
+  m_Enabled: 1
+  m_Flare: {fileID: 12100000, guid: 9bdb18c49d114cb4300035184241aa39, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 0.2
+  m_FadeSpeed: 20
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 1543
+  m_Directional: 0
 --- !u!1 &1112914101
 GameObject:
   m_ObjectHideFlags: 0
@@ -65641,8 +65673,8 @@ Transform:
   - {fileID: 931285852}
   - {fileID: 455035095}
   - {fileID: 1521651134}
-  - {fileID: 614049220}
   - {fileID: 1076022023}
+  - {fileID: 1112761537}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95023,6 +95055,7 @@ GameObject:
   - component: {fileID: 1936945843}
   - component: {fileID: 1936945844}
   - component: {fileID: 1936945845}
+  - component: {fileID: 1936945842}
   m_Layer: 0
   m_Name: Shellster_Shamus
   m_TagString: NPC
@@ -95093,6 +95126,24 @@ MonoBehaviour:
     - speaker: 
       line: Where'd me hat go?
   range: 8
+--- !u!95 &1936945842
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1936945838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d460b36b76681974e8492545e3a8cc81, type: 3}
+  m_Controller: {fileID: 9100000, guid: a1124bab9886c1246b7cab0c525cea47, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1936945843
 MonoBehaviour:
   m_ObjectHideFlags: 0

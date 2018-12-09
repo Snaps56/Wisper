@@ -8718,7 +8718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 749305298}
   dialogueOffset: 200
-  delayTime: 1
+  delayTime: 0
   fadeInDuration: 1
   fadeOutDuration: 2
   maxDuration: 999
@@ -76635,6 +76635,7 @@ GameObject:
   - component: {fileID: 1936945843}
   - component: {fileID: 1936945844}
   - component: {fileID: 1936945845}
+  - component: {fileID: 1936945842}
   m_Layer: 0
   m_Name: Shellster_Shamus
   m_TagString: NPC
@@ -76705,6 +76706,24 @@ MonoBehaviour:
     - speaker: 
       line: Where'd me hat go?
   range: 8
+--- !u!95 &1936945842
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1936945838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d460b36b76681974e8492545e3a8cc81, type: 3}
+  m_Controller: {fileID: 9100000, guid: a1124bab9886c1246b7cab0c525cea47, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1936945843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79528,6 +79547,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2083960040}
   m_CullTransparentMesh: 0
+--- !u!1 &2086772657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2086772658}
+  - component: {fileID: 2086772659}
+  m_Layer: 8
+  m_Name: Shrine Player Collider
+  m_TagString: Terrain
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2086772658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2086772657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1468365617}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2086772659
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2086772657}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &2087958581
 GameObject:
   m_ObjectHideFlags: 0
