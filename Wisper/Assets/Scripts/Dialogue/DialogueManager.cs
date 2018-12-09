@@ -134,7 +134,7 @@ public class DialogueManager : MonoBehaviour {
                 }
                 catch(MissingReferenceException e)
                 {
-                    Debug.LogWarning(e.Message);
+                    //Debug.LogWarning(e.Message);
                 }
             }
         }

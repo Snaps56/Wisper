@@ -120,7 +120,7 @@ public class Shrine : MonoBehaviour {
 						persistantStateData.ChangeStateConditions ("ShrineIsClean", true);
 						this.GetComponent<SpawnOrbs> ().DropOrbs ();
 					}
-				} else if (!firstTime && (bool)persistantStateData.stateConditions["WaitingForCleanAttempt"]) {
+				} else if (!firstTime && (bool)persistantStateData.stateConditions["WaitingForCleanAttempt"] && gettingCleaned) {
 					firstTime = true;
 					persistantStateData.ChangeStateConditions ("ShrineFirstConversation2", true);
 					persistantStateData.ChangeStateConditions ("WaitingForCleanAttempt", false);

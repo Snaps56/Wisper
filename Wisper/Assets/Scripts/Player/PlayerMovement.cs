@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 
-		if (GetIsStationary()) {
+		if (!GetIsAccelerating()) {
 			sprintMod = false;
 		}
 
@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool GetIsStationary() {
-		if (GetVelocity ().magnitude == 0) {
+		if (GetVelocity ().magnitude < .1) {
 			return true;
 		} else {
 			return false;
