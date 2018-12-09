@@ -43831,6 +43831,11 @@ Prefab:
       propertyPath: dialogues.Array.data[1].sentences.Array.data[0].speaker
       value: Suzie
       objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 2}
+      propertyPath: dialogues.Array.data[1].follow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40130c7273e405347b6d269c6e6a25fe, type: 2}
   m_IsPrefabAsset: 0
@@ -53978,7 +53983,7 @@ MonoBehaviour:
         felt compelled enough to insult how I look, go ahead and try dusting me off."
   - dialogueName: First Shrine Dialogue part 2
     enabled: 0
-    forceOnEnable: 0
+    forceOnEnable: 1
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1

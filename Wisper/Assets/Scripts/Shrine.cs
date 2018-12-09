@@ -124,8 +124,10 @@ public class Shrine : MonoBehaviour {
 					}
 				} else if (!firstTime && (bool)persistantStateData.stateConditions["WaitingForCleanAttempt"] && gettingCleaned) {
 					firstTime = true;
-					persistantStateData.ChangeStateConditions ("ShrineFirstConversation2", true);
-					persistantStateData.ChangeStateConditions ("WaitingForCleanAttempt", false);
+                    Hashtable tmpHash = new Hashtable();
+                    tmpHash.Add("ShrineFirstConversation2Primer", true);
+					tmpHash.Add("WaitingForCleanAttempt", false);
+                    persistantStateData.ChangeStateConditions(tmpHash);
 				}
 			}
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
