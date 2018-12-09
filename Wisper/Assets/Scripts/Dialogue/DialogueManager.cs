@@ -162,7 +162,7 @@ public class DialogueManager : MonoBehaviour {
         // When dialogue is active, respond to input
         if(dialogueBoxActive && activeDialogue != null)
         {
-            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && !activeDialogue.autoPlay && !optionActive)    // Standard dialogue progression behaviour
+            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && !activeDialogue.autoPlay && !optionActive)    // Standard dialogue progression behaviour
             {
                 if (sentenceDisplayInProgress)
                 {
@@ -192,7 +192,7 @@ public class DialogueManager : MonoBehaviour {
                         }
                     }
                 }
-                else if(Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
+                else if(Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A"))
                 {
                     foreach (TargetCondition condition in activeChoice.changeConditions)
                     {
@@ -231,7 +231,7 @@ public class DialogueManager : MonoBehaviour {
                 {
                     nearestNPC = GetClosestNPC();
                     //TODO: Display interact button by this npc
-                    if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && GetEnabledDialogue(nearestNPC).enabled || GetEnabledDialogue(nearestNPC).forceOnEnable)
+                    if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && GetEnabledDialogue(nearestNPC).enabled || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
                         dialogueBoxActive = true;
                         activeNPC = nearestNPC;
