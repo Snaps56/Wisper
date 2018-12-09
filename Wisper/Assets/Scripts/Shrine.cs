@@ -39,6 +39,7 @@ public class Shrine : MonoBehaviour {
 	public float depositRate;
 	private float nextDeposit;
 	private float orbDepositsInTransit;
+	private GameObject[] OrbDepositInstanceArray;
 
     [Header("Cutscene Objects")]
 	// Camera that is used for cutscene
@@ -131,12 +132,12 @@ public class Shrine : MonoBehaviour {
 				}
 			}
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
-			if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) 
-				&& (bool)persistantStateData.stateConditions ["ShrineIsClean"] /*&& (bool)persistantStateData.stateConditions["OrbDepositInProgress"]*/) {
+			if (/*(Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) && */
+				(bool)persistantStateData.stateConditions ["ShrineIsClean"] && (bool)persistantStateData.stateConditions["OrbDepositInProgress"]) {
                 playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
                 // Make sure the player has orbs to deposit
-                if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
-					orbDepositsInTransit = player.GetComponent<OrbCount> ().GetOrbCount ();
+                if (playerOrb > 0) {
+					orbDepositsInTransit = playerOrb;
 					// Function that changes orb count
 					DepositOrbs (orbDepositsInTransit);
 
@@ -149,6 +150,9 @@ public class Shrine : MonoBehaviour {
 						
 					}
 					//persistantStateData.stateConditions ["OrbDepositInProgress"] = false;
+					persistantStateData.ChangeStateConditions ("OrbDepositInProgress", false);
+
+					Debug.Log ("Deposit Complete");
 
 					// After depositing orbs, play a cutscene of the storm
 					/*
@@ -196,22 +200,25 @@ public class Shrine : MonoBehaviour {
 		*/
 		player.GetComponent<OrbCount> ().SetOrbCount (0);
 		for (int oc = 0; oc < depositCount; oc++) {
-			//if (Time.time > nextDeposit) {
-				// Create an instance of an orb specifically for the deposit sequence
 			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + player.transform.position;
 			orbDepositInstance = Instantiate (orbDeposit, spawnPosition, Quaternion.identity);
-			orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
-			//orbDepositInstance.GetComponent<Rigidbody>().AddRelativeForce(Random.onUnitSphere * 5);
-				//Thread.Sleep (2000);
-			//}
+			//OrbDepositInstanceArray [oc] = orbDepositInstance;
+			//orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
 		}
 	}
 
 	// If an orb is being deposited, destroy it once it reaches the shrine
+	/*
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.CompareTag ("OrbDeposit")) {
 			orbDepositsInTransit--;
 			Destroy (other.gameObject);
 		}
+	}
+	*/
+
+	public void destroyOrbDeposit (GameObject orbDeposit) {
+		Destroy (orbDeposit.gameObject);
+		orbDepositsInTransit--;
 	}
 }

@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private bool isMoving = false;
 
+	public GameObject[] freeModeTrails;
+
     // Use this for initialization
     void Start()
     {
@@ -93,10 +95,16 @@ public class PlayerMovement : MonoBehaviour {
             if (planalMovementOn)
             {
                 planalMovementOn = false;
+				foreach (GameObject trail in freeModeTrails) {
+					trail.GetComponent<TrailRenderer> ().emitting = true;
+				}
             }
             else
             {
                 planalMovementOn = true;
+				foreach (GameObject trail in freeModeTrails) {
+					trail.GetComponent<TrailRenderer> ().emitting = false;
+				}
             }
         }
     }
