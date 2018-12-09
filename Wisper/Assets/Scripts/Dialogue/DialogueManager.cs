@@ -108,7 +108,7 @@ public class DialogueManager : MonoBehaviour {
         HideBox();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
@@ -153,13 +153,14 @@ public class DialogueManager : MonoBehaviour {
                 }
                 catch(MissingReferenceException e)
                 {
-                    Debug.LogWarning(e.Message);
+                    //Debug.LogWarning(e.Message);
+                    
                 }
             }
         }
 
         // When dialogue is active, respond to input
-        if(dialogueBoxActive)
+        if(dialogueBoxActive && activeDialogue != null)
         {
             if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && !activeDialogue.autoPlay && !optionActive)    // Standard dialogue progression behaviour
             {
@@ -176,10 +177,10 @@ public class DialogueManager : MonoBehaviour {
             {
                 if (Input.GetAxis("XBOX_Thumbstick_L_Y") != 0 || Input.GetAxis("PC_Axis_MovementZ") != 0)
                 {
-                    Debug.Log("Detected input on forward/backward axis");
+                    //Debug.Log("Detected input on forward/backward axis");
                     if(!optionChangeOnCooldown)
                     {
-                        Debug.Log("Cooldown is false");
+                        //Debug.Log("Cooldown is false");
                         optionChangeOnCooldown = true;
                         if(Input.GetAxis("XBOX_Thumbstick_L_Y") > 0 || Input.GetAxis("PC_Axis_MovementZ") > 0)
                         {
@@ -215,7 +216,7 @@ public class DialogueManager : MonoBehaviour {
             }
             else if (activeDialogue.autoPlay)   // Auto play dialogue behaviour
             {
-                if(!displayWhenDoneLock)
+                if (!displayWhenDoneLock)
                 {
                     displayWhenDoneLock = true;
                     StartCoroutine(DisplayNextSentenceWhenDone(activeDialogue.autoPlayDelay));
@@ -224,13 +225,13 @@ public class DialogueManager : MonoBehaviour {
         }
         else if(inRangeNPC.Count != 0) // When dialogue triggers are in range & dialogue not active, handle input (or force dialogue to start if forceOnEnable set).
         {
-            if(!dialogueBoxActive)
+            if (!dialogueBoxActive)
             {
                 try
                 {
                     nearestNPC = GetClosestNPC();
                     //TODO: Display interact button by this npc
-                    if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X") || GetEnabledDialogue(nearestNPC).forceOnEnable)
+                    if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && GetEnabledDialogue(nearestNPC).enabled || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
                         dialogueBoxActive = true;
                         activeNPC = nearestNPC;
@@ -240,7 +241,7 @@ public class DialogueManager : MonoBehaviour {
                 }
                 catch(MissingReferenceException e)
                 {
-                    Debug.LogWarning(e.Message);
+                    //Debug.LogWarning(e.Message);
                 }
             }
         }

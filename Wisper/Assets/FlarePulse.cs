@@ -97,7 +97,7 @@ public class FlarePulse : MonoBehaviour
         //Player is looking at shrine
         if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > dotProductAngle)
         {
-            Debug.Log("Is pulsing");
+            //Debug.Log("Is pulsing");
             //Begins the timer
             BeginTimer();
 
