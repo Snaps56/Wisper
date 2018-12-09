@@ -55,12 +55,22 @@ public class ActivateCutscene : MonoBehaviour {
             windPB.SetActive(false);
             cutsceneCamera.GetComponent<Animation>().Play("Cutscene3");
         }
-        if (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("XBOX_Button_X"))
+
+
+        //skip cutscene
+        if (Input.GetButton("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
         {
             foreach (AnimationState anim in cutsceneCamera.GetComponent<Animation>())
             {
                 anim.time = anim.length;
             }
+            //foreach (AnimationClip clip in cutsceneCamera.GetComponent<Animation>())
+            //{
+            //    foreach (AnimationEvent e in clip.events)
+            //    {
+            //        Debug.Log("Events: " + e);
+            //    }
+            //}
         }
 
     }
