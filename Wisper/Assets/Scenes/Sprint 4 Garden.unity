@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4513535, g: 0.50094336, b: 0.5728595, a: 1}
+  m_IndirectSpecularColor: {r: 0.45135278, g: 0.50094235, b: 0.5728585, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26258,7 +26258,7 @@ Prefab:
         type: 2}
       propertyPath: orb
       value: 
-      objectReference: {fileID: 1702124250645596, guid: fcc8a15f7bfcfd446b13a4eebcf3cb11,
+      objectReference: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935,
         type: 2}
     - target: {fileID: 114304447302339248, guid: 1ec12d476aaa00444885af1da3a3ea13,
         type: 2}
@@ -49965,7 +49965,7 @@ BoxCollider:
   m_GameObject: {fileID: 1391497980}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 14.887652, y: 0.99655324, z: 0.4179428}
   m_Center: {x: -0.0000076293945, y: 0.0000000745058, z: 6.23}
@@ -69340,6 +69340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orbPickupRadius: 0.5
   windPowerBar: {fileID: 921488072}
   orbCountText: {fileID: 1847881630}
 --- !u!54 &1779087195
@@ -69367,7 +69368,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.01
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1779087197
 MonoBehaviour:
