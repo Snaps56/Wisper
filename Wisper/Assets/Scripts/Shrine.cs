@@ -87,7 +87,7 @@ public class Shrine : MonoBehaviour {
 
 		firstTime = false;
 		playerOrb = player.GetComponent<OrbCount> ().GetOrbCount ();
-		orbLimit = 1;
+		orbLimit = 10;
 	}
 
 	// Update is called once per frame
@@ -107,19 +107,16 @@ public class Shrine : MonoBehaviour {
 			gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
 			// Is the shrine is not clean and the player is lifting, start cleaning the shrine
 			if (!(bool)persistantStateData.stateConditions ["ShrineIsClean"]) {
-                Debug.Log("hi 1");
+                playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
 				// Change the material of the shrine over time
-				if (playerOrb >= orbLimit) {
-                    Debug.Log("hi 2");
+				if (playerOrb >= orbLimit) {;
 					if (gettingCleaned && cleanProgress < cleanThreshold) {
-                        Debug.Log("hi 3");
                         cleanProgress += cleanTick;
 						shrinePart1.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine1, cleanShrine1, cleanProgress);
 						//shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
 					}
 					// Once clean, drop the orb rewards and signal the PersistantStateData to change
 					if (cleanProgress >= cleanThreshold) {
-                        Debug.Log("hi 4");
                         //isClean = true;
                         persistantStateData.ChangeStateConditions ("ShrineIsClean", true);
                         persistantStateData.ChangeStateConditions("ShrineFirstTurnIn", true);
@@ -127,15 +124,18 @@ public class Shrine : MonoBehaviour {
 					}
 				} else if (!firstTime && (bool)persistantStateData.stateConditions["WaitingForCleanAttempt"] && gettingCleaned) {
 					firstTime = true;
-					persistantStateData.ChangeStateConditions ("ShrineFirstConversation2", true);
-					persistantStateData.ChangeStateConditions ("WaitingForCleanAttempt", false);
+                    Hashtable tmpHash = new Hashtable();
+                    tmpHash.Add("ShrineFirstConversation2Primer", true);
+					tmpHash.Add("WaitingForCleanAttempt", false);
+                    persistantStateData.ChangeStateConditions(tmpHash);
 				}
 			}
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
 			if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) 
 				&& (bool)persistantStateData.stateConditions ["ShrineIsClean"] /*&& (bool)persistantStateData.stateConditions["OrbDepositInProgress"]*/) {
-				// Make sure the player has orbs to deposit
-				if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
+                playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
+                // Make sure the player has orbs to deposit
+                if (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
 					orbDepositsInTransit = player.GetComponent<OrbCount> ().GetOrbCount ();
 					// Function that changes orb count
 					DepositOrbs (orbDepositsInTransit);
