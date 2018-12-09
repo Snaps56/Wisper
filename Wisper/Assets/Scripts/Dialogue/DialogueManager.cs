@@ -210,6 +210,8 @@ public class DialogueManager : MonoBehaviour {
                     displayChoices.Clear();
                     activeOptionPanels.Clear();
                     optionActive = false;
+                    Debug.Log("Enabled player movment");
+                    player.GetComponent<PlayerMovement>().EnableMovement();
                     selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
                     DisplayNextSentence();
                 }
@@ -434,15 +436,15 @@ public class DialogueManager : MonoBehaviour {
     
     IEnumerator ChoiceScrollCoroutine(string direction)
     {
-        Debug.Log("inside scroll enumerator");
+        //Debug.Log("inside scroll enumerator");
         if(direction.ToLower() == "up")
         {
-            Debug.Log("scrolling up");
+            //Debug.Log("scrolling up");
             ChoicesScrollUp();
         }
         else if(direction.ToLower() == "down")
         {
-            Debug.Log("Scrolling down");
+            //Debug.Log("Scrolling down");
             ChoicesScrollDown();
         }
         ShowChoices();
@@ -534,6 +536,8 @@ public class DialogueManager : MonoBehaviour {
             if(!optionActive)
             {
                 optionActive = true;    // toggle lock for option active
+                Debug.Log("Disabled player movement");
+                player.GetComponent<PlayerMovement>().DisableMovement();
             }
 
             int panelIter = 0;
