@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame()
     {
-        FadeToLevel(1);
+        FadeToLevel(2);
     }
 
     public void FadeToLevel (int levelIndex)
@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour {
 
     public void OnFadeComplete ()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void Quitgame ()

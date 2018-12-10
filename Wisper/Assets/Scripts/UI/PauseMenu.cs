@@ -79,7 +79,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     // Function to set the master volume
     public void SetVolume (float volume)
