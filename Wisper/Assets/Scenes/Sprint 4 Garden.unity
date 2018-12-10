@@ -8967,7 +8967,7 @@ MonoBehaviour:
   dialogueOffset: 200
   delayTime: 0
   fadeInDuration: 1
-  fadeOutDuration: 2
+  fadeOutDuration: 1
   maxDuration: 999
   minDuration: 4
 --- !u!114 &232948596
@@ -17585,11 +17585,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 749305298}
   dialogueOffset: 200
-  delayTime: 1
+  delayTime: 0
   fadeInDuration: 1
   fadeOutDuration: 1
   maxDuration: 999
-  minDuration: 2
+  minDuration: 1
 --- !u!114 &481843420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22067,7 +22067,7 @@ MonoBehaviour:
   dialogueOffset: 200
   delayTime: 0
   fadeInDuration: 1
-  fadeOutDuration: 2
+  fadeOutDuration: 1
   maxDuration: 9999
   minDuration: 8
 --- !u!114 &676967006
@@ -25353,7 +25353,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 85bb65d5a87116540ac75646231ae524, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40cd8a5ffd868454f80fe9bf06dbacc7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -66841,7 +66841,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 85bb65d5a87116540ac75646231ae524, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40cd8a5ffd868454f80fe9bf06dbacc7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -68725,8 +68725,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1688394859}
-  - component: {fileID: 1688394861}
   - component: {fileID: 1688394860}
+  - component: {fileID: 1688394861}
   m_Layer: 0
   m_Name: ConditionCheck
   m_TagString: Untagged
@@ -68771,11 +68771,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1688394858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aebb0cd81a5e80f478513546b5044b4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f9c371ba6cd46848a8441344c3f3f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1779087189}
-  distanceTravelRequired: 16
+  dependentCondition: ShrineFirstConversation2
 --- !u!1 &1689225092
 GameObject:
   m_ObjectHideFlags: 0
@@ -75889,7 +75888,7 @@ MonoBehaviour:
   dialogueOffset: 200
   delayTime: 1
   fadeInDuration: 1
-  fadeOutDuration: 2
+  fadeOutDuration: 1
   maxDuration: 9999
   minDuration: 8
 --- !u!114 &1787684800

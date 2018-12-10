@@ -167,7 +167,7 @@ public class UI_Marker : MonoBehaviour {
             waypoint.transform.localScale = new Vector3(shakeMax, shakeMax, shakeMax);
             waypoint.GetComponent<CanvasGroup>().alpha = defaultAlpha;
 
-            if (Input.GetButton("PC_Key_Interact") || Input.GetButton("XBOX_Button_X"))
+            if (Input.GetButton("PC_Key_Interact") || Input.GetButton("XBOX_Button_A"))
             {
                 hasInteracted = true;
                 for (int i = 0; i < updateConditions.Length; i++)
