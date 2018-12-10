@@ -13,10 +13,16 @@ public class MainMenu : MonoBehaviour {
     public GameObject OptionsMenu;
     public GameObject Credits;
     public GameObject Image;
+    public PersistantStateData PSD;
+    
 
     private int LeveltoLoad = 0;
-    //private float horizontalSpeed = 2.0f;
-    //private float verticalSpeed = 2.0f;
+
+    private void Start()
+    {
+        PSD = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        PSD.ResetPersistantStateData();
+    }
 
     public void PlayGame()
     {

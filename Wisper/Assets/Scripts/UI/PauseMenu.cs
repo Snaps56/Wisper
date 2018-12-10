@@ -79,7 +79,6 @@ public class PauseMenu : MonoBehaviour
 
     public void OnFadeComplete()
     {
-        Debug.Log("MASHED POTATOES");
         SceneManager.LoadScene(1);
     }
     // Function to set the master volume
