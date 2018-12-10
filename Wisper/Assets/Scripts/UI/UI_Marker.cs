@@ -42,8 +42,11 @@ public class UI_Marker : MonoBehaviour {
     private float currentTimer;
 
     [Header("Persistant State Data")]
-    public string[] updateConditions; // conditions in persistant state data are changed after tutorial is finished
-    private bool hasInteracted;
+    public string[] dependentConditions; // conditions in persistant state data are required to trigger the Marker
+    private bool dependentConditionsMet;
+    public string[] onInteractConditions; // conditions in persistant state data are changed after initial interaction
+    public string[] disableMarkerConditions;// conditions in persistant state data that disable the marker
+    private bool disableMarker; // disable the marker if any disable marker conditions are true;
 
     private PersistantStateData persistantStateData;
     
@@ -62,7 +65,7 @@ public class UI_Marker : MonoBehaviour {
         doneAnimating = false;
             
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
-        hasInteracted = false;
+        dependentConditionsMet = false;
     }
 	
     void IconShake()
@@ -113,41 +116,81 @@ public class UI_Marker : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        distance = Mathf.Abs((character.position - transform.position).magnitude);
-        
-
-        Vector3 rayCastDirection = (transform.position - mainCamera.transform.position).normalized;
-        float rayCastCheck = Vector3.Dot(rayCastDirection, mainCamera.transform.forward);
-
-        // check if marker is also drawing behind player, if so, don't draw
-        if (rayCastCheck <= 0f || distance >= maxDrawDistance)
+        // check dependent conditions
+        if (!dependentConditionsMet)
         {
-            waypoint.SetActive(false);
-        }
-        else
-        {
-            Vector3 offsetPosition = transform.position;
-
-            float distanceInterpolation = distance / maxDrawDistance;
-            finalYOffset = Mathf.Lerp(closeYOffset, farYOffset, distanceInterpolation);
-            offsetPosition.y = transform.position.y + finalYOffset;
-
-            // draw marker onto the canvas at same relative location as target
-            waypoint.GetComponent<RectTransform>().position = mainCamera.WorldToScreenPoint(offsetPosition);
-
-            if (!hasInteracted)
+            bool allConditionsTrue = true;
+            if (dependentConditions != null)
             {
-                waypoint.SetActive(true);
-                UIAlpha();
+                for (int i = 0; i < dependentConditions.Length; i++)
+                {
+                    bool currentCondition = ((bool)persistantStateData.stateConditions[dependentConditions[i]]);
+                    if (!currentCondition)
+                    {
+                        allConditionsTrue = false;
+                    }
+                }
             }
             else
             {
-                waypoint.SetActive(false);
+                allConditionsTrue = true;
             }
 
-            // Debug.Log(waypoint.transform.rotation);
-
+            if (allConditionsTrue)
+            {
+                dependentConditionsMet = true;
+            }
         }
+        else
+        {
+            distance = Mathf.Abs((character.position - transform.position).magnitude);
+
+            Vector3 rayCastDirection = (transform.position - mainCamera.transform.position).normalized;
+            float rayCastCheck = Vector3.Dot(rayCastDirection, mainCamera.transform.forward);
+
+            // check if marker is also drawing behind player, if so, don't draw
+            if (rayCastCheck <= 0f || distance >= maxDrawDistance)
+            {
+                waypoint.SetActive(false);
+            }
+            else
+            {
+                if (disableMarkerConditions != null)
+                {
+                    for (int i = 0; i < disableMarkerConditions.Length; i++)
+                    {
+                        bool currentCondition = ((bool)persistantStateData.stateConditions[disableMarkerConditions[i]]);
+                        if (currentCondition)
+                        {
+                            disableMarker = true;
+                        }
+                    }
+                }
+                else
+                {
+                    disableMarker = false;
+                }
+
+                if (!disableMarker)
+                {
+                    Vector3 offsetPosition = transform.position;
+
+                    float distanceInterpolation = distance / maxDrawDistance;
+                    finalYOffset = Mathf.Lerp(closeYOffset, farYOffset, distanceInterpolation);
+                    offsetPosition.y = transform.position.y + finalYOffset;
+
+                    // draw marker onto the canvas at same relative location as target
+                    waypoint.GetComponent<RectTransform>().position = mainCamera.WorldToScreenPoint(offsetPosition);
+                    waypoint.SetActive(true);
+                    UIAlpha();
+                }
+                else
+                {
+                    waypoint.SetActive(false);
+                }
+            }
+        }
+
     }
     void UIAlpha()
     {
@@ -169,10 +212,9 @@ public class UI_Marker : MonoBehaviour {
 
             if (Input.GetButton("PC_Key_Interact") || Input.GetButton("XBOX_Button_A"))
             {
-                hasInteracted = true;
-                for (int i = 0; i < updateConditions.Length; i++)
+                for (int i = 0; i < onInteractConditions.Length; i++)
                 {
-                    persistantStateData.ChangeStateConditions(updateConditions[i], true);
+                    persistantStateData.ChangeStateConditions(onInteractConditions[i], true);
                 }
             }
 
