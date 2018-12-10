@@ -162,7 +162,7 @@ public class DialogueManager : MonoBehaviour {
         // When dialogue is active, respond to input
         if(dialogueBoxActive && activeDialogue != null)
         {
-            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && !activeDialogue.autoPlay && !optionActive)    // Standard dialogue progression behaviour
+            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && !activeDialogue.autoPlay && !optionActive)    // Standard dialogue progression behaviour
             {
                 if (sentenceDisplayInProgress)
                 {
@@ -192,7 +192,7 @@ public class DialogueManager : MonoBehaviour {
                         }
                     }
                 }
-                else if(Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
+                else if(Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A"))
                 {
                     foreach (TargetCondition condition in activeChoice.changeConditions)
                     {
@@ -210,6 +210,8 @@ public class DialogueManager : MonoBehaviour {
                     displayChoices.Clear();
                     activeOptionPanels.Clear();
                     optionActive = false;
+                    Debug.Log("Enabled player movment");
+                    player.GetComponent<PlayerMovement>().EnableMovement();
                     selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
                     DisplayNextSentence();
                 }
@@ -231,7 +233,7 @@ public class DialogueManager : MonoBehaviour {
                 {
                     nearestNPC = GetClosestNPC();
                     //TODO: Display interact button by this npc
-                    if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")) && GetEnabledDialogue(nearestNPC).enabled || GetEnabledDialogue(nearestNPC).forceOnEnable)
+                    if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && GetEnabledDialogue(nearestNPC).enabled || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
                         dialogueBoxActive = true;
                         activeNPC = nearestNPC;
@@ -434,15 +436,15 @@ public class DialogueManager : MonoBehaviour {
     
     IEnumerator ChoiceScrollCoroutine(string direction)
     {
-        Debug.Log("inside scroll enumerator");
+        //Debug.Log("inside scroll enumerator");
         if(direction.ToLower() == "up")
         {
-            Debug.Log("scrolling up");
+            //Debug.Log("scrolling up");
             ChoicesScrollUp();
         }
         else if(direction.ToLower() == "down")
         {
-            Debug.Log("Scrolling down");
+            //Debug.Log("Scrolling down");
             ChoicesScrollDown();
         }
         ShowChoices();
@@ -534,6 +536,8 @@ public class DialogueManager : MonoBehaviour {
             if(!optionActive)
             {
                 optionActive = true;    // toggle lock for option active
+                Debug.Log("Disabled player movement");
+                player.GetComponent<PlayerMovement>().DisableMovement();
             }
 
             int panelIter = 0;

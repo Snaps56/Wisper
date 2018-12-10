@@ -13,12 +13,15 @@ public class OrbDepositSequence : MonoBehaviour {
 
 	private bool canMove;
 
+	private Shrine shrineScript;
+
 	// Use this for initialization
 	void Start () {
 		start = transform.position;
 		canMove = true;
 		currentNode = 0;
 		travelSpeed = 2f;
+		shrineScript = GameObject.FindGameObjectWithTag ("Shrine").GetComponent<Shrine> ();
 
 		for (int i = 0; i < pathNodes.Length; i++) {
 			string nodeName = "Deposit Path Node " + i;
@@ -36,10 +39,11 @@ public class OrbDepositSequence : MonoBehaviour {
 			if (transform.position == destination) {
 				currentNode++;
 				if (currentNode == pathNodes.Length) {
-					Debug.Log ("End of the line");
+					//Debug.Log ("End of the line");
 					canMove = false;
+					shrineScript.destroyOrbDeposit (this.gameObject);
 				}
 			}
-		}
+		} 
 	}
 }

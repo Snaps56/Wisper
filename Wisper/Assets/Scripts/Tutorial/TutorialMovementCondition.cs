@@ -12,24 +12,40 @@ public class TutorialMovementCondition : MonoBehaviour {
     private TutorialCondition tutorialCondition;
     private PersistantStateData persistantStateData;
 
+    private bool lookTuturialMovementLockOver;
+    private bool moveTutorialMovementUnlockOver;
+
 
     // Use this for initialization
     void Start () {
         tutorialCondition = GetComponent<TutorialCondition>();
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         playerDistanceTraveled = 0;
+
+        if((bool)persistantStateData.stateConditions["TutorialLookFinished"])
+        {
+            lookTuturialMovementLockOver = true;
+            moveTutorialMovementUnlockOver = true;
+        }
+        else
+        {
+            lookTuturialMovementLockOver = false;
+            moveTutorialMovementUnlockOver = false;
+        }
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if ((bool)persistantStateData.stateConditions["StartupShrineDialogue"] && !(bool)persistantStateData.stateConditions["TutorialFirstDialogueFinished"])
+        if ((bool)persistantStateData.stateConditions["StartupShrineDialogue"] && !(bool)persistantStateData.stateConditions["TutorialFirstDialogueFinished"] && !lookTuturialMovementLockOver)
         {
+            lookTuturialMovementLockOver = true;
             player.GetComponent<PlayerMovement>().DisableMovement();
         }
 
-        if ((bool)persistantStateData.stateConditions["TutorialLookFinished"])
+        if ((bool)persistantStateData.stateConditions["TutorialLookFinished"] && !moveTutorialMovementUnlockOver)
         {
+            moveTutorialMovementUnlockOver = true;
             player.GetComponent<PlayerMovement>().EnableMovement();
         }
 
