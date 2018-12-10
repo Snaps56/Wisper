@@ -10,13 +10,16 @@ public class ActivateCutscene : MonoBehaviour {
     public GameObject light;
     public GameObject player;
     public GameObject windPB;
-    public GameObject psData;
     public bool playOnStart;
+    public PersistantStateData PSDchecker;
 
 
     // Use this for initialization
     void Start () {
-        if  (playOnStart)
+
+        PSDchecker = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+
+        if (playOnStart)
         {
             //Debug.Log("Playing Intro");
             Cursor.visible = false;
@@ -24,10 +27,10 @@ public class ActivateCutscene : MonoBehaviour {
             mainCamera.gameObject.SetActive(false);
             cutsceneCamera.gameObject.SetActive(true);
             GameObject.Find("WindPowerBG").SetActive(false);
-            if (!(bool)psData.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"])
+            if (!(bool)PSDchecker.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"])
             {
-                psData.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"] = true;
-                psData.GetComponent<PersistantStateData>().updateCount++;
+                PSDchecker.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"] = true;
+                PSDchecker.GetComponent<PersistantStateData>().updateCount++;
                 cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
             }
         }

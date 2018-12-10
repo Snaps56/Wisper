@@ -33,7 +33,6 @@ public class DemoFade : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("BITCH YOU GUESSED IT");
             animatorDemoFade.SetTrigger("DemoFade");
         }
 
