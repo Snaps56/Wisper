@@ -90,6 +90,13 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("OrbDepositInProgress", false);
     }
 
+    public void ResetPersistantStateData()
+    {
+        stateConditions.Clear();
+        PopulateStateConditions();
+
+    }
+
     public void ChangeStateConditions(string key, bool value)
     {
         if((bool)stateConditions[key] != value)
