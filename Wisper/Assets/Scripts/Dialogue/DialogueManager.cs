@@ -75,10 +75,7 @@ public class DialogueManager : MonoBehaviour {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
 
         optionPanels = GameObject.FindGameObjectWithTag("OptionPanels");
-        /*if(dialogueBox != null)
-        {
-            // Debug.Log("Found dialogueBox");
-        }*/
+        
         foreach(Text textField in dialogueBox.GetComponentsInChildren<Text>())
         {
             if(textField.gameObject.name == "Speaker")
@@ -91,10 +88,6 @@ public class DialogueManager : MonoBehaviour {
                 dialogueText = textField;
                 Debug.Log("Dialogue panel dialogue field found for DM");
             }
-            /*else
-            {
-                Debug.Log("Unexpected text field found with name: " + textField.name);
-            }*/
         }
 
         sentences = new Queue<string>();
@@ -811,5 +804,32 @@ public class DialogueManager : MonoBehaviour {
     public bool IsDialogueActive()
     {
         return dialogueBoxActive;
+    }
+
+    public void ResetForSceneTransition()
+    {
+        dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
+
+        optionPanels = GameObject.FindGameObjectWithTag("OptionPanels");
+
+        foreach (Text textField in dialogueBox.GetComponentsInChildren<Text>())
+        {
+            if (textField.gameObject.name == "Speaker")
+            {
+                dialogueName = textField;
+                Debug.Log("Dialogue panel speaker field found for DM");
+            }
+            else if (textField.gameObject.name == "Dialogue")
+            {
+                dialogueText = textField;
+                Debug.Log("Dialogue panel dialogue field found for DM");
+            }
+        }
+
+        sentenceDisplayInProgress = false;
+        dialogueBoxActive = false;
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        HideBox();
     }
 }
