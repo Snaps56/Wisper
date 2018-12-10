@@ -60,7 +60,7 @@ public class DialogueManager : MonoBehaviour {
         // Ensures there will only ever be 1 dialogue manager in a scene. (Singleton pattern).
         if (dialogueManager == null)
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             dialogueManager = this;
         }
         else if (dialogueManager != this)
