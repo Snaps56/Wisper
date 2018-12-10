@@ -8,14 +8,14 @@ public class Shrine : MonoBehaviour {
 	// Particles to indicate player is near shrine
 	public GameObject activationParticles;
 	// Parts of the shrine that change material
-	public GameObject shrinePart1;
-	public GameObject shrinePart2;
+	public GameObject shrineMeshMain;
+	public GameObject shrineMeshInner;
 	// Materials representing the clean shrine
-	public Material cleanShrine1;
-	public Material cleanShrine2;
+	public Material cleanMaterialMain;
+	public Material cleanMaterialInner;
 	// Materials representing the dirty shrine
-	private Material dirtyShrine1;
-	private Material dirtyShrine2;
+	private Material dirtyMaterialMain;
+	private Material dirtyMaterialInner;
 
 	// Player object to check if near
 	public GameObject player;
@@ -67,8 +67,8 @@ public class Shrine : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// Dirty shrine look is the default materials
-		dirtyShrine1 = shrinePart1.GetComponent<MeshRenderer> ().material;
-		dirtyShrine2 = shrinePart2.GetComponent<MeshRenderer> ().material;
+		dirtyMaterialInner = shrineMeshInner.GetComponent<MeshRenderer> ().material;
+		dirtyMaterialMain = shrineMeshMain.GetComponent<MeshRenderer> ().material;
 
 		// Initialize clean progress to false
 		gettingCleaned = false;
@@ -111,13 +111,13 @@ public class Shrine : MonoBehaviour {
                 playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
 				// Change the material of the shrine over time
 				if (playerOrb >= orbLimit) {;
-					if (gettingCleaned && cleanProgress < cleanThreshold) {
+					if (gettingCleaned && cleanProgress < cleanThreshold * 0.02f) {
                         cleanProgress += cleanTick;
-						shrinePart1.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine1, cleanShrine1, cleanProgress);
-						//shrinePart2.GetComponent<MeshRenderer> ().material.Lerp (dirtyShrine2, cleanShrine2, cleanProgress);
+						shrineMeshInner.GetComponent<MeshRenderer> ().material.Lerp (dirtyMaterialInner, cleanMaterialInner, cleanProgress);
+						shrineMeshMain.GetComponent<MeshRenderer> ().material.Lerp (dirtyMaterialMain, cleanMaterialMain, cleanProgress);
 					}
 					// Once clean, drop the orb rewards and signal the PersistantStateData to change
-					if (cleanProgress >= cleanThreshold) {
+					if (cleanProgress >= cleanThreshold * 0.02f) {
                         //isClean = true;
                         persistantStateData.ChangeStateConditions ("ShrineIsClean", true);
                         persistantStateData.ChangeStateConditions("ShrineFirstTurnIn", true);
@@ -182,10 +182,11 @@ public class Shrine : MonoBehaviour {
 		}
 
 		// If the player is returning to the shrine after cleaning it, set the shrine materials to the clean ones
-		if ((bool)persistantStateData.stateConditions ["ShrineIsClean"]) {
-			shrinePart1.GetComponent<MeshRenderer> ().material = cleanShrine1;
-			//shrinePart2.GetComponent<MeshRenderer> ().material = cleanShrine2;
-		}
+		if ((bool)persistantStateData.stateConditions ["ShrineIsClean"])
+        {
+            shrineMeshInner.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialInner, cleanMaterialInner, cleanProgress);
+            shrineMeshMain.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialMain, cleanMaterialMain, cleanProgress);
+        }
 	}
 
 	// Function to basically decrement player orb count

@@ -17,7 +17,7 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
     private bool disableFindTheShrine = false;
 
     private float firstConversationPrimerActivationTime = 0;
-    private float failedToCleanShrineDialogueDelay = 1f;
+    private float failedToCleanShrineDialogueDelay = 3f;
     private bool disableFirstConversation = false;
     // Use this for initialization
     void Start () {
