@@ -108,7 +108,7 @@ public class DialogueManager : MonoBehaviour {
         HideBox();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
