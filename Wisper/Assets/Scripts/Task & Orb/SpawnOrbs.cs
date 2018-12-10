@@ -11,6 +11,7 @@ public class SpawnOrbs : MonoBehaviour
     public float initialForceMultiplier;
     public float moveSpeedMultiplier;
     public float slowMultiplier;
+    public float orbSpawnOffsetY;
 
 	private GameObject orbInstance;
 
@@ -48,7 +49,13 @@ public class SpawnOrbs : MonoBehaviour
                 // obtain vector of player and object to scale speed
                 float distanceToBase = (player.position - transform.position).magnitude;
 
-                rb.AddForce(deltaPosition * moveSpeedMultiplier * distanceToBase);
+                Vector3 finalForce = deltaPosition * moveSpeedMultiplier * distanceToBase;
+                Vector3 minForce = deltaPosition * moveSpeedMultiplier * 10f;
+                if (finalForce.magnitude < minForce.magnitude)
+                {
+                    finalForce = minForce;
+                }
+                rb.AddForce(finalForce);
                 rb.AddForce(-rb.velocity * slowMultiplier);
             }
         }
@@ -60,9 +67,12 @@ public class SpawnOrbs : MonoBehaviour
 
             Vector3 crossVector = Vector3.ProjectOnPlane(Random.insideUnitSphere, playerVector);
             Vector3 initialForce = crossVector.normalized;
+            initialForce.y = Mathf.Abs(initialForce.y);
             initialForce = initialForce * initialForceMultiplier;
 
-            GameObject orbInstance = Instantiate(orb, transform.position, Quaternion.identity);
+            Vector3 orbSpawnPosition = transform.position;
+            orbSpawnPosition.y += orbSpawnOffsetY;
+            GameObject orbInstance = Instantiate(orb, orbSpawnPosition, Quaternion.identity);
             orbsList.Add(orbInstance);
 
             orbInstance.GetComponent<Rigidbody>().AddForce(initialForce);

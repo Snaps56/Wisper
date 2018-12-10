@@ -6,7 +6,7 @@ public class OrbCount : MonoBehaviour {
     private float orbMax = 50;
 	private float orbCount;
     private float orbIncrementSpeed = 0.1f;
-    private float orbPickupRadius = 2.0f;
+    public float orbPickupRadius = 0.5f;
 	private float originalSpeed;
 	private float startingSpeed;
 
