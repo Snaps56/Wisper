@@ -10,20 +10,12 @@ public class InteractableCollision : MonoBehaviour {
 	public bool nearShrine;
 
 	private Rigidbody rb;
-
-
-
 	private float startingSpeed;
 	private float originalVAcceleration;
 
 	private float vel;
 
-
 	private GameObject dialogueManager;
-
-
-
-
    [Header("UI")]
 	public GameObject miniMap;
 
@@ -77,8 +69,7 @@ public class InteractableCollision : MonoBehaviour {
 
 
 	void OnTriggerExit(Collider other) {
-
-
+        
 		if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = false;
 		}
