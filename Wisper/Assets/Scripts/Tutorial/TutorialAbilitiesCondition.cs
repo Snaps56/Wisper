@@ -4,27 +4,45 @@ using UnityEngine;
 
 public class TutorialAbilitiesCondition : MonoBehaviour {
 
-    public string dependentCondition;
+    public string [] dependentConditions;
 
     private TutorialCondition tutorialCondition;
     private PersistantStateData persistantStateData;
+    private bool currentConditionsMet;
     private bool conditionCheck;
+
+    private bool conditionDone;
 
     // Use this for initialization
     void Start () {
         tutorialCondition = GetComponent<TutorialCondition>();
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        conditionDone = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        // update that tutorial is met if the dependent condition is true
-        conditionCheck = (bool)persistantStateData.stateConditions[dependentCondition];
-
-        if (conditionCheck)
+        if (conditionCheck && !conditionDone)
         {
             tutorialCondition.SetCondition(true);
+            conditionDone = true;
+        }
+        else
+        {
+            currentConditionsMet = true;
+            for (int i = 0; i < dependentConditions.Length; i++)
+            {
+                bool currentCondition = (bool)persistantStateData.stateConditions[dependentConditions[i]];
+                if (!currentCondition)
+                {
+                    currentConditionsMet = false;
+                }
+            }
+            if (currentConditionsMet)
+            {
+                conditionCheck = true;
+            }
         }
     }
 }
