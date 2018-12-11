@@ -23,14 +23,23 @@ public class Searching : MonoBehaviour {
         if(other.gameObject.tag == "WayPoint")
         {
             RandomNum = Random.Range(0, 100);
-           // Debug.Log("random: " + RandomNum);
-            if (RandomNum > 50)
+            count++;
+            Debug.Log(count + " random: " + RandomNum);
+            
+            if (RandomNum > 45)
             {
                 if (playedAnimation == false)
-                {
-                    NPCMovements.move = false;
-                    animator.SetBool("Searching", true);
+                {                   
+                    animator.SetBool("Searching", true);                   
                     playedAnimation = true;
+                    
+                    if (playedAnimation == true)
+                    {
+                        NPCMovements.move = false;                       
+                    }                                      
+                }
+                if (NPCMovements.move == false)
+                {
                     StartCoroutine(Search());
                 }
             }
@@ -47,9 +56,18 @@ public class Searching : MonoBehaviour {
             yield return new WaitForSeconds(6.0f);
             //Debug.Log("isSearching");
             animator.SetBool("Searching", false);
-            NPCMovements.move = true;
             playedAnimation = false;
-            Debug.Log(NPCMovements.move);
+            if (playedAnimation == false)
+            {
+                NPCMovements.move = true;
+            }
+            else
+            {
+                NPCMovements.move = false;
+            }
+            //Debug.Log(NPCMovements.move);           
         }
+        
+
     }
 }

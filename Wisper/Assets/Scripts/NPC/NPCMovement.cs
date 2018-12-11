@@ -14,7 +14,7 @@ public class NPCMovement : MonoBehaviour
     public float rotSpeed = 3.0f;
     public float speed = 0.5f;
     public float accuracyWP = 1.0f;
-    public float detection = 10.0f;
+    public float detection = 5.0f;
     public float stopLength = 5.0f;
 
     public bool move = true;
@@ -39,13 +39,12 @@ public class NPCMovement : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        move = true;
+       // move = true;
         animator.SetBool("Idle", false);
     }
     // Update is called once per frame
     void Update()
-    {
-        
+    {     
         //sets the last waypoint to the hat
         //waypoints[5].transform.position = hat.transform.position;
         Vector3 direction = player.transform.position - this.transform.position;
@@ -71,9 +70,16 @@ public class NPCMovement : MonoBehaviour
                     Debug.Log("OBTAINED HAT");
 
                     //Stop in place
+                    GetComponent<Searching>().enabled = false;
                     move = false;
-                    animator.SetBool("Idle", true);
-                    GetComponent<SpawnOrbs>().DropOrbs();
+                    Debug.Log(move);
+                    if(move == false)
+                    {
+                        animator.SetBool("Idle", true);
+                        Debug.Log("Stop!!");
+                        GetComponent<SpawnOrbs>().DropOrbs();
+                    }                   
+                                        
                 }
             }
             //if (/*currentWP == 5 && */ distanceFromHat.magnitude <= stopLength)
