@@ -73,7 +73,8 @@ public class PersistantStateData : MonoBehaviour
 
         stateConditions.Add("TutorialFirstDialogueFinished", false); // Check if opening dialogue done, then trigger look tutorial
         stateConditions.Add("TutorialLookFinished", false); // check if look tutorial done, then trigger move tutorial
-        stateConditions.Add("TutorialMovementFinished", false); // check if move tutorial done, then remove move ui tutorial
+        stateConditions.Add("TutorialMovementFinished", false); // check if move tutorial done, then trigger vertical move tutorial
+        stateConditions.Add("TutorialVerticalFinished", false); // check if vertical tutorial done, then remove vertical move tutorial
         stateConditions.Add("TutorialWithinShrineRange", false); // check if player within ui marker range of shrine, then trigger ui marker tutorial
         stateConditions.Add("TutorialFirstInteraction", false); // check if player talking with shrine, then trigger dialogue tutorial
         stateConditions.Add("TutorialTalkedWithShrine", false); // ????
