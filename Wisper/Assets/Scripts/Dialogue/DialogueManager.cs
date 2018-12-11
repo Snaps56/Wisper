@@ -184,7 +184,7 @@ public class DialogueManager : MonoBehaviour {
         // When dialogue is active, respond to input
         if(dialogueBoxActive && activeDialogue != null)
         {
-            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && !activeDialogue.autoPlay && !optionActive)    // Standard dialogue progression behaviour
+            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && !(activeDialogue.autoPlay || optionActive || activeDialogue.progressByCutscene))    // Standard dialogue progression behaviour
             {
                 if (sentenceDisplayInProgress)
                 {
@@ -246,7 +246,7 @@ public class DialogueManager : MonoBehaviour {
                     StartCoroutine(DisplayNextSentenceWhenDone(activeDialogue.autoPlayDelay));
                 }
             }
-            else if (!sentenceDisplayInProgress)    // When non-auto sentence is done without dialogue, displays prompt to progress.
+            else if (!(sentenceDisplayInProgress || activeDialogue.progressByCutscene))    // When non-auto, non-progress-by-cutscene sentence is done, displays prompt to progress.
             {
                 //Debug.Log("Howdy");
                 if(!(nextLinePromptKeyboard.gameObject.activeSelf ||nextLinePromptXBOX.gameObject.activeSelf))
