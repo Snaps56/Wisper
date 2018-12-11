@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private bool sprintMod;
     private float finalSpeed;
+    public float flightSpeedMultiplier;
 
     private OrbCount orbCountScript;
     public float orbMovementIncrease;
@@ -216,7 +217,7 @@ public class PlayerMovement : MonoBehaviour {
         movementVector += mainCamera.transform.up.normalized * Input.GetAxis("XBOX_Axis_MovementY");
         movementVector += mainCamera.transform.up.normalized * Input.GetAxis("PC_Axis_MovementY");
 
-        movementVector = movementVector.normalized * finalSpeed;
+        movementVector = movementVector.normalized * finalSpeed * flightSpeedMultiplier;
 
 		if (movementVector.magnitude > 0) {
 			Quaternion playerRotation = Quaternion.LookRotation (movementVector, Vector3.up);
