@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour {
     private List<Choice> displayChoices = new List<Choice>();    // List of choices to display on screen
     private List<int> activeOptionPanels = new List<int>();   // List of which option panels are displayed by their number (1, 2, 3, 4)
     private int selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
-    
+    private float optionChangeCooldown = 0.2f;
 
     // Locks and controls
     private bool sentenceDisplayInProgress; // A lock used with subroutines that update UI text elements
@@ -479,7 +479,7 @@ public class DialogueManager : MonoBehaviour {
             ChoicesScrollDown();
         }
         ShowChoices();
-        yield return new WaitForSeconds(0.4f); // Enforces a tiny cooldown when scrolling between options so player has some precision control;
+        yield return new WaitForSeconds(optionChangeCooldown); // Enforces a tiny cooldown when scrolling between options so player has some precision control;
         optionChangeOnCooldown = false;
     }
     // Call when moving up option list. Will shift dialogue options if more than 4, and wraps to bottom option if the first option was selected.
