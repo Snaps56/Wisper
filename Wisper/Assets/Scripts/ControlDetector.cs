@@ -8,6 +8,8 @@ public class ControlDetector : MonoBehaviour {
     public GameObject controllerObject;
     public GameObject keyboardMouseObject;
 
+    private GameObject currentActiveObject;
+
     // Use this for initialization
     void Start ()
     {
@@ -30,60 +32,19 @@ public class ControlDetector : MonoBehaviour {
                 isUsingController = true;
                 controllerObject.SetActive(true);
                 keyboardMouseObject.SetActive(false);
+                currentActiveObject = controllerObject;
             }
             //Otherwise, the player is using a mouse
             else
             {
                 controllerObject.SetActive(false);
                 keyboardMouseObject.SetActive(true);
+                currentActiveObject = keyboardMouseObject;
             }
         }
-
     }
-
-    //Detects collisions
-    void OnTriggerStay(Collider other)
+    public GameObject GetCurrentActiveObject()
     {
-        //Dectects movement
-        if (other.gameObject.CompareTag("TutorialMove"))
-        {
-            //If you move, the UI dissapears
-            if (Input.GetButton("PC_Axis_MovementZ") || Input.GetButton("PC_Axis_MovementX") || Input.GetAxis("XBOX_Thumbstick_L_X") != 0 || Input.GetAxis("XBOX_Thumbstick_L_Y") != 0)
-            {
-                //Makes the UI dissapear
-                other.gameObject.SetActive(false);
-            }
-        }
-        //Detects looking
-        else if (other.gameObject.CompareTag("TutorialLook"))
-        {
-            //If you look around, the Look UI dissapears
-            if (Input.GetAxis("XBOX_Thumbstick_R_X") != 0 || Input.GetAxis("XBOX_Thumbstick_R_Y") != 0 || Input.GetAxis("PC_Mouse_X") != 0 || Input.GetAxis("PC_Mouse_Y") != 0)
-            {
-                //Makes the UI dissapear
-                other.gameObject.SetActive(false);
-            }
-        }
-        //If you rise, the Rise UI dissapears
-        else if (other.gameObject.CompareTag("TutorialAscend"))
-        {
-            //If you press the rise buttons
-            if (Input.GetButton("PC_Axis_MovementY") || Input.GetButton("XBOX_Axis_MovementY"))
-            {
-                //Makes the UI dissapear
-                other.gameObject.SetActive(false);
-            }
-
-        }
-        //If you lift or throw an oabject, the Lift UI Dissapears
-        else if (other.gameObject.CompareTag("TutorialLift"))
-        {
-            //If you press the lift or throw buttons
-            if (Input.GetButton("PC_Mouse_Click_L") || Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0 || Input.GetAxis("XBOX_Trigger_R") > 0)
-            {
-                //Makes the UI dissapear
-                other.gameObject.SetActive(false);
-            }
-        }
+        return currentActiveObject;
     }
 }
