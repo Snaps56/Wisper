@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EndIntro : MonoBehaviour {
 
-    public VideoPlayer video; 
-
+    public VideoPlayer video;
 	// Use this for initialization
 	void Start () {
         video.loopPointReached += EndReached;
