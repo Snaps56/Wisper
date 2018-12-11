@@ -726,7 +726,7 @@ public class DialogueManager : MonoBehaviour {
         {
             skipText = true;
         }
-        DisplayNextSentenceWhenDone();
+        StartCoroutine(DisplayNextSentenceWhenDone(0.5f));
     }
 
     // Displays next sentence after the current one has finished without any input. Can set a delay 
