@@ -27,6 +27,7 @@ public class Shrine : MonoBehaviour {
 	// The bases of the orbs
 	public GameObject orb;
 	public GameObject orbDeposit;
+    public GameObject orbExplode;
 	// Array holding the different particles that play when player is near shrine
 	public Component[] coloredParticles;
 	// Here to check if player is using a certain ability
@@ -153,9 +154,7 @@ public class Shrine : MonoBehaviour {
 					persistantStateData.ChangeStateConditions ("OrbDepositInProgress", false);
 
 					Debug.Log ("Deposit Complete");
-
 					// After depositing orbs, play a cutscene of the storm
-					
                 	player.GetComponent<PlayerMovement>().ToggleMovement();
                 	//Deactivate main camera
                 	mainCamera.gameObject.SetActive(false);
@@ -219,7 +218,8 @@ public class Shrine : MonoBehaviour {
 	*/
 
 	public void destroyOrbDeposit (GameObject orbDeposit) {
-		Destroy (orbDeposit.gameObject);
+        Instantiate(orbExplode, orbDeposit.transform.position, Quaternion.identity);
+        Destroy(orbDeposit.gameObject);
 		orbDepositsInTransit--;
 	}
 }
