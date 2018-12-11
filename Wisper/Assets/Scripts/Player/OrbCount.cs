@@ -40,11 +40,12 @@ public class OrbCount : MonoBehaviour {
         {
             //Destroys Orb
             Destroy(other.gameObject);
+			//Debug.Log ("Added 1 orb");
 
             ///Update UI
             if (orbCount < orbMax)
             {
-                orbCount += 1;
+                orbCount ++;
             }
             windPowerBar.fillAmount = orbCount / orbMax;
             orbCountText.text = orbCount.ToString() + "/" + orbMax;
