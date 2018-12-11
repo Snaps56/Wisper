@@ -43,8 +43,7 @@ public class Searching : MonoBehaviour {
                     StartCoroutine(Search());
                 }
             }
-        }
-        
+        }    
     }
 
     IEnumerator Search()

@@ -40,7 +40,11 @@ public class NPCMovement : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
        // move = true;
-        animator.SetBool("Idle", false);
+       if(move == true)
+        {
+            animator.SetBool("Idle", false);
+        }
+        
     }
     // Update is called once per frame
     void Update()
