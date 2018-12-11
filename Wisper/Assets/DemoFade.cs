@@ -28,12 +28,12 @@ public class DemoFade : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if ((AnimOver == true) || (Input.GetKeyDown(KeyCode.Space))) 
+		if ((AnimOver == true) /*|| (Input.GetKeyDown(KeyCode.Space))*/) 
         {
             animatorCurtain.SetTrigger("FadeOut");
         }
 
-        if ((bool)PSData.stateConditions["DemoEnd"] || Input.GetKeyDown(KeyCode.K))
+        if ((bool)PSData.stateConditions["DemoEnd"] )
         {
             animatorDemoFade.SetTrigger("DemoFade");
         }
