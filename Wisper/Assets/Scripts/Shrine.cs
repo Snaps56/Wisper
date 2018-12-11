@@ -196,7 +196,7 @@ public class Shrine : MonoBehaviour {
         // Tethers player to shrine during orb turn in so that the turn in process can be completed.
         if ((bool)persistantStateData.stateConditions["OrbDepositInProgress"])
         {
-            playerMovement.SetFollowTarget(gameObject, 4 6);
+            playerMovement.SetFollowTarget(gameObject, 4, 6);
         }
     }
 
