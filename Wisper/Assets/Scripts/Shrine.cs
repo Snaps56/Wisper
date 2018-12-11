@@ -90,6 +90,7 @@ public class Shrine : MonoBehaviour {
 
 		firstTime = false;
 		playerOrb = player.GetComponent<OrbCount> ().GetOrbCount ();
+        playerMovement = player.GetComponent<PlayerMovement>();
 		orbLimit = 15;
 	}
 
@@ -148,11 +149,9 @@ public class Shrine : MonoBehaviour {
 					//orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
 				}
 				if (orbDepositsInTransit == 0) {
-					if ((bool)persistantStateData.stateConditions ["ShrineFirstTurnIn"]) {
-						
-					}
-					//persistantStateData.stateConditions ["OrbDepositInProgress"] = false;
+					
 					persistantStateData.ChangeStateConditions ("OrbDepositInProgress", false);
+                    playerMovement.RemoveFollowTarget();
 
 					Debug.Log ("Deposit Complete");
 
@@ -193,7 +192,13 @@ public class Shrine : MonoBehaviour {
             shrineMeshInner.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialInner, cleanMaterialInner, cleanProgress);
             shrineMeshMain.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialMain, cleanMaterialMain, cleanProgress);
         }
-	}
+
+        // Tethers player to shrine during orb turn in so that the turn in process can be completed.
+        if ((bool)persistantStateData.stateConditions["OrbDepositInProgress"])
+        {
+            playerMovement.SetFollowTarget(gameObject, 4 6);
+        }
+    }
 
 	// Function to basically decrement player orb count
 	void DepositOrbs (float depositCount) {
