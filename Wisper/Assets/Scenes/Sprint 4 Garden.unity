@@ -41908,11 +41908,11 @@ RectTransform:
   m_Father: {fileID: 627101144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1820, y: 860}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -951, y: 572}
+  m_SizeDelta: {x: 2000, y: 1200}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1002012245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75109,6 +75109,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions: []
     conditionChangeOnExit: []
     options: []
@@ -78061,6 +78062,7 @@ MonoBehaviour:
     follow: 0
     autoPlay: 1
     autoPlayDelay: 1.5
+    progressByCutscene: 0
     enableConditions:
     - conditionName: StartupShrineDialogue
       conditionValue: 1
@@ -78082,6 +78084,7 @@ MonoBehaviour:
     follow: 0
     autoPlay: 1
     autoPlayDelay: 1.5
+    progressByCutscene: 0
     enableConditions:
     - conditionName: StartupShrinePart2
       conditionValue: 1
@@ -78107,6 +78110,7 @@ MonoBehaviour:
     follow: 0
     autoPlay: 1
     autoPlayDelay: 1.5
+    progressByCutscene: 0
     enableConditions:
     - conditionName: StartupShrineRepeatDirections
       conditionValue: 1
@@ -78127,6 +78131,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineFirstConversation
       conditionValue: 1
@@ -78170,6 +78175,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineFirstConversation2
       conditionValue: 1
@@ -78212,6 +78218,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineFirstConversationYes
       conditionValue: 1
@@ -78231,6 +78238,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineFirstConversationNo
       conditionValue: 1
@@ -78250,6 +78258,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -78274,6 +78283,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineIsClean
       conditionValue: 1
@@ -78306,6 +78316,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineFirstTurnInNo
       conditionValue: 1
@@ -78326,6 +78337,7 @@ MonoBehaviour:
     follow: 0
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 1
     enableConditions:
     - conditionName: FirstTurnInCutsceneDialogue
       conditionValue: 1
@@ -78366,10 +78378,15 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: GoForth
       conditionValue: 1
-    conditionChangeOnExit: []
+    conditionChangeOnExit:
+    - conditionName: GoForth
+      conditionValue: 0
+    - conditionName: DemoEnd
+      conditionValue: 1
     options: []
     speedControls: []
     sentences:
@@ -78412,6 +78429,7 @@ MonoBehaviour:
     follow: 0
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions: []
     conditionChangeOnExit: []
     options:
@@ -78433,6 +78451,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineFirstConversationOver
       conditionValue: 1
@@ -78452,6 +78471,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineFirstConversationOver
       conditionValue: 1
@@ -78471,6 +78491,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShrineFirstConversationOver
       conditionValue: 1
@@ -80463,7 +80484,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.15997505, y: 392.56732, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.42010403, y: 392.50952, z: 0}
 --- !u!114 &1562149423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98432,11 +98453,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400004, guid: da18859dbf02b2a4fbc11fbb0d413bc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: da18859dbf02b2a4fbc11fbb0d413bc8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: da18859dbf02b2a4fbc11fbb0d413bc8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -105365,6 +105386,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -105392,6 +105414,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1
@@ -106152,6 +106175,7 @@ MonoBehaviour:
     follow: 0
     autoPlay: 0
     autoPlayDelay: 0
+    progressByCutscene: 0
     enableConditions:
     - conditionName: SwingTaskDone
       conditionValue: 0
@@ -106169,6 +106193,7 @@ MonoBehaviour:
     follow: 0
     autoPlay: 0
     autoPlayDelay: 0
+    progressByCutscene: 0
     enableConditions:
     - conditionName: SwingTaskDone
       conditionValue: 1
@@ -107735,6 +107760,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 0
@@ -107752,6 +107778,7 @@ MonoBehaviour:
     follow: 1
     autoPlay: 0
     autoPlayDelay: 1
+    progressByCutscene: 0
     enableConditions:
     - conditionName: ShamusHasHat
       conditionValue: 1

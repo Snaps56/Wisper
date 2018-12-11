@@ -69,6 +69,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("ShrineFirstTurnInNo", false);  // Player says no to the first turn in
         stateConditions.Add("FirstTurnInCutsceneDialogue", false);  // Used to start Dialogue during trun in cutscene
         stateConditions.Add("GoForth", false);  // Used to enable dialogue telling player to leave the garden
+        stateConditions.Add("DemoEnd", false);
 
         stateConditions.Add("TutorialFirstDialogueFinished", false); // Check if opening dialogue done, then trigger look tutorial
         stateConditions.Add("TutorialLookFinished", false); // check if look tutorial done, then trigger move tutorial

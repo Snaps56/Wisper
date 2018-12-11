@@ -14,7 +14,6 @@ public class CutsceneEvents : MonoBehaviour {
     public GameObject player;
 
 
-
     void PSDVariableOn(string key)
     {
         GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateConditions(key, true);
@@ -23,6 +22,11 @@ public class CutsceneEvents : MonoBehaviour {
     void PSDVariableOff(string key)
     {
         GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateConditions(key, false);
+    }
+
+    void ProgressDialogue()
+    {
+        GameObject.Find("DialogueManager").GetComponent<DialogueManager>().CutsceneDislayNextSentence();
     }
 
     //Event called when the flower is supposed to animate
@@ -62,6 +66,8 @@ public class CutsceneEvents : MonoBehaviour {
         Color tempColor = new Color(255, 147, 85, 255);
         light.GetComponent<Light>().color = Color.white;
     }
+
+
 
     void cutsceneSkipped()
     {
