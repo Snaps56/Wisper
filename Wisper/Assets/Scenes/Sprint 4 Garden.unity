@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45140254, g: 0.50089544, b: 0.5723186, a: 1}
+  m_IndirectSpecularColor: {r: 0.45140284, g: 0.50089616, b: 0.5723197, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -42303,7 +42303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1002012244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42317,10 +42317,10 @@ RectTransform:
   m_Father: {fileID: 627101144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -951, y: 572}
-  m_SizeDelta: {x: 2000, y: 1200}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1400, y: 620}
+  m_SizeDelta: {x: 2800, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1002012245
 MonoBehaviour:
@@ -78708,7 +78708,7 @@ MonoBehaviour:
     - conditionName: ShrineFirstConversation2
       conditionValue: 0
     options:
-    - sentenceIndex: 5
+    - sentenceIndex: 6
       choices:
       - reply: Yeah!
         changeConditions:
@@ -78889,8 +78889,9 @@ MonoBehaviour:
         together!"
     - speaker: Shrine
       line: "This is usually okay, but sometimes the storms can be really dangerous,
-        and it\u2019s my job to protect the island. So, when this happens, I shatter
-        the storm into hundreds of little pieces."
+        and it\u2019s my job to protect the island."
+    - speaker: Shrine
+      line: So, when this happens, I shatter the storm into hundreds of little pieces.
     - speaker: Shrine
       line: Yup! Those orbs you just collected could have destroyed the entire island
         last night!
@@ -78916,12 +78917,13 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: Shrine
-      line: Unfortunately, this...complicates things. No one except you and I can
-        see these orbs, but the Shellsters tend to feel their negative effects. Basically
-        when the orbs fall down to the island, everyone gets cursed.
+      line: Unfortunately, this... complicates things. No one except you and I can
+        see these orbs, but the Shellsters tend to feel their negative effects.
+    - speaker: Shrine
+      line: ' Basically when the orbs fall down to the island, everyone gets cursed.'
     - speaker: Shrine
       line: "It\u2019s mostly mundane things, but a curse is still a curse! You can\u2019t
-        just let those linger!\u201D\r\n\u201CThat\u2019s where you come in.\r"
+        just let those linger! That\u2019s where you come in.\r"
     - speaker: Shrine
       line: "I\u2019m getting too old to go collecting all of these myself, and it
         takes a lot out of me to keep them under control."
@@ -78940,7 +78942,7 @@ MonoBehaviour:
         and these storms can still be quite strong if you bring me too many..."
     - speaker: Shrine
       line: "Well, that\u2019s about all there is to that, so why don\u2019t we get
-        started gathering those orbs. In fact, I think I still sense one\u2026 actually,
+        started gathering those orbs. In fact, I think I still sense one... actually,
         let\u2019s not worry about that one now."
     - speaker: Shrine
       line: "Why don\u2019t you see if there\u2019s any fun to be had in the city?
@@ -80863,7 +80865,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.42010403, y: 392.50952, z: 0}
+  m_LocalEulerAnglesHint: {x: 7.571891, y: 389.72913, z: 0}
 --- !u!114 &1562149423
 MonoBehaviour:
   m_ObjectHideFlags: 0
