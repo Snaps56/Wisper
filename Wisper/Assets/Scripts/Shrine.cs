@@ -155,7 +155,7 @@ public class Shrine : MonoBehaviour {
 					Debug.Log ("Deposit Complete");
 
 					// After depositing orbs, play a cutscene of the storm
-					/*
+					
                 	player.GetComponent<PlayerMovement>().ToggleMovement();
                 	//Deactivate main camera
                 	mainCamera.gameObject.SetActive(false);
@@ -169,7 +169,7 @@ public class Shrine : MonoBehaviour {
                 	light.GetComponent<Light>().color = Color.black;
                 	//Play the animation for the camera
                 	cutsceneCamera.GetComponent<Animation>().Play("Deposit");
-                	*/
+                	
 				}
             }
 		// If the player is not near the shrine, don't play particles
