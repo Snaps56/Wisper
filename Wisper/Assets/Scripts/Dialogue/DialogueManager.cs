@@ -248,10 +248,10 @@ public class DialogueManager : MonoBehaviour {
             }
             else if (!sentenceDisplayInProgress)    // When non-auto sentence is done without dialogue, displays prompt to progress.
             {
-                Debug.Log("Howdy");
+                //Debug.Log("Howdy");
                 if(!(nextLinePromptKeyboard.gameObject.activeSelf ||nextLinePromptXBOX.gameObject.activeSelf))
                 {
-                    Debug.Log("Hello there");
+                   // Debug.Log("Hello there");
                     ShowNextLinePrompt();
                 }
             }

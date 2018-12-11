@@ -64,9 +64,10 @@ public class Shrine : MonoBehaviour {
 	private bool firstTime;
 	private float playerOrb;
 	private float orbLimit;
+    private bool Triggered = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		// Dirty shrine look is the default materials
 		dirtyMaterialInner = shrineMeshInner.GetComponent<MeshRenderer> ().material;
 		dirtyMaterialMain = shrineMeshMain.GetComponent<MeshRenderer> ().material;
@@ -154,22 +155,28 @@ public class Shrine : MonoBehaviour {
 					persistantStateData.ChangeStateConditions ("OrbDepositInProgress", false);
 
 					Debug.Log ("Deposit Complete");
-					// After depositing orbs, play a cutscene of the storm
-                	player.GetComponent<PlayerMovement>().ToggleMovement();
-                	//Deactivate main camera
-                	mainCamera.gameObject.SetActive(false);
-                	//Activate Cutscene Camera
-                	cutsceneCamera.gameObject.SetActive(true);
-                	//Find the UI Element for the Wind Power
-                	windPowerUI.SetActive(false);
-                	//Activate the rain particle system
-                	rain.SetActive(true);
-                	//Change the directional light to be dimmer
-                	light.GetComponent<Light>().color = Color.black;
-                	//Play the animation for the camera
-                	cutsceneCamera.GetComponent<Animation>().Play("Deposit");
-                	
-				}
+
+                    if (!Triggered )
+                    {
+                        Debug.Log("WE'RE IN");
+                        // After depositing orbs, play a cutscene of the storm
+                        player.GetComponent<PlayerMovement>().DisableMovement();
+                        //Deactivate main camera
+                        mainCamera.gameObject.SetActive(false);
+                        //Activate Cutscene Camera
+                        cutsceneCamera.gameObject.SetActive(true);
+                        //Find the UI Element for the Wind Power
+                        windPowerUI.SetActive(false);
+                        //Activate the rain particle system
+                        rain.SetActive(true);
+                        //Change the directional light to be dimmer
+                        light.GetComponent<Light>().color = Color.black;
+                        //Play the animation for the camera
+                        cutsceneCamera.GetComponent<Animation>().Play("Deposit");
+                        Triggered = true;
+                    }
+
+                }
             }
 		// If the player is not near the shrine, don't play particles
 		} else {

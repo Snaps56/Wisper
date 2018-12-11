@@ -46,7 +46,7 @@ public class CutsceneEvents : MonoBehaviour {
     //Event called when the animation should end
     void endAnimation()
     {
-        player.GetComponent<PlayerMovement>().ToggleMovement();
+        //player.GetComponent<PlayerMovement>().ToggleMovement();
         //Activates main camera
         mainCamera.gameObject.SetActive(true);
         //Turns this game object off

@@ -61,12 +61,14 @@ public class ActivateCutscene : MonoBehaviour {
 
 
         //skip cutscene
-        if (Input.GetButton("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X"))
+        if (/*Input.GetButton("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")*/ Input.GetKey(KeyCode.H))
         {
+            Debug.Log("Skipped");
             foreach (AnimationState anim in cutsceneCamera.GetComponent<Animation>())
             {
                 anim.time = anim.length;
             }
+
             //foreach (AnimationClip clip in cutsceneCamera.GetComponent<Animation>())
             //{
             //    foreach (AnimationEvent e in clip.events)
