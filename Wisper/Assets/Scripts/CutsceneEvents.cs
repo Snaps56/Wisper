@@ -30,6 +30,10 @@ public class CutsceneEvents : MonoBehaviour {
     {
         //Finds the flower and starts animation
         GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
+        GameObject.Find("flower_wilt1").GetComponent<Animator>().SetBool("Grow", true);
+        GameObject.Find("flower_wilt2").GetComponent<Animator>().SetBool("Grow", true);
+        GameObject.Find("flower_wilt3").GetComponent<Animator>().SetBool("Grow", true);
+        GameObject.Find("flower_wilt4").GetComponent<Animator>().SetBool("Grow", true);
     }
 
     void playCutscene2 ()
