@@ -18,6 +18,8 @@ public class DialogueManager : MonoBehaviour {
     private Text dialogueText;              // Text field of dialogue box
     private Text dialogueName;              // Name field of dialogue box
     private GameObject optionPanels;        // The gameobject that is a parent of the object panels.
+    private Image nextLinePromptXBOX;           // An image that prompts the player to press a button to proceed with dialogue
+    private Image nextLinePromptKeyboard;           // An image that prompts the player to press a button to proceed with dialogue
 
     // Display time values & references
     private GameObject activeNPC;           // Reference to NPC with active dialogue
@@ -42,6 +44,7 @@ public class DialogueManager : MonoBehaviour {
     private bool skipText = false;          // Switch to fast forward text on player click
     private bool optionActive = false;
     private bool optionChangeOnCooldown = false;
+    private bool isUsingController = false;
     
     private bool displayWhenDoneLock = false;   // A lock used to ensure only one call to the display next sentence when done coroutine is running.
     // References to entities in scene
@@ -90,6 +93,18 @@ public class DialogueManager : MonoBehaviour {
             }
         }
 
+        foreach(Image im in dialogueBox.GetComponentsInChildren<Image>())
+        {
+            if(im.gameObject.name == "NextLinePromptXBOX")
+            {
+                nextLinePromptXBOX = im;
+            }
+            else if( im.gameObject.name == "NextLinePromptKeyboard")
+            {
+                nextLinePromptKeyboard = im;
+            }
+        }
+
         sentences = new Queue<string>();
         speakers = new Queue<string>();
         
@@ -99,6 +114,7 @@ public class DialogueManager : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         persistantStateData = GameObject.Find("PersistantStateData");
         HideBox();
+        HideNextLinePrompt();
     }
 
     private void Update()
@@ -108,6 +124,19 @@ public class DialogueManager : MonoBehaviour {
         {
             persistantStateData = GameObject.Find("PersistantStateData");
         }
+
+        // toggles objects active based on whether player is using controller or keyboard input
+        string[] names = Input.GetJoystickNames();
+        //Loops through each element of the 'names array'
+        for (int i = 0; i < names.Length; i++)
+        {
+            //if the element has anything in it, then the player is using a controller
+            if (names[i].Length > 0)
+            {
+                isUsingController = true;
+            }
+        }
+
 
         // When PSD updates, run an update on all dialogues in the scene.
         if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount)
@@ -215,6 +244,15 @@ public class DialogueManager : MonoBehaviour {
                 {
                     displayWhenDoneLock = true;
                     StartCoroutine(DisplayNextSentenceWhenDone(activeDialogue.autoPlayDelay));
+                }
+            }
+            else if (!sentenceDisplayInProgress)    // When non-auto sentence is done without dialogue, displays prompt to progress.
+            {
+                Debug.Log("Howdy");
+                if(!(nextLinePromptKeyboard.gameObject.activeSelf ||nextLinePromptXBOX.gameObject.activeSelf))
+                {
+                    Debug.Log("Hello there");
+                    ShowNextLinePrompt();
                 }
             }
         }
@@ -673,6 +711,7 @@ public class DialogueManager : MonoBehaviour {
             {
                 sentenceDisplayInProgress = true;   // Flags the sentence display coroutine as being in progress
                 SetActiveOption();
+                HideNextLinePrompt();
                 string sentence = sentences.Dequeue();
                 string speaker = speakers.Dequeue();
                 StartCoroutine(DisplaySentence(sentence, speaker));
@@ -767,6 +806,7 @@ public class DialogueManager : MonoBehaviour {
         sentences.Clear();
         speakers.Clear();
         dialogueText.text = "";
+        HideNextLinePrompt();
         HideBox();
 		if (activeNPC.transform.parent.GetComponent<FloatingTextManager> () != null) {
             activeNPC.transform.parent.GetComponent<FloatingTextManager> ().disableFloatingText = false;
@@ -806,30 +846,21 @@ public class DialogueManager : MonoBehaviour {
         return dialogueBoxActive;
     }
 
-    public void ResetForSceneTransition()
+    public void HideNextLinePrompt()
     {
-        dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
+        nextLinePromptXBOX.gameObject.SetActive(false);
+        nextLinePromptKeyboard.gameObject.SetActive(false);
+    }
 
-        optionPanels = GameObject.FindGameObjectWithTag("OptionPanels");
-
-        foreach (Text textField in dialogueBox.GetComponentsInChildren<Text>())
+    public void ShowNextLinePrompt()
+    {
+        if(isUsingController)
         {
-            if (textField.gameObject.name == "Speaker")
-            {
-                dialogueName = textField;
-                Debug.Log("Dialogue panel speaker field found for DM");
-            }
-            else if (textField.gameObject.name == "Dialogue")
-            {
-                dialogueText = textField;
-                Debug.Log("Dialogue panel dialogue field found for DM");
-            }
+            nextLinePromptXBOX.gameObject.SetActive(true);
         }
-
-        sentenceDisplayInProgress = false;
-        dialogueBoxActive = false;
-
-        player = GameObject.FindGameObjectWithTag("Player");
-        HideBox();
+        else
+        {
+            nextLinePromptKeyboard.gameObject.SetActive(true);
+        }
     }
 }
