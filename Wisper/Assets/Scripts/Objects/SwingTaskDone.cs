@@ -20,15 +20,12 @@ public class SwingTaskDone : MonoBehaviour {
     {
         float angle = leftSwing.transform.rotation.eulerAngles.y;
         float anglex = leftSwing.transform.rotation.eulerAngles.x;
-        //Debug.Log("Angle y: " + angle);
 
         if (TaskisDone == false && ((leftSwing.transform.rotation.eulerAngles.x <= 290 && leftSwing.transform.rotation.eulerAngles.x >= 270) || (leftSwing.transform.rotation.eulerAngles.x >= 80 && leftSwing.transform.rotation.eulerAngles.x <= 90)))
         {
             
             // Task is complete
             TaskisDone = true;
-            Debug.Log("This shit is working!");
-            Debug.Log(TaskisDone);
             GetComponent<SpawnOrbs>().DropOrbs();
             persistantStateData.stateConditions["SwingTaskDone"] = true;
             persistantStateData.updateCount++;
