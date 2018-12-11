@@ -37,15 +37,15 @@ public class FloatingTextManager : MonoBehaviour {
         clearingInProgress = false;
         floatingTextCanvas.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
-
+        persistantStateData = GameObject.Find("PersistantStateData");
     }
 
     private void Update()
     {
-        if (persistantStateData == null)    // Initialize persistantStateData
+        /*if (persistantStateData == null)    // Initialize persistantStateData
         {
             persistantStateData = GameObject.Find("PersistantStateData");
-        }
+        }*/
         if (floatingTexts == null)  // Initialize floating text if it did not properly do so in Start
         {
             floatingTexts = this.GetComponent<FloatingTexts>();
@@ -73,7 +73,7 @@ public class FloatingTextManager : MonoBehaviour {
                 {
                     if (newFloatingText == null) // If dialogue update was never called, set newDialogue.
                     {
-                        newFloatingText = getEnabledText();
+                        newFloatingText = GetEnabledText();
                     }
 
                     if (activeFloatingText != newFloatingText) // If the dialogue finished (reset to null), or has changed since last time (doesn't match newFT after update)
@@ -236,7 +236,14 @@ public class FloatingTextManager : MonoBehaviour {
             }
             tempCheck = true;   // Reset tempCheck for next dialogue
         }
-        //newFloatingText = getEnabledText();
+        try
+        {
+            newFloatingText = GetEnabledText();
+        }
+        catch(System.NullReferenceException e)
+        {
+            //do nothing
+        }
     }
 
     private bool CheckCondition(TargetCondition condition)
@@ -251,7 +258,7 @@ public class FloatingTextManager : MonoBehaviour {
         }
     }
 
-    private Dialogue getEnabledText()
+    private Dialogue GetEnabledText()
     {
         foreach (Dialogue d in floatingTexts.floatingTexts)
         {
