@@ -73,6 +73,7 @@ public class SpawnOrbs : MonoBehaviour
             Vector3 orbSpawnPosition = transform.position;
             orbSpawnPosition.y += orbSpawnOffsetY;
             GameObject orbInstance = Instantiate(orb, orbSpawnPosition, Quaternion.identity);
+            Debug.Log("Made orb");
             orbsList.Add(orbInstance);
 
             orbInstance.GetComponent<Rigidbody>().AddForce(initialForce);

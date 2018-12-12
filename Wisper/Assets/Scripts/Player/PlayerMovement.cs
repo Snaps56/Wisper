@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        orbCountScript = GetComponent<OrbCount>();
+        orbCountScript = GetComponentInChildren<OrbCount>();
         rb = GetComponent<Rigidbody>();
         finalSpeed = movementSpeed;
         originalMoveSpeed = movementSpeed;

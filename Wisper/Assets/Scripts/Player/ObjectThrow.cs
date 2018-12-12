@@ -30,7 +30,7 @@ public class ObjectThrow : MonoBehaviour {
     // Use this for initialization
     void Start () {
         movementVector = transform.position;
-		playerOrbCount = character.GetComponent<OrbCount> ().GetOrbCount ();
+		playerOrbCount = character.GetComponentInChildren<OrbCount> ().GetOrbCount ();
 		// Initialize original throw force
 		originalThrowForce = throwForce;
     }
@@ -65,7 +65,7 @@ public class ObjectThrow : MonoBehaviour {
             }
         }
         // Modify throw force based on orb count
-        playerOrbCount = character.GetComponent<OrbCount>().GetOrbCount();
+        playerOrbCount = character.GetComponentInChildren<OrbCount>().GetOrbCount();
         throwForce = originalThrowForce + playerOrbCount;
 
         // obtain player movement vector to determine throw direction

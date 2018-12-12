@@ -32,7 +32,7 @@ public class ObjectLift : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        orbcountScript = character.GetComponent<OrbCount>();
+        orbcountScript = character.GetComponentInChildren<OrbCount>();
 		playerOrbCount = orbcountScript.GetOrbCount ();
 		// Initialize original lift strength
 		originalLiftCenterStrength = liftCenterStrength;

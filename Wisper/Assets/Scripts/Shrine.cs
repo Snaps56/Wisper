@@ -89,9 +89,9 @@ public class Shrine : MonoBehaviour {
 		orbDepositsInTransit = 0;
 
 		firstTime = false;
-		playerOrb = player.GetComponent<OrbCount> ().GetOrbCount ();
+		playerOrb = player.GetComponentInChildren<OrbCount> ().GetOrbCount ();
         playerMovement = player.GetComponent<PlayerMovement>();
-		orbLimit = 15;
+		orbLimit = 10;
 	}
 
 	// Update is called once per frame
@@ -111,7 +111,7 @@ public class Shrine : MonoBehaviour {
 			gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
 			// Is the shrine is not clean and the player is lifting, start cleaning the shrine
 			if (!(bool)persistantStateData.stateConditions ["ShrineIsClean"]) {
-                playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
+                playerOrb = player.GetComponentInChildren<OrbCount>().GetOrbCount();
 				// Change the material of the shrine over time
 				if (playerOrb >= orbLimit) {
 					if (gettingCleaned && cleanProgress < cleanThreshold * 0.02f) {
@@ -137,7 +137,7 @@ public class Shrine : MonoBehaviour {
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
 			if (/*(Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) && */
 				(bool)persistantStateData.stateConditions ["ShrineIsClean"] && (bool)persistantStateData.stateConditions["OrbDepositInProgress"]) {
-                playerOrb = player.GetComponent<OrbCount>().GetOrbCount();
+                playerOrb = player.GetComponentInChildren<OrbCount>().GetOrbCount();
                 // Make sure the player has orbs to deposit
                 if (playerOrb > 0) {
 					orbDepositsInTransit = playerOrb;
@@ -210,7 +210,7 @@ public class Shrine : MonoBehaviour {
 			orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
 		}
 		*/
-		player.GetComponent<OrbCount> ().SetOrbCount (0);
+		player.GetComponentInChildren<OrbCount> ().SetOrbCount (0);
 		for (int oc = 0; oc < depositCount; oc++) {
 			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + player.transform.position;
 			orbDepositInstance = Instantiate (orbDeposit, spawnPosition, Quaternion.identity);

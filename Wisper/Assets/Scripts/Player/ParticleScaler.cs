@@ -26,7 +26,7 @@ public class ParticleScaler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        numOrbs = player.GetComponent<OrbCount>().GetOrbCount();
+        numOrbs = player.GetComponentInChildren<OrbCount>().GetOrbCount();
 
         ps = GetComponent<ParticleSystem>();
         emissionModule = ps.emission;
@@ -40,7 +40,7 @@ public class ParticleScaler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        numOrbs = player.GetComponent<OrbCount>().GetOrbCount();
+        numOrbs = player.GetComponentInChildren<OrbCount>().GetOrbCount();
 
         finalEmissionRate = initialEmissionRate + numOrbs * emissionIncreaseModifier;
         emissionModule = ps.emission;
