@@ -40,6 +40,16 @@ public class CutsceneEvents : MonoBehaviour {
         GameObject.Find("flower_wilt4").GetComponent<Animator>().SetBool("Grow", true);
     }
 
+    void playDeposit2 ()
+    {
+        GetComponent<Animation>().Play("Deposit2");
+    }
+
+    void playDeposit3()
+    {
+        GetComponent<Animation>().Play("Deposit3");
+    }
+
     void playCutscene2 ()
     {
         GetComponent<Animation>().Play("Cutscene2");
