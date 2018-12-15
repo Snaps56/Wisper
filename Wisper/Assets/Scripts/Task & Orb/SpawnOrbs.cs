@@ -4,35 +4,31 @@ using UnityEngine;
 
 public class SpawnOrbs : MonoBehaviour
 {
+    // Gameobjects required by Inspector
     public GameObject orb;
     public Transform player;
 
-    public float orbCount;
-    public float initialForceMultiplier;
-    public float moveSpeedMultiplier;
-    public float slowMultiplier;
-    public float orbSpawnOffsetY;
+    // public variables for testing purposes
+    public float orbCount; // number of orbs generated
+    public float initialForceMultiplier; // force applied on orb on generation
+    public float moveSpeedMultiplier; // how much faster orbs move toward the the player based on distance
+    public float slowMultiplier; // how much friction reduces max speed of orbs after initial force
+    public float orbSpawnOffsetY; // how high orbs spawn from the base position of parent object
 
-	private GameObject orbInstance;
-
-    List<GameObject> orbsList = new List<GameObject>();
-
-    // Use this for initialization
-    void Start()
-    {
-    }
-
+    List<GameObject> orbsList = new List<GameObject>(); // a list of all active orbs in the scene
+    
     // Update is called once per frame
     void Update()
     {
-        // Debuggging drop orbs
+        // Debug button for dropping orbs
         if (Input.GetButtonDown("PC_Key_Orb"))
         {
             DropOrbs();
         }
-        // make sure orbs list does not contain emptry indices
+        // make sure orbs list does not contain empty indices
         orbsList.TrimExcess();
     }
+
     private void FixedUpdate()
     {
         // for every orb generated
@@ -46,32 +42,44 @@ public class SpawnOrbs : MonoBehaviour
                 Vector3 deltaPosition = player.position - orbsList[i].GetComponent<Transform>().position;
                 deltaPosition = deltaPosition.normalized;
 
-                // obtain vector of player and object to scale speed
+                // obtain vector of player and parent orb object to scale speed of orbs based on distance
                 float distanceToBase = (player.position - transform.position).magnitude;
-
                 Vector3 finalForce = deltaPosition * moveSpeedMultiplier * distanceToBase;
+
+                // add a minimum speed to the orbs so they don't move too slow
                 Vector3 minForce = deltaPosition * moveSpeedMultiplier * 10f;
                 if (finalForce.magnitude < minForce.magnitude)
                 {
                     finalForce = minForce;
                 }
+
+                // apply a pushing force to move orbs, but also a negative force to slow down orbs to cap the speed of orbs
                 rb.AddForce(finalForce);
                 rb.AddForce(-rb.velocity * slowMultiplier);
             }
         }
     }
-    public void DropOrbs (){
-		for (int i = 0; i < orbCount; i++) {
-            // Vector3 initialForce = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
-            Vector3 playerVector = player.transform.position - transform.position;
 
+    // drop orbs called only from outside class calls or via debug button
+    public void DropOrbs (){
+
+        // generate orbs based on the number of requested orbs to drop
+		for (int i = 0; i < orbCount; i++) {
+
+            // obtain player vector to make sure orbs spawn correctly
+            Vector3 playerVector = player.transform.position - transform.position;
             Vector3 crossVector = Vector3.ProjectOnPlane(Random.insideUnitSphere, playerVector);
             Vector3 initialForce = crossVector.normalized;
+
+            // make sure when generating orbs, that they only spawn upwards when applying initial force
             initialForce.y = Mathf.Abs(initialForce.y);
             initialForce = initialForce * initialForceMultiplier;
 
+            // spawn orbs at position of parent object, along with y offset
             Vector3 orbSpawnPosition = transform.position;
             orbSpawnPosition.y += orbSpawnOffsetY;
+
+            // instantiate orb and add it to the list of active orb objects
             GameObject orbInstance = Instantiate(orb, orbSpawnPosition, Quaternion.identity);
             Debug.Log("Made orb");
             orbsList.Add(orbInstance);
