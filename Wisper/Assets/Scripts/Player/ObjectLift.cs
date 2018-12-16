@@ -95,13 +95,15 @@ public class ObjectLift : MonoBehaviour {
         {
             // calculate the force needed to lift an object toward the player
             float objectDistance = (targetPosition - liftedObjects[i].transform.position).magnitude;
-            Vector3 toCenterVector = (targetPosition - liftedObjects[i].transform.position).normalized;
+            Vector3 toCenterVector = (targetPosition - liftedObjects[i].transform.position);
 
             Rigidbody liftedObjectRB = liftedObjects[i].GetComponent<Rigidbody>();
             
             // add force to object only if its not moving too fast
             liftedObjectRB.AddForce(toCenterVector * liftCenterStrength); // orbit to center force
             liftedObjectRB.AddForce(-liftedObjectRB.velocity * liftForceSlowDown); // orbit to center force
+            liftedObjectRB.AddTorque(new Vector3(1, 0, 0));
+            liftedObjectRB.AddTorque(-liftedObjectRB.angularVelocity);
 
             // remove lifted object if it strays to far from the player
             if (objectDistance > radiusCollider.radius * maxHoldRadiusMultiplier)
