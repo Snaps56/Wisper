@@ -15,8 +15,7 @@ public class ObjectLift : MonoBehaviour {
     [Header("Lift Mechanics")]
     public float liftHeight;
     public float liftCenterStrength;
-    public float liftedObjectMaxSpeed;
-    public float predictCharacterForceMultiplier;
+    public float liftForceSlowDown;
     public float maxHoldRadiusMultiplier;
 
     private bool isLiftingObjects = false;
@@ -101,22 +100,15 @@ public class ObjectLift : MonoBehaviour {
             Rigidbody liftedObjectRB = liftedObjects[i].GetComponent<Rigidbody>();
             
             // add force to object only if its not moving too fast
-            if (liftedObjectRB.velocity.magnitude < liftedObjectMaxSpeed + currentCharacterSpeed)
-            {
-                liftedObjectRB.AddForce(currentCharacterVector * predictCharacterForceMultiplier); // movement prediction force
-                liftedObjectRB.AddForce(toCenterVector * liftCenterStrength); // orbit to center force
-            }
-            // if object is moving to fast, add a cap to its speed that it uses to follow the player
-            else
-            {
-                liftedObjectRB.AddForce(-liftedObjectRB.velocity);
-            }
+            liftedObjectRB.AddForce(toCenterVector * liftCenterStrength); // orbit to center force
+            liftedObjectRB.AddForce(-liftedObjectRB.velocity * liftForceSlowDown); // orbit to center force
 
-            // remove lifted object that strays too far from the player
+            // remove lifted object if it strays to far from the player
             if (objectDistance > radiusCollider.radius * maxHoldRadiusMultiplier)
             {
                 liftedObjects.Remove(liftedObjects[i]);
             }
+
         }
     }
 
