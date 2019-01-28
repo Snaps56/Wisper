@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class FlarePulse : MonoBehaviour
 {
     public LensFlare lensFlare;
     public Camera mainCamera;
     public float dotProductAngle = 0.9f;
+
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
 
 
 
@@ -100,10 +106,31 @@ public class FlarePulse : MonoBehaviour
             //Debug.Log("Is pulsing");
             //Begins the timer
             BeginTimer();
+            GamePad.SetVibration(playerIndex, 0.01f , 0.1f);
 
             //Reassigns the brightness level
             lensFlare.brightness = currentBrightness;
         }
+
+        // Find a PlayerIndex, for a single player game
+        // Will find the first controller that is connected ans use it
+        if (!playerIndexSet || !prevState.IsConnected)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                PlayerIndex testPlayerIndex = (PlayerIndex)i;
+                GamePadState testState = GamePad.GetState(testPlayerIndex);
+                if (testState.IsConnected)
+                {
+                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                    playerIndex = testPlayerIndex;
+                    playerIndexSet = true;
+                }
+            }
+        }
+
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
 
     }
 }
