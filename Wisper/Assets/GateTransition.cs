@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GateTransition : MonoBehaviour {
 
+    public Animator fadeAnimator;
     public Transform player;
     public GameObject transitionText;
     public int nextSceneNumber;
     public float minDistance;
+    AsyncOperation test;
 
     private float currentDistance;
 
@@ -23,15 +25,24 @@ public class GateTransition : MonoBehaviour {
 
         if (currentDistance < minDistance)
         {
-            transitionText.SetActive(true);
-            if (Input.GetButton("PC_Key_Interact") || Input.GetButton("XBOX_Button_A"))
+            if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A"))
             {
-                SceneManager.LoadScene(nextSceneNumber);
+                fadeAnimator.Play("FadeOut");
+                StartCoroutine(LoadNewScene());
             }
         }
         else
         {
             transitionText.SetActive(false);
         }
-	}
+    }
+    IEnumerator LoadNewScene()
+    {
+        yield return new WaitForSeconds(3);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneNumber);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
 }
