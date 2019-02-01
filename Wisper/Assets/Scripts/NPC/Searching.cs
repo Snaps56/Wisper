@@ -24,7 +24,7 @@ public class Searching : MonoBehaviour {
         {
             RandomNum = Random.Range(0, 100);
             count++;
-            Debug.Log(count + " random: " + RandomNum);
+            //Debug.Log(count + " random: " + RandomNum);
             
             if (RandomNum > 45)
             {

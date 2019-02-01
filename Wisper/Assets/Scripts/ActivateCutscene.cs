@@ -27,9 +27,11 @@ public class ActivateCutscene : MonoBehaviour {
             mainCamera.gameObject.SetActive(false);
             cutsceneCamera.gameObject.SetActive(true);
             GameObject.Find("WindPowerBG").SetActive(false);
-            if (!(bool)PSDchecker.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"])
+            if ((bool)PSDchecker.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"] != true)
             {
+
                 PSDchecker.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"] = true;
+                Debug.Log("Cutscene1Started: " + PSDchecker.GetComponent<PersistantStateData>().stateConditions["Cutscene1Started"]);
                 PSDchecker.GetComponent<PersistantStateData>().updateCount++;
                 cutsceneCamera.GetComponent<Animation>().Play("Cutscene1");
             }
