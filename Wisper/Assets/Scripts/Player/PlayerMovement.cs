@@ -232,7 +232,13 @@ public class PlayerMovement : MonoBehaviour {
     {
         return rb.velocity;
     }
+    public float GetSidewaysAxis()
+    {
+        float sidewaysAxis = Input.GetAxis("XBOX_Thumbstick_L_X");
+        sidewaysAxis += Input.GetAxis("PC_Axis_MovementX");
 
+        return sidewaysAxis;
+    }
     // returns the force that the player is applying to the character to move around
     public Vector3 GetForce()
     {

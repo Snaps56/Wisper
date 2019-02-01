@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraOptimized : MonoBehaviour
 {
 
-    public Transform character;
+    public Transform focusPoint;
+    public GameObject playerObject;
 
     [Header("Camera Mechanics")]
     public float defaultAngleY;
@@ -38,10 +39,13 @@ public class CameraOptimized : MonoBehaviour
     private bool cameraEnabled = true;
 
     private Vector3 direction;
+    
+    private Vector3 deltaVector;
 
     // field of view based on player speed
     private Rigidbody playerRB;
     private float defaultFOV;
+    float sideCameraScroll = 0;
 
     // Use this for initialization
     void Start()
@@ -55,7 +59,7 @@ public class CameraOptimized : MonoBehaviour
         cameraY = defaultAngleY;
         cameraX = defaultAngleX;
 
-        playerRB = character.GetComponentInParent<Rigidbody>();
+        playerRB = focusPoint.GetComponentInParent<Rigidbody>();
         defaultFOV = GetComponent<Camera>().fieldOfView;
     }
 
@@ -96,6 +100,8 @@ public class CameraOptimized : MonoBehaviour
         // Camera changing based on player speed
         SpeedCameraChange();
 
+        AdaptiveCamera();
+
         // Camera collision
         CameraCollision();
 
@@ -122,8 +128,8 @@ public class CameraOptimized : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(cameraY, cameraX, 0);
 
         // apples all transformations to the camera
-        transform.position = character.position + rotation * direction;
-        transform.LookAt(character.position);
+        transform.position = focusPoint.position + rotation * direction;
+        transform.LookAt(focusPoint.position);
 
     }
 
@@ -131,27 +137,51 @@ public class CameraOptimized : MonoBehaviour
     void SpeedCameraChange()
     {
         // take dot product of player's movement relative to camera direction to apply speed cam only in forward and backwards movement
-        float vectorDot = Vector3.Dot(character.GetComponentInParent<PlayerMovement>().GetVelocity().normalized, transform.forward.normalized);
-        
+        float vectorDot = Vector3.Dot(playerObject.GetComponent<PlayerMovement>().GetVelocity().normalized, transform.forward.normalized);
         // modifies camera field of view
         if (modifyFOV)
         {
             GetComponent<Camera>().fieldOfView = defaultFOV + (playerRB.velocity.magnitude * fovSpeedModifier) * vectorDot;
         }
     }
+    void AdaptiveCamera()
+    {
+        float angle = Vector3.Angle(playerObject.GetComponent<PlayerMovement>().GetVelocity().normalized, transform.forward.normalized);
+        //Debug.Log(angle);
+        Vector3 deltaVector = playerObject.GetComponent<PlayerMovement>().GetVelocity().normalized - transform.forward.normalized;
+        Vector3 planeVector = Vector3.zero - transform.forward.normalized;
+        //cameraX += deltaVector.z;
+        cameraY -= deltaVector.y * playerObject.GetComponent<PlayerMovement>().GetVelocity().magnitude * 0.3f;
+        //cameraY -= planeVector.y * 0.2f;
+
+        if (Mathf.Abs(playerObject.GetComponent<PlayerMovement>().GetSidewaysAxis()) < 1)
+        {
+            if (Mathf.Abs(sideCameraScroll) > 0.05)
+            {
+                sideCameraScroll *= 0.99f;
+            }
+        }
+        else
+        {
+            sideCameraScroll = playerObject.GetComponent<PlayerMovement>().GetSidewaysAxis();
+        }
+        cameraX += sideCameraScroll * playerObject.GetComponent<PlayerMovement>().GetVelocity().magnitude * 0.1f;
+
+        Debug.Log(playerObject.GetComponent<PlayerMovement>().GetSidewaysAxis());
+    }
     // camera collides with environment using sphere cast
     void CameraCollision()
     {
         RaycastHit hit;
-        Vector3 direction = transform.position - character.position;
+        Vector3 direction = transform.position - playerObject.transform.position;
         
         // check sphere cast
-        if (Physics.SphereCast(character.position, sphereCastRadius, direction, out hit, defaultDistance))
+        if (Physics.SphereCast(playerObject.transform.position, sphereCastRadius, direction, out hit, defaultDistance))
         {
             // sphere cast only if the collider is an appropriate tag
             if (hit.collider.tag == "Water" || hit.collider.tag == "Terrain")
             {
-                collisionDistance = (hit.point - character.position).magnitude;
+                collisionDistance = (hit.point - playerObject.transform.position).magnitude;
             }
             // Debug.Log(hit.point);
         }
