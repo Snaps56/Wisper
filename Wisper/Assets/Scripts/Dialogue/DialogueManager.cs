@@ -84,12 +84,12 @@ public class DialogueManager : MonoBehaviour {
             if(textField.gameObject.name == "Speaker")
             {
                 dialogueName = textField;
-                Debug.Log("Dialogue panel speaker field found for DM");
+                //Debug.Log("Dialogue panel speaker field found for DM");
             }
             else if(textField.gameObject.name == "Dialogue")
             {
                 dialogueText = textField;
-                Debug.Log("Dialogue panel dialogue field found for DM");
+                //Debug.Log("Dialogue panel dialogue field found for DM");
             }
         }
 

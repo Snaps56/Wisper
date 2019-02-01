@@ -19,7 +19,7 @@ public class GateTransition : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         currentDistance = Vector3.Distance(player.position, transform.position);
-        Debug.Log(currentDistance);
+        //Debug.Log(currentDistance);
 
         if (currentDistance < minDistance)
         {
