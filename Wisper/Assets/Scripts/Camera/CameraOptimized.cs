@@ -9,34 +9,40 @@ public class CameraOptimized : MonoBehaviour
     public GameObject playerObject;
 
     [Header("Camera Mechanics")]
-    public float defaultAngleY;
-    public float defaultAngleX;
-    public float highClampAngle;
-    public float lowClampAngle;
-    public float inputSensitivity;
+    public float defaultAngleY = 20;
+    public float defaultAngleX = 100;
+    public float highClampAngle = 80;
+    public float lowClampAngle = -80;
+    public float inputSensitivity = 2;
 
     float currentDistance;
 
+    [Header("Smooth Cam")]
+    public bool enableSmoothCam = true;
+    public float smoothCamDecay = 0.9f;
+    public float smoothCamRound = 0.04f;
+    public float smoothSensitivityMultiplier = 0.04f;
+
     [Header("Zoom Mechanics")]
-    public float defaultDistance;
-    public float maxDistance;
-    public float minDistance;
-    public float zoomSensitivity;
+    public float defaultDistance = 4;
+    public float maxDistance = 10;
+    public float minDistance = 4;
+    public float zoomSensitivity = 3;
 
     [Header("Speed Camera")]
-    public bool modifyFOV;
-    public float fovSpeedModifier;
+    public bool modifyFOV = true;
+    public float fovSpeedModifier = 0.5f;
 
     [Header("Adaptive Camera")]
-    public float adaptiveStrength;
-    public float adaptiveDelay;
+    public float adaptiveStrength = 0.12f;
+    public float adaptiveDelay = 3;
     private float initAdaptiveTimer;
     private float currentAdaptiveTimer;
     private bool playerNotMovingCam = false;
     private bool enableAdaptiveCam = false;
 
     [Header("Collision")]
-    public float sphereCastRadius;
+    public float sphereCastRadius = 1;
     private float collisionDistance;
     private float linearInterpolate = 0f;
     private float linearInterpolateDiff = 1.5f;
@@ -73,15 +79,17 @@ public class CameraOptimized : MonoBehaviour
         playerRB = focusPoint.GetComponentInParent<Rigidbody>();
         defaultFOV = GetComponent<Camera>().fieldOfView;
     }
-
     void Update()
     {
         // update camera values only when camera is enabled
         if (cameraEnabled)
         {
             // setup rotation of sticks
-            inputXAxis = Input.GetAxis("XBOX_Thumbstick_R_X") + Input.GetAxis("PC_Mouse_X");
-            inputYAxis = Input.GetAxis("XBOX_Thumbstick_R_Y") + Input.GetAxis("PC_Mouse_Y");
+            if (!enableSmoothCam)
+            {
+                inputXAxis = Input.GetAxis("XBOX_Thumbstick_R_X") + Input.GetAxis("PC_Mouse_X");
+                inputYAxis = Input.GetAxis("XBOX_Thumbstick_R_Y") + Input.GetAxis("PC_Mouse_Y");
+            }
             cameraX += inputXAxis * inputSensitivity;
             cameraY -= inputYAxis * inputSensitivity;
 
@@ -164,6 +172,32 @@ public class CameraOptimized : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (enableSmoothCam)
+        {
+            float initXAxis = Input.GetAxis("XBOX_Thumbstick_R_X") + Input.GetAxis("PC_Mouse_X");
+            float initYAxis = Input.GetAxis("XBOX_Thumbstick_R_Y") + Input.GetAxis("PC_Mouse_Y");
+
+            inputXAxis += initXAxis * inputSensitivity * smoothSensitivityMultiplier;
+            inputYAxis += initYAxis * inputSensitivity * smoothSensitivityMultiplier;
+            
+            if (Mathf.Abs(inputXAxis) > smoothCamRound)
+            {
+                inputXAxis *= smoothCamDecay;
+            }
+            else
+            {
+                inputXAxis = 0;
+            }
+
+            if (Mathf.Abs(inputYAxis) > smoothCamRound)
+            {
+                inputYAxis *= smoothCamDecay;
+            }
+            else
+            {
+                inputYAxis = 0;
+            }
+        }
         if (enableAdaptiveCam)
         {
             AdaptiveCamera();
