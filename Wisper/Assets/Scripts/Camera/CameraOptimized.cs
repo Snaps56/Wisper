@@ -90,23 +90,23 @@ public class CameraOptimized : MonoBehaviour
         
         if (inputXAxis == 0f && inputYAxis == 0f)
         {
-            Debug.Log("Cam Still");
+            // Debug.Log("Cam Still");
             if (!playerNotMovingCam)
             {
-                Debug.Log("InitTimer");
+                // Debug.Log("InitTimer");
                 initAdaptiveTimer = Time.time;
                 playerNotMovingCam = true;
             }
             if (currentAdaptiveTimer > initAdaptiveTimer + adaptiveDelay && !enableAdaptiveCam)
             {
-                Debug.Log("Do Adaptive Cam!");
+                // Debug.Log("Do Adaptive Cam!");
                 enableAdaptiveCam = true;
             }
             currentAdaptiveTimer = Time.time;
         }
         else
         {
-            Debug.Log("Moving Cam!");
+            // Debug.Log("Moving Cam!");
             enableAdaptiveCam = false;
             playerNotMovingCam = false;
         }
@@ -187,7 +187,7 @@ public class CameraOptimized : MonoBehaviour
         Vector3 deltaVector = playerObject.GetComponent<PlayerMovement>().GetVelocity().normalized - transform.forward.normalized;
         Vector3 planeVector = Vector3.zero - transform.forward.normalized;
         cameraY -= deltaVector.y * playerObject.GetComponent<PlayerMovement>().GetVelocity().magnitude * adaptiveStrength;
-        Debug.Log(playerObject.GetComponent<PlayerMovement>().GetVelocity().magnitude);
+        // Debug.Log(playerObject.GetComponent<PlayerMovement>().GetVelocity().magnitude);
         
     }
     // camera collides with environment using sphere cast
