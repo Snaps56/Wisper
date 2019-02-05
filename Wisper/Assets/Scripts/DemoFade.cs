@@ -33,9 +33,11 @@ public class DemoFade : MonoBehaviour {
             animatorCurtain.SetTrigger("FadeOut");
         }
 
+        /*
         if ((bool)PSData.stateConditions["DemoEnd"])
         {
             animatorDemoFade.SetTrigger("DemoFade");
         }
+        */
     }
 }

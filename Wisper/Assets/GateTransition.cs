@@ -5,17 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class GateTransition : MonoBehaviour {
 
-    public Animator fadeAnimator;
+    public CanvasGroup blackFade;
     public Transform player;
     public GameObject transitionText;
-    public int nextSceneNumber;
+    public string nextSceneName;
     public float minDistance;
-    AsyncOperation test;
+    private bool startedAsync = false;
+    private bool startedSceneLoad = false;
+
+    private bool doFade = false;
+    private bool doneFade = false;
+    private float fadeDuration = 3f;
+    private float fadeRate;
 
     private float currentDistance;
+    private AsyncOperation async;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        blackFade.alpha = 0;
+        fadeRate = Time.fixedDeltaTime / fadeDuration;
 	}
 
     // Update is called once per frame
@@ -27,8 +36,7 @@ public class GateTransition : MonoBehaviour {
         {
             if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A"))
             {
-                fadeAnimator.Play("FadeOut");
-                StartCoroutine(LoadNewScene());
+                doFade = true;
             }
         }
         else
@@ -36,13 +44,39 @@ public class GateTransition : MonoBehaviour {
             transitionText.SetActive(false);
         }
     }
-    IEnumerator LoadNewScene()
+    private void FixedUpdate()
     {
-        yield return new WaitForSeconds(3);
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneNumber);
-        while (!asyncLoad.isDone)
+        FadeChecker();
+    }
+    void FadeChecker()
+    {
+        if (doFade)
         {
-            yield return null;
+            if (blackFade.alpha < 1 && !doneFade)
+            {
+                blackFade.alpha += fadeRate;
+            }
+            else
+            {
+                doneFade = true;
+            }
+            if (doneFade)
+            {
+                if (!startedAsync)
+                {
+                    startedAsync = true;
+                    async = SceneManager.LoadSceneAsync(nextSceneName);
+                    async.allowSceneActivation = false;
+                }
+                else
+                {
+                    // Debug.Log(async.progress);
+                    if (async.progress >= 0.9f)
+                    {
+                        async.allowSceneActivation = true;
+                    }
+                }
+            }
         }
     }
 }
