@@ -36,10 +36,12 @@ public class CameraOptimized : MonoBehaviour
     [Header("Adaptive Camera")]
     public float adaptiveStrength = 0.12f;
     public float adaptiveDelay = 3;
+    public bool allowAdaptiveCam = false;
+    
     private float initAdaptiveTimer;
     private float currentAdaptiveTimer;
     private bool playerNotMovingCam = false;
-    private bool enableAdaptiveCam = false;
+    private bool doAdaptiveCam = false;
 
     [Header("Collision")]
     public float sphereCastRadius = 1;
@@ -105,17 +107,17 @@ public class CameraOptimized : MonoBehaviour
                 initAdaptiveTimer = Time.time;
                 playerNotMovingCam = true;
             }
-            if (currentAdaptiveTimer > initAdaptiveTimer + adaptiveDelay && !enableAdaptiveCam)
+            if (currentAdaptiveTimer > initAdaptiveTimer + adaptiveDelay && !doAdaptiveCam)
             {
                 // Debug.Log("Do Adaptive Cam!");
-                enableAdaptiveCam = true;
+                doAdaptiveCam = true;
             }
             currentAdaptiveTimer = Time.time;
         }
         else
         {
             // Debug.Log("Moving Cam!");
-            enableAdaptiveCam = false;
+            doAdaptiveCam = false;
             playerNotMovingCam = false;
         }
 
@@ -198,7 +200,7 @@ public class CameraOptimized : MonoBehaviour
                 inputYAxis = 0;
             }
         }
-        if (enableAdaptiveCam)
+        if (doAdaptiveCam && allowAdaptiveCam)
         {
             AdaptiveCamera();
         }
