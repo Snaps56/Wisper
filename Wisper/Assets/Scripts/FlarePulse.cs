@@ -9,6 +9,7 @@ public class FlarePulse : MonoBehaviour
     public Camera mainCamera;
     public float dotProductAngle = 0.9f;
 
+    public bool VibStop = false;
     bool playerIndexSet = false;
     PlayerIndex playerIndex;
     GamePadState state;
@@ -90,47 +91,53 @@ public class FlarePulse : MonoBehaviour
         }
     }
 
+    IEnumerator Example()
+    {
+        yield return new WaitForSeconds(2);
+
+        VibStop = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+
         
         //Update the forward vector
         cameraForward = mainCamera.transform.forward;
 
         //Find direction between the shrine and camera
         toFlare = lensFlare.transform.position - mainCamera.transform.position;
-
+        //if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > (dotProductAngle - 0.1f) && VibStop==true)
+        //{
+        //    GamePad.SetVibration(playerIndex, 0f, 0f);
+        //}
+        if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) < (dotProductAngle - 0.1f) || VibStop == true || Time.timeScale == 0)
+        {
+            GamePad.SetVibration(playerIndex, 0f, 0f);
+        }
+        if (!VibStop && Time.timeScale == 1f)
+        {
+            if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > (dotProductAngle - 0.1f))
+            {
+                    GamePad.SetVibration(playerIndex, 0f, 1f);
+            }
+            if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > (dotProductAngle + 0.09f))
+            {
+                GamePad.SetVibration(playerIndex, 0.1f, 1f);
+                StartCoroutine(Example());
+            }
+        }
         //Player is looking at shrine
-        if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > dotProductAngle)
+        if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > (dotProductAngle))
         {
             //Debug.Log("Is pulsing");
             //Begins the timer
             BeginTimer();
-            GamePad.SetVibration(playerIndex, 0.01f , 0.1f);
 
             //Reassigns the brightness level
             lensFlare.brightness = currentBrightness;
         }
-
-        // Find a PlayerIndex, for a single player game
-        // Will find the first controller that is connected ans use it
-        if (!playerIndexSet || !prevState.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-                    playerIndex = testPlayerIndex;
-                    playerIndexSet = true;
-                }
-            }
-        }
-
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
-
     }
 }

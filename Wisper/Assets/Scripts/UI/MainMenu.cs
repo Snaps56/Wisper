@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using XInputDotNetPure;
+//using XInputDotNetPure;
 
 public class MainMenu : MonoBehaviour {
 
@@ -15,11 +15,6 @@ public class MainMenu : MonoBehaviour {
     public GameObject Credits;
     public GameObject Image;
     public PersistantStateData PSD;
-
-    bool playerIndexSet = false;
-    PlayerIndex playerIndex;
-    GamePadState state;
-    GamePadState prevState;
 
     private int LeveltoLoad = 0;
 
@@ -58,9 +53,9 @@ public class MainMenu : MonoBehaviour {
 
     void FixedUpdate()
     {
-        // SetVibration should be sent in a slower rate.
+        //SetVibration should be sent in a slower rate.
         // Set vibration according to triggers
-        GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
+        //GamePad.SetVibration(playerIndex, 0f, System.Math.Max(state.Triggers.Right, state.Triggers.Left));
     }
 
     void Update ()
@@ -74,26 +69,6 @@ public class MainMenu : MonoBehaviour {
             Credits.SetActive(false);
             Image.SetActive(true);
         }
-
-        // Find a PlayerIndex, for a single player game
-        // Will find the first controller that is connected ans use it
-        if (!playerIndexSet || !prevState.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-                    playerIndex = testPlayerIndex;
-                    playerIndexSet = true;
-                }
-            }
-        }
-
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
     }
 
 }

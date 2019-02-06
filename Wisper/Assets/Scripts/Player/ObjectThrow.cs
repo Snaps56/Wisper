@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class ObjectThrow : MonoBehaviour {
 
@@ -27,6 +28,12 @@ public class ObjectThrow : MonoBehaviour {
 	// Base throw force
 	private float originalThrowForce;
 
+    //Vibrate Settings
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+
     // Use this for initialization
     void Start () {
         movementVector = transform.position;
@@ -36,7 +43,7 @@ public class ObjectThrow : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         isLiftingObjects = character.GetComponentInChildren<ObjectLift>().GetIsLiftingObjects();
 
@@ -44,10 +51,12 @@ public class ObjectThrow : MonoBehaviour {
         if (Input.GetButton("PC_Mouse_Click_L") || Input.GetAxis("XBOX_Trigger_R") > 0)
         {
             isThrowingObjects = true;
+            //GamePad.SetVibration(playerIndex, 0f, state.Triggers.Right);
         }
         if (isThrowingObjects && !Input.GetButton("PC_Mouse_Click_L") && Input.GetAxis("XBOX_Trigger_R") <= 0)
         {
             isThrowingObjects = false;
+           // GamePad.SetVibration(playerIndex, 0f, 0f);
         }
         // Play particles when player is holding the throw button
         if (isThrowingObjects)
