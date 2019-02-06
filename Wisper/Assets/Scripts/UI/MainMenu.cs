@@ -18,10 +18,12 @@ public class MainMenu : MonoBehaviour {
 
     private int LeveltoLoad = 0;
 
+    //TODO fix this. This script seems to be on an object in every scene, and is causing PSD to reset whenever a new scene is loaded.
+    //Should only call PSD reset when a new game is started.
     private void Start()
     {
         PSD = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
-        PSD.ResetPersistantStateData();
+        //PSD.ResetPersistantStateData();
     }
 
     public void PlayGame()
