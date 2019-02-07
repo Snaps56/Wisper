@@ -17,8 +17,10 @@ public class PersistantStateData : MonoBehaviour
     // Otherwise if persistantStateData is already loaded into the game/scene, don't overwrite it and delete this object. This enforces singleton status.
     void Awake()
     {
+        Debug.Log("PSD Awake called");
         if (persistantStateData == null)
         {
+            Debug.Log("PSD static self reference is null");
             DontDestroyOnLoad(gameObject);
             persistantStateData = this;
 
@@ -29,6 +31,7 @@ public class PersistantStateData : MonoBehaviour
         }
         else if (persistantStateData != this)
         {
+            Debug.Log("PSD static self reference not null. Destroying this.");
             Destroy(gameObject);
         }
     }
@@ -46,14 +49,33 @@ public class PersistantStateData : MonoBehaviour
     }
 
     // fills the persistantStateConditions with the various conditions. We can consider passing in arguments for initialization when considering save/load functionality.
-    public void PopulateStateConditions()
+    private void PopulateStateConditions()
     {
-        stateConditions.Add("StartupFadeFinished", false);
-        stateConditions.Add("StartupShrineDialogueFinished", false);
+        //Debug.Log("Populating PSD with variables");
 
-        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
-        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
-        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
+        ////////////////////////////////////////////////////////////
+        ////////////////////    Tooltip flags   ////////////////////
+        ////////////////////////////////////////////////////////////
+        stateConditions.Add("TutorialFirstDialogueFinished", false); // Check if opening dialogue done, then trigger look tutorial
+        stateConditions.Add("TutorialLookFinished", false); // check if look tutorial done, then trigger move tutorial
+        stateConditions.Add("TutorialMovementFinished", false); // check if move tutorial done, then trigger vertical move tutorial
+        stateConditions.Add("TutorialVerticalFinished", false); // check if vertical tutorial done, then remove vertical move tutorial
+        stateConditions.Add("TutorialWithinShrineRange", false); // check if player within ui marker range of shrine, then trigger ui marker tutorial
+        stateConditions.Add("TutorialFirstInteraction", false); // check if player talking with shrine, then trigger dialogue tutorial
+        stateConditions.Add("TutorialTalkedWithShrine", false); // ????
+        stateConditions.Add("TutorialInteractFinished", false); // ????
+        stateConditions.Add("TutorialDialogueSkipped", false); // check if player done with first converation, then trigger attempt clean tutorial
+        stateConditions.Add("TutorialAttemptedClean", false); // check if player attempted to clean shrine, then end attempt clean tutorial
+        stateConditions.Add("TutorialWithinShellsterRange", false); // check if player within shellster range, then end generate orb tutorial
+        stateConditions.Add("TutorialHasEnoughOrbs", false); // check if player within shellster range, then end generate orb tutorial
+
+
+        /////////////////////////////////////////////////////////
+        ////////////////////    Task flags   ////////////////////
+        /////////////////////////////////////////////////////////
+        stateConditions.Add("ShamusHasHat", false);
+        stateConditions.Add("ShrineIsClean", false);
+        stateConditions.Add("SwingTaskDone", false);
 
         // Variables control dialogue of shrine the first time the player talks to it
         stateConditions.Add("ShrineFirstConversation", false);  // Allows player to initiate conversation
@@ -69,33 +91,30 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("ShrineFirstTurnInNo", false);  // Player says no to the first turn in
         stateConditions.Add("FirstTurnInCutsceneDialogue", false);  // Used to start Dialogue during trun in cutscene
         stateConditions.Add("GoForth", false);  // Used to enable dialogue telling player to leave the garden
-        stateConditions.Add("DemoEnd", false);
 
-        stateConditions.Add("TutorialFirstDialogueFinished", false); // Check if opening dialogue done, then trigger look tutorial
-        stateConditions.Add("TutorialLookFinished", false); // check if look tutorial done, then trigger move tutorial
-        stateConditions.Add("TutorialMovementFinished", false); // check if move tutorial done, then trigger vertical move tutorial
-        stateConditions.Add("TutorialVerticalFinished", false); // check if vertical tutorial done, then remove vertical move tutorial
-        stateConditions.Add("TutorialWithinShrineRange", false); // check if player within ui marker range of shrine, then trigger ui marker tutorial
-        stateConditions.Add("TutorialFirstInteraction", false); // check if player talking with shrine, then trigger dialogue tutorial
-        stateConditions.Add("TutorialTalkedWithShrine", false); // ????
-        stateConditions.Add("TutorialInteractFinished", false); // ????
-        stateConditions.Add("TutorialDialogueSkipped", false); // check if player done with first converation, then trigger attempt clean tutorial
-        stateConditions.Add("TutorialAttemptedClean", false); // check if player attempted to clean shrine, then end attempt clean tutorial
-        stateConditions.Add("TutorialWithinShellsterRange", false); // check if player within shellster range, then end generate orb tutorial
-        stateConditions.Add("TutorialHasEnoughOrbs", false); // check if player within shellster range, then end generate orb tutorial
+        /////////////////////////////////////////////////////////////
+        ////////////////////    Dialogue flags   ////////////////////
+        /////////////////////////////////////////////////////////////
 
-        stateConditions.Add("ShamusHasHat", false);
-        stateConditions.Add("ShrineIsClean", false);
+        stateConditions.Add("StartupShrineDialogueFinished", false);
+        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
+        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
+        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
 
-        stateConditions.Add("SwingTaskDone", false);
+        ///////////////////////////////////////////////////////////////////
+        ////////////////////    Miscellaneous flags   ////////////////////
+        //////////////////////////////////////////////////////////////////
 
+        stateConditions.Add("StartupFadeFinished", false);
         stateConditions.Add("Cutscene1Started", false);
-
         stateConditions.Add("OrbDepositInProgress", false);
+        stateConditions.Add("DemoEnd", false);
+        stateConditions.Add("DebugValue", false);
     }
 
     public void ResetPersistantStateData()
     {
+        //Debug.Log("PSD Reset called");
         stateConditions.Clear();
         PopulateStateConditions();
 
@@ -103,10 +122,12 @@ public class PersistantStateData : MonoBehaviour
 
     public void ChangeStateConditions(string key, bool value)
     {
+        //Debug.Log("PSD Value change attempt on " + key + ". Current Value: " + persistantStateData.stateConditions[key] + ". Target value: " + value);
         if((bool)stateConditions[key] != value)
         {
             stateConditions[key] = value;
             updateCount++;
+            Debug.Log("PSD Value changed");
         }
     }
 
