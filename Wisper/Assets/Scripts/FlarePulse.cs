@@ -10,10 +10,12 @@ public class FlarePulse : MonoBehaviour
     public float dotProductAngle = 0.9f;
 
     public bool VibStop = false;
+    public bool StoppedVib = false;
     bool playerIndexSet = false;
     PlayerIndex playerIndex;
     GamePadState state;
     GamePadState prevState;
+    
 
 
 
@@ -96,14 +98,13 @@ public class FlarePulse : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         VibStop = true;
+        StoppedVib = true;
+        GamePad.SetVibration(playerIndex, 0f, 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-        
         //Update the forward vector
         cameraForward = mainCamera.transform.forward;
 
@@ -113,7 +114,7 @@ public class FlarePulse : MonoBehaviour
         //{
         //    GamePad.SetVibration(playerIndex, 0f, 0f);
         //}
-        if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) < (dotProductAngle - 0.1f) || VibStop == true || Time.timeScale == 0)
+        if ((Vector3.Dot(cameraForward.normalized, toFlare.normalized) < (dotProductAngle - 0.1f) || VibStop == true || Time.timeScale == 0) && StoppedVib == false)
         {
             GamePad.SetVibration(playerIndex, 0f, 0f);
         }

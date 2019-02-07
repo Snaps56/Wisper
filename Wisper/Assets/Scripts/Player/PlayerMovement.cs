@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -8,6 +9,12 @@ public class PlayerMovement : MonoBehaviour {
     public float movementSpeed;
     public float sprintMultiplier;
     public float stopMultiplier;
+
+    public bool VibStop = false;
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
 
     private Rigidbody rb;
     private bool sprintMod;
@@ -120,10 +127,12 @@ public class PlayerMovement : MonoBehaviour {
             if (!sprintMod)
             {
                 sprintMod = true;
+                GamePad.SetVibration(playerIndex, 0f, 1f);
             }
             else
             {
                 sprintMod = false;
+                GamePad.SetVibration(playerIndex, 0f, 0f);
             }
         }
 
