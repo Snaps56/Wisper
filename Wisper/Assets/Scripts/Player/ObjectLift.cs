@@ -144,6 +144,11 @@ public class ObjectLift : MonoBehaviour {
         }
     }
 
+    public float GetLiftForce()
+    {
+        return liftCenterStrength;
+    }
+
     // add an object to the current array of lifted objects
     void addToLiftedObjects(Collider other)
     {
