@@ -9,8 +9,6 @@ public class CameraOptimized : MonoBehaviour
     public GameObject playerObject;
 
     [Header("Camera Mechanics")]
-    public float defaultAngleY = 20;
-    public float defaultAngleX = 100;
     public float highClampAngle = 80;
     public float lowClampAngle = -80;
     public float inputSensitivity = 2;
@@ -20,7 +18,7 @@ public class CameraOptimized : MonoBehaviour
     [Header("Smooth Cam")]
     public bool enableSmoothCam = true;
     public float smoothCamDecay = 0.9f;
-    public float smoothCamRound = 0.04f;
+    public float smoothCamRound = 0.02f;
     public float smoothSensitivityMultiplier = 0.04f;
 
     [Header("Zoom Mechanics")]
@@ -34,14 +32,14 @@ public class CameraOptimized : MonoBehaviour
     public float fovSpeedModifier = 0.5f;
 
     [Header("Adaptive Camera")]
+    public bool allowAdaptiveCam = false;
+    private bool doAdaptiveCam = false;
     public float adaptiveStrength = 0.12f;
     public float adaptiveDelay = 3;
-    public bool allowAdaptiveCam = false;
     
     private float initAdaptiveTimer;
     private float currentAdaptiveTimer;
     private bool playerNotMovingCam = false;
-    private bool doAdaptiveCam = false;
 
     [Header("Collision")]
     public float sphereCastRadius = 1;
@@ -69,14 +67,15 @@ public class CameraOptimized : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         // disable mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         currentDistance = defaultDistance;
         collisionDistance = defaultDistance;
-        cameraY = defaultAngleY;
-        cameraX = defaultAngleX;
+        cameraY = transform.eulerAngles.x;
+        cameraX = transform.eulerAngles.y;
 
         playerRB = focusPoint.GetComponentInParent<Rigidbody>();
         defaultFOV = GetComponent<Camera>().fieldOfView;

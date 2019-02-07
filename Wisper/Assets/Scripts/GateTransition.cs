@@ -26,7 +26,7 @@ public class GateTransition : MonoBehaviour {
 
     private float delayInitial;
     private float delayCurrent;
-    private float delayDuration = 5.0f;
+    private float delayDuration = 10.0f;
 
     // Use this for initialization
     void Start () {
