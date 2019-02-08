@@ -13,7 +13,7 @@ public class TutorialChecker : MonoBehaviour {
 
     public string[] changeConditions; // conditions in persistant state data are changed after tutorial is finished
 
-    private bool sceneChecker;
+    private bool sceneChecker = false;
     private PersistantStateData persistantStateData;
 
     // Use this for initialization
@@ -24,25 +24,39 @@ public class TutorialChecker : MonoBehaviour {
         bool initChangeCondition = true;
         for (int i = 0; i < changeConditions.Length; i++)
         {
-            sceneChecker = (bool)persistantStateData.stateConditions[changeConditions[i]];
+            if (!(bool)persistantStateData.stateConditions[changeConditions[i]])
+            {
+                initChangeCondition = false;
+            }
+        }
+        if (initChangeCondition)
+        {
+            sceneChecker = true;
         }
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        // check every frame if initial conditions have been met
-        for (int i = 0; i < initialConditions.Length; i++)
+        if (!sceneChecker)
         {
-            initialConditionBools[i] = (bool)persistantStateData.stateConditions[initialConditions[i]];
+            // check every frame if initial conditions have been met
+            for (int i = 0; i < initialConditions.Length; i++)
+            {
+                initialConditionBools[i] = (bool)persistantStateData.stateConditions[initialConditions[i]];
+            }
+            tutorialConditionMet = tutorialCondition.GetCondition();
         }
-        tutorialConditionMet = tutorialCondition.GetCondition();
     }
 
     // return whether if tutorial is completed to trigger another event
     public bool TutorialConditionMet()
     {
         return tutorialConditionMet;
+    }
+    public bool GetSceneChecker()
+    {
+        return sceneChecker;
     }
 
     // Check if the initial conditions if this tutorial have been been completed before tutorial can start
