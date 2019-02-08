@@ -41,6 +41,7 @@ public class TutorialFader : MonoBehaviour {
     private Vector3 dialoguePosition;
     
     private bool updatedPSD = false;
+    private bool psdInitial;
 
     // Use this for initialization
     void Start () {
@@ -51,35 +52,37 @@ public class TutorialFader : MonoBehaviour {
         GetComponent<CanvasGroup>().alpha = alphaValue;
 
         tutorialCheckerScript = GetComponent<TutorialChecker>();
+        psdInitial = tutorialCheckerScript.GetSceneChecker();
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        DialogueOffset();
-        DelayTutorial();
-
-
-        // if the delay timer is done, begin fade timers
-        if (doneDelay)
+        if (!psdInitial)
         {
-            if (!obtainedInitialTime)
+            DialogueOffset();
+            DelayTutorial();
+
+            // if the delay timer is done, begin fade timers
+            if (doneDelay)
             {
-                initialTime = Time.time;
-                obtainedInitialTime = true;
+                if (!obtainedInitialTime)
+                {
+                    initialTime = Time.time;
+                    obtainedInitialTime = true;
+                }
+
+                durationCounter = Time.time - initialTime;
+
+                FadeIn();
+                FadeOut();
             }
-            
-            durationCounter = Time.time - initialTime;
 
-            FadeIn();
-            FadeOut();
-        }
-
-        // if the fading is finished, update the Persistant State Data variables
-        if (doneFading && !updatedPSD)
-        {
-            tutorialCheckerScript.updatePSD();
-            updatedPSD = true;
+            // if the fading is finished, update the Persistant State Data variables
+            if (doneFading && !updatedPSD)
+            {
+                tutorialCheckerScript.updatePSD();
+                updatedPSD = true;
+            }
         }
     }
 
