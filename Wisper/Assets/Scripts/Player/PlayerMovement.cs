@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -8,6 +9,12 @@ public class PlayerMovement : MonoBehaviour {
     public float movementSpeed;
     public float sprintMultiplier;
     public float stopMultiplier;
+
+    public bool VibStop = false;
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
 
     private Rigidbody rb;
     private bool sprintMod;
@@ -66,6 +73,18 @@ public class PlayerMovement : MonoBehaviour {
             SetFollowTargetVelocity(followTarget);
         }
 
+        // Debug key for testing PSD
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            bool toggle = true;
+            GameObject PSD = GameObject.Find("PersistantStateData");
+            if((bool)PSD.GetComponent<PersistantStateData>().stateConditions["DebugValue"])
+            {
+                toggle = false;
+            }
+
+            PSD.GetComponent<PersistantStateData>().ChangeStateConditions("DebugValue", toggle);
+        }
     }
 
     // Physics-based Update
@@ -120,10 +139,12 @@ public class PlayerMovement : MonoBehaviour {
             if (!sprintMod)
             {
                 sprintMod = true;
+                GamePad.SetVibration(playerIndex, 0f, 1f);
             }
             else
             {
                 sprintMod = false;
+                GamePad.SetVibration(playerIndex, 0f, 0f);
             }
         }
 
@@ -232,7 +253,13 @@ public class PlayerMovement : MonoBehaviour {
     {
         return rb.velocity;
     }
+    public float GetSidewaysAxis()
+    {
+        float sidewaysAxis = Input.GetAxis("XBOX_Thumbstick_L_X");
+        sidewaysAxis += Input.GetAxis("PC_Axis_MovementX");
 
+        return sidewaysAxis;
+    }
     // returns the force that the player is applying to the character to move around
     public Vector3 GetForce()
     {

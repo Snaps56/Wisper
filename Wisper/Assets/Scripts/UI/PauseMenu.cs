@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using XInputDotNetPure;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class PauseMenu : MonoBehaviour
 
     private float CurrentVolume;
 
+    //Vibrate Settings
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,6 +42,26 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        //// Find a PlayerIndex, for a single player game
+        //// Will find the first controller that is connected and use it
+        //if (!playerIndexSet || !prevState.IsConnected)
+        //{
+        //    for (int i = 0; i < 4; ++i)
+        //    {
+        //        PlayerIndex testPlayerIndex = (PlayerIndex)i;
+        //        GamePadState testState = GamePad.GetState(testPlayerIndex);
+        //        if (testState.IsConnected)
+        //        {
+        //            //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+        //            playerIndex = testPlayerIndex;
+        //            playerIndexSet = true;
+        //        }
+        //    }
+        //}
+
+        //prevState = state;
+        //state = GamePad.GetState(playerIndex);
     }
     // Resumes the game and resets the cursor lock
     public void Resume()
@@ -62,6 +89,7 @@ public class PauseMenu : MonoBehaviour
     // Pauses the game and unlocks the cursor
     void Pause()
     {
+       // GamePad.SetVibration(playerIndex, 0f, 0f);
         pauseMenuUI.SetActive(true);
         MainEventSystem.SetActive(true);
         Time.timeScale = 0f;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class ObjectLift : MonoBehaviour {
 
@@ -27,6 +28,12 @@ public class ObjectLift : MonoBehaviour {
 	// Base lift strength
 	private float originalLiftCenterStrength;
 
+    //Vibrate Settings
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+
     List<GameObject> liftedObjects = new List<GameObject>();
 
     // Use this for initialization
@@ -38,16 +45,18 @@ public class ObjectLift : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         // check if the player is currently pressing the lift button
         if (Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0)
         {
             isLiftingObjects = true;
+            //GamePad.SetVibration(playerIndex, 0f, state.Triggers.Left);
         }
         if (isLiftingObjects && !Input.GetButton("PC_Mouse_Click_R") && Input.GetAxis("XBOX_Trigger_L") <= 0)
         {
             isLiftingObjects = false;
+            //GamePad.SetVibration(playerIndex, 0f, 0f);
         }
         isThrowingObjects = character.GetComponentInChildren<ObjectThrow>().GetIsThrowingObjects();
 
@@ -59,6 +68,7 @@ public class ObjectLift : MonoBehaviour {
         // currentCharacterVector = orbcountScript.currentMovementForce;
         currentCharacterVector.y *= 0;
         currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
+
     }
     void FixedUpdate ()
     {
@@ -132,6 +142,11 @@ public class ObjectLift : MonoBehaviour {
                 addToLiftedObjects(other);
             }
         }
+    }
+
+    public float GetLiftForce()
+    {
+        return liftCenterStrength;
     }
 
     // add an object to the current array of lifted objects

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class ObjectThrow : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class ObjectThrow : MonoBehaviour {
     public float maxObjectThrowSpeed;
     public float liftComboMultiplier;
     public float verticalAimAngle;
+    public float orbForceMultiplier = 0.2f;
 
     private bool isLiftingObjects;
     private bool isThrowingObjects = false;
@@ -27,6 +29,12 @@ public class ObjectThrow : MonoBehaviour {
 	// Base throw force
 	private float originalThrowForce;
 
+    //Vibrate Settings
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+
     // Use this for initialization
     void Start () {
         movementVector = transform.position;
@@ -36,7 +44,7 @@ public class ObjectThrow : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         isLiftingObjects = character.GetComponentInChildren<ObjectLift>().GetIsLiftingObjects();
 
@@ -44,10 +52,12 @@ public class ObjectThrow : MonoBehaviour {
         if (Input.GetButton("PC_Mouse_Click_L") || Input.GetAxis("XBOX_Trigger_R") > 0)
         {
             isThrowingObjects = true;
+            //GamePad.SetVibration(playerIndex, 0f, state.Triggers.Right);
         }
         if (isThrowingObjects && !Input.GetButton("PC_Mouse_Click_L") && Input.GetAxis("XBOX_Trigger_R") <= 0)
         {
             isThrowingObjects = false;
+           // GamePad.SetVibration(playerIndex, 0f, 0f);
         }
         // Play particles when player is holding the throw button
         if (isThrowingObjects)
@@ -66,7 +76,7 @@ public class ObjectThrow : MonoBehaviour {
         }
         // Modify throw force based on orb count
         playerOrbCount = character.GetComponentInChildren<OrbCount>().GetOrbCount();
-        throwForce = originalThrowForce + playerOrbCount;
+        throwForce = originalThrowForce * (1 + (playerOrbCount * orbForceMultiplier));
 
         // obtain player movement vector to determine throw direction
         currentPlayerVelocity = character.GetComponent<Rigidbody>().velocity.magnitude;
@@ -81,6 +91,10 @@ public class ObjectThrow : MonoBehaviour {
 
 	public bool GetIsThrowingObjects() {
 		return isThrowingObjects;
+    }
+    public float GetThrowForce()
+    {
+        return throwForce;
     }
 
     // detect if any pickable objects are within range

@@ -9,11 +9,11 @@ public class SpawnOrbs : MonoBehaviour
     public Transform player;
 
     // public variables for testing purposes
-    public float orbCount; // number of orbs generated
-    public float initialForceMultiplier; // force applied on orb on generation
-    public float moveSpeedMultiplier; // how much faster orbs move toward the the player based on distance
-    public float slowMultiplier; // how much friction reduces max speed of orbs after initial force
-    public float orbSpawnOffsetY; // how high orbs spawn from the base position of parent object
+    public float orbCount = 5; // number of orbs generated
+    public float initialForceMultiplier = 400; // force applied on orb on generation
+    public float moveSpeedMultiplier = 0.5f; // how much faster orbs move toward the the player based on distance
+    public float slowMultiplier = 1; // how much friction reduces max speed of orbs after initial force
+    public float orbSpawnOffsetY = 0; // how high orbs spawn from the base position of parent object
 
     List<GameObject> orbsList = new List<GameObject>(); // a list of all active orbs in the scene
     
