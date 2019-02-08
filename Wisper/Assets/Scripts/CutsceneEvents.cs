@@ -79,12 +79,12 @@ public class CutsceneEvents : MonoBehaviour {
     }
 
 
-
-    void cutsceneSkipped()
+    public void cutsceneSkipped()
     {
         PSDVariableOn("StartupShrineDialogue");
         endAnimation();
     }
+
 }
 
 [System.Serializable]
