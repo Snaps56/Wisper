@@ -72,7 +72,7 @@ public class RaycastCollision : MonoBehaviour {
         if (Physics.Raycast(transform.position, direction, out hit, radius))
         {
             // "collide" only when collider is detecting an object that has these tags
-            if (hit.collider.tag == "Terrain" || hit.collider.tag == "Water")
+			if (hit.collider.tag == "Terrain" || hit.collider.tag == "TerrainSand" || hit.collider.tag == "Water")
             {
                 // calculate repel force via distance from ground
                 Vector3 floatVector = transform.position - hit.point;
