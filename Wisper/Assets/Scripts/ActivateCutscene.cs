@@ -66,10 +66,10 @@ public class ActivateCutscene : MonoBehaviour {
         if (/*Input.GetButton("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")*/ Input.GetKey(KeyCode.H))
         {
             Debug.Log("Skipped");
-            foreach (AnimationState anim in cutsceneCamera.GetComponent<Animation>())
-            {
-                anim.time = anim.length;
-            }
+            //foreach (AnimationState anim in cutsceneCamera.GetComponent<Animation>())
+            //{
+            //    anim.time = anim.length;
+            //}
 
             //foreach (AnimationClip clip in cutsceneCamera.GetComponent<Animation>())
             //{
@@ -78,6 +78,12 @@ public class ActivateCutscene : MonoBehaviour {
             //        Debug.Log("Events: " + e);
             //    }
             //}
+
+            AnimationClip cutscene1 = cutsceneCamera.GetComponent<Animation>().GetClip("Cutscene1");
+            foreach (AnimationState anim in cutsceneCamera.GetComponent<Animation>())
+            {
+                //anim.
+            }
         }
 
     }

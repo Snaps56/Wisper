@@ -9,6 +9,7 @@ public class EndIntro : MonoBehaviour {
     public VideoPlayer video;
 	// Use this for initialization
 	void Start () {
+        Cursor.visible = false;
         video.loopPointReached += EndReached;
 	}
 	
