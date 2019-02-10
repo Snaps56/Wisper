@@ -62,7 +62,7 @@ public class MainMenu : MonoBehaviour {
 
     void Update ()
     {
-        if (Input.GetButtonDown("XBOX_Button_B"))
+        if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel"))
         {
             EventSystem1.SetActive(true);
             EventSystem2.SetActive(false);
