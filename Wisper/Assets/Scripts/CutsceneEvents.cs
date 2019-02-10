@@ -13,7 +13,7 @@ public class CutsceneEvents : MonoBehaviour {
     public GameObject windPowerUI;
     public GameObject player;
 	public GameObject cityGate;
-
+    public AudioSource rainSound;
 
     void PSDVariableOn(string key)
     {
@@ -43,7 +43,6 @@ public class CutsceneEvents : MonoBehaviour {
 
 	void enableGate() {
 		cityGate.SetActive(true);
-
 	}
 
     void playDeposit2 ()
@@ -79,6 +78,8 @@ public class CutsceneEvents : MonoBehaviour {
         windPowerUI.SetActive(true);
         //Turned rain off
         rain.SetActive(false);
+        //Turn off rain sound
+        rainSound.Stop();
         //Resets the rain tint back to normal
         Color tempColor = new Color(255, 147, 85, 255);
         light.GetComponent<Light>().color = Color.white;

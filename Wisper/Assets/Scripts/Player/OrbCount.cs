@@ -14,6 +14,8 @@ public class OrbCount : MonoBehaviour {
     public Image windPowerBar;
     public Text orbCountText;
 
+    public AudioSource wub;
+
     //Initilize Variables
     void Start()
     {
@@ -40,14 +42,15 @@ public class OrbCount : MonoBehaviour {
         {
             //Destroys Orb
             Destroy(other.gameObject);
-			Debug.Log ("Added 1 orb");
+			//Debug.Log ("Added 1 orb");
 
             ///Update UI
             if (orbCount < orbMax)
             {
                 orbCount ++;
-                Debug.Log("count increased");
+                //Debug.Log("count increased");
             }
+            wub.Play();
             windPowerBar.fillAmount = orbCount / orbMax;
             orbCountText.text = orbCount.ToString() + "/" + orbMax;
             ///End Update UI

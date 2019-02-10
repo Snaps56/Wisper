@@ -7,6 +7,7 @@ public class SpawnOrbs : MonoBehaviour
     // Gameobjects required by Inspector
     public GameObject orb;
     public Transform player;
+    public AudioSource bell;
 
     // public variables for testing purposes
     public float orbCount = 5; // number of orbs generated
@@ -62,6 +63,10 @@ public class SpawnOrbs : MonoBehaviour
 
     // drop orbs called only from outside class calls or via debug button
     public void DropOrbs (){
+        if (bell != null)
+        {
+            bell.Play();
+        }
 
         // generate orbs based on the number of requested orbs to drop
 		for (int i = 0; i < orbCount; i++) {

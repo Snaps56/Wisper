@@ -5,7 +5,8 @@ using UnityEngine;
 public class OrbDepositSequence : MonoBehaviour {
 
 	public GameObject[] pathNodes;
-	private int currentNode;
+
+    private int currentNode;
 	private float travelSpeed;
 
 	private Vector3 start;
@@ -14,6 +15,7 @@ public class OrbDepositSequence : MonoBehaviour {
 	private bool canMove;
 
 	private Shrine shrineScript;
+
 
 	// Use this for initialization
 	void Start () {

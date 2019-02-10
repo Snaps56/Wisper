@@ -17,7 +17,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject MainEventSystem;
     public GameObject GraphicsEventSystem;
     public GameObject AudioEventSystem;
-
     public AudioMixer audioMixer;
 
     private float CurrentVolume;

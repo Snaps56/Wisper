@@ -17,10 +17,10 @@ public class PersistantStateData : MonoBehaviour
     // Otherwise if persistantStateData is already loaded into the game/scene, don't overwrite it and delete this object. This enforces singleton status.
     void Awake()
     {
-        Debug.Log("PSD Awake called");
+        //Debug.Log("PSD Awake called");
         if (persistantStateData == null)
         {
-            Debug.Log("PSD static self reference is null");
+            //Debug.Log("PSD static self reference is null");
             DontDestroyOnLoad(gameObject);
             persistantStateData = this;
 

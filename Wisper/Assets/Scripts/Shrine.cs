@@ -52,6 +52,8 @@ public class Shrine : MonoBehaviour {
 	// Lightning for the cutscene
     public GameObject light;
     public GameObject windPowerUI;
+    public AudioSource lighting;
+    public AudioSource rainSound;
 
     [Header("Clean Stuff")]
 	// Condition for when the shrine is in the process of being cleaned
@@ -154,7 +156,8 @@ public class Shrine : MonoBehaviour {
                     playerMovement.RemoveFollowTarget();
 
 					Debug.Log ("Deposit Complete");
-
+                    lighting.Play();
+                    rainSound.Play();
                     if (!Triggered )
                     {
                         Debug.Log("WE'RE IN");
@@ -211,7 +214,8 @@ public class Shrine : MonoBehaviour {
 		}
 		*/
 		player.GetComponentInChildren<OrbCount> ().SetOrbCount (0);
-		for (int oc = 0; oc < depositCount; oc++) {
+        Debug.Log("Orb getting deposited");
+        for (int oc = 0; oc < depositCount; oc++) {
 			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + player.transform.position;
 			orbDepositInstance = Instantiate (orbDeposit, spawnPosition, Quaternion.identity);
 			//OrbDepositInstanceArray [oc] = orbDepositInstance;
@@ -230,6 +234,7 @@ public class Shrine : MonoBehaviour {
 	*/
 
 	public void destroyOrbDeposit (GameObject orbDeposit) {
+        Debug.Log("Orb getting destroyed");
         Instantiate(orbExplode, orbDeposit.transform.position, Quaternion.identity);
         Destroy(orbDeposit.gameObject);
 		orbDepositsInTransit--;
