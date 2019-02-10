@@ -76,6 +76,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("ShrineIsClean", false);
         stateConditions.Add("SwingTaskDone", false);
+        stateConditions.Add("MerryGoRound", false);
 
         // Variables control dialogue of shrine the first time the player talks to it
         stateConditions.Add("ShrineFirstConversation", false);  // Allows player to initiate conversation

@@ -7,6 +7,7 @@ public class MerryGoRound : MonoBehaviour {
     public GameObject abilitiesCollider;
     public float torqueMultiplier = 0.05f;
     public float dangerSpeed = 6f;
+    public float correctSpeed = 4f;
     public GameObject[] shellsters;
 
     private Rigidbody rb;
@@ -18,10 +19,11 @@ public class MerryGoRound : MonoBehaviour {
     private float torque;
     private bool isWithinRange = false;
     private float currentVelocity;
+    private PersistantStateData persistantStateData;
 
-	// Use this for initialization
-	void Start () {
-
+    // Use this for initialization
+    void Start () {
+        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         rb = GetComponent<Rigidbody>();
 	}
 	
@@ -52,6 +54,10 @@ public class MerryGoRound : MonoBehaviour {
                 shellsters[i].GetComponent<Rigidbody>().AddExplosionForce(150, transform.position, 5f);
                 Debug.Log("detached " + shellsters[i]);
             }
+        }
+        else if (currentVelocity >= correctSpeed && !reachedDangerSpeed) {
+            GetComponent<SpawnOrbs>().DropOrbs();
+            persistantStateData.stateConditions["MerryGoRound"] = true;
         }
 	}
     private void FixedUpdate()

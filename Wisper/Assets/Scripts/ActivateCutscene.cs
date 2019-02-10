@@ -83,7 +83,7 @@ public class ActivateCutscene : MonoBehaviour {
             //    }
             //}
 
-            //AnimationClip cutscene1 = cutsceneCamera.GetComponent<Animation>().GetClip("Cutscene1");
+            AnimationClip cutscene1 = cutsceneCamera.GetComponent<Animation>().GetClip("Cutscene1");
 
         }
 

@@ -43,6 +43,7 @@ public class CutsceneEvents : MonoBehaviour {
 
 	void enableGate() {
 		cityGate.SetActive(true);
+
 	}
 
     void playDeposit2 ()
