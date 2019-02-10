@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     public float sprintMultiplier;
     public float stopMultiplier;
 
-    public bool VibStop = false;
+    public bool vibStop = false;
     bool playerIndexSet = false;
     PlayerIndex playerIndex;
     GamePadState state;
@@ -158,7 +158,8 @@ public class PlayerMovement : MonoBehaviour {
             finalSpeed = movementSpeed * sprintMultiplier;
 			if (!screenParticles.isPlaying) {
 				screenParticles.Play ();
-                //GamePad.SetVibration(playerIndex, 0f, 0.5f);
+                GamePad.SetVibration(playerIndex, 0f, 0.5f);
+                vibStop = false;
             }
         }
         else
@@ -166,7 +167,11 @@ public class PlayerMovement : MonoBehaviour {
             finalSpeed = movementSpeed;
 			if (screenParticles.isPlaying) {
 				screenParticles.Stop ();
-               // GamePad.SetVibration(playerIndex, 0f, 0f);
+                if (vibStop == false){
+                    GamePad.SetVibration(playerIndex, 0f, 0f);
+                    vibStop = true;
+                }
+                
             }
         }
 

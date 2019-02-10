@@ -57,12 +57,12 @@ public class ObjectThrow : MonoBehaviour {
         if (Input.GetButton("PC_Mouse_Click_L") || Input.GetAxis("XBOX_Trigger_R") > 0)
         {
             isThrowingObjects = true;
-            //GamePad.SetVibration(playerIndex, 0f, state.Triggers.Right);
+            GamePad.SetVibration(playerIndex, 0f, state.Triggers.Right);
         }
         if (isThrowingObjects && !Input.GetButton("PC_Mouse_Click_L") && Input.GetAxis("XBOX_Trigger_R") <= 0)
         {
             isThrowingObjects = false;
-           // GamePad.SetVibration(playerIndex, 0f, 0f);
+            GamePad.SetVibration(playerIndex, 0f, 0f);
         }
         // Play particles when player is holding the throw button
         if (isThrowingObjects)
@@ -92,9 +92,28 @@ public class ObjectThrow : MonoBehaviour {
             deltaMovementVector = (movementVector.normalized - transform.position.normalized).normalized;
             deltaMovementVector.y *= 0;
         }
+        // Find a PlayerIndex, for a single player game
+        // Will find the first controller that is connected and use it
+        if (!playerIndexSet || !prevState.IsConnected)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                PlayerIndex testPlayerIndex = (PlayerIndex)i;
+                GamePadState testState = GamePad.GetState(testPlayerIndex);
+                if (testState.IsConnected)
+                {
+                    //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                    playerIndex = testPlayerIndex;
+                    playerIndexSet = true;
+                }
+            }
+        }
+
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
     }
 
-	public bool GetIsThrowingObjects() {
+    public bool GetIsThrowingObjects() {
 		return isThrowingObjects;
     }
     public float GetThrowForce()
