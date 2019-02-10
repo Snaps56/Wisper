@@ -29,6 +29,7 @@ public class NPCMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         
     }
+    /*
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "Player" && (Input.GetButton("PC_Key_Interact") || Input.GetButton("XBOX_Button_X")))
@@ -46,16 +47,22 @@ public class NPCMovement : MonoBehaviour
         }
         
     }
+    */
     // Update is called once per frame
     void Update()
     {     
         //sets the last waypoint to the hat
         //waypoints[5].transform.position = hat.transform.position;
+
+
+
         Vector3 direction = player.transform.position - this.transform.position;
+        /*
         if (hat != null)
         {
             Vector3 distanceFromHat = npc.transform.position - hat.transform.position;
         }
+        */
         //Movement loop
         if (waypoints.Length > 0)
         {
@@ -66,6 +73,7 @@ public class NPCMovement : MonoBehaviour
 					currentWP = 0;
                 }
                 //When he detects the hat
+                /*
                if ((hat != null && Vector3.Distance(transform.position, hat.transform.position) < detection))
                 {
                     //Go to last
@@ -85,6 +93,7 @@ public class NPCMovement : MonoBehaviour
                     }                   
                                         
                 }
+                */
             }
             //if (/*currentWP == 5 && */ distanceFromHat.magnitude <= stopLength)
             //{
