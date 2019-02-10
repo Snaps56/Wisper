@@ -139,12 +139,12 @@ public class PlayerMovement : MonoBehaviour {
             if (!sprintMod)
             {
                 sprintMod = true;
-                GamePad.SetVibration(playerIndex, 0f, 1f);
+                
             }
             else
             {
                 sprintMod = false;
-                GamePad.SetVibration(playerIndex, 0f, 0f);
+                
             }
         }
 
@@ -158,14 +158,16 @@ public class PlayerMovement : MonoBehaviour {
             finalSpeed = movementSpeed * sprintMultiplier;
 			if (!screenParticles.isPlaying) {
 				screenParticles.Play ();
-			}
+                //GamePad.SetVibration(playerIndex, 0f, 0.5f);
+            }
         }
         else
         {
             finalSpeed = movementSpeed;
 			if (screenParticles.isPlaying) {
 				screenParticles.Stop ();
-			}
+               // GamePad.SetVibration(playerIndex, 0f, 0f);
+            }
         }
 
     }

@@ -79,7 +79,6 @@ public class GateTransition : MonoBehaviour {
             {
                 loadingScreen.SetActive(true);
                 delayInitial = Time.time;
-                startedAsync = true;
                 StartCoroutine(LoadAsynchronously(nextSceneName));
             }
         }
@@ -89,6 +88,7 @@ public class GateTransition : MonoBehaviour {
         async = SceneManager.LoadSceneAsync(sceneName);
         Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
         async.allowSceneActivation = false;
+        startedAsync = true;
         while (!async.isDone)
         {
             //Debug.Log(async.progress);

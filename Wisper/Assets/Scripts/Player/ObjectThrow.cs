@@ -43,6 +43,11 @@ public class ObjectThrow : MonoBehaviour {
 		originalThrowForce = throwForce;
     }
 
+    public bool getisThrowing()
+    {
+        return this.isThrowingObjects;
+    }
+
     // Update is called once per frame
     void Update()
     {

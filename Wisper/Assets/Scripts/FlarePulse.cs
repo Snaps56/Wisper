@@ -124,7 +124,7 @@ public class FlarePulse : MonoBehaviour
             {
                     GamePad.SetVibration(playerIndex, 0f, 1f);
             }
-            if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > (dotProductAngle + 0.09f))
+            if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > (dotProductAngle))
             {
                 GamePad.SetVibration(playerIndex, 0.1f, 1f);
                 StartCoroutine(Example());
