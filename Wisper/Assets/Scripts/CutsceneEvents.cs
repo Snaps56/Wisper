@@ -12,6 +12,7 @@ public class CutsceneEvents : MonoBehaviour {
     public GameObject light;
     public GameObject windPowerUI;
     public GameObject player;
+	public GameObject cityGate;
 
 
     void PSDVariableOn(string key)
@@ -39,6 +40,10 @@ public class CutsceneEvents : MonoBehaviour {
         GameObject.Find("flower_wilt3").GetComponent<Animator>().SetBool("Grow", true);
         GameObject.Find("flower_wilt4").GetComponent<Animator>().SetBool("Grow", true);
     }
+
+	void enableGate() {
+		cityGate.SetActive(true);
+	}
 
     void playDeposit2 ()
     {

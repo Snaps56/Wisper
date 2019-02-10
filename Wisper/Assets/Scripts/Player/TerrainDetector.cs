@@ -87,7 +87,7 @@ public class TerrainDetector : MonoBehaviour {
 			terrainParticles = sandParticles;
 			Debug.Log("Close to sand");
 		}
-		if(other.gameObject.CompareTag("Terrain")) {
+		if(other.gameObject.CompareTag("TerrainGrass")) {
 			nearGrass = true;
 			nearTerrain = true;
 			terrainParticles = grassParticles;
@@ -108,7 +108,7 @@ public class TerrainDetector : MonoBehaviour {
 			nearTerrain = false;
 			//terrainParticles = null;
 		}
-		if(other.gameObject.CompareTag("Terrain")) {
+		if(other.gameObject.CompareTag("TerrainGrass")) {
 			Debug.Log("Far from grass");
 			nearGrass = false;
 			nearTerrain = false;
