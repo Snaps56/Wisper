@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 public class GateTransition : MonoBehaviour {
 
     public GameObject loadingScreen;
-    public GameObject logo;
-    public GameObject text;
-
     public CanvasGroup blackFade;
     public Transform player;
     public GameObject transitionText;
@@ -28,6 +25,8 @@ public class GateTransition : MonoBehaviour {
     private float delayCurrent;
     private float delayDuration = 10.0f;
 
+    private bool withinGateRange = false;
+
     // Use this for initialization
     void Start () {
         blackFade.alpha = 0;
@@ -41,6 +40,14 @@ public class GateTransition : MonoBehaviour {
 
         if (currentDistance < minDistance)
         {
+            withinGateRange = true;
+        }
+        else
+        {
+            withinGateRange = false;
+        }
+        if (withinGateRange)
+        {
             transitionText.SetActive(true);
             if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A"))
             {
@@ -51,6 +58,7 @@ public class GateTransition : MonoBehaviour {
         {
             transitionText.SetActive(false);
         }
+        
         if (startedAsync)
         {
             if (Time.time > delayInitial + delayDuration)
@@ -58,6 +66,10 @@ public class GateTransition : MonoBehaviour {
                 async.allowSceneActivation = true;
             }
         }
+    }
+    public bool GetWithinGateRange()
+    {
+        return withinGateRange;
     }
     private void FixedUpdate()
     {
