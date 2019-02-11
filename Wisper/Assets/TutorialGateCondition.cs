@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class TutorialGateCondition : MonoBehaviour {
 
-    private GameObject gate;
+    public GameObject gate;
     private bool inRange;
     private PersistantStateData persistantStateData;
     private TutorialCondition tutorialCondition;
 
+    private bool dependentCondition;
+
     private bool conditionCheck;
+    private bool tutorialDone = false;
 
     // Use this for initialization
     void Start () {
-        gate = GameObject.Find("Gate");
+        //gate = GameObject.Find("Gate");
         tutorialCondition = GetComponent<TutorialCondition>();
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
     }
@@ -21,10 +24,15 @@ public class TutorialGateCondition : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        inRange = gate.GetComponent<GateTransition>().GetWithinGateRange();
-        if (inRange)
+        dependentCondition = (bool)persistantStateData.stateConditions["DemoEnd"];
+        if (dependentCondition && !tutorialDone && gate.activeSelf)
         {
-            tutorialCondition.SetCondition(true);
+            inRange = gate.GetComponent<GateTransition>().GetWithinGateRange();
+            if (inRange)
+            {
+                tutorialCondition.SetCondition(true);
+                tutorialDone = true;
+            }
         }
 	}
 }

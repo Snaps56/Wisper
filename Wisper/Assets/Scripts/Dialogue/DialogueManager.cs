@@ -18,8 +18,7 @@ public class DialogueManager : MonoBehaviour {
     private Text dialogueText;              // Text field of dialogue box
     private Text dialogueName;              // Name field of dialogue box
     private GameObject optionPanels;        // The gameobject that is a parent of the object panels.
-    private Image nextLinePromptXBOX;           // An image that prompts the player to press a button to proceed with dialogue
-    private Image nextLinePromptKeyboard;           // An image that prompts the player to press a button to proceed with dialogue
+    private GameObject nextLinePrompt;           // An image that prompts the player to press a button to proceed with dialogue
 
     // Display time values & references
     private GameObject activeNPC;           // Reference to NPC with active dialogue
@@ -76,6 +75,7 @@ public class DialogueManager : MonoBehaviour {
     void Start ()
     {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
+        nextLinePrompt = dialogueBox.GetComponent<ControlDetector>().GetCurrentActiveObject();
 
         optionPanels = GameObject.FindGameObjectWithTag("OptionPanels");
         
@@ -93,6 +93,7 @@ public class DialogueManager : MonoBehaviour {
             }
         }
 
+        /*
         foreach(Image im in dialogueBox.GetComponentsInChildren<Image>())
         {
             if(im.gameObject.name == "NextLinePromptXBOX")
@@ -104,6 +105,7 @@ public class DialogueManager : MonoBehaviour {
                 nextLinePromptKeyboard = im;
             }
         }
+        */
 
         sentences = new Queue<string>();
         speakers = new Queue<string>();
@@ -119,6 +121,7 @@ public class DialogueManager : MonoBehaviour {
 
     private void Update()
     {
+        //nextLinePrompt = dialogueBox.GetComponent<ControlDetector>().GetCurrentActiveObject();
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {
@@ -249,7 +252,7 @@ public class DialogueManager : MonoBehaviour {
             else if (!(sentenceDisplayInProgress || activeDialogue.progressByCutscene))    // When non-auto, non-progress-by-cutscene sentence is done, displays prompt to progress.
             {
                 //Debug.Log("Howdy");
-                if(!(nextLinePromptKeyboard.gameObject.activeSelf ||nextLinePromptXBOX.gameObject.activeSelf))
+                if(!(nextLinePrompt.activeSelf))
                 {
                    // Debug.Log("Hello there");
                     ShowNextLinePrompt();
@@ -848,19 +851,11 @@ public class DialogueManager : MonoBehaviour {
 
     public void HideNextLinePrompt()
     {
-        nextLinePromptXBOX.gameObject.SetActive(false);
-        nextLinePromptKeyboard.gameObject.SetActive(false);
+        nextLinePrompt.SetActive(false);
     }
 
     public void ShowNextLinePrompt()
     {
-        if(isUsingController)
-        {
-            nextLinePromptXBOX.gameObject.SetActive(true);
-        }
-        else
-        {
-            nextLinePromptKeyboard.gameObject.SetActive(true);
-        }
+        nextLinePrompt.SetActive(true);
     }
 }

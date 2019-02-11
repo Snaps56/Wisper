@@ -67,8 +67,8 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TutorialDialogueSkipped", false); // check if player done with first converation, then trigger attempt clean tutorial
         stateConditions.Add("TutorialAttemptedClean", false); // check if player attempted to clean shrine, then end attempt clean tutorial
         stateConditions.Add("TutorialWithinShellsterRange", false); // check if player within shellster range, then end generate orb tutorial
-        stateConditions.Add("TutorialHasEnoughOrbs", false); // check if player within shellster range, then end generate orb tutorial
-
+        stateConditions.Add("TutorialHasEnoughOrbs", false); // check if player has enough orbs to deposit
+        stateConditions.Add("TutorialGate", false); // check if player is within gate range
 
         /////////////////////////////////////////////////////////
         ////////////////////    Task flags   ////////////////////

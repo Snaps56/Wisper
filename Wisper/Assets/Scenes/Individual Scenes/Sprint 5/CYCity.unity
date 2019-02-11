@@ -6155,6 +6155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 2120022346}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -6839,6 +6840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 0}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -14499,6 +14501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 0}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -23234,6 +23237,7 @@ MonoBehaviour:
   abilitiesCollider: {fileID: 1772400014}
   torqueMultiplier: 0.05
   dangerSpeed: 6.5
+  correctSpeed: 4
   shellsters:
   - {fileID: 90995095}
   - {fileID: 249168947}
@@ -26020,6 +26024,7 @@ MonoBehaviour:
   orbPickupRadius: 0.5
   windPowerBar: {fileID: 1382518292}
   orbCountText: {fileID: 1412772514}
+  wub: {fileID: 0}
 --- !u!135 &657204582
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -36968,6 +36973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 2120022346}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -44750,6 +44756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 2120022346}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -45397,7 +45404,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114569234412660840, guid: 97afd8270c3671e479ce4e84863cec6c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 97afd8270c3671e479ce4e84863cec6c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1271567221
@@ -49029,6 +49037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 0}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -49063,6 +49072,8 @@ MonoBehaviour:
   rain: {fileID: 0}
   light: {fileID: 0}
   windPowerUI: {fileID: 0}
+  lighting: {fileID: 0}
+  rainSound: {fileID: 0}
   gettingCleaned: 0
   cleanProgress: 0
   cleanThreshold: 1
@@ -50720,6 +50731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 0}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -55651,8 +55663,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1080027857}
-  logo: {fileID: 1803689350}
-  text: {fileID: 1186422449}
   blackFade: {fileID: 1580214895}
   player: {fileID: 2120022346}
   transitionText: {fileID: 1438607767}
@@ -55910,6 +55920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 0}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -65382,6 +65393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 2120022346}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -66287,6 +66299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 2120022346}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -68425,6 +68438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
   player: {fileID: 2120022346}
+  bell: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -74649,7 +74663,7 @@ MonoBehaviour:
   movementSpeed: 8
   sprintMultiplier: 2
   stopMultiplier: 1
-  VibStop: 0
+  vibStop: 0
   flightSpeedMultiplier: 1.2
   orbMovementIncrease: 0.15
   screenParticles: {fileID: 13771074}

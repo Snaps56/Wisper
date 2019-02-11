@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour {
     private void Start()
     {
         PSD = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
-        //PSD.ResetPersistantStateData();
+        PSD.ResetPersistantStateData();
     }
 
     public void PlayGame()

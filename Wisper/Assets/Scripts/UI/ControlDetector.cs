@@ -15,6 +15,7 @@ public class ControlDetector : MonoBehaviour {
     {
         controllerObject.SetActive(false);
         keyboardMouseObject.SetActive(true);
+        currentActiveObject = keyboardMouseObject;
     }
 
     // Update is called once per frame
