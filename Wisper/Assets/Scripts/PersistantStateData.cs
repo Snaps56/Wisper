@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 // Centralized location to check for various conditions that determine what should or should not be updated in the game.
@@ -12,6 +13,8 @@ public class PersistantStateData : MonoBehaviour
     public Hashtable stateConditions;   // Hashtable containing key/value pairs of state conditions (probably limited to string/bool pairs).
     public float globalTime;       // The total elapsed time in seconds
     public bool pauseGlobalTimer = false;
+
+    public string savePath;
 
     // When scene with this loads, initialize the static variable to object with this script if there is none. Object is persistant through scenes.
     // Otherwise if persistantStateData is already loaded into the game/scene, don't overwrite it and delete this object. This enforces singleton status.
@@ -28,6 +31,7 @@ public class PersistantStateData : MonoBehaviour
             globalTime = 0f;
             PopulateStateConditions();
             updateCount = 1;
+            savePath = Application.persistentDataPath;
         }
         else if (persistantStateData != this)
         {
@@ -165,6 +169,79 @@ public class PersistantStateData : MonoBehaviour
         if (modified)
         {
             updateCount++;
+        }
+    }
+
+    public void SaveGame(string filename = "ShamusFile")
+    {
+        int fileNum = 1;
+        bool complete = false;
+
+        while (!complete)
+        {
+            if (File.Exists(Path.Combine(savePath, fileNum + "/" + filename + ".txt")))
+            {
+                fileNum++;
+            }
+            else
+            {
+                complete = !complete;
+                string saveFile = Path.Combine(savePath, fileNum + "/" + filename + ".txt");
+
+
+                string fileContentString = "";
+                foreach (string key in stateConditions.Keys)
+                {
+                    fileContentString += key + ": " + stateConditions[key] + "\r\n";
+                }
+
+
+                Directory.CreateDirectory(Path.Combine(savePath, "" + fileNum));
+                using (FileStream fs = File.Create(saveFile))
+                {
+                    byte[] saveData = new System.Text.UTF8Encoding(true).GetBytes(fileContentString);
+                    fs.Write(saveData, 0, saveData.Length);
+                }
+
+            }
+        }
+    }
+
+    public void LoadGame(string fileIndex)
+    {
+        List<string> fileLines = new List<string>();
+        if (Directory.Exists(Path.Combine(savePath, fileIndex)))
+        {
+            string saveFile = Directory.GetFiles(Path.Combine(savePath, fileIndex))[0];
+            using (FileStream fs = File.OpenRead(saveFile))
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        fileLines.Add(sr.ReadLine());
+                    }
+                }
+            }
+
+            Hashtable psdEntries = new Hashtable();
+            foreach (string entry in fileLines)
+            {
+                string entryName = entry.Split(':')[0].Trim();
+                if (entry.Split(':')[1].Trim().ToLower().Equals("true") || entry.Split(':')[1].Trim().ToLower().Equals("false"))
+                {
+                    psdEntries.Add(entryName, System.Boolean.Parse(entry.Split(':')[1]));
+                }
+                else if (entry.Split(':')[1].Contains("."))
+                {
+                    psdEntries.Add(entryName, float.Parse(entry.Split(':')[1]));
+                }
+                else
+                {
+                    psdEntries.Add(entryName, int.Parse(entry.Split(':')[1]));
+                }
+            }
+            ChangeStateConditions(psdEntries);
         }
     }
 }
