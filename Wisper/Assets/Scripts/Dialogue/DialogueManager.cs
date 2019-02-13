@@ -62,11 +62,12 @@ public class DialogueManager : MonoBehaviour {
         // Ensures there will only ever be 1 dialogue manager in a scene. (Singleton pattern).
         if (dialogueManager == null)
         {
-            //DontDestroyOnLoad(gameObject);
+            Debug.Log("set dialogue manager");
             dialogueManager = this;
         }
         else if (dialogueManager != this)
         {
+            Debug.Log("DM already exists, deleting this");
             Destroy(gameObject);
         }
     }
@@ -115,6 +116,14 @@ public class DialogueManager : MonoBehaviour {
 
         player = GameObject.FindGameObjectWithTag("Player");
         persistantStateData = GameObject.Find("PersistantStateData");
+        if(persistantStateData.GetComponent<PersistantStateData>().realPSD)
+        {
+            Debug.Log("Real PSD");
+        }
+        else
+        {
+            Debug.Log("Using clone PSD");
+        }
         HideBox();
         HideNextLinePrompt();
     }
@@ -126,6 +135,14 @@ public class DialogueManager : MonoBehaviour {
         if (persistantStateData == null)
         {
             persistantStateData = GameObject.Find("PersistantStateData");
+            if (persistantStateData.GetComponent<PersistantStateData>().realPSD)
+            {
+                Debug.Log("Real PSD from update");
+            }
+            else
+            {
+                Debug.Log("Using clone PSD from update");
+            }
         }
 
         // toggles objects active based on whether player is using controller or keyboard input
@@ -144,7 +161,7 @@ public class DialogueManager : MonoBehaviour {
         // When PSD updates, run an update on all dialogues in the scene.
         if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount)
         {
-            //Debug.Log("Updating NPCDialogues");
+            Debug.Log("Updating NPCDialogues");
             persistantStateDataUpdateCount = persistantStateData.GetComponent<PersistantStateData>().updateCount;
             foreach (GameObject dt in GameObject.FindGameObjectsWithTag("DialogueTrigger"))
             {

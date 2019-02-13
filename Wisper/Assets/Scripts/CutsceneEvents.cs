@@ -88,6 +88,7 @@ public class CutsceneEvents : MonoBehaviour {
 
     public void cutsceneSkipped()
     {
+        Debug.Log("cutsceneSkipped was called in CutsceneEvents. Effect: Turns on a PSD variable and calls endAnimation");
         PSDVariableOn("StartupShrineDialogue");
         endAnimation();
     }
