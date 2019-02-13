@@ -93,7 +93,7 @@ public class FlarePulse : MonoBehaviour
         }
     }
 
-    IEnumerator Example()
+    IEnumerator Wait()
     {
         yield return new WaitForSeconds(2);
 
@@ -127,7 +127,7 @@ public class FlarePulse : MonoBehaviour
             if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > (dotProductAngle))
             {
                 GamePad.SetVibration(playerIndex, 0.1f, 1f);
-                StartCoroutine(Example());
+                StartCoroutine(Wait());
             }
         }
         //Player is looking at shrine
