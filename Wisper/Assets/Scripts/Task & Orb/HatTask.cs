@@ -49,8 +49,8 @@ public class HatTask : MonoBehaviour
         //npc.transform.Find("garden_hat").gameObject.SetActive(true);
         
         pickedUp = false;
-        npc.GetComponent<NPCMovement>().move = false;
-        npc.GetComponent<Animator>().SetBool("Idle", true);
+        //npc.GetComponent<NPCMovement>().move = false;
+        //npc.GetComponent<Animator>().SetBool("Idle", true);
         npc.GetComponent<SpawnOrbs>().DropOrbs();
         GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().stateConditions["ShamusHasHat"] = true;
         GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().updateCount++;
