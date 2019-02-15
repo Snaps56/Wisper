@@ -133,9 +133,9 @@ public class ObjectThrow : MonoBehaviour {
 		}
 		else 
 		{
-			float passiveModifer = .1f;
+			float passiveModifer = .01f;
 			float throwAngle = verticalAimAngle / 90;
-			forceVector = (deltaMovementVector + new Vector3 (0, throwAngle, 0)) * throwForce * passiveModifer;
+			forceVector = (deltaMovementVector + new Vector3 (0, throwAngle, 0)) * throwForce * passiveModifer * currentPlayerVelocity;
 			other.GetComponent<Rigidbody> ().AddForce (forceVector);
 		}
     }
