@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class BorderCollision : MonoBehaviour {
 
@@ -12,6 +13,11 @@ public class BorderCollision : MonoBehaviour {
     private float originalSpeed;
     private Vector3 velocityStamp;
 
+    //Vibration variables
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
 
     //Border Stuff
     private float shake;
@@ -70,6 +76,7 @@ public class BorderCollision : MonoBehaviour {
             if (shake > 0)
             {
                 this.transform.position = this.transform.position + Random.insideUnitSphere * shakeAmount;
+                GamePad.SetVibration(playerIndex, 0f, 1f);
             }
             //Reduce shake
             else
@@ -105,6 +112,8 @@ public class BorderCollision : MonoBehaviour {
             turnBackText.SetActive(false);
             //Turns off shake completly
             shake = 0;
+            //Turn off Vibration
+            GamePad.SetVibration(playerIndex, 0f, 0f);
         }
     }
 }
