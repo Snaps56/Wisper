@@ -47,23 +47,23 @@ public class ActivateCutscene : MonoBehaviour {
     void Update () {
 
         //Plays cutscene while pressing "N" on keyboard
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            mainCamera.gameObject.SetActive(false);
-            cutsceneCamera.gameObject.SetActive(true);
-            windPB.SetActive(false);
-            rain.SetActive(true);
-            light.GetComponent<Light>().color = Color.black;
-            cutsceneCamera.GetComponent<Animation>().Play();
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("Playing Intro");
-            mainCamera.gameObject.SetActive(false);
-            cutsceneCamera.gameObject.SetActive(true);
-            windPB.SetActive(false);
-            cutsceneCamera.GetComponent<Animation>().Play("Cutscene3");
-        }
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    mainCamera.gameObject.SetActive(false);
+        //    cutsceneCamera.gameObject.SetActive(true);
+        //    windPB.SetActive(false);
+        //    rain.SetActive(true);
+        //    light.GetComponent<Light>().color = Color.black;
+        //    cutsceneCamera.GetComponent<Animation>().Play();
+        //}
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    Debug.Log("Playing Intro");
+        //    mainCamera.gameObject.SetActive(false);
+        //    cutsceneCamera.gameObject.SetActive(true);
+        //    windPB.SetActive(false);
+        //    cutsceneCamera.GetComponent<Animation>().Play("Cutscene3");
+        //}
         
         //skip cutscene
         /* if (Input.GetButton("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X") Input.GetKey(KeyCode.H))
