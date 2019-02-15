@@ -64,10 +64,9 @@ public class ActivateCutscene : MonoBehaviour {
             windPB.SetActive(false);
             cutsceneCamera.GetComponent<Animation>().Play("Cutscene3");
         }
-
-
+        
         //skip cutscene
-        if (/*Input.GetButton("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")*/ Input.GetKey(KeyCode.H))
+        /* if (Input.GetButton("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X") Input.GetKey(KeyCode.H))
         {
             Debug.Log("Skipped");
             foreach (AnimationState anim in cutsceneCamera.GetComponent<Animation>())
@@ -86,6 +85,7 @@ public class ActivateCutscene : MonoBehaviour {
             AnimationClip cutscene1 = cutsceneCamera.GetComponent<Animation>().GetClip("Cutscene1");
 
         }
-
+        */
+        
     }
 }
