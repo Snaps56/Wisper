@@ -22,10 +22,12 @@ public class SpawnOrbs : MonoBehaviour
     void Update()
     {
         // Debug button for dropping orbs
+        /*
         if (Input.GetButtonDown("PC_Key_Orb"))
         {
             DropOrbs();
         }
+        */
         // make sure orbs list does not contain empty indices
         orbsList.TrimExcess();
     }
