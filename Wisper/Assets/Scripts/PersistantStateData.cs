@@ -45,7 +45,7 @@ public class PersistantStateData : MonoBehaviour
         //Debug.Log("PSD Awake called");
         if (persistantStateData == null)
         {
-            Debug.Log("PSD static self reference is null");
+            //Debug.Log("PSD static self reference is null");
             DontDestroyOnLoad(gameObject);
             realPSD = true;
             persistantStateData = this;
@@ -58,7 +58,7 @@ public class PersistantStateData : MonoBehaviour
         }
         else if (persistantStateData != this)
         {
-            Debug.Log("PSD static self reference not null. Destroying this.");
+            //Debug.Log("PSD static self reference not null. Destroying this.");
             Destroy(gameObject);
         }
     }
@@ -78,7 +78,7 @@ public class PersistantStateData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightAlt))
         {
-            Debug.Log("Hello");
+            //Debug.Log("Hello");
             SaveGame();
         }
 
@@ -110,11 +110,11 @@ public class PersistantStateData : MonoBehaviour
     {
         if(realPSD)
         {
-            Debug.Log("Populating PSD with variables");
+            //Debug.Log("Populating PSD with variables");
         }
         else
         {
-            Debug.Log("Populating false PSD");
+            //Debug.Log("Populating false PSD");
         }
         
 
@@ -143,6 +143,17 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("SwingTaskDone", false);
         stateConditions.Add("MerryGoRound", false);
 
+        
+
+        /////////////////////////////////////////////////////////////
+        ////////////////////    Dialogue flags   ////////////////////
+        /////////////////////////////////////////////////////////////
+
+        stateConditions.Add("StartupShrineDialogueFinished", false);
+        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
+        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
+        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
+
         // Variables control dialogue of shrine the first time the player talks to it
         stateConditions.Add("ShrineFirstConversation", false);  // Allows player to initiate conversation
         stateConditions.Add("WaitingForCleanAttempt", false);   // Indicates that the shrine will respond once the player attempts to clean it.
@@ -157,16 +168,6 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("ShrineFirstTurnInNo", false);  // Player says no to the first turn in
         stateConditions.Add("FirstTurnInCutsceneDialogue", false);  // Used to start Dialogue during trun in cutscene
         stateConditions.Add("GoForth", false);  // Used to enable dialogue telling player to leave the garden
-
-        /////////////////////////////////////////////////////////////
-        ////////////////////    Dialogue flags   ////////////////////
-        /////////////////////////////////////////////////////////////
-
-        stateConditions.Add("StartupShrineDialogueFinished", false);
-        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
-        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
-        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
-
 
         /////////////////////////////////////////////////////////////
         ////////////////////    Cutscene flags   ////////////////////
@@ -187,7 +188,7 @@ public class PersistantStateData : MonoBehaviour
 
     public void ResetPersistantStateData()
     {
-        Debug.Log("PSD Reset called");
+        //Debug.Log("PSD Reset called");
         stateConditions.Clear();
         PopulateStateConditions();
 
@@ -195,12 +196,12 @@ public class PersistantStateData : MonoBehaviour
 
     public void ChangeStateConditions(string key, bool value)
     {
-        Debug.Log("PSD Value change attempt on " + key + ". Current Value: " + persistantStateData.stateConditions[key] + ". Target value: " + value);
+        //Debug.Log("PSD Value change attempt on " + key + ". Current Value: " + persistantStateData.stateConditions[key] + ". Target value: " + value);
         if((bool)stateConditions[key] != value)
         {
             stateConditions[key] = value;
             updateCount++;
-            Debug.Log("PSD Value changed");
+            //Debug.Log("PSD Value changed");
         }
     }
 
@@ -231,7 +232,7 @@ public class PersistantStateData : MonoBehaviour
             {
                 if (stateConditions[de.Key].ToString() != de.Value.ToString())
                 {
-                    Debug.Log("MODIFIED PSD: " + de.Key + " changed from " + stateConditions[de.Key] + " to " + de.Value);
+                    //Debug.Log("MODIFIED PSD: " + de.Key + " changed from " + stateConditions[de.Key] + " to " + de.Value);
                     stateConditions[de.Key] = de.Value;
                     modified = true;
                 }
@@ -247,7 +248,7 @@ public class PersistantStateData : MonoBehaviour
 
     public void SaveGame(string filename = "ShamusFile")
     {
-        Debug.Log("Saving game");
+        //Debug.Log("Saving game");
         int fileNum = 1;
         bool complete = false;
 

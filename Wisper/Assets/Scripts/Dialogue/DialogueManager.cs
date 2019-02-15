@@ -125,12 +125,13 @@ public class DialogueManager : MonoBehaviour {
             Debug.Log("Using clone PSD");
         }
         HideBox();
+        Debug.Log("hide next line prompt");
         HideNextLinePrompt();
     }
 
     private void Update()
     {
-        //nextLinePrompt = dialogueBox.GetComponent<ControlDetector>().GetCurrentActiveObject();
+        nextLinePrompt = dialogueBox.GetComponent<ControlDetector>().GetCurrentActiveObject();
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {
@@ -271,7 +272,7 @@ public class DialogueManager : MonoBehaviour {
                 //Debug.Log("Howdy");
                 if(!(nextLinePrompt.activeSelf))
                 {
-                   // Debug.Log("Hello there");
+                    Debug.Log("Show next line prompt");
                     ShowNextLinePrompt();
                 }
             }
@@ -873,6 +874,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void ShowNextLinePrompt()
     {
+        Debug.Log("Show next line prompt");
         nextLinePrompt.SetActive(true);
     }
 }

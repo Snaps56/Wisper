@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class HatTask : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class HatTask : MonoBehaviour
     public Transform newParentObject;
     public Vector3 positionOffset;
     private Rigidbody rb;
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
 
     private bool makeHatFollow = false;
 
@@ -27,7 +32,13 @@ public class HatTask : MonoBehaviour
             pickedUp = true;
         }
     }
-    
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        GamePad.SetVibration(playerIndex, 0f, 0f);
+    }
+
     void pickUp()
     {
 
@@ -46,6 +57,8 @@ public class HatTask : MonoBehaviour
         transform.parent = newParentObject;
         transform.position = newParentObject.position + positionOffset;
         transform.rotation = newParentObject.rotation;
+        GamePad.SetVibration(playerIndex, 0f, 1f);
+        StartCoroutine(Wait());
         //transform.tag = "Untagged";
         // x = -.31 z = .16f y = 1.25
         //hat.transform.position = npc.transform.position;
