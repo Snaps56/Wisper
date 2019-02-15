@@ -2,19 +2,41 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Centralized location to check for various conditions that determine what should or should not be updated in the game.
 // When the instance of this class is accessed, you may use the public hashtable to search conditions.
 // Syntax for a search would be stateConditions["Key"], which will return the corresponding value
 public class PersistantStateData : MonoBehaviour
 {
-    public static PersistantStateData persistantStateData;
+    // Global Data
+    public static PersistantStateData persistantStateData;  // Static self-reference. Used to enforce singleton.
     public int updateCount;         // A count of how many times the hashtable has been updated after game launched. Should be incremented when modifying hashtable. Need not be preserved after closing application.
     public Hashtable stateConditions;   // Hashtable containing key/value pairs of state conditions (probably limited to string/bool pairs).
     public float globalTime;       // The total elapsed time in seconds
-    public bool pauseGlobalTimer = false;
+    public bool pauseGlobalTimer = false;   // Turn on to pause the global timer
 
+    public bool realPSD = false;
+    // Variables used to save and load game data
     public string savePath;
+    
+
+    public GameObject loadingScreen;
+    public CanvasGroup blackFade;
+
+    private bool doLoad = false;
+    private bool doneLoad = false;
+    private bool doFade = false;
+    private bool doneFade = false;
+    private bool startedAsync = false;
+
+    private AsyncOperation async;
+
+    private float fadeDuration = 2f;
+    private float fadeRate;
+
+    private float delayInitial;
+    private float delayDuration = 10.0f;
 
     // When scene with this loads, initialize the static variable to object with this script if there is none. Object is persistant through scenes.
     // Otherwise if persistantStateData is already loaded into the game/scene, don't overwrite it and delete this object. This enforces singleton status.
@@ -25,23 +47,25 @@ public class PersistantStateData : MonoBehaviour
         {
             //Debug.Log("PSD static self reference is null");
             DontDestroyOnLoad(gameObject);
+            realPSD = true;
             persistantStateData = this;
 
             stateConditions = new Hashtable();
             globalTime = 0f;
             PopulateStateConditions();
             updateCount = 1;
-            savePath = Application.persistentDataPath;
+            savePath = Path.Combine(Application.persistentDataPath, "saves/");
         }
         else if (persistantStateData != this)
         {
-            Debug.Log("PSD static self reference not null. Destroying this.");
+            //Debug.Log("PSD static self reference not null. Destroying this.");
             Destroy(gameObject);
         }
     }
 
     private void Start()
     {
+        fadeRate = Time.fixedDeltaTime / fadeDuration;
     }
 
     private void Update()
@@ -50,12 +74,49 @@ public class PersistantStateData : MonoBehaviour
         {
             globalTime += Time.deltaTime;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.RightAlt))
+        {
+            //Debug.Log("Hello");
+            SaveGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightControl))
+        {
+            doFade = true;
+        }
+
+        if (startedAsync)
+        {
+            if (Time.time > delayInitial + delayDuration)
+            {
+                doFade = false;
+                doneFade = false;
+                doLoad = false;
+                doneLoad = false;
+                async.allowSceneActivation = true;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        FadeChecker();
     }
 
     // fills the persistantStateConditions with the various conditions. We can consider passing in arguments for initialization when considering save/load functionality.
     private void PopulateStateConditions()
     {
-        //Debug.Log("Populating PSD with variables");
+        if(realPSD)
+        {
+            //Debug.Log("Populating PSD with variables");
+        }
+        else
+        {
+            //Debug.Log("Populating false PSD");
+        }
+        
 
         ////////////////////////////////////////////////////////////
         ////////////////////    Tooltip flags   ////////////////////
@@ -82,6 +143,17 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("SwingTaskDone", false);
         stateConditions.Add("MerryGoRound", false);
 
+        
+
+        /////////////////////////////////////////////////////////////
+        ////////////////////    Dialogue flags   ////////////////////
+        /////////////////////////////////////////////////////////////
+
+        stateConditions.Add("StartupShrineDialogueFinished", false);
+        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
+        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
+        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
+
         // Variables control dialogue of shrine the first time the player talks to it
         stateConditions.Add("ShrineFirstConversation", false);  // Allows player to initiate conversation
         stateConditions.Add("WaitingForCleanAttempt", false);   // Indicates that the shrine will respond once the player attempts to clean it.
@@ -98,20 +170,17 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("GoForth", false);  // Used to enable dialogue telling player to leave the garden
 
         /////////////////////////////////////////////////////////////
-        ////////////////////    Dialogue flags   ////////////////////
+        ////////////////////    Cutscene flags   ////////////////////
         /////////////////////////////////////////////////////////////
 
-        stateConditions.Add("StartupShrineDialogueFinished", false);
-        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
-        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
-        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
+        stateConditions.Add("Cutscene1Started", false);
 
-        ///////////////////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////////////////////
         ////////////////////    Miscellaneous flags   ////////////////////
         //////////////////////////////////////////////////////////////////
-
+        stateConditions.Add("CurrentScene", 2);
         stateConditions.Add("StartupFadeFinished", false);
-        stateConditions.Add("Cutscene1Started", false);
         stateConditions.Add("OrbDepositInProgress", false);
         stateConditions.Add("DemoEnd", false);
         stateConditions.Add("DebugValue", false);
@@ -132,7 +201,7 @@ public class PersistantStateData : MonoBehaviour
         {
             stateConditions[key] = value;
             updateCount++;
-            Debug.Log("PSD Value changed");
+            //Debug.Log("PSD Value changed");
         }
     }
 
@@ -159,11 +228,16 @@ public class PersistantStateData : MonoBehaviour
         bool modified = false;
         foreach(DictionaryEntry de in kvPairs)
         {
-            if(stateConditions[de.Key] != de.Value)
+            if(stateConditions[de.Key].GetType().Equals(de.Value.GetType()))
             {
-                stateConditions[de.Key] = de.Value;
-                modified = true;
+                if (stateConditions[de.Key].ToString() != de.Value.ToString())
+                {
+                    //Debug.Log("MODIFIED PSD: " + de.Key + " changed from " + stateConditions[de.Key] + " to " + de.Value);
+                    stateConditions[de.Key] = de.Value;
+                    modified = true;
+                }
             }
+            
         }
 
         if (modified)
@@ -174,6 +248,7 @@ public class PersistantStateData : MonoBehaviour
 
     public void SaveGame(string filename = "ShamusFile")
     {
+        //Debug.Log("Saving game");
         int fileNum = 1;
         bool complete = false;
 
@@ -207,7 +282,7 @@ public class PersistantStateData : MonoBehaviour
         }
     }
 
-    public void LoadGame(string fileIndex)
+    public void LoadFile(string fileIndex)
     {
         List<string> fileLines = new List<string>();
         if (Directory.Exists(Path.Combine(savePath, fileIndex)))
@@ -242,7 +317,46 @@ public class PersistantStateData : MonoBehaviour
                 }
             }
             ChangeStateConditions(psdEntries);
+            doneLoad = true;
+        }
+    }
+
+    void FadeChecker()
+    {
+        if (doFade)
+        {
+            if (blackFade.alpha < 1 && !doneFade)
+            {
+                blackFade.alpha += fadeRate;
+            }
+            else
+            {
+                doneFade = true;
+            }
+            if (doneFade && !doLoad)
+            {
+                doLoad = true;
+                LoadFile("1");  // TODO: Take a file number input
+            }
+            else if (doneFade && !startedAsync && doneLoad)
+            {
+                loadingScreen.SetActive(true);
+                delayInitial = Time.time;
+                StartCoroutine(LoadAsynchronously((int)stateConditions["CurrentScene"]));
+            }
+        }
+    }
+
+    IEnumerator LoadAsynchronously(int sceneBuildNumber)
+    {
+        async = SceneManager.LoadSceneAsync(sceneBuildNumber);
+        Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
+        async.allowSceneActivation = false;
+        startedAsync = true;
+        while (!async.isDone)
+        {
+            //Debug.Log(async.progress);
+            yield return null;
         }
     }
 }
-
