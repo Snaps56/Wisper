@@ -41,6 +41,7 @@ public class FlarePulse : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        lensFlare.brightness = 5;
         initialTimer = Time.time;
         isPulsing = false;
         donePulsing = false;

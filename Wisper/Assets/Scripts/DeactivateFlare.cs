@@ -16,7 +16,7 @@ public class DeactivateFlare : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        lensFlare.brightness = Vector3.Distance(lensFlare.transform.position, player.transform.position);
+        //lensFlare.brightness = Vector3.Distance(lensFlare.transform.position, player.transform.position);
         //Debug.Log("Distance: " + Vector3.Distance(lensFlare.transform.position, player.transform.position));
         //Debug.Log("Brightness: " + Vector3.Distance(lensFlare.transform.position, player.transform.position) / 50);
         if ((bool)PSDScript.stateConditions["TutorialFirstInteraction"])
