@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class Shrine : MonoBehaviour {
 
@@ -17,8 +18,14 @@ public class Shrine : MonoBehaviour {
 	private Material dirtyMaterialMain;
 	private Material dirtyMaterialInner;
 
-	// Player object to check if near
-	public GameObject player;
+    // Vibration variables
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+
+    // Player object to check if near
+    public GameObject player;
 	// Shrine clean condition
 	private bool isClean;
 	// Generated orbs for player collection and deposit
@@ -96,8 +103,14 @@ public class Shrine : MonoBehaviour {
 		orbLimit = 10;
 	}
 
-	// Update is called once per frame
-	void Update () {
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        GamePad.SetVibration(playerIndex, 0f, 0f);
+    }
+
+    // Update is called once per frame
+    void Update () {
 
 		// Check that the player is near the shrine
 		if (player.GetComponentInChildren<InteractableCollision>().nearShrine) {
@@ -127,7 +140,9 @@ public class Shrine : MonoBehaviour {
                         persistantStateData.ChangeStateConditions ("ShrineIsClean", true);
                         persistantStateData.ChangeStateConditions("ShrineFirstTurnIn", true);
                         this.GetComponent<SpawnOrbs> ().DropOrbs ();
-					}
+                        GamePad.SetVibration(playerIndex, 0f, 1f);
+                        StartCoroutine(Wait());
+                    }
 				} else if (!firstTime && (bool)persistantStateData.stateConditions["WaitingForCleanAttempt"] && gettingCleaned) {
 					firstTime = true;
                     Hashtable tmpHash = new Hashtable();

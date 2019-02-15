@@ -51,12 +51,12 @@ public class ObjectLift : MonoBehaviour {
         if (Input.GetButton("PC_Mouse_Click_R") || Input.GetAxis("XBOX_Trigger_L") > 0)
         {
             isLiftingObjects = true;
-            GamePad.SetVibration(playerIndex, 0f, state.Triggers.Left);
+          //  GamePad.SetVibration(playerIndex, 0f, state.Triggers.Left);
         }
         if (isLiftingObjects && !Input.GetButton("PC_Mouse_Click_R") && Input.GetAxis("XBOX_Trigger_L") <= 0)
         {
             isLiftingObjects = false;
-            GamePad.SetVibration(playerIndex, 0f, 0f);
+          //  GamePad.SetVibration(playerIndex, 0f, 0f);
             //if (GetComponent<PlayerMovement>().GetIsSprinting() == true)
             //{
             //    GamePad.SetVibration(playerIndex, 0f, 0.5f);
@@ -79,25 +79,25 @@ public class ObjectLift : MonoBehaviour {
         currentCharacterVector.y *= 0;
         currentCharacterSpeed = character.GetComponent<Rigidbody>().velocity.magnitude;
 
-        // Find a PlayerIndex, for a single player game
-        // Will find the first controller that is connected and use it
-        if (!playerIndexSet || !prevState.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-                    playerIndex = testPlayerIndex;
-                    playerIndexSet = true;
-                }
-            }
-        }
+    //    // Find a PlayerIndex, for a single player game
+    //    // Will find the first controller that is connected and use it
+    //    if (!playerIndexSet || !prevState.IsConnected)
+    //    {
+    //        for (int i = 0; i < 4; ++i)
+    //        {
+    //            PlayerIndex testPlayerIndex = (PlayerIndex)i;
+    //            GamePadState testState = GamePad.GetState(testPlayerIndex);
+    //            if (testState.IsConnected)
+    //            {
+    //                //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+    //                playerIndex = testPlayerIndex;
+    //                playerIndexSet = true;
+    //            }
+    //        }
+    //    }
 
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
+    //    prevState = state;
+    //    state = GamePad.GetState(playerIndex);
 
     }
     void FixedUpdate ()

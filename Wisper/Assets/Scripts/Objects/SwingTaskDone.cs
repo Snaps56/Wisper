@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class SwingTaskDone : MonoBehaviour {
 
     public GameObject leftSwing;
     public GameObject rightSwing;
     private bool TaskisDone = false;
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+
 
     private PersistantStateData persistantStateData;
 
@@ -14,9 +20,15 @@ public class SwingTaskDone : MonoBehaviour {
     void Start () {
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        GamePad.SetVibration(playerIndex, 0f, 0f);
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         float angle = leftSwing.transform.rotation.eulerAngles.y;
         float anglex = leftSwing.transform.rotation.eulerAngles.x;
@@ -29,6 +41,8 @@ public class SwingTaskDone : MonoBehaviour {
             GetComponent<SpawnOrbs>().DropOrbs();
             persistantStateData.stateConditions["SwingTaskDone"] = true;
             persistantStateData.updateCount++;
+            GamePad.SetVibration(playerIndex, 0f, 1f);
+            StartCoroutine(Wait());
         }
 
     }
