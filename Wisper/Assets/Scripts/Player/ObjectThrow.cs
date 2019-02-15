@@ -43,11 +43,6 @@ public class ObjectThrow : MonoBehaviour {
 		originalThrowForce = throwForce;
     }
 
-    public bool getisThrowing()
-    {
-        return this.isThrowingObjects;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -57,12 +52,12 @@ public class ObjectThrow : MonoBehaviour {
         if (Input.GetButton("PC_Mouse_Click_L") || Input.GetAxis("XBOX_Trigger_R") > 0)
         {
             isThrowingObjects = true;
-            GamePad.SetVibration(playerIndex, 0f, state.Triggers.Right);
+            //GamePad.SetVibration(playerIndex, 0f, state.Triggers.Right);
         }
         if (isThrowingObjects && !Input.GetButton("PC_Mouse_Click_L") && Input.GetAxis("XBOX_Trigger_R") <= 0)
         {
             isThrowingObjects = false;
-            GamePad.SetVibration(playerIndex, 0f, 0f);
+           // GamePad.SetVibration(playerIndex, 0f, 0f);
         }
         // Play particles when player is holding the throw button
         if (isThrowingObjects)
@@ -92,28 +87,9 @@ public class ObjectThrow : MonoBehaviour {
             deltaMovementVector = (movementVector.normalized - transform.position.normalized).normalized;
             deltaMovementVector.y *= 0;
         }
-        // Find a PlayerIndex, for a single player game
-        // Will find the first controller that is connected and use it
-        if (!playerIndexSet || !prevState.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-                    playerIndex = testPlayerIndex;
-                    playerIndexSet = true;
-                }
-            }
-        }
-
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
     }
 
-    public bool GetIsThrowingObjects() {
+	public bool GetIsThrowingObjects() {
 		return isThrowingObjects;
     }
     public float GetThrowForce()
@@ -137,23 +113,30 @@ public class ObjectThrow : MonoBehaviour {
         float objectVelocity = other.GetComponent<Rigidbody>().velocity.magnitude;
 
         // check if the player is pressing the throw button
-        if (isThrowingObjects)
-        {
-            // apply throw force, however add a speed limit to thrown objects
-            if (objectVelocity < maxObjectThrowSpeed)
-            {
-                // throwing an object while lifting them will grant a throw power bonus
-                float finalLiftMultiplier = 1;
-                if (isLiftingObjects)
-                {
-                    finalLiftMultiplier = liftComboMultiplier;
-                }
+		if (isThrowingObjects) 
+		{
+			// apply throw force, however add a speed limit to thrown objects
+			if (objectVelocity < maxObjectThrowSpeed) 
+			{
+				// throwing an object while lifting them will grant a throw power bonus
+				float finalLiftMultiplier = 1;
+				if (isLiftingObjects) 
+				{
+					finalLiftMultiplier = liftComboMultiplier;
+				}
 
-                // throw force determined by last movement input, and thrown at an angle upwards
-                float throwAngle = verticalAimAngle / 90;
-                forceVector = (deltaMovementVector + new Vector3(0, throwAngle, 0)) * throwForce * finalLiftMultiplier;
-                other.GetComponent<Rigidbody>().AddForce(forceVector);
-            }
-        }
+				// throw force determined by last movement input, and thrown at an angle upwards
+				float throwAngle = verticalAimAngle / 90;
+				forceVector = (deltaMovementVector + new Vector3 (0, throwAngle, 0)) * throwForce * finalLiftMultiplier;
+				other.GetComponent<Rigidbody> ().AddForce (forceVector);
+			}
+		}
+		else 
+		{
+			float passiveModifer = .1f;
+			float throwAngle = verticalAimAngle / 90;
+			forceVector = (deltaMovementVector + new Vector3 (0, throwAngle, 0)) * throwForce * passiveModifer;
+			other.GetComponent<Rigidbody> ().AddForce (forceVector);
+		}
     }
 }
