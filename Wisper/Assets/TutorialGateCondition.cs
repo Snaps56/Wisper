@@ -13,12 +13,13 @@ public class TutorialGateCondition : MonoBehaviour {
 
     private bool conditionCheck;
     private bool tutorialDone = false;
-
+    private PlayerMovement playerScript;
     // Use this for initialization
     void Start () {
         //gate = GameObject.Find("Gate");
         tutorialCondition = GetComponent<TutorialCondition>();
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        playerScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 	
 	// Update is called once per frame
@@ -27,6 +28,7 @@ public class TutorialGateCondition : MonoBehaviour {
         dependentCondition = (bool)persistantStateData.stateConditions["DemoEnd"];
         if (dependentCondition && !tutorialDone && gate.activeSelf)
         {
+            playerScript.EnableMovement();
             inRange = gate.GetComponent<GateTransition>().GetWithinGateRange();
             if (inRange)
             {

@@ -23,7 +23,7 @@ public class ActivateCutscene : MonoBehaviour {
         {
             //Debug.Log("Playing Intro");
             Cursor.visible = false;
-            player.GetComponent<PlayerMovement>().ToggleMovement();
+            player.GetComponent<PlayerMovement>().DisableMovement();
             mainCamera.gameObject.SetActive(false);
             cutsceneCamera.gameObject.SetActive(true);
             GameObject.Find("WindPowerBG").SetActive(false);

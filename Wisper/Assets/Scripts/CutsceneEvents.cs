@@ -15,6 +15,8 @@ public class CutsceneEvents : MonoBehaviour {
 	public GameObject cityGate;
     public AudioSource rainSound;
 
+    private bool cutsceneIsPlaying = false;
+
     void PSDVariableOn(string key)
     {
         GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateConditions(key, true);
@@ -66,11 +68,25 @@ public class CutsceneEvents : MonoBehaviour {
         GetComponent<Animation>().Play("Cutscene3");
     }
 
-
+    bool GetCutsceneIsPlaying()
+    {
+        return cutsceneIsPlaying;
+    }
+    void EnableCutsceneIsPlaying()
+    {
+        cutsceneIsPlaying = true;
+    }
+    void DisableCutsceneIsPlaying()
+    {
+        cutsceneIsPlaying = false;
+    }
     //Event called when the animation should end
     void endAnimation()
     {
-        player.GetComponent<PlayerMovement>().EnableMovement();
+        if (cutsceneIsPlaying)
+        {
+            player.GetComponent<PlayerMovement>().EnableMovement();
+        }
         //Activates main camera
         mainCamera.gameObject.SetActive(true);
         //Turns this game object off

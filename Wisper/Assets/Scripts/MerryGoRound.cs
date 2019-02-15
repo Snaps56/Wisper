@@ -21,6 +21,8 @@ public class MerryGoRound : MonoBehaviour {
     private float currentVelocity;
     private PersistantStateData persistantStateData;
 
+    private bool hasSpawnedOrbs = false;
+
     // Use this for initialization
     void Start () {
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
@@ -55,9 +57,12 @@ public class MerryGoRound : MonoBehaviour {
                 Debug.Log("detached " + shellsters[i]);
             }
         }
-        else if (currentVelocity >= correctSpeed && !reachedDangerSpeed) {
+        else if (currentVelocity >= correctSpeed && !reachedDangerSpeed && !hasSpawnedOrbs) {
+            /*
+            hasSpawnedOrbs = true;
             GetComponent<SpawnOrbs>().DropOrbs();
             persistantStateData.stateConditions["MerryGoRound"] = true;
+            */
         }
 	}
     private void FixedUpdate()
