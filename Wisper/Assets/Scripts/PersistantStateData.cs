@@ -143,6 +143,17 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("SwingTaskDone", false);
         stateConditions.Add("MerryGoRound", false);
 
+        
+
+        /////////////////////////////////////////////////////////////
+        ////////////////////    Dialogue flags   ////////////////////
+        /////////////////////////////////////////////////////////////
+
+        stateConditions.Add("StartupShrineDialogueFinished", false);
+        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
+        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
+        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
+
         // Variables control dialogue of shrine the first time the player talks to it
         stateConditions.Add("ShrineFirstConversation", false);  // Allows player to initiate conversation
         stateConditions.Add("WaitingForCleanAttempt", false);   // Indicates that the shrine will respond once the player attempts to clean it.
@@ -157,16 +168,6 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("ShrineFirstTurnInNo", false);  // Player says no to the first turn in
         stateConditions.Add("FirstTurnInCutsceneDialogue", false);  // Used to start Dialogue during trun in cutscene
         stateConditions.Add("GoForth", false);  // Used to enable dialogue telling player to leave the garden
-
-        /////////////////////////////////////////////////////////////
-        ////////////////////    Dialogue flags   ////////////////////
-        /////////////////////////////////////////////////////////////
-
-        stateConditions.Add("StartupShrineDialogueFinished", false);
-        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
-        stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
-        stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
-
 
         /////////////////////////////////////////////////////////////
         ////////////////////    Cutscene flags   ////////////////////
