@@ -15,13 +15,14 @@ public class MainMenu : MonoBehaviour {
     public GameObject Credits;
     public GameObject Image;
     public PersistantStateData PSD;
-
     private int LeveltoLoad = 0;
-
+    private ControlDetector controlDetector;
     //TODO fix this. This script seems to be on an object in every scene, and is causing PSD to reset whenever a new scene is loaded.
     //Should only call PSD reset when a new game is started.
     private void Start()
     {
+        controlDetector = GameObject.Find("ControllerDetector").GetComponent<ControlDetector>();
+
         PSD = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         PSD.ResetPersistantStateData();
     }
@@ -62,6 +63,14 @@ public class MainMenu : MonoBehaviour {
 
     void Update ()
     {
+        if (!controlDetector.isUsingController)
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
         if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel"))
         {
             EventSystem1.SetActive(true);

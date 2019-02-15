@@ -44,6 +44,7 @@ public class ControlDetector : MonoBehaviour {
             {
                 if (allowAutoActivate)
                 {
+                    isUsingController = false;
                     controllerObject.SetActive(false);
                     keyboardMouseObject.SetActive(true);
                 }
