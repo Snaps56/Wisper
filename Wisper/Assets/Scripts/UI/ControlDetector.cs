@@ -5,6 +5,7 @@ using UnityEngine;
 public class ControlDetector : MonoBehaviour {
 
     public bool isUsingController;
+    public bool allowAutoActivate;
     public GameObject controllerObject;
     public GameObject keyboardMouseObject;
 
@@ -31,15 +32,21 @@ public class ControlDetector : MonoBehaviour {
             if (names[i].Length > 0)
             {
                 isUsingController = true;
-                controllerObject.SetActive(true);
-                keyboardMouseObject.SetActive(false);
+                if (allowAutoActivate)
+                {
+                    controllerObject.SetActive(true);
+                    keyboardMouseObject.SetActive(false);
+                }
                 currentActiveObject = controllerObject;
             }
             //Otherwise, the player is using a mouse
             else
             {
-                controllerObject.SetActive(false);
-                keyboardMouseObject.SetActive(true);
+                if (allowAutoActivate)
+                {
+                    controllerObject.SetActive(false);
+                    keyboardMouseObject.SetActive(true);
+                }
                 currentActiveObject = keyboardMouseObject;
             }
         }

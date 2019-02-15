@@ -7,6 +7,7 @@ public class PlaceHolderDeposit : MonoBehaviour {
     public GameObject dangerDepositText;
     private Transform player;
     private OrbCount orbDeposit;
+    private float dangerPercent = 0.8f;
     private float depositDistance = 5;
     private float currentDistance = 999;
     private bool fadeText = false;
@@ -24,7 +25,7 @@ public class PlaceHolderDeposit : MonoBehaviour {
         {
             if (Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A"))
             {
-                if (orbDeposit.GetOrbCount() >= 50)
+                if (orbDeposit.GetOrbCount() >= orbDeposit.GetMaxOrbCount() * dangerPercent)
                 {
                     dangerDepositText.SetActive(true);
                     fadeText = true;
@@ -40,6 +41,12 @@ public class PlaceHolderDeposit : MonoBehaviour {
             if (dangerDepositText.GetComponent<CanvasGroup>().alpha > 0)
             {
                 dangerDepositText.GetComponent<CanvasGroup>().alpha -= 0.005f;
+            }
+            else
+            {
+                fadeText = false;
+                dangerDepositText.SetActive(false);
+                dangerDepositText.GetComponent<CanvasGroup>().alpha = 1f;
             }
        }
     }
