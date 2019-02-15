@@ -13,6 +13,7 @@ public class HatTask : MonoBehaviour
     PlayerIndex playerIndex;
     GamePadState state;
     GamePadState prevState;
+    private PersistantStateData PSD;
 
     private bool makeHatFollow = false;
 
@@ -26,10 +27,13 @@ public class HatTask : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "NPC")
+        if((bool)PSD.stateConditions["ShrineFirstConversationOver"])
         {
-            //StartCoroutine(TwoSecond());
-            pickedUp = true;
+            if (col.gameObject.tag == "NPC")
+            {
+                //StartCoroutine(TwoSecond());
+                pickedUp = true;
+            }
         }
     }
 
@@ -75,6 +79,11 @@ public class HatTask : MonoBehaviour
         if (pickedUp == true)
         {
             pickUp();
+        }
+
+        if (PSD == null)
+        {
+            PSD = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         }
     }
 

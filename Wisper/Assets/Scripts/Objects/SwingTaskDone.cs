@@ -33,17 +33,19 @@ public class SwingTaskDone : MonoBehaviour {
         float angle = leftSwing.transform.rotation.eulerAngles.y;
         float anglex = leftSwing.transform.rotation.eulerAngles.x;
 
-        if (TaskisDone == false && ((leftSwing.transform.rotation.eulerAngles.x <= 250 && leftSwing.transform.rotation.eulerAngles.x >= 230) || (leftSwing.transform.rotation.eulerAngles.x >= 40 && leftSwing.transform.rotation.eulerAngles.x <= 50)))
+        if((bool)persistantStateData.stateConditions["ShrineFirstConversationOver"])
         {
-            
-            // Task is complete
-            TaskisDone = true;
-            GetComponent<SpawnOrbs>().DropOrbs();
-            persistantStateData.stateConditions["SwingTaskDone"] = true;
-            persistantStateData.updateCount++;
-            GamePad.SetVibration(playerIndex, 0f, 1f);
-            StartCoroutine(Wait());
-        }
+            if (TaskisDone == false && ((leftSwing.transform.rotation.eulerAngles.x <= 250 && leftSwing.transform.rotation.eulerAngles.x >= 230) || (leftSwing.transform.rotation.eulerAngles.x >= 40 && leftSwing.transform.rotation.eulerAngles.x <= 50)))
+            {
 
+                // Task is complete
+                TaskisDone = true;
+                GetComponent<SpawnOrbs>().DropOrbs();
+                persistantStateData.stateConditions["SwingTaskDone"] = true;
+                persistantStateData.updateCount++;
+                GamePad.SetVibration(playerIndex, 0f, 1f);
+                StartCoroutine(Wait());
+            }
+        }
     }
 }
