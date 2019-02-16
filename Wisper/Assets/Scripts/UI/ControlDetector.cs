@@ -26,31 +26,36 @@ public class ControlDetector : MonoBehaviour {
         // toggles objects active based on whether player is using controller or keyboard input
         string[] names = Input.GetJoystickNames();
         //Loops through each element of the 'names array'
-        for(int i = 0; i < names.Length; i++)
+
+        //if the element has anything in it, then the player is using a controller
+        //Otherwise, the player is using a mouse
+        // Debug.Log("Using Controller: " + isUsingController);
+        if (names[0] != "")
         {
-            //if the element has anything in it, then the player is using a controller
-            if (names[i].Length > 0)
+            isUsingController = true;
+            if (allowAutoActivate)
             {
-                isUsingController = true;
-                if (allowAutoActivate)
-                {
-                    controllerObject.SetActive(true);
-                    keyboardMouseObject.SetActive(false);
-                }
-                currentActiveObject = controllerObject;
+                controllerObject.SetActive(true);
+                keyboardMouseObject.SetActive(false);
             }
-            //Otherwise, the player is using a mouse
-            else
-            {
-                isUsingController = false;
-                if (allowAutoActivate)
-                {
-                    controllerObject.SetActive(false);
-                    keyboardMouseObject.SetActive(true);
-                }
-                currentActiveObject = keyboardMouseObject;
-            }
+            currentActiveObject = controllerObject;
         }
+        else
+        {
+            isUsingController = false;
+            if (allowAutoActivate)
+            {
+                controllerObject.SetActive(false);
+                keyboardMouseObject.SetActive(true);
+            }
+            currentActiveObject = keyboardMouseObject;
+        }
+        /*
+        for (int i = 0; i < names.Length; i++)
+        {
+            Debug.Log(names[i]);
+        }
+        */
     }
     public GameObject GetCurrentActiveObject()
     {
