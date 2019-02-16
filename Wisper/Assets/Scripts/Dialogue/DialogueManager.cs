@@ -76,7 +76,7 @@ public class DialogueManager : MonoBehaviour {
     void Start ()
     {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
-        nextLinePrompt = dialogueBox.GetComponent<ControlDetector>().GetCurrentActiveObject();
+        nextLinePrompt = GameObject.Find("DialogueButtonPrompt");
 
         optionPanels = GameObject.FindGameObjectWithTag("OptionPanels");
         
@@ -131,7 +131,7 @@ public class DialogueManager : MonoBehaviour {
 
     private void Update()
     {
-        nextLinePrompt = dialogueBox.GetComponent<ControlDetector>().GetCurrentActiveObject();
+        // nextLinePrompt = dialogueBox.GetComponent<ControlDetector>().GetCurrentActiveObject();
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {

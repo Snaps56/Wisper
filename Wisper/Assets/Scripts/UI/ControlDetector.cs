@@ -42,9 +42,9 @@ public class ControlDetector : MonoBehaviour {
             //Otherwise, the player is using a mouse
             else
             {
+                isUsingController = false;
                 if (allowAutoActivate)
                 {
-                    isUsingController = false;
                     controllerObject.SetActive(false);
                     keyboardMouseObject.SetActive(true);
                 }
