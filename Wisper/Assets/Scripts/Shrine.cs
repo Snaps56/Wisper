@@ -57,7 +57,8 @@ public class Shrine : MonoBehaviour {
 	// Rain for the cutscene
     public GameObject rain;
 	// Lightning for the cutscene
-    public GameObject light;
+    public GameObject directionalLight1;
+    public GameObject directionalLight2;
     public GameObject windPowerUI;
     public AudioSource lighting;
     public AudioSource rainSound;
@@ -173,8 +174,10 @@ public class Shrine : MonoBehaviour {
 					Debug.Log ("Deposit Complete");
                     lighting.Play();
                     rainSound.Play();
+                    Debug.Log("Triggered: " + Triggered);
                     if (!Triggered )
                     {
+                        Debug.Log("Triggered: " + Triggered);
                         Debug.Log("WE'RE IN");
                         // After depositing orbs, play a cutscene of the storm
                         player.GetComponent<PlayerMovement>().DisableMovement();
@@ -187,7 +190,8 @@ public class Shrine : MonoBehaviour {
                         //Activate the rain particle system
                         rain.SetActive(true);
                         //Change the directional light to be dimmer
-                        light.GetComponent<Light>().color = Color.black;
+                        directionalLight1.GetComponent<Light>().color = Color.black;
+                        directionalLight2.GetComponent<Light>().color = Color.black;
                         //Play the animation for the camera
                         cutsceneCamera.GetComponent<Animation>().Play("Deposit");
                         Triggered = true;

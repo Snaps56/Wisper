@@ -9,7 +9,8 @@ public class CutsceneEvents : MonoBehaviour {
     public Camera mainCamera;
     public Camera cutsceneCamera;
     public GameObject rain;
-    public GameObject light;
+    public GameObject directionalLight1;
+    public GameObject directionalLight2;
     public GameObject windPowerUI;
     public GameObject player;
 	public GameObject cityGate;
@@ -97,8 +98,11 @@ public class CutsceneEvents : MonoBehaviour {
         //Turn off rain sound
         rainSound.Stop();
         //Resets the rain tint back to normal
-        Color tempColor = new Color(255, 147, 85, 255);
-        light.GetComponent<Light>().color = Color.white;
+        Color directionalLight1Color = new Color(0, 253, 248, 255);
+        Color directionalLight2Color = new Color(255, 222, 170, 255);
+
+        directionalLight1.GetComponent<Light>().color = Color.white;
+        directionalLight2.GetComponent<Light>().color = Color.white;
     }
 
 
