@@ -11,6 +11,7 @@ public class ControlDetector : MonoBehaviour {
 
     private GameObject currentActiveObject;
 
+
     // Use this for initialization
     void Start ()
     {
@@ -24,31 +25,35 @@ public class ControlDetector : MonoBehaviour {
     {
         // check all detectable input controllers
         // toggles objects active based on whether player is using controller or keyboard input
-        string[] names = Input.GetJoystickNames();
-        //Loops through each element of the 'names array'
+        // Loops through each element of the 'names array'
 
-        //if the element has anything in it, then the player is using a controller
-        //Otherwise, the player is using a mouse
-        // Debug.Log("Using Controller: " + isUsingController);
-        if (names[0] != "")
+        // if the element has anything in it, then the player is using a controller
+        // Otherwise, the player is using a mouse
+        string[] names = Input.GetJoystickNames();
+
+        if (names.Length > 0)
         {
-            isUsingController = true;
-            if (allowAutoActivate)
+            if (names[0] == "")
             {
-                controllerObject.SetActive(true);
-                keyboardMouseObject.SetActive(false);
+                isUsingController = false;
+                if (allowAutoActivate)
+                {
+                    controllerObject.SetActive(false);
+                    keyboardMouseObject.SetActive(true);
+                }
+                currentActiveObject = keyboardMouseObject;
             }
-            currentActiveObject = controllerObject;
-        }
-        else
-        {
-            isUsingController = false;
-            if (allowAutoActivate)
+            else
             {
-                controllerObject.SetActive(false);
-                keyboardMouseObject.SetActive(true);
+                isUsingController = true;
+                if (allowAutoActivate)
+                {
+                    controllerObject.SetActive(true);
+                    keyboardMouseObject.SetActive(false);
+                }
+                currentActiveObject = controllerObject;
             }
-            currentActiveObject = keyboardMouseObject;
+            // Debug.Log(names.Length + ", " + names[0]);
         }
         /*
         for (int i = 0; i < names.Length; i++)
