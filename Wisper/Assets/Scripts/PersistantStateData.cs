@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // Centralized location to check for various conditions that determine what should or should not be updated in the game.
@@ -282,6 +283,12 @@ public class PersistantStateData : MonoBehaviour
         }
     }
 
+    public void LoadFromMenuClick(int loadButtonIndex)
+    {
+        string loadButtonString = "LoadButton" + loadButtonIndex;
+        GameObject loadButton = GameObject.Find(loadButtonString);
+        LoadFile(loadButton.transform.Find("SaveNumber").GetComponent<Text>().text);
+    }
     public void LoadFile(string fileIndex)
     {
         List<string> fileLines = new List<string>();

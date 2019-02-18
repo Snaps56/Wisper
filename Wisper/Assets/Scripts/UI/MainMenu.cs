@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 //using XInputDotNetPure;
 
 public class MainMenu : MonoBehaviour {
@@ -12,6 +13,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject EventSystem2;
     public GameObject StartMenu;
     public GameObject OptionsMenu;
+    public GameObject LoadMenu;
     public GameObject Credits;
     public GameObject Image;
     public PersistantStateData PSD;
@@ -46,6 +48,38 @@ public class MainMenu : MonoBehaviour {
     public void OnFadeComplete ()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void DisplayLoadMenu ()
+    {
+        string[] saveFolders = Directory.GetDirectories(PSD.savePath);
+        if(saveFolders.Length < 1)
+        {
+            // TODO display no load data message
+        }
+        else
+        {
+            if (saveFolders.Length == 1)
+            {
+                // TODO Turn on 1 LoadButton
+                // Set initial values on LoadButton
+            }
+            else if (saveFolders.Length == 2)
+            {
+                // TODO Turn on 2 LoadButton
+                // Set initial values on LoadButtons
+            }
+            else if (saveFolders.Length == 3)
+            {
+                // TODO Turn on 3 LoadButton
+                // Set initial values on LoadButtons
+            }
+            else if (saveFolders.Length > 3)
+            {
+                // TODO Turn on 4 LoadButton
+                // Set initial values on LoadButtons
+            }
+        }
     }
 
     public void Quitgame ()

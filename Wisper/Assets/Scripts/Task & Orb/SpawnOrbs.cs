@@ -6,7 +6,7 @@ public class SpawnOrbs : MonoBehaviour
 {
     // Gameobjects required by Inspector
     public GameObject orb;
-    public Transform player;
+    private Transform player;
     // public AudioSource bell;
 
     // public variables for testing purposes
@@ -17,17 +17,18 @@ public class SpawnOrbs : MonoBehaviour
     public float orbSpawnOffsetY = 0; // how high orbs spawn from the base position of parent object
 
     List<GameObject> orbsList = new List<GameObject>(); // a list of all active orbs in the scene
-    
+    private void Start()
+    {
+        player = GameObject.Find("Player").transform;
+    }
     // Update is called once per frame
     void Update()
     {
         // Debug button for dropping orbs
-        /*
         if (Input.GetButtonDown("PC_Key_Orb"))
         {
             DropOrbs();
         }
-        */
         // make sure orbs list does not contain empty indices
         orbsList.TrimExcess();
     }
