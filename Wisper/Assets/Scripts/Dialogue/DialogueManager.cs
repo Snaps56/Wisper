@@ -125,7 +125,7 @@ public class DialogueManager : MonoBehaviour {
             Debug.Log("Using clone PSD");
         }
         HideBox();
-        Debug.Log("hide next line prompt");
+        // Debug.Log("hide next line prompt");
         HideNextLinePrompt();
     }
 
@@ -874,7 +874,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void ShowNextLinePrompt()
     {
-        Debug.Log("Show next line prompt");
+        // Debug.Log("Show next line prompt");
         nextLinePrompt.SetActive(true);
     }
 }
