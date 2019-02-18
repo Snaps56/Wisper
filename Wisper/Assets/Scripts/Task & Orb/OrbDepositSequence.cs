@@ -12,6 +12,8 @@ public class OrbDepositSequence : MonoBehaviour {
 	private Vector3 start;
 	private Vector3 destination;
 
+	private Rigidbody rb;
+
 	private bool canMove;
 
 	private Shrine shrineScript;
@@ -23,6 +25,9 @@ public class OrbDepositSequence : MonoBehaviour {
 		canMove = true;
 		currentNode = 0;
 		travelSpeed = 2f;
+
+		rb = GetComponent<Rigidbody> ();
+
 		shrineScript = GameObject.FindGameObjectWithTag ("Shrine").GetComponent<Shrine> ();
 
 		for (int i = 0; i < pathNodes.Length; i++) {
@@ -47,5 +52,9 @@ public class OrbDepositSequence : MonoBehaviour {
 				}
 			}
 		} 
+	}
+
+	void FixedUpdate () {
+		
 	}
 }

@@ -123,6 +123,19 @@ public class Shrine : MonoBehaviour {
 					partPlay.Play ();
 				}
 			}
+
+			// Orb deposit animation debug command
+			if (Input.GetKeyDown(KeyCode.P))
+			{
+				Debug.Log("P pressed");
+				playerOrb = player.GetComponentInChildren<OrbCount>().GetOrbCount();
+				if (playerOrb > 0) {
+					orbDepositsInTransit = playerOrb;
+					// Function that changes orb count
+					DepositOrbs (orbDepositsInTransit);
+				}
+			}
+
 			// Check that the player is holding down the lift(clean) button
 			gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
 			// Is the shrine is not clean and the player is lifting, start cleaning the shrine
