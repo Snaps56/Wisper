@@ -55,7 +55,7 @@ public class PersistantStateData : MonoBehaviour
             globalTime = 0f;
             PopulateStateConditions();
             updateCount = 1;
-            savePath = Path.Combine(Application.persistentDataPath, "saves/");
+            savePath = Path.Combine(Application.persistentDataPath, "saves" + Path.DirectorySeparatorChar);
         }
         else if (persistantStateData != this)
         {
@@ -247,6 +247,17 @@ public class PersistantStateData : MonoBehaviour
         }
     }
 
+    public string ParseFinalPathPortion(string path)
+    {
+        Debug.Log("Path separator is: " + Path.DirectorySeparatorChar);
+        string[] splitPath = path.Split(Path.DirectorySeparatorChar);
+        for(int i = 0; i < splitPath.Length; i++)
+        {
+            Debug.Log("Path parser part " + i + ": " + splitPath[i]);
+        }
+        return splitPath[splitPath.Length - 1];
+    }
+
     public void SaveGame(string filename = "ShamusFile")
     {
         //Debug.Log("Saving game");
@@ -285,6 +296,7 @@ public class PersistantStateData : MonoBehaviour
 
     public void LoadFromMenuClick(int loadButtonIndex)
     {
+        Debug.Log("Hey there, you're trying to load save data!");
         string loadButtonString = "LoadButton" + loadButtonIndex;
         GameObject loadButton = GameObject.Find(loadButtonString);
         LoadFile(loadButton.transform.Find("SaveNumber").GetComponent<Text>().text);

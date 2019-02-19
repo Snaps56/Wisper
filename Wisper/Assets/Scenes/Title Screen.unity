@@ -182,6 +182,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 5170789}
   m_CullTransparentMesh: 0
+--- !u!1 &66525194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1403434183612036, guid: a403f70c16e81b546ab1336bd2f3345d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001526213}
 --- !u!1 &86403508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,6 +1029,28 @@ MonoBehaviour:
       - m_Target: {fileID: 988562627}
         m_MethodName: DisplayLoadMenu
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 660988643}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 811435732}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2188,7 +2215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &611434197
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2301,7 +2328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &660988644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2331,7 +2358,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 66525194}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &660988646
@@ -2341,7 +2368,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 660988643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 235.90808, y: 366.95908, z: -503.66077}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2681,7 +2708,7 @@ MonoBehaviour:
   LoadMenu: {fileID: 1067162640}
   Credits: {fileID: 1749674520}
   Image: {fileID: 0}
-  PSD: {fileID: 0}
+  PSD: {fileID: 1920650038}
 --- !u!1001 &1001526213
 Prefab:
   m_ObjectHideFlags: 0
@@ -2822,6 +2849,41 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114764381334747392, guid: a403f70c16e81b546ab1336bd2f3345d,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764381334747392, guid: a403f70c16e81b546ab1336bd2f3345d,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764381334747392, guid: a403f70c16e81b546ab1336bd2f3345d,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764381334747392, guid: a403f70c16e81b546ab1336bd2f3345d,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764381334747392, guid: a403f70c16e81b546ab1336bd2f3345d,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.8773585
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764381334747392, guid: a403f70c16e81b546ab1336bd2f3345d,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114764381334747392, guid: a403f70c16e81b546ab1336bd2f3345d,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a403f70c16e81b546ab1336bd2f3345d, type: 2}
   m_IsPrefabAsset: 0
@@ -2913,7 +2975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1067162641
 RectTransform:
   m_ObjectHideFlags: 0

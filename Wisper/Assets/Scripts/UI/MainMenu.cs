@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.IO;
 //using XInputDotNetPure;
 
@@ -50,8 +51,10 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene(2);
     }
 
+    // Initializes file names and numbers in load buttons, as well as making the objects active
     public void DisplayLoadMenu ()
     {
+        Debug.Log("Save path is " + PSD.savePath);
         string[] saveFolders = Directory.GetDirectories(PSD.savePath);
         if(saveFolders.Length < 1)
         {
@@ -59,27 +62,44 @@ public class MainMenu : MonoBehaviour {
         }
         else
         {
-            if (saveFolders.Length == 1)
+            GameObject loadMenu = GameObject.Find("LoadMenu");
+            GameObject lb1 = loadMenu.transform.Find("LoadButton1").gameObject;
+            GameObject lb2 = loadMenu.transform.Find("LoadButton2").gameObject;
+            GameObject lb3 = loadMenu.transform.Find("LoadButton3").gameObject;
+            GameObject lb4 = loadMenu.transform.Find("LoadButton4").gameObject;
+            Debug.Log("Located load buttons: " + lb1.name + "\n" + lb2.name + "\n" + lb3.name + "\n" + lb4.name);
+            if (saveFolders.Length >= 1)
             {
-                // TODO Turn on 1 LoadButton
-                // Set initial values on LoadButton
+                ChangeLoadButton(lb1, saveFolders[0]);
+                lb1.SetActive(true);
             }
-            else if (saveFolders.Length == 2)
+            if (saveFolders.Length >= 2)
             {
-                // TODO Turn on 2 LoadButton
-                // Set initial values on LoadButtons
+                ChangeLoadButton(lb2, saveFolders[1]);
+                lb2.SetActive(true);
             }
-            else if (saveFolders.Length == 3)
+            if (saveFolders.Length >= 3)
             {
-                // TODO Turn on 3 LoadButton
-                // Set initial values on LoadButtons
+                ChangeLoadButton(lb3, saveFolders[2]);
+                lb3.SetActive(true);
             }
-            else if (saveFolders.Length > 3)
+            if (saveFolders.Length > 3)
             {
-                // TODO Turn on 4 LoadButton
-                // Set initial values on LoadButtons
+                ChangeLoadButton(lb4, saveFolders[3]);
+                lb4.SetActive(true);
             }
+            loadMenu.transform.Find("Panel").gameObject.SetActive(true);
         }
+    }
+
+    public void ChangeLoadButton(GameObject lb, string saveFolder)
+    {
+        Debug.Log("Finding save from: " + saveFolder);
+        string lbNum = PSD.ParseFinalPathPortion(saveFolder);
+        string lbName = PSD.ParseFinalPathPortion(Directory.GetFiles(saveFolder)[0]);
+        Debug.Log("Searching for name and num for load button: " + lb.name);
+        lb.transform.Find("SaveNumber").gameObject.GetComponent<Text>().text = lbNum;
+        lb.transform.Find("SaveName").gameObject.GetComponent<Text>().text = lbName;
     }
 
     public void Quitgame ()
