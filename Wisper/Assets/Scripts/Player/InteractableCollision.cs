@@ -16,12 +16,9 @@ public class InteractableCollision : MonoBehaviour {
 	private float vel;
 
 	private GameObject dialogueManager;
-   [Header("UI")]
-	public GameObject miniMap;
 
 	// Use this for initialization
 	void Start () {
-		//miniMap.SetActive(true);
 		rb = GetComponent<Rigidbody>();
 
 
