@@ -10,14 +10,22 @@ public class ControlDetector : MonoBehaviour {
     public GameObject keyboardMouseObject;
 
     private GameObject currentActiveObject;
+    private bool emptyGameObjects;
 
 
     // Use this for initialization
     void Start ()
     {
-        controllerObject.SetActive(false);
-        keyboardMouseObject.SetActive(true);
-        currentActiveObject = keyboardMouseObject;
+        if (controllerObject == null && keyboardMouseObject == null)
+        {
+            emptyGameObjects = true;
+        }
+        else
+        {
+            controllerObject.SetActive(false);
+            keyboardMouseObject.SetActive(true);
+            currentActiveObject = keyboardMouseObject;
+        }
     }
 
     // Update is called once per frame
@@ -36,22 +44,30 @@ public class ControlDetector : MonoBehaviour {
             if (names[0] == "")
             {
                 isUsingController = false;
-                if (allowAutoActivate)
+
+                if (!emptyGameObjects)
                 {
-                    controllerObject.SetActive(false);
-                    keyboardMouseObject.SetActive(true);
+                    if (allowAutoActivate)
+                    {
+                        controllerObject.SetActive(false);
+                        keyboardMouseObject.SetActive(true);
+                    }
+                    currentActiveObject = keyboardMouseObject;
                 }
-                currentActiveObject = keyboardMouseObject;
             }
             else
             {
                 isUsingController = true;
-                if (allowAutoActivate)
+
+                if (!emptyGameObjects)
                 {
-                    controllerObject.SetActive(true);
-                    keyboardMouseObject.SetActive(false);
+                    if (allowAutoActivate)
+                    {
+                        controllerObject.SetActive(true);
+                        keyboardMouseObject.SetActive(false);
+                    }
+                    currentActiveObject = controllerObject;
                 }
-                currentActiveObject = controllerObject;
             }
             // Debug.Log(names.Length + ", " + names[0]);
         }
@@ -65,5 +81,9 @@ public class ControlDetector : MonoBehaviour {
     public GameObject GetCurrentActiveObject()
     {
         return currentActiveObject;
+    }
+    public bool GetIsUsingController()
+    {
+        return isUsingController;
     }
 }
