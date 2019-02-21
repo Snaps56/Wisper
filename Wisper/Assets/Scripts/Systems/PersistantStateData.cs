@@ -267,15 +267,18 @@ public class PersistantStateData : MonoBehaviour
 
         while (!complete)
         {
-            if (File.Exists(Path.Combine(savePath, fileNum + Path.DirectorySeparatorChar + filename + ".txt")))
+            string saveFile = Path.Combine(savePath, fileNum + "" + Path.DirectorySeparatorChar + "" + filename + ".txt");
+            if (File.Exists(saveFile))
             {
                 fileNum++;
+                Debug.Log("Increment file num");
             }
             else
             {
+                Debug.Log("File num is " + fileNum);
                 complete = !complete;
-                string saveFile = Path.Combine(savePath, fileNum + Path.DirectorySeparatorChar + filename + ".txt");
-
+                
+                Debug.Log("Save file is " + saveFile);
 
                 string fileContentString = "";
                 foreach (string key in stateConditions.Keys)
