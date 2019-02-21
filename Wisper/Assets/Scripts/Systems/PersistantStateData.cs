@@ -30,6 +30,7 @@ public class PersistantStateData : MonoBehaviour
     private bool doFade = false;
     private bool doneFade = false;
     private bool startedAsync = false;
+    private string targetFile = "";
 
     private AsyncOperation async;
 
@@ -266,14 +267,14 @@ public class PersistantStateData : MonoBehaviour
 
         while (!complete)
         {
-            if (File.Exists(Path.Combine(savePath, fileNum + "/" + filename + ".txt")))
+            if (File.Exists(Path.Combine(savePath, fileNum + Path.DirectorySeparatorChar + filename + ".txt")))
             {
                 fileNum++;
             }
             else
             {
                 complete = !complete;
-                string saveFile = Path.Combine(savePath, fileNum + "/" + filename + ".txt");
+                string saveFile = Path.Combine(savePath, fileNum + Path.DirectorySeparatorChar + filename + ".txt");
 
 
                 string fileContentString = "";
@@ -299,10 +300,14 @@ public class PersistantStateData : MonoBehaviour
         Debug.Log("Hey there, you're trying to load save data!");
         string loadButtonString = "LoadButton" + loadButtonIndex;
         GameObject loadButton = GameObject.Find(loadButtonString);
-        LoadFile(loadButton.transform.Find("SaveNumber").GetComponent<Text>().text);
+        targetFile = loadButton.transform.Find("SaveNumber").GetComponent<Text>().text;
+        doFade = true;
     }
+
     public void LoadFile(string fileIndex)
     {
+        Debug.Log("Called load file with index: " + fileIndex);
+        
         List<string> fileLines = new List<string>();
         if (Directory.Exists(Path.Combine(savePath, fileIndex)))
         {
@@ -344,6 +349,21 @@ public class PersistantStateData : MonoBehaviour
     {
         if (doFade)
         {
+
+            if (loadingScreen == null)
+            {
+                Debug.Log("Retrieving loading screen");
+                loadingScreen = GameObject.Find("Canvas").transform.Find("Loading Screen").gameObject;
+            }
+            if (blackFade == null)
+            {
+                Debug.Log("Retrieving black fade");
+                blackFade = GameObject.Find("Canvas").transform.Find("Faded").gameObject.GetComponentInChildren<CanvasGroup>();
+            }
+            if (!blackFade.gameObject.activeSelf)
+            {
+                blackFade.gameObject.SetActive(true);
+            }
             if (blackFade.alpha < 1 && !doneFade)
             {
                 blackFade.alpha += fadeRate;
@@ -355,7 +375,7 @@ public class PersistantStateData : MonoBehaviour
             if (doneFade && !doLoad)
             {
                 doLoad = true;
-                LoadFile("1");  // TODO: Take a file number input
+                LoadFile(targetFile);
             }
             else if (doneFade && !startedAsync && doneLoad)
             {

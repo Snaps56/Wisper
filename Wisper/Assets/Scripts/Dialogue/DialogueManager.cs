@@ -115,6 +115,8 @@ public class DialogueManager : MonoBehaviour {
         dialogueBoxActive = false;
 
         player = GameObject.FindGameObjectWithTag("Player");
+
+        //persistantStateData = PersistantStateData.
         persistantStateData = GameObject.Find("PersistantStateData");
         if(persistantStateData.GetComponent<PersistantStateData>().realPSD)
         {

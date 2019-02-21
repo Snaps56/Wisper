@@ -134,6 +134,12 @@ public class MainMenu : MonoBehaviour {
             Credits.SetActive(false);
             Image.SetActive(true);
         }
+
+        if(PSD == null)
+        {
+            Debug.Log("no PSD set");
+            PSD = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        }
     }
 
 }

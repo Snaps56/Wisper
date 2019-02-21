@@ -16,7 +16,8 @@ public class TutorialAbilitiesCondition : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tutorialCondition = GetComponent<TutorialCondition>();
-        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        //persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        persistantStateData = PersistantStateData.persistantStateData;
         conditionDone = false;
 	}
 	

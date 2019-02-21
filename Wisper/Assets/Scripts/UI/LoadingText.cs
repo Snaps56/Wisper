@@ -19,13 +19,13 @@ public class LoadingText : MonoBehaviour {
 	void Start () {
         loadingText = GetComponent<Text>();
         // loadingText.text = "Loading.";
-        loadingText.text = "To Be Continued...";
+        //loadingText.text = "To Be Continued...";
         currentDot = initDot;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        /*
+        
 		if (transform.parent.gameObject.activeInHierarchy && !hasInitiated)
         {
             hasInitiated = true;
@@ -51,6 +51,6 @@ public class LoadingText : MonoBehaviour {
         {
             loadingText.text += ".";
         }
-        */
+        
 	}
 }
