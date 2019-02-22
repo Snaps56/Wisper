@@ -91,7 +91,7 @@ public class ShrineCleanHandler : MonoBehaviour {
             {
                 cleaningParticles.Stop();
             }
-            Debug.Log("within clean range: " + withinCleanRange + ", player is swirling: " + playerIsSwirling + ", cleaning particles is playing: " + cleaningParticles.isPlaying);
+            //Debug.Log("within clean range: " + withinCleanRange + ", player is swirling: " + playerIsSwirling + ", cleaning particles is playing: " + cleaningParticles.isPlaying);
             playerIsSwirling = objectLiftScript.GetIsLiftingObjects();
             currentOrbCount = orbCountScript.GetOrbCount();
             if (withinCleanRange)
