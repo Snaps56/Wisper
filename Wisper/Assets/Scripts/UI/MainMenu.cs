@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour {
     {
         controlDetector = GameObject.Find("ControllerDetector").GetComponent<ControlDetector>();
 
-        PSD = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        PSD = PersistantStateData.persistantStateData;
         PSD.ResetPersistantStateData();
     }
 
@@ -58,7 +58,7 @@ public class MainMenu : MonoBehaviour {
         string[] saveFolders = Directory.GetDirectories(PSD.savePath);
         if(saveFolders.Length < 1)
         {
-            // TODO display no load data message
+            // TODO display "no load data" message and make sure correct menus are enabled
         }
         else
         {
@@ -95,8 +95,8 @@ public class MainMenu : MonoBehaviour {
     public void ChangeLoadButton(GameObject lb, string saveFolder)
     {
         Debug.Log("Finding save from: " + saveFolder);
-        string lbNum = PSD.ParseFinalPathPortion(saveFolder);
-        string lbName = PSD.ParseFinalPathPortion(Directory.GetFiles(saveFolder)[0]);
+        string lbNum = LoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(saveFolder);
+        string lbName = LoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(Directory.GetFiles(saveFolder)[0]);
         Debug.Log("Searching for name and num for load button: " + lb.name);
         lb.transform.Find("SaveNumber").gameObject.GetComponent<Text>().text = lbNum;
         lb.transform.Find("SaveName").gameObject.GetComponent<Text>().text = lbName;
@@ -111,7 +111,7 @@ public class MainMenu : MonoBehaviour {
     void FixedUpdate()
     {
         //SetVibration should be sent in a slower rate.
-        // Set vibration according to triggers
+        //Set vibration according to triggers
         //GamePad.SetVibration(playerIndex, 0f, System.Math.Max(state.Triggers.Right, state.Triggers.Left));
     }
 
