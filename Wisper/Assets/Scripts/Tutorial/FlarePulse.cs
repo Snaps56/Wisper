@@ -111,10 +111,7 @@ public class FlarePulse : MonoBehaviour
 
         //Find direction between the shrine and camera
         toFlare = lensFlare.transform.position - mainCamera.transform.position;
-        //if (Vector3.Dot(cameraForward.normalized, toFlare.normalized) > (dotProductAngle - 0.1f) && VibStop==true)
-        //{
-        //    GamePad.SetVibration(playerIndex, 0f, 0f);
-        //}
+
         if ((Vector3.Dot(cameraForward.normalized, toFlare.normalized) < (dotProductAngle - 0.1f) || VibStop == true || Time.timeScale == 0) && StoppedVib == false)
         {
             GamePad.SetVibration(playerIndex, 0f, 0f);
