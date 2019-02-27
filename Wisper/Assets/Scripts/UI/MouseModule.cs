@@ -21,7 +21,7 @@ public class MouseModule : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             masterEventSystem.SetSelectedGameObject(gameObject);
         }
-        Debug.Log(currentGameObject);
+        //Debug.Log(currentGameObject);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
