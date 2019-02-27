@@ -14,12 +14,6 @@ public class PersistantStateData : MonoBehaviour
     public float globalTime;       // The total elapsed time in seconds
     public bool pauseGlobalTimer = false;   // Turn on to pause the global timer
 
-    //Global Data: Tasks
-    public int totalTasks = 13;
-    public int finishedTasks = 0;
-    public int CurrnetOrbCount = 0;
-    public int totalOrbCount = 0;
-
     public bool realPSD = false;
     // Variables used to save and load game data
     public string savePath;
@@ -60,8 +54,6 @@ public class PersistantStateData : MonoBehaviour
             globalTime += Time.deltaTime;
         }
 
-        //Keeps track of the total orbs
-        totalOrbCount = totalTasks * 5;
     }
 
     private void FixedUpdate()
@@ -101,10 +93,17 @@ public class PersistantStateData : MonoBehaviour
         /////////////////////////////////////////////////////////
         ////////////////////    Task flags   ////////////////////
         /////////////////////////////////////////////////////////
+        stateConditions.Add("TotalTasks", 13);
+        stateConditions.Add("FinishedTasks", 0);
+        stateConditions.Add("OrbCount", 0);
+        stateConditions.Add("TotalOrbCount", 0);
+
+
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("ShrineIsClean", false);
         stateConditions.Add("SwingTaskDone", false);
         stateConditions.Add("MerryGoRound", false);
+
 
         
 

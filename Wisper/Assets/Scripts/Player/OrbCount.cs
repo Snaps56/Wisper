@@ -3,12 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 public class OrbCount : MonoBehaviour { 
 
-    private float orbMax = 50;
-	private float orbCount;
-    private float orbIncrementSpeed = 0.1f;
-    public float orbPickupRadius = 0.5f;
-	private float originalSpeed;
-	private float startingSpeed;
+    private int orbMax = 0;
+	private int orbCount;
+    private PersistantStateData psd;
 
     [Header("UI")]
     public Image windPowerBar;
@@ -19,17 +16,49 @@ public class OrbCount : MonoBehaviour {
     //Initilize Variables
     void Start()
     {
-        orbCount = 0;
+        Debug.Log("bitch ");
+        psd = PersistantStateData.persistantStateData;
+
+        orbMax = (int)psd.stateConditions["TotalTasks"] * 5;
+        psd.ChangeStateConditions("TotalOrbCount", orbMax);
+
+        orbCount = (int)psd.stateConditions["OrbCount"];
         orbCountText.text = orbCount.ToString() + "/" + orbMax;
     }
 
     //Sets the orb count
-	public void SetOrbCount(float newOrbCount) {
+	public void SetOrbCount(int newOrbCount) {
 		orbCount = newOrbCount;
         windPowerBar.fillAmount = orbCount / orbMax;
         orbCountText.text = orbCount.ToString() + "/" + orbMax;
-        Debug.Log ("OrbCount = " + orbCount);
 	}
+
+   // //Triggers on collision
+   // private void OnTriggerEnter(Collider other)
+   // {
+   //     //Calculates the distance orb is from player
+   //     //float objectDistance = (transform.position - other.transform.position).magnitude;
+
+   //     //Gathers orb if orb is within range
+   //     if (other.gameObject.CompareTag("Orb") /*&& objectDistance < orbPickupRadius*/)
+   //     {
+   //         //Destroys Orb
+   //         Destroy(other.gameObject);
+			////Debug.Log ("Added 1 orb");
+
+   //         ///Update UI
+   //         if (orbCount < orbMax)
+   //         {
+   //             orbCount ++;
+   //             //Debug.Log("count increased");
+   //         }
+   //         // wub.Play();
+   //         windPowerBar.fillAmount = orbCount / orbMax;
+   //         orbCountText.text = orbCount.ToString() + "/" + orbMax;
+   //         ///End Update UI
+   //     }
+   // }
+
 
     //Triggers on collision
     private void OnTriggerEnter(Collider other)
@@ -42,17 +71,18 @@ public class OrbCount : MonoBehaviour {
         {
             //Destroys Orb
             Destroy(other.gameObject);
-			//Debug.Log ("Added 1 orb");
+            //Debug.Log ("Added 1 orb");
 
             ///Update UI
-            if (orbCount < orbMax)
+            if ((int)psd.stateConditions["OrbCount"] < (int)psd.stateConditions["TotalOrbCount"])
             {
-                orbCount ++;
+                orbCount++;
+                psd.ChangeStateConditions("OrbCount", orbCount);
                 //Debug.Log("count increased");
             }
             // wub.Play();
-            windPowerBar.fillAmount = orbCount / orbMax;
-            orbCountText.text = orbCount.ToString() + "/" + orbMax;
+            windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["TotalOrbCount"]);
+            orbCountText.text = (int)psd.stateConditions["OrbCount"] + "/" + (int)psd.stateConditions["TotalOrbCount"];
             ///End Update UI
         }
     }
