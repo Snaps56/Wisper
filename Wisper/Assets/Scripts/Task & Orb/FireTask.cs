@@ -17,6 +17,7 @@ public class FireTask : MonoBehaviour {
 
     // Vibration Variables
     bool playerIndexSet = false;
+    private bool TaskisDone = false;
     PlayerIndex playerIndex;
     GamePadState state;
     GamePadState prevState;
@@ -26,9 +27,24 @@ public class FireTask : MonoBehaviour {
 
     //The vector between the task and camera
     private Vector3 toTask;
-	
-	// Update is called once per frame
-	void Update () {
+
+    // PTSD
+    private PersistantStateData persistantStateData;
+
+    // Use this for initialization
+    void Start()
+    {
+        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        GamePad.SetVibration(playerIndex, 0f, 0f);
+    }
+
+    // Update is called once per frame
+    void Update () {
         //Update the forward vector
         cameraForward = mainCamera.transform.forward;
 
@@ -37,11 +53,23 @@ public class FireTask : MonoBehaviour {
 
         float distance = Vector3.Distance(player.transform.position, transform.position);
 
-        //Player is looking at shrine
-        if (Vector3.Dot(cameraForward.normalized, toTask.normalized) > (dotProductAngle) && distance <= deactivateDistance)
+        if ((bool)persistantStateData.stateConditions["ShrineFirstConversationOver"])
         {
-            if (ability.GetComponent<ObjectThrow>().GetIsThrowingObjects() == true)
-            Debug.Log("You did it!");
+            //Player is looking at shrine
+            if (Vector3.Dot(cameraForward.normalized, toTask.normalized) > (dotProductAngle) && distance <= deactivateDistance)
+            {
+                if (TaskisDone == false && ability.GetComponent<ObjectThrow>().GetIsThrowingObjects() == true)
+                {
+                    // Task is complete
+                    TaskisDone = true;
+                    GetComponent<SpawnOrbs>().DropOrbs();
+                    persistantStateData.stateConditions["FireTaskDone"] = true;
+                    persistantStateData.updateCount++;
+                    GamePad.SetVibration(playerIndex, 0f, 1f);
+                    StartCoroutine(Wait());
+                }
+
+            }
         }
     }
 }
