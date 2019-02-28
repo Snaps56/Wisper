@@ -28,9 +28,6 @@ public class ControlsEventSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         currentActiveObject = controlEventSystem.currentSelectedGameObject;
-        Debug.Log(currentActiveObject);
-        Debug.Log("lol! + ");
-        Debug.Log(gamepadControls.name);
         if (currentActiveObject == gamepadButton)
         {
             gamepadControls.SetActive(true);
@@ -38,7 +35,6 @@ public class ControlsEventSystem : MonoBehaviour {
         }
         else if (currentActiveObject == pcButton)
         {
-            Debug.Log("lol! + " + pcControls.name);
             pcControls.SetActive(true);
             gamepadControls.SetActive(false);
         }

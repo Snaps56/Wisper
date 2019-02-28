@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.IO;
 //using XInputDotNetPure;
 
@@ -25,7 +26,6 @@ public class MainMenu : MonoBehaviour {
     private void Start()
     {
         controlDetector = GameObject.Find("ControllerDetector").GetComponent<ControlDetector>();
-
         PSD = PersistantStateData.persistantStateData;
         PSD.ResetPersistantStateData();
     }
@@ -120,11 +120,21 @@ public class MainMenu : MonoBehaviour {
         if (!controlDetector.isUsingController)
         {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
+
+        //Debug.Log(EventSystem.current.currentSelectedGameObject);
+
+        if (EventSystem.current.currentSelectedGameObject == null)
+        {
+            EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
+        }
+        /*
         if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel"))
         {
             EventSystem1.SetActive(true);
@@ -134,7 +144,7 @@ public class MainMenu : MonoBehaviour {
             Credits.SetActive(false);
             Image.SetActive(true);
         }
-
+        */
         if(PSD == null)
         {
             Debug.Log("no PSD set");
