@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveLoadMenu : MonoBehaviour {
 
+    public SLMode mode; 
     public GameObject saveLoadES;       // Event System used for the save and load menu(s)
     public GameObject generalMenuES;    // Event System used for the main or pause menu
 
@@ -81,6 +82,28 @@ public class SaveLoadMenu : MonoBehaviour {
         FadeChecker();
     }
 
+    // Sets mode to save or load. Determines how UI buttons behave on click.
+    public void SetMode(string type)
+    {
+        if (type.ToLower().Equals("save"))
+        {
+            SetMode(SLMode.Save);
+        }
+        else if(type.ToLower().Equals("load"))
+        {
+            SetMode(SLMode.Load);
+        }
+        else
+        {
+            throw new System.Exception("Not a valid save load mode");
+        }
+    }
+
+    public void SetMode(SLMode mode)
+    {
+        this.mode = mode;
+    }
+
     // Returns the directory or file name at the end of a path
     public string ParseFinalPathPortion(string path)
     {
@@ -93,6 +116,8 @@ public class SaveLoadMenu : MonoBehaviour {
         return splitPath[splitPath.Length - 1];
     }
 
+    // Deprecated.
+    // Creates a new save file at first open index, even if it is beyond what can be displayed in the UI. Early design, only used for debugging
     public void SaveGame(string filename = "ShamusFile")
     {
         //Debug.Log("Saving game");
@@ -132,15 +157,89 @@ public class SaveLoadMenu : MonoBehaviour {
         }
     }
 
+    // Saves the game at the specified index. When saving on an empty slot, it uses the default file name "ShamusFile.txt"
+    public void SaveGame(int fileNum)
+    {
+        string currentFileName = "";
+        string fileDir = Path.Combine(savePath, fileNum.ToString());
+        if(Directory.Exists(fileDir))
+        {
+            string[] files = Directory.GetFiles(fileDir);
+            if(files.Length > 0)
+            {
+                currentFileName = files[0];
+            }
+        }
+        else
+        {
+            Directory.CreateDirectory(fileDir);
+        }
+
+        if(currentFileName.Equals(""))
+        {
+            // TODO get use input and create save file from name
+            currentFileName = Path.Combine(fileDir, "ShamusFile.txt");
+            string fileContentString = "";
+            foreach (string key in PSD.stateConditions.Keys)
+            {
+                fileContentString += key + ": " + PSD.stateConditions[key] + "\r\n";
+            }
+            using (FileStream fs = File.Create(currentFileName))
+            {
+                byte[] saveData = new System.Text.UTF8Encoding(true).GetBytes(fileContentString);
+                fs.Write(saveData, 0, saveData.Length);
+            }
+        }
+        else
+        {
+            // Overwrite file
+            string fileContentString = "";
+            foreach (string key in PSD.stateConditions.Keys)
+            {
+                fileContentString += key + ": " + PSD.stateConditions[key] + "\r\n";
+            }
+            using (FileStream fs = File.Create(currentFileName + "TEMP"))
+            {
+                byte[] saveData = new System.Text.UTF8Encoding(true).GetBytes(fileContentString);
+                fs.Write(saveData, 0, saveData.Length);
+            }
+            if(File.Exists(currentFileName))
+            {
+                Debug.Log("Deleting previous save");
+                File.Delete(currentFileName);
+            }
+            Debug.Log("Setting temp file as save");
+            File.Move(currentFileName + "TEMP", currentFileName);
+        }
+    }
+
+    public void SaveLoadFromClick(int buttonIndex)
+    {
+        if(mode == SLMode.Load)
+        {
+            LoadFromMenuClick(buttonIndex);
+        }
+        else
+        {
+            SaveFromMenuClick(buttonIndex);
+        }
+    }
+
     // Takes in the index of the UI button element
     // Reads the save data index displayed on the button and begins loading process for that data
     public void LoadFromMenuClick(int loadButtonIndex)
     {
         Debug.Log("Hey there, you're trying to load save data!");
-        string loadButtonString = "LoadButton" + loadButtonIndex;
+        string loadButtonString = "SaveLoadButton" + loadButtonIndex;
         GameObject loadButton = GameObject.Find(loadButtonString);
         targetFile = loadButton.transform.Find("SaveNumber").GetComponent<Text>().text;
+        Debug.Log("Target File set to " + targetFile);
         doFade = true;
+    }
+
+    public void SaveFromMenuClick(int saveButtonIndex)
+    {
+        SaveGame(saveButtonIndex);
     }
 
 
@@ -193,6 +292,7 @@ public class SaveLoadMenu : MonoBehaviour {
 
     void FadeChecker()
     {
+        Debug.Log("Inside Fade Checker");
         if (doFade)
         {
             Debug.Log("Performing load fade");
@@ -249,3 +349,7 @@ public class SaveLoadMenu : MonoBehaviour {
         }
     }
 }
+
+
+
+public enum SLMode { Save, Load };

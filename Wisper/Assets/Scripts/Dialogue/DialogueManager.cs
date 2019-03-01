@@ -35,7 +35,13 @@ public class DialogueManager : MonoBehaviour {
     private List<Choice> displayChoices = new List<Choice>();    // List of choices to display on screen
     private List<int> activeOptionPanels = new List<int>();   // List of which option panels are displayed by their number (1, 2, 3, 4)
     private int selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
-    private float optionChangeCooldown = 0.2f;
+    private readonly float firstInputDelay = 0.4f;   // Delay after first input before repeated inputs are registered.
+    private float optionChangeCooldown = 0.15f;  // Limits inputs per second while scrolling through options
+    private readonly float optionChangeCooldownDefault = 0.15f;   // Default value for optionChangeCooldown
+    private readonly float optionChangeAccelerantRate = 0.02f;  // Determines rate the optionChangeCooldown decreases during acceleration
+    private readonly float optionChangeAccelerantDelay = 2f; // Determines how many seconds to wait before acceleration begins
+    private float optionChangeStart = 0f;   // The start time of option change
+    private readonly float optionChangeMinimum = 0.05f;  // Determines most inputs per second while changing between options
 
     // Locks and controls
     private bool sentenceDisplayInProgress; // A lock used with subroutines that update UI text elements
@@ -94,20 +100,6 @@ public class DialogueManager : MonoBehaviour {
             }
         }
 
-        /*
-        foreach(Image im in dialogueBox.GetComponentsInChildren<Image>())
-        {
-            if(im.gameObject.name == "NextLinePromptXBOX")
-            {
-                nextLinePromptXBOX = im;
-            }
-            else if( im.gameObject.name == "NextLinePromptKeyboard")
-            {
-                nextLinePromptKeyboard = im;
-            }
-        }
-        */
-
         sentences = new Queue<string>();
         speakers = new Queue<string>();
         
@@ -116,7 +108,6 @@ public class DialogueManager : MonoBehaviour {
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-        //persistantStateData = PersistantStateData.
         persistantStateData = GameObject.Find("PersistantStateData");
         if(persistantStateData.GetComponent<PersistantStateData>().realPSD)
         {
@@ -133,7 +124,6 @@ public class DialogueManager : MonoBehaviour {
 
     private void Update()
     {
-        // nextLinePrompt = dialogueBox.GetComponent<ControlDetector>().GetCurrentActiveObject();
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {
@@ -159,7 +149,6 @@ public class DialogueManager : MonoBehaviour {
                 isUsingController = true;
             }
         }
-
 
         // When PSD updates, run an update on all dialogues in the scene.
         if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount)
@@ -220,6 +209,7 @@ public class DialogueManager : MonoBehaviour {
             }
             else if (optionActive && !sentenceDisplayInProgress)    // Option selection behaviour
             {
+                Debug.Log("OptionChangeCooldown: " + optionChangeCooldown);
                 if (Input.GetAxis("XBOX_Thumbstick_L_Y") != 0 || Input.GetAxis("PC_Axis_MovementZ") != 0)
                 {
                     //Debug.Log("Detected input on forward/backward axis");
@@ -259,6 +249,11 @@ public class DialogueManager : MonoBehaviour {
                     player.GetComponent<PlayerMovement>().EnableMovement();
                     selectedOptionPanelIndex = 0;  // Index of which display panel is currently selected
                     DisplayNextSentence();
+                }
+                else
+                {
+                    optionChangeCooldown = optionChangeCooldownDefault;   // Resets the delay between reading inputs
+                    optionChangeStart = 0f;
                 }
             }
             else if (activeDialogue.autoPlay)   // Auto play dialogue behaviour
@@ -491,18 +486,33 @@ public class DialogueManager : MonoBehaviour {
     IEnumerator ChoiceScrollCoroutine(string direction)
     {
         //Debug.Log("inside scroll enumerator");
-        if(direction.ToLower() == "up")
+        if(optionChangeStart <= 0 || Time.time - optionChangeStart > firstInputDelay)   // True on first input, afterward must wait till after delay for repeated input
         {
-            //Debug.Log("scrolling up");
-            ChoicesScrollUp();
+            
+            if (direction.ToLower() == "up")
+            {
+                //Debug.Log("scrolling up");
+                ChoicesScrollUp();
+            }
+            else if (direction.ToLower() == "down")
+            {
+                //Debug.Log("Scrolling down");
+                ChoicesScrollDown();
+            }
         }
-        else if(direction.ToLower() == "down")
+
+        if (optionChangeStart <= 0)
         {
-            //Debug.Log("Scrolling down");
-            ChoicesScrollDown();
+            optionChangeStart = Time.time;
         }
+
+
         ShowChoices();
         yield return new WaitForSeconds(optionChangeCooldown); // Enforces a tiny cooldown when scrolling between options so player has some precision control;
+        if (optionChangeCooldown > optionChangeMinimum &&  Time.time - optionChangeStart >= optionChangeAccelerantDelay)
+        {
+            optionChangeCooldown -= optionChangeAccelerantRate * Time.deltaTime; // Accelerates scrolling. Is reset when no input (part of conditionals where this coroutine is called)
+        }
         optionChangeOnCooldown = false;
     }
     // Call when moving up option list. Will shift dialogue options if more than 4, and wraps to bottom option if the first option was selected.
