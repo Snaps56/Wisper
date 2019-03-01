@@ -84,7 +84,7 @@ public class ObjectThrow : MonoBehaviour {
         if (currentPlayerVelocity > 0)
         {
             movementVector = character.GetComponent<PlayerMovement>().GetVelocity();
-            deltaMovementVector = (movementVector.normalized - transform.position.normalized).normalized;
+            deltaMovementVector = movementVector.normalized;
             deltaMovementVector.y *= 0;
         }
     }
