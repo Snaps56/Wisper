@@ -38036,6 +38036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isUsingController: 0
+  allowAutoActivate: 0
   controllerObject: {fileID: 146621749}
   keyboardMouseObject: {fileID: 136892317}
 --- !u!225 &611763507
@@ -71953,7 +71954,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e625f56663597ef4899f86b588b4d506, type: 2}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 2100000, guid: 4ccae4f7bebd43e40a673fadccd8ad16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -71977,7 +71978,7 @@ ParticleSystemRenderer:
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -95802,10 +95803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbPickupRadius: 0.2
   windPowerBar: {fileID: 1755957266}
   orbCountText: {fileID: 287983270}
-  wub: {fileID: 0}
 --- !u!114 &1918657562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95887,7 +95886,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearShrine: 0
-  miniMap: {fileID: 0}
 --- !u!114 &1918657568
 MonoBehaviour:
   m_ObjectHideFlags: 0

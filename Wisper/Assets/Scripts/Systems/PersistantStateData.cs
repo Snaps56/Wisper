@@ -93,10 +93,11 @@ public class PersistantStateData : MonoBehaviour
         /////////////////////////////////////////////////////////
         ////////////////////    Task flags   ////////////////////
         /////////////////////////////////////////////////////////
-        stateConditions.Add("TotalTasks", 13);
-        stateConditions.Add("FinishedTasks", 0);
-        stateConditions.Add("OrbCount", 0);
-        stateConditions.Add("TotalOrbCount", 0);
+        stateConditions.Add("TotalTasks", 13.0f);
+        stateConditions.Add("FinishedTasks", 0.0f);
+        stateConditions.Add("OrbCount", 0.0f);
+        stateConditions.Add("OrbMaxDeposit", 0.0f);
+        stateConditions.Add("TotalOrbCount", 0.0f);
 
 
         stateConditions.Add("ShamusHasHat", false);

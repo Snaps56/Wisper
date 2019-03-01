@@ -248,8 +248,8 @@ public class Shrine : MonoBehaviour {
 		player.GetComponentInChildren<OrbCount> ().SetOrbCount (0);
         Debug.Log("Orb getting deposited");
         for (int oc = 0; oc < depositCount; oc++) {
-			Vector3 spawnPosition = Random.onUnitSphere * (1f ) + player.transform.position;
-			orbDepositInstance = Instantiate (orbDeposit, spawnPosition, Quaternion.identity);
+			//Vector3 spawnPosition = Random.onUnitSphere * (1f ) + player.transform.position;
+			orbDepositInstance = Instantiate (orbDeposit, player.transform.position, Quaternion.identity);
 			//OrbDepositInstanceArray [oc] = orbDepositInstance;
 			//orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
 		}

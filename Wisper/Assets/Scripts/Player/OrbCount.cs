@@ -3,9 +3,15 @@ using UnityEngine.UI;
 using System.Collections;
 public class OrbCount : MonoBehaviour { 
 
-    private int orbMax = 0;
-	private int orbCount;
+    private float TotalOrbCount = 0;
+	private float orbCount = 0;
+    private float orbMaxDeposit = 0;
     private PersistantStateData psd;
+
+    [Header("Trail")]
+    public GameObject trail;
+    public Material trailRed;
+    public Material trailWhite;
 
     [Header("UI")]
     public Image windPowerBar;
@@ -16,48 +22,36 @@ public class OrbCount : MonoBehaviour {
     //Initilize Variables
     void Start()
     {
-        Debug.Log("bitch ");
         psd = PersistantStateData.persistantStateData;
 
-        orbMax = (int)psd.stateConditions["TotalTasks"] * 5;
-        psd.ChangeStateConditions("TotalOrbCount", orbMax);
+        TotalOrbCount = (float)psd.stateConditions["TotalTasks"] * 5;
+        psd.ChangeStateConditions("TotalOrbCount", TotalOrbCount);
 
-        orbCount = (int)psd.stateConditions["OrbCount"];
-        orbCountText.text = orbCount.ToString() + "/" + orbMax;
+        orbMaxDeposit = TotalOrbCount / 2;
+        psd.ChangeStateConditions("OrbMaxDeposit", orbMaxDeposit);
+
+        orbCount = (float)psd.stateConditions["OrbCount"];
+        orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + Mathf.Ceil(orbMaxDeposit);
     }
 
     //Sets the orb count
-	public void SetOrbCount(int newOrbCount) {
+	public void SetOrbCount(float newOrbCount) {
 		orbCount = newOrbCount;
-        windPowerBar.fillAmount = orbCount / orbMax;
-        orbCountText.text = orbCount.ToString() + "/" + orbMax;
+        windPowerBar.fillAmount = orbCount / orbMaxDeposit;
+        orbCountText.text = orbCount.ToString() + "/" + orbMaxDeposit;
 	}
 
-   // //Triggers on collision
-   // private void OnTriggerEnter(Collider other)
-   // {
-   //     //Calculates the distance orb is from player
-   //     //float objectDistance = (transform.position - other.transform.position).magnitude;
-
-   //     //Gathers orb if orb is within range
-   //     if (other.gameObject.CompareTag("Orb") /*&& objectDistance < orbPickupRadius*/)
-   //     {
-   //         //Destroys Orb
-   //         Destroy(other.gameObject);
-			////Debug.Log ("Added 1 orb");
-
-   //         ///Update UI
-   //         if (orbCount < orbMax)
-   //         {
-   //             orbCount ++;
-   //             //Debug.Log("count increased");
-   //         }
-   //         // wub.Play();
-   //         windPowerBar.fillAmount = orbCount / orbMax;
-   //         orbCountText.text = orbCount.ToString() + "/" + orbMax;
-   //         ///End Update UI
-   //     }
-   // }
+    private void Update()
+    {
+        if ((float)psd.stateConditions["OrbCount"] >=  (float)psd.stateConditions["OrbMaxDeposit"])
+        {
+            trail.GetComponent<TrailRenderer>().material = trailRed;
+        }
+        else
+        {
+            trail.GetComponent<TrailRenderer>().material = trailWhite;
+        }
+    }
 
 
     //Triggers on collision
@@ -74,15 +68,15 @@ public class OrbCount : MonoBehaviour {
             //Debug.Log ("Added 1 orb");
 
             ///Update UI
-            if ((int)psd.stateConditions["OrbCount"] < (int)psd.stateConditions["TotalOrbCount"])
+            if ((float)psd.stateConditions["OrbCount"] < (float)psd.stateConditions["OrbMaxDeposit"])
             {
                 orbCount++;
                 psd.ChangeStateConditions("OrbCount", orbCount);
-                //Debug.Log("count increased");
+                Debug.Log("count increased");
             }
             // wub.Play();
-            windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["TotalOrbCount"]);
-            orbCountText.text = (int)psd.stateConditions["OrbCount"] + "/" + (int)psd.stateConditions["TotalOrbCount"];
+            windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]));
+            orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]);
             ///End Update UI
         }
     }
@@ -93,6 +87,6 @@ public class OrbCount : MonoBehaviour {
 	}
     public float GetMaxOrbCount()
     {
-        return orbMax;
+        return orbMaxDeposit;
     }
 }
