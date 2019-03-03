@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class QualityChange : MonoBehaviour {
 
-    string[] names = QualitySettings.names;
+    string[] names;
 
     // Use this for initialization
     void Start () {
-		
-	}
+		names = QualitySettings.names;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,6 +25,6 @@ public class QualityChange : MonoBehaviour {
     }
     public void SetHigh()
     {
-        QualitySettings.SetQualityLevel(5);
+        QualitySettings.SetQualityLevel(4);
     }
 }
