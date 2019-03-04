@@ -10,15 +10,22 @@ public class BirdTask : MonoBehaviour {
 
     private bool getOrbs;
     private bool pickedUp;
-    private bool letGo;
+    private bool playAnimation;
     private float height;
+    private float x;
+    private float z;
+    private Animator animator;
     // Use this for initialization
     void Start()
     {
+        animator = GetComponent<Animator>();
         pickedUp = false;
         getOrbs = true;
-        letGo = false;
+        playAnimation = true;
         height = 0.2f;
+        x = 3.5f;
+        animator.SetBool("Idle", false);
+        
     }
 
     private void OnTriggerStay(Collider col)
@@ -31,23 +38,27 @@ public class BirdTask : MonoBehaviour {
 
     void PickUp()
     {
-        returned = new Vector3(finalPlace.transform.position.x, finalPlace.transform.position.y + height, finalPlace.transform.position.z);
+        returned = new Vector3(finalPlace.transform.position.x - x, finalPlace.transform.position.y + height, finalPlace.transform.position.z);
         transform.position = returned;
         
         if (transform.position == returned && getOrbs == true)
         {
+            animator.SetBool("Idle", true);
+            animator.SetBool("FlapHop", false);
+
             GetComponent<SpawnOrbs>().DropOrbs();
             getOrbs = false;
+            playAnimation = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (pickedUp == true)
         {
             PickUp();           
-        }
-              
+        }           
     }
 }
