@@ -18,23 +18,23 @@ public class CutsceneEvents : MonoBehaviour {
 
     private bool cutsceneIsPlaying = false;
 
-    void PSDVariableOn(string key)
+    public void PSDVariableOn(string key)
     {
         GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateConditions(key, true);
     }
 
-    void PSDVariableOff(string key)
+    public void PSDVariableOff(string key)
     {
         GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateConditions(key, false);
     }
 
-    void ProgressDialogue()
+    public void ProgressDialogue()
     {
         GameObject.Find("DialogueManager").GetComponent<DialogueManager>().CutsceneDislayNextSentence();
     }
 
     //Event called when the flower is supposed to animate
-    void playFlower()
+    public void playFlower()
     {
         //Finds the flower and starts animation
         GameObject.Find("flower_wilt").GetComponent<Animator>().SetBool("Grow", true);
@@ -44,50 +44,52 @@ public class CutsceneEvents : MonoBehaviour {
         GameObject.Find("flower_wilt4").GetComponent<Animator>().SetBool("Grow", true);
     }
 
-	void enableGate() {
+	public void enableGate() {
 		cityGate.SetActive(true);
 	}
 
-    void playDeposit2 ()
+    public void PlayDeposit2 ()
     {
         Debug.Log("Hello there");
         GetComponent<Animation>().Play("Deposit2");
     }
 
-    void playDeposit3()
+    public void PlayDeposit3()
     {
         GetComponent<Animation>().Play("Deposit3");
     }
 
-    void playCutscene2 ()
+    public void PlayCutscene2 ()
     {
-        GetComponent<Animation>().Play("Cutscene2");
+        Debug.Log(System.Reflection.MethodBase.GetCurrentMethod().Name  + " called from " + this.GetType().Name);
+        GetComponent<Animation>().Play("PlaygroundIntroPan2");
     }
 
-    void playCutscene3 ()
+    public void PlayCutscene3 ()
     {
-        GetComponent<Animation>().Play("Cutscene3");
+        GetComponent<Animation>().Play("PlaygroundIntroPan3");
     }
 
-    bool GetCutsceneIsPlaying()
+    public bool GetCutsceneIsPlaying()
     {
         return cutsceneIsPlaying;
     }
-    void EnableCutsceneIsPlaying()
+    public void EnableCutsceneIsPlaying()
     {
         cutsceneIsPlaying = true;
     }
-    void DisableCutsceneIsPlaying()
+    public void DisableCutsceneIsPlaying()
     {
         cutsceneIsPlaying = false;
     }
     //Event called when the animation should end
-    void endAnimation()
+    public void EndAnimation()
     {
         if (cutsceneIsPlaying)
         {
             player.GetComponent<PlayerMovement>().EnableMovement();
         }
+        
         //Activates main camera
         mainCamera.gameObject.SetActive(true);
         //Turns this game object off
@@ -110,7 +112,7 @@ public class CutsceneEvents : MonoBehaviour {
     {
         Debug.Log("cutsceneSkipped was called in CutsceneEvents. Effect: Turns on a PSD variable and calls endAnimation");
         PSDVariableOn("StartupShrineDialogue");
-        endAnimation();
+        EndAnimation();
     }
 
 }

@@ -136,8 +136,8 @@ public class PersistantStateData : MonoBehaviour
         /////////////////////////////////////////////////////////////
         ////////////////////    Cutscene flags   ////////////////////
         /////////////////////////////////////////////////////////////
-
-        stateConditions.Add("Cutscene1Started", false);
+        stateConditions.Add("DoPlaygroundIntroPan", true);
+        stateConditions.Add("PlaygroundIntroPan1Started", false);
 
 
         //////////////////////////////////////////////////////////////////
@@ -155,7 +155,6 @@ public class PersistantStateData : MonoBehaviour
         //Debug.Log("PSD Reset called");
         stateConditions.Clear();
         PopulateStateConditions();
-
     }
 
     public void ChangeStateConditions(string key, bool value)
