@@ -24,8 +24,10 @@ public class ActivateCutscene : MonoBehaviour {
         // If PlaygroundIntroPan should play, does it here.
         if ((bool)PSDchecker.stateConditions["DoPlaygroundIntroPan"] && !(bool)PSDchecker.stateConditions["PlaygroundIntroPan1Started"])
         {
-            //Debug.Log("Playing Intro");
+            Debug.Log("Playing Intro");
             Cursor.visible = false;
+
+            Debug.Log("Disable player movement from intro cutscene");
             player.GetComponent<PlayerMovement>().DisableMovement();
             mainCamera.gameObject.SetActive(false);
             cutsceneCamera.gameObject.SetActive(true);

@@ -42,11 +42,11 @@ public class PauseMenu : MonoBehaviour
     {
         if (EventSystem.current != null)
         {
-            Debug.Log(EventSystem.current.name + ", " + pauseMenuEventSystem.name);
+            //Debug.Log(EventSystem.current.name + ", " + pauseMenuEventSystem.name);
         }
         else
         {
-            Debug.Log("null, " + pauseMenuEventSystem.name);
+            //Debug.Log("null, " + pauseMenuEventSystem.name);
         }
         if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel"))
         {

@@ -24,18 +24,22 @@ public class OrbCount : MonoBehaviour {
     {
         psd = PersistantStateData.persistantStateData;
 
-        TotalOrbCount = (float)psd.stateConditions["TotalTasks"] * 5;
-        psd.ChangeStateConditions("TotalOrbCount", TotalOrbCount);
+        //TotalOrbCount = (float)psd.stateConditions["TotalTasks"] * 5;
+        //psd.ChangeStateConditions("TotalOrbCount", TotalOrbCount);
 
-        orbMaxDeposit = TotalOrbCount / 2;
-        psd.ChangeStateConditions("OrbMaxDeposit", orbMaxDeposit);
+        //orbMaxDeposit = TotalOrbCount / 2;
+        //psd.ChangeStateConditions("OrbMaxDeposit", orbMaxDeposit);
+
+        orbMaxDeposit = (float)psd.stateConditions["OrbMaxDeposit"];
 
         orbCount = (float)psd.stateConditions["OrbCount"];
-        orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + Mathf.Ceil(orbMaxDeposit);
+        orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + orbMaxDeposit;
+        windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["OrbMaxDeposit"]);
+
     }
 
     //Sets the orb count
-	public void SetOrbCount(float newOrbCount) {
+    public void SetOrbCount(float newOrbCount) {
 		orbCount = newOrbCount;
         windPowerBar.fillAmount = orbCount / orbMaxDeposit;
         orbCountText.text = orbCount.ToString() + "/" + orbMaxDeposit;

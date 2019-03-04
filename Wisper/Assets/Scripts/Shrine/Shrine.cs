@@ -193,6 +193,7 @@ public class Shrine : MonoBehaviour {
                         Debug.Log("Triggered: " + Triggered);
                         Debug.Log("WE'RE IN");
                         // After depositing orbs, play a cutscene of the storm
+                        Debug.Log("Shrine script disable player movement");
                         player.GetComponent<PlayerMovement>().DisableMovement();
                         //Deactivate main camera
                         mainCamera.gameObject.SetActive(false);

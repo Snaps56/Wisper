@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveLoadMenu : MonoBehaviour {
 
+    public bool isMainMenu = false;
     public SLMode mode;
     public GameObject []objectsDisableOnLoad;
     private PauseMenu pauseMenuScript;
@@ -39,7 +40,10 @@ public class SaveLoadMenu : MonoBehaviour {
         fadeRate = Time.fixedDeltaTime / fadeDuration;
         PSD = PersistantStateData.persistantStateData;
         savePath = PSD.savePath;
-        pauseMenuScript = GameObject.Find("MasterPauseMenu").GetComponent<PauseMenu>();
+        if (!isMainMenu)
+        {
+            pauseMenuScript = GameObject.Find("MasterPauseMenu").GetComponent<PauseMenu>();
+        }
     }
 	
 
@@ -218,7 +222,10 @@ public class SaveLoadMenu : MonoBehaviour {
         GameObject loadButton = GameObject.Find(loadButtonString);
         targetFile = loadButton.transform.Find("SaveNumber").GetComponent<Text>().text;
         //Debug.Log("Target File set to " + targetFile);
-        pauseMenuScript.Resume();
+        if (!isMainMenu)
+        {
+            pauseMenuScript.Resume();
+        }
         for (int i = 0; i < objectsDisableOnLoad.Length; i++)
         {
             objectsDisableOnLoad[i].SetActive(false);

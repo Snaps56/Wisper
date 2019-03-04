@@ -6,6 +6,7 @@ public class KiteTask : MonoBehaviour {
 
     
     private bool getOrbs;
+    private bool changed;
 
     private Vector3 finalPosition;
     private Vector3 kitePos;
@@ -24,6 +25,7 @@ public class KiteTask : MonoBehaviour {
     void Start () {
         maxHeight = 41.0f;
         getOrbs = true;
+        changed = false;
 
         x1 = 9.31f;
         x2 = -16.1f;
@@ -43,33 +45,21 @@ public class KiteTask : MonoBehaviour {
         if (transform.position.y >= maxHeight && transform.position.x <= x1 && transform.position.x >= x2 &&
             transform.position.z <= z1 && transform.position.z >= z2)
         {
-            finalPosition = new Vector3(finalX, finalY, finalZ);
+            if(changed == false)
+            {
+                finalPosition = new Vector3(this.transform.position.x, this.transform.position.y + 2.0f, this.transform.position.z);
+                changed = true;
+            }
+            transform.position = finalPosition;
+            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
             //transform.Rotate(-48.0f,0, 0, Space.Self);
-            
-            
-            if(transform.position.x > finalPosition.x)
-            {
-                this.transform.Translate(Time.deltaTime * 0.5f, 0, 0);
-                if (transform.position.y > finalPosition.y)
-                {
-                    this.transform.Translate(0, Time.deltaTime * 0.05f, 0);
-                    if (transform.position.z > finalPosition.z)
-                    {
-                        this.transform.Translate(0, 0, Time.deltaTime *0.05f);
-                    }
-                }
-            }
-            else
-            {
-                transform.position = new Vector3(finalPosition.x, finalPosition.y, finalPosition.z);
-            }
+
             if (getOrbs == true)
             {
+                
                 GetComponent<SpawnOrbs>().DropOrbs();
                 getOrbs = false;
-            }
-            
-            
+            }               
         }
         
     }
