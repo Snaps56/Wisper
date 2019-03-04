@@ -2459,14 +2459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1997715555}
-  pauseMenuUI: {fileID: 905263314}
-  settingsMenu: {fileID: 2032664740}
-  VideoMenu: {fileID: 1267729705}
+  curtainAnimator: {fileID: 0}
   SaveLoadMenu: {fileID: 0}
-  MainEventSystem: {fileID: 0}
-  GraphicsEventSystem: {fileID: 0}
-  AudioEventSystem: {fileID: 0}
+  pauseMenuUI: {fileID: 905263314}
+  pauseMenuEventSystem: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 66155f7ede8feb04788df3e4419930e5, type: 2}
 --- !u!114 &73309433
 MonoBehaviour:
@@ -15540,7 +15536,7 @@ GameObject:
   - component: {fileID: 518115648}
   - component: {fileID: 518115647}
   m_Layer: 9
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73249,7 +73245,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.4764151, g: 1, b: 0.9277812, a: 1}
+      maxColor: {r: 0.023584902, g: 0.6977616, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -76866,14 +76862,14 @@ ParticleSystem:
     dieWithParticles: 0
     sizeAffectsWidth: 0
     sizeAffectsLifetime: 0
-    inheritParticleColor: 1
+    inheritParticleColor: 0
     generateLightingData: 0
     splitSubEmitterRibbons: 0
     colorOverLifetime:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.48584908, g: 0.98171145, b: 1, a: 1}
+      maxColor: {r: 0.023584902, g: 0.6977616, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -99109,14 +99105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1997715555}
-  pauseMenuUI: {fileID: 1213042958}
-  settingsMenu: {fileID: 0}
-  VideoMenu: {fileID: 0}
+  curtainAnimator: {fileID: 0}
   SaveLoadMenu: {fileID: 0}
-  MainEventSystem: {fileID: 0}
-  GraphicsEventSystem: {fileID: 2032664740}
-  AudioEventSystem: {fileID: 0}
+  pauseMenuUI: {fileID: 1213042958}
+  pauseMenuEventSystem: {fileID: 0}
   audioMixer: {fileID: 0}
 --- !u!95 &1997715555 stripped
 Animator:

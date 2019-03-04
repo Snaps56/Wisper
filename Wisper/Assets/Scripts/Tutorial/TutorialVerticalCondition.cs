@@ -40,6 +40,7 @@ public class TutorialMovementCondition : MonoBehaviour {
         if ((bool)persistantStateData.stateConditions["StartupShrineDialogue"] && !(bool)persistantStateData.stateConditions["TutorialFirstDialogueFinished"] && !lookTuturialMovementLockOver)
         {
             lookTuturialMovementLockOver = true;
+            Debug.Log("Disable movement for tutorial");
             player.GetComponent<PlayerMovement>().DisableMovement();
         }
 

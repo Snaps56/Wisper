@@ -18,6 +18,20 @@ public class CutsceneEvents : MonoBehaviour {
 
     private bool cutsceneIsPlaying = false;
 
+    private void Start()
+    {
+        if ((bool)PersistantStateData.persistantStateData.stateConditions["DoPlaygroundIntroPan"])
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
+
+    }
+
     public void PSDVariableOn(string key)
     {
         GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().ChangeStateConditions(key, true);
@@ -107,13 +121,14 @@ public class CutsceneEvents : MonoBehaviour {
         directionalLight2.GetComponent<Light>().color = Color.white;
     }
 
-
+    /*
     public void cutsceneSkipped()
     {
         Debug.Log("cutsceneSkipped was called in CutsceneEvents. Effect: Turns on a PSD variable and calls endAnimation");
         PSDVariableOn("StartupShrineDialogue");
         EndAnimation();
     }
+    */
 
 }
 
