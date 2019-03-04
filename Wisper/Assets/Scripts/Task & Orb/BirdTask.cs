@@ -24,8 +24,6 @@ public class BirdTask : MonoBehaviour {
         playAnimation = true;
         height = 0.2f;
         animator.SetBool("Idle", false);
-        jumpPos.y = 29.0f;
-        startPos = new Vector3(-10.23f, 28.709f, 6.748087f);
 
     }
 
