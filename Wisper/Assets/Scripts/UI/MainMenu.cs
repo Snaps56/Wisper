@@ -62,11 +62,11 @@ public class MainMenu : MonoBehaviour {
         }
         else
         {
-            GameObject loadMenu = GameObject.Find("LoadMenu");
-            GameObject lb1 = loadMenu.transform.Find("LoadButton1").gameObject;
-            GameObject lb2 = loadMenu.transform.Find("LoadButton2").gameObject;
-            GameObject lb3 = loadMenu.transform.Find("LoadButton3").gameObject;
-            GameObject lb4 = loadMenu.transform.Find("LoadButton4").gameObject;
+            GameObject loadMenu = GameObject.Find("Canvas").transform.Find("SaveLoadMenu").gameObject;
+            GameObject lb1 = loadMenu.transform.Find("SaveLoadButton1").gameObject;
+            GameObject lb2 = loadMenu.transform.Find("SaveLoadButton2").gameObject;
+            GameObject lb3 = loadMenu.transform.Find("SaveLoadButton3").gameObject;
+            GameObject lb4 = loadMenu.transform.Find("SaveLoadButton4").gameObject;
             Debug.Log("Located load buttons: " + lb1.name + "\n" + lb2.name + "\n" + lb3.name + "\n" + lb4.name);
             if (saveFolders.Length >= 1)
             {

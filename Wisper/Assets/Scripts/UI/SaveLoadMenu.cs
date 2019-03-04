@@ -7,12 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class SaveLoadMenu : MonoBehaviour {
 
-    public SLMode mode; 
-    public GameObject saveLoadES;       // Event System used for the save and load menu(s)
-    public GameObject generalMenuES;    // Event System used for the main or pause menu
-
-    public GameObject saveLoadMenu;     // UI game object for save or load menu
-    public GameObject generalMenu;      // UI game object for main or pause menu
+    public SLMode mode;
+    public GameObject []objectsDisableOnLoad;
+    private PauseMenu pauseMenuScript;
 
     private GameObject loadingScreen;   // Game object for displaying loading text and logo
     private CanvasGroup blackFade;      // Canvas group for black fade when loading
@@ -42,6 +39,7 @@ public class SaveLoadMenu : MonoBehaviour {
         fadeRate = Time.fixedDeltaTime / fadeDuration;
         PSD = PersistantStateData.persistantStateData;
         savePath = PSD.savePath;
+        pauseMenuScript = GameObject.Find("MasterPauseMenu").GetComponent<PauseMenu>();
     }
 	
 
@@ -60,21 +58,7 @@ public class SaveLoadMenu : MonoBehaviour {
             }
         }
 
-        
-        if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel"))
-        {
-            if(saveLoadES.activeSelf)
-            {
-                generalMenuES.SetActive(true);
-                saveLoadES.SetActive(false);
-                foreach(Transform child in saveLoadMenu.transform)
-                {
-                    child.gameObject.SetActive(false);
-                }
-                generalMenu.SetActive(true);
-            }
-            
-        }
+
     }
 
     private void FixedUpdate()
@@ -107,11 +91,11 @@ public class SaveLoadMenu : MonoBehaviour {
     // Returns the directory or file name at the end of a path
     public string ParseFinalPathPortion(string path)
     {
-        Debug.Log("Path separator is: " + Path.DirectorySeparatorChar);
+        // Debug.Log("Path separator is: " + Path.DirectorySeparatorChar);
         string[] splitPath = path.Split(Path.DirectorySeparatorChar);
         for (int i = 0; i < splitPath.Length; i++)
         {
-            Debug.Log("Path parser part " + i + ": " + splitPath[i]);
+            //Debug.Log("Path parser part " + i + ": " + splitPath[i]);
         }
         return splitPath[splitPath.Length - 1];
     }
@@ -233,7 +217,12 @@ public class SaveLoadMenu : MonoBehaviour {
         string loadButtonString = "SaveLoadButton" + loadButtonIndex;
         GameObject loadButton = GameObject.Find(loadButtonString);
         targetFile = loadButton.transform.Find("SaveNumber").GetComponent<Text>().text;
-        Debug.Log("Target File set to " + targetFile);
+        //Debug.Log("Target File set to " + targetFile);
+        pauseMenuScript.Resume();
+        for (int i = 0; i < objectsDisableOnLoad.Length; i++)
+        {
+            objectsDisableOnLoad[i].SetActive(false);
+        }
         doFade = true;
     }
 
@@ -292,10 +281,10 @@ public class SaveLoadMenu : MonoBehaviour {
 
     void FadeChecker()
     {
-        Debug.Log("Inside Fade Checker");
+        //Debug.Log("Inside Fade Checker");
         if (doFade)
         {
-            Debug.Log("Performing load fade");
+            //Debug.Log("Performing load fade");
             if (loadingScreen == null)
             {
                 Debug.Log("Retrieving loading screen");
@@ -313,22 +302,22 @@ public class SaveLoadMenu : MonoBehaviour {
             if (blackFade.alpha < 1 && !doneFade)
             {
                 blackFade.alpha += fadeRate;
-                Debug.Log("Fading");
+                //Debug.Log("Fading");
             }
             else
             {
-                Debug.Log("Done Fading");
+                //Debug.Log("Done Fading");
                 doneFade = true;
             }
             if (doneFade && !doLoad)
             {
-                Debug.Log("Performing load");
+                //Debug.Log("Performing load");
                 doLoad = true;
                 LoadFile(targetFile);
             }
             else if (doneFade && !startedAsync && doneLoad)
             {
-                Debug.Log("Starting scene load");
+                //Debug.Log("Starting scene load");
                 loadingScreen.SetActive(true);
                 delayInitial = Time.time;
                 StartCoroutine(LoadAsynchronously((int)PSD.stateConditions["CurrentScene"]));

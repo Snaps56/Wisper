@@ -5,25 +5,25 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using XInputDotNetPure;
 
 public class PauseMenu : MonoBehaviour
 {
-    public Animator animator;
+    public Animator curtainAnimator;
 
-    public static bool GameIsPaused = false;
 
-    public GameObject pauseMenuUI;
-    public GameObject settingsMenu;
-    public GameObject VideoMenu;
     public GameObject SaveLoadMenu;
-    public GameObject MainEventSystem;
-    public GameObject GraphicsEventSystem;
-    public GameObject AudioEventSystem;
+    public GameObject pauseMenuUI;
+    public EventSystem pauseMenuEventSystem;
+    private ControlDetector controlDetector;
+
     public AudioMixer audioMixer;
 
     private float CurrentVolume;
     private PersistantStateData PSD;
+
+    private bool GameIsPaused = false;
 
     //Vibrate Settings
     bool playerIndexSet = false;
@@ -34,20 +34,29 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         PSD = PersistantStateData.persistantStateData;
+        controlDetector = GetComponent<ControlDetector>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("XBOX_Button_Start"))
+        if (EventSystem.current != null)
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
+            Debug.Log(EventSystem.current.name + ", " + pauseMenuEventSystem.name);
+        }
+        else
+        {
+            Debug.Log("null, " + pauseMenuEventSystem.name);
+        }
+        if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel"))
+        {
+            if (EventSystem.current == null)
             {
                 Pause();
+            }
+            else if (EventSystem.current.name == pauseMenuEventSystem.name)
+            {
+                Resume();
             }
         }
 
@@ -74,16 +83,11 @@ public class PauseMenu : MonoBehaviour
     // Resumes the game and resets the cursor lock
     public void Resume()
     {
-        MainEventSystem.SetActive(false);
-        GraphicsEventSystem.SetActive(false);
-        AudioEventSystem.SetActive(false);
+        Debug.Log("Resume Game!");
         pauseMenuUI.SetActive(false);
-        settingsMenu.SetActive(false);
-        VideoMenu.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         if (CurrentVolume == 0)
         {
             SetVolume(CurrentVolume);
@@ -97,13 +101,15 @@ public class PauseMenu : MonoBehaviour
     // Pauses the game and unlocks the cursor
     void Pause()
     {
-       // GamePad.SetVibration(playerIndex, 0f, 0f);
-        pauseMenuUI.SetActive(true);
-        MainEventSystem.SetActive(true);
+        Debug.Log("Pause Game!");
+        // GamePad.SetVibration(playerIndex, 0f, 0f);
         Time.timeScale = 0f;
-        GameIsPaused = true;
-        //Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.None;
+        pauseMenuUI.SetActive(true);
+        if (!controlDetector.GetIsUsingController())
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         SetVolume(CurrentVolume - 15);
     }
 
@@ -116,7 +122,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Save path is " + PSD.savePath);
         string[] saveFolders = Directory.GetDirectories(PSD.savePath);
-        GameObject loadMenu = GameObject.Find("SaveLoadMenu");
+        GameObject loadMenu = GameObject.Find("MasterPauseMenu").transform.Find("SaveLoadMenu").gameObject;
         GameObject slb1 = loadMenu.transform.Find("SaveLoadButton1").gameObject;
         GameObject slb2 = loadMenu.transform.Find("SaveLoadButton2").gameObject;
         GameObject slb3 = loadMenu.transform.Find("SaveLoadButton3").gameObject;
@@ -173,7 +179,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            GameObject saveLoadMenu = GameObject.Find("SaveLoadMenu");
+            GameObject saveLoadMenu = GameObject.Find("MasterPauseMenu").transform.Find("SaveLoadMenu").gameObject;
             GameObject slb1 = saveLoadMenu.transform.Find("SaveLoadButton1").gameObject;
             GameObject slb2 = saveLoadMenu.transform.Find("SaveLoadButton2").gameObject;
             GameObject slb3 = saveLoadMenu.transform.Find("SaveLoadButton3").gameObject;
@@ -207,10 +213,10 @@ public class PauseMenu : MonoBehaviour
     {
         if(!saveFolder.Equals(""))
         {
-            Debug.Log("Finding save from: " + saveFolder);
+            // Debug.Log("Finding save from: " + saveFolder);
             string slbNum = SaveLoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(saveFolder);
             string slbName = SaveLoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(Directory.GetFiles(saveFolder)[0]);
-            Debug.Log("Searching for name and num for load button: " + slb.name);
+            // Debug.Log("Searching for name and num for load button: " + slb.name);
             slb.transform.Find("SaveNumber").gameObject.GetComponent<Text>().text = slbNum;
             slb.transform.Find("SaveName").gameObject.GetComponent<Text>().text = slbName;
         }
@@ -228,7 +234,7 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Resume();
-        animator.SetTrigger("FadeOut");
+        curtainAnimator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
