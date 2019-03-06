@@ -44,7 +44,6 @@ public class OrbDepositSequence : MonoBehaviour {
 		// make sure when generating orbs, that they only spawn upwards when applying initial force
 		initialForce.y = Mathf.Abs(initialForce.y);
 		initialForce = initialForce * initialForceMultiplier * forceModifier;
-        
 
 		rb.AddForce(initialForce);
 	}

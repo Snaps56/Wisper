@@ -133,6 +133,7 @@ public class ObjectThrow : MonoBehaviour {
 		}
 		else 
 		{
+			// Passively apply force to objects when not "throwing"
 			float passiveModifer = .01f;
 			float throwAngle = verticalAimAngle / 90;
 			forceVector = (deltaMovementVector + new Vector3 (0, throwAngle, 0)) * throwForce * passiveModifer * currentPlayerVelocity;
