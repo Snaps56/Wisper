@@ -13,33 +13,37 @@ public class ShineCleanParticles : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        PSDScript = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        PSDScript = PersistantStateData.persistantStateData;
         cleaningParticles = GetComponent<ParticleSystem>();
         shrine = GetComponentInParent<Shrine>();
         isCleaning = shrine.gettingCleaned;
-        hasCleaned = false;
+        if((bool)PSDScript.stateConditions["ShrineIsClean"])
+        {
+            hasCleaned = true;
+        }
+        else
+        {
+            hasCleaned = false;
+        }
     }
 	
 	// Update is called once per frame
 	void Update ()
-    {
-        hasCleaned = (bool)PSDScript.stateConditions["ShrineIsClean"];
+    {   
         isCleaning = shrine.gettingCleaned;
         //Debug.Log("is cleaning: " + isCleaning + ", hasCleaned : " + hasCleaned);
         if (!hasCleaned && isCleaning)
         {
-            if(!cleaningParticles.isPlaying)
+            hasCleaned = (bool)PSDScript.stateConditions["ShrineIsClean"];
+            if (!cleaningParticles.isPlaying)
              {
                 cleaningParticles.Play();
             }
             //Debug.Log("I'm cleaning!");
         }
-        else
+        else if (cleaningParticles.isPlaying)
         {
-            if (cleaningParticles.isPlaying)
-            {
-                cleaningParticles.Stop();
-            }
+            cleaningParticles.Stop();
         }
 	}
 }

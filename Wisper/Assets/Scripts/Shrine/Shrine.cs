@@ -78,27 +78,37 @@ public class Shrine : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		// Dirty shrine look is the default materials
-		dirtyMaterialInner = shrineMeshInner.GetComponent<MeshRenderer> ().material;
+        persistantStateData = PersistantStateData.persistantStateData;
+        // Dirty shrine look is the default materials
+        dirtyMaterialInner = shrineMeshInner.GetComponent<MeshRenderer> ().material;
 		dirtyMaterialMain = shrineMeshMain.GetComponent<MeshRenderer> ().material;
 
 		// Initialize clean progress to false
 		gettingCleaned = false;
-		//isClean = false;
-		//isClean = GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ().stateConditions ["ShrineIsClean"];
-
-		// Initialize clean progress to 0
-		cleanProgress = 0;
+		
+        if(!(bool)persistantStateData.stateConditions["ShrineIsClean"])
+        {
+            // Initialize clean progress to 0
+            cleanProgress = 0;
+            firstTime = false;
+        }
+		else
+        {
+            cleanProgress = cleanThreshold * 0.02f;
+            firstTime = true;
+            shrineMeshInner.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialInner, cleanMaterialInner, cleanProgress);
+            shrineMeshMain.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialMain, cleanMaterialMain, cleanProgress);
+        }
 
 		// Gather the activation particles and put them in an array
 		coloredParticles = activationParticles.GetComponentsInChildren<ParticleSystem> ();
 
-		persistantStateData = GameObject.Find ("PersistantStateData").GetComponent<PersistantStateData> ();
+		
 
 		nextDeposit = 0.0f;
 		orbDepositsInTransit = 0;
 
-		firstTime = false;
+		
 		playerOrb = player.GetComponentInChildren<OrbCount> ().GetOrbCount ();
         playerMovement = player.GetComponent<PlayerMovement>();
 		orbLimit = 10;
@@ -238,33 +248,16 @@ public class Shrine : MonoBehaviour {
 
 	// Function to basically decrement player orb count
 	void DepositOrbs (float depositCount) {
-		/*
-		while (player.GetComponent<OrbCount> ().GetOrbCount () > 0) {
-			player.GetComponent<OrbCount> ().SetOrbCount (player.GetComponent<OrbCount> ().GetOrbCount () - 1);
-			// Create an instance of an orb specifically for the deposit sequence
-			orbDepositInstance = Instantiate (orbDeposit, player.transform.position + new Vector3 (0, 0f, 0), Quaternion.identity);
-			orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
-		}
-		*/
+		
 		player.GetComponentInChildren<OrbCount> ().SetOrbCount (0);
         Debug.Log("Orb getting deposited");
-        for (int oc = 0; oc < depositCount; oc++) {
-			//Vector3 spawnPosition = Random.onUnitSphere * (1f ) + player.transform.position;
-			orbDepositInstance = Instantiate (orbDeposit, player.transform.position, Quaternion.identity);
-			//OrbDepositInstanceArray [oc] = orbDepositInstance;
-			//orbDepositInstance.GetComponent<OrbSequence> ().setDestination (this.gameObject, "shrine");
+        for (int oc = 0; oc < depositCount; oc++)
+        {
+			orbDepositInstance = Instantiate (orbDeposit, player.transform.position, Quaternion.identity);	
 		}
 	}
 
-	// If an orb is being deposited, destroy it once it reaches the shrine
-	/*
-	void OnTriggerEnter(Collider other){
-		if (other.gameObject.CompareTag ("OrbDeposit")) {
-			orbDepositsInTransit--;
-			Destroy (other.gameObject);
-		}
-	}
-	*/
+	
 
 	public void destroyOrbDeposit (GameObject orbDeposit) {
         Debug.Log("Orb getting destroyed");

@@ -44,33 +44,14 @@ public class OrbDepositSequence : MonoBehaviour {
 		// make sure when generating orbs, that they only spawn upwards when applying initial force
 		initialForce.y = Mathf.Abs(initialForce.y);
 		initialForce = initialForce * initialForceMultiplier * forceModifier;
-
-		// spawn orbs at position of parent object, along with y offset
-		//Vector3 orbSpawnPosition = transform.position;
-		//orbSpawnPosition.y += orbSpawnOffsetY;
+        
 
 		rb.AddForce(initialForce);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/*
-		if (canMove) {
-			// New position is now the destination
-			destination = pathNodes[currentNode].transform.position;
-			// Move to destination
-
-			transform.position = Vector3.MoveTowards (transform.position, destination, travelSpeed * Time.deltaTime);
-			if (transform.position == destination) {
-				currentNode++;
-				if (currentNode == pathNodes.Length) {
-					//Debug.Log ("End of the line");
-					canMove = false;
-					shrineScript.destroyOrbDeposit (this.gameObject);
-				}
-			}
-		} 
-		*/
+		
 	}
 
 	void FixedUpdate () {
@@ -81,36 +62,12 @@ public class OrbDepositSequence : MonoBehaviour {
 
 			Vector3 deltaPosition = pointB - transform.position;
 			deltaPosition = deltaPosition.normalized;
-
-			//float distanceToBase = (transform.position - pointB).magnitude;
+            
 			Vector3 finalForce = deltaPosition * 10f * forceModifier;
-
-			/*
-			Vector3 minForce = deltaPosition * 10f;
-			if (finalForce.magnitude < minForce.magnitude)
-			{
-				finalForce = minForce;
-			}
-			*/
-
-			//finalForce *= forceModifier;
 
 			rb.AddForce(finalForce);
 			rb.AddForce(-rb.velocity * forceModifier * 2);
-			//transform.position = Vector3.MoveTowards (transform.position, destination, travelSpeed * Time.deltaTime);
-
-			/*
-			if (transform.position == pointB) {
-				Debug.Log ("Reached Point");
-				pointA = pointB;
-				currentNode++;
-				if (currentNode == pathNodes.Length) {
-					//Debug.Log ("End of the line");
-					canMove = false;
-					shrineScript.destroyOrbDeposit (this.gameObject);
-				}
-			}
-			*/
+			
 		} 
 	}
 
