@@ -45,10 +45,6 @@ public class OrbDepositSequence : MonoBehaviour {
 		initialForce.y = Mathf.Abs(initialForce.y);
 		initialForce = initialForce * initialForceMultiplier * forceModifier;
 
-		// spawn orbs at position of parent object, along with y offset
-		//Vector3 orbSpawnPosition = transform.position;
-		//orbSpawnPosition.y += orbSpawnOffsetY;
-
 		rb.AddForce(initialForce);
 	}
 	
