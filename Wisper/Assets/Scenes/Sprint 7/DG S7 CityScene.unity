@@ -14,12 +14,12 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_Fog: 1
+  m_FogColor: {r: 1, g: 0.7723393, b: 0.6839622, a: 1}
+  m_FogMode: 1
+  m_FogDensity: 0.0003
+  m_LinearFogStart: 1200
+  m_LinearFogEnd: 8000
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -7850,8 +7850,9 @@ Transform:
   - {fileID: 1549070453}
   - {fileID: 157484220}
   - {fileID: 1637661626}
+  - {fileID: 865601956}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &155391050
 GameObject:
@@ -9311,7 +9312,7 @@ Terrain:
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
   m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
+  m_HeightmapPixelError: 64
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
   m_CastShadows: 1
@@ -11085,7 +11086,7 @@ Transform:
   - {fileID: 197740929}
   - {fileID: 723089431}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &276273331
 Prefab:
@@ -17855,7 +17856,7 @@ Transform:
   - {fileID: 1040963021}
   - {fileID: 1237762359}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0.69500005, y: -6.8170004, z: 5.7850003}
 --- !u!1001 &377600631
 Prefab:
@@ -30067,8 +30068,8 @@ WindZone:
   m_Enabled: 1
   m_Mode: 0
   m_Radius: 20
-  m_WindMain: 1
-  m_WindTurbulence: 1
+  m_WindMain: 3.24
+  m_WindTurbulence: 6.62
   m_WindPulseMagnitude: 0.5
   m_WindPulseFrequency: 0.01
 --- !u!4 &514062828
@@ -30082,7 +30083,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 12.748, y: 254.01999, z: -56.677002}
 --- !u!1 &516994900
 GameObject:
@@ -41238,7 +41239,7 @@ Transform:
   - {fileID: 229112476}
   - {fileID: 148739573}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &615743736
 GameObject:
@@ -49702,6 +49703,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: bd2e9e17e19cf684899b29ec85a713ed,
     type: 3}
   m_PrefabInternal: {fileID: 865454087}
+--- !u!1 &865601955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865601956}
+  - component: {fileID: 865601957}
+  m_Layer: 0
+  m_Name: WindZone (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &865601956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 865601955}
+  m_LocalRotation: {x: -0.43552282, y: 0.6667681, z: 0.2059379, w: -0.5686209}
+  m_LocalPosition: {x: 0.226, y: -5.34, z: 0.026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 151950296}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 12.748, y: 254.01999, z: -56.677002}
+--- !u!182 &865601957
+WindZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 865601955}
+  m_Enabled: 1
+  m_Mode: 1
+  m_Radius: 0.08
+  m_WindMain: 2.24
+  m_WindTurbulence: 0
+  m_WindPulseMagnitude: 0
+  m_WindPulseFrequency: 0
 --- !u!1 &865965678
 GameObject:
   m_ObjectHideFlags: 0
@@ -54747,7 +54790,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 66.858, z: 0}
 --- !u!1 &890484594
 GameObject:
@@ -66266,10 +66309,10 @@ Terrain:
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 0b9b3a75ff15cd140a58e9a1c88b8cd1, type: 2}
   m_TreeDistance: 2000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
+  m_TreeBillboardDistance: 183
+  m_TreeCrossFadeLength: 158
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 250
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -68604,53 +68647,6 @@ Transform:
   m_Father: {fileID: 2036144413}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1303227669
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4350435701084336, guid: d57585f06f9721145b62068959ad497b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -608.5457
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350435701084336, guid: d57585f06f9721145b62068959ad497b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 320.70764
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350435701084336, guid: d57585f06f9721145b62068959ad497b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -633.4383
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350435701084336, guid: d57585f06f9721145b62068959ad497b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350435701084336, guid: d57585f06f9721145b62068959ad497b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350435701084336, guid: d57585f06f9721145b62068959ad497b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350435701084336, guid: d57585f06f9721145b62068959ad497b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350435701084336, guid: d57585f06f9721145b62068959ad497b, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23938623871383408, guid: d57585f06f9721145b62068959ad497b,
-        type: 2}
-      propertyPath: m_SelectedEditorRenderState
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d57585f06f9721145b62068959ad497b, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1310394423
 GameObject:
   m_ObjectHideFlags: 0
@@ -68800,8 +68796,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.5954466, b: 0.4481132, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 0.7553526, b: 0.6650944, a: 1}
+  m_Intensity: 1.06
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -68839,7 +68835,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 8.955001, y: -190.52899, z: -177.421}
 --- !u!1 &1318403992
 GameObject:
@@ -83867,7 +83863,7 @@ Transform:
   m_Children:
   - {fileID: 1107624385}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1939552582
 GameObject:
@@ -83933,7 +83929,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -19.168001, y: -10.045, z: -2.697}
 --- !u!1 &1940965832
 GameObject:
@@ -84860,10 +84856,10 @@ Terrain:
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 9015a8c82038dc94681c6e4af883e94b, type: 2}
   m_TreeDistance: 2000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_TreeBillboardDistance: 1754
+  m_TreeCrossFadeLength: 128.5
+  m_TreeMaximumFullLODCount: 10
+  m_DetailObjectDistance: 250
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -85106,7 +85102,7 @@ Transform:
   - {fileID: 1643617487}
   - {fileID: 1506469221}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!1 &1971044781
 GameObject:
