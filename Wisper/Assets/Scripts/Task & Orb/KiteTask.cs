@@ -34,14 +34,12 @@ public class KiteTask : MonoBehaviour {
 
         finalX = -2.31f;
         finalY = 43.0f;
-        finalZ = -84.21f;
-        
-        
+        finalZ = -84.21f;      
     }
 	
     void FlyKite()
     {
-        
+        //check kite position within range 
         if (transform.position.y >= maxHeight && transform.position.x <= x1 && transform.position.x >= x2 &&
             transform.position.z <= z1 && transform.position.z >= z2)
         {
@@ -52,11 +50,11 @@ public class KiteTask : MonoBehaviour {
             }
             transform.position = finalPosition;
             this.gameObject.GetComponent<Rigidbody>().useGravity = false;
-            //transform.Rotate(-48.0f,0, 0, Space.Self);
+            
 
             if (getOrbs == true)
             {
-                
+                transform.Rotate(-48.0f, 0, 0, Space.Self);
                 GetComponent<SpawnOrbs>().DropOrbs();
                 getOrbs = false;
             }               

@@ -286,6 +286,52 @@ public class SaveLoadMenu : MonoBehaviour {
         }
     }
 
+    public void RedrawMenu()
+    {
+        foreach(Transform child in this.gameObject.transform)
+        {
+            Debug.Log("CHILD: " + child.name);
+            if(child.name.Contains("SaveLoadButton"))
+            {
+                if(child.gameObject.activeSelf)
+                {
+                    Debug.Log("Updating " + child.name);
+                    string saveFolder = "";
+                    string slotNumber = child.Find("SaveNumber").GetComponent<Text>().text;
+                    string saveDir = Path.Combine(PSD.savePath, slotNumber);
+                    if(Directory.Exists(saveDir))
+                    {
+                        saveFolder = saveDir; 
+                    }
+                    ChangeSaveLoadButton(child.gameObject, saveFolder);
+                }
+            }
+        }
+    }
+
+    public void ChangeSaveLoadButton(GameObject slb = null, string saveFolder = "")
+    {
+        Debug.Log("Redrawing " + slb.name);
+        if (!saveFolder.Equals(""))
+        {
+            // Debug.Log("Finding save from: " + saveFolder);
+            string slbNum = ParseFinalPathPortion(saveFolder);
+            string slbName = ParseFinalPathPortion(Directory.GetFiles(saveFolder)[0]);
+            // Debug.Log("Searching for name and num for load button: " + slb.name);
+            slb.transform.Find("SaveNumber").gameObject.GetComponent<Text>().text = slbNum;
+            slb.transform.Find("SaveName").gameObject.GetComponent<Text>().text = slbName;
+        }
+        else
+        {
+            string slbNum = slb.name.Substring(slb.name.Length - 1);
+            string slbName = "Empty";
+            slb.transform.Find("SaveNumber").gameObject.GetComponent<Text>().text = slbNum;
+            slb.transform.Find("SaveName").gameObject.GetComponent<Text>().text = slbName;
+        }
+
+    }
+
+
     void FadeChecker()
     {
         //Debug.Log("Inside Fade Checker");

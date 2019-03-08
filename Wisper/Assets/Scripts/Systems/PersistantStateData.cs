@@ -102,6 +102,7 @@ public class PersistantStateData : MonoBehaviour
 
 
         stateConditions.Add("ShamusHasHat", false);
+        stateConditions.Add("BirdInNest", false);
         stateConditions.Add("ShrineIsClean", false);
         stateConditions.Add("SwingTaskDone", false);
         stateConditions.Add("FireTaskDone", false);

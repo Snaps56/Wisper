@@ -22,6 +22,11 @@ public class HatTask : MonoBehaviour
 
     private void Start()
     {
+        PSD = PersistantStateData.persistantStateData;
+        if((bool)PSD.stateConditions["ShamusHasHat"])
+        {
+            PutTheGoshDarnHatOnTheGoshDarnShamus();
+        }
         rb = GetComponent<Rigidbody>();
     }
 
@@ -32,7 +37,10 @@ public class HatTask : MonoBehaviour
             if (col.gameObject.tag == "NPC")
             {
                 //StartCoroutine(TwoSecond());
-                pickedUp = true;
+                if(!(bool)PSD.stateConditions["ShamusHasHat"])
+                {
+                    pickedUp = true;
+                }
             }
         }
     }
@@ -49,11 +57,15 @@ public class HatTask : MonoBehaviour
         //npc.transform.Find("garden_hat").gameObject.SetActive(true);
         
         pickedUp = false;
-        //npc.GetComponent<NPCMovement>().move = false;
-        //npc.GetComponent<Animator>().SetBool("Idle", true);
         npc.GetComponent<SpawnOrbs>().DropOrbs();
-        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().stateConditions["ShamusHasHat"] = true;
-        GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>().updateCount++;
+        PSD.ChangeStateConditions("ShamusHasHat", true);
+        PutTheGoshDarnHatOnTheGoshDarnShamus();
+        GamePad.SetVibration(playerIndex, 0f, 1f);
+        StartCoroutine(Wait());
+    }
+
+    private void PutTheGoshDarnHatOnTheGoshDarnShamus()
+    {
         rb.isKinematic = true;
         rb.useGravity = false;
         GetComponent<Collider>().enabled = false;
@@ -61,17 +73,6 @@ public class HatTask : MonoBehaviour
         transform.parent = newParentObject;
         transform.position = newParentObject.position + positionOffset;
         transform.rotation = newParentObject.rotation;
-        GamePad.SetVibration(playerIndex, 0f, 1f);
-        StartCoroutine(Wait());
-        //transform.tag = "Untagged";
-        // x = -.31 z = .16f y = 1.25
-        //hat.transform.position = npc.transform.position;
-        //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
-        //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY;
-        //hat.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
-        // npc.transform.GetChild(0).gameObject.SetActive(true);
-
-
     }
 
     void Update()
@@ -79,11 +80,6 @@ public class HatTask : MonoBehaviour
         if (pickedUp == true)
         {
             pickUp();
-        }
-
-        if (PSD == null)
-        {
-            PSD = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         }
     }
 
