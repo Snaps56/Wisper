@@ -120,16 +120,6 @@ public class CutsceneEvents : MonoBehaviour {
         directionalLight1.GetComponent<Light>().color = Color.white;
         directionalLight2.GetComponent<Light>().color = Color.white;
     }
-
-    /*
-    public void cutsceneSkipped()
-    {
-        Debug.Log("cutsceneSkipped was called in CutsceneEvents. Effect: Turns on a PSD variable and calls endAnimation");
-        PSDVariableOn("StartupShrineDialogue");
-        EndAnimation();
-    }
-    */
-
 }
 
 [System.Serializable]
