@@ -21,15 +21,26 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
     private bool disableFirstConversation = false;
     // Use this for initialization
     void Start () {
-		psd = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+		psd = PersistantStateData.persistantStateData;
         dm = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
         sceneInitializeTime = psd.globalTime;
+
+        if((bool)psd.stateConditions["ShrineFirstConversationOver"])
+        {
+            disableAreYouFollowingTheLightRepeaterTime = true;
+        }
+
+        if((bool)psd.stateConditions["ShrineIsClean"])
+        {
+            disableFirstConversation = true;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (!disableFindTheShrine)
         {
+            // Activate StartupShrinePart2 2.5 seconds after part 1
             if ((followTheLightCompleteTime != 0) && (psd.globalTime - followTheLightCompleteTime) > followTheLightPart2Time && (psd.globalTime - followTheLightCompleteTime) < (followTheLightPart2Time + 2))
             {
                 if(!(bool)psd.stateConditions["StartupShrinePart2"])
@@ -39,6 +50,7 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
             }
             else if ((psd.globalTime - followTheLightCompleteTime) > 30 && (psd.globalTime - followTheLightCompleteTime) % areYouFollowingTheLightRepeaterTime < 0.1 && !disableAreYouFollowingTheLightRepeaterTime)
             {
+                // 30 seconds after "follow the light" dialogue and repeating every 90 seconds while not disabled, play the repeating "are you following the light" dialogue
                 disableAreYouFollowingTheLightRepeaterTime = true;
                 
                 Hashtable tmpHash = new Hashtable();
@@ -48,6 +60,7 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
                 disableAreYouFollowingTheLightRepeaterTime = false;
             }
 
+            // Disables the repeating dialogue when "First Shrine Dialogue" is active
             if (dm.GetActiveDialogue() != null)
             {
                 if (dm.GetActiveDialogue().dialogueName == "First Shrine Dialogue")
@@ -57,6 +70,7 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
                 }
             }
 
+            // Initializes start and complete time of initial "follow the light" dialogue
             if(followTheLightCompleteTime == 0)
             {
                 if (followTheLightStartTime == 0)
@@ -75,6 +89,8 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
         }
         else if(!disableFirstConversation)
         {
+            //If not disabled and waiting for clean attempt, update the activation time, 
+            //else if primed for part 2 of first convo and 3 seconds passed after attempting to clean shrine, display dialogue
             if((bool)psd.stateConditions["WaitingForCleanAttempt"])
             {
                 firstConversationPrimerActivationTime = psd.globalTime;
@@ -90,9 +106,6 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
                     psd.ChangeStateConditions(tmpHash);
                 }
             }
-
         }
-        
-
 	}
 }
