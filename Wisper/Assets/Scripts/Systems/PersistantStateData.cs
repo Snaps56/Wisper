@@ -100,13 +100,18 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TotalOrbCount", 65.0f);
 
 
-
+        
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("BirdInNest", false);
         stateConditions.Add("ShrineIsClean", false);
         stateConditions.Add("SwingTaskDone", false);
         stateConditions.Add("FireTaskDone", false);
         stateConditions.Add("MerryGoRound", false);
+
+
+        /**************    City flags   ***************/
+        stateConditions.Add("WindmillFixed", false);
+
 
         /////////////////////////////////////////////////////////////
         ////////////////////    Dialogue flags   ////////////////////

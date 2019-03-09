@@ -4070,6 +4070,131 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1001 &386416034
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 943112009}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -365.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 369.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -815.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.049799357
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99875927
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 93505b0a928b0c243b6d0ec2e8b15893, type: 2}
+    - target: {fileID: 100000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_Name
+      value: garden_hat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_TagString
+      value: PickUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 8a1891a5de131ba46a11c9731bee9004, type: 3}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 5.709
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a89ac2b208d69146b7bd9d73e28004a, type: 3}
+  m_IsPrefabAsset: 0
+--- !u!4 &386416035 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 4a89ac2b208d69146b7bd9d73e28004a,
+    type: 3}
+  m_PrefabInternal: {fileID: 386416034}
+--- !u!1 &386416036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 4a89ac2b208d69146b7bd9d73e28004a,
+    type: 3}
+  m_PrefabInternal: {fileID: 386416034}
+--- !u!114 &386416037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 386416036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ed8d2f2a168d14ea806eee2f530880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 0}
+  newParentObject: {fileID: 0}
+  positionOffset: {x: -0.02, y: -0.3, z: 0}
+--- !u!65 &386416038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 386416036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.7, y: 7.5, z: 19.85}
+  m_Center: {x: 0, y: 3.54, z: -0.21}
+--- !u!54 &386416039
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 386416036}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &399167480
 GameObject:
   m_ObjectHideFlags: 0
@@ -4155,7 +4280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404706063}
   m_Layer: 0
-  m_Name: ShamusWalkPath
+  m_Name: BeauWalkPath
   m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4167,9 +4292,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 404706062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -371.18, y: 376.83, z: -811.24}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.030254347, y: 0.00005805174, z: 0.0019179081, w: 0.9995404}
+  m_LocalPosition: {x: -371.18, y: 374.86, z: -823.69}
+  m_LocalScale: {x: 0.8936586, y: 1, z: 1.0599378}
   m_Children:
   - {fileID: 486919224}
   - {fileID: 475091091}
@@ -4180,7 +4305,7 @@ Transform:
   - {fileID: 1892993337}
   m_Father: {fileID: 943112009}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.4670002, y: 0.013, z: 0.22000001}
 --- !u!1 &408549301
 GameObject:
   m_ObjectHideFlags: 0
@@ -4788,7 +4913,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 453235610}
   m_LocalRotation: {x: -0, y: -0.17775129, z: -0, w: 0.9840754}
-  m_LocalPosition: {x: -2.08, y: -6.869, z: -14.78}
+  m_LocalPosition: {x: -2.08, y: -6.65, z: -14.78}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 404706063}
@@ -5590,7 +5715,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 486919223}
   m_LocalRotation: {x: -0, y: -0.17775129, z: -0, w: 0.9840754}
-  m_LocalPosition: {x: -16.24, y: -4.871, z: 1.33}
+  m_LocalPosition: {x: -16.24, y: -5.591, z: 1.33}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 404706063}
@@ -11364,13 +11489,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wayPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 486919223}
+  - {fileID: 475091090}
+  - {fileID: 1304974539}
+  - {fileID: 453235610}
+  - {fileID: 373482213}
+  - {fileID: 2124807605}
+  - {fileID: 1892993336}
 --- !u!114 &581143087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11386,7 +11511,7 @@ MonoBehaviour:
   followTetherMinDistance: 1.5
   followTetherStrongDistance: 4
   dialogues:
-  - dialogueName: Find me hat!
+  - dialogueName: The windmill doesn't work!
     enabled: 1
     forceOnEnable: 0
     follow: 1
@@ -11394,10 +11519,8 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: ShamusHasHat
+    - conditionName: WindmillFixed
       conditionValue: 0
-    - conditionName: ShrineFirstConversationOver
-      conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls:
@@ -11411,10 +11534,10 @@ MonoBehaviour:
       charIndex: 26
       charDelayChange: -0.5
     sentences:
-    - speaker: Shamus
-      line: I must've nodded off when that darn wind blew me hat away. Where could
-        it be?
-  - dialogueName: My hat is found.
+    - speaker: Beau
+      line: The darn windmill is broken again! I hope it gets fixed soon! How we gonna
+        get power?
+  - dialogueName: The windmill works again!
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -11422,14 +11545,14 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: ShamusHasHat
+    - conditionName: WindmillFixed
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: Shamus
-      line: Me hat! Little Suzie and I best be getting back home now.
+    - speaker: Beau
+      line: 'The windmill works again! It must be a miracle! '
 --- !u!135 &581143088
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16846,10 +16969,9 @@ GameObject:
   - component: {fileID: 644173766}
   - component: {fileID: 644173765}
   - component: {fileID: 644173764}
-  - component: {fileID: 644173763}
   - component: {fileID: 644173762}
   m_Layer: 0
-  m_Name: Shellster_Shamus
+  m_Name: Shellster_Beau
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16950,18 +17072,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &644173763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 644173761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8965eac082767045bf559bfaae0f4f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCMovements: {fileID: 644173768}
 --- !u!95 &644173764
 Animator:
   serializedVersion: 3
@@ -17006,7 +17116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingTexts:
-  - dialogueName: Find me hat!
+  - dialogueName: Windmill Broken
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -17014,17 +17124,15 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: ShamusHasHat
+    - conditionName: WindmillFixed
       conditionValue: 0
-    - conditionName: ShrineFirstConversationOver
-      conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: Where'd me hat go?
-  - dialogueName: Hat returned
+      line: The windmill is broken!
+  - dialogueName: Windmill Fixed
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -17032,14 +17140,14 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: ShamusHasHat
+    - conditionName: WindmillFixed
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: My hat!
+      line: The windmill is fixed!
   range: 8
 --- !u!114 &644173767
 MonoBehaviour:
@@ -17052,7 +17160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b3bb7979e4f1a40960d8736b7d4067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 2092616149}
 --- !u!114 &644173768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17064,17 +17172,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529698588e07d204995e87b4f541ea23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  hat: {fileID: 0}
+  player: {fileID: 2092616138}
+  hat: {fileID: 386416036}
   npc: {fileID: 644173761}
   waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 486919223}
+  - {fileID: 475091090}
+  - {fileID: 1304974539}
+  - {fileID: 453235610}
+  - {fileID: 373482213}
+  - {fileID: 2124807605}
+  - {fileID: 1892993336}
   rotSpeed: 2
   speed: 3.2
   accuracyWP: 0.5
@@ -17146,8 +17254,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 644173761}
   m_LocalRotation: {x: -0, y: 0.049799357, z: -0, w: 0.99875927}
-  m_LocalPosition: {x: -387.549, y: 371.79, z: -810.108}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -379.279, y: 369.09, z: -823.581}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1807315552}
   - {fileID: 581143085}
@@ -25304,6 +25412,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 170facb24351f754fab6b94b45a83f0b,
     type: 3}
   m_PrefabInternal: {fileID: 877907082}
+--- !u!1 &883013625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 883013627}
+  - component: {fileID: 883013626}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &883013626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 883013625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875a0ff325523da49bf03f1bee1673c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistantStateDataUpdateCount: 0
+--- !u!4 &883013627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 883013625}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &885719429
 Prefab:
   m_ObjectHideFlags: 0
@@ -30972,7 +31121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &943112009
 Transform:
   m_ObjectHideFlags: 0
@@ -30980,11 +31129,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 943112008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 21.85, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 644173773}
   - {fileID: 404706063}
+  - {fileID: 386416035}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39976,7 +40126,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1304974539}
   m_LocalRotation: {x: -0, y: -0.17775129, z: -0, w: 0.9840754}
-  m_LocalPosition: {x: -0.43, y: -7.1, z: -8.63}
+  m_LocalPosition: {x: -0.43, y: -6.27, z: -8.63}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 404706063}
@@ -50079,7 +50229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1804462845
 Transform:
   m_ObjectHideFlags: 0
@@ -50153,7 +50303,7 @@ GameObject:
   - component: {fileID: 1807315552}
   - component: {fileID: 1807315553}
   m_Layer: 0
-  m_Name: Shamus_Marker
+  m_Name: Beau_Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50183,9 +50333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a038db3982387174689570f8579a3313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  character: {fileID: 0}
-  mainCanvas: {fileID: 0}
+  mainCamera: {fileID: 807090059}
+  character: {fileID: 2092616149}
+  mainCanvas: {fileID: 1595765437}
   indicator: {fileID: 1257024435530406, guid: 628299dbfc981694cac47aef1f4e311f, type: 2}
   farYOffset: 7
   closeYOffset: 5.5
@@ -50197,11 +50347,10 @@ MonoBehaviour:
   shakeDelay: 2
   shakeMax: 1.3
   shakeDuration: 0.5
-  dependentConditions:
-  - ShrineFirstConversationOver
+  dependentConditions: []
   onInteractConditions: []
   disableMarkerConditions:
-  - ShamusHasHat
+  - WindmillFixed
 --- !u!1 &1817368716
 GameObject:
   m_ObjectHideFlags: 0
@@ -56299,7 +56448,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1892993336}
   m_LocalRotation: {x: -0, y: -0.17775129, z: -0, w: 0.9840754}
-  m_LocalPosition: {x: -22.93, y: -5.19, z: -2.09}
+  m_LocalPosition: {x: -22.93, y: -5.738, z: -2.09}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 404706063}
@@ -68102,7 +68251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248c138e81e0e834695bcb01ffc5419e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnBackText: {fileID: 0}
+  turnBackText: {fileID: 671963446}
 --- !u!114 &2092616141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68306,7 +68455,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2092616138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -367.3, y: 384.6, z: -810.4}
+  m_LocalPosition: {x: -331.55, y: 373.39, z: -825.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 807090054}

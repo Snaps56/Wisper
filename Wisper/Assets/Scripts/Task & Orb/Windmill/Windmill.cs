@@ -8,7 +8,7 @@ public class Windmill : MonoBehaviour {
     public float torqueMultiplier = 0.05f;
     public float dangerSpeed = 6f;
     public float correctSpeed = 4f;
-    public GameObject[] shellsters;
+    public GameObject[] windmillParts;
 
     private Rigidbody rb;
 
@@ -25,7 +25,7 @@ public class Windmill : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        persistantStateData = PersistantStateData.persistantStateData;
         rb = GetComponent<Rigidbody>();
 	}
 	
@@ -36,7 +36,7 @@ public class Windmill : MonoBehaviour {
 
         if ((isLifting || isThrowing) && isWithinRange)
         {
-            torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce();
+            torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce()*2;
         }
         else
         {
@@ -48,21 +48,19 @@ public class Windmill : MonoBehaviour {
         if (currentVelocity >= dangerSpeed && !reachedDangerSpeed)
         {
             reachedDangerSpeed = true;
-            for (int i = 0; i < shellsters.Length; i++)
+            for (int i = 0; i < windmillParts.Length; i++)
             {
-                Vector3 currentShellsterVelocity = shellsters[i].GetComponent<Rigidbody>().velocity;
-                shellsters[i].GetComponent<Rigidbody>().isKinematic = false;
-                shellsters[i].transform.parent = null;
-                shellsters[i].GetComponent<Rigidbody>().AddExplosionForce(150, transform.position, 5f);
-                Debug.Log("detached " + shellsters[i]);
+                Vector3 currentShellsterVelocity = windmillParts[i].GetComponent<Rigidbody>().velocity;
+                windmillParts[i].GetComponent<Rigidbody>().isKinematic = false;
+                windmillParts[i].transform.parent = null;
+                windmillParts[i].GetComponent<Rigidbody>().AddExplosionForce(150, transform.position, 5f);
+                Debug.Log("detached " + windmillParts[i]);
             }
         }
         else if (currentVelocity >= correctSpeed && !reachedDangerSpeed && !hasSpawnedOrbs) {
-            /*
             hasSpawnedOrbs = true;
             GetComponent<SpawnOrbs>().DropOrbs();
-            persistantStateData.stateConditions["MerryGoRound"] = true;
-            */
+            persistantStateData.stateConditions["WindmillFixed"] = true;
         }
 	}
     private void FixedUpdate()
