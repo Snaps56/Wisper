@@ -25,6 +25,7 @@ public class SandCastleTask : MonoBehaviour {
         sandColor = transparentMaterial.color;
         sandColor.a = 0.1f;
         sandMeshRenderer.material = transparentMaterial;
+        spawnOrbsScript = GetComponent<SpawnOrbs>();
 
         finishedTask = (bool)PersistantStateData.persistantStateData.stateConditions["FinishedSandCastleTask"];
 
@@ -78,10 +79,10 @@ public class SandCastleTask : MonoBehaviour {
         other.gameObject.GetComponent<ParticleSystem>().Stop();
         other.gameObject.GetComponent<Collider>().enabled = false;
         sandCastleParticles.Stop();
-
         spawnOrbsScript.DropOrbs();
         PersistantStateData.persistantStateData.stateConditions["FinishedSandCastleTask"] = true;
     }
+    // overrided function called only from Start function
     void FinishSandCastleTask()
     {
         sandCastleFinishParticles.Stop();
