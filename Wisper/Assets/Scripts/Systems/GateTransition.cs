@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor.VersionControl;
 
 public class GateTransition : MonoBehaviour {
 
@@ -9,8 +10,15 @@ public class GateTransition : MonoBehaviour {
     public CanvasGroup blackFade;
     public Transform player;
     public GameObject transitionText;
-    public string nextSceneName;
     public float minDistance;
+
+    [Header("Scene Loading")]
+
+    public bool useSceneNumberInstead;
+    public string nextSceneName;
+    public int nextSceneNumber;
+    private LoadingScreen loadScreenScript;
+
     private bool startedAsync = false;
 
     private bool doFade = false;
@@ -31,6 +39,7 @@ public class GateTransition : MonoBehaviour {
     void Start () {
         blackFade.alpha = 0;
         fadeRate = Time.fixedDeltaTime / fadeDuration;
+        loadScreenScript = loadingScreen.GetComponent<LoadingScreen>();
 	}
 
     // Update is called once per frame
@@ -61,10 +70,6 @@ public class GateTransition : MonoBehaviour {
         
         if (startedAsync)
         {
-            if (Time.time > delayInitial + delayDuration)
-            {
-                async.allowSceneActivation = true;
-            }
         }
     }
     public bool GetWithinGateRange()
@@ -91,16 +96,49 @@ public class GateTransition : MonoBehaviour {
             {
                 loadingScreen.SetActive(true);
                 delayInitial = Time.time;
-                StartCoroutine(LoadAsynchronously(nextSceneName));
+                if (useSceneNumberInstead)
+                {
+                    StartCoroutine(BeginLoadAsynchronous(nextSceneNumber));
+                }
+                else
+                {
+                    StartCoroutine(BeginLoadAsynchronous(nextSceneName));
+                }
             }
         }
     }
-    IEnumerator LoadAsynchronously(string sceneName)
+    IEnumerator BeginLoadAsynchronous(string sceneName)
     {
         async = SceneManager.LoadSceneAsync(sceneName);
         Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
-        async.allowSceneActivation = false;
+
+        //async.allowSceneActivation = false;
+        async.allowSceneActivation = true;
         startedAsync = true;
+        if (async.isDone)
+        {
+            loadScreenScript.SetIsDoneLoading(true);
+            Debug.Log("Done loading! printed from coroutine after finished");
+        }
+        while (!async.isDone)
+        {
+            //Debug.Log(async.progress);
+            yield return null;
+        }
+    }
+    IEnumerator BeginLoadAsynchronous(int sceneNumber)
+    {
+        async = SceneManager.LoadSceneAsync(sceneNumber);
+        Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
+
+        //async.allowSceneActivation = false;
+        async.allowSceneActivation = true;
+        startedAsync = true;
+        if (async.isDone)
+        {
+            loadScreenScript.SetIsDoneLoading(true);
+            Debug.Log("Done loading! printed from coroutine after finished");
+        }
         while (!async.isDone)
         {
             //Debug.Log(async.progress);
