@@ -113,11 +113,6 @@ public class PauseMenu : MonoBehaviour
         SetVolume(CurrentVolume - 15);
     }
 
-    public void DisplayPauseMenu()
-    {
-        // TODO: Implement
-    }
-
     public void DisplaySaveMenu()
     {
         Debug.Log("Save path is " + PSD.savePath);
@@ -170,9 +165,11 @@ public class PauseMenu : MonoBehaviour
         loadMenu.transform.Find("Panel").gameObject.SetActive(true);
     }
 
+    // Displays the load menu UI elements
     public void DisplayLoadMenu()
     {
         string[] saveFolders = Directory.GetDirectories(PSD.savePath);
+        List<int> fileNums = GetFileNums(saveFolders);
         if (saveFolders.Length < 1)
         {
             // TODO display "no load data" message and make sure correct menus are enabled
@@ -185,30 +182,78 @@ public class PauseMenu : MonoBehaviour
             GameObject slb3 = saveLoadMenu.transform.Find("SaveLoadButton3").gameObject;
             GameObject slb4 = saveLoadMenu.transform.Find("SaveLoadButton4").gameObject;
             
-            if (saveFolders.Length >= 1)
+
+            if(fileNums.Contains(1))
             {
-                ChangeSaveLoadButton(slb1, saveFolders[0]);
-                slb1.SetActive(true);
+                ChangeSaveLoadButton(slb1, 1);
             }
-            if (saveFolders.Length >= 2)
+            else
             {
-                ChangeSaveLoadButton(slb2, saveFolders[1]);
-                slb2.SetActive(true);
+                ChangeSaveLoadButton(slb1);
             }
-            if (saveFolders.Length >= 3)
+            if (fileNums.Contains(2))
             {
-                ChangeSaveLoadButton(slb3, saveFolders[2]);
-                slb3.SetActive(true);
+                ChangeSaveLoadButton(slb2, 2);
             }
-            if (saveFolders.Length > 3)
+            else
             {
-                ChangeSaveLoadButton(slb4, saveFolders[3]);
-                slb4.SetActive(true);
+                ChangeSaveLoadButton(slb2);
             }
+            if (fileNums.Contains(3))
+            {
+                ChangeSaveLoadButton(slb3, 3);
+            }
+            else
+            {
+                ChangeSaveLoadButton(slb3);
+            }
+            if (fileNums.Contains(4))
+            {
+                ChangeSaveLoadButton(slb4, 4);
+            }
+            else
+            {
+                ChangeSaveLoadButton(slb4);
+            }
+            slb1.SetActive(true);
+            slb2.SetActive(true);
+            slb3.SetActive(true);
+            slb4.SetActive(true);
             saveLoadMenu.transform.Find("Panel").gameObject.SetActive(true);
         }
     }
 
+    // Returns numeric list of file slots found in save folder
+    public List<int> GetFileNums(string[] saveFolders)
+    {
+        List<int> numList = new List<int>();
+        foreach(string folder in saveFolders)
+        {
+            string numStr = SaveLoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(folder);
+            int numInt;
+            if(int.TryParse(numStr, out numInt))
+            {
+                numList.Add(numInt);
+            }
+        }
+        return numList;
+    }
+
+    // Calls ChangeSaveLoadButton, using a given slb and the save folder located at the provided slot number. Displays "Empty" if number is outside range 1-4
+    public void ChangeSaveLoadButton(GameObject slb, int number)
+    {
+        if(number > 4 || number < 1)
+        {
+            ChangeSaveLoadButton(slb);
+        }
+        else
+        {
+            string saveFolder = Path.Combine(PSD.savePath, number.ToString());
+            ChangeSaveLoadButton(slb, saveFolder);
+        }
+    }
+
+    // Changes text and number of given SaveLoadButton based on a given save folder, or sets to Empty if no folder given
     public void ChangeSaveLoadButton(GameObject slb = null, string saveFolder = "")
     {
         if(!saveFolder.Equals(""))
