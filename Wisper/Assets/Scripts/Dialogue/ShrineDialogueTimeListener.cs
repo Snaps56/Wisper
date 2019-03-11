@@ -25,7 +25,7 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
         dm = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
         sceneInitializeTime = psd.globalTime;
 
-        if((bool)psd.stateConditions["ShrineFirstConversationOver"])
+        if((bool)psd.stateConditions["ShrineFirstConversationOver"] || (bool)psd.stateConditions["WaitingForCleanAttempt"] || (bool)psd.stateConditions["ShrineFirstConversation2"])
         {
             disableAreYouFollowingTheLightRepeaterTime = true;
         }
