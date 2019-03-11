@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Material 1
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _NORMALMAP _PARALLAXMAP
+  m_Name: Water
+  m_Shader: {fileID: 4800000, guid: bac49daf1f3a32d45bd38c9eb6c97a93, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: c407f74f1276de146b3c8ced6aa64209, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -47,30 +47,53 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 56e1c61e653ba4348a9452f048f9f1ae, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 05a855474f3401d47b7a2a8894cd1adb, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_A0DC485C_Out:
+        m_Texture: {fileID: 2800000, guid: 9cc357b5b1f40dc498057f925d0153f0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BumpScale: 0.42
+    - Vector1_1D9AE3E9: 15
+    - Vector1_564D00F7: -0.1
+    - Vector1_7D6A1A0B: 0
+    - Vector1_7DDB576C: 1
+    - Vector1_A2BDD076: 0.2
+    - Vector1_AC7154D6: 8
+    - _AlphaClip: 0
+    - _Blend: 0
+    - _BumpScale: 1
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlossMapScale: 0
-    - _Glossiness: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _OcclusionStrength: 0.749
-    - _Parallax: 0.0676
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Surface: 0
     - _UVSec: 0
+    - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6886792, g: 0.59052014, b: 0.5035155, a: 1}
+    - Color_1E27D0BF: {r: 0.4765931, g: 0.892176, b: 0.9622642, a: 0}
+    - Color_3C5583B6: {r: 1, g: 1, b: 1, a: 0}
+    - Color_EE3B164D: {r: 0.021804927, g: 0.03556719, b: 0.6603774, a: 0}
+    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
