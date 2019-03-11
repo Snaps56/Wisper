@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     private GameObject followTarget;
 
     private bool movementToggledOff = false;
-    private bool planalMovementOn = true;
+    private bool planarMovementOn = true;
 
     public ParticleSystem screenParticles;
     public GameObject playerDirection;
@@ -54,19 +54,12 @@ public class PlayerMovement : MonoBehaviour {
     {
         movementSpeed = originalMoveSpeed + (1 * orbCountScript.GetOrbCount() * orbMovementIncrease);
 
-		//Debug.Log ("Planar Movement: " + planalMovementOn);
+		//Debug.Log ("Planar Movement: " + planarMovementOn);
 
         SprintCheck();
 
-        PlanalMovementCheck();
-
-        // debug key for testing toggle movement
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Debug.Log(movementToggledOff);
-            ToggleMovement();
-        }
-
+        PlanarMovementCheck();
+        
         // If there is a follow target, sets rigid body's velocity to a "following" velocity.
         if (followTarget != null)
         {
@@ -93,9 +86,9 @@ public class PlayerMovement : MonoBehaviour {
         // toggle player movement, move player using forces if true
         if (!movementToggledOff)
         {
-            if (planalMovementOn)
+            if (planarMovementOn)
             {
-                PlanalMovement();
+                PlanarMovement();
             }
             else
             {
@@ -106,22 +99,22 @@ public class PlayerMovement : MonoBehaviour {
         // add an opposing force that will automatically slow down the player and add a "cap" to force applied
         rb.AddForce(-rb.velocity * stopMultiplier);
     }
-    void PlanalMovementCheck()
+    void PlanarMovementCheck()
     {
         // toggle player movement relative to camera or relative to plane
-        if (Input.GetButtonDown("PC_Key_Control") || Input.GetButtonDown("XBOX_Thumbstick_R_Click"))
+        if (Input.GetButtonDown("PC_Key_ToggleMode") || Input.GetButtonDown("XBOX_Thumbstick_R_Click"))
         {
-            Debug.Log("PlanalMovement: " + planalMovementOn);
-            if (planalMovementOn)
+            Debug.Log("PlanarMovement: " + planarMovementOn);
+            if (planarMovementOn)
             {
-                planalMovementOn = false;
+                planarMovementOn = false;
 				foreach (GameObject trail in freeModeTrails) {
 					trail.GetComponent<TrailRenderer> ().emitting = true;
 				}
             }
             else
             {
-                planalMovementOn = true;
+                planarMovementOn = true;
 				foreach (GameObject trail in freeModeTrails) {
 					trail.GetComponent<TrailRenderer> ().emitting = false;
 				}
@@ -177,7 +170,7 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-    void PlanalMovement()
+    void PlanarMovement()
     {
         /*
         rb.AddForce(mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X") * finalSpeed);
@@ -194,27 +187,27 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(Vector3.up.normalized * Input.GetAxis("PC_Axis_MovementY") * finalSpeed);
         */
 
-        Vector3 planalVector = mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X");
-        planalVector += mainCamera.transform.right.normalized * Input.GetAxis("PC_Axis_MovementX");
+        Vector3 planarVector = mainCamera.transform.right.normalized * Input.GetAxis("XBOX_Thumbstick_L_X");
+        planarVector += mainCamera.transform.right.normalized * Input.GetAxis("PC_Axis_MovementX");
 
         Vector3 forwardVector = mainCamera.transform.forward.normalized;
         forwardVector.y = 0;
         forwardVector = forwardVector.normalized;
 
-        planalVector += forwardVector.normalized * Input.GetAxis("XBOX_Thumbstick_L_Y");
-        planalVector += forwardVector.normalized * Input.GetAxis("PC_Axis_MovementZ");
+        planarVector += forwardVector.normalized * Input.GetAxis("XBOX_Thumbstick_L_Y");
+        planarVector += forwardVector.normalized * Input.GetAxis("PC_Axis_MovementZ");
 
-        planalVector += Vector3.up.normalized * Input.GetAxis("XBOX_Axis_MovementY");
-        planalVector += Vector3.up.normalized * Input.GetAxis("PC_Axis_MovementY");
+        planarVector += Vector3.up.normalized * Input.GetAxis("XBOX_Axis_MovementY");
+        planarVector += Vector3.up.normalized * Input.GetAxis("PC_Axis_MovementY");
 
-        planalVector = planalVector.normalized * finalSpeed;
+        planarVector = planarVector.normalized * finalSpeed;
 
-		if (planalVector.magnitude > 0) {
-			Quaternion playerRotation = Quaternion.LookRotation (planalVector, Vector3.up);
+		if (planarVector.magnitude > 0) {
+			Quaternion playerRotation = Quaternion.LookRotation (planarVector, Vector3.up);
 			playerDirection.transform.rotation = playerRotation;
 		}
 
-        rb.AddForce(planalVector);
+        rb.AddForce(planarVector);
     }
 
     // move player, function is called only when movement is toggled
@@ -304,7 +297,15 @@ public class PlayerMovement : MonoBehaviour {
     }
 
 	public bool GetIsMoving() {
-		return isMoving;
+        if (GetVelocity().magnitude > .1)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+        return isMoving;
 	}
 
     // Sets the velocity so that player follows a target. Use in the update block for proper functionality.
@@ -367,7 +368,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void DisableMovement()
     {
-        Debug.Log("Player movement script disabled movement");
+        //Debug.Log("Player movement script disabled movement");
         movementToggledOff = true;
     }
     // Return whether if player is able to move
