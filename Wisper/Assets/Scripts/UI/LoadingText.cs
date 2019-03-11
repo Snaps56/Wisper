@@ -21,6 +21,8 @@ public class LoadingText : MonoBehaviour {
         // loadingText.text = "Loading.";
         //loadingText.text = "To Be Continued...";
         currentDot = initDot;
+
+        StartCoroutine(AnimateLoadText());
 	}
 	
 	// Update is called once per frame
@@ -53,4 +55,16 @@ public class LoadingText : MonoBehaviour {
         }
         
 	}
+    public void SetIsDoneLoading(bool setDone)
+    {
+        doneLoading = true;
+    }
+
+    IEnumerator AnimateLoadText()
+    {
+        while (!doneLoading)
+        {
+            yield return null;
+        }
+    }
 }

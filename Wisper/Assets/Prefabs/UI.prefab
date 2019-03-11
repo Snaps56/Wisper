@@ -1682,7 +1682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1470901900918304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224427822578673430}
+  - component: {fileID: 114579849271724658}
   m_Layer: 0
   m_Name: Loading Screen
   m_TagString: Untagged
@@ -2487,7 +2488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1703102632918002
 GameObject:
   m_ObjectHideFlags: 1
@@ -3291,14 +3292,13 @@ GameObject:
   - component: {fileID: 224921002674624438}
   - component: {fileID: 222116196021654664}
   - component: {fileID: 114765254978788280}
-  - component: {fileID: 114966157627448898}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1935260901715642
 GameObject:
   m_ObjectHideFlags: 1
@@ -3358,7 +3358,6 @@ GameObject:
   - component: {fileID: 224135400787933466}
   - component: {fileID: 222693114420249930}
   - component: {fileID: 114586468439001614}
-  - component: {fileID: 114629088594184836}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -4427,14 +4426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 95324759274111564}
-  pauseMenuUI: {fileID: 1231138785312870}
-  settingsMenu: {fileID: 1080626009077886}
-  VideoMenu: {fileID: 1478673197869878}
+  curtainAnimator: {fileID: 0}
   SaveLoadMenu: {fileID: 1376773409497676}
-  MainEventSystem: {fileID: 1819877934785328}
-  GraphicsEventSystem: {fileID: 1324350520386226}
-  AudioEventSystem: {fileID: 1902690449527168}
+  pauseMenuUI: {fileID: 1231138785312870}
+  pauseMenuEventSystem: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 66155f7ede8feb04788df3e4419930e5, type: 2}
 --- !u!114 &114072882754916128
 MonoBehaviour:
@@ -4742,14 +4737,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 95324759274111564}
-  pauseMenuUI: {fileID: 1742259124691848}
-  settingsMenu: {fileID: 0}
-  VideoMenu: {fileID: 0}
+  curtainAnimator: {fileID: 0}
   SaveLoadMenu: {fileID: 0}
-  MainEventSystem: {fileID: 0}
-  GraphicsEventSystem: {fileID: 1080626009077886}
-  AudioEventSystem: {fileID: 0}
+  pauseMenuUI: {fileID: 1742259124691848}
+  pauseMenuEventSystem: {fileID: 0}
   audioMixer: {fileID: 0}
 --- !u!114 &114145983277038736
 MonoBehaviour:
@@ -7087,11 +7078,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5cfedc844c74014baa0cfe927f2b0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMainMenu: 0
   mode: 0
-  saveLoadES: {fileID: 1822738519999630}
-  generalMenuES: {fileID: 1819877934785328}
-  saveLoadMenu: {fileID: 1376773409497676}
-  generalMenu: {fileID: 1231138785312870}
+  objectsDisableOnLoad: []
 --- !u!114 &114524765387586102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7552,6 +7541,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e31726f2175a694e888d81b6686654b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114579849271724658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609157051485754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde0f69263d1bc44dbaab0f31c4e323b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114582414130367716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7787,17 +7787,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114629088594184836
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1958931408701978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d2c8c46ff2ec144bd771b9e47b6dd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114632338172185330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8896,7 +8885,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: baef72b6f60d2cc4fb7400420e79a570, type: 3}
     m_FontSize: 66
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 105
@@ -10218,17 +10207,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
---- !u!114 &114966157627448898
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916943858272386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 085d5e781ed19814c93ce350b24685ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114970290976238162
 MonoBehaviour:
   m_ObjectHideFlags: 1
