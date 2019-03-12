@@ -6,10 +6,10 @@ using UnityEditor.VersionControl;
 
 public class GateTransition : MonoBehaviour {
 
-    public GameObject loadingScreen;
-    public CanvasGroup blackFade;
-    public Transform player;
-    public GameObject transitionText;
+    private GameObject loadingScreen;
+    private CanvasGroup blackFade;
+    private Transform player;
+    private GameObject transitionText;
     public float minDistance;
 
     [Header("Scene Loading")]
@@ -17,7 +17,7 @@ public class GateTransition : MonoBehaviour {
     public bool useSceneNumberInstead;
     public string nextSceneName;
     public int nextSceneNumber;
-    private LoadingScreen loadScreenScript;
+    private LoadingScreen loadingScreenScript;
 
     private bool startedAsync = false;
 
@@ -37,10 +37,21 @@ public class GateTransition : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        loadingScreen = GameObject.Find("Loading Screen");
+        player = GameObject.Find("Player").transform;
+        transitionText = GameObject.Find("Transition Text");
+        transitionText.SetActive(false);
+        blackFade = GameObject.Find("Faded").GetComponent<CanvasGroup>();
         blackFade.alpha = 0;
+
         fadeRate = Time.fixedDeltaTime / fadeDuration;
-        loadScreenScript = loadingScreen.GetComponent<LoadingScreen>();
-	}
+
+        if (loadingScreen == null)
+        {
+            loadingScreen = GameObject.Find("MainCanvas").transform.Find("Loading Screen").gameObject;
+            loadingScreenScript = loadingScreen.GetComponent<LoadingScreen>();
+        }
+    }
 
     // Update is called once per frame
     void Update() {
@@ -94,6 +105,11 @@ public class GateTransition : MonoBehaviour {
             }
             if (doneFade && !startedAsync)
             {
+                if (loadingScreen == null)
+                {
+                    loadingScreen = GameObject.Find("MainCanvas").transform.Find("Loading Screen").gameObject;
+                    loadingScreenScript = loadingScreen.GetComponent<LoadingScreen>();
+                }
                 loadingScreen.SetActive(true);
                 delayInitial = Time.time;
                 if (useSceneNumberInstead)
@@ -117,7 +133,7 @@ public class GateTransition : MonoBehaviour {
         startedAsync = true;
         if (async.isDone)
         {
-            loadScreenScript.SetIsDoneLoading(true);
+            loadingScreenScript.SetIsDoneLoading(true);
             Debug.Log("Done loading! printed from coroutine after finished");
         }
         while (!async.isDone)
@@ -136,7 +152,7 @@ public class GateTransition : MonoBehaviour {
         startedAsync = true;
         if (async.isDone)
         {
-            loadScreenScript.SetIsDoneLoading(true);
+            loadingScreenScript.SetIsDoneLoading(true);
             Debug.Log("Done loading! printed from coroutine after finished");
         }
         while (!async.isDone)
