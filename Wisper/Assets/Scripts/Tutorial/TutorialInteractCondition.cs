@@ -6,8 +6,8 @@ public class TutorialInteractCondition : MonoBehaviour {
 
     // Game objects
     public string dependentCondition;
-    public GameObject shrine;
-    public Transform player;
+    private GameObject shrine;
+    private Transform player;
 
     // variables relating to the Persistant State Data
     private TutorialCondition tutorialCondition;
@@ -21,6 +21,8 @@ public class TutorialInteractCondition : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        player = GameObject.Find("Player").transform;
+        shrine = GameObject.Find("/Shrine");
         maxDistanceTrigger = shrine.GetComponent<UI_Marker>().maxDrawDistance;
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         tutorialCondition = GetComponent<TutorialCondition>();

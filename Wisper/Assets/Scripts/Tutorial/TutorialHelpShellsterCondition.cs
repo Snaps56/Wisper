@@ -6,8 +6,8 @@ public class TutorialHelpShellsterCondition : MonoBehaviour {
 
     // Game objects
     public string dependentCondition;
-    public Transform swingShellster;
-    public Transform player;
+    private Transform swingShellster;
+    private Transform player;
     public float proximityDistance;
 
     private PersistantStateData persistantStateData;
@@ -22,8 +22,10 @@ public class TutorialHelpShellsterCondition : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        player = GameObject.Find("Player").transform;
         tutorialCondition = GetComponent<TutorialCondition>();
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        swingShellster = GameObject.Find("Shellster_Susie").transform;
     }
 	
 	// Update is called once per frame

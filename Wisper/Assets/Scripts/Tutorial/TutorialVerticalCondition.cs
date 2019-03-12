@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialMovementCondition : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     // variables relating to the player's distance
     public float distanceTravelRequired;
     private float playerDistanceTraveled;
@@ -21,6 +21,8 @@ public class TutorialMovementCondition : MonoBehaviour {
         tutorialCondition = GetComponent<TutorialCondition>();
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         playerDistanceTraveled = 0;
+
+        player = GameObject.Find("Player");
 
         if((bool)persistantStateData.stateConditions["TutorialLookFinished"])
         {

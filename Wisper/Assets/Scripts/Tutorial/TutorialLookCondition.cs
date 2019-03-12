@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TutorialLookCondition : MonoBehaviour
 {
-    public GameObject shrine;
-    public Camera mainCamera;
+    private GameObject shrine;
+    private Camera mainCamera;
     public float dotProductAngle = 0.9f;
     //The camera's forward vector
     private Vector3 cameraForward;
@@ -18,6 +18,8 @@ public class TutorialLookCondition : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        shrine = GameObject.Find("Shrine");
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         tutorialCondition = GetComponent<TutorialCondition>();
     }

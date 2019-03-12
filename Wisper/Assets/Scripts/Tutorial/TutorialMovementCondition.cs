@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialVerticalCondition : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     // variables relating to the player's distance
     public float distanceVerticalRequired;
     private float playerDistanceTraveled;
@@ -20,6 +20,8 @@ public class TutorialVerticalCondition : MonoBehaviour {
         tutorialCondition = GetComponent<TutorialCondition>();
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         playerDistanceTraveled = 0;
+
+        player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
