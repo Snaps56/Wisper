@@ -7,9 +7,9 @@ public class UI_Marker : MonoBehaviour {
     
     // Gameobjects to assign in the inspector
     [Header("GameObjects")]
-    public Camera mainCamera;
-    public Transform character;
-    public Canvas mainCanvas;
+    private Camera mainCamera;
+    private Transform character;
+    private Canvas mainCanvas;
     public GameObject indicator;
 
     // Variables pertaining to positioning and alpha values
@@ -58,9 +58,16 @@ public class UI_Marker : MonoBehaviour {
     private PersistantStateData persistantStateData;
     
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        // find required game objects
+        character = GameObject.Find("Player").transform;
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         // create waypoint icon
         waypoint = Instantiate(indicator);
+        waypoint.transform.SetParent(mainCanvas.GetComponent<RectTransform>());
+        waypoint.transform.SetAsFirstSibling();
         waypoint.GetComponent<RectTransform>().SetParent(mainCanvas.transform);
         waypoint.SetActive(false);
 
@@ -72,7 +79,8 @@ public class UI_Marker : MonoBehaviour {
         initialTimer = Time.time;
         isAnimating = false;
         doneAnimating = false;
-            
+
+
         // initialize condition variables
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         dependentConditionsMet = false;
