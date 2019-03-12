@@ -56,9 +56,7 @@ public class MainMenu : MonoBehaviour {
     {
         Debug.Log("Save path is " + PSD.savePath);
         string[] saveFolders = Directory.GetDirectories(PSD.savePath);
-        
-
-        if (saveFolders.Length < 1)
+        if(saveFolders.Length < 1)
         {
             // TODO display "no load data" message and make sure correct menus are enabled
         }
@@ -69,99 +67,39 @@ public class MainMenu : MonoBehaviour {
             GameObject lb2 = loadMenu.transform.Find("SaveLoadButton2").gameObject;
             GameObject lb3 = loadMenu.transform.Find("SaveLoadButton3").gameObject;
             GameObject lb4 = loadMenu.transform.Find("SaveLoadButton4").gameObject;
-
-            List<int> fileNums = GetFileNums(loadMenu, saveFolders);
             Debug.Log("Located load buttons: " + lb1.name + "\n" + lb2.name + "\n" + lb3.name + "\n" + lb4.name);
-            if (fileNums.Contains(1))
+            if (saveFolders.Length >= 1)
             {
-                ChangeLoadButton(lb1, 1);
+                ChangeLoadButton(lb1, saveFolders[0]);
+                lb1.SetActive(true);
             }
-            else
+            if (saveFolders.Length >= 2)
             {
-                ChangeLoadButton(lb1);
+                ChangeLoadButton(lb2, saveFolders[1]);
+                lb2.SetActive(true);
             }
-            if (fileNums.Contains(2))
+            if (saveFolders.Length >= 3)
             {
-                ChangeLoadButton(lb2, 2);
+                ChangeLoadButton(lb3, saveFolders[2]);
+                lb3.SetActive(true);
             }
-            else
+            if (saveFolders.Length > 3)
             {
-                ChangeLoadButton(lb2);
+                ChangeLoadButton(lb4, saveFolders[3]);
+                lb4.SetActive(true);
             }
-            if (fileNums.Contains(3))
-            {
-                ChangeLoadButton(lb3, 3);
-            }
-            else
-            {
-                ChangeLoadButton(lb3);
-            }
-            if (fileNums.Contains(4))
-            {
-                ChangeLoadButton(lb4, 4);
-            }
-            else
-            {
-                ChangeLoadButton(lb4);
-            }
-            lb1.SetActive(true);
-            lb2.SetActive(true);
-            lb3.SetActive(true);
-            lb4.SetActive(true);
-            
             loadMenu.transform.Find("Panel").gameObject.SetActive(true);
         }
     }
 
-    public List<int> GetFileNums(GameObject loadMenu, string[] saveFolders)
+    public void ChangeLoadButton(GameObject lb, string saveFolder)
     {
-        List<int> numList = new List<int>();
-        foreach (string folder in saveFolders)
-        {
-            string numStr = loadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(folder);
-            int numInt;
-            if (int.TryParse(numStr, out numInt))
-            {
-                numList.Add(numInt);
-            }
-        }
-        return numList;
-    }
-
-    // Calls ChangeSaveLoadButton, using a given slb and the save folder located at the provided slot number. Displays "Empty" if number is outside range 1-4
-    public void ChangeLoadButton(GameObject slb, int number)
-    {
-        if (number > 4 || number < 1)
-        {
-            ChangeLoadButton(slb);
-        }
-        else
-        {
-            string saveFolder = Path.Combine(PSD.savePath, number.ToString());
-            ChangeLoadButton(slb, saveFolder);
-        }
-    }
-
-    public void ChangeLoadButton(GameObject lb, string saveFolder = "")
-    {
-        string lbNum;
-        string lbName;
-        if (!saveFolder.Equals(""))
-        {
-            Debug.Log("Finding save from: " + saveFolder);
-            lbNum = LoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(saveFolder);
-            lbName = LoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(Directory.GetFiles(saveFolder)[0]);
-            Debug.Log("Searching for name and num for load button: " + lb.name);
-            
-        }
-        else
-        {
-            lbNum = lb.name.Substring(lb.name.Length - 1);
-            lbName = "Empty";
-        }
+        Debug.Log("Finding save from: " + saveFolder);
+        string lbNum = LoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(saveFolder);
+        string lbName = LoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(Directory.GetFiles(saveFolder)[0]);
+        Debug.Log("Searching for name and num for load button: " + lb.name);
         lb.transform.Find("SaveNumber").gameObject.GetComponent<Text>().text = lbNum;
         lb.transform.Find("SaveName").gameObject.GetComponent<Text>().text = lbName;
-
     }
 
     public void Quitgame ()

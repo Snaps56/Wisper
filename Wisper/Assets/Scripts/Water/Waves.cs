@@ -39,12 +39,14 @@ public class Waves : MonoBehaviour {
         var localPos = Vector3.Scale((position - transform.position), scale);
 
         //get edge points
+
         var p1 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Floor(localPos.z));
         var p2 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Ceil(localPos.z));
         var p3 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Floor(localPos.z));
         var p4 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Ceil(localPos.z));
 
         //clamp if the position is outside the plane
+
         p1.x = Mathf.Clamp(p1.x, 0, Dimension);
         p1.z = Mathf.Clamp(p1.z, 0, Dimension);
         p2.x = Mathf.Clamp(p2.x, 0, Dimension);
@@ -56,6 +58,7 @@ public class Waves : MonoBehaviour {
 
 
         //get the max distance to one of the edges and take that to compute max - dist
+
         var max = Mathf.Max(Vector3.Distance(p1, localPos), Vector3.Distance(p2, localPos), Vector3.Distance(p3, localPos), Vector3.Distance(p4, localPos) + Mathf.Epsilon);
         var dist = (max - Vector3.Distance(p1, localPos))
                  + (max - Vector3.Distance(p2, localPos))
