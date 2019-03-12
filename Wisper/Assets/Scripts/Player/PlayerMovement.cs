@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     private GameObject followTarget;
 
     private bool movementToggledOff = false;
-    private bool planarMovementOn = true;
+    private bool planarMovementOn = false;
 
     public ParticleSystem screenParticles;
     public GameObject playerDirection;
