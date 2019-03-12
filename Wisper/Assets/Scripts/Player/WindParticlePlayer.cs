@@ -49,7 +49,7 @@ public class WindParticlePlayer : MonoBehaviour {
         
         playerSpeed = playerMovementScript.GetVelocity().magnitude;
 
-        if (playerSpeed > 3)
+        if (playerSpeed > 2)
         {
             if (currentVelMultiplier > 0)
             {

@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WindParticleToggle : MonoBehaviour {
-    public ParticleSystem swirlParticles;
-    public ParticleSystem rasenganParticles;
+    public GameObject swirlParticles;
+    public GameObject rasenganParticles;
 
     bool doSwirlParticles = true;
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Start ()
+    {
+        if (doSwirlParticles)
+        {
+            swirlParticles.SetActive(true);
+            rasenganParticles.SetActive(false);
+        }
+        else
+        {
+            swirlParticles.SetActive(false);
+            rasenganParticles.SetActive(true);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,33 +29,14 @@ public class WindParticleToggle : MonoBehaviour {
             if (doSwirlParticles)
             {
                 doSwirlParticles = false;
+                swirlParticles.SetActive(true);
+                rasenganParticles.SetActive(false);
             }
             else
             {
                 doSwirlParticles = true;
-            }
-        }
-
-		if (doSwirlParticles)
-        {
-            if (swirlParticles.isStopped)
-            {
-                swirlParticles.Play();
-            }
-            if (rasenganParticles.isPlaying)
-            {
-                rasenganParticles.Stop();
-            }
-        }
-        else
-        {
-            if (rasenganParticles.isStopped)
-            {
-                rasenganParticles.Play();
-            }
-            if (swirlParticles.isPlaying)
-            {
-                swirlParticles.Stop();
+                swirlParticles.SetActive(false);
+                rasenganParticles.SetActive(true);
             }
         }
 	}
