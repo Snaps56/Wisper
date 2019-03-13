@@ -100,7 +100,7 @@ public class ObjectThrow : MonoBehaviour {
     // detect if any pickable objects are within range
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "PickUp")
+		if (other.tag == "PickUp" || other.tag == "PushOnly")
         {
             throwObject(other);
         }
