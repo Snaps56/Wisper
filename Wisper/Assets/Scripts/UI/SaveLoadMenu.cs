@@ -221,16 +221,24 @@ public class SaveLoadMenu : MonoBehaviour {
         string loadButtonString = "SaveLoadButton" + loadButtonIndex;
         GameObject loadButton = GameObject.Find(loadButtonString);
         targetFile = loadButton.transform.Find("SaveNumber").GetComponent<Text>().text;
-        //Debug.Log("Target File set to " + targetFile);
-        if (!isMainMenu)
+        if(Directory.Exists(Path.Combine(savePath, targetFile)))
         {
-            pauseMenuScript.Resume();
+            //Debug.Log("Target File set to " + targetFile);
+            if (!isMainMenu)
+            {
+                pauseMenuScript.Resume();
+            }
+            for (int i = 0; i < objectsDisableOnLoad.Length; i++)
+            {
+                objectsDisableOnLoad[i].SetActive(false);
+            }
+            doFade = true;
         }
-        for (int i = 0; i < objectsDisableOnLoad.Length; i++)
+        else
         {
-            objectsDisableOnLoad[i].SetActive(false);
+            Debug.Log("Could not locate save folder for: " + targetFile);
         }
-        doFade = true;
+        
     }
 
     public void SaveFromMenuClick(int saveButtonIndex)
