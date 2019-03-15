@@ -16,12 +16,13 @@ public class MouseModule : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     void Update()
     {
+        masterEventSystem = EventSystem.current;
         currentGameObject = masterEventSystem.currentSelectedGameObject;
         if (currentGameObject != gameObject && mouseOverObject)
         {
             masterEventSystem.SetSelectedGameObject(gameObject);
         }
-        //Debug.Log(currentGameObject);
+        //Debug.Log("eventsystem: " + masterEventSystem + ", current object: " + currentGameObject);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
