@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         {
             //Debug.Log("null, " + pauseMenuEventSystem.name);
         }
-        if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel") || Input.GetButtonDown("Pause"))
         {
             if (EventSystem.current == null)
             {
