@@ -587,6 +587,7 @@ GameObject:
   - component: {fileID: 167962826}
   - component: {fileID: 167962827}
   - component: {fileID: 167962825}
+  - component: {fileID: 167962828}
   m_Layer: 0
   m_Name: SandCastle
   m_TagString: Untagged
@@ -675,7 +676,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 15
+  m_Radius: 9
   m_Height: 100
   m_Direction: 1
   m_Center: {x: 0.11430597, y: 5.326321, z: 0.13662934}
@@ -696,6 +697,20 @@ MonoBehaviour:
   moveSpeedMultiplier: 0.5
   slowMultiplier: 1
   orbSpawnOffsetY: 0
+--- !u!64 &167962828
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 167962821}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 028bccb6ee5901241921facea2b7f0c9, type: 3}
 --- !u!1 &183808358
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,7 +988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &280993051
 Transform:
   m_ObjectHideFlags: 0
@@ -995,7 +1010,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 280993050}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e78d423461692f145b71746a4bfd9dbd, type: 3}
   m_Name: 
@@ -6973,7 +6988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &556723529
 Transform:
   m_ObjectHideFlags: 0
@@ -6998,6 +7013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee4d2c8e593dd40b5bd2ab5c7c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   emissionIncreaseModifier: 0.3
   velocityIncreaseModifier: 0.03
   lifetimeVelocityIncreaseModifier: 0
@@ -7137,7 +7153,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -8112,7 +8128,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
+      scalar: 0.43633232
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -8165,7 +8181,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
+      scalar: 0.43633232
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -8268,7 +8284,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 0
+    separateAxes: 1
   ColorModule:
     enabled: 1
     gradient:
@@ -8278,18 +8294,18 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.4292453, g: 1, b: 0.44313428, a: 1}
-        key1: {r: 1, g: 0, b: 0, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 1, g: 0.93675345, b: 0.427451, a: 1}
+        key1: {r: 0.9811321, g: 0.73272985, b: 0.09718761, a: 1}
+        key2: {r: 0.8482146, g: 0, b: 1, a: 0}
+        key3: {r: 0.4799086, g: 0.05513528, b: 0.5566038, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 65535
-        ctime2: 0
-        ctime3: 0
+        ctime1: 14264
+        ctime2: 57054
+        ctime3: 64186
         ctime4: 0
         ctime5: 0
         ctime6: 0
@@ -8303,7 +8319,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 4
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -27572,6 +27588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee4d2c8e593dd40b5bd2ab5c7c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   emissionIncreaseModifier: 0.1
   velocityIncreaseModifier: 0.1
   lifetimeVelocityIncreaseModifier: 0
@@ -37532,7 +37549,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 998704959}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2c2781d0ef8e6649823fb1c11edfbbb, type: 3}
   m_Name: 
@@ -37582,6 +37599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee4d2c8e593dd40b5bd2ab5c7c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   emissionIncreaseModifier: 0.3
   velocityIncreaseModifier: 0.03
   lifetimeVelocityIncreaseModifier: 0
@@ -42244,6 +42262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee4d2c8e593dd40b5bd2ab5c7c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   emissionIncreaseModifier: 0.3
   velocityIncreaseModifier: 0.03
   lifetimeVelocityIncreaseModifier: 0
@@ -47912,6 +47931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee4d2c8e593dd40b5bd2ab5c7c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   emissionIncreaseModifier: 0
   velocityIncreaseModifier: 0
   lifetimeVelocityIncreaseModifier: 0.05
@@ -48626,7 +48646,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1.5
+      value: 10
       mode: 0
       spread: 0
       speed:
@@ -57739,7 +57759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1360088174
 Transform:
   m_ObjectHideFlags: 0
@@ -79150,6 +79170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee4d2c8e593dd40b5bd2ab5c7c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   emissionIncreaseModifier: 0
   velocityIncreaseModifier: 0
   lifetimeVelocityIncreaseModifier: 0.05
@@ -83875,7 +83896,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2001158799}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e78d423461692f145b71746a4bfd9dbd, type: 3}
   m_Name: 
@@ -84014,6 +84035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee4d2c8e593dd40b5bd2ab5c7c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   emissionIncreaseModifier: 0.3
   velocityIncreaseModifier: 0.03
   lifetimeVelocityIncreaseModifier: 0
@@ -88795,6 +88817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248c138e81e0e834695bcb01ffc5419e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnBackText: {fileID: 0}
 --- !u!114 &2092616141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89055,6 +89078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee4d2c8e593dd40b5bd2ab5c7c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   emissionIncreaseModifier: 0.3
   velocityIncreaseModifier: 0.03
   lifetimeVelocityIncreaseModifier: 0

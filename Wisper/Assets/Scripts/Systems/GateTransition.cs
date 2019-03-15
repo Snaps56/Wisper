@@ -9,7 +9,7 @@ public class GateTransition : MonoBehaviour {
     private GameObject loadingScreen;
     private CanvasGroup blackFade;
     private Transform player;
-    private GameObject transitionText;
+    public GameObject transitionText;
     public float minDistance;
 
     [Header("Scene Loading")]
@@ -39,7 +39,6 @@ public class GateTransition : MonoBehaviour {
     void Start () {
         loadingScreen = GameObject.Find("Loading Screen");
         player = GameObject.Find("Player").transform;
-        transitionText = GameObject.Find("Transition Text");
         transitionText.SetActive(false);
         blackFade = GameObject.Find("Faded").GetComponent<CanvasGroup>();
         blackFade.alpha = 0;
