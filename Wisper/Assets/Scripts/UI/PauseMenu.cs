@@ -48,13 +48,16 @@ public class PauseMenu : MonoBehaviour
         {
             //Debug.Log("null, " + pauseMenuEventSystem.name);
         }
-        if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel") || Input.GetButtonDown("Pause"))
+        if (EventSystem.current == null)
         {
-            if (EventSystem.current == null)
+            if (Input.GetButtonDown("Pause"))
             {
                 Pause();
             }
-            else if (EventSystem.current.name == pauseMenuEventSystem.name)
+        }
+        else if (EventSystem.current.name == pauseMenuEventSystem.name)
+        {
+            if (Input.GetButtonDown("XBOX_Button_B") || Input.GetButtonDown("Cancel") || Input.GetButtonDown("Pause"))
             {
                 Resume();
             }
@@ -83,7 +86,7 @@ public class PauseMenu : MonoBehaviour
     // Resumes the game and resets the cursor lock
     public void Resume()
     {
-        Debug.Log("Resume Game!");
+        //Debug.Log("Resume Game!");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         Cursor.visible = false;
@@ -101,7 +104,7 @@ public class PauseMenu : MonoBehaviour
     // Pauses the game and unlocks the cursor
     void Pause()
     {
-        Debug.Log("Pause Game!");
+        //Debug.Log("Pause Game!");
         // GamePad.SetVibration(playerIndex, 0f, 0f);
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
