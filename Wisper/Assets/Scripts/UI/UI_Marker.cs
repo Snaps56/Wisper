@@ -82,7 +82,6 @@ public class UI_Marker : MonoBehaviour {
 
 
         // initialize condition variables
-        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         dependentConditionsMet = false;
     }
 	
@@ -150,7 +149,7 @@ public class UI_Marker : MonoBehaviour {
             {
                 for (int i = 0; i < dependentConditions.Length; i++)
                 {
-                    bool currentCondition = ((bool)persistantStateData.stateConditions[dependentConditions[i]]);
+                    bool currentCondition = ((bool)PersistantStateData.persistantStateData.stateConditions[dependentConditions[i]]);
                     if (!currentCondition)
                     {
                         allConditionsTrue = false;
@@ -189,7 +188,7 @@ public class UI_Marker : MonoBehaviour {
                 {
                     for (int i = 0; i < disableMarkerConditions.Length; i++)
                     {
-                        bool currentCondition = ((bool)persistantStateData.stateConditions[disableMarkerConditions[i]]);
+                        bool currentCondition = ((bool)PersistantStateData.persistantStateData.stateConditions[disableMarkerConditions[i]]);
                         if (currentCondition)
                         {
                             disableMarker = true;
@@ -253,7 +252,7 @@ public class UI_Marker : MonoBehaviour {
             {
                 for (int i = 0; i < onInteractConditions.Length; i++)
                 {
-                    persistantStateData.ChangeStateConditions(onInteractConditions[i], true);
+                    PersistantStateData.persistantStateData.ChangeStateConditions(onInteractConditions[i], true);
                 }
             }
 
