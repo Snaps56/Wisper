@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 222014062560468226}
   - component: {fileID: 114183884606798630}
   - component: {fileID: 114741094549302338}
+  - component: {fileID: 114158439869829652}
   m_Layer: 0
   m_Name: HighButton
   m_TagString: Untagged
@@ -1148,6 +1149,7 @@ GameObject:
   - component: {fileID: 114043071596511592}
   - component: {fileID: 95324759274111564}
   - component: {fileID: 114083195549673062}
+  - component: {fileID: 114575062236336550}
   m_Layer: 5
   m_Name: Curtain
   m_TagString: Untagged
@@ -1761,6 +1763,7 @@ GameObject:
   - component: {fileID: 222660278565502122}
   - component: {fileID: 114284971229112650}
   - component: {fileID: 114484666104811082}
+  - component: {fileID: 114553881575562516}
   m_Layer: 0
   m_Name: LowButton
   m_TagString: Untagged
@@ -2271,6 +2274,7 @@ GameObject:
   - component: {fileID: 222041079954915156}
   - component: {fileID: 114339860539202876}
   - component: {fileID: 114231801923233710}
+  - component: {fileID: 114765546186916046}
   m_Layer: 0
   m_Name: MediumButton
   m_TagString: Untagged
@@ -5076,6 +5080,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114158439869829652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055170424720164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca8cfb05dd641946b85894eaff550a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessingProfiles:
+  - {fileID: 11400000, guid: 3dcb3543499b680448dd2750c5d257f1, type: 2}
+  - {fileID: 11400000, guid: 7ff63ff685645924eb6b3aac0c6b991e, type: 2}
 --- !u!114 &114167947744590678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5452,8 +5470,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Resume
+      - m_Target: {fileID: 114765546186916046}
+        m_MethodName: SetMedium
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7231,8 +7249,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Resume
+      - m_Target: {fileID: 114553881575562516}
+        m_MethodName: SetLow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7676,6 +7694,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114553881575562516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1488982556018968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca8cfb05dd641946b85894eaff550a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessingProfiles:
+  - {fileID: 11400000, guid: 3dcb3543499b680448dd2750c5d257f1, type: 2}
+  - {fileID: 11400000, guid: 7ff63ff685645924eb6b3aac0c6b991e, type: 2}
 --- !u!114 &114558036327522858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7849,6 +7881,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e31726f2175a694e888d81b6686654b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114575062236336550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331006255964594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa880149cfab0ea42932115701d65f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOutSceneLoadNumber: 1
 --- !u!114 &114579849271724658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8691,7 +8735,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114183884606798630}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114158439869829652}
+        m_MethodName: SetHigh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114744528750880084
@@ -8870,30 +8925,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1545729095049776}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1847688444346682}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114765546186916046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1639012752259326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca8cfb05dd641946b85894eaff550a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessingProfiles:
+  - {fileID: 11400000, guid: 3dcb3543499b680448dd2750c5d257f1, type: 2}
+  - {fileID: 11400000, guid: 7ff63ff685645924eb6b3aac0c6b991e, type: 2}
 --- !u!114 &114770280856968344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10008,6 +10055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependentCondition: ShrineFirstConversationOver
+  swingShellster: {fileID: 0}
   proximityDistance: 30
 --- !u!114 &114941484826431656
 MonoBehaviour:
@@ -10214,7 +10262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0474ed0e931304397385f002a6220a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curtainAnimator: {fileID: 0}
+  curtainAnimator: {fileID: 95324759274111564}
   SaveLoadMenu: {fileID: 1403807378575422}
   pauseMenuUI: {fileID: 1837119236523994}
   pauseMenuEventSystem: {fileID: 114807597224083988}
