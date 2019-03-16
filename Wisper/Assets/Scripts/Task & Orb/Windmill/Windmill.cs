@@ -11,7 +11,8 @@ public class Windmill : MonoBehaviour {
     public float correctSpeed = 2f;
     public GameObject[] windmillParts;
 
-    public int attachCount = 0;
+    private int attachCount = 0;
+    private readonly int totalToFix = 2;
 
     private Rigidbody rb;
 
@@ -38,12 +39,21 @@ public class Windmill : MonoBehaviour {
         isThrowing = abilitiesCollider.GetComponent<ObjectThrow>().GetIsThrowingObjects();
 
         //If the windmill is fixed
-        if (attachCount == 4)
+        if (attachCount == totalToFix)
         {
+            //If the PSD Variable WindmillFixed isn't set to true, set it to true
+            if ((bool)persistantStateData.stateConditions["WindmillFixed"] == false)
+            {
+                persistantStateData.ChangeStateConditions("WindmillFixed", true);
+            }
+            //Check if the player is trying to move the windmill
             if ((isLifting || isThrowing) && isWithinRange)
             {
-                torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce() * 5;
+                Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
+                //Set the torque to move the windmill
+                torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce();
             }
+            //If the player isn't trying to move the windmill and the task isn't done, set torque to 0
             else if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
             {
                 torque = 0;
@@ -53,6 +63,9 @@ public class Windmill : MonoBehaviour {
 
             if (currentVelocity >= dangerSpeed && !reachedDangerSpeed)
             {
+                persistantStateData.ChangeStateConditions("WindmillFixed", false);
+                persistantStateData.ChangeStateConditions("WindmillTaskDone", false);
+
                 Debug.Log("Broken");
                 reachedDangerSpeed = true;
                 for (int i = 0; i < windmillParts.Length; i++)
@@ -69,14 +82,10 @@ public class Windmill : MonoBehaviour {
                 Debug.Log("Complete");
                 hasSpawnedOrbs = true;
                 GetComponent<SpawnOrbs>().DropOrbs();
-                persistantStateData.stateConditions["WindmillTaskDone"] = true;
+                persistantStateData.ChangeStateConditions("WindmillTaskDone",true);
                 Debug.Log("WindmillTaskDone: " + (bool)persistantStateData.stateConditions["WindmillTaskDone"]);
             }
         }
-
-
-
-
     }
     private void FixedUpdate()
     {
@@ -104,5 +113,10 @@ public class Windmill : MonoBehaviour {
         {
             isWithinRange = false;
         }
+    }
+
+    public void IncrementAttachCounter()
+    {
+        attachCount++;
     }
 }

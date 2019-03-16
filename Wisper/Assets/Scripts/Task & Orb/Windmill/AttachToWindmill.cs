@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AttachToWindmill : MonoBehaviour {
 
-    public GameObject windimll;
-    public Vector3 positionOffset;
-    public Quaternion rotationOffset;
+    public GameObject windimllSpinner;
+    public GameObject brokenPart;
+    public GameObject fixedWing;
     private Rigidbody rb;
     private PersistantStateData persistantStateData;
     private bool attached = false;
@@ -28,24 +28,30 @@ public class AttachToWindmill : MonoBehaviour {
 
     private void Attached()
     {
-        rb.isKinematic = true;
-        rb.useGravity = false;
-        GetComponent<MeshCollider>().enabled = false;
-        GetComponent<Collider>().enabled = false;
-        transform.parent = windimll.transform;
-        transform.position = windimll.transform.position + positionOffset;
-        transform.rotation = windimll.transform.rotation;
-        if(updatedAttachCount == false)
+        //rb.isKinematic = true;
+        //rb.useGravity = false;
+        //GetComponent<MeshCollider>().enabled = false;
+        //GetComponent<Collider>().enabled = false;
+        //transform.parent = windimll.transform;
+        //transform.rotation = windimll.transform.rotation;
+
+        //Debug.Log("ATTACHED");
+        if (updatedAttachCount == false)
         {
-            windimll.GetComponent<Windmill>().attachCount++;
+            windimllSpinner.GetComponent<Windmill>().IncrementAttachCounter();
             updatedAttachCount = true;
         }
+
+        fixedWing.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "SpinningBase")
+        //Debug.Log("Collision Detected");
+        if (other.gameObject.name == brokenPart.gameObject.name)
         {
+            Destroy(brokenPart);
             attached = true;
         }
     }
