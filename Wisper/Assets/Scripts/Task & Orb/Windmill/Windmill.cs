@@ -5,7 +5,7 @@ using UnityEngine;
 public class Windmill : MonoBehaviour {
 
     public GameObject abilitiesCollider;
-    public float torqueMultiplier = 0.05f;
+    public float torqueMultiplier = 5f;
     public float baseSpeed = 10f;
     public float dangerSpeed = 6f;
     public float correctSpeed = 2f;
@@ -41,6 +41,8 @@ public class Windmill : MonoBehaviour {
         //If the windmill is fixed
         if (attachCount == totalToFix)
         {
+            Debug.Log("Windmill fixed. Need to push!");
+
             //If the PSD Variable WindmillFixed isn't set to true, set it to true
             if ((bool)persistantStateData.stateConditions["WindmillFixed"] == false)
             {
@@ -49,24 +51,26 @@ public class Windmill : MonoBehaviour {
             //Check if the player is trying to move the windmill
             if ((isLifting || isThrowing) && isWithinRange)
             {
-                Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
+                Debug.Log("Player is attempting to push fixed windmill!");
                 //Set the torque to move the windmill
                 torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce();
             }
             //If the player isn't trying to move the windmill and the task isn't done, set torque to 0
             else if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
             {
+                Debug.Log("Player gave up pushing fixed windmill!");
                 torque = 0;
             }
             currentVelocity = rb.angularVelocity.y;
             //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
 
+            /*
             if (currentVelocity >= dangerSpeed && !reachedDangerSpeed)
             {
                 persistantStateData.ChangeStateConditions("WindmillFixed", false);
                 persistantStateData.ChangeStateConditions("WindmillTaskDone", false);
 
-                Debug.Log("Broken");
+                Debug.Log("Player pushed windmill too fast and broke it");
                 reachedDangerSpeed = true;
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
@@ -79,12 +83,13 @@ public class Windmill : MonoBehaviour {
             }
             else if (currentVelocity >= correctSpeed && !reachedDangerSpeed && !hasSpawnedOrbs)
             {
-                Debug.Log("Complete");
+                Debug.Log("Player pushed windmill at correct speed and finished task.");
                 hasSpawnedOrbs = true;
                 GetComponent<SpawnOrbs>().DropOrbs();
                 persistantStateData.ChangeStateConditions("WindmillTaskDone",true);
-                Debug.Log("WindmillTaskDone: " + (bool)persistantStateData.stateConditions["WindmillTaskDone"]);
+                //Debug.Log("WindmillTaskDone: " + (bool)persistantStateData.stateConditions["WindmillTaskDone"]);
             }
+            */
         }
     }
     private void FixedUpdate()
@@ -95,6 +100,7 @@ public class Windmill : MonoBehaviour {
         }
         else
         {
+            Debug.Log("Windmill task is done. Add passive rotation to it.");
             this.transform.Rotate(0, -baseSpeed * Time.deltaTime, 0);
         }
     }
