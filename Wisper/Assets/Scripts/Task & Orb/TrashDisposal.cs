@@ -5,10 +5,11 @@ using UnityEngine;
 public class TrashDisposal : MonoBehaviour {
 
 	public List<List<GameObject>> trashLists = new List<List<GameObject>> ();
+	public List<string> pSDVariables = new List<string> ();
 	public List<GameObject> trashAreas = new List<GameObject> ();
 	private SpawnOrbs orbScript;
 	public TrashListCreator[] trashListCreators;
-	private List<GameObject> emptyList = new List<GameObject> ();
+	private int emptyList = -1;
 
 	void Awake () {
 		trashAreas.AddRange(GameObject.FindGameObjectsWithTag("TrashArea"));
@@ -16,7 +17,10 @@ public class TrashDisposal : MonoBehaviour {
 		for (int i = 0; i < trashAreas.Count; i++) {
 			Debug.Log (i);
 			trashListCreators [i] = trashAreas [i].GetComponent<TrashListCreator> ();
+			//if ((bool)PersistantStateData.persistantStateData.stateConditions [trashListCreators [i].pSDVariable]) {
 			trashLists.Add (trashListCreators [i].trashInArea);
+			pSDVariables.Add (trashListCreators [i].pSDVariable);
+			//}
 		}
 	}
 
@@ -37,6 +41,7 @@ public class TrashDisposal : MonoBehaviour {
 			for (int emptyTL = trashLists.Count - 1; emptyTL >= 0; emptyTL--) {
 				if (trashLists [emptyTL].Count == 0) {
 					trashLists.Remove (trashLists [emptyTL]);
+					pSDVariables.Remove (pSDVariables [emptyTL]);
 				}
 			}
 
@@ -50,19 +55,22 @@ public class TrashDisposal : MonoBehaviour {
 						Debug.Log ("Yes Officer");
 						trashLists [tl].Remove (trashLists [tl] [tle]);
 						Destroy (other.gameObject);
+						// break?
 					}
 				}
 				if (trashLists [tl].Count == 0) {
 					Debug.Log ("Is Empty");
 					orbScript.DropOrbs();
-					emptyList = trashLists [tl];
+					PersistantStateData.persistantStateData.stateConditions[pSDVariables[tl]] = true;
+					emptyList = tl;
 					//trashLists.Remove (trashLists [j]);
 				}
 			}
-			if (emptyList != null) {
-				trashLists.Remove (emptyList);
+			if (emptyList > -1) {
+				trashLists.Remove (trashLists [emptyList]);
+				pSDVariables.Remove (pSDVariables [emptyList]);
 				Debug.Log ("Empty List removed");
-				emptyList = null;
+				emptyList = -1;
 			}
 				
 			//Destroy(other.gameObject);

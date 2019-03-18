@@ -112,6 +112,9 @@ public class PersistantStateData : MonoBehaviour
         /**************    City flags   ***************/
         stateConditions.Add("WindmillTaskDone", false);
         stateConditions.Add("WindmillFixed", false);
+		stateConditions.Add("BeachIsClean", false);
+		stateConditions.Add("PlaygroundIsClean", false);
+		stateConditions.Add("CenterIsClean", false);
 
 
 
