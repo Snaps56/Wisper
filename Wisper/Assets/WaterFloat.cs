@@ -67,7 +67,7 @@ public class WaterFloat : MonoBehaviour
 
         Rigidbody = GetComponent<Rigidbody>();
 
-        Rigidbody.useGravity = false;
+        Rigidbody.useGravity = true;
 
 
 
