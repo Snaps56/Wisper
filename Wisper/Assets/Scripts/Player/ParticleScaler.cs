@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ParticleScaler : MonoBehaviour {
 
-    public GameObject player;
+    public GameObject playerOrbCollider;
+    private OrbCount orbScript;
     public float emissionIncreaseModifier;
     public float velocityIncreaseModifier;
     public float lifetimeVelocityIncreaseModifier;
@@ -26,7 +27,8 @@ public class ParticleScaler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        numOrbs = player.GetComponentInChildren<OrbCount>().GetOrbCount();
+        orbScript = playerOrbCollider.GetComponent<OrbCount>();
+        numOrbs = orbScript.GetOrbCount();
 
         ps = GetComponent<ParticleSystem>();
         emissionModule = ps.emission;
@@ -40,7 +42,7 @@ public class ParticleScaler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        numOrbs = player.GetComponentInChildren<OrbCount>().GetOrbCount();
+        numOrbs = playerOrbCollider.GetComponentInChildren<OrbCount>().GetOrbCount();
 
         finalEmissionRate = initialEmissionRate + numOrbs * emissionIncreaseModifier;
         emissionModule = ps.emission;
