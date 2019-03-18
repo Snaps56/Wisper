@@ -13,7 +13,7 @@ public class Searching : MonoBehaviour {
     {
         animator = GetComponent<Animator>();
         playedAnimation = false;
-
+        animator.SetBool("Idle", false);
     }
     // Update is called once per frame
 
