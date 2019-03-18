@@ -126,6 +126,7 @@ public class Shrine : MonoBehaviour {
 		// Check that the player is near the shrine
 		if (player.GetComponentInChildren<InteractableCollision>().nearShrine) {
 			
+            /*
 			// Start playing the particles
 			foreach (ParticleSystem partPlay in coloredParticles) {
 				//Debug.Log (partPlay.name);
@@ -175,6 +176,7 @@ public class Shrine : MonoBehaviour {
                     persistantStateData.ChangeStateConditions(tmpHash);
 				}
 			}
+            */
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
 			if (/*(Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) && */
 				(bool)persistantStateData.stateConditions ["ShrineIsClean"] && (bool)persistantStateData.stateConditions["OrbDepositInProgress"]) {
@@ -223,22 +225,23 @@ public class Shrine : MonoBehaviour {
 
                 }
             }
-		// If the player is not near the shrine, don't play particles
-		} else {
-			foreach (ParticleSystem partStop in coloredParticles) {
-				if(partStop.isPlaying) {
-					partStop.Stop ();
-				}
-			}
-		}
+            // If the player is not near the shrine, don't play particles
+            /*
+            } else {
+                foreach (ParticleSystem partStop in coloredParticles) {
+                    if(partStop.isPlaying) {
+                        partStop.Stop ();
+                    }
+                }
+            }
 
-		// If the player is returning to the shrine after cleaning it, set the shrine materials to the clean ones
-		if ((bool)persistantStateData.stateConditions ["ShrineIsClean"])
-        {
-            shrineMeshInner.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialInner, cleanMaterialInner, cleanProgress);
-            shrineMeshMain.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialMain, cleanMaterialMain, cleanProgress);
+            // If the player is returning to the shrine after cleaning it, set the shrine materials to the clean ones
+            if ((bool)persistantStateData.stateConditions ["ShrineIsClean"])
+            {
+                shrineMeshInner.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialInner, cleanMaterialInner, cleanProgress);
+                shrineMeshMain.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialMain, cleanMaterialMain, cleanProgress);
+            */
         }
-
         // Tethers player to shrine during orb turn in so that the turn in process can be completed.
         if ((bool)persistantStateData.stateConditions["OrbDepositInProgress"])
         {
