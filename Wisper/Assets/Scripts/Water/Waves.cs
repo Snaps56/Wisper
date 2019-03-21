@@ -19,6 +19,7 @@ public class Waves : MonoBehaviour {
         // Mesh set up
         Mesh = new Mesh();
         Mesh.name = gameObject.name;
+        //Mesh.position = gameObject.position;
 
         Mesh.vertices = GenerateVerts();
         Mesh.triangles = GenerateTries();
