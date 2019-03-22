@@ -27,18 +27,18 @@ public class KiteTask : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        maxHeight = 41.0f;
+        maxHeight = 234.47f;
         getOrbs = true;
         changed = false;
 
-        x1 = 9.31f;
-        x2 = -16.1f;
-        z1 = -83.5f;
-        z2 = -104.3f;
+        x1 = -302.23f;
+        x2 = -338.61f;
+        z1 = -394.9f;
+        z2 = -432.22f;
 
-        finalX = -2.31f;
-        finalY = 43.0f;
-        finalZ = -84.21f;
+       // finalX = -2.31f;
+       // finalY = 43.0f;
+       // finalZ = -84.21f;
 
         direction = npc.transform.position - this.transform.position;
     }
@@ -60,7 +60,7 @@ public class KiteTask : MonoBehaviour {
             
             if (getOrbs == true)
             {
-                transform.Rotate(-48.0f, 0, 0, Space.Self);
+                //transform.Rotate(-48.0f, 0, 0, Space.Self);
                 GetComponent<SpawnOrbs>().DropOrbs();
                 getOrbs = false;
             }               
