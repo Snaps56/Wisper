@@ -12,7 +12,7 @@ public class RopeRenderer : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        lineRenderer.numPositions = points.Length;
+        lineRenderer.positionCount = points.Length;
     }
 
     // Update is called once per frame
