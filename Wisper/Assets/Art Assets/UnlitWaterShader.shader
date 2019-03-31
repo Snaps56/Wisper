@@ -8,6 +8,12 @@
 		_DepthMaxDistance("Depth Maximum Distance", Float) = 1
 		_SurfaceNoise("Surface Noise", 2D) = "white" {}
 		_SurfaceNoiseCutoff("Surface Noise Cutoff", Range(0, 1)) = 0.777
+		_FoamDistance("Foam Distance", Float) = 0.4
+		_SurfaceNoiseScroll("Surface Noise Scroll Amount", Vector) = (0.03, 0.03, 0, 0)
+		// Two channel distortion texture.
+		_SurfaceDistortion("Surface Distortion", 2D) = "white" {}
+		// Control to multiply the strength of the distortion.
+		_SurfaceDistortionAmount("Surface Distortion Amount", Range(0, 1)) = 0.27
 	}
 	SubShader
 	{
@@ -17,14 +23,26 @@
 		Pass
 		{
 			CGPROGRAM
+
+			#define SMOOTHSTEP_AA 0.01
+
 			float4 _DepthGradientShallow;
 			float4 _DepthGradientDeep;
 
 			float _SurfaceNoiseCutoff;
 
+			float _FoamDistance;
+
+			float2 _SurfaceNoiseScroll;
+
 			float _DepthMaxDistance;
 
 			sampler2D _CameraDepthTexture;
+
+			sampler2D _SurfaceDistortion;
+			float4 _SurfaceDistortion_ST;
+
+			float _SurfaceDistortionAmount;
 
 			#pragma vertex vert
 			#pragma fragment frag
@@ -47,6 +65,7 @@
 				float4 vertex : SV_POSITION;
 				float4 screenPosition : TEXCOORD2;
 				float2 noiseUV : TEXCOORD0;
+				float2 distortUV : TEXCOORD1;
 			};
 
 			sampler2D _MainTex;
@@ -62,6 +81,7 @@
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.screenPosition = ComputeScreenPos(o.vertex);
 				UNITY_TRANSFER_FOG(o,o.vertex);
+				o.distortUV = TRANSFORM_TEX(v.uv, _SurfaceDistortion);
 				return o;
 			}
 			
@@ -76,8 +96,12 @@
 				float depthDifference = existingDepthLinear - i.screenPosition.w;
 				float waterDepthDifference01 = saturate(depthDifference / _DepthMaxDistance);
 				float4 waterColor = lerp(_DepthGradientShallow, _DepthGradientDeep, waterDepthDifference01);
-				float surfaceNoiseSample = tex2D(_SurfaceNoise, i.noiseUV).r;
-				float surfaceNoise = surfaceNoiseSample > _SurfaceNoiseCutoff ? 1 : 0;
+				float foamDepthDifference01 = saturate(depthDifference / _FoamDistance);
+				float surfaceNoiseCutoff = foamDepthDifference01 * _SurfaceNoiseCutoff;
+				float2 distortSample = (tex2D(_SurfaceDistortion, i.distortUV).xy * 2 - 1) * _SurfaceDistortionAmount;
+				float2 noiseUV = float2((i.noiseUV.x + _Time.y * _SurfaceNoiseScroll.x) + distortSample.x, (i.noiseUV.y + _Time.y * _SurfaceNoiseScroll.y) + distortSample.y);
+				float surfaceNoiseSample = tex2D(_SurfaceNoise, noiseUV).r;
+				float surfaceNoise = smoothstep(surfaceNoiseCutoff - SMOOTHSTEP_AA, surfaceNoiseCutoff + SMOOTHSTEP_AA, surfaceNoiseSample);
 				return waterColor + surfaceNoise;
 			}
 			ENDCG
