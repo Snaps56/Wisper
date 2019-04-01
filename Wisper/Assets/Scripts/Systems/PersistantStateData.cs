@@ -90,6 +90,9 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TutorialHasEnoughOrbs", false); // check if player has enough orbs to deposit
         stateConditions.Add("TutorialGate", false); // check if player is within gate range
 
+        // Tooltips 2.0
+
+        stateConditions.Add("TutorialBasicsFinished", false);
         /////////////////////////////////////////////////////////
         ////////////////////    Task flags   ////////////////////
         /////////////////////////////////////////////////////////

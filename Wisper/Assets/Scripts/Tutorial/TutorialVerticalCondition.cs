@@ -39,19 +39,6 @@ public class TutorialMovementCondition : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if ((bool)persistantStateData.stateConditions["StartupShrineDialogue"] && !(bool)persistantStateData.stateConditions["TutorialFirstDialogueFinished"] && !lookTuturialMovementLockOver)
-        {
-            lookTuturialMovementLockOver = true;
-            Debug.Log("Disable movement for tutorial");
-            player.GetComponent<PlayerMovement>().DisableMovement();
-        }
-
-        if ((bool)persistantStateData.stateConditions["TutorialLookFinished"] && !moveTutorialMovementUnlockOver)
-        {
-            moveTutorialMovementUnlockOver = true;
-            player.GetComponent<PlayerMovement>().EnableMovement();
-        }
-
         // player distance travelled
         playerDistanceTraveled += player.GetComponent<Rigidbody>().velocity.magnitude * Time.deltaTime;
 
