@@ -6,7 +6,7 @@ public class TutorialHelpShellsterCondition : MonoBehaviour {
 
     // Game objects
     public string dependentCondition;
-    private Transform swingShellster;
+    public Transform swingShellster;
     private Transform player;
     public float proximityDistance;
 

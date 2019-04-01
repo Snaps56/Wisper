@@ -36,7 +36,7 @@ public class GeyserTask : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("Geyser blocked? " + geyserIsBlocked);
+        //Debug.Log("Geyser blocked? " + geyserIsBlocked);
 		if (geyserIsBlocked)
         {
             waterEmission.rateOverTime = reducedEmission;
