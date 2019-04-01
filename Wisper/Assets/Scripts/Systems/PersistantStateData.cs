@@ -101,9 +101,9 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("OrbCount", 0.0f);
         stateConditions.Add("OrbMaxDeposit", 30.0f);
         stateConditions.Add("TotalOrbCount", 65.0f);
+        stateConditions.Add("HasReachedMax", false);
 
 
-        
         stateConditions.Add("ShamusHasHat", false);
         stateConditions.Add("BirdInNest", false);
         stateConditions.Add("ShrineIsClean", false);
