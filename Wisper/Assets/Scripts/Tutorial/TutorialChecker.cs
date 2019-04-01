@@ -18,13 +18,12 @@ public class TutorialChecker : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         initialConditionBools = new bool[initialConditions.Length];
 
         bool initChangeCondition = true;
         for (int i = 0; i < changeConditions.Length; i++)
         {
-            if (!(bool)persistantStateData.stateConditions[changeConditions[i]])
+            if (!(bool)PersistantStateData.persistantStateData.stateConditions[changeConditions[i]])
             {
                 initChangeCondition = false;
             }
@@ -43,7 +42,7 @@ public class TutorialChecker : MonoBehaviour {
             // check every frame if initial conditions have been met
             for (int i = 0; i < initialConditions.Length; i++)
             {
-                initialConditionBools[i] = (bool)persistantStateData.stateConditions[initialConditions[i]];
+                initialConditionBools[i] = (bool)PersistantStateData.persistantStateData.stateConditions[initialConditions[i]];
             }
             tutorialConditionMet = tutorialCondition.GetCondition();
         }
@@ -77,7 +76,7 @@ public class TutorialChecker : MonoBehaviour {
     {
         for (int i = 0; i < changeConditions.Length; i++)
         {
-            persistantStateData.ChangeStateConditions(changeConditions[i], true);
+            PersistantStateData.persistantStateData.ChangeStateConditions(changeConditions[i], true);
         }
     }
 }

@@ -7,7 +7,7 @@ public class TutorialsBasicsCondition : MonoBehaviour {
     public float shrineProximityTrigger;
 
     private Transform shrineTransform;
-    private GameObject player;
+    public GameObject player;
     private GameObject mainCamera;
 
     private float currentProximity;

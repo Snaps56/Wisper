@@ -22,17 +22,28 @@ public class FlareVignette : MonoBehaviour {
 	void Update () {
         float flareDot = Vector3.Dot((shrine.transform.position - transform.position).normalized, transform.forward.normalized);
 
-        finalVignette = defaultVignette + (1 - flareDot) * (.5f);
-
-        if (finalVignette > 0.5f)
+        if (!(bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
         {
-            finalVignette = 0.5f;
+            finalVignette = defaultVignette + (1 - flareDot) * (.5f);
+
+            if (finalVignette > 0.5f)
+            {
+                finalVignette = 0.5f;
+            }
         }
+
         vignetteSettings.intensity = finalVignette;
-
-        Debug.Log("Flare Dot Product: " + flareDot + ", vignette intensity: " + finalVignette);
-
 
         postProcessingProfile.vignette.settings = vignetteSettings;
 	}
+    private void FixedUpdate()
+    {
+        if ((bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
+        {
+            if (finalVignette > defaultVignette)
+            {
+                finalVignette -= 0.025f;
+            }
+        }
+    }
 }

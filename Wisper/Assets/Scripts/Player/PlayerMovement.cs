@@ -43,6 +43,11 @@ public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        // initialize the player's position if they return from the city
+        if ((bool)PersistantStateData.persistantStateData.stateConditions["TutorialGateTravelled"])
+        {
+            transform.position = GameObject.Find("PlayerReturningPosition").transform.position;
+        }
         orbCountScript = GetComponentInChildren<OrbCount>();
         rb = GetComponent<Rigidbody>();
         finalSpeed = movementSpeed;
@@ -364,11 +369,12 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void EnableMovement()
     {
+        Debug.Log("Player movement script enabled movement");
         movementToggledOff = false;
     }
     public void DisableMovement()
     {
-        //Debug.Log("Player movement script disabled movement");
+        Debug.Log("Player movement script disabled movement");
         movementToggledOff = true;
     }
     // Return whether if player is able to move
