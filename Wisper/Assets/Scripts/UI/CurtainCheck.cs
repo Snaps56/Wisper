@@ -17,7 +17,6 @@ public class CurtainCheck : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
 
         initialTime = 0;
         initialTimeInitialized = false;

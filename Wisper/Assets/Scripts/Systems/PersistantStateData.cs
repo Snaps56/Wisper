@@ -119,7 +119,9 @@ public class PersistantStateData : MonoBehaviour
 		stateConditions.Add("BeachIsClean", false);
 		stateConditions.Add("PlaygroundIsClean", false);
 		stateConditions.Add("CenterIsClean", false);
+		stateConditions.Add("FinishedSandCastleTask", false);
 
+        
 
 
         /////////////////////////////////////////////////////////////

@@ -104,7 +104,7 @@ public class PauseMenu : MonoBehaviour
     // Pauses the game and unlocks the cursor
     void Pause()
     {
-        //Debug.Log("Pause Game!");
+        Debug.Log("Pause Game!");
         // GamePad.SetVibration(playerIndex, 0f, 0f);
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
