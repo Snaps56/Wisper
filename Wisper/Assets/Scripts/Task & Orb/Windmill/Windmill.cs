@@ -16,7 +16,7 @@ public class Windmill : MonoBehaviour {
 
     private Rigidbody rb;
 
-    private bool reachedDangerSpeed = false;
+    private bool reachedMaxOrbs = false;
     private bool isThrowing;
     private bool isLifting;
 
@@ -62,16 +62,16 @@ public class Windmill : MonoBehaviour {
                 torque = 0;
             }
             currentVelocity = rb.angularVelocity.y;
-            //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
+            Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
 
-            /*
-            if (currentVelocity >= dangerSpeed && !reachedDangerSpeed)
+            
+            if (currentVelocity >= dangerSpeed && reachedMaxOrbs)
             {
                 persistantStateData.ChangeStateConditions("WindmillFixed", false);
                 persistantStateData.ChangeStateConditions("WindmillTaskDone", false);
 
                 Debug.Log("Player pushed windmill too fast and broke it");
-                reachedDangerSpeed = true;
+                reachedMaxOrbs = true;
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
                     Vector3 currentShellsterVelocity = windmillParts[i].GetComponent<Rigidbody>().velocity;
@@ -81,7 +81,7 @@ public class Windmill : MonoBehaviour {
                     Debug.Log("detached " + windmillParts[i]);
                 }
             }
-            else if (currentVelocity >= correctSpeed && !reachedDangerSpeed && !hasSpawnedOrbs)
+            else if (currentVelocity >= correctSpeed && !reachedMaxOrbs && !hasSpawnedOrbs)
             {
                 Debug.Log("Player pushed windmill at correct speed and finished task.");
                 hasSpawnedOrbs = true;
@@ -89,14 +89,13 @@ public class Windmill : MonoBehaviour {
                 persistantStateData.ChangeStateConditions("WindmillTaskDone",true);
                 //Debug.Log("WindmillTaskDone: " + (bool)persistantStateData.stateConditions["WindmillTaskDone"]);
             }
-            */
         }
     }
     private void FixedUpdate()
     {
         if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
         {
-            rb.AddTorque(0, torque * torqueMultiplier, 0);
+            rb.AddTorque(0, -torque * torqueMultiplier, 0);
         }
         else
         {
@@ -108,14 +107,14 @@ public class Windmill : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.name == "Abilities Collider")
+        if (other.name == "Abilities Collider" && other.name != "wing3_part" && other.name != "wing5_part")
         {
             isWithinRange = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == "Abilities Collider")
+        if (other.name == "Abilities Collider" && other.name == "wing3_part" && other.name == "wing5_part")
         {
             isWithinRange = false;
         }

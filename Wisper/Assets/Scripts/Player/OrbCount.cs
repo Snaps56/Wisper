@@ -9,7 +9,7 @@ public class OrbCount : MonoBehaviour {
     private PersistantStateData psd;
 
     [Header("Trail")]
-    public GameObject trail;
+    public GameObject UIPowerBar;
     public Material trailRed;
     public Material trailWhite;
 
@@ -49,11 +49,11 @@ public class OrbCount : MonoBehaviour {
     {
         if ((float)psd.stateConditions["OrbCount"] >=  (float)psd.stateConditions["OrbMaxDeposit"])
         {
-            trail.GetComponent<TrailRenderer>().material = trailRed;
+            UIPowerBar.GetComponent<TrailRenderer>().material = trailRed;
         }
         else
         {
-            trail.GetComponent<TrailRenderer>().material = trailWhite;
+            UIPowerBar.GetComponent<TrailRenderer>().material = trailWhite;
         }
     }
 
@@ -77,6 +77,10 @@ public class OrbCount : MonoBehaviour {
                 orbCount++;
                 psd.ChangeStateConditions("OrbCount", orbCount);
                 Debug.Log("count increased");
+            }
+            else if ((float)psd.stateConditions["OrbCount"] == (float)psd.stateConditions["OrbMaxDeposit"])
+            {
+                psd.ChangeStateConditions("HasReachedMax", true);
             }
             // wub.Play();
             windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]));
