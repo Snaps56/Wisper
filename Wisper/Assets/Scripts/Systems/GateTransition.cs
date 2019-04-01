@@ -75,6 +75,7 @@ public class GateTransition : MonoBehaviour {
         else
         {
             transitionText.SetActive(false);
+            PersistantStateData.persistantStateData.ChangeStateConditions("TutorialGateTravelled", true);
         }
         
         if (startedAsync)
