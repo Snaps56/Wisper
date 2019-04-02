@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.58808655, g: 0.71141326, b: 0.863317, a: 1}
+  m_IndirectSpecularColor: {r: 0.5883292, g: 0.7107973, b: 0.8651606, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8025,8 +8025,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 2.2578125, y: 25.34375, z: -15.705078}
-    m_Extent: {x: 240.73633, y: 260.5042, z: 355.98892}
+    m_Center: {x: 2.2558594, y: 25.342773, z: -15.703125}
+    m_Extent: {x: 240.73633, y: 260.50424, z: 355.98892}
   m_DirtyAABB: 0
 --- !u!33 &689715586
 MeshFilter:
@@ -8893,7 +8893,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -25.109375, y: -10.962891, z: 15.705078}
+    m_Center: {x: -25.109375, y: -10.963867, z: 15.705078}
     m_Extent: {x: 316.6551, y: 224.02858, z: 397.22803}
   m_DirtyAABB: 0
 --- !u!33 &722896780
@@ -10290,7 +10290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &888803639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10302,7 +10302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206e8af6fa0380e4e9f0b8317f11ef01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionText: {fileID: 0}
+  transitionText: {fileID: 1401062634}
   minDistance: 8
   useSceneNumberInstead: 1
   nextSceneName: Final S6 Playground
@@ -15668,8 +15668,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.38085938, y: 3.8154297, z: -3.8496094}
-    m_Extent: {x: 239.50674, y: 293.19565, z: 242.25063}
+    m_Center: {x: -0.3828125, y: 3.8134766, z: -3.8496094}
+    m_Extent: {x: 239.50676, y: 293.19565, z: 242.25063}
   m_DirtyAABB: 0
 --- !u!33 &917098774
 MeshFilter:
@@ -15933,8 +15933,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 8.763672, y: 24.277344, z: 12.121094}
-    m_Extent: {x: 315.3312, y: 225.00311, z: 396.32147}
+    m_Center: {x: 8.763672, y: 24.27539, z: 12.121094}
+    m_Extent: {x: 315.33124, y: 225.00311, z: 396.32147}
   m_DirtyAABB: 0
 --- !u!33 &922648910
 MeshFilter:
@@ -17143,7 +17143,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -17.21289, y: -0.93847656, z: 3.8496094}
+    m_Center: {x: -17.214844, y: -0.9394531, z: 3.8496094}
     m_Extent: {x: 241.93982, y: 287.96393, z: 243.57198}
   m_DirtyAABB: 0
 --- !u!33 &1036466828
@@ -17497,8 +17497,8 @@ GameObject:
   - component: {fileID: 1070571864}
   - component: {fileID: 1070571863}
   - component: {fileID: 1070571866}
-  m_Layer: 14
-  m_Name: GameObject
+  m_Layer: 0
+  m_Name: RotationReset
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17510,8 +17510,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1070571861}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6, z: 10}
+  m_LocalRotation: {x: -0.0000000072197297, y: -0.0000000018402849, z: 0.000000014901159,
+    w: 1}
+  m_LocalPosition: {x: 0.0007660498, y: 0.0003481462, z: 0.00019135856}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2014441138}
@@ -17528,7 +17529,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1070571861}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 300, y: 1500, z: 1400}
@@ -17544,7 +17545,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 110
   m_CollisionDetection: 0
@@ -17560,7 +17561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitiesCollider: {fileID: 404714083}
-  torqueMultiplier: 5
+  torqueMultiplier: 0.1
   baseSpeed: 10
   dangerSpeed: 99999
   correctSpeed: 2
@@ -21190,6 +21191,11 @@ Transform:
   m_Father: {fileID: 1972632700}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1401062634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1896931446468606, guid: 31502c1f74034014990405cfff196d8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1897337219}
 --- !u!1 &1403844886
 GameObject:
   m_ObjectHideFlags: 0
@@ -24910,8 +24916,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 4.8535156, y: -23.535156, z: -12.121094}
-    m_Extent: {x: 245.60696, y: 260.38315, z: 358.4477}
+    m_Center: {x: 4.8535156, y: -23.53711, z: -12.121094}
+    m_Extent: {x: 245.60696, y: 260.38318, z: 358.4477}
   m_DirtyAABB: 0
 --- !u!33 &1797915012
 MeshFilter:
@@ -26297,6 +26303,10 @@ Prefab:
         type: 2}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194396936897446, guid: 31502c1f74034014990405cfff196d8a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31502c1f74034014990405cfff196d8a, type: 2}

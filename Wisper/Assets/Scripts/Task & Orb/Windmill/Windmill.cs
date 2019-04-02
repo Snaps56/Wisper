@@ -41,6 +41,7 @@ public class Windmill : MonoBehaviour {
         //If the windmill is fixed
         if (attachCount == totalToFix)
         {
+            rb.isKinematic = false;
             Debug.Log("Windmill fixed. Need to push!");
 
             //If the PSD Variable WindmillFixed isn't set to true, set it to true
@@ -62,7 +63,7 @@ public class Windmill : MonoBehaviour {
                 torque = 0;
             }
             currentVelocity = rb.angularVelocity.y;
-            Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
+            //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
 
             
             if (currentVelocity >= dangerSpeed && reachedMaxOrbs)
@@ -95,28 +96,30 @@ public class Windmill : MonoBehaviour {
     {
         if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
         {
-            rb.AddTorque(0, -torque * torqueMultiplier, 0);
+            rb.AddTorque(-torque * torqueMultiplier, 0, 0);
         }
         else
         {
             Debug.Log("Windmill task is done. Add passive rotation to it.");
-            this.transform.Rotate(0, -baseSpeed * Time.deltaTime, 0);
+            transform.Rotate(-baseSpeed * Time.deltaTime, 0, 0);
         }
     }
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Abilities Collider" && other.name != "wing3_part" && other.name != "wing5_part")
+        if (other.name == "Abilities Collider")
         {
             isWithinRange = true;
+            Debug.Log("Within Range");
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == "Abilities Collider" && other.name == "wing3_part" && other.name == "wing5_part")
+        if (other.name == "Abilities Collider")
         {
             isWithinRange = false;
+            Debug.Log("Exited Range");
         }
     }
 
