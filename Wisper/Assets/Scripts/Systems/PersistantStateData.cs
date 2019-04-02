@@ -92,8 +92,16 @@ public class PersistantStateData : MonoBehaviour
 
         // Tooltips 2.0
 
+        stateConditions.Add("TutorialFollowLightFinished", false);
         stateConditions.Add("TutorialBasicsFinished", false);
+        stateConditions.Add("TutorialAttemptCleanNew", false);
+        stateConditions.Add("TutorialAttemptButton", false);
+        stateConditions.Add("TutorialFindShellsters", false);
+        stateConditions.Add("TutorialSprintButton", false);
+        stateConditions.Add("TutorialShellstersCompleted", false);
+        stateConditions.Add("TutorialAbilitiesCompleted", false);
         stateConditions.Add("TutorialGateTravelled", false); // check if player is within gate range
+
         /////////////////////////////////////////////////////////
         ////////////////////    Task flags   ////////////////////
         /////////////////////////////////////////////////////////
