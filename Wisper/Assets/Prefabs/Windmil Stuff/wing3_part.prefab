@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1828784963011556}
   m_IsPrefabAsset: 1
+--- !u!1 &1564326418226864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4488230223513012}
+  m_Layer: 0
+  m_Name: TagHelper
+  m_TagString: WindmillPart3
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1828784963011556
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,6 +39,7 @@ GameObject:
   - component: {fileID: 64955088609751550}
   - component: {fileID: 65000453023653400}
   - component: {fileID: 54145671435048872}
+  - component: {fileID: 114791353314721512}
   m_Layer: 0
   m_Name: wing3_part
   m_TagString: PickUp
@@ -31,6 +47,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4488230223513012
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1564326418226864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4886586807660694}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4886586807660694
 Transform:
   m_ObjectHideFlags: 1
@@ -38,9 +67,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828784963011556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -423.05, y: 318.83, z: -673.05}
+  m_LocalPosition: {x: -519.5, y: 319.28, z: -681.52}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
-  m_Children: []
+  m_Children:
+  - {fileID: 4488230223513012}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -127,3 +157,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 344.94006, y: 40.35083, z: 407.2682}
   m_Center: {x: 2.253273, y: 8.344454, z: 5.8650513}
+--- !u!114 &114791353314721512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828784963011556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b982618e5699b4140b4824d59212c392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

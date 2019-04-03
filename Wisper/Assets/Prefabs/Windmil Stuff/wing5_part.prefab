@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1255819465153254}
   m_IsPrefabAsset: 1
+--- !u!1 &1105337263335432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4963692997749372}
+  m_Layer: 0
+  m_Name: TagHelper
+  m_TagString: WindmillPart5
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1255819465153254
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,6 +39,7 @@ GameObject:
   - component: {fileID: 64959248857276964}
   - component: {fileID: 65708017380837938}
   - component: {fileID: 54410258792974272}
+  - component: {fileID: 114059044625347832}
   m_Layer: 0
   m_Name: wing5_part
   m_TagString: PickUp
@@ -38,10 +54,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255819465153254}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -401.78, y: 319.81, z: -671.92}
+  m_LocalPosition: {x: -496.43, y: 317.23, z: -674.57}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
-  m_Children: []
+  m_Children:
+  - {fileID: 4963692997749372}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4963692997749372
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105337263335432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4412020321400534}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23741126559346522
@@ -127,3 +157,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 344.94006, y: 40.35083, z: 407.2682}
   m_Center: {x: 2.253273, y: 8.344454, z: 5.8650513}
+--- !u!114 &114059044625347832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1255819465153254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b982618e5699b4140b4824d59212c392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

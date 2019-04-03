@@ -29,6 +29,7 @@ public class Windmill : MonoBehaviour {
     private bool isWithinRange = false;
     private bool hasSpawnedOrbs = false;
     private float currentVelocity;
+    private float maxVelocity = 1.5f;
     private PersistantStateData persistantStateData;
 
 
@@ -84,10 +85,12 @@ public class Windmill : MonoBehaviour {
                 brokenWing3.SetActive(true);
                 brokenWing5.SetActive(true);
 
+                Instantiate(windmillParts[0], brokenWing3.transform.position, Quaternion.identity);
+                Instantiate(windmillParts[1], brokenWing3.transform.position, Quaternion.identity);
+
                 Debug.Log("Player pushed windmill too fast and broke it");
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
-                    Instantiate(windmillParts[i], transform.position, Quaternion.identity);
                     //Vector3 currentShellsterVelocity = windmillParts[i].GetComponent<Rigidbody>().velocity;
                     Vector3 temp = new Vector3(-100, 0, 0);
                     windmillParts[i].transform.Translate(temp);
@@ -102,6 +105,7 @@ public class Windmill : MonoBehaviour {
                 {
                     persistantStateData.ChangeStateConditions("WindmillSpawnedOrbs", true);
                     GetComponent<SpawnOrbs>().DropOrbs();
+                    hasSpawnedOrbs = true;
                 }
                 Debug.Log("Player pushed windmill at correct speed and finished task.");
                 persistantStateData.ChangeStateConditions("WindmillTaskDone",true);
@@ -118,7 +122,13 @@ public class Windmill : MonoBehaviour {
         else
         {
             Debug.Log("Windmill task is done. Add passive rotation to it.");
-            transform.Rotate(-baseSpeed * Time.deltaTime, 0, 0);
+            if (currentVelocity < maxVelocity)
+            {
+                rb.AddTorque(-baseSpeed, 0, 0);
+
+            }
+            Debug.Log("current velocity: " + currentVelocity);
+
         }
     }
 
@@ -128,7 +138,7 @@ public class Windmill : MonoBehaviour {
         if (other.name == "Abilities Collider")
         {
             isWithinRange = true;
-            Debug.Log("Within Range");
+            //Debug.Log("Within Range");
         }
     }
     private void OnTriggerExit(Collider other)
@@ -136,7 +146,7 @@ public class Windmill : MonoBehaviour {
         if (other.name == "Abilities Collider")
         {
             isWithinRange = false;
-            Debug.Log("Exited Range");
+            //Debug.Log("Exited Range");
         }
     }
 

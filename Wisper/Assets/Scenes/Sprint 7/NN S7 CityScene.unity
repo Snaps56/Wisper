@@ -6060,11 +6060,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 23.162209, y: 14.052251, z: 10.475313}
   m_Center: {x: 0.000061035156, y: 0, z: -0.000061035156}
---- !u!1 &476961887 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1255819465153254, guid: eac17fc1cb920c94cad16cd60f367b95,
-    type: 2}
-  m_PrefabInternal: {fileID: 2034854959}
 --- !u!1 &480604231
 GameObject:
   m_ObjectHideFlags: 0
@@ -9074,7 +9069,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windimllSpinner: {fileID: 0}
-  brokenPart: {fileID: 0}
   fixedWing: {fileID: 0}
 --- !u!65 &739845157
 BoxCollider:
@@ -9699,15 +9693,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4886586807660694, guid: 8c44fc7f0d5b7e043afbe834f6a8824b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -423.05
+      value: -422.09
       objectReference: {fileID: 0}
     - target: {fileID: 4886586807660694, guid: 8c44fc7f0d5b7e043afbe834f6a8824b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 318.83
+      value: 319.28
       objectReference: {fileID: 0}
     - target: {fileID: 4886586807660694, guid: 8c44fc7f0d5b7e043afbe834f6a8824b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -673.05
+      value: -681.52
       objectReference: {fileID: 0}
     - target: {fileID: 4886586807660694, guid: 8c44fc7f0d5b7e043afbe834f6a8824b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9729,6 +9723,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114791353314721512, guid: 8c44fc7f0d5b7e043afbe834f6a8824b,
+        type: 2}
+      propertyPath: windimllSpinner
+      value: 
+      objectReference: {fileID: 1070571861}
+    - target: {fileID: 114791353314721512, guid: 8c44fc7f0d5b7e043afbe834f6a8824b,
+        type: 2}
+      propertyPath: brokenPart
+      value: 
+      objectReference: {fileID: 1879771572}
+    - target: {fileID: 114791353314721512, guid: 8c44fc7f0d5b7e043afbe834f6a8824b,
+        type: 2}
+      propertyPath: fixedWing
+      value: 
+      objectReference: {fileID: 304307048}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c44fc7f0d5b7e043afbe834f6a8824b, type: 2}
   m_IsPrefabAsset: 0
@@ -15416,7 +15425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windimllSpinner: {fileID: 0}
-  brokenPart: {fileID: 0}
   fixedWing: {fileID: 0}
 --- !u!65 &916520784
 BoxCollider:
@@ -16248,11 +16256,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1011350129 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1828784963011556, guid: 8c44fc7f0d5b7e043afbe834f6a8824b,
-    type: 2}
-  m_PrefabInternal: {fileID: 827384412}
 --- !u!1 &1012070353
 GameObject:
   m_ObjectHideFlags: 0
@@ -17374,7 +17377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilitiesCollider: {fileID: 404714083}
   torqueMultiplier: 0.1
-  baseSpeed: 10
+  baseSpeed: 1
   dangerSpeed: 99999
   correctSpeed: 2
   windmillParts:
@@ -21162,11 +21165,11 @@ GameObject:
   - component: {fileID: 1417384555}
   - component: {fileID: 1417384554}
   - component: {fileID: 1417384556}
-  - component: {fileID: 1417384557}
   - component: {fileID: 1417384558}
+  - component: {fileID: 1417384559}
   m_Layer: 8
   m_Name: wing5_destroyed
-  m_TagString: Terrain
+  m_TagString: WindmillPart5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21243,20 +21246,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 338073feb17b5b34f833d8d4e98a088f, type: 3}
---- !u!114 &1417384557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1417384552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639b8b7449afe0a4aa4295d9a62243be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windimllSpinner: {fileID: 1070571861}
-  brokenPart: {fileID: 476961887}
-  fixedWing: {fileID: 1255235888}
 --- !u!64 &1417384558
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21271,6 +21260,19 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 338073feb17b5b34f833d8d4e98a088f, type: 3}
+--- !u!114 &1417384559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1417384552}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0aaddfa9c7e604fa8201d2621375a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windimllSpinner: {fileID: 1070571861}
+  fixedWing: {fileID: 1255235888}
 --- !u!1 &1421504941
 GameObject:
   m_ObjectHideFlags: 0
@@ -24098,7 +24100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windimllSpinner: {fileID: 0}
-  brokenPart: {fileID: 0}
   fixedWing: {fileID: 0}
 --- !u!65 &1698128125
 BoxCollider:
@@ -25671,7 +25672,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windimllSpinner: {fileID: 0}
-  brokenPart: {fileID: 0}
   fixedWing: {fileID: 0}
 --- !u!65 &1879684221
 BoxCollider:
@@ -25697,11 +25697,11 @@ GameObject:
   - component: {fileID: 1879771575}
   - component: {fileID: 1879771574}
   - component: {fileID: 1879771576}
-  - component: {fileID: 1879771577}
   - component: {fileID: 1879771578}
+  - component: {fileID: 1879771577}
   m_Layer: 8
   m_Name: wing3_destroyed
-  m_TagString: Terrain
+  m_TagString: WindmillPart3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25784,13 +25784,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1879771572}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 639b8b7449afe0a4aa4295d9a62243be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   windimllSpinner: {fileID: 1070571861}
-  brokenPart: {fileID: 1011350129}
   fixedWing: {fileID: 304307048}
 --- !u!64 &1879771578
 MeshCollider:
@@ -28314,15 +28313,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4412020321400534, guid: eac17fc1cb920c94cad16cd60f367b95, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -401.78
+      value: -396.43
       objectReference: {fileID: 0}
     - target: {fileID: 4412020321400534, guid: eac17fc1cb920c94cad16cd60f367b95, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 319.81
+      value: 317.23
       objectReference: {fileID: 0}
     - target: {fileID: 4412020321400534, guid: eac17fc1cb920c94cad16cd60f367b95, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -671.92
+      value: -674.57
       objectReference: {fileID: 0}
     - target: {fileID: 4412020321400534, guid: eac17fc1cb920c94cad16cd60f367b95, type: 2}
       propertyPath: m_LocalRotation.x
@@ -28344,6 +28343,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114059044625347832, guid: eac17fc1cb920c94cad16cd60f367b95,
+        type: 2}
+      propertyPath: windimllSpinner
+      value: 
+      objectReference: {fileID: 1070571861}
+    - target: {fileID: 114059044625347832, guid: eac17fc1cb920c94cad16cd60f367b95,
+        type: 2}
+      propertyPath: brokenPart
+      value: 
+      objectReference: {fileID: 1417384552}
+    - target: {fileID: 114059044625347832, guid: eac17fc1cb920c94cad16cd60f367b95,
+        type: 2}
+      propertyPath: fixedWing
+      value: 
+      objectReference: {fileID: 1255235888}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eac17fc1cb920c94cad16cd60f367b95, type: 2}
   m_IsPrefabAsset: 0
