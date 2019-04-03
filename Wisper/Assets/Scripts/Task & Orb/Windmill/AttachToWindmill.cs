@@ -7,8 +7,10 @@ public class AttachToWindmill : MonoBehaviour {
     private GameObject destroyedPart;
     // Use this for initialization
     void Start () {
+        Debug.Log("The name of the part: " + this.gameObject.name);
         if(this.gameObject.name.Contains("3"))
         {
+            Debug.Log("Attaching the wing");
             destroyedPart = GameObject.Find("wing3_destroyed");
             destroyedPart.GetComponent<AttachToWindmill3>().brokenPart = this.gameObject;
         }

@@ -86,7 +86,7 @@ public class Windmill : MonoBehaviour {
                 brokenWing5.SetActive(true);
 
                 Instantiate(windmillParts[0], brokenWing3.transform.position, Quaternion.identity);
-                Instantiate(windmillParts[1], brokenWing3.transform.position, Quaternion.identity);
+                Instantiate(windmillParts[1], brokenWing5.transform.position, Quaternion.identity);
 
                 Debug.Log("Player pushed windmill too fast and broke it");
                 for (int i = 0; i < windmillParts.Length; i++)
