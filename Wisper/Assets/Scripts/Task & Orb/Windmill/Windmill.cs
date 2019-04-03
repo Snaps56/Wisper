@@ -66,7 +66,7 @@ public class Windmill : MonoBehaviour {
             //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
 
             //Break the windmill if the player reached max orbs
-            if (currentVelocity >= dangerSpeed || reachedMaxOrbs)
+            if (reachedMaxOrbs)
             {
                 persistantStateData.ChangeStateConditions("WindmillFixed", false);
                 persistantStateData.ChangeStateConditions("WindmillTaskDone", false);
