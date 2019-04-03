@@ -2,13 +2,21 @@
 {
 	Properties
 	{
+		// Creatses a blue base texture
 		_MainTex ("Texture", 2D) = "blue" {}
+		// Option for Shallow color
 		_DepthGradientShallow("Depth Gradient Shallow", Color) = (0.325, 0.807, 0.971, 0.725)
+		// Option for Deep color
 		_DepthGradientDeep("Depth Gradient Deep", Color) = (0.086, 0.407, 1, 0.749)
+		// Depth Distance
 		_DepthMaxDistance("Depth Maximum Distance", Float) = 1
+		// Surface Noise input
 		_SurfaceNoise("Surface Noise", 2D) = "white" {}
+		// Amount of surface noise shown
 		_SurfaceNoiseCutoff("Surface Noise Cutoff", Range(0, 1)) = 0.777
+		// Distance foam reaches out from objects
 		_FoamDistance("Foam Distance", Float) = 0.4
+		// Speed and Direction of Surface Noise
 		_SurfaceNoiseScroll("Surface Noise Scroll Amount", Vector) = (0.03, 0.03, 0, 0)
 		// Two channel distortion texture.
 		_SurfaceDistortion("Surface Distortion", 2D) = "white" {}
