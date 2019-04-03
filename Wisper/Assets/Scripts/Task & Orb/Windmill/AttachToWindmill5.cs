@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttachToWindmill5 : MonoBehaviour {
 
     public GameObject windimllSpinner;
-    private GameObject brokenPart;
+    public GameObject brokenPart;
     private GameObject tagHelper;
     public GameObject fixedWing;
     private Rigidbody rb;
@@ -24,15 +24,15 @@ public class AttachToWindmill5 : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        try
-        {
-            tagHelper = GameObject.FindGameObjectWithTag("WindmillPart5");
-            brokenPart = tagHelper.transform.parent.gameObject;
-        }
-        catch (System.Exception e)
-        {
-            Debug.Log("Broken");
-        }
+        //try
+        //{
+        //    tagHelper = GameObject.FindGameObjectWithTag("WindmillPart5");
+        //    brokenPart = tagHelper.transform.parent.gameObject;
+        //}
+        //catch (System.Exception e)
+        //{
+        //    Debug.Log("Broken");
+        //}
         //If the part is attached
         if (attached)
         {

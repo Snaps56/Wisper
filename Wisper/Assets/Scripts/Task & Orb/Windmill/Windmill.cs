@@ -127,7 +127,7 @@ public class Windmill : MonoBehaviour {
                 rb.AddTorque(-baseSpeed, 0, 0);
 
             }
-            Debug.Log("current velocity: " + currentVelocity);
+            //Debug.Log("current velocity: " + currentVelocity);
 
         }
     }

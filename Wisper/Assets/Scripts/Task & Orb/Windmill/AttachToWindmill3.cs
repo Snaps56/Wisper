@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttachToWindmill3 : MonoBehaviour {
 
     public GameObject windimllSpinner;
-    private GameObject brokenPart;
+    public GameObject brokenPart;
     private GameObject tagHelper;
     public GameObject fixedWing;
     private Rigidbody rb;
@@ -17,21 +17,21 @@ public class AttachToWindmill3 : MonoBehaviour {
     // Use this for initialization
     void Start () {
         persistantStateData = PersistantStateData.persistantStateData;
-        rb = GetComponent<Rigidbody>();        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update ()
     {
-        try
-        {
-            tagHelper = GameObject.FindGameObjectWithTag("WindmillPart3");
-            brokenPart = tagHelper.transform.parent.gameObject;
-        }
-        catch (System.Exception e)
-        {
-            Debug.Log("Broken");
-        }
+        //try
+        //{
+        //    tagHelper = GameObject.FindGameObjectWithTag("WindmillPart3");
+        //    brokenPart = tagHelper.transform.parent.gameObject;
+        //}
+        //catch (System.Exception e)
+        //{
+        //    Debug.Log("Broken");
+        //}
         //If the part is attached
         if (attached)
         {
