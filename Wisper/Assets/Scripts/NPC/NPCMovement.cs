@@ -23,9 +23,7 @@ public class NPCMovement : MonoBehaviour
     
     // Update is called once per frame
     void Update()
-    {     
-
-
+    {
         Vector3 direction = player.transform.position - this.transform.position;
         
         //Movement loop
@@ -52,7 +50,6 @@ public class NPCMovement : MonoBehaviour
                     {
                         waypoints.Clear();
                     }
-                    
                 }
             }
         }

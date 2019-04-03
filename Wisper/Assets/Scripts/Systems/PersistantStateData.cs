@@ -130,7 +130,10 @@ public class PersistantStateData : MonoBehaviour
 		stateConditions.Add("CenterIsClean", false);
 		stateConditions.Add("FinishedSandCastleTask", false);
 
-        
+        // Variables for the Gazeeeeeeeebo task
+        stateConditions.Add("NeedInstrument1", true);
+        stateConditions.Add("Instrument1Got", false);
+
 
 
         /////////////////////////////////////////////////////////////
