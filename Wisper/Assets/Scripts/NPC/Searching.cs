@@ -66,7 +66,5 @@ public class Searching : MonoBehaviour {
             }
             //Debug.Log(NPCMovements.move);           
         }
-        
-
     }
 }

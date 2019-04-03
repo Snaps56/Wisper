@@ -25,6 +25,8 @@ public class KiteTask : MonoBehaviour {
     private float z2;
     private float maxHeight;
 
+    private Animator animator;
+
     // Use this for initialization
     void Start () {
         maxHeight = 234.47f;
@@ -36,9 +38,11 @@ public class KiteTask : MonoBehaviour {
         z1 = -394.9f;
         z2 = -432.22f;
 
-       // finalX = -2.31f;
-       // finalY = 43.0f;
-       // finalZ = -84.21f;
+        animator = GetComponent<Animator>();
+        animator.SetBool("Swaying", false);
+        // finalX = -2.31f;
+        // finalY = 43.0f;
+        // finalZ = -84.21f;
 
         direction = npc.transform.position - this.transform.position;
     }
@@ -60,6 +64,7 @@ public class KiteTask : MonoBehaviour {
             
             if (getOrbs == true)
             {
+                //animator.SetBool("Swaying", true);
                 //transform.Rotate(-48.0f, 0, 0, Space.Self);
                 GetComponent<SpawnOrbs>().DropOrbs();
                 getOrbs = false;
