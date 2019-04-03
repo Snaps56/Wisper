@@ -19,22 +19,17 @@ public class AttachToWindmill : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-		if (attached == true)
+    void Update ()
+    {
+        //If the part is attached
+        if (attached)
         {
             Attached();
         }
 	}
-
+    //Update the windmill parts to be attached
     private void Attached()
     {
-        //rb.isKinematic = true;
-        //rb.useGravity = false;
-        //GetComponent<MeshCollider>().enabled = false;
-        //GetComponent<Collider>().enabled = false;
-        //transform.parent = windimll.transform;
-        //transform.rotation = windimll.transform.rotation;
-
         //Debug.Log("ATTACHED");
         if (updatedAttachCount == false)
         {
@@ -44,11 +39,13 @@ public class AttachToWindmill : MonoBehaviour {
 
         fixedWing.SetActive(true);
         this.gameObject.SetActive(false);
+        attached = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Collision Detected");
+        //If the parts are touching, they are attached
         if (other.gameObject.name == brokenPart.gameObject.name)
         {
             Destroy(brokenPart);

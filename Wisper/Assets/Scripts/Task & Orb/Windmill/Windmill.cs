@@ -11,27 +11,34 @@ public class Windmill : MonoBehaviour {
     public float correctSpeed = 2f;
     public GameObject[] windmillParts;
 
+    public GameObject fixedWing3;
+    public GameObject fixedWing5;
+
+    public GameObject brokenWing3;
+    public GameObject brokenWing5;
+
     private int attachCount = 0;
     private readonly int totalToFix = 2;
 
     private Rigidbody rb;
 
-    private bool reachedMaxOrbs = false;
     private bool isThrowing;
     private bool isLifting;
 
     private float torque;
     private bool isWithinRange = false;
+    private bool hasSpawnedOrbs = false;
     private float currentVelocity;
     private PersistantStateData persistantStateData;
 
-    private bool hasSpawnedOrbs = false;
 
     // Use this for initialization
     void Start () {
         persistantStateData = PersistantStateData.persistantStateData;
         rb = GetComponent<Rigidbody>();
-	}
+        hasSpawnedOrbs = (bool)persistantStateData.stateConditions["WindmillSpawnedOrbs"];
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -66,27 +73,37 @@ public class Windmill : MonoBehaviour {
             //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
 
             //Break the windmill if the player reached max orbs
-            if (reachedMaxOrbs)
+            if ((bool)persistantStateData.stateConditions["HasReachedMax"] == true)
             {
+                rb.isKinematic = true;
+                attachCount = 0;
                 persistantStateData.ChangeStateConditions("WindmillFixed", false);
                 persistantStateData.ChangeStateConditions("WindmillTaskDone", false);
+                fixedWing3.SetActive(false);
+                fixedWing5.SetActive(false);
+                brokenWing3.SetActive(true);
+                brokenWing5.SetActive(true);
 
                 Debug.Log("Player pushed windmill too fast and broke it");
-                reachedMaxOrbs = true;
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
-                    Vector3 currentShellsterVelocity = windmillParts[i].GetComponent<Rigidbody>().velocity;
-                    windmillParts[i].GetComponent<Rigidbody>().isKinematic = false;
-                    windmillParts[i].transform.parent = null;
+                    Instantiate(windmillParts[i], transform.position, Quaternion.identity);
+                    //Vector3 currentShellsterVelocity = windmillParts[i].GetComponent<Rigidbody>().velocity;
+                    Vector3 temp = new Vector3(-100, 0, 0);
+                    windmillParts[i].transform.Translate(temp);
                     windmillParts[i].GetComponent<Rigidbody>().AddExplosionForce(150, transform.position, 5f);
                     Debug.Log("detached " + windmillParts[i]);
                 }
             }
-            else if (currentVelocity >= correctSpeed && !reachedMaxOrbs && !hasSpawnedOrbs)
+            //Windmill task is done! 
+            else if (currentVelocity >= correctSpeed && (bool)persistantStateData.stateConditions["HasReachedMax"] == false)
             {
+                if (!hasSpawnedOrbs)
+                {
+                    persistantStateData.ChangeStateConditions("WindmillSpawnedOrbs", true);
+                    GetComponent<SpawnOrbs>().DropOrbs();
+                }
                 Debug.Log("Player pushed windmill at correct speed and finished task.");
-                hasSpawnedOrbs = true;
-                GetComponent<SpawnOrbs>().DropOrbs();
                 persistantStateData.ChangeStateConditions("WindmillTaskDone",true);
                 //Debug.Log("WindmillTaskDone: " + (bool)persistantStateData.stateConditions["WindmillTaskDone"]);
             }

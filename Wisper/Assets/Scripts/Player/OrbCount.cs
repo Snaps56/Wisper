@@ -8,14 +8,11 @@ public class OrbCount : MonoBehaviour {
     private float orbMaxDeposit = 0;
     private PersistantStateData psd;
 
-    [Header("Trail")]
-    public GameObject UIPowerBar;
-    public Material trailRed;
-    public Material trailWhite;
-
     [Header("UI")]
     public Image windPowerBar;
     public Text orbCountText;
+
+    Color32 color1, color2;
 
     // public AudioSource wub;
 
@@ -35,7 +32,8 @@ public class OrbCount : MonoBehaviour {
         orbCount = (float)psd.stateConditions["OrbCount"];
         orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + orbMaxDeposit;
         windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["OrbMaxDeposit"]);
-
+        color1 = new Color32(0, 46, 255, 255);
+        color2 = new Color32(255, 0, 0, 255);
     }
 
     //Sets the orb count
@@ -47,14 +45,21 @@ public class OrbCount : MonoBehaviour {
 
     private void Update()
     {
+        //If player hits max orbs
         if ((float)psd.stateConditions["OrbCount"] >=  (float)psd.stateConditions["OrbMaxDeposit"])
         {
-            UIPowerBar.GetComponent<TrailRenderer>().material = trailRed;
+            windPowerBar.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
         }
+        //If play is normal
         else
         {
-            UIPowerBar.GetComponent<TrailRenderer>().material = trailWhite;
+            float t = (float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["OrbMaxDeposit"];
+            Color32 color = Color32.Lerp(color1, color2, t);
+            windPowerBar.GetComponent<Image>().color = color;
         }
+
+
+
     }
 
 
@@ -76,6 +81,7 @@ public class OrbCount : MonoBehaviour {
             {
                 orbCount++;
                 psd.ChangeStateConditions("OrbCount", orbCount);
+                psd.ChangeStateConditions("HasReachedMax", false);
                 Debug.Log("count increased");
             }
             else if ((float)psd.stateConditions["OrbCount"] == (float)psd.stateConditions["OrbMaxDeposit"])
