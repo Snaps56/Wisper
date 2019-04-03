@@ -34,7 +34,7 @@ public class GazeboManager : MonoBehaviour {
                 float zOffset = 0;
                 GameObject waypoint = new GameObject("Waypoint_" + i + "_" + j);
 
-                if(i <= gridRes / 2)        // Node is left of center
+                if(i < gridRes / 2)        // Node is left of center
                 {
                     xOffset = (gazeboWidth / gridRes) * (i - gridRes / 2); 
                 }
@@ -47,7 +47,7 @@ public class GazeboManager : MonoBehaviour {
                     xOffset = 0;
                 }
 
-                if (j <= gridRes / 2)        // Node is front of center
+                if (j < gridRes / 2)        // Node is front of center
                 {
                     zOffset = (gazeboWidth / gridRes) * (j - gridRes / 2);
                 }
