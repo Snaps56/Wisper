@@ -48,6 +48,8 @@ public class Windmill : MonoBehaviour {
         isLifting = abilitiesCollider.GetComponent<ObjectLift>().GetIsLiftingObjects();
         isThrowing = abilitiesCollider.GetComponent<ObjectThrow>().GetIsThrowingObjects();
 
+        //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
+
         //If the windmill is fixed
         if (attachCount == totalToFix)
         {
@@ -73,12 +75,11 @@ public class Windmill : MonoBehaviour {
                 torque = 0;
             }
             currentVelocity = rb.angularVelocity.y;
-            //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
 
             //Break the windmill if the player reached max orbs
             if ((bool)persistantStateData.stateConditions["HasReachedMax"] == true)
             {
-                rb.isKinematic = true;
+                //rb.isKinematic = true;
                 attachCount = 0;
                 persistantStateData.ChangeStateConditions("WindmillFixed", false);
                 persistantStateData.ChangeStateConditions("WindmillTaskDone", false);
@@ -111,20 +112,26 @@ public class Windmill : MonoBehaviour {
                 //Debug.Log("WindmillTaskDone: " + (bool)persistantStateData.stateConditions["WindmillTaskDone"]);
             }
         }
+        else
+        {
+            torque = 0;
+        }
     }
     private void FixedUpdate()
     {
+        //If the taks isn't done, allow the user to move the windmill
         if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
         {
             Debug.Log("Turning Windmill.");
             rb.AddTorque(-torque * torqueMultiplier, 0, 0);
         }
+        //If task is done, add constant passive force
         else
         {
             Debug.Log("Windmill task is done. Add passive rotation to it.");
             if (currentVelocity < maxVelocity)
             {
-                rb.AddTorque(-baseSpeed, 0, 0);
+                //rb.AddTorque(-baseSpeed, 0, 0);
 
             }
             //Debug.Log("current velocity: " + currentVelocity);
