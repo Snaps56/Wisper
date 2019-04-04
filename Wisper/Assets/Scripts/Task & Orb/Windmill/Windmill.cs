@@ -17,6 +17,8 @@ public class Windmill : MonoBehaviour {
     public GameObject brokenWing3;
     public GameObject brokenWing5;
 
+    public GameObject testLocation;
+
     private int attachCount = 0;
     private readonly int totalToFix = 2;
 
@@ -85,16 +87,13 @@ public class Windmill : MonoBehaviour {
                 brokenWing3.SetActive(true);
                 brokenWing5.SetActive(true);
 
-                Instantiate(windmillParts[0], brokenWing3.transform.position, Quaternion.identity);
-                Instantiate(windmillParts[1], brokenWing5.transform.position, Quaternion.identity);
-
+                Instantiate(windmillParts[0], testLocation.transform.position, Quaternion.identity);
+                Instantiate(windmillParts[1], testLocation.transform.position, Quaternion.identity);
                 Debug.Log("Player pushed windmill too fast and broke it");
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
                     //Vector3 currentShellsterVelocity = windmillParts[i].GetComponent<Rigidbody>().velocity;
-                    Vector3 temp = new Vector3(-500, 0, 0);
-                    windmillParts[i].transform.Translate(temp);
-                    windmillParts[i].GetComponent<Rigidbody>().AddExplosionForce(150, transform.position, 5f);
+                    windmillParts[i].GetComponent<Rigidbody>().AddExplosionForce(150, windmillParts[i].transform.position, 5f);
                     Debug.Log("detached " + windmillParts[i]);
                 }
             }
@@ -117,6 +116,7 @@ public class Windmill : MonoBehaviour {
     {
         if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
         {
+            Debug.Log("Turning Windmill.");
             rb.AddTorque(-torque * torqueMultiplier, 0, 0);
         }
         else
