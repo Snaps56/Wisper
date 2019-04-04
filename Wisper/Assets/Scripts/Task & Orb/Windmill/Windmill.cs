@@ -77,7 +77,7 @@ public class Windmill : MonoBehaviour {
             currentVelocity = rb.angularVelocity.y;
 
             //Break the windmill if the player reached max orbs
-            if ((bool)persistantStateData.stateConditions["HasReachedMax"] == true)
+            if ((bool)persistantStateData.stateConditions["HasReachedMax"] == true && Input.GetKeyDown(KeyCode.K))
             {
                 //rb.isKinematic = true;
                 attachCount = 0;
@@ -87,6 +87,9 @@ public class Windmill : MonoBehaviour {
                 fixedWing5.SetActive(false);
                 brokenWing3.SetActive(true);
                 brokenWing5.SetActive(true);
+
+                //TODO:
+                //RESET ATTACHED STATES OF BROKEN WINGS
 
                 Instantiate(windmillParts[0], testLocation.transform.position, Quaternion.identity);
                 Instantiate(windmillParts[1], testLocation.transform.position, Quaternion.identity);
@@ -131,7 +134,7 @@ public class Windmill : MonoBehaviour {
             Debug.Log("Windmill task is done. Add passive rotation to it.");
             if (currentVelocity < maxVelocity)
             {
-                //rb.AddTorque(-baseSpeed, 0, 0);
+                rb.AddTorque(-baseSpeed, 0, 0);
 
             }
             //Debug.Log("current velocity: " + currentVelocity);

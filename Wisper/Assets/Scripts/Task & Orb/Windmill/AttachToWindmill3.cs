@@ -42,11 +42,11 @@ public class AttachToWindmill3 : MonoBehaviour {
     private void Attached()
     {
         Debug.Log("ATTACHED");
-        if (updatedAttachCount == false)
-        {
+        //if (updatedAttachCount == false)
+        //{
             windimllSpinner.GetComponent<Windmill>().IncrementAttachCounter();
             updatedAttachCount = true;
-        }
+        //}
 
         fixedWing.SetActive(true);
         this.gameObject.SetActive(false);
