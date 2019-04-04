@@ -92,7 +92,7 @@ public class Windmill : MonoBehaviour {
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
                     //Vector3 currentShellsterVelocity = windmillParts[i].GetComponent<Rigidbody>().velocity;
-                    Vector3 temp = new Vector3(-100, 0, 0);
+                    Vector3 temp = new Vector3(-500, 0, 0);
                     windmillParts[i].transform.Translate(temp);
                     windmillParts[i].GetComponent<Rigidbody>().AddExplosionForce(150, transform.position, 5f);
                     Debug.Log("detached " + windmillParts[i]);
