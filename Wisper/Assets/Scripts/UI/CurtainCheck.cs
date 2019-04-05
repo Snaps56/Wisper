@@ -22,6 +22,7 @@ public class CurtainCheck : MonoBehaviour {
         initialTimeInitialized = false;
         doneFading = false;
         updatedPSD = false;
+        persistantStateData = PersistantStateData.persistantStateData;
     }
 	
 	// Update is called once per frame
