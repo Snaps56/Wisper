@@ -99,12 +99,12 @@ public class PauseMenu : MonoBehaviour
         {
             SetVolume(CurrentVolume + 15);
         }
-        FindObjectOfType<AudioManager>().Play("buttonSelect");
+        //FindObjectOfType<AudioManager>().Play("buttonSelect");
     }
     // Pauses the game and unlocks the cursor
     void Pause()
     {
-        Debug.Log("Pause Game!");
+        //Debug.Log("Pause Game!");
         // GamePad.SetVibration(playerIndex, 0f, 0f);
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);

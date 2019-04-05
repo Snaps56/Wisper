@@ -68,7 +68,7 @@ public class DialogueManager : MonoBehaviour {
         // Ensures there will only ever be 1 dialogue manager in a scene. (Singleton pattern).
         if (dialogueManager == null)
         {
-            Debug.Log("set dialogue manager");
+            //Debug.Log("set dialogue manager");
             dialogueManager = this;
         }
         else if (dialogueManager != this)
@@ -111,7 +111,7 @@ public class DialogueManager : MonoBehaviour {
         persistantStateData = GameObject.Find("PersistantStateData");
         if(persistantStateData.GetComponent<PersistantStateData>().realPSD)
         {
-            Debug.Log("Real PSD");
+            //Debug.Log("Real PSD");
         }
         else
         {
@@ -153,7 +153,7 @@ public class DialogueManager : MonoBehaviour {
         // When PSD updates, run an update on all dialogues in the scene.
         if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount)
         {
-            Debug.Log("Updating NPCDialogues");
+            //Debug.Log("Updating NPCDialogues");
             persistantStateDataUpdateCount = persistantStateData.GetComponent<PersistantStateData>().updateCount;
             foreach (GameObject dt in GameObject.FindGameObjectsWithTag("DialogueTrigger"))
             {

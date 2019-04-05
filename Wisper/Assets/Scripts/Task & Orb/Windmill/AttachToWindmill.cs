@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class AttachToWindmill : MonoBehaviour {
 
+    /*****Purpose of this script *****/
+    // This script was created to reduce the amount of checks the destroyed windmill pieces
+    // need to make to obtain the proper references
+
     private GameObject destroyedPart;
     // Use this for initialization
     void Start () {
-        Debug.Log("The name of the part: " + this.gameObject.name);
+        //Debug.Log("The name of the part: " + this.gameObject.name);
         if(this.gameObject.name.Contains("3"))
         {
             Debug.Log("Attaching the wing");

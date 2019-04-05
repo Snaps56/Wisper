@@ -125,7 +125,7 @@ public class Windmill : MonoBehaviour {
         //If the taks isn't done, allow the user to move the windmill
         if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
         {
-            Debug.Log("Turning Windmill.");
+            //Debug.Log("Turning Windmill.");
             rb.AddTorque(-torque * torqueMultiplier, 0, 0);
         }
         //If task is done, add constant passive force
