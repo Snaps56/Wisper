@@ -48,11 +48,12 @@ public class Windmill : MonoBehaviour {
         persistantStateData = PersistantStateData.persistantStateData;
         rb = GetComponent<Rigidbody>();
         hasSpawnedOrbs = (bool)persistantStateData.stateConditions["WindmillSpawnedOrbs"];
-        audioSource = GetComponent<AudioSource>();
+        audioSource = this.GetComponent<AudioSource>();
+
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         isLifting = abilitiesCollider.GetComponent<ObjectLift>().GetIsLiftingObjects();
         isThrowing = abilitiesCollider.GetComponent<ObjectThrow>().GetIsThrowingObjects();
 
@@ -75,9 +76,11 @@ public class Windmill : MonoBehaviour {
                 Debug.Log("Player is attempting to push fixed windmill!");
                 //Set the torque to move the windmill
                 torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce();
-                audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
-                audioSource.Play();
-                Debug.Log("Sound should play");
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
+                }
+                //Debug.Log("Sound should play");
             }
             else if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false) // Otherwise, reset torque
             {
@@ -145,7 +148,6 @@ public class Windmill : MonoBehaviour {
             }
         }
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
