@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Waves : MonoBehaviour {
-
+    //Public variables
     public int Dimension = 10;
     public float UVScale;
     public Octave[] Octaves;
     
-
+    //Protected variables
     protected MeshFilter MeshFilter;
     protected Mesh Mesh;
 
 	// Use this for initialization
 	void Start () {
 
-        // Mesh set up
+        //Mesh set up
         Mesh = new Mesh();
         Mesh.name = gameObject.name;
         //Mesh.position = gameObject.position;
@@ -35,18 +35,18 @@ public class Waves : MonoBehaviour {
     public float GetHeight(Vector3 position)
 
     {
-        //scale factor and position in local space
+        //Scale factor and position in local space
         var scale = new Vector3(1 / transform.lossyScale.x, 0, 1 / transform.lossyScale.z);
         var localPos = Vector3.Scale((position - transform.position), scale);
 
-        //get edge points
+        //Get edge points
 
         var p1 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Floor(localPos.z));
         var p2 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Ceil(localPos.z));
         var p3 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Floor(localPos.z));
         var p4 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Ceil(localPos.z));
 
-        //clamp if the position is outside the plane
+        //Clamp if the position is outside the plane
 
         p1.x = Mathf.Clamp(p1.x, 0, Dimension);
         p1.z = Mathf.Clamp(p1.z, 0, Dimension);
@@ -58,7 +58,7 @@ public class Waves : MonoBehaviour {
         p4.z = Mathf.Clamp(p4.z, 0, Dimension);
 
 
-        //get the max distance to one of the edges and take that to compute max - dist
+        //Get the max distance to one of the edges and take that to compute max - distance
 
         var max = Mathf.Max(Vector3.Distance(p1, localPos), Vector3.Distance(p2, localPos), Vector3.Distance(p3, localPos), Vector3.Distance(p4, localPos) + Mathf.Epsilon);
         var dist = (max - Vector3.Distance(p1, localPos))
@@ -66,13 +66,13 @@ public class Waves : MonoBehaviour {
                  + (max - Vector3.Distance(p3, localPos))
                  + (max - Vector3.Distance(p4, localPos) + Mathf.Epsilon);
 
-        //weighted sum
+        //Weighted sum
         var height = Mesh.vertices[index(p1.x, p1.z)].y * (max - Vector3.Distance(p1, localPos))
                    + Mesh.vertices[index(p2.x, p2.z)].y * (max - Vector3.Distance(p2, localPos))
                    + Mesh.vertices[index(p3.x, p3.z)].y * (max - Vector3.Distance(p3, localPos))
                    + Mesh.vertices[index(p4.x, p4.z)].y * (max - Vector3.Distance(p4, localPos));
 
-        //scale
+        //Scale
         return height * transform.lossyScale.y / dist;
     }
 
@@ -80,7 +80,7 @@ public class Waves : MonoBehaviour {
     {
         var verts = new Vector3[(Dimension + 1) * (Dimension + 1)];
 
-        //equally distribute verticies
+        //Equally distribute verticies
         for (int x = 0; x <= Dimension; x++)
             for (int z = 0; z <= Dimension; z++)
                 verts[index(x, z)] = new Vector3(x, 0, z);
@@ -112,7 +112,7 @@ public class Waves : MonoBehaviour {
     {
         var uvs = new Vector2[Mesh.vertices.Length];
 
-        //always one uv over n tiles, then flip the uv and set it again
+        //Always one UV over n tiles, flipping after each tile
         for (int x = 0; x <= Dimension; x++)
         {
             for ( int z = 0; z <= Dimension; z++)
@@ -160,7 +160,6 @@ public class Waves : MonoBehaviour {
                 verts[index(x, z)] = new Vector3(x, y, z);
             }
         }
-
         Mesh.vertices = verts;
         Mesh.RecalculateNormals();
 	}
