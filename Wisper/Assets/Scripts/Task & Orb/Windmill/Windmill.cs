@@ -21,11 +21,11 @@ public class Windmill : MonoBehaviour {
     public GameObject brokenWing3;
     public GameObject brokenWing5;
 
-    //Test spawn location for windmill parts
+    //Spawn location for windmill parts
     public GameObject partRespawn;
 
     public AudioSource audioSource;
-    public AudioClip[] audioClips; 
+    public AudioClip[] audioClips;
 
     private int attachCount = 0;
     private readonly int totalToFix = 2;
@@ -75,6 +75,9 @@ public class Windmill : MonoBehaviour {
                 Debug.Log("Player is attempting to push fixed windmill!");
                 //Set the torque to move the windmill
                 torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce();
+                audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
+                audioSource.Play();
+                Debug.Log("Sound should play");
             }
             else if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false) // Otherwise, reset torque
             {
@@ -95,15 +98,11 @@ public class Windmill : MonoBehaviour {
                 brokenWing3.SetActive(true);
                 brokenWing5.SetActive(true);
 
-                //TODO:
-                //RESET ATTACHED STATES OF BROKEN WINGS
-
                 Instantiate(windmillParts[0], partRespawn.transform.position, Quaternion.identity);
                 Instantiate(windmillParts[1], partRespawn.transform.position, Quaternion.identity);
                 Debug.Log("Player pushed windmill too fast and broke it");
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
-                    //Vector3 currentShellsterVelocity = windmillParts[i].GetComponent<Rigidbody>().velocity;
                     windmillParts[i].GetComponent<Rigidbody>().AddExplosionForce(150, windmillParts[i].transform.position, 5f);
                     Debug.Log("detached " + windmillParts[i]);
                 }
@@ -111,14 +110,14 @@ public class Windmill : MonoBehaviour {
             //Windmill task is done! 
             else if (currentVelocity >= correctSpeed && (bool)persistantStateData.stateConditions["HasReachedMax"] == false)
             {
-                //
+                Debug.Log("Player pushed windmill at correct speed and finished task.");
+                //Check if the player spawned the orbs
                 if (!hasSpawnedOrbs)
                 {
                     persistantStateData.ChangeStateConditions("WindmillSpawnedOrbs", true);
                     GetComponent<SpawnOrbs>().DropOrbs();
                     hasSpawnedOrbs = true;
                 }
-                Debug.Log("Player pushed windmill at correct speed and finished task.");
                 persistantStateData.ChangeStateConditions("WindmillTaskDone",true);
                 //Debug.Log("WindmillTaskDone: " + (bool)persistantStateData.stateConditions["WindmillTaskDone"]);
             }
@@ -136,16 +135,14 @@ public class Windmill : MonoBehaviour {
             //Debug.Log("Turning Windmill.");
             rb.AddTorque(-torque * torqueMultiplier, 0, 0);
         }
-        //If task is done, add constant passive force
-        else
+        else //If task is done, add constant passive force
+
         {
             Debug.Log("Windmill task is done. Add passive rotation to it.");
             if (currentVelocity < maxVelocity)
             {
                 rb.AddTorque(-baseSpeed, 0, 0);
-
             }
-            //Debug.Log("current velocity: " + currentVelocity);
         }
     }
 

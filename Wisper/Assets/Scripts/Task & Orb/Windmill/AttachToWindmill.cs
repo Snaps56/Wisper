@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class AttachToWindmill : MonoBehaviour {
 
+    /*****Purpose of this script *****/
+    // This script was created to apply the physical changes that occur in the windmill
+    //Such as disableing, enabling, and destroying the appropriate GameObjects
+
     public GameObject windimllSpinner;
     public GameObject brokenPart;
-    private GameObject tagHelper;
     public GameObject fixedWing;
     private Rigidbody rb;
     private PersistantStateData persistantStateData;
@@ -22,8 +25,10 @@ public class AttachToWindmill : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        //If a collision is made
         if (attached)
         {
+            //Run the attached function
             Attached();
         }
 	}
@@ -31,12 +36,7 @@ public class AttachToWindmill : MonoBehaviour {
     private void Attached()
     {
         //Debug.Log("ATTACHED");
-        //if (updatedAttachCount == false)
-        //{
-            windimllSpinner.GetComponent<Windmill>().IncrementAttachCounter();
-            updatedAttachCount = true;
-        //}
-
+        windimllSpinner.GetComponent<Windmill>().IncrementAttachCounter();
         fixedWing.SetActive(true);
         this.gameObject.SetActive(false);
         attached = false;
