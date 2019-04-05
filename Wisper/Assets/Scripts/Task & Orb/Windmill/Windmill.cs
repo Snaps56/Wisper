@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Windmill : MonoBehaviour {
+    
+    /*****Purpose of this script *****/
+    // This script was created to handle the different states of the windmill (Broken, Fixed, and Done)
+
 
     public GameObject abilitiesCollider;
     public float torqueMultiplier = 5f;
@@ -17,7 +21,11 @@ public class Windmill : MonoBehaviour {
     public GameObject brokenWing3;
     public GameObject brokenWing5;
 
-    public GameObject testLocation;
+    //Test spawn location for windmill parts
+    public GameObject partRespawn;
+
+    public AudioSource audioSource;
+    public AudioClip[] audioClips; 
 
     private int attachCount = 0;
     private readonly int totalToFix = 2;
@@ -40,7 +48,7 @@ public class Windmill : MonoBehaviour {
         persistantStateData = PersistantStateData.persistantStateData;
         rb = GetComponent<Rigidbody>();
         hasSpawnedOrbs = (bool)persistantStateData.stateConditions["WindmillSpawnedOrbs"];
-
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -50,13 +58,13 @@ public class Windmill : MonoBehaviour {
 
         //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
 
-        //If the windmill is fixed
+        //Windmill is fixed!
         if (attachCount == totalToFix)
         {
             rb.isKinematic = false;
             Debug.Log("Windmill fixed. Need to push!");
 
-            //If the PSD Variable WindmillFixed isn't set to true, set it to true
+            //PSD WindmillFixed set to true
             if ((bool)persistantStateData.stateConditions["WindmillFixed"] == false)
             {
                 persistantStateData.ChangeStateConditions("WindmillFixed", true);
@@ -68,16 +76,15 @@ public class Windmill : MonoBehaviour {
                 //Set the torque to move the windmill
                 torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce();
             }
-            //If the player isn't trying to move the windmill and the task isn't done, set torque to 0
-            else if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
+            else if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false) // Otherwise, reset torque
             {
                 Debug.Log("Player gave up pushing fixed windmill!");
                 torque = 0;
             }
             currentVelocity = rb.angularVelocity.y;
 
-            //Break the windmill if the player reached max orbs
-            if ((bool)persistantStateData.stateConditions["HasReachedMax"] == true && Input.GetKeyDown(KeyCode.K))
+            //Windmill is Broken!
+            if ((bool)persistantStateData.stateConditions["HasReachedMax"] == true && Input.GetKeyDown(KeyCode.K)) //Based on button press for testing purposes
             {
                 //rb.isKinematic = true;
                 attachCount = 0;
@@ -91,8 +98,8 @@ public class Windmill : MonoBehaviour {
                 //TODO:
                 //RESET ATTACHED STATES OF BROKEN WINGS
 
-                Instantiate(windmillParts[0], testLocation.transform.position, Quaternion.identity);
-                Instantiate(windmillParts[1], testLocation.transform.position, Quaternion.identity);
+                Instantiate(windmillParts[0], partRespawn.transform.position, Quaternion.identity);
+                Instantiate(windmillParts[1], partRespawn.transform.position, Quaternion.identity);
                 Debug.Log("Player pushed windmill too fast and broke it");
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
@@ -104,6 +111,7 @@ public class Windmill : MonoBehaviour {
             //Windmill task is done! 
             else if (currentVelocity >= correctSpeed && (bool)persistantStateData.stateConditions["HasReachedMax"] == false)
             {
+                //
                 if (!hasSpawnedOrbs)
                 {
                     persistantStateData.ChangeStateConditions("WindmillSpawnedOrbs", true);
@@ -138,13 +146,13 @@ public class Windmill : MonoBehaviour {
 
             }
             //Debug.Log("current velocity: " + currentVelocity);
-
         }
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+        //Check if the player collided
         if (other.name == "Abilities Collider")
         {
             isWithinRange = true;
@@ -153,13 +161,14 @@ public class Windmill : MonoBehaviour {
     }
     private void OnTriggerExit(Collider other)
     {
+        //Check if the player left
         if (other.name == "Abilities Collider")
         {
             isWithinRange = false;
             //Debug.Log("Exited Range");
         }
     }
-
+    //Increment the attach counter of the windmill
     public void IncrementAttachCounter()
     {
         attachCount++;

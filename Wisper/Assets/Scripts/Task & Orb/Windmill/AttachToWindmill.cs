@@ -4,25 +4,52 @@ using UnityEngine;
 
 public class AttachToWindmill : MonoBehaviour {
 
-    /*****Purpose of this script *****/
-    // This script was created to reduce the amount of checks the destroyed windmill pieces
-    // need to make to obtain the proper references
+    public GameObject windimllSpinner;
+    public GameObject brokenPart;
+    private GameObject tagHelper;
+    public GameObject fixedWing;
+    private Rigidbody rb;
+    private PersistantStateData persistantStateData;
+    private bool attached = false;
+    private bool updatedAttachCount = false;
 
-    private GameObject destroyedPart;
     // Use this for initialization
     void Start () {
-        //Debug.Log("The name of the part: " + this.gameObject.name);
-        if(this.gameObject.name.Contains("3"))
-        {
-            Debug.Log("Attaching the wing");
-            destroyedPart = GameObject.Find("wing3_destroyed");
-            destroyedPart.GetComponent<AttachToWindmill3>().brokenPart = this.gameObject;
-        }
-        else if (this.gameObject.name.Contains("5"))
-        {
-            destroyedPart = GameObject.Find("wing5_destroyed");
-            destroyedPart.GetComponent<AttachToWindmill5>().brokenPart = this.gameObject;
-        }
+        persistantStateData = PersistantStateData.persistantStateData;
+        rb = GetComponent<Rigidbody>();
     }
 
+    // Update is called once per frame
+    void Update ()
+    {
+        if (attached)
+        {
+            Attached();
+        }
+	}
+    //Update the windmill parts to be attached
+    private void Attached()
+    {
+        //Debug.Log("ATTACHED");
+        //if (updatedAttachCount == false)
+        //{
+            windimllSpinner.GetComponent<Windmill>().IncrementAttachCounter();
+            updatedAttachCount = true;
+        //}
+
+        fixedWing.SetActive(true);
+        this.gameObject.SetActive(false);
+        attached = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("Collision Detected");
+        //If the parts are touching, they are attached
+        if (other.gameObject.name == brokenPart.gameObject.name)
+        {
+            Destroy(brokenPart);
+            attached = true;
+        }
+    }
 }

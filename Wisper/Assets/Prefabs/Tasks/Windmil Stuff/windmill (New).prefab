@@ -1312,8 +1312,9 @@ GameObject:
   - component: {fileID: 1070571864}
   - component: {fileID: 1070571863}
   - component: {fileID: 1070571866}
+  - component: {fileID: 1117029358292596260}
   m_Layer: 0
-  m_Name: RotationReset
+  m_Name: WindmillSpinner
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1335,6 +1336,7 @@ Transform:
   - {fileID: 1417384553}
   - {fileID: 1879771573}
   - {fileID: 2029774297}
+  - {fileID: 5920974605889262564}
   m_Father: {fileID: 310988506}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1350,7 +1352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc1a2f33911b034fa264228c7e19f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilitiesCollider: {fileID: 0}
+  abilitiesCollider: {fileID: 1975170652210214031, guid: 9b2d4712e1d44db449dc62a2e6135842,
+    type: 3}
   torqueMultiplier: 0.1
   baseSpeed: 1
   dangerSpeed: 99999
@@ -1362,7 +1365,12 @@ MonoBehaviour:
   fixedWing5: {fileID: 1255235888}
   brokenWing3: {fileID: 1879771572}
   brokenWing5: {fileID: 1417384552}
-  testLocation: {fileID: 0}
+  partRespawn: {fileID: 2099084258022978878}
+  audioSource: {fileID: 1117029358292596260}
+  audioClips:
+  - {fileID: 8300000, guid: 58f0715a57cd1984e9c38366e791b4d8, type: 3}
+  - {fileID: 8300000, guid: 8a704deea38587145b754d4e2c1d3478, type: 3}
+  - {fileID: 8300000, guid: 694290972024c864495c5e31f654141b, type: 3}
 --- !u!54 &1070571864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1373,7 +1381,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.3
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -1410,6 +1418,102 @@ MonoBehaviour:
   moveSpeedMultiplier: 0.5
   slowMultiplier: 1
   orbSpawnOffsetY: 0
+--- !u!82 &1117029358292596260
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070571861}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1163665692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,7 +1788,7 @@ GameObject:
   - component: {fileID: 1417384554}
   - component: {fileID: 1417384556}
   - component: {fileID: 1417384558}
-  - component: {fileID: 1417384559}
+  - component: {fileID: 6118822349891413204}
   m_Layer: 8
   m_Name: wing5_destroyed
   m_TagString: WindmillPart5
@@ -1774,12 +1878,12 @@ MeshCollider:
   m_GameObject: {fileID: 1417384552}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 338073feb17b5b34f833d8d4e98a088f, type: 3}
---- !u!114 &1417384559
+--- !u!114 &6118822349891413204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1788,7 +1892,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1417384552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f0aaddfa9c7e604fa8201d2621375a3, type: 3}
+  m_Script: {fileID: 11500000, guid: f829d8c516cfb4f4ba86fb487bb4e5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   windimllSpinner: {fileID: 1070571861}
@@ -2020,7 +2124,7 @@ GameObject:
   - component: {fileID: 1879771574}
   - component: {fileID: 1879771576}
   - component: {fileID: 1879771578}
-  - component: {fileID: 1879771577}
+  - component: {fileID: 5955512576338990422}
   m_Layer: 8
   m_Name: wing3_destroyed
   m_TagString: WindmillPart3
@@ -2110,12 +2214,12 @@ MeshCollider:
   m_GameObject: {fileID: 1879771572}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300002, guid: 338073feb17b5b34f833d8d4e98a088f, type: 3}
---- !u!114 &1879771577
+--- !u!114 &5955512576338990422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2124,7 +2228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879771572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639b8b7449afe0a4aa4295d9a62243be, type: 3}
+  m_Script: {fileID: 11500000, guid: f829d8c516cfb4f4ba86fb487bb4e5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   windimllSpinner: {fileID: 1070571861}
@@ -2293,4 +2397,34 @@ Transform:
   - {fileID: 690999521}
   m_Father: {fileID: 1070571862}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2099084258022978878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5920974605889262564}
+  m_Layer: 0
+  m_Name: PartRespawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5920974605889262564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099084258022978878}
+  m_LocalRotation: {x: 0.14787026, y: -0.5801186, z: 0.19784543, w: 0.7761792}
+  m_LocalPosition: {x: -608.30634, y: -775.3904, z: -140.45053}
+  m_LocalScale: {x: 33.33334, y: 33.333336, z: 33.33334}
+  m_Children: []
+  m_Father: {fileID: 1070571862}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
