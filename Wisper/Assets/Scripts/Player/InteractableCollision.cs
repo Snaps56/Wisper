@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class InteractableCollision : MonoBehaviour {
 
-	[Header("Player Controls")]
-
-	public bool nearShrine;
+    private GameObject interactText;
+    private GameObject dialogueBox;
+    public bool nearShrine;
 
 	private Rigidbody rb;
 	private float startingSpeed;
@@ -20,9 +20,10 @@ public class InteractableCollision : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
-
-
+        
 		dialogueManager = GameObject.Find("DialogueManager");
+        dialogueBox = GameObject.Find("DialoguePanel");
+        interactText = GameObject.Find("InteractText");
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -46,9 +47,18 @@ public class InteractableCollision : MonoBehaviour {
 
 			NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
 			if (npcDialogues != null)   // If this npc has dialogues
-			{
-				// Debug.Log("NPC has dialogues");
-				if (!npcDialogues.GetInDialogueRange())
+            {
+                // set interact text active only when:
+                //      -npc has dialogues
+                //      -within interact range
+                //      -dialogue box is not active
+                if (!dialogueBox.activeInHierarchy)
+                {
+                    interactText.SetActive(true);
+                }
+
+                // Debug.Log("NPC has dialogues");
+                if (!npcDialogues.GetInDialogueRange())
 				{
 
 					npcDialogues.SetInDialogueRange(true);  // Flags dialogues attached to npc as in range. Used as a lock to prevent unnecessary updates to dialogue manager.
@@ -71,9 +81,10 @@ public class InteractableCollision : MonoBehaviour {
 			nearShrine = false;
 		}
 		if (other.gameObject.CompareTag ("DialogueTrigger"))
-		{
-			// Debug.Log("Left NPC collision: " + other.name);
-			NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
+        {
+            interactText.SetActive(false);
+            // Debug.Log("Left NPC collision: " + other.name);
+            NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
 			if (npcDialogues != null)   // If this npc has dialogues
 			{
 				// Debug.Log("NPC has dialogues");

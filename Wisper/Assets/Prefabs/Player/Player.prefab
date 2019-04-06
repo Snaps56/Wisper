@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69fbf4242bdbfe944925d80d91b8d227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactText: {fileID: 0}
   nearShrine: 0
 --- !u!135 &135228142433186762
 SphereCollider:
@@ -20345,6 +20346,7 @@ GameObject:
   - component: {fileID: 114646634883859384}
   - component: {fileID: 114516671451449424}
   - component: {fileID: 124049432085123858}
+  - component: {fileID: 3213218941160576739}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -20469,6 +20471,22 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725566482950456}
   m_Enabled: 1
+--- !u!114 &3213218941160576739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725566482950456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75619307fc1c3554a85896d81bbff6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessingProfile: {fileID: 11400000, guid: 7ff63ff685645924eb6b3aac0c6b991e,
+    type: 2}
+  defaultVignette: 0.2
+  finalVignette: 0.5
 --- !u!1 &1797348844539356
 GameObject:
   m_ObjectHideFlags: 0
@@ -35116,16 +35134,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1943257896748582427, guid: 9b2d4712e1d44db449dc62a2e6135842,
-        type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1042204245919040}
-    - target: {fileID: 1943257896748582427, guid: 9b2d4712e1d44db449dc62a2e6135842,
-        type: 3}
-      propertyPath: throwParticles
-      value: 
-      objectReference: {fileID: 198607650045632736}
     - target: {fileID: 1943036945365154127, guid: 9b2d4712e1d44db449dc62a2e6135842,
         type: 3}
       propertyPath: character
@@ -35136,6 +35144,16 @@ PrefabInstance:
       propertyPath: liftParticles
       value: 
       objectReference: {fileID: 198346158449483472}
+    - target: {fileID: 1943257896748582427, guid: 9b2d4712e1d44db449dc62a2e6135842,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1042204245919040}
+    - target: {fileID: 1943257896748582427, guid: 9b2d4712e1d44db449dc62a2e6135842,
+        type: 3}
+      propertyPath: throwParticles
+      value: 
+      objectReference: {fileID: 198607650045632736}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b2d4712e1d44db449dc62a2e6135842, type: 3}
 --- !u!4 &4285057218546874 stripped
