@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: Post-Processing Shader
+  m_Name: Post-Processing Shader 1
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -30,11 +30,11 @@ MonoBehaviour:
     m_Settings:
       excludeSkybox: 1
   antialiasing:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       method: 0
       fxaaSettings:
-        preset: 2
+        preset: 4
       taaSettings:
         jitterSpread: 0.75
         sharpen: 0.3
@@ -43,7 +43,7 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 3.36
+      intensity: 4
       radius: 0.13
       sampleCount: 16
       downsampling: 1
@@ -72,8 +72,8 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 1
     m_Settings:
-      focusDistance: 4
-      aperture: 8.13
+      focusDistance: 6
+      aperture: 4
       focalLength: 67.3
       useCameraFov: 0
       kernelSize: 2
@@ -122,11 +122,11 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 0
-        temperature: 23.9
+        temperature: 25
         tint: 0
         hueShift: 0
-        saturation: 1
-        contrast: 1.071
+        saturation: 1.2
+        contrast: 1.1
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -323,7 +323,7 @@ MonoBehaviour:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.2
+      intensity: 0.18000503
       smoothness: 1
       roundness: 1
       mask: {fileID: 0}
