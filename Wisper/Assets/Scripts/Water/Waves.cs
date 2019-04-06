@@ -129,7 +129,7 @@ public class Waves : MonoBehaviour {
     {
         return x * (Dimension + 1) + z;
     }
-
+    // Overloaded Index for floats
     private int index(float x, float z)
 
     {
