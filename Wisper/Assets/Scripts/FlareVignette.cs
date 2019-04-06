@@ -10,7 +10,7 @@ public class FlareVignette : MonoBehaviour {
     private VignetteModel.Settings vignetteSettings;
 
     public float defaultVignette = 0.2f;
-    private float finalVignette;
+    public float finalVignette = 0.5f;
 
     // Use this for initialization
     void Start () {
@@ -38,7 +38,7 @@ public class FlareVignette : MonoBehaviour {
 	}
     private void FixedUpdate()
     {
-        if ((bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
+        if ((bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"] || (bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
         {
             if (finalVignette > defaultVignette)
             {
