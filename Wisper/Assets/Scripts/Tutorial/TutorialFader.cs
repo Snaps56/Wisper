@@ -31,11 +31,13 @@ public class TutorialFader : MonoBehaviour {
     private bool isFadingIn = false;
     private bool isFadingOut = false;
     private bool doneFading = false;
-
+    
+    // variables that control alpha values of graphics
     private float alphaValue = 0f;
     private float deltaAlphaInValue;
     private float deltaAlphaOutValue;
 
+    // 
     private bool dialogueEnabled;
     private Vector3 originalPosition;
     private Vector3 dialoguePosition;
@@ -57,8 +59,11 @@ public class TutorialFader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        // if this class has not been initialized before, begin all operations
         if (!psdInitial)
         {
+            // check if tutorials need to be moved
             DialogueOffset();
             DelayTutorial();
 
@@ -73,11 +78,12 @@ public class TutorialFader : MonoBehaviour {
 
                 durationCounter = Time.time - initialTime;
 
+                // call fade functions which will handle fade in and fade out
                 FadeIn();
                 FadeOut();
             }
 
-            // if the fading is finished, update the Persistant State Data variables
+            // if the fading out is finished, update the Persistant State Data variables
             if (doneFading && !updatedPSD)
             {
                 tutorialCheckerScript.updatePSD();
@@ -89,6 +95,7 @@ public class TutorialFader : MonoBehaviour {
     // delay the tutorial using a timer, begin fading only after this timer is done
     void DelayTutorial()
     {
+        // if initial conditions have been met, trigger the delay timer
         if (tutorialCheckerScript.InitialConditionsMet())
         {
             if (!delayTimeAssigned)
@@ -98,7 +105,7 @@ public class TutorialFader : MonoBehaviour {
             }
             delayCounter = Time.time - initialDelayCounter;
         }
-
+        // if delay time has been completed, stop the delay and trigger the fade in
         if (delayCounter > (initialTime + delayTime))
         {
             doneDelay = true;
@@ -110,6 +117,7 @@ public class TutorialFader : MonoBehaviour {
     // tutorial fade-in using a timer
     void FadeIn()
     {
+        // do graphic fade in only when the graphic is not fading out and has not completed
         if (isFadingIn && !isFadingOut && alphaValue < 1)
         {
             alphaValue += deltaAlphaInValue * Time.deltaTime;
@@ -125,6 +133,7 @@ public class TutorialFader : MonoBehaviour {
     // tutorial fading-out only if fading-in timer is done
     void FadeOut()
     {
+        // check if graphic tutorial has run its duration before fading out
         bool durationCondition = false;
         if (durationCounter > maxDuration)
         {
@@ -137,18 +146,20 @@ public class TutorialFader : MonoBehaviour {
             minDurationCondition = true;
         }
         
+        // if all necessary conditions are met, begin fading out
         if (!isFadingIn && (durationCondition || (tutorialCheckerScript.TutorialConditionMet() && minDurationCondition)))
         {
             isFadingOut = true;
         }
 
-        // change alpha value of tutorial over time
+        // assuming we can begin fading out, reduce alpha value of tutorial over time
         if (isFadingOut && alphaValue > 0)
         {
             alphaValue -= deltaAlphaOutValue * Time.deltaTime;
             GetComponent<CanvasGroup>().alpha = alphaValue;
         }
 
+        // change a bool if the tutorial is done fading out
         if (doneDelay && !isFadingIn && isFadingOut && (alphaValue <= 0))
         {
             doneFading = true;

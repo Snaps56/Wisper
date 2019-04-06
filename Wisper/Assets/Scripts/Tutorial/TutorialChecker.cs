@@ -8,19 +8,20 @@ public class TutorialChecker : MonoBehaviour {
     public TutorialCondition tutorialCondition;
     private bool tutorialConditionMet;
 
-    public string[] initialConditions; // conditions in persistant state data required to run this tutorial
-    private bool [] initialConditionBools;
+    public string[] initialConditions; // conditions in persistant state data required to run this tutorial, references string key
+    private bool [] initialConditionBools; // references value of string key
 
     public string[] changeConditions; // conditions in persistant state data are changed after tutorial is finished
-
-    private bool sceneChecker = false;
-    private PersistantStateData persistantStateData;
+    
+    private bool sceneChecker = false; // checks if this class has been intitialized before
 
     // Use this for initialization
     void Start () {
         initialConditionBools = new bool[initialConditions.Length];
 
         bool initChangeCondition = true;
+
+        // check if tutorials were initialized already
         for (int i = 0; i < changeConditions.Length; i++)
         {
             if (!(bool)PersistantStateData.persistantStateData.stateConditions[changeConditions[i]])

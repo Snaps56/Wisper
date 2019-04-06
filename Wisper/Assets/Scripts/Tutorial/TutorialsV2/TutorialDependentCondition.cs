@@ -16,6 +16,7 @@ public class TutorialDependentCondition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // update persistant state variables only if the tutorial condition has been met
 		if ((bool)PersistantStateData.persistantStateData.stateConditions[dependentCondition] && !doneTutorial)
         {
             tutorialCondition.SetCondition(true);
