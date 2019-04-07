@@ -18,12 +18,12 @@ public class PlayerDebug : MonoBehaviour
     void Update()
     {
         //Debug tool to increase orb count
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             orbCollectionCollider.GetComponent<OrbCount>().IncreaseOrbCount();
         }
         //Debug tool to decrease orb count
-        else if (Input.GetKeyDown(KeyCode.P))
+        else if (Input.GetKeyDown(KeyCode.O))
         {
             orbCollectionCollider.GetComponent<OrbCount>().DecreaseOrbCount();
         }
