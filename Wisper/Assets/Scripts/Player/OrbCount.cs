@@ -39,9 +39,34 @@ public class OrbCount : MonoBehaviour {
     //Sets the orb count
     public void SetOrbCount(float newOrbCount) {
 		orbCount = newOrbCount;
+        psd.ChangeStateConditions("OrbCount", newOrbCount);
         windPowerBar.fillAmount = orbCount / orbMaxDeposit;
         orbCountText.text = orbCount.ToString() + "/" + orbMaxDeposit;
 	}
+
+    //Increase the orb count
+    public void IncreaseOrbCount()
+    {
+        if (orbCount < (float)psd.stateConditions["OrbMaxDeposit"])
+        {
+            orbCount += 5;
+        }
+        psd.ChangeStateConditions("OrbCount", orbCount);
+        windPowerBar.fillAmount = orbCount / orbMaxDeposit;
+        orbCountText.text = orbCount.ToString() + "/" + orbMaxDeposit;
+    }
+
+    //Decrease the orb count
+    public void DecreaseOrbCount()
+    {
+        if (orbCount > 0)
+        {
+            orbCount -= 5;
+            psd.ChangeStateConditions("OrbCount", orbCount);
+        }
+        windPowerBar.fillAmount = orbCount / orbMaxDeposit;
+        orbCountText.text = orbCount.ToString() + "/" + orbMaxDeposit;
+    }
 
     private void Update()
     {
@@ -57,9 +82,6 @@ public class OrbCount : MonoBehaviour {
             Color32 color = Color32.Lerp(color1, color2, t);
             windPowerBar.GetComponent<Image>().color = color;
         }
-
-
-
     }
 
 
