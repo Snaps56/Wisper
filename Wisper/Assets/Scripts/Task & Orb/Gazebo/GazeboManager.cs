@@ -7,43 +7,71 @@ public class GazeboManager : MonoBehaviour {
     public List<GameObject> gazeboMusicians;    // List of gazebo musicians
     private PersistantStateData PSD;
     private GameObject instrumentCollider;
-    public List<List<GameObject>> waypoints;
+    public GameObject[,] waypoints;
+    public GameObject[,] unblockedWaypoints;
     private float gazeboWidth;
     private float gazeboLength;
+    private GameObject waypointParent;
     private const int gridRes = 10;
+    public bool pathfindingInProgress = false;
 
 	// Use this for initialization
 	void Start () {
         PSD = PersistantStateData.persistantStateData;
         instrumentCollider = this.transform.Find("Instrument Detection Zone").gameObject;
+        gazeboWidth = this.transform.localScale.x;
+        gazeboLength = this.transform.localScale.z;
+        waypointParent = new GameObject("waypoint parent");
+        waypoints = new GameObject[gridRes, gridRes];
+        unblockedWaypoints = new GameObject[gridRes, gridRes];
+        GenerateWaypoints();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		for(int i = 0; i < gridRes; i++)
+        {
+            for(int j = 0; j < gridRes; j++)
+            {
+                if(unblockedWaypoints[i,j] == null)
+                {
+                    waypoints[i, j].GetComponent<MeshRenderer>().material.color = Color.black;
+                }
+                else
+                {
+                    waypoints[i, j].GetComponent<MeshRenderer>().material.color = Color.green;
+                }
+            }
+        }
 	}
 
     void GenerateWaypoints()
     {
-        for(int i = 0; i < gridRes; i++)
+        Debug.Log("instrument detector x:y:z " + instrumentCollider.transform.position.x + ":" + instrumentCollider.transform.position.y + ":" + instrumentCollider.transform.position.z);
+        
+        waypointParent.transform.position = instrumentCollider.transform.position;
+        
+        Debug.Log("waypoint parent x:y:z " + waypointParent.transform.position.x + ":" + waypointParent.transform.position.y + ":" + waypointParent.transform.position.z);
+        for (int i = 0; i < gridRes; i++)
         {
-            List<GameObject> row = new List<GameObject>();
             for (int j = 0; j < gridRes; j++)
             {
                 float xOffset = 0;
                 float zOffset = 0;
                 GameObject waypoint = new GameObject("Waypoint_" + i + "_" + j);
+                waypoint.transform.parent = waypointParent.transform;
 
                 if(i < gridRes / 2)        // Node is left of center
                 {
                     xOffset = (gazeboWidth / gridRes) * (i - gridRes / 2); 
                 }
-                else if(i+1 >= gridRes/2)   // Node is right of center
+                else if(i >= (gridRes + 1) / 2)   // Node is right of center
                 {
-                    xOffset = (gazeboWidth / gridRes) * (i + (gridRes+1) / 2);
+                    xOffset = (gazeboWidth / gridRes) * (i - (gridRes) / 2);
                 }
-                else                        // Node is exactly center (occurs when odd gridResolution is used)
+                else                        // Node is centered (occurs when odd gridResolution is used)
                 {
+                    Debug.Log("Centered node");
                     xOffset = 0;
                 }
 
@@ -51,20 +79,66 @@ public class GazeboManager : MonoBehaviour {
                 {
                     zOffset = (gazeboWidth / gridRes) * (j - gridRes / 2);
                 }
-                else if (j + 1 >= gridRes / 2)   // Node is back of center
+                else if (j  >= (gridRes + 1) / 2)   // Node is back of center
                 {
-                    zOffset = (gazeboWidth / gridRes) * (j + (gridRes + 1) / 2);
+                    zOffset = (gazeboWidth / gridRes) * (j - (gridRes) / 2);
                 }
-                else                        // Node is exactly center (occurs when odd gridResolution is used)
+                else                        // Node is centered (occurs when odd gridResolution is used)
                 {
+                    Debug.Log("Centered node");
                     zOffset = 0;
                 }
 
+                if(gridRes % 2 == 0)
+                {
+                    xOffset += 0.5f * (gazeboWidth / gridRes);
+                    zOffset += 0.5f * (gazeboWidth / gridRes);
+                }
 
-                waypoint.transform.position.Set(instrumentCollider.transform.position.x + xOffset, instrumentCollider.transform.position.y, instrumentCollider.transform.position.z + zOffset);
-                row.Add(waypoint);
+                
+
+                waypoint.transform.position = instrumentCollider.transform.position + new Vector3(xOffset, 0, zOffset);
+
+                
+                waypoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+                waypoint.AddComponent<MeshFilter>();
+                waypoint.AddComponent<MeshRenderer>();
+                GameObject tmpSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                waypoint.GetComponent<MeshFilter>().mesh = tmpSphere.GetComponent<MeshFilter>().mesh;
+                Destroy(tmpSphere);
+
+                waypoint.AddComponent<BoxCollider>();
+                BoxCollider wpCollider = waypoint.GetComponent<BoxCollider>();
+                wpCollider.isTrigger = true;
+                wpCollider.size = new Vector3(gazeboWidth / (gridRes + 2), 5, gazeboLength / (gridRes + 2));
+                wpCollider.center = new Vector3(0, 2, 0);
+
+                waypoint.AddComponent<NavNode>();
+                NavNode wpNavNode = waypoint.GetComponent<NavNode>();
+                wpNavNode.index1 = i;
+                wpNavNode.index2 = j;
+
+                waypoints[i, j] = waypoint;
+                unblockedWaypoints[i, j] = waypoint;
             }
-            waypoints.Add(row);
+        }
+        waypointParent.transform.rotation = this.transform.rotation;
+    }
+
+    public void UpdateUnblockedPoints(GameObject node, bool blocked)
+    {
+        NavNode nvNode = node.GetComponent<NavNode>();
+        if(nvNode.index1 > -1 && nvNode.index2 > -1)
+        {
+            if(blocked)
+            {
+                unblockedWaypoints[nvNode.index1, nvNode.index2] = null;
+            }
+            else
+            {
+                unblockedWaypoints[nvNode.index1, nvNode.index2] = node;
+            }
         }
     }
 }
