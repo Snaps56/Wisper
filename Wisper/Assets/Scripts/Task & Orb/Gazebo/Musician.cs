@@ -30,6 +30,7 @@ public class Musician : MonoBehaviour {
      */
     public void MakeAPath(Vector3 target)
     {
+        Debug.Log("Musician pathfinding called");
         GameObject[,] unblockedWaypoints = gazebo.unblockedWaypoints;
         GameObject[,] allWaypoints = gazebo.waypoints;
         List<LocalNodeCopy> checkNodes = new List<LocalNodeCopy>();
@@ -44,10 +45,12 @@ public class Musician : MonoBehaviour {
 
         // A* algorithm
         bool done = false;
+        int timeout = 1000;
         while(!done)
         {
             CheckAdjacents(checkpointNode, destination, unblockedWaypoints, checkNodes, closedNodes);
-            if(checkNodes.Contains(destination))
+            timeout--;
+            if(checkNodes.Contains(destination) || timeout < 0 || closedNodes.Count >= checkNodes.Count)
             {
                 done = true;
             }
@@ -72,16 +75,25 @@ public class Musician : MonoBehaviour {
             }
         }
 
-        // Follows linked list from end to start, adding to npcPath. Afterward, reverses order and assigns to class's route variable.
-        List<GameObject> npcPath = new List<GameObject>();
-        checkpointNode = destination;
-        while(checkpointNode != startNode)
+        if(checkNodes.Contains(destination))
         {
-            npcPath.Add(allWaypoints[checkpointNode.index1, checkpointNode.index2]);
-            checkpointNode = checkpointNode.preceedingNode;
+            // Follows linked list from end to start, adding to npcPath. Afterward, reverses order and assigns to class's route variable.
+            List<GameObject> npcPath = new List<GameObject>();
+            checkpointNode = destination;
+            while (checkpointNode != startNode)
+            {
+                npcPath.Add(allWaypoints[checkpointNode.index1, checkpointNode.index2]);
+                checkpointNode = checkpointNode.preceedingNode;
+            }
+            npcPath.Reverse();
+            route = npcPath;
+            this.gameObject.GetComponent<NPCMovement>().waypoints = route;
         }
-        npcPath.Reverse();
-        route = npcPath;
+        else
+        {
+            throw new System.Exception("Failed to find path with remaining attempts of " + timeout);
+        }
+        
     }
 
     /*
@@ -141,50 +153,55 @@ public class Musician : MonoBehaviour {
             for(int z = -1; z <= 1; z++)
             {
                 // If the node exists and is not blocked...
-                if(unblockedWaypoints[checkpoint.index1 + x, checkpoint.index2 + z] != null)
+                int adjacentX = checkpoint.index1 + x;
+                int adjacentZ = checkpoint.index2 + z;
+                if (adjacentX < unblockedWaypoints.GetLength(0) && adjacentX >= 0 && adjacentZ < unblockedWaypoints.GetLength(1) && adjacentZ >= 0)
                 {
-                    // Create a local node copy
-                    LocalNodeCopy disNode = new LocalNodeCopy(unblockedWaypoints[checkpoint.index1 + x, checkpoint.index2 + z].GetComponent<NavNode>());
-                    bool newNode = true;
+                    if (unblockedWaypoints[checkpoint.index1 + x, checkpoint.index2 + z] != null)
+                    {
+                        // Create a local node copy
+                        LocalNodeCopy disNode = new LocalNodeCopy(unblockedWaypoints[adjacentX, adjacentZ].GetComponent<NavNode>());
+                        bool newNode = true;
 
-                    // If it is not already in checkNodes, add it. Otherwise set disNode to be the version in checkNodes
-                    foreach (LocalNodeCopy node in checkNodes)
-                    {
-                        if(node.index1 == disNode.index1 && node.index2 == disNode.index2)
+                        // If it is not already in checkNodes, add it. Otherwise set disNode to be the version in checkNodes
+                        foreach (LocalNodeCopy node in checkNodes)
                         {
-                            newNode = false;
-                            disNode = node;
-                        }
-                    }
-                    if(newNode)
-                    {
-                        checkNodes.Add(disNode);
-                    }
-                    
-                    // If a lower f value is found (default f values are max float value), then update the g, h, f values and preceedingNode
-                    float tmpG = checkpoint.gCost + Vector3.Distance(checkpoint.position, disNode.position);
-                    float tmpH = Vector3.Distance(disNode.position, target.position);
-                    float tmpF = tmpG = tmpH;
-
-                    if(tmpF < disNode.fCost)
-                    {
-                        disNode.gCost = tmpG;
-                        disNode.hCost = tmpH;
-                        disNode.fCost = tmpF;
-                        disNode.preceedingNode = checkpoint;
-                        // If this node was closed, reopen it
-                        foreach (LocalNodeCopy node in closedNodes)
-                        {
-                            if(node.index1 == disNode.index1 && node.index2 == disNode.index2)
+                            if (node.index1 == disNode.index1 && node.index2 == disNode.index2)
                             {
-                                closedNodes.Remove(node);
+                                newNode = false;
+                                disNode = node;
                             }
                         }
-                    }
+                        if (newNode)
+                        {
+                            checkNodes.Add(disNode);
+                        }
 
-                    if(disNode == target)
-                    {
-                        return 0;
+                        // If a lower f value is found (default f values are max float value), then update the g, h, f values and preceedingNode
+                        float tmpG = checkpoint.gCost + Vector3.Distance(checkpoint.position, disNode.position);
+                        float tmpH = Vector3.Distance(disNode.position, target.position);
+                        float tmpF = tmpG = tmpH;
+
+                        if (tmpF < disNode.fCost)
+                        {
+                            disNode.gCost = tmpG;
+                            disNode.hCost = tmpH;
+                            disNode.fCost = tmpF;
+                            disNode.preceedingNode = checkpoint;
+                            // If this node was closed, reopen it
+                            foreach (LocalNodeCopy node in closedNodes)
+                            {
+                                if (node.index1 == disNode.index1 && node.index2 == disNode.index2)
+                                {
+                                    closedNodes.Remove(node);
+                                }
+                            }
+                        }
+
+                        if (disNode == target)
+                        {
+                            return 0;
+                        }
                     }
                 }
             }

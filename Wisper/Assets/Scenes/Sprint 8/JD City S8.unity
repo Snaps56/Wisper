@@ -11610,6 +11610,7 @@ GameObject:
   - component: {fileID: 934197835}
   - component: {fileID: 934197837}
   - component: {fileID: 934197836}
+  - component: {fileID: 934197838}
   m_Layer: 0
   m_Name: Instrument Detection Zone
   m_TagString: Untagged
@@ -11689,6 +11690,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &934197838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934197833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a86d642a5d06d4e847f57f6beeaf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &942266955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13575,7 +13588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d49ddff06b93f4f915d56921f9852d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gazeboMusicians: []
+  gazeboMusicians:
+  - {fileID: 1097228472}
+  pathfindingInProgress: 0
 --- !u!1001 &1088634265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13751,6 +13766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1097228473}
   - component: {fileID: 1097228483}
+  - component: {fileID: 1097228474}
   - component: {fileID: 1097228482}
   - component: {fileID: 1097228481}
   - component: {fileID: 1097228480}
@@ -13776,7 +13792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097228472}
   m_LocalRotation: {x: -0, y: 0.71812063, z: -0, w: 0.6959186}
-  m_LocalPosition: {x: -60.950005, y: 81.78, z: -717.9}
+  m_LocalPosition: {x: -67.93, y: 81.78, z: -717.68}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1798726140}
@@ -13786,6 +13802,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 91.799, z: 0}
+--- !u!114 &1097228474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097228472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec665f644fbe12746aedfe35851adddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instrumentPlayed: 0
+  route: []
 --- !u!95 &1097228475
 Animator:
   serializedVersion: 3
@@ -19843,6 +19873,129 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586869479}
   m_Mesh: {fileID: 4300006, guid: 410d699f8f096c74e8cb0d7283165b27, type: 3}
+--- !u!1 &1587501006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587501011}
+  - component: {fileID: 1587501010}
+  - component: {fileID: 1587501009}
+  - component: {fileID: 1587501008}
+  - component: {fileID: 1587501007}
+  - component: {fileID: 1587501012}
+  m_Layer: 0
+  m_Name: Banjo
+  m_TagString: PickUp
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1587501007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587501006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0638a27a6ae30194dbf2a1a6b4f768e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instrumentType: 0
+  lastPos: {x: 0, y: 0, z: 0}
+--- !u!65 &1587501008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587501006}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1587501009
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587501006}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1587501010
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587501006}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1587501011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587501006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -57.13, y: 84.4299, z: -714.2}
+  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1587501012
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587501006}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1594397576
 GameObject:
   m_ObjectHideFlags: 0

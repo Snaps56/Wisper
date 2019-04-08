@@ -142,4 +142,18 @@ public class GazeboManager : MonoBehaviour {
             }
         }
     }
+
+    public void SetMusicianPath(Instrument instrument)
+    {
+        Debug.Log("Looking for musician to set path");
+        foreach(GameObject musician in gazeboMusicians)
+        {
+            if(musician.GetComponent<Musician>().instrumentPlayed == instrument.instrumentType)
+            {
+                Debug.Log("Musician found");
+                musician.GetComponent<Musician>().MakeAPath(instrument.gameObject.transform.position);
+            }
+        }
+        
+    }
 }
