@@ -5,27 +5,36 @@ using UnityEngine;
 public class StatueRotation : MonoBehaviour
 {
     public Transform rotatePoint;
-    public Transform statueShift;
     public ObjectThrow playerAbilities;
+    public ParticleSystem stoneDustParticles;
+
     private bool playerPushing;
     private Vector3 playerPushVector;
     private Vector3 statueVector;
     private float finalDirection;
     private bool nearPlayer;
+    private SpawnOrbs orbScript;
+
     //float rotation = 0f;
     Vector3 desiredRotation;
     float xOffset;
     float yOffset;
     float zOffset;
+    bool taskDone;
 
     // Use this for initialization
     void Start()
     {
         xOffset = 0f;
-        yOffset = 0f;
+        yOffset = -90f;
         statueVector = transform.right;
         nearPlayer = false;
-        //transform.rotation = Quaternion.Euler(xOffset, yOffset, 30f);
+        taskDone = (bool)PersistantStateData.persistantStateData.stateConditions["StatueFixed"];
+        orbScript = GetComponent<SpawnOrbs>();
+        if (!taskDone) {
+            transform.rotation = Quaternion.Euler(xOffset, yOffset, 30f);
+        }
+        Debug.Log(taskDone);
     }
 
     // Update is called once per frame
@@ -56,8 +65,13 @@ public class StatueRotation : MonoBehaviour
         finalDirection = Vector3.Dot(playerPushVector.normalized, statueVector.normalized);
         //Debug.Log("Final Direction: " + finalDirection);
 
-        if (nearPlayer == true && playerPushing == true)
+        if (nearPlayer == true && playerPushing == true && taskDone == false)
         {
+            if (!stoneDustParticles.isPlaying)
+            {
+                stoneDustParticles.Play();
+            }
+
             if (finalDirection < 0 && zOffset <= 30f)
             {
                 Debug.Log("zOffset POSDIR: " + zOffset);
@@ -68,6 +82,20 @@ public class StatueRotation : MonoBehaviour
                 Debug.Log("zOffset NEGDIR: " + zOffset);
                 transform.RotateAround(rotatePoint.position, Vector3.right, 20 * Time.deltaTime);
             }
+        }
+        else
+        {
+            if (stoneDustParticles.isPlaying)
+            {
+                stoneDustParticles.Stop();
+            }
+        }
+
+        if (playerPushing == false && (zOffset > -3f && zOffset < 3f) && taskDone == false) {
+            Debug.Log("Statue is upright");
+            orbScript.DropOrbs();
+            PersistantStateData.persistantStateData.ChangeStateConditions("StatueFixed", true);
+            taskDone = true;
         }
 
         /*
