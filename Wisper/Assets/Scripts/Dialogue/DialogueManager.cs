@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour {
     private GameObject optionPanels;        // The gameobject that is a parent of the object panels.
     private GameObject nextLinePrompt;           // An image that prompts the player to press a button to proceed with dialogue
     private GameObject interactText;        // gameobject that occurs when player can trigger the dialogue, disappears when dialogue box is active
+    private GameObject depositText;
 
     // Display time values & references
     private GameObject activeNPC;           // Reference to NPC with active dialogue
@@ -85,7 +86,9 @@ public class DialogueManager : MonoBehaviour {
         dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
         nextLinePrompt = GameObject.Find("DialogueButtonPrompt");
         interactText = GameObject.Find("InteractText");
+        depositText = GameObject.Find("ShrineDepositText");
         interactText.SetActive(false);
+        depositText.SetActive(false);
 
         optionPanels = GameObject.FindGameObjectWithTag("OptionPanels");
         
@@ -288,6 +291,7 @@ public class DialogueManager : MonoBehaviour {
                     if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && GetEnabledDialogue(nearestNPC).enabled || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
                         interactText.SetActive(false);
+                        depositText.SetActive(false);
                         dialogueBoxActive = true;
                         activeNPC = nearestNPC;
                         charDelay = activeNPC.GetComponent<NPCDialogues>().defaultCharDelay;
@@ -855,6 +859,7 @@ public class DialogueManager : MonoBehaviour {
 
         sentenceIndex = 0;
 
+        // reactivate interact button prompt if within range
 
         activeDialogue = null;
         dialogueBoxActive = false;
