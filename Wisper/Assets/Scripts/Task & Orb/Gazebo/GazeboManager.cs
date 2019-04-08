@@ -58,6 +58,7 @@ public class GazeboManager : MonoBehaviour {
                 else                        // Node is exactly center (occurs when odd gridResolution is used)
                 {
                     zOffset = 0;
+                    Debug.Log("This should be working...");
                 }
 
 
