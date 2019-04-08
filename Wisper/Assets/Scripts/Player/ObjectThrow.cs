@@ -96,6 +96,9 @@ public class ObjectThrow : MonoBehaviour {
     {
         return throwForce;
     }
+    public Vector3 GetMovementVector() {
+        return deltaMovementVector;
+    }
 
     // detect if any pickable objects are within range
     private void OnTriggerStay(Collider other)
