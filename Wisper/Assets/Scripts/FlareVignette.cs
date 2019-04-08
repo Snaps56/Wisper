@@ -32,6 +32,8 @@ public class FlareVignette : MonoBehaviour {
             }
         }
 
+        Debug.Log("hello");
+
         vignetteSettings.intensity = finalVignette;
 
         postProcessingProfile.vignette.settings = vignetteSettings;
