@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-public class FlareVignette : MonoBehaviour {
-    
+public class FlareVignette : MonoBehaviour
+{
+
     private Transform shrine;
     public PostProcessingProfile postProcessingProfile;
     private VignetteModel.Settings vignetteSettings;
@@ -13,39 +14,49 @@ public class FlareVignette : MonoBehaviour {
     public float finalVignette = 0.5f;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         shrine = GameObject.Find("Shrine").transform;
         vignetteSettings = postProcessingProfile.vignette.settings;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        float flareDot = Vector3.Dot((shrine.transform.position - transform.position).normalized, transform.forward.normalized);
+    }
 
-        if (!(bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
-        {
-            finalVignette = defaultVignette + (1 - flareDot) * (.5f);
-
-            if (finalVignette > 0.5f)
-            {
-                finalVignette = 0.5f;
-            }
-        }
-
-        Debug.Log("hello");
-
+    // Update is called once per frame
+    void Update()
+    {
+        postProcessingProfile.vignette.settings = vignetteSettings;
         vignetteSettings.intensity = finalVignette;
 
-        postProcessingProfile.vignette.settings = vignetteSettings;
-	}
+        if (PersistantStateData.persistantStateData.enableDebugMode)
+        {
+            DoFinalVignette();
+        }
+        else
+        {
+            float flareDot = Vector3.Dot((shrine.transform.position - transform.position).normalized, transform.forward.normalized);
+
+            if (!(bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
+            {
+                finalVignette = defaultVignette + (1 - flareDot) * (.5f);
+
+                if (finalVignette > 0.5f)
+                {
+                    finalVignette = 0.5f;
+                }
+            }
+        }
+    }
     private void FixedUpdate()
     {
-        if ((bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"] || (bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
+        if ((bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
         {
-            if (finalVignette > defaultVignette)
-            {
-                finalVignette -= 0.025f;
-            }
+            DoFinalVignette();
+        }
+    }
+    private void DoFinalVignette()
+    {
+        if (finalVignette > defaultVignette)
+        {
+            finalVignette -= 0.025f;
         }
     }
 }
