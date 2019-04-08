@@ -74,14 +74,7 @@ public class PlayerMovement : MonoBehaviour {
         // Debug key for testing PSD
         if (Input.GetKeyDown(KeyCode.L))
         {
-            bool toggle = true;
-            GameObject PSD = GameObject.Find("PersistantStateData");
-            if((bool)PSD.GetComponent<PersistantStateData>().stateConditions["DebugValue"])
-            {
-                toggle = false;
-            }
-
-            PSD.GetComponent<PersistantStateData>().ChangeStateConditions("DebugValue", toggle);
+            PersistantStateData.persistantStateData.ToggleDebugMode();
         }
     }
 

@@ -17,6 +17,7 @@ public class PersistantStateData : MonoBehaviour
     public bool realPSD = false;
     // Variables used to save and load game data
     public string savePath;
+    public bool enableDebugMode = false;
 
     // When scene with this loads, initialize the static variable to object with this script if there is none. Object is persistant through scenes.
     // Otherwise if persistantStateData is already loaded into the game/scene, don't overwrite it and delete this object. This enforces singleton status.
@@ -60,6 +61,18 @@ public class PersistantStateData : MonoBehaviour
     {
     }
 
+    public void ToggleDebugMode()
+    {
+        Debug.Log("Debug Mode enabled: " + enableDebugMode);
+        if (enableDebugMode)
+        {
+            enableDebugMode = false;
+        }
+        else
+        {
+            enableDebugMode = true;
+        }
+    }
     // fills the persistantStateConditions with the various conditions. We can consider passing in arguments for initialization when considering save/load functionality.
     private void PopulateStateConditions()
     {
@@ -100,6 +113,8 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TutorialSprintButton", false);
         stateConditions.Add("TutorialShellstersCompleted", false);
         stateConditions.Add("TutorialAbilitiesCompleted", false);
+        stateConditions.Add("TutorialAttempt2ndClean", false);
+        stateConditions.Add("TutorialCleanCompleted", false);
         stateConditions.Add("TutorialGateTravelled", false); // check if player is within gate range
 
         /////////////////////////////////////////////////////////
@@ -111,6 +126,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("OrbMaxDeposit", 30.0f);
         stateConditions.Add("TotalOrbCount", 65.0f);
         stateConditions.Add("HasReachedMax", false);
+        stateConditions.Add("StatueFixed", false);
 
 
         stateConditions.Add("ShamusHasHat", false);

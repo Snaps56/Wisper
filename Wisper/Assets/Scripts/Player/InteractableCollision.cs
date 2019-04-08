@@ -49,6 +49,10 @@ public class InteractableCollision : MonoBehaviour {
             {
                 ActivatePrompt();
             }
+            else
+            {
+                DeactivatePrompt();
+            }
         }
     }
     void OnTriggerEnter(Collider other)
