@@ -6,7 +6,7 @@ public class TutorialsBasicsCondition : MonoBehaviour {
 
     public float shrineProximityTrigger;
 
-    private Transform shrineTransform;
+    private GameObject shrine;
     public GameObject player;
     private GameObject mainCamera;
 
@@ -20,7 +20,7 @@ public class TutorialsBasicsCondition : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tutorialCondition = GetComponent<TutorialCondition>();
-        shrineTransform = GameObject.Find("Shrine").transform;
+        shrine = GameObject.Find("Shrine");
         player = GameObject.Find("Player");
         mainCamera = GameObject.Find("Main Camera");
     }
@@ -40,7 +40,7 @@ public class TutorialsBasicsCondition : MonoBehaviour {
             mainCamera.GetComponent<CameraOptimized>().EnableCameraMovement();
         }
 
-        currentProximity = Vector3.Distance(shrineTransform.position, player.transform.position);
+        currentProximity = Vector3.Distance(shrine.transform.position, player.transform.position);
 
         if (currentProximity < shrineProximityTrigger)
         {
