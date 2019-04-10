@@ -4,57 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InteractableCollision : MonoBehaviour {
-
-    private GameObject interactText;
+    
     private GameObject dialogueBox;
     public bool nearShrine;
 	private DialogueManager dialogueManager;
+    public GameObject interactText;
+
+    private int currentDialogueTriggers = 0;
+    public bool withinDialogueRange = true;
 
 	// Use this for initialization
 	void Start () {
 		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
-        dialogueBox = GameObject.Find("DialoguePanel");
-        interactText = GameObject.Find("InteractText");
+        dialogueBox = GameObject.Find("MainCanvas").gameObject.transform.Find("DialoguePanel").gameObject;
     }
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        // player finishes talking to shellster, dialoguebox deactivates, but player can stil talk to shellster...
-        // button prompt should reactivate but it doesn't since nothing is triggering it to reactivate...
-        // since button prompt activates only on trigger enter
-        
-        // so if other collider is dialogue trigger, dialoguebox is inactive, and npc has dialogues, activate the prompt
-        if (other.gameObject.CompareTag("DialogueTrigger") && !dialogueBox.activeInHierarchy)
+        //Debug.Log("Within dialogue range: " + withinDialogueRange + ", number of dialogue triggers: " + currentDialogueTriggers);
+        if (currentDialogueTriggers > 0)
         {
-            Debug.Log("In Dialogue Range");
-            NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
-            if (npcDialogues != null)   // If this npc has dialogues
-            {
-                Debug.Log("Has Dialogue");
-                try
-                {
-                    dialogueManager.GetEnabledDialogue(other.gameObject);
-                    Debug.Log("Found some dialogue?");
-                    ActivatePrompt();
-                }
-                catch (MissingReferenceException e)
-                {
-                    Debug.Log("Couldn't find dialogue?");
-                    DeactivatePrompt();
-                }
-            }
+            withinDialogueRange = true;
+        }
+        else
+        {
+            withinDialogueRange = false;
         }
     }
     void OnTriggerEnter(Collider other)
 	{
-        
 		if (other.gameObject.CompareTag ("Shrine")) {
 			nearShrine = true;
 		}
 
 		if (other.gameObject.CompareTag("DialogueTrigger"))
-		{
-			// make sure reference to DM is set
-			if (dialogueManager == null)
+        {
+            currentDialogueTriggers++;
+            // make sure reference to DM is set
+            if (dialogueManager == null)
 			{
 				// Debug.Log("null dialogueManager, checking again");
 				dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
@@ -67,6 +53,24 @@ public class InteractableCollision : MonoBehaviour {
                 //      -npc has dialogues
                 //      -within interact range
                 //      -dialogue box is not active
+                if (currentDialogueTriggers < 2)
+                {
+                    try
+                    {
+                        dialogueManager.GetEnabledDialogue(other.gameObject);
+                        Debug.Log("Found some dialogue?");
+                        if (!dialogueBox.activeInHierarchy)
+                        {
+                            ActivatePrompt();
+                        }
+                    }
+                    catch (MissingReferenceException e)
+                    {
+                        Debug.Log("Couldn't find dialogue?");
+                        DeactivatePrompt();
+                    }
+                    //ActivatePrompt();
+                }
 
                 // Debug.Log("NPC has dialogues");
                 if (!npcDialogues.GetInDialogueRange())
@@ -89,7 +93,11 @@ public class InteractableCollision : MonoBehaviour {
         }
 		if (other.gameObject.CompareTag ("DialogueTrigger"))
         {
-            DeactivatePrompt();
+            currentDialogueTriggers--;
+            if (currentDialogueTriggers < 1)
+            {
+                DeactivatePrompt();
+            }
 
             NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
             if (npcDialogues != null)   // If this npc has dialogues

@@ -272,7 +272,7 @@ public class DialogueManager : MonoBehaviour {
                 //Debug.Log("Howdy");
                 if(!(nextLinePrompt.activeSelf))
                 {
-                    Debug.Log("Show next line prompt");
+                    //Debug.Log("Show next line prompt");
                     ShowNextLinePrompt();
                 }
             }
@@ -287,7 +287,7 @@ public class DialogueManager : MonoBehaviour {
                     //TODO: Display interact button by this npc
                     if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && GetEnabledDialogue(nearestNPC).enabled || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
-                        Debug.Log("Activate Dialogue!");
+                        //Debug.Log("Activate Dialogue!");
                         interactText.SetActive(false);
                         dialogueBoxActive = true;
                         activeNPC = nearestNPC;
@@ -856,9 +856,36 @@ public class DialogueManager : MonoBehaviour {
 
         sentenceIndex = 0;
 
+        StartCoroutine(InteractDelay(activeNPC));
+
         activeDialogue = null;
         dialogueBoxActive = false;
         activeNPC = null;
+
+
+    }
+    IEnumerator InteractDelay(GameObject interactNPC)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (player.GetComponentInChildren<InteractableCollision>().withinDialogueRange && (bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
+        {
+            try
+            {
+                if (GetEnabledDialogue(interactNPC).enabled && !dialogueBoxActive)
+                {
+                    interactText.SetActive(true);
+                    Debug.Log("activate prompt after closing dialogue. Sentence is: " + GetEnabledDialogue(interactNPC).sentences[0].line);
+                }
+                else
+                {
+                    interactText.SetActive(false);
+                }
+            }
+            catch
+            {
+                interactText.SetActive(false);
+            }
+        }
     }
 
     // Activates the dialogueBox
