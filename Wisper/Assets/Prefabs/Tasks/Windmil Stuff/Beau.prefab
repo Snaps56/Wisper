@@ -693,7 +693,7 @@ MonoBehaviour:
   followTetherMinDistance: 3
   followTetherStrongDistance: 5
   dialogues:
-  - dialogueName: Windmill Broken
+  - dialogueName: Halfpipe Broken
     enabled: 1
     forceOnEnable: 0
     follow: 1
@@ -701,27 +701,18 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillFixed
+    - conditionName: HalfPipeTaskDone
       conditionValue: 0
-    - conditionName: WindmillTaskDone
+    - conditionName: HalfPipeFixed
       conditionValue: 0
     conditionChangeOnExit: []
     options: []
-    speedControls:
-    - sentenceIndex: 0
-      charIndex: 9
-      charDelayChange: -0.06
-    - sentenceIndex: 0
-      charIndex: 25
-      charDelayChange: 0.56
-    - sentenceIndex: 0
-      charIndex: 26
-      charDelayChange: -0.5
+    speedControls: []
     sentences:
-    - speaker: Beau
-      line: The darn windmill is broken again! I hope it gets fixed soon! How we gonna
-        get power?
-  - dialogueName: Windmill Finished
+    - speaker: Doug
+      line: Aw man! The wind blew the sand on the half pipe again! How am I going
+        to skate?
+  - dialogueName: HalfPipe Done
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -729,17 +720,17 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillTaskDone
+    - conditionName: HalfPipeTaskDone
       conditionValue: 1
-    - conditionName: WindmillFixed
+    - conditionName: HalfPipeFixed
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: Beau
-      line: 'The windmill works again! It must be a miracle! '
-  - dialogueName: Windmill Fixed
+    - speaker: Doug
+      line: YEA! THIS IS SO FUN!
+  - dialogueName: HalfPipe Fixed
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -747,16 +738,16 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillFixed
+    - conditionName: HalfPipeTaskDone
       conditionValue: 0
-    - conditionName: WindmillTaskDone
+    - conditionName: WindmillFixed
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: Beau
-      line: The windmill is fixed, but it's still not moving!
+      line: The wind blew the sand off the half pipe! But I'm too scared to go!
 --- !u!114 &8988257156778744558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3075,7 +3066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingTexts:
-  - dialogueName: Windmill Broken
+  - dialogueName: HalfPipe Broken
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -3083,17 +3074,17 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillFixed
+    - conditionName: HalfPipeFixed
       conditionValue: 0
-    - conditionName: WindmillTaskDone
+    - conditionName: HalfPipeTaskDone
       conditionValue: 0
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: The windmill is broken!
-  - dialogueName: Windmill Finished
+      line: The half pipe is too dirty!
+  - dialogueName: HalfPipe Finished
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -3101,17 +3092,17 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillTaskDone
+    - conditionName: HalfPipeTaskDone
       conditionValue: 1
-    - conditionName: WindmillFixed
+    - conditionName: HalfPipeFixed
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: The windmill works again!
-  - dialogueName: Windmill Fixed
+      line: This is so fun!
+  - dialogueName: HalfPipe Fixed
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -3119,16 +3110,16 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillFixed
+    - conditionName: HalfPipeFixed
       conditionValue: 1
-    - conditionName: WindmillTaskDone
+    - conditionName: HalfPipeTaskDone
       conditionValue: 0
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: The windmill is fixed!
+      line: I'm scared!
   range: 8
 --- !u!114 &8988257157614636853
 MonoBehaviour:
