@@ -23,9 +23,6 @@ public class FlareVignette : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        postProcessingProfile.vignette.settings = vignetteSettings;
-        vignetteSettings.intensity = finalVignette;
-
         if (PersistantStateData.persistantStateData.enableDebugMode)
         {
             DoFinalVignette();
@@ -47,6 +44,9 @@ public class FlareVignette : MonoBehaviour
                 }
             }
         }
+        postProcessingProfile.vignette.settings = vignetteSettings;
+        vignetteSettings.intensity = finalVignette;
+
     }
     private void FixedUpdate()
     {

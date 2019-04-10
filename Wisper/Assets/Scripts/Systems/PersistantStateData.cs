@@ -104,6 +104,8 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TutorialGate", false); // check if player is within gate range
 
         // Tooltips 2.0
+        stateConditions.Add("ShrineReturnConversation", false);  // Marks if player began first conversation after finishing tasks
+        stateConditions.Add("TutorialReturnedToShrine", false);
 
         stateConditions.Add("TutorialFollowLightFinished", false);
         stateConditions.Add("TutorialBasicsFinished", false);
