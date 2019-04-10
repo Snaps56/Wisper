@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Load("RedOrb");
+        Load("LS Playground");
     }
 
     public void Load(string sceneName)
