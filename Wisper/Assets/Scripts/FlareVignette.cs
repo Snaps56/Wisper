@@ -6,7 +6,7 @@ using UnityEngine.PostProcessing;
 public class FlareVignette : MonoBehaviour
 {
 
-    private Transform shrine;
+    private GameObject shrine;
     public PostProcessingProfile postProcessingProfile;
     private VignetteModel.Settings vignetteSettings;
 
@@ -16,7 +16,7 @@ public class FlareVignette : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        shrine = GameObject.Find("Shrine").transform;
+        shrine = GameObject.Find("Shrine");
         vignetteSettings = postProcessingProfile.vignette.settings;
     }
 
@@ -32,15 +32,18 @@ public class FlareVignette : MonoBehaviour
         }
         else
         {
-            float flareDot = Vector3.Dot((shrine.transform.position - transform.position).normalized, transform.forward.normalized);
-
-            if (!(bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
+            if (shrine != null)
             {
-                finalVignette = defaultVignette + (1 - flareDot) * (.5f);
+                float flareDot = Vector3.Dot((shrine.transform.position - transform.position).normalized, transform.forward.normalized);
 
-                if (finalVignette > 0.5f)
+                if (!(bool)PersistantStateData.persistantStateData.stateConditions["TutorialBasicsFinished"])
                 {
-                    finalVignette = 0.5f;
+                    finalVignette = defaultVignette + (1 - flareDot) * (.5f);
+
+                    if (finalVignette > 0.5f)
+                    {
+                        finalVignette = 0.5f;
+                    }
                 }
             }
         }

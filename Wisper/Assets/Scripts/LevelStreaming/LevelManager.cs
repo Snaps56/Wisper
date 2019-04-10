@@ -11,14 +11,14 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Load("RedOrb");
+        Load("LS Playground");
     }
 
     public void Load(string sceneName)
     {
         if (!SceneManager.GetSceneByName(sceneName).isLoaded)
         {
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         }
     }
 
