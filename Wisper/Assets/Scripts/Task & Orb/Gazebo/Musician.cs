@@ -41,6 +41,9 @@ public class Musician : MonoBehaviour {
         LocalNodeCopy startNode = FindClosestNode(this.gameObject.transform.position, unblockedWaypoints);
         LocalNodeCopy destination = FindClosestNode(target, unblockedWaypoints);
 
+        Debug.Log("startNode set as (" + startNode.index1 + ", " + startNode.index2 + ")");
+        Debug.Log("destination set as (" + destination.index1 + ", " + destination.index2 + ")");
+
         LocalNodeCopy checkpointNode = startNode;
 
         // A* algorithm
@@ -166,6 +169,10 @@ public class Musician : MonoBehaviour {
                         // If it is not already in checkNodes, add it. Otherwise set disNode to be the version in checkNodes
                         foreach (LocalNodeCopy node in checkNodes)
                         {
+                            if(disNode.index1 == target.index1 && disNode.index2 == target.index2)
+                            {
+                                disNode = target;
+                            }
                             if (node.index1 == disNode.index1 && node.index2 == disNode.index2)
                             {
                                 newNode = false;

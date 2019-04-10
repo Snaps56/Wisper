@@ -42,6 +42,7 @@ public class InstrumentDetector : MonoBehaviour
      */
     private void Update()
     {
+        
         if(instrumentList.Count > 0)
         {
             foreach (Instrument inst in instrumentList)
@@ -63,6 +64,7 @@ public class InstrumentDetector : MonoBehaviour
                 }
             }
         }
+        
     }
 
 }

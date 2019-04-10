@@ -12,7 +12,7 @@ public class GazeboManager : MonoBehaviour {
     private float gazeboWidth;
     private float gazeboLength;
     private GameObject waypointParent;
-    private const int gridRes = 10;
+    private const int gridRes = 15;
     public bool pathfindingInProgress = false;
 
 	// Use this for initialization
@@ -108,18 +108,19 @@ public class GazeboManager : MonoBehaviour {
                 GameObject tmpSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 waypoint.GetComponent<MeshFilter>().mesh = tmpSphere.GetComponent<MeshFilter>().mesh;
                 Destroy(tmpSphere);
-
+                
+                /*
                 waypoint.AddComponent<BoxCollider>();
                 BoxCollider wpCollider = waypoint.GetComponent<BoxCollider>();
                 wpCollider.isTrigger = true;
                 wpCollider.size = new Vector3(gazeboWidth / (gridRes + 2), 5, gazeboLength / (gridRes + 2));
                 wpCollider.center = new Vector3(0, 2, 0);
-
+                */
                 waypoint.AddComponent<NavNode>();
                 NavNode wpNavNode = waypoint.GetComponent<NavNode>();
                 wpNavNode.index1 = i;
                 wpNavNode.index2 = j;
-
+                wpNavNode.boxCastHalfExtents = new Vector3(gazeboWidth / (gridRes + 2), 0.5f, gazeboLength / (gridRes + 2));
                 waypoints[i, j] = waypoint;
                 unblockedWaypoints[i, j] = waypoint;
             }
@@ -150,6 +151,14 @@ public class GazeboManager : MonoBehaviour {
         {
             if(musician.GetComponent<Musician>().instrumentPlayed == instrument.instrumentType)
             {
+                for(int i = 0; i < gridRes; i++)
+                {
+                    for(int j = 0; j < gridRes; j++)
+                    {
+                        //waypoints[i, j].GetComponent<NavNode>().CheckBlocked();
+                        waypoints[i, j].GetComponent<NavNode>().DetectBlocked();
+                    }
+                }
                 Debug.Log("Musician found");
                 musician.GetComponent<Musician>().MakeAPath(instrument.gameObject.transform.position);
             }
