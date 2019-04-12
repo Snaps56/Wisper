@@ -13,7 +13,8 @@ public class RedrawLine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		foreach (LineRenderer line in lines) {
-			line.SetPosition (1, transform.localPosition);
+			//line.SetPosition (1, transform.localPosition);
+            
 		}
 	}
 }

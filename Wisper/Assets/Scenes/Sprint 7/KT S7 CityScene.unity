@@ -5432,7 +5432,6 @@ GameObject:
   - component: {fileID: 378630156}
   - component: {fileID: 378630155}
   - component: {fileID: 378630154}
-  - component: {fileID: 378630159}
   - component: {fileID: 378630158}
   m_Layer: 0
   m_Name: Kite
@@ -5466,7 +5465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ef5714087bb9745b350cdaf5a54e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
+  orb: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -5483,7 +5482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39502733e67d33d4882e5d0ff2c9ea19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc: {fileID: 1405649833}
+  npc: {fileID: 0}
 --- !u!65 &378630156
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5603,19 +5602,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &378630159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 378630152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50352a28c9c32f54d9dd51485d5a98e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  end: {fileID: 720292687}
-  lineRenderer: {fileID: 378630158}
 --- !u!1 &381064665
 GameObject:
   m_ObjectHideFlags: 0
@@ -10897,7 +10883,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 401690785}
   m_LocalRotation: {x: -6.123231e-17, y: 0.00000058114523, z: -6.1232376e-17, w: -1}
-  m_LocalPosition: {x: -264.36, y: 306.76, z: -721.18}
+  m_LocalPosition: {x: -264.682, y: 306.781, z: -721.18}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10942,8 +10928,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01039068ddd3fe479093b8bd1f1173c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 959376598}
-  player: {fileID: 584258460}
+  parent: {fileID: 0}
+  player: {fileID: 0}
 --- !u!135 &401690792
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13821,11 +13807,6 @@ Transform:
   m_Father: {fileID: 1968786592}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &584258460 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1042204245919040, guid: 0fe6b442df29e2b4786625321999246d,
-    type: 2}
-  m_PrefabInternal: {fileID: 877526270}
 --- !u!1001 &584841776
 Prefab:
   m_ObjectHideFlags: 0
@@ -18125,6 +18106,10 @@ Prefab:
     - target: {fileID: 1042204245919040, guid: 0fe6b442df29e2b4786625321999246d, type: 2}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280034586131422, guid: 0fe6b442df29e2b4786625321999246d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fe6b442df29e2b4786625321999246d, type: 2}
@@ -43890,7 +43875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ef5714087bb9745b350cdaf5a54e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
+  orb: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -46987,7 +46972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39502733e67d33d4882e5d0ff2c9ea19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc: {fileID: 1405649833}
+  npc: {fileID: 0}
 --- !u!114 &1876544230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46999,7 +46984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ef5714087bb9745b350cdaf5a54e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 2}
+  orb: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -47011,7 +46996,7 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876544227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -47103,13 +47088,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876544227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50352a28c9c32f54d9dd51485d5a98e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  end: {fileID: 720292687}
-  lineRenderer: {fileID: 1876544231}
+  points: []
+  lineRenderer: {fileID: 0}
 --- !u!65 &1876544233
 BoxCollider:
   m_ObjectHideFlags: 0
