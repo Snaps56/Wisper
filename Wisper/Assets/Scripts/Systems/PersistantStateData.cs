@@ -104,6 +104,8 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TutorialGate", false); // check if player is within gate range
 
         // Tooltips 2.0
+        stateConditions.Add("ShrineReturnConversation", false);  // Marks if player began first conversation after finishing tasks
+        stateConditions.Add("TutorialReturnedToShrine", false);
 
         stateConditions.Add("TutorialFollowLightFinished", false);
         stateConditions.Add("TutorialBasicsFinished", false);
@@ -138,9 +140,15 @@ public class PersistantStateData : MonoBehaviour
 
 
         /**************    City flags   ***************/
+        //Windmill
         stateConditions.Add("WindmillTaskDone", false);
         stateConditions.Add("WindmillFixed", false);
         stateConditions.Add("WindmillSpawnedOrbs", false);
+        //Halfpipe
+        stateConditions.Add("HalfPipeTaskDone", false);
+        stateConditions.Add("HalfPipeFixed", false);
+        stateConditions.Add("HalfPipeSpawnedOrbs", false);
+
 		stateConditions.Add("BeachIsClean", false);
 		stateConditions.Add("PlaygroundIsClean", false);
 		stateConditions.Add("CenterIsClean", false);

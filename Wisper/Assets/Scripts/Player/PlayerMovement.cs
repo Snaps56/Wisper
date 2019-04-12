@@ -362,7 +362,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void EnableMovement()
     {
-        Debug.Log("Player movement script enabled movement");
+        //Debug.Log("Player movement script enabled movement");
         movementToggledOff = false;
     }
     public void DisableMovement()

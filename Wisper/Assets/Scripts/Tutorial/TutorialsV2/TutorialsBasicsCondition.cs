@@ -22,7 +22,7 @@ public class TutorialsBasicsCondition : MonoBehaviour {
         tutorialCondition = GetComponent<TutorialCondition>();
         shrine = GameObject.Find("Shrine");
         player = GameObject.Find("Player");
-        mainCamera = GameObject.Find("Main Camera");
+        mainCamera = player.transform.Find("Main Camera").gameObject;
     }
 	
 	// Update is called once per frame
