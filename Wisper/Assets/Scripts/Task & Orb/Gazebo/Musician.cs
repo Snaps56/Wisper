@@ -90,7 +90,7 @@ public class Musician : MonoBehaviour {
             }
             npcPath.Reverse();
             route = npcPath;
-            this.gameObject.GetComponent<NPCMovement>().waypoints = route;
+            this.gameObject.GetComponent<NPCMovement>().ReplaceWaypoints(route);
         }
         else
         {

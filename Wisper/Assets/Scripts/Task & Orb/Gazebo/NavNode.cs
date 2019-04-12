@@ -69,13 +69,13 @@ public class NavNode : MonoBehaviour
                         {
                             if (!(hitFo.collider is SphereCollider))
                             {
-                                Debug.Log("Found collision with " + hitFo.transform.name);
+                                //Debug.Log("Found collision with " + hitFo.transform.name);
                                 blocked = true;
                             }
                         }
                         else
                         {
-                            Debug.Log("Found collision with " + hitFo.transform.name);
+                            //Debug.Log("Found collision with " + hitFo.transform.name);
                             blocked = true;
                         }
                     }
