@@ -131,7 +131,7 @@ public class DialogueManager : MonoBehaviour {
         if(sentenceDisplayInProgress)
         {
             try {
-                activeNPC.GetComponent<AudioSource>();
+                activeNPC.GetComponent<NPCAudioManager>().Play();
             }
             catch (System.Exception e)
             {
