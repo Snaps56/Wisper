@@ -127,6 +127,17 @@ public class DialogueManager : MonoBehaviour {
 
     private void Update()
     {
+        //
+        if(sentenceDisplayInProgress)
+        {
+            try {
+                activeNPC.GetComponent<AudioSource>();
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {

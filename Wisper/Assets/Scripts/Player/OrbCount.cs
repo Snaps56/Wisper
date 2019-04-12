@@ -70,6 +70,7 @@ public class OrbCount : MonoBehaviour {
 
     private void Update()
     {
+
         //If player hits max orbs
         if ((float)psd.stateConditions["OrbCount"] >=  (float)psd.stateConditions["OrbMaxDeposit"])
         {
@@ -82,6 +83,8 @@ public class OrbCount : MonoBehaviour {
             Color32 color = Color32.Lerp(color1, color2, t);
             windPowerBar.GetComponent<Image>().color = color;
         }
+
+
     }
 
 
@@ -114,6 +117,8 @@ public class OrbCount : MonoBehaviour {
             windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]));
             orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]);
             ///End Update UI
+            ///
+            psd.ChangeStateConditions("HasNoOrbs", false);
         }
     }
 
