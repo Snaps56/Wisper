@@ -8,7 +8,7 @@ public class InteractableCollision : MonoBehaviour {
     private GameObject dialogueBox;
     public bool nearShrine;
 	private DialogueManager dialogueManager;
-    public GameObject interactText;
+    private GameObject interactText;
 
     private int currentDialogueTriggers = 0;
     public bool withinDialogueRange = true;
@@ -17,6 +17,7 @@ public class InteractableCollision : MonoBehaviour {
 	void Start () {
 		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
         dialogueBox = GameObject.Find("MainCanvas").gameObject.transform.Find("DialoguePanel").gameObject;
+        interactText = GameObject.Find("MainCanvas").gameObject.transform.Find("InteractText").gameObject;
     }
     private void Update()
     {

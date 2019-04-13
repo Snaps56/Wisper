@@ -16,10 +16,12 @@ public class CurtainHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // Fade Out after tutorial is done
+        /*
         if ((bool)PersistantStateData.persistantStateData.stateConditions["DemoEnd"] || Input.GetKey(KeyCode.Y))
         {
             curtainAnimator.SetTrigger("FadeOut");
         }
+        */
 	}
     public void OnFadeComplete()
     {
