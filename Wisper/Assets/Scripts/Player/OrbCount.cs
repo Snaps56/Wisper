@@ -6,13 +6,15 @@ public class OrbCount : MonoBehaviour {
     private float TotalOrbCount = 0;
 	private float orbCount = 0;
     private float orbMaxDeposit = 0;
+
     private PersistantStateData psd;
 
     [Header("UI")]
     public Image windPowerBar;
     public Text orbCountText;
+    public Image sunshoreLogo;
 
-    Color32 color1, color2;
+    Color32 blue, red, white, lightred;
 
     // public AudioSource wub;
 
@@ -32,8 +34,11 @@ public class OrbCount : MonoBehaviour {
         orbCount = (float)psd.stateConditions["OrbCount"];
         orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + orbMaxDeposit;
         windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["OrbMaxDeposit"]);
-        color1 = new Color32(0, 46, 255, 255);
-        color2 = new Color32(255, 0, 0, 255);
+        blue = new Color32(0, 46, 255, 255);
+        white = new Color32(255, 255, 255, 255);
+        red = new Color32(255, 0, 0, 255);
+        lightred = new Color32(255, 180, 180, 255);
+
     }
 
     //Sets the orb count
@@ -50,7 +55,12 @@ public class OrbCount : MonoBehaviour {
         if (orbCount < (float)psd.stateConditions["OrbMaxDeposit"])
         {
             orbCount += 5;
+            if(orbCount > (float)psd.stateConditions["OrbMaxDeposit"])
+            {
+                orbCount = (float)psd.stateConditions["OrbMaxDeposit"];
+            }
         }
+
         psd.ChangeStateConditions("OrbCount", orbCount);
         windPowerBar.fillAmount = orbCount / orbMaxDeposit;
         orbCountText.text = orbCount.ToString() + "/" + orbMaxDeposit;
@@ -75,15 +85,21 @@ public class OrbCount : MonoBehaviour {
         if ((float)psd.stateConditions["OrbCount"] >=  (float)psd.stateConditions["OrbMaxDeposit"])
         {
             windPowerBar.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+            psd.ChangeStateConditions("HasReachedMax", true);
+
         }
         //If play is normal
         else
         {
             float t = (float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["OrbMaxDeposit"];
-            Color32 color = Color32.Lerp(color1, color2, t);
+            psd.ChangeStateConditions("HasReachedMax", true);
+            Color32 color = Color32.Lerp(white, lightred, t);
             windPowerBar.GetComponent<Image>().color = color;
-        }
+            sunshoreLogo.GetComponent<Image>().color = color;
+            float vibrationAmount = (float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]);
+            RectTransform transform = sunshoreLogo.GetComponent<RectTransform>();
 
+        }
 
     }
 
@@ -102,6 +118,7 @@ public class OrbCount : MonoBehaviour {
             //Debug.Log ("Added 1 orb");
 
             ///Update UI
+
             if ((float)psd.stateConditions["OrbCount"] < (float)psd.stateConditions["OrbMaxDeposit"])
             {
                 orbCount++;
@@ -113,6 +130,7 @@ public class OrbCount : MonoBehaviour {
             {
                 psd.ChangeStateConditions("HasReachedMax", true);
             }
+
             // wub.Play();
             windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]));
             orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]);
