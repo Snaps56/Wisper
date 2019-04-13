@@ -95,9 +95,16 @@ public class OrbCount : MonoBehaviour {
             psd.ChangeStateConditions("HasReachedMax", true);
             Color32 color = Color32.Lerp(white, lightred, t);
             windPowerBar.GetComponent<Image>().color = color;
-            sunshoreLogo.GetComponent<Image>().color = color;
-            float vibrationAmount = (float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]);
-            RectTransform transform = sunshoreLogo.GetComponent<RectTransform>();
+            try {
+                sunshoreLogo.GetComponent<Image>().color = color;
+                float vibrationAmount = (float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]);
+                RectTransform transform = sunshoreLogo.GetComponent<RectTransform>();
+            }
+            catch (System.Exception e)
+            {
+
+            }
+
 
         }
 
