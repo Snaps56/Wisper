@@ -28,9 +28,9 @@ public class DialogueManager : MonoBehaviour {
     private Queue<string> speakers;
     private int sentenceIndex = 0;          // Index for number of sentence from queue currently being displayed.
     private float charDelay;                // Delay between adding chars to display. Controls the "speed of speech." Minimum delay is 1/framerate seconds for charDelay, which corresponds to the "fastest talking speed."
-    
+    private int displayWhenDoneCount = 0;   // Count of how many "DisplayNextSentenceWhenDone" calls where made from outside this class (currently only done through cutsceneDisplayNextSentence.
 
-    private Option activeOption;            // Reference to the active option
+    private Option activeOption = null;            // Reference to the active option
     private Choice activeChoice;            // Reference to the choice currently selected.
     private int activeChoiceIndex = 0;          // Index of active choice within list of display choices
     private List<Choice> displayChoices = new List<Choice>();    // List of choices to display on screen
@@ -127,17 +127,6 @@ public class DialogueManager : MonoBehaviour {
 
     private void Update()
     {
-        //
-        if(sentenceDisplayInProgress)
-        {
-            try {
-                activeNPC.GetComponent<NPCAudioManager>().Play();
-            }
-            catch (System.Exception e)
-            {
-                Debug.Log(e.Message);
-            }
-        }
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {
@@ -202,7 +191,6 @@ public class DialogueManager : MonoBehaviour {
                 catch(MissingReferenceException e)
                 {
                     //Debug.LogWarning(e.Message);
-                    
                 }
             }
         }
@@ -210,7 +198,7 @@ public class DialogueManager : MonoBehaviour {
         // When dialogue is active, respond to input
         if(dialogueBoxActive && activeDialogue != null)
         {
-            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && !(activeDialogue.autoPlay || optionActive || activeDialogue.progressByCutscene))    // Standard dialogue progression behaviour
+            if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && !(activeDialogue.autoPlay || optionActive))    // Standard dialogue progression behaviour
             {
                 if (sentenceDisplayInProgress)
                 {
@@ -218,7 +206,10 @@ public class DialogueManager : MonoBehaviour {
                 }
                 else
                 {
-                    DisplayNextSentence();  //No options, so display next sentence;
+                    if (!activeDialogue.progressByCutscene)
+                    {
+                        DisplayNextSentence();  //No options, so display next sentence;
+                    }
                 }
             }
             else if (optionActive && !sentenceDisplayInProgress)    // Option selection behaviour
@@ -436,12 +427,14 @@ public class DialogueManager : MonoBehaviour {
         activeOption = null;
         if(activeDialogue != null)
         {
-            if(activeDialogue.options.Count!= 0)
+            if(activeDialogue.options.Count > 0)
             {
+                Debug.Log("Detecting dialogue \"" + activeDialogue.dialogueName + "\" has more than 0 options");
                 foreach(Option o in activeDialogue.options)
                 {
                     if(o.sentenceIndex == sentenceIndex)
                     {
+                        Debug.Log("Found option for dialogue" + activeDialogue.dialogueName + " with matching sentenceIndex of " + o.sentenceIndex);
                         activeOption = o;
                         activeChoice = activeOption.choices[0]; // Set default choice to the first one.
                         activeChoiceIndex = 0;
@@ -613,8 +606,14 @@ public class DialogueManager : MonoBehaviour {
     {
         if(activeOption != null)
         {
+            Debug.Log("Hi?");
             if(!optionActive)
             {
+                Debug.Log("You shouldn't be here. Active option is " + activeOption.ToString());
+                foreach(Choice c in activeOption.choices)
+                {
+                    Debug.Log("Active option has choice " + c.reply);
+                }
                 optionActive = true;    // toggle lock for option active
                 Debug.Log("Disabled player movement");
                 player.GetComponent<PlayerMovement>().DisableMovement();
@@ -671,8 +670,6 @@ public class DialogueManager : MonoBehaviour {
             foreach(TargetCondition condition in activeDialogue.conditionChangeOnExit)
             {
                 ChangeCondition(condition);
-                //persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] = condition.conditionValue;
-                //persistantStateData.GetComponent<PersistantStateData>().updateCount++;
             }
             if(activeDialogue.forceOnEnable)
             {
@@ -768,20 +765,24 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-    // Used by cutscenes. Fast forwards sentence, then displays the next one, ensuring that the next sentence is displayed when called.
+    // Called by cutscene events to progress dialogue timed to cinematics
     public void CutsceneDislayNextSentence()
     {
+        displayWhenDoneCount++;
+        Debug.Log("Incrementing display when done count to " + displayWhenDoneCount);
+        // If called while a sentence is currently displayed, will fast forward the sentence and display the next one.
         if (sentenceDisplayInProgress)
         {
             skipText = true;
         }
-        StartCoroutine(DisplayNextSentenceWhenDone(0.5f));
+        StartCoroutine(DisplayNextSentenceWhenDone(0f));
     }
 
     // Displays next sentence after the current one has finished without any input. Can set a delay 
     IEnumerator DisplayNextSentenceWhenDone(float delayBetween = 0)
     {
-        while(sentenceDisplayInProgress) { yield return new WaitForEndOfFrame(); } // Wait until sentence is fully displayed
+        while (sentenceDisplayInProgress) { yield return new WaitForEndOfFrame(); } // Wait until sentence is fully displayed
+        
         if(delayBetween == 0)
         {
             DisplayNextSentence();
@@ -797,6 +798,12 @@ public class DialogueManager : MonoBehaviour {
     // Handles displaying of a sentence in the dialogueBox.
     IEnumerator DisplaySentence(string sentence, string speaker)
     {
+        if(displayWhenDoneCount > 0)
+        {
+            displayWhenDoneCount--;
+            Debug.Log("Decrementing Display when done count to " + displayWhenDoneCount);
+        }
+
         DialogueSpeedToken nextSpeedToken = null;   // A token used to determine when to change the display speed and by how much
         int charIndex = 0;                          // An index to the current char within the sentence
 
@@ -839,9 +846,16 @@ public class DialogueManager : MonoBehaviour {
             charIndex++;
         }
 
-        if (skipText)
+        if (skipText && displayWhenDoneCount < 2)
         {
+            Debug.Log("Display when done count is at " + displayWhenDoneCount + ". So skip text will be set to false");
             skipText = !skipText;   // Once sentence is display, turn off skip text so it doesn't automatically run on next sentence
+        }
+
+        if(displayWhenDoneCount > 0)
+        {
+            Debug.Log("Display when done count is at " + displayWhenDoneCount + ". So running DisplayNextSentenceWhenDone.");
+            StartCoroutine(DisplayNextSentenceWhenDone(0));
         }
 
         ShowChoices();    // Display choices after sentence has been printed.

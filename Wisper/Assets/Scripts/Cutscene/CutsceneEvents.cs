@@ -44,7 +44,7 @@ public class CutsceneEvents : MonoBehaviour {
 
     public void ProgressDialogue()
     {
-        GameObject.Find("DialogueManager").GetComponent<DialogueManager>().CutsceneDislayNextSentence();
+        DialogueManager.dialogueManager.CutsceneDislayNextSentence();
     }
 
     //Event called when the flower is supposed to animate

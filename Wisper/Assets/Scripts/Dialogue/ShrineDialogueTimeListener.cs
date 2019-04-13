@@ -82,7 +82,7 @@ public class ShrineDialogueTimeListener : MonoBehaviour {
                 }
                 else if ((bool)psd.stateConditions["StartupShrineDialogue"] == false)
                 {
-                    Debug.Log("followTheLightCompleteTime set");
+                    //Debug.Log("followTheLightCompleteTime set");
                     followTheLightCompleteTime = psd.globalTime;
                 }
             }

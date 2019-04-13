@@ -26,33 +26,10 @@ public class NavNode : MonoBehaviour
         gazebo = GameObject.Find("Gazebo").GetComponent<GazeboManager>();
     }
 
-   
-    /*
-    public void CheckBlocked()
-    {
-        if (blockingObjectsSize != blockingObjects.Count)
-        {
-            if (blockingObjectsSize == 0)
-            {
-                blockingObjectsSize = blockingObjects.Count;
-                gazebo.UpdateUnblockedPoints(this.gameObject, true);
-            }
-            else if (blockingObjects.Count == 0)
-            {
-                blockingObjectsSize = blockingObjects.Count;
-                gazebo.UpdateUnblockedPoints(this.gameObject, false);
-            }
-            else
-            {
-                blockingObjectsSize = blockingObjects.Count;
-            }
-        }
-    }
-    */
     public void DetectBlocked()
     {
         bool blocked = false;
-        hitInfo = Physics.BoxCastAll(this.gameObject.transform.position, boxCastHalfExtents, new Vector3(0, 1, 0), this.gameObject.transform.parent.rotation, 3f);
+        hitInfo = Physics.BoxCastAll(this.gameObject.transform.position + new Vector3(0, .5f, 0), boxCastHalfExtents, new Vector3(0, 1, 0), this.gameObject.transform.parent.rotation, 3f);
         foreach(RaycastHit hitFo in hitInfo)
         {
             // Ignore any instrument detection zone of gazebo
@@ -69,13 +46,13 @@ public class NavNode : MonoBehaviour
                         {
                             if (!(hitFo.collider is SphereCollider))
                             {
-                                //Debug.Log("Found collision with " + hitFo.transform.name);
+                                Debug.Log("Found collision with " + hitFo.transform.name);
                                 blocked = true;
                             }
                         }
                         else
                         {
-                            //Debug.Log("Found collision with " + hitFo.transform.name);
+                            Debug.Log("Found collision with " + hitFo.transform.name);
                             blocked = true;
                         }
                     }
@@ -84,101 +61,4 @@ public class NavNode : MonoBehaviour
         }
         gazebo.UpdateUnblockedPoints(this.gameObject, blocked);
     }
-
-    /*
-// Update is called once per frame
-void Update()
-{
-   if(blockingObjectsSize != blockingObjects.Count)
-   {
-       if(blockingObjectsSize == 0)
-       {
-           blockingObjectsSize = blockingObjects.Count;
-           gazebo.UpdateUnblockedPoints(this.gameObject, true);
-       }
-       else if(blockingObjects.Count == 0)
-       {
-           blockingObjectsSize = blockingObjects.Count;
-           gazebo.UpdateUnblockedPoints(this.gameObject, false);
-       }
-       else
-       {
-           blockingObjectsSize = blockingObjects.Count;
-       }
-   }
-}
-*/
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        /*
-        if (other.transform.root.tag != "Player")
-        {
-            if (other.name != "Instrument Detection Zone")
-            {
-                if(other.name != "DialogueTrigger")
-                {
-                    if (other.tag == "NPC" && !(other is SphereCollider))
-                    {
-                        Debug.Log("node trigger with " + other.name);
-                        if (gazebo == null)
-                        {
-                            gazebo = GameObject.Find("Gazebo").GetComponent<GazeboManager>();
-                        }
-                        blockingObjects.Add(other.gameObject);
-                    }
-                }
-            }
-        }
-        /
-        if (other.name != "DialogueTrigger")
-        {
-            if (other.tag == "NPC" && !(other is SphereCollider))
-            {
-                Debug.Log("node trigger with " + other.name);
-                if (gazebo == null)
-                {
-                    gazebo = GameObject.Find("Gazebo").GetComponent<GazeboManager>();
-                }
-                blockingObjects.Add(other.gameObject);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        /*
-        if (other.transform.root.tag != "Player")
-        {
-            if (other.name != "Instrument Detection Zone")
-            {
-                if (other.name != "DialogueTrigger")
-                {
-                    if(other.tag == "NPC" && !(other is SphereCollider))
-                    {
-                        if (gazebo == null)
-                        {
-                            gazebo = GameObject.Find("Gazebo").GetComponent<GazeboManager>();
-                        }
-                        Debug.Log("node trigger exit with " + other.name);
-                        blockingObjects.Remove(other.gameObject);
-                    }
-                }
-            }
-        }
-        /
-        if (other.name != "DialogueTrigger")
-        {
-            if (other.tag == "NPC" && !(other is SphereCollider))
-            {
-                if (gazebo == null)
-                {
-                    gazebo = GameObject.Find("Gazebo").GetComponent<GazeboManager>();
-                }
-                Debug.Log("node trigger exit with " + other.name);
-                blockingObjects.Remove(other.gameObject);
-            }
-        }
-    }
-*/
 }

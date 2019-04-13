@@ -12,15 +12,15 @@ public class GazeboManager : MonoBehaviour {
     private float gazeboWidth;
     private float gazeboLength;
     private GameObject waypointParent;
-    private const int gridRes = 15;
+    private const int gridRes = 20;
     public bool pathfindingInProgress = false;
 
 	// Use this for initialization
 	void Start () {
         PSD = PersistantStateData.persistantStateData;
         instrumentCollider = this.transform.Find("Instrument Detection Zone").gameObject;
-        gazeboWidth = this.transform.localScale.x;
-        gazeboLength = this.transform.localScale.z;
+        gazeboWidth = Vector3.Dot(instrumentCollider.GetComponent<Collider>().bounds.extents, new Vector3(1,0,1));
+        gazeboLength = Vector3.Dot(instrumentCollider.GetComponent<Collider>().bounds.extents, new Vector3(1, 0, 1));
         waypointParent = new GameObject("waypoint parent");
         waypoints = new GameObject[gridRes, gridRes];
         unblockedWaypoints = new GameObject[gridRes, gridRes];
@@ -109,13 +109,6 @@ public class GazeboManager : MonoBehaviour {
                 waypoint.GetComponent<MeshFilter>().mesh = tmpSphere.GetComponent<MeshFilter>().mesh;
                 Destroy(tmpSphere);
                 
-                /*
-                waypoint.AddComponent<BoxCollider>();
-                BoxCollider wpCollider = waypoint.GetComponent<BoxCollider>();
-                wpCollider.isTrigger = true;
-                wpCollider.size = new Vector3(gazeboWidth / (gridRes + 2), 5, gazeboLength / (gridRes + 2));
-                wpCollider.center = new Vector3(0, 2, 0);
-                */
                 waypoint.AddComponent<NavNode>();
                 NavNode wpNavNode = waypoint.GetComponent<NavNode>();
                 wpNavNode.index1 = i;
@@ -155,12 +148,11 @@ public class GazeboManager : MonoBehaviour {
                 {
                     for(int j = 0; j < gridRes; j++)
                     {
-                        //waypoints[i, j].GetComponent<NavNode>().CheckBlocked();
                         waypoints[i, j].GetComponent<NavNode>().DetectBlocked();
                     }
                 }
                 Debug.Log("Musician found");
-                musician.GetComponent<Musician>().MakeAPath(instrument.gameObject.transform.position);
+                musician.GetComponent<Musician>().MakeAPath(instrument.gameObject);
             }
         }
         

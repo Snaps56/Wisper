@@ -28,7 +28,7 @@ public class Musician : MonoBehaviour {
      * Perform A* algorithm to find path
      *  
      */
-    public void MakeAPath(Vector3 target)
+    public void MakeAPath(GameObject target)
     {
         Debug.Log("Musician pathfinding called");
         GameObject[,] unblockedWaypoints = gazebo.unblockedWaypoints;
@@ -38,8 +38,8 @@ public class Musician : MonoBehaviour {
 
         UnblockSelf(unblockedWaypoints, allWaypoints);
 
-        LocalNodeCopy startNode = FindClosestNode(this.gameObject.transform.position, unblockedWaypoints);
-        LocalNodeCopy destination = FindClosestNode(target, unblockedWaypoints);
+        LocalNodeCopy startNode = FindClosestNode(this.gameObject, unblockedWaypoints, target.transform.position);
+        LocalNodeCopy destination = FindClosestNode(target, unblockedWaypoints, this.gameObject.transform.position);
 
         Debug.Log("startNode set as (" + startNode.index1 + ", " + startNode.index2 + ")");
         Debug.Log("destination set as (" + destination.index1 + ", " + destination.index2 + ")");
@@ -120,8 +120,17 @@ public class Musician : MonoBehaviour {
         }
     }
 
-    private LocalNodeCopy FindClosestNode(Vector3 target, GameObject[,] nodeList)
+    private LocalNodeCopy FindClosestNode(GameObject target, GameObject[,] nodeList, Vector3 directingPoint)
     {
+        Vector3 targetPoint;
+        if(directingPoint != null)
+        {
+            targetPoint = target.GetComponent<Collider>().ClosestPoint(directingPoint);
+        }
+        else
+        {
+            targetPoint = target.transform.position;
+        }
         GameObject closest = null;
         for(int i = 0; i < nodeList.GetLength(0); i++)
         {
@@ -133,7 +142,7 @@ public class Musician : MonoBehaviour {
                     {
                         closest = nodeList[i, j];
                     }
-                    else if (Vector3.Distance(nodeList[i, j].transform.position, target) < Vector3.Distance(closest.transform.position, target))
+                    else if (Vector3.Distance(nodeList[i, j].transform.position, targetPoint) < Vector3.Distance(closest.transform.position, targetPoint))
                     {
                         closest = nodeList[i, j];
                     }
