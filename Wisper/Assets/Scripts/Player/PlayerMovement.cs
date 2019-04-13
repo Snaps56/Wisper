@@ -367,7 +367,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void DisableMovement()
     {
-        Debug.Log("Player movement script disabled movement");
+        //Debug.Log("Player movement script disabled movement");
         movementToggledOff = true;
     }
     // Return whether if player is able to move

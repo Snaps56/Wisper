@@ -38,7 +38,7 @@ public class TutorialHelpShellsterCondition : MonoBehaviour {
         }
         else
         {
-            Debug.Log(currentDistance);
+            //Debug.Log(currentDistance);
         }
     }
 }

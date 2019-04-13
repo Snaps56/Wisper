@@ -58,7 +58,7 @@ public class InteractableCollision : MonoBehaviour {
                     try
                     {
                         dialogueManager.GetEnabledDialogue(other.gameObject);
-                        Debug.Log("Found some dialogue?");
+                        //Debug.Log("Found some dialogue?");
                         if (!dialogueBox.activeInHierarchy)
                         {
                             ActivatePrompt();
@@ -66,7 +66,7 @@ public class InteractableCollision : MonoBehaviour {
                     }
                     catch (MissingReferenceException e)
                     {
-                        Debug.Log("Couldn't find dialogue?");
+                        //Debug.Log("Couldn't find dialogue?");
                         DeactivatePrompt();
                     }
                     //ActivatePrompt();

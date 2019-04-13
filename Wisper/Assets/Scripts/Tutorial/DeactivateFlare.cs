@@ -5,13 +5,14 @@ using UnityEngine;
 public class DeactivateFlare : MonoBehaviour {
 
     public LensFlare lensFlare;
-    public GameObject player;
+    private GameObject player;
     private PersistantStateData PSDScript;
     public float deactivateDistance = 10;
 
 	// Use this for initialization
 	void Start () {
         PSDScript = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
+        player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame

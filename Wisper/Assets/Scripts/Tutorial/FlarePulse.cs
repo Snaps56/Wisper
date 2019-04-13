@@ -6,7 +6,7 @@ using XInputDotNetPure;
 public class FlarePulse : MonoBehaviour
 {
     public LensFlare lensFlare;
-    public Camera mainCamera;
+    private Camera mainCamera;
     public float dotProductAngle = 0.9f;
 
     public bool VibStop = false;
@@ -45,6 +45,8 @@ public class FlarePulse : MonoBehaviour
         initialTimer = Time.time;
         isPulsing = false;
         donePulsing = false;
+
+        mainCamera = GameObject.Find("Player").transform.Find("Main Camera").GetComponent<Camera>();
     }
 
     void BeginTimer()

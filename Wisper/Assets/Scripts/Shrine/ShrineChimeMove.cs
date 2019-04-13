@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShrineChimeMove : MonoBehaviour {
 
-    public Transform character;
+    private Transform character;
 
     public float minPlayerDistance;
     public float maxPlayerDistance;
@@ -23,6 +23,8 @@ public class ShrineChimeMove : MonoBehaviour {
     // Use this for initialization
     void Start () {
         deltaPlayerDistance = maxPlayerDistance - minPlayerDistance;
+
+        character = GameObject.Find("Player").transform;
 
         initPosition = transform.position;
         minFloatHeight = initPosition.y;
