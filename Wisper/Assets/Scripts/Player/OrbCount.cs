@@ -15,6 +15,11 @@ public class OrbCount : MonoBehaviour {
     public Image sunshoreLogo;
 
     Color32 blue, red, white, lightred;
+    //public float timeToReachTarget;
+    //private Vector3 logoStartPosition;
+    public float vibrationMultiplier;
+    public float logoLeftShift;
+    public float logoRightShift;
 
     // public AudioSource wub;
 
@@ -38,6 +43,10 @@ public class OrbCount : MonoBehaviour {
         white = new Color32(255, 255, 255, 255);
         red = new Color32(255, 0, 0, 255);
         lightred = new Color32(255, 180, 180, 255);
+        //logoStartPosition = sunshoreLogo.transform.position;
+        logoLeftShift = sunshoreLogo.transform.position.x - logoLeftShift;
+        logoRightShift = sunshoreLogo.transform.position.x + logoRightShift;
+
 
     }
 
@@ -95,10 +104,9 @@ public class OrbCount : MonoBehaviour {
             psd.ChangeStateConditions("HasReachedMax", true);
             Color32 color = Color32.Lerp(white, lightred, t);
             windPowerBar.GetComponent<Image>().color = color;
-            try {
+            try
+            {
                 sunshoreLogo.GetComponent<Image>().color = color;
-                float vibrationAmount = (float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["OrbMaxDeposit"]);
-                RectTransform transform = sunshoreLogo.GetComponent<RectTransform>();
             }
             catch (System.Exception e)
             {
@@ -107,6 +115,19 @@ public class OrbCount : MonoBehaviour {
 
 
         }
+        try
+        {
+            if ((float)psd.stateConditions["OrbCount"] != 0)
+            {
+                RectTransform logoTransform = sunshoreLogo.GetComponent<RectTransform>();
+                logoTransform.position = new Vector3(Mathf.PingPong(Time.time * vibrationMultiplier * (float)psd.stateConditions["OrbCount"], logoRightShift - logoLeftShift) + logoLeftShift, logoTransform.position.y, logoTransform.position.z);
+            }
+        }
+        catch (System.Exception e)
+        {
+
+        }
+
 
     }
 
