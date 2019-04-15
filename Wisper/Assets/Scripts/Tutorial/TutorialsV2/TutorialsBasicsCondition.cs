@@ -16,6 +16,8 @@ public class TutorialsBasicsCondition : MonoBehaviour {
     private TutorialCondition tutorialCondition;
 
     private bool doneTutorial = false;
+    private bool enabledPlayer = false;
+    private bool disabledPlayer = false;
 
     // Use this for initialization
     void Start () {
@@ -31,13 +33,23 @@ public class TutorialsBasicsCondition : MonoBehaviour {
         
         if (!(bool)PersistantStateData.persistantStateData.stateConditions["TutorialFirstDialogueFinished"])
         {
-            player.GetComponent<PlayerMovement>().DisableMovement();
-            mainCamera.GetComponent<CameraOptimized>().DisableCameraMovement();
+            if (!disabledPlayer)
+            {
+                player.GetComponent<PlayerMovement>().DisableMovement();
+                mainCamera.GetComponent<CameraOptimized>().DisableCameraMovement();
+                Debug.Log("disabled movement from tutorial basics");
+                disabledPlayer = true;
+            }
         }
         else
         {
-            player.GetComponent<PlayerMovement>().EnableMovement();
-            mainCamera.GetComponent<CameraOptimized>().EnableCameraMovement();
+            if (!enabledPlayer)
+            {
+                enabledPlayer = true;
+                Debug.Log("Enabled movement from tutorial basics");
+                player.GetComponent<PlayerMovement>().EnableMovement();
+                mainCamera.GetComponent<CameraOptimized>().EnableCameraMovement();
+            }
         }
 
         currentProximity = Vector3.Distance(shrine.transform.position, player.transform.position);
