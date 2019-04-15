@@ -41,7 +41,6 @@ public class BalloonPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(-Physics.gravity * antiGravityMod);
         if (isAnchored)
         {
             RedrawLine();
@@ -51,6 +50,10 @@ public class BalloonPhysics : MonoBehaviour
             isAnchored = !isAnchored;
             SetHasAnchor(isAnchored);
         }
+    }
+    private void FixedUpdate()
+    {
+        rb.AddForce(-Physics.gravity * antiGravityMod);
     }
     void RedrawLine()
     {
