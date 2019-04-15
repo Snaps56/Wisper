@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //[ExecuteInEditMode()]
-public class LineRenderer : MonoBehaviour
+public class LineRendererTestScript : MonoBehaviour
 {
 
     private Transform start;
