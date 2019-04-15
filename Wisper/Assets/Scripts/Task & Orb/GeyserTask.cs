@@ -5,6 +5,7 @@ using UnityEngine;
 public class GeyserTask : MonoBehaviour {
 
     public ParticleSystem waterParticles;
+    private Transform boulderOffset;
     private ParticleSystem.EmissionModule waterEmission;
     private ParticleSystem.VelocityOverLifetimeModule waterVelocity;
 
@@ -21,6 +22,8 @@ public class GeyserTask : MonoBehaviour {
     private Rigidbody rb;
     private bool geyserIsBlocked = false;
 
+    private SpawnOrbs spawnOrbsScript;
+
 	// Use this for initialization
 	void Start () {
         waterEmission = waterParticles.emission;
@@ -32,6 +35,15 @@ public class GeyserTask : MonoBehaviour {
 
         currentEmission = waterEmission.rateOverTime.constant;
         reducedEmission = currentEmission * reducedEmissionMultiplier;
+
+        spawnOrbsScript = GetComponent<SpawnOrbs>();
+
+        boulderOffset = GameObject.Find("BoulderOffset").transform;
+
+        if ((bool)PersistantStateData.persistantStateData.stateConditions["GeyserTask"])
+        {
+            transform.position = boulderOffset.position;
+        }
 	}
 	
 	// Update is called once per frame
@@ -54,6 +66,11 @@ public class GeyserTask : MonoBehaviour {
     {
         if (other.gameObject.name == "Geyser Trigger")
         {
+            if (!(bool)PersistantStateData.persistantStateData.stateConditions["GeyserTask"])
+            {
+                spawnOrbsScript.DropOrbs();
+                PersistantStateData.persistantStateData.ChangeStateConditions("GeyserTask", true);
+            }
             geyserIsBlocked = false;
         }
     }
