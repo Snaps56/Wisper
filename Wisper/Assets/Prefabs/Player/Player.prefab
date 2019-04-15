@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 54627409859291612}
   - component: {fileID: 82308098347670210}
   - component: {fileID: 114921712395926538}
-  - component: {fileID: 114558415073916862}
   - component: {fileID: 135228142433186762}
   - component: {fileID: 135949554317957168}
   - component: {fileID: 114054136169672366}
@@ -176,21 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerrigidbody: {fileID: 54627409859291612}
   source: {fileID: 82308098347670210}
---- !u!114 &114558415073916862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042204245919040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69fbf4242bdbfe944925d80d91b8d227, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nearShrine: 0
-  interactText: {fileID: 0}
-  withinDialogueRange: 1
 --- !u!135 &135228142433186762
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -511,10 +495,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windPowerBar: {fileID: 8850906148768186206, guid: 36b8e8375cc4fb5429885efc7ecc8747,
-    type: 3}
-  orbCountText: {fileID: 690132215518647051, guid: 5ae94b8e4b8cae0428d796987a26f41f,
-    type: 3}
+  windPowerBar: {fileID: 0}
+  orbCountText: {fileID: 0}
+  sunshoreLogo: {fileID: 0}
+  vibrationMultiplier: 0
+  logoLeftShift: 0
+  logoRightShift: 0
 --- !u!82 &82052067581674174
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1667,7 +1653,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -10351,6 +10337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOrbCollider: {fileID: 1202869287351374}
+  lifetimeIncreaseModifier: 0
   emissionIncreaseModifier: 0.3
   velocityIncreaseModifier: 0.03
   lifetimeVelocityIncreaseModifier: 0
@@ -15925,7 +15912,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -16506,7 +16493,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -20305,7 +20292,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 4ccae4f7bebd43e40a673fadccd8ad16, type: 2}
+  - {fileID: 2100000, guid: 265a28d2b8947b84b95e7a6efeebd996, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21514,7 +21501,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -30180,6 +30167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOrbCollider: {fileID: 1202869287351374}
+  lifetimeIncreaseModifier: 0
   emissionIncreaseModifier: 0.1
   velocityIncreaseModifier: 0.1
   lifetimeVelocityIncreaseModifier: 0
@@ -30644,7 +30632,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -31225,7 +31213,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -35024,7 +35012,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: c59c14b38f0b45942b05fb6263e28af8, type: 2}
+  - {fileID: 2100000, guid: 265a28d2b8947b84b95e7a6efeebd996, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35080,7 +35068,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOrbCollider: {fileID: 1202869287351374}
-  emissionIncreaseModifier: 0
+  lifetimeIncreaseModifier: -0.02
+  emissionIncreaseModifier: 1
   velocityIncreaseModifier: 0
   lifetimeVelocityIncreaseModifier: 0.05
 --- !u!1 &7841303451165609506
@@ -35128,7 +35117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearShrine: 0
-  interactText: {fileID: 0}
   withinDialogueRange: 1
 --- !u!135 &9221499736902968445
 SphereCollider:
