@@ -6,6 +6,7 @@ public class ParticleScaler : MonoBehaviour {
 
     public GameObject playerOrbCollider;
     private OrbCount orbScript;
+    public float lifetimeIncreaseModifier;
     public float emissionIncreaseModifier;
     public float velocityIncreaseModifier;
     public float lifetimeVelocityIncreaseModifier;
@@ -25,6 +26,9 @@ public class ParticleScaler : MonoBehaviour {
     private float initialLifetimeVelocity;
     private float finalLifetimeVelocity;
 
+    private float initialLifetime;
+    private float finalLifetime;
+
     // Use this for initialization
     void Start () {
         orbScript = playerOrbCollider.GetComponent<OrbCount>();
@@ -36,6 +40,7 @@ public class ParticleScaler : MonoBehaviour {
 
         initialEmissionRate = emissionModule.rateOverTime.constant;
         initialVelocity = ps.main.startSpeed.constant;
+        initialLifetime = ps.main.startLifetime.constant;
         initialLifetimeVelocity = velocityLifetimeModule.speedModifier.constant;
     }
 	
@@ -49,8 +54,10 @@ public class ParticleScaler : MonoBehaviour {
         emissionModule.rateOverTime = finalEmissionRate;
 
         finalVelocity = initialVelocity + numOrbs * velocityIncreaseModifier;
+        finalLifetime = initialLifetime + numOrbs * lifetimeIncreaseModifier;
         mainModule = ps.main;
         mainModule.startSpeed = finalVelocity;
+        mainModule.startLifetime = finalLifetime;
 
         finalLifetimeVelocity = initialLifetimeVelocity + numOrbs * lifetimeVelocityIncreaseModifier;
         velocityLifetimeModule = ps.velocityOverLifetime;
