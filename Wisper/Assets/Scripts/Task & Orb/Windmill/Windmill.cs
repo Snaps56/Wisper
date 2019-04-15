@@ -57,7 +57,7 @@ public class Windmill : MonoBehaviour {
         isLifting = abilitiesCollider.GetComponent<ObjectLift>().GetIsLiftingObjects();
         isThrowing = abilitiesCollider.GetComponent<ObjectThrow>().GetIsThrowingObjects();
 
-        //Debug.Log("current velocity: " + currentVelocity + ", danger speed: " + dangerSpeed);
+        Debug.Log("current velocity: " + currentVelocity + ", correct speed: " + correctSpeed);
 
         if (-currentVelocity > 0.00f)
         {

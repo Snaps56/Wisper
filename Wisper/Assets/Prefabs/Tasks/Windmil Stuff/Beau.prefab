@@ -694,7 +694,7 @@ MonoBehaviour:
   followTetherMinDistance: 3
   followTetherStrongDistance: 5
   dialogues:
-  - dialogueName: Halfpipe Broken
+  - dialogueName: Windmill Broken
     enabled: 1
     forceOnEnable: 0
     follow: 1
@@ -702,18 +702,17 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: HalfPipeTaskDone
+    - conditionName: WindmillTaskDone
       conditionValue: 0
-    - conditionName: HalfPipeFixed
+    - conditionName: WindmillFixed
       conditionValue: 0
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: Doug
-      line: Aw man! The wind blew the sand on the half pipe again! How am I going
-        to skate?
-  - dialogueName: HalfPipe Done
+    - speaker: Beau
+      line: The windmill is broken! How we gonna get power!?
+  - dialogueName: Windmill Done
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -721,17 +720,17 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: HalfPipeTaskDone
+    - conditionName: WindmillTaskDone
       conditionValue: 1
-    - conditionName: HalfPipeFixed
+    - conditionName: WindmillFixed
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: Doug
-      line: YEA! THIS IS SO FUN!
-  - dialogueName: HalfPipe Fixed
+    - speaker: Beau
+      line: The windmill is fixed again! It's a miracle!
+  - dialogueName: Windmill Fixed
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -748,7 +747,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: Beau
-      line: The wind blew the sand off the half pipe! But I'm too scared to go!
+      line: The windmill is fixed, but it's still not moving...
 --- !u!114 &8988257156778744558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +780,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7672afb76507b4f4baafe071f2b57a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oldShellsterAudioClips:
+  - {fileID: 8300000, guid: 539d26f917b25ca47a5c3bdd815f1a11, type: 3}
+  youngShellsterAudioClips: []
+  shrineAudioClips: []
+  NPCType: 0
 --- !u!1 &8988257156779561132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,7 +3083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingTexts:
-  - dialogueName: HalfPipe Broken
+  - dialogueName: Windmill Broken
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -3087,17 +3091,17 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: HalfPipeFixed
+    - conditionName: WindmillFixed
       conditionValue: 0
-    - conditionName: HalfPipeTaskDone
+    - conditionName: WindmillTaskDone
       conditionValue: 0
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: The half pipe is too dirty!
-  - dialogueName: HalfPipe Finished
+      line: The windmill is broken!
+  - dialogueName: Windmill Finished
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -3105,17 +3109,17 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: HalfPipeTaskDone
+    - conditionName: WindmillTaskDone
       conditionValue: 1
-    - conditionName: HalfPipeFixed
+    - conditionName: WindmillFixed
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: This is so fun!
-  - dialogueName: HalfPipe Fixed
+      line: The windmill is working!
+  - dialogueName: Windmill Fixed
     enabled: 0
     forceOnEnable: 0
     follow: 1
@@ -3123,16 +3127,16 @@ MonoBehaviour:
     autoPlayDelay: 1
     progressByCutscene: 0
     enableConditions:
-    - conditionName: HalfPipeFixed
+    - conditionName: WindmillFixed
       conditionValue: 1
-    - conditionName: HalfPipeTaskDone
+    - conditionName: WindmillTaskDone
       conditionValue: 0
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
     - speaker: 
-      line: I'm scared!
+      line: The windmill is fixed!
   range: 8
 --- !u!114 &8988257157614636853
 MonoBehaviour:
@@ -3991,7 +3995,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 1200, y: 160}
+  m_SizeDelta: {x: 1800, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8988257157958728674
 Canvas:
