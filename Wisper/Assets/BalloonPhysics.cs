@@ -6,10 +6,15 @@ public class BalloonPhysics : MonoBehaviour
 {
     public bool isAnchored = false;
     public float antiGravityMod = 0.1f;
+
+    public GameObject overrideAnchorObject;
+    public bool overrideAnchor = false;
+
     private GameObject balloonBase;
     private GameObject balloonAnchor;
     private LineRenderer lineRenderer;
     private ParticleSystem unanchoredParticles;
+    private SpringJoint springJoint;
     private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -17,9 +22,18 @@ public class BalloonPhysics : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         balloonBase = transform.Find("balloonBase").gameObject;
-        balloonAnchor = transform.Find("balloonAnchor").gameObject;
+
+        if (overrideAnchor)
+        {
+            balloonAnchor = overrideAnchorObject;
+        }
+        else
+        {
+            balloonAnchor = transform.Find("balloonAnchor").gameObject;
+        }
         lineRenderer = GetComponent<LineRenderer>();
         unanchoredParticles = balloonBase.GetComponent<ParticleSystem>();
+        springJoint = GetComponent<SpringJoint>();
 
         SetHasAnchor(isAnchored);
     }
@@ -31,6 +45,11 @@ public class BalloonPhysics : MonoBehaviour
         if (isAnchored)
         {
             RedrawLine();
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            isAnchored = !isAnchored;
+            SetHasAnchor(isAnchored);
         }
     }
     void RedrawLine()
@@ -49,11 +68,14 @@ public class BalloonPhysics : MonoBehaviour
         {
             unanchoredParticles.Stop();
             balloonAnchor.GetComponent<Rigidbody>().mass = 9999;
+            springJoint.connectedBody = balloonAnchor.GetComponent<Rigidbody>();
         }
         else
         {
+            Debug.Log("Disabled Joint");
             unanchoredParticles.Play();
             balloonAnchor.GetComponent<Rigidbody>().mass = .0001f;
+            springJoint.connectedBody = null;
         }
         balloonAnchor.SetActive(changeAnchor);
     }
