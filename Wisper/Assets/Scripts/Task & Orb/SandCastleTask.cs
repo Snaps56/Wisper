@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SandCastleTask : MonoBehaviour {
-
+    
     public Material transparentMaterial;
     public Material finalMaterial;
     public ParticleSystem sandCastleParticles;
     public ParticleSystem sandCastleFinishParticles;
-    private float currentInterp = 0;
+    public string psdVariable;
+
+    public GameObject missingPiece;
     private MeshRenderer sandMeshRenderer;
+
+    private float currentInterp = 0;
     private float materialInterpDuration;
-    private float materialInterpRate = 0.01f;
+    private float materialInterpRate = 0.005f;
     private float finishSandThreshold = 0.95f;
+    private MeshCollider meshCollider;
 
     private SpawnOrbs spawnOrbsScript;
     private bool finishedTask = false;
@@ -21,13 +26,16 @@ public class SandCastleTask : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        sandMeshRenderer = GetComponent<MeshRenderer>();
         sandColor = transparentMaterial.color;
         sandColor.a = 0.1f;
-        sandMeshRenderer.material = transparentMaterial;
         spawnOrbsScript = GetComponent<SpawnOrbs>();
 
-        finishedTask = (bool)PersistantStateData.persistantStateData.stateConditions["FinishedSandCastleTask"];
+        sandMeshRenderer = missingPiece.GetComponent<MeshRenderer>();
+        sandMeshRenderer.material = transparentMaterial;
+        meshCollider = missingPiece.GetComponent<MeshCollider>();
+        meshCollider.enabled = false;
+
+        finishedTask = (bool)PersistantStateData.persistantStateData.stateConditions[psdVariable];
 
         if (finishedTask)
         {
@@ -46,13 +54,14 @@ public class SandCastleTask : MonoBehaviour {
 	}
     private void OnTriggerStay(Collider other)
     {
-        if (other.name == "SandParticle" && !finishedTask)
+        if (other.name.Contains("SandParticle") && !finishedTask)
         {
             if (sandColor.a < finishSandThreshold)
             {
                 sandColor.a += materialInterpRate;
                 if (sandCastleParticles.isStopped)
                 {
+                    Debug.Log("Play Sand Particles");
                     sandCastleParticles.Play();
                 }
                 if (sandColor.a < 1 && sandColor.a > finishSandThreshold)
@@ -79,8 +88,9 @@ public class SandCastleTask : MonoBehaviour {
         other.gameObject.GetComponent<ParticleSystem>().Stop();
         other.gameObject.GetComponent<Collider>().enabled = false;
         sandCastleParticles.Stop();
+        meshCollider.enabled = true;
         spawnOrbsScript.DropOrbs();
-        PersistantStateData.persistantStateData.stateConditions["FinishedSandCastleTask"] = true;
+        PersistantStateData.persistantStateData.stateConditions[psdVariable] = true;
     }
     // overrided function called only from Start function
     void FinishSandCastleTask()
