@@ -57,7 +57,7 @@ public class Windmill : MonoBehaviour {
         isLifting = abilitiesCollider.GetComponent<ObjectLift>().GetIsLiftingObjects();
         isThrowing = abilitiesCollider.GetComponent<ObjectThrow>().GetIsThrowingObjects();
 
-        Debug.Log("current velocity: " + currentVelocity + ", correct speed: " + correctSpeed);
+        Debug.Log("current velocity: " + -currentVelocity + ", correct speed: " + correctSpeed);
 
         if (-currentVelocity > 0.00f)
         {
@@ -97,6 +97,7 @@ public class Windmill : MonoBehaviour {
                 torque = 0;
             }
             currentVelocity = rb.angularVelocity.y;
+            Debug.Log("HasReachedMax: " + (bool)persistantStateData.stateConditions["HasReachedMax"]);
 
             //Windmill is Broken!
             if ((bool)persistantStateData.stateConditions["HasReachedMax"] == true && Input.GetKeyDown(KeyCode.K)) //Based on button press for testing purposes
@@ -120,14 +121,14 @@ public class Windmill : MonoBehaviour {
                 }
             }
             //Windmill task is done! 
-            else if (-currentVelocity >= correctSpeed && (bool)persistantStateData.stateConditions["HasReachedMax"] == false)
+            else if (-currentVelocity >= correctSpeed)
             {
                 Debug.Log("Player pushed windmill at correct speed and finished task.");
                 //Check if the player spawned the orbs
                 if (!hasSpawnedOrbs)
                 {
                     persistantStateData.ChangeStateConditions("WindmillSpawnedOrbs", true);
-                    GetComponent<SpawnOrbs>().DropOrbs();
+                    this.gameObject.GetComponent<SpawnOrbs>().DropOrbs();
                     hasSpawnedOrbs = true;
                 }
                 persistantStateData.ChangeStateConditions("WindmillTaskDone",true);
