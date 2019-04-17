@@ -28,8 +28,14 @@ public class TutorialHelpShellsterCondition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        try
+        {
+            currentDistance = Vector3.Distance(player.position, shellsterTransform.position);
+        }
+        catch
+        {
 
-        currentDistance = Vector3.Distance(player.position, shellsterTransform.position);
+        }
 
         conditionCheck = (bool)PersistantStateData.persistantStateData.stateConditions[dependentCondition];
         if (currentDistance < proximityDistance && conditionCheck)
