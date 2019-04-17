@@ -127,6 +127,12 @@ public class DialogueManager : MonoBehaviour {
 
     private void Update()
     {
+        //Play Audio for Dialogue
+        if (sentenceDisplayInProgress)
+        {
+            activeNPC.GetComponent<NPCAudioManager>().Play();   
+        }
+
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {
