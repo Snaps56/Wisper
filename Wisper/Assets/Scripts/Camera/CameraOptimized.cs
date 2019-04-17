@@ -20,6 +20,8 @@ public class CameraOptimized : MonoBehaviour
     public float smoothCamDecay = 0.9f;
     public float smoothCamRound = 0.02f;
     public float smoothSensitivityMultiplier = 0.04f;
+    private float tempInputXAxis;
+    private float tempInputYAxis;
 
     [Header("Zoom Mechanics")]
     public float defaultDistance = 4;
@@ -203,6 +205,18 @@ public class CameraOptimized : MonoBehaviour
         {
             AdaptiveCamera();
         }
+    }
+    public void PauseCameraAxis()
+    {
+        tempInputXAxis = inputXAxis;
+        tempInputYAxis = inputYAxis;
+        inputXAxis = 0;
+        inputYAxis = 0;
+    }
+    public void UnpauseCameraAxis()
+    {
+        inputXAxis = tempInputXAxis;
+        inputYAxis = tempInputYAxis;
     }
 
     // modify camera values based on player's speed
