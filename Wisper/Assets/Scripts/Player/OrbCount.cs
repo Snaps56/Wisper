@@ -21,6 +21,9 @@ public class OrbCount : MonoBehaviour {
     public float logoLeftShift;
     public float logoRightShift;
 
+    //Orb Explode Prefab
+    public GameObject orbExplode;
+
     // public AudioSource wub;
 
     //Initilize Variables
@@ -142,6 +145,7 @@ public class OrbCount : MonoBehaviour {
         if (other.gameObject.CompareTag("Orb") /*&& objectDistance < orbPickupRadius*/)
         {
             //Destroys Orb
+            Instantiate(orbExplode, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
             //Debug.Log ("Added 1 orb");
 
