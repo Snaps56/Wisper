@@ -11,12 +11,16 @@ public class PlayerWindAudio : MonoBehaviour {
 
     public GameObject abilitiesCollider;
     public AudioClip throwAudioClip;
+    public AudioClip liftAudioClip;
 
     private AudioSource throwingAudioSource;
     private bool isThrowing;
 
-    private bool soundPlayed = false;
+    private AudioSource liftAudioSource;
+    private bool isLifting;
 
+    private bool throwSoundPlayed = false;
+    private bool liftSoundPlayed = false;
 
     // Use this for initialization
     void Start () {
@@ -28,7 +32,7 @@ public class PlayerWindAudio : MonoBehaviour {
     {
         // add the necessary AudioSources:
         throwingAudioSource = AddAudio(throwAudioClip, true, true, 1);
-
+        liftAudioSource = AddAudio(liftAudioClip, true, true, 1);
     }
 
     AudioSource AddAudio(AudioClip clip, bool loop, bool playAwake,  float vol) {
@@ -43,6 +47,7 @@ public class PlayerWindAudio : MonoBehaviour {
 // Update is called once per frame
 void Update () {
         isThrowing = abilitiesCollider.GetComponent<ObjectThrow>().GetIsThrowingObjects();
+        isLifting = abilitiesCollider.GetComponent<ObjectLift>().GetIsLiftingObjects();
 
         if (playerrigidbody.velocity.magnitude > 1)
         {
@@ -60,19 +65,23 @@ void Update () {
         throwingAudioSource.pitch = 1;
         if (!isThrowing)
         {
-            soundPlayed = true;
+            throwSoundPlayed = true;
         }
         else if (isThrowing && !throwingAudioSource.isPlaying)
         {
-            if (soundPlayed)
+            if (throwSoundPlayed)
             {
-                soundPlayed = false;
-                source.PlayOneShot(throwAudioClip);
-                soundPlayed = false;
+                throwingAudioSource.PlayOneShot(throwAudioClip);
+                throwSoundPlayed = false;
             }
-
         }
 
 
-	}
+        if (isLifting && !liftAudioSource.isPlaying)
+        {
+            liftAudioSource.PlayOneShot(liftAudioClip);
+        }
+
+
+    }
 }
