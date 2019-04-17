@@ -14,6 +14,7 @@ public class DebugText : MonoBehaviour
         if (PersistantStateData.persistantStateData.enableDebugMode)
         {
             debugText.enabled = true;
+            Debug.Log("Enabled movement from debug start");
             GameObject.Find("Player").GetComponent<PlayerMovement>().EnableMovement();
             tutorials.SetActive(false);
         }
@@ -27,16 +28,20 @@ public class DebugText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PersistantStateData.persistantStateData.enableDebugMode)
+        if (GameObject.Find("Player").GetComponent<PlayerMovement>().GetToggleMovement())
         {
-            GameObject.Find("Player").GetComponent<PlayerMovement>().EnableMovement();
-            debugText.enabled = true;
-            tutorials.SetActive(false);
-        }
-        else
-        {
-            debugText.enabled = false;
-            tutorials.SetActive(true);
+            if (PersistantStateData.persistantStateData.enableDebugMode)
+            {
+                Debug.Log("Enabled movement from debug");
+                GameObject.Find("Player").GetComponent<PlayerMovement>().EnableMovement();
+                debugText.enabled = true;
+                tutorials.SetActive(false);
+            }
+            else
+            {
+                debugText.enabled = false;
+                tutorials.SetActive(true);
+            }
         }
     }
 }
