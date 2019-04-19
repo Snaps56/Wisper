@@ -13,6 +13,7 @@ public class BigBoulderTask : MonoBehaviour {
     private bool walk;
     private bool rotate;
     private float accuracy;
+
     //private Vector3 direction;
     // Use this for initialization
     void Start () {
@@ -78,6 +79,7 @@ public class BigBoulderTask : MonoBehaviour {
         if (Vector3.Distance(parent1.transform.position, transform.position) < accuracy || Vector3.Distance(parent2.transform.position, transform.position) < accuracy)
         {
             walk = false;
+            PersistantStateData.persistantStateData.ChangeStateConditions("BoulderBoyDown", true);
         }
    
         
