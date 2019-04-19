@@ -30,7 +30,6 @@ public class BoatTask : MonoBehaviour
         if (other.name == "WayPoint01")
         {
             waypointSwap = true;
-            Debug.Log("Together We Made it");
         }
         if (other.name == "BoatTaskWall")
         {
