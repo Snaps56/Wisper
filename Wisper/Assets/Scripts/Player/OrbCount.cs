@@ -105,7 +105,7 @@ public class OrbCount : MonoBehaviour {
         else
         {
             float t = (float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["OrbMaxDeposit"];
-            psd.ChangeStateConditions("HasReachedMax", true);
+            //psd.ChangeStateConditions("HasReachedMax", true);
             Color32 color = Color32.Lerp(white, lightred, t);
             windPowerBar.GetComponent<Image>().color = color;
             try
@@ -116,8 +116,6 @@ public class OrbCount : MonoBehaviour {
             {
 
             }
-
-
         }
         try
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.58808655, g: 0.71141326, b: 0.863317, a: 1}
+  m_IndirectSpecularColor: {r: 0.5883292, g: 0.7107973, b: 0.8651606, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4087,6 +4087,26 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114921712395926538, guid: 0fe6b442df29e2b4786625321999246d,
+        type: 3}
+      propertyPath: throwAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a9fa854518b9a1478a6820f472b1230, type: 3}
+    - target: {fileID: 114921712395926538, guid: 0fe6b442df29e2b4786625321999246d,
+        type: 3}
+      propertyPath: abilitiesCollider
+      value: 
+      objectReference: {fileID: 404714083}
+    - target: {fileID: 114921712395926538, guid: 0fe6b442df29e2b4786625321999246d,
+        type: 3}
+      propertyPath: liftAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fe2334bf06429b34e9934f8b01e610ce, type: 3}
+    - target: {fileID: 114609946703198730, guid: 0fe6b442df29e2b4786625321999246d,
+        type: 3}
+      propertyPath: turnBackText
+      value: 
+      objectReference: {fileID: 1191524225}
     - target: {fileID: 114872477459160730, guid: 0fe6b442df29e2b4786625321999246d,
         type: 3}
       propertyPath: windPowerBar
@@ -4123,26 +4143,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1046171684803300, guid: 73f5033d5da664f43baa6bab0aa8bbdc,
         type: 3}
-    - target: {fileID: 114609946703198730, guid: 0fe6b442df29e2b4786625321999246d,
+    - target: {fileID: 114872477459160730, guid: 0fe6b442df29e2b4786625321999246d,
         type: 3}
-      propertyPath: turnBackText
-      value: 
-      objectReference: {fileID: 1191524225}
-    - target: {fileID: 114921712395926538, guid: 0fe6b442df29e2b4786625321999246d,
-        type: 3}
-      propertyPath: throwAudioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 2a9fa854518b9a1478a6820f472b1230, type: 3}
-    - target: {fileID: 114921712395926538, guid: 0fe6b442df29e2b4786625321999246d,
-        type: 3}
-      propertyPath: abilitiesCollider
-      value: 
-      objectReference: {fileID: 404714083}
-    - target: {fileID: 114921712395926538, guid: 0fe6b442df29e2b4786625321999246d,
-        type: 3}
-      propertyPath: liftAudioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: fe2334bf06429b34e9934f8b01e610ce, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 358194824994887645, guid: 0fe6b442df29e2b4786625321999246d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -14015,10 +14020,6 @@ PrefabInstance:
       propertyPath: abilitiesCollider
       value: 
       objectReference: {fileID: 404714083}
-    - target: {fileID: 1070571866, guid: 79a8919c010614b43831b713415cfe33, type: 3}
-      propertyPath: orbSpawnClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6143c02e87e3c2c4d923dfe145cee235, type: 3}
     - target: {fileID: 5206682772621979079, guid: 79a8919c010614b43831b713415cfe33,
         type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.size
@@ -14395,6 +14396,10 @@ PrefabInstance:
       propertyPath: m_Coefficients.Array.data[17].maxDistance
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1070571866, guid: 79a8919c010614b43831b713415cfe33, type: 3}
+      propertyPath: orbSpawnClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6143c02e87e3c2c4d923dfe145cee235, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79a8919c010614b43831b713415cfe33, type: 3}
 --- !u!1 &1135526069
@@ -17303,7 +17308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1412979371
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19462,6 +19467,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684078803}
   m_Mesh: {fileID: 4300214, guid: de00038b9ef31e1488c5aef9e7086432, type: 3}
+--- !u!1 &1695924011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1202869287351374, guid: 0fe6b442df29e2b4786625321999246d,
+    type: 3}
+  m_PrefabInstance: {fileID: 404714080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1695924012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695924011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75524450eb655149ba160c89f21bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windPowerBar: {fileID: 1897337221}
+  orbCountText: {fileID: 1770805815}
+  orbExplode: {fileID: 1046171684803300, guid: 73f5033d5da664f43baa6bab0aa8bbdc, type: 3}
+  orbAudioClip: {fileID: 8300000, guid: 4046b8a3cc206ae44b6c50d56dbc9b21, type: 3}
 --- !u!1 &1698128118
 GameObject:
   m_ObjectHideFlags: 0
@@ -20126,7 +20153,8 @@ AudioSource:
   m_GameObject: {fileID: 1799439623}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243435118682755786, guid: cd7ecaccf212b475589e21e864e390ed,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -21451,20 +21479,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1194396936897446, guid: 31502c1f74034014990405cfff196d8a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114009912646501700, guid: 31502c1f74034014990405cfff196d8a,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114009912646501700, guid: 31502c1f74034014990405cfff196d8a,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 49
-      objectReference: {fileID: 0}
     - target: {fileID: 224991928757388172, guid: 31502c1f74034014990405cfff196d8a,
         type: 3}
       propertyPath: m_RootOrder
@@ -21530,6 +21544,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 1194396936897446, guid: 31502c1f74034014990405cfff196d8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1324084317217560, guid: 31502c1f74034014990405cfff196d8a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -21553,6 +21571,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_MinSize
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114009912646501700, guid: 31502c1f74034014990405cfff196d8a,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114009912646501700, guid: 31502c1f74034014990405cfff196d8a,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 1742259124691848, guid: 31502c1f74034014990405cfff196d8a, type: 3}
       propertyPath: m_IsActive
@@ -24345,11 +24373,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 404714082}
-    - target: {fileID: 8988257156523722824, guid: 3c875a8eeac00934da70d6ee1d4496bb,
+    - target: {fileID: 8988257157958728674, guid: 3c875a8eeac00934da70d6ee1d4496bb,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 24.965027
-      objectReference: {fileID: 0}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 404714084}
+    - target: {fileID: 8988257157958728703, guid: 3c875a8eeac00934da70d6ee1d4496bb,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 404714081}
     - target: {fileID: 302319285914458701, guid: 3c875a8eeac00934da70d6ee1d4496bb,
         type: 3}
       propertyPath: oldShellsterAudioClips.Array.size
@@ -24400,20 +24433,20 @@ PrefabInstance:
       propertyPath: oldShellsterAudioClips.Array.data[8]
       value: 
       objectReference: {fileID: 8300000, guid: ff55607c9d74bc54388a82682ea2b979, type: 3}
+    - target: {fileID: 8988257156523722824, guid: 3c875a8eeac00934da70d6ee1d4496bb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988257156523722824, guid: 3c875a8eeac00934da70d6ee1d4496bb,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8988257157300914919, guid: 3c875a8eeac00934da70d6ee1d4496bb,
         type: 3}
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: 87733c0ff0d6b7c428db7a400ca2c696, type: 3}
-    - target: {fileID: 8988257157958728674, guid: 3c875a8eeac00934da70d6ee1d4496bb,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 404714084}
-    - target: {fileID: 8988257157958728703, guid: 3c875a8eeac00934da70d6ee1d4496bb,
-        type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 404714081}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c875a8eeac00934da70d6ee1d4496bb, type: 3}
