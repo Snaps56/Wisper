@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CoveMusic
+  m_OutputGroup: {fileID: 24300002, guid: 99f87739d1b434943a75782ef71cf6ba, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245601768260381966}
+  - {fileID: 245008361954535684}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 834469d6ac2494b91a00cda3d3817cfe
+    - 1898991b0bde3474e9984ff9c6c9da92
+    - 7bb28e1902713400583338cb882e81dc
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 834469d6ac2494b91a00cda3d3817cfe
+  m_Children:
+  - {fileID: 243359168281446746}
+  - {fileID: 243621028287287186}
+  m_Volume: 1dc3dbcdbbb364f8f91ac037ee40326b
+  m_Pitch: cceec32d31f114c359e79d123c61530b
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 986bb57234a9846cc9f72f5c3148240c
+  m_EffectName: Attenuation
+  m_MixLevel: 69a57fbecfbbd41a68a2adc96d2f86a0
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cove_Off
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 7776a391da4db4d918b755dd31952ed4
+  m_FloatValues:
+    8e27ca53b374242d3a31618808b362d7: -80
+    4e7c8c1cbb40f4f9bb0d022e8b469ce9: -80
+  m_TransitionOverrides: {}
+--- !u!243 &243359168281446746
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cove_L1
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 1898991b0bde3474e9984ff9c6c9da92
+  m_Children: []
+  m_Volume: 4e7c8c1cbb40f4f9bb0d022e8b469ce9
+  m_Pitch: 6b72aa1abcd0341089c85c31ed851730
+  m_Effects:
+  - {fileID: 244049990446719810}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243621028287287186
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cove_L2
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 7bb28e1902713400583338cb882e81dc
+  m_Children: []
+  m_Volume: 8e27ca53b374242d3a31618808b362d7
+  m_Pitch: f034a15f3da28462a88bc384bce81415
+  m_Effects:
+  - {fileID: 244084571021615604}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244049990446719810
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 370766c1b0f25494c9d5c76e17ebbb21
+  m_EffectName: Attenuation
+  m_MixLevel: 771d2dd1487c143aaa54db284fd38367
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244084571021615604
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 8981f3908b27e45b0ac8715d7a0f1d34
+  m_EffectName: Attenuation
+  m_MixLevel: 57d1e77c329304206891ad819a620a87
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245008361954535684
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cove_L2On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: f76139d76c2dc4b3aa5babebc2ce8052
+  m_FloatValues:
+    8e27ca53b374242d3a31618808b362d7: 0
+    4e7c8c1cbb40f4f9bb0d022e8b469ce9: 0
+  m_TransitionOverrides: {}
+--- !u!245 &245601768260381966
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cove_L1On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: f5e25ffb9ff2e4b76a25e00b8352fc3b
+  m_FloatValues:
+    8e27ca53b374242d3a31618808b362d7: -80
+  m_TransitionOverrides: {}

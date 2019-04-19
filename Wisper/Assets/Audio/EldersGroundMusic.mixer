@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EldersGroundMusic
+  m_OutputGroup: {fileID: 24300002, guid: 99f87739d1b434943a75782ef71cf6ba, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245715944003968468}
+  - {fileID: 245217318613120860}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 0a6bfe6aca4f2493cb2e7f8b8d593acb
+    - 59b64e0d8f695498d8c108f39ef1d768
+    - 32172eb9973854efbb8b4ead800c8351
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 0a6bfe6aca4f2493cb2e7f8b8d593acb
+  m_Children:
+  - {fileID: 243677061463228062}
+  - {fileID: 243020743886392876}
+  m_Volume: c3948ae7031c4466ebe5d502e54e1faa
+  m_Pitch: 857c12244fd2d4f39b780e6fc2d7a2af
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 5375821d7f0f84db3b722d89c999843c
+  m_EffectName: Attenuation
+  m_MixLevel: 03d20812f6a7b4969bde721084a79732
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EldersGround_Off
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 0983407dc561c48b8a827995ee59404f
+  m_FloatValues:
+    8a51931792d834905817f052c838bcea: -80
+    f967077f06cfa40bd818a5fb951d2ccc: -80
+  m_TransitionOverrides: {}
+--- !u!243 &243020743886392876
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EldersGround_L2
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 32172eb9973854efbb8b4ead800c8351
+  m_Children: []
+  m_Volume: 8a51931792d834905817f052c838bcea
+  m_Pitch: 2e72bf2b91c0a41b5bbef0649a1ae2b8
+  m_Effects:
+  - {fileID: 244108856184426884}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243677061463228062
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EldersGround_L1
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 59b64e0d8f695498d8c108f39ef1d768
+  m_Children: []
+  m_Volume: f967077f06cfa40bd818a5fb951d2ccc
+  m_Pitch: 1ea3708b0edd94058bb5ab3370e08a61
+  m_Effects:
+  - {fileID: 244437309614245986}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244108856184426884
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 50266ef053afb4054968e76249035e10
+  m_EffectName: Attenuation
+  m_MixLevel: e73ab9e46b5ee4a9a87d5a966104929b
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244437309614245986
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 40929dc10ea274ee6940326e0f7751ab
+  m_EffectName: Attenuation
+  m_MixLevel: e8ec22a4ee64746ebbc2f4724bc8f91e
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245217318613120860
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EldersGround_L2On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: dc4504ef9f6814e23952860565c71a74
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!245 &245715944003968468
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EldersGround_L1On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 8aa8da4b70d6d47969bec828c91958b0
+  m_FloatValues:
+    8a51931792d834905817f052c838bcea: -80
+  m_TransitionOverrides: {}

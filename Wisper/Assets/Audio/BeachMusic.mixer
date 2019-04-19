@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BeachMusic
+  m_OutputGroup: {fileID: 24300002, guid: 99f87739d1b434943a75782ef71cf6ba, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245677700030839818}
+  - {fileID: 245339557676741240}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - a1541891527044e54b6cecfb4ca74e32
+    - 5140d46bacdbc43349e437ec835fe959
+    - ffb93b659ff9a450cb4cad0741f8870f
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: a1541891527044e54b6cecfb4ca74e32
+  m_Children:
+  - {fileID: 243224839443010142}
+  - {fileID: 243995003267381204}
+  m_Volume: 7e8eaccf36138408fbdaf0dd362ff118
+  m_Pitch: 642be83159d7a47a1a6c00df143b6a55
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1b2fea8b75bb542a7a890cf617a5f600
+  m_EffectName: Attenuation
+  m_MixLevel: 731b89297ce1248ac82736823fa04efd
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Beach_Off
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 53f871775b19b4b14b6946cc4e54ced6
+  m_FloatValues:
+    cbb73d682d0d447fc9ed0636cf06a488: -80
+    452466fe5eed44b5bb479df312b6d787: -80
+  m_TransitionOverrides: {}
+--- !u!243 &243224839443010142
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Beach_L1
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 5140d46bacdbc43349e437ec835fe959
+  m_Children: []
+  m_Volume: cbb73d682d0d447fc9ed0636cf06a488
+  m_Pitch: 10e922764561b4b5e97533d1c00a6309
+  m_Effects:
+  - {fileID: 244083234173491034}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243995003267381204
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Beach_L2
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: ffb93b659ff9a450cb4cad0741f8870f
+  m_Children: []
+  m_Volume: 452466fe5eed44b5bb479df312b6d787
+  m_Pitch: 592d2c9a306fe488181280e26f62472d
+  m_Effects:
+  - {fileID: 244139200502975036}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244083234173491034
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9c8a2581a9f65416a95b3d1aa838d781
+  m_EffectName: Attenuation
+  m_MixLevel: b1e397f69405f40f2aacb0f53e4b47f1
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244139200502975036
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: c5ce2a287f8184ad8b526eeb4cf3fa31
+  m_EffectName: Attenuation
+  m_MixLevel: 75c791399b0a744a0aada76894ef8707
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245339557676741240
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Beach_L2On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 297aee65739b24ddc9dcc1e2c709f3e6
+  m_FloatValues:
+    cbb73d682d0d447fc9ed0636cf06a488: 0
+    452466fe5eed44b5bb479df312b6d787: 0
+  m_TransitionOverrides: {}
+--- !u!245 &245677700030839818
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Beach_L1On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: f791b0dac918241e3a98301de6288477
+  m_FloatValues:
+    cbb73d682d0d447fc9ed0636cf06a488: 0
+    452466fe5eed44b5bb479df312b6d787: -80
+  m_TransitionOverrides: {}

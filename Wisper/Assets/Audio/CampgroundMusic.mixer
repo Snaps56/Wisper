@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CampgroundMusic
+  m_OutputGroup: {fileID: 24300002, guid: 99f87739d1b434943a75782ef71cf6ba, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245940966907785016}
+  - {fileID: 245622852961223588}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - d72edd426045f4d989debbf703114a53
+    - 8e679f8012636468796ac68fd51c45a2
+    - 43aee671dc65c4daeb01472498dfb4a2
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: d72edd426045f4d989debbf703114a53
+  m_Children:
+  - {fileID: 243040592849014906}
+  - {fileID: 243748094173474334}
+  m_Volume: 58bae8fdbfe20475d92e5f69d0dad36f
+  m_Pitch: 76674d022702f4da79f5e94edd9a9512
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 7aa98e894735b4ace8aa96edef676cab
+  m_EffectName: Attenuation
+  m_MixLevel: 37307c688eeb5408cbfe8633fc903ad0
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Campground_Off
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 11ba5b66a7da842378aa76844260211e
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!243 &243040592849014906
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Campground_L1
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 8e679f8012636468796ac68fd51c45a2
+  m_Children: []
+  m_Volume: f87e431fda267432fbea432303d54874
+  m_Pitch: 0ed627e5f71ec4be7a90745b49811da7
+  m_Effects:
+  - {fileID: 244958206934043470}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243748094173474334
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Campground_L2
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 43aee671dc65c4daeb01472498dfb4a2
+  m_Children: []
+  m_Volume: b0c119790391e471e984c9c506d3bd68
+  m_Pitch: e8b18e9764be347ee9ab08958b26e2ce
+  m_Effects:
+  - {fileID: 244805467469611160}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244805467469611160
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 41cee55aee2eb45c4931b7f253e195da
+  m_EffectName: Attenuation
+  m_MixLevel: 6a63718d0f3194fb1aee5817bc1c921e
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244958206934043470
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 978a1fce3b1d84a92899bf3e9c5f5be3
+  m_EffectName: Attenuation
+  m_MixLevel: cd18596a5ff5a49598b78ea98edbcbf9
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245622852961223588
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Campground_L2On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 6f5c0fced1c0843ad96242b8e277238a
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!245 &245940966907785016
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Campground_L1On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: eaa13ced3a72e4cc1844cdeb71031a13
+  m_FloatValues: {}
+  m_TransitionOverrides: {}

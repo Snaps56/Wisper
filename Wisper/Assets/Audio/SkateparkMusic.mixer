@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SkateparkMusic
+  m_OutputGroup: {fileID: 24300002, guid: 99f87739d1b434943a75782ef71cf6ba, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245898621958270470}
+  - {fileID: 245824605052239824}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 51e0dc551eef7494398e49fa57422d65
+    - c62d6e5f3505b419aac0bb30bb71cbc3
+    - ca768155527984d1a8b7e5908ed2a57a
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 51e0dc551eef7494398e49fa57422d65
+  m_Children:
+  - {fileID: 243711410426320296}
+  - {fileID: 243956253978628786}
+  m_Volume: 0dacbf4eff79a437e98c1d9a41df3815
+  m_Pitch: 07f0544c558114c3588b5b976749aebc
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 65e87a9e0a71047a98cf12e3900ff162
+  m_EffectName: Attenuation
+  m_MixLevel: 497cfed4f896a44f6982fd2a493bc480
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skatepark_Off
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 14590e59a0a30495bab89f85c6ba3a44
+  m_FloatValues:
+    0fd20ce6be5fc4584b3cdd6bef314cf0: -80
+    04234ea7b234c475d948f13c7f5bd35c: -80
+  m_TransitionOverrides: {}
+--- !u!243 &243711410426320296
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skatepark_L1
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: c62d6e5f3505b419aac0bb30bb71cbc3
+  m_Children: []
+  m_Volume: 04234ea7b234c475d948f13c7f5bd35c
+  m_Pitch: 456e340bb642449b18b5c40a97c5cba7
+  m_Effects:
+  - {fileID: 244066110347646110}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243956253978628786
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skatepark_L2
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: ca768155527984d1a8b7e5908ed2a57a
+  m_Children: []
+  m_Volume: 0fd20ce6be5fc4584b3cdd6bef314cf0
+  m_Pitch: 6010be095e63c4f96afdb0f1b388ba4b
+  m_Effects:
+  - {fileID: 244939877979609934}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244066110347646110
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 7bd0265a059034fa6a773c56f6e78ee3
+  m_EffectName: Attenuation
+  m_MixLevel: 96054f9735e6f475187abf8e8c5133cb
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244939877979609934
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 31fdf0f4f988b47a4846759593d8d76d
+  m_EffectName: Attenuation
+  m_MixLevel: c348f03c58de243c4b1d499e1e546dd2
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245824605052239824
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skatepark_L2On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: f9f24990a40104633a35b65dfd0831a3
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!245 &245898621958270470
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skatepark_L1On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: d0420b7203edc4d9d8e2f6cc62b2b5e2
+  m_FloatValues:
+    0fd20ce6be5fc4584b3cdd6bef314cf0: -80
+  m_TransitionOverrides: {}

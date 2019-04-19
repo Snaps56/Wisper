@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TownCenterMusic
+  m_OutputGroup: {fileID: 24300002, guid: 99f87739d1b434943a75782ef71cf6ba, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245045967894280768}
+  - {fileID: 245075830004295772}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 7e776778ddcde4c77b97f88da92ad8dd
+    - e8fb6ee203b56423aa656c5412627b64
+    - c77cf3d134c014cb8951e5b20061ce64
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 7e776778ddcde4c77b97f88da92ad8dd
+  m_Children:
+  - {fileID: 243848438868345414}
+  - {fileID: 243230844489893392}
+  m_Volume: 09b3044d7335644e7bae8dc860b9e0fb
+  m_Pitch: a3d99ee25a0f44c6496cc05033488e25
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 92714bc6bcb0a4aa3972a858259eb8e0
+  m_EffectName: Attenuation
+  m_MixLevel: 4ebf3baf9f6c247d2beee6bcb6e7c314
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TownCenter_Off
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: ebffcde0c673c489986f5ef697fad1a7
+  m_FloatValues:
+    ea5b245b363104c7aaaaa3e89b76825f: -80
+    f47a81bdfd40d462c9391436c45c50d8: -80
+  m_TransitionOverrides: {}
+--- !u!243 &243230844489893392
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TownCenter_L2
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: c77cf3d134c014cb8951e5b20061ce64
+  m_Children: []
+  m_Volume: ea5b245b363104c7aaaaa3e89b76825f
+  m_Pitch: 33887181ad66540c6b06bd92e056a22e
+  m_Effects:
+  - {fileID: 244106787926054876}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243848438868345414
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TownCenter_L1
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: e8fb6ee203b56423aa656c5412627b64
+  m_Children: []
+  m_Volume: f47a81bdfd40d462c9391436c45c50d8
+  m_Pitch: 68cc73c3c513b4a61b8bb0e424c3947b
+  m_Effects:
+  - {fileID: 244116675745158856}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244106787926054876
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: a20799fe54c454a88b85798a15058b76
+  m_EffectName: Attenuation
+  m_MixLevel: 0db39d9a943414f17a8f5d939ba3afba
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244116675745158856
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: ef7dc09a8786c4834a9397508084b54d
+  m_EffectName: Attenuation
+  m_MixLevel: 9721fe0fe01ea4aa1a10d049d2e3e7c5
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245045967894280768
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TownCenter_L1On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 316f09ac88df54ab998a7bdd67d61a5d
+  m_FloatValues:
+    ea5b245b363104c7aaaaa3e89b76825f: -80
+  m_TransitionOverrides: {}
+--- !u!245 &245075830004295772
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TownCenter_L2On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 3968836e3324b4bf485777ad60bca1d6
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
