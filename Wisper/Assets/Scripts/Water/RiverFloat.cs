@@ -28,7 +28,7 @@ public class RiverFloat : MonoBehaviour
         Mass = GetComponent<Rigidbody>().mass;
 }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
             bool floating = FloatingPoint.GetComponent<WaterCollider>().floating;
             actionPoint = transform.position + transform.TransformDirection(BouyancyCenterOffset);
@@ -39,7 +39,7 @@ public class RiverFloat : MonoBehaviour
             Debug.Log("Together We Made it AGAIN");
             Debug.Log("Weight: " + Mass);
 
-            UnderwaterGravity.y = 9.8f * Mass;
+            UnderwaterGravity.y = 2.5f * Mass;
 
             upLift = UnderwaterGravity * Mass * (forceFactor - Rigidbody.velocity.y * bounceDamp);
             Rigidbody.AddForceAtPosition(upLift, actionPoint);
