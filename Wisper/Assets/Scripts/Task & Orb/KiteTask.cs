@@ -44,10 +44,7 @@ public class KiteTask : MonoBehaviour {
 
         //create an animator
         animator = GetComponent<Animator>();
-        //animator.SetBool("Swaying", false);
-        // finalX = -2.31f;
-        // finalY = 43.0f;
-        // finalZ = -84.21f;
+
 
         //direction = npc.transform.position - this.transform.position;
     }
@@ -63,19 +60,21 @@ public class KiteTask : MonoBehaviour {
             if(changed == false)
             {
                 //set a final position for the kite
-                finalPosition = new Vector3(this.transform.position.x, this.transform.position.y + 0.5f, this.transform.position.z);
+                finalPosition = new Vector3(this.transform.position.x, this.transform.position.y , this.transform.position.z);
                 changed = true;
             }
-            transform.position = finalPosition;
-            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
-            
+            //transform.position = finalPosition;
+            //this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+
             if (getOrbs == true)
             {
-                //get orbs for completing the task
-
-                //animator.SetBool("Swaying", true);
+                //transform.position = finalPosition;
                 GetComponent<SpawnOrbs>().DropOrbs();
+                GetComponent<Rigidbody>().isKinematic = true;
                 getOrbs = false;
+                animator.enabled = true;
+                PersistantStateData.persistantStateData.ChangeStateConditions("KiteFlying", true);
+
             }               
         }      
     }
@@ -94,5 +93,6 @@ public class KiteTask : MonoBehaviour {
         }
         */
         FlyKite();
+        Debug.Log("kite Pos" + transform.position + " Rig" + GetComponent<Rigidbody>().transform.position);
 	}
 }

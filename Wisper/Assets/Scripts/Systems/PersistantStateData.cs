@@ -159,6 +159,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("SandCastle2Done", false);
         stateConditions.Add("SandCastle3Done", false);
         stateConditions.Add("BoulderBoyDown", false);
+        stateConditions.Add("KiteFlying", false);
 
         // Variables for the Gazeeeeeeeebo task
         stateConditions.Add("NeedInstrument1", true);
