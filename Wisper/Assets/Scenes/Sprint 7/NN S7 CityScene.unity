@@ -3248,6 +3248,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
   DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
   DefaultRotInfluence: {x: 1, y: 1, z: 1}
   posAddShake: {x: 0, y: 0, z: 0}
@@ -3262,6 +3286,30 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e64941b1002d73d45a26f04fa597c5c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Name: 
   m_EditorClassIdentifier: 
   m_Name: 
@@ -5978,7 +6026,8 @@ Cloth:
     collisionSphereDistance: 3.4028235e+38
   - maxDistance: 3.4028235e+38
     collisionSphereDistance: 3.4028235e+38
-  m_CapsuleColliders: []
+  m_CapsuleColliders:
+  - {fileID: 0}
   m_SphereColliders:
   - first: {fileID: 404714096}
     second: {fileID: 0}
@@ -7150,6 +7199,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800753611}
+  - component: {fileID: 800753612}
+  - component: {fileID: 800753613}
   m_Layer: 0
   m_Name: broken_wing_piece5
   m_TagString: PickUp
@@ -7164,15 +7215,44 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800753610}
-  m_LocalRotation: {x: -0.31027958, y: 0.46357056, z: -0.34576094, w: 0.7545053}
-  m_LocalPosition: {x: -466.1357, y: 300.39023, z: -668.76807}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -436.64, y: 312.07, z: -672.4}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1113906803}
   - {fileID: 1895039576}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -8.491, y: 67.552, z: -54.925003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &800753612
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800753610}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &800753613
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800753610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.414093, y: 0.63047284, z: 3.5313215}
+  m_Center: {x: 0.23392996, y: 0, z: -0.45873913}
 --- !u!1 &806917808
 GameObject:
   m_ObjectHideFlags: 0
@@ -14770,13 +14850,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113906802}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1447963, y: 6.369436, z: 5.351794}
+  m_LocalRotation: {x: -0.20174068, y: 0.16383934, z: -0.36678693, w: 0.8932663}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 800753611}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -13.9, y: 27, z: -48}
 --- !u!183 &1113906804
 Cloth:
   m_ObjectHideFlags: 0
@@ -14813,7 +14893,7 @@ Cloth:
     collisionSphereDistance: 3.4028235e+38
   - maxDistance: 3.4028235e+38
     collisionSphereDistance: 3.4028235e+38
-  - maxDistance: 3.4028235e+38
+  - maxDistance: 0
     collisionSphereDistance: 3.4028235e+38
   - maxDistance: 3.4028235e+38
     collisionSphereDistance: 3.4028235e+38
@@ -14917,8 +14997,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.000009536743, y: 0, z: -0.000015258789}
-    m_Extent: {x: 3.487845, y: 3.485495, z: 3.3077273}
+    m_Center: {x: 0, y: -0.0000076293945, z: 0}
+    m_Extent: {x: 3.4955862, y: 3.9306946, z: 3.6146445}
   m_DirtyAABB: 0
 --- !u!1 &1135526069
 GameObject:
@@ -15598,6 +15678,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1188860094}
+  - component: {fileID: 1188860096}
+  - component: {fileID: 1188860095}
   m_Layer: 0
   m_Name: broken_wing_piece3
   m_TagString: PickUp
@@ -15621,6 +15703,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -0.19, y: 60.28, z: -90.9}
+--- !u!65 &1188860095
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188860093}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8550782, y: 3.9654171, z: 4.4056187}
+  m_Center: {x: 0, y: 0.0000076293945, z: 0.000015258789}
+--- !u!54 &1188860096
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188860093}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1191441938
 GameObject:
   m_ObjectHideFlags: 0
@@ -15632,8 +15743,6 @@ GameObject:
   - component: {fileID: 1191441939}
   - component: {fileID: 1191441941}
   - component: {fileID: 1191441940}
-  - component: {fileID: 1191441943}
-  - component: {fileID: 1191441942}
   m_Layer: 0
   m_Name: broken_wing_piece_3
   m_TagString: Untagged
@@ -15699,36 +15808,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191441938}
-  m_Mesh: {fileID: 4300008, guid: 9afd8e161fe11024689d2dcd62c363ce, type: 3}
---- !u!54 &1191441942
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191441938}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!64 &1191441943
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191441938}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
   m_Mesh: {fileID: 4300008, guid: 9afd8e161fe11024689d2dcd62c363ce, type: 3}
 --- !u!1 &1191524225 stripped
 GameObject:
@@ -22105,8 +22184,6 @@ GameObject:
   - component: {fileID: 1895039576}
   - component: {fileID: 1895039578}
   - component: {fileID: 1895039577}
-  - component: {fileID: 1895039580}
-  - component: {fileID: 1895039579}
   m_Layer: 0
   m_Name: broken_wing_piece5
   m_TagString: PickUp
@@ -22121,13 +22198,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895039575}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1996117, y: 6.3414063, z: 5.424218}
+  m_LocalRotation: {x: -0.20174068, y: 0.16383934, z: -0.36678693, w: 0.8932663}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 800753611}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -13.9, y: 27, z: -48}
 --- !u!23 &1895039577
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22173,36 +22250,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895039575}
   m_Mesh: {fileID: 4300004, guid: 9afd8e161fe11024689d2dcd62c363ce, type: 3}
---- !u!64 &1895039579
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895039575}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300004, guid: 9afd8e161fe11024689d2dcd62c363ce, type: 3}
---- !u!54 &1895039580
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895039575}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1897337219
 PrefabInstance:
   m_ObjectHideFlags: 0
