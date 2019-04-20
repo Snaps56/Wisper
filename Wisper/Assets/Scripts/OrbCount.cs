@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-public class OrbCount2 : MonoBehaviour
+public class OrbCount : MonoBehaviour
 {
 
     private float TotalOrbCount = 0;
