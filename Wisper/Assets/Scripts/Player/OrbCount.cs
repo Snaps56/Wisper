@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using EZCameraShake;
 public class OrbCount : MonoBehaviour { 
 
     private float TotalOrbCount = 0;
@@ -145,7 +144,6 @@ public class OrbCount : MonoBehaviour {
         {
             //Destroys Orb
             Instantiate(orbExplode, transform.position, Quaternion.identity);
-            CameraShaker.Instance.ShakeOnce(4f, 1f, .1f, 1f);
             Destroy(other.gameObject);
 
             //Debug.Log ("Added 1 orb");

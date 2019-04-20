@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using EZCameraShake;
 public class OrbCount2 : MonoBehaviour
 {
 
@@ -60,7 +59,7 @@ public class OrbCount2 : MonoBehaviour
 
         psd.ChangeStateConditions("OrbCount", orbCount);
         windPowerBar.fillAmount = orbCount / totalOrbs;
-        orbCountText.text = orbCount.ToString() + "/" + totalOrbs;
+        orbCountText.text = orbCount.ToString() + "/" + totalOrbs.ToString();
     }
 
     //Decrease the orb count
@@ -72,12 +71,11 @@ public class OrbCount2 : MonoBehaviour
             psd.ChangeStateConditions("OrbCount", orbCount);
         }
         windPowerBar.fillAmount = orbCount / totalOrbs;
-        orbCountText.text = orbCount.ToString() + "/" + totalOrbs;
+        orbCountText.text = orbCount.ToString() + "/" + totalOrbs.ToString();
     }
 
     private void Update()
     {
-
         //If player hits max orbs
         if ((float)psd.stateConditions["OrbCount"] >= (float)psd.stateConditions["TotalOrbCount"])
         {
