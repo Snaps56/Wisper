@@ -44,7 +44,6 @@ Transform:
   - {fileID: 4319712370938638}
   - {fileID: 4005716311470064}
   - {fileID: 4215079375331332}
-  - {fileID: 4356368299251774}
   - {fileID: 6547788878141035270}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -175,6 +174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerrigidbody: {fileID: 54627409859291612}
   source: {fileID: 82308098347670210}
+  abilitiesCollider: {fileID: 0}
+  throwAudioClip: {fileID: 0}
+  liftAudioClip: {fileID: 0}
 --- !u!135 &135228142433186762
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -447,8 +449,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4084590194853652}
   - component: {fileID: 135567580916870314}
-  - component: {fileID: 114872477459160730}
   - component: {fileID: 82052067581674174}
+  - component: {fileID: 5890311398790415475}
   m_Layer: 0
   m_Name: Orb Collection Collider
   m_TagString: Untagged
@@ -483,24 +485,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114872477459160730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202869287351374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d1b32164deca564c83f7a824a5823ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windPowerBar: {fileID: 0}
-  orbCountText: {fileID: 0}
-  sunshoreLogo: {fileID: 0}
-  vibrationMultiplier: 0
-  logoLeftShift: 0
-  logoRightShift: 0
 --- !u!82 &82052067581674174
 AudioSource:
   m_ObjectHideFlags: 0
@@ -597,51 +581,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1287137220428750
-GameObject:
+--- !u!114 &5890311398790415475
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4356368299251774}
-  - component: {fileID: 182641647217755188}
-  m_Layer: 0
-  m_Name: WindZone (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4356368299251774
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287137220428750}
-  m_LocalRotation: {x: -0.43552282, y: 0.6667681, z: 0.2059379, w: -0.5686209}
-  m_LocalPosition: {x: 0.226, y: -5.34, z: 0.026}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4417344643520358}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 12.748, y: 254.01999, z: -56.677002}
---- !u!182 &182641647217755188
-WindZone:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287137220428750}
+  m_GameObject: {fileID: 1202869287351374}
   m_Enabled: 1
-  m_Mode: 1
-  m_Radius: 0.08
-  m_WindMain: 2.24
-  m_WindTurbulence: 0
-  m_WindPulseMagnitude: 0
-  m_WindPulseFrequency: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75524450eb655149ba160c89f21bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windPowerBar: {fileID: 0}
+  orbCountText: {fileID: 0}
+  orbExplode: {fileID: 1046171684803300, guid: 73f5033d5da664f43baa6bab0aa8bbdc, type: 3}
+  orbAudioClip: {fileID: 0}
 --- !u!1 &1331792502164852
 GameObject:
   m_ObjectHideFlags: 0
@@ -35102,7 +35057,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4417344643520358}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7121337403525358725
 MonoBehaviour:
