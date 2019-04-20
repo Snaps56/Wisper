@@ -16,7 +16,7 @@ public class EndgameChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Tilde))
+        if (Input.GetKeyDown(KeyCode.Period))
         {
             allTasksDone = true;
             Debug.Log("Debugged all PSD Tasks. All Tasks Done = " + allTasksDone);
@@ -35,6 +35,7 @@ public class EndgameChecker : MonoBehaviour
         }
         if (!detectedTaskUnfinished)
         {
+            PersistantStateData.persistantStateData.ChangeStateConditions("AllTasksDone", true);
             allTasksDone = true;
         }
         return allTasksDone;

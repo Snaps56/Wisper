@@ -122,6 +122,7 @@ public class PersistantStateData : MonoBehaviour
         /////////////////////////////////////////////////////////
         ////////////////////    Task flags   ////////////////////
         /////////////////////////////////////////////////////////
+        stateConditions.Add("AllTasksDone", false);
         stateConditions.Add("TotalTasks", 13.0f);
         stateConditions.Add("FinishedTasks", 0.0f);
         stateConditions.Add("OrbCount", 0.0f);
