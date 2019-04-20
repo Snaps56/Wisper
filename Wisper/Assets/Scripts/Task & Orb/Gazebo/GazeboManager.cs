@@ -29,6 +29,7 @@ public class GazeboManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /*
 		for(int i = 0; i < gridRes; i++)
         {
             for(int j = 0; j < gridRes; j++)
@@ -43,6 +44,7 @@ public class GazeboManager : MonoBehaviour {
                 }
             }
         }
+        */
 	}
 
     void GenerateWaypoints()
@@ -103,12 +105,13 @@ public class GazeboManager : MonoBehaviour {
                 
                 waypoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
+                /*
                 waypoint.AddComponent<MeshFilter>();
                 waypoint.AddComponent<MeshRenderer>();
                 GameObject tmpSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 waypoint.GetComponent<MeshFilter>().mesh = tmpSphere.GetComponent<MeshFilter>().mesh;
                 Destroy(tmpSphere);
-                
+                */
                 waypoint.AddComponent<NavNode>();
                 NavNode wpNavNode = waypoint.GetComponent<NavNode>();
                 wpNavNode.index1 = i;

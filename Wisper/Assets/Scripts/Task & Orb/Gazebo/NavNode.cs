@@ -28,37 +28,78 @@ public class NavNode : MonoBehaviour
 
     public void DetectBlocked()
     {
+        //Debug.Log("Checking for blocked on node " + index1 + ":" + index2);
         bool blocked = false;
-        hitInfo = Physics.BoxCastAll(this.gameObject.transform.position + new Vector3(0, .5f, 0), boxCastHalfExtents, new Vector3(0, 1, 0), this.gameObject.transform.parent.rotation, 3f);
-        foreach(RaycastHit hitFo in hitInfo)
+        
+        // Only counts points as unblocked if they are above the gazebo itself
+        if(DetectGazeboBelow())
         {
-            // Ignore any instrument detection zone of gazebo
-            if(hitFo.transform.gameObject.name != "Instrument Detection Zone")
+            hitInfo = Physics.BoxCastAll(this.gameObject.transform.position + new Vector3(0, .5f, 0), boxCastHalfExtents, new Vector3(0, 1, 0), this.gameObject.transform.parent.rotation, 3f);
+            foreach (RaycastHit hitFo in hitInfo)
             {
-                // Ignore player
-                if (hitFo.transform.root.tag != "Player")
+                // Ignore any instrument detection zone of gazebo
+                if (hitFo.transform.gameObject.name != "Instrument Detection Zone")
                 {
-                    // Ignore DialogueTriggers
-                    if (hitFo.collider.name != "DialogueTrigger")
+                    // Ignore player
+                    if (hitFo.transform.root.tag != "Player")
                     {
-                        // For NPCs, ignore their sphere collider (only utilize the capsule collider)
-                        if (hitFo.transform.CompareTag("NPC"))
+                        // Ignore DialogueTriggers
+                        if (hitFo.collider.name != "DialogueTrigger")
                         {
-                            if (!(hitFo.collider is SphereCollider))
+                            // For NPCs, ignore their sphere collider (only utilize the capsule collider)
+                            if (hitFo.transform.CompareTag("NPC"))
+                            {
+                                if (!(hitFo.collider is SphereCollider))
+                                {
+                                    Debug.Log("Found collision with " + hitFo.transform.name);
+                                    blocked = true;
+                                }
+                            }
+                            else
                             {
                                 Debug.Log("Found collision with " + hitFo.transform.name);
                                 blocked = true;
                             }
                         }
-                        else
-                        {
-                            Debug.Log("Found collision with " + hitFo.transform.name);
-                            blocked = true;
-                        }
                     }
                 }
             }
         }
+        else
+        {
+            Debug.Log("Setting node " + index1 + ":" + index2 + " to blocked as there is no gazebo below it");
+            blocked = true;
+        }
+        
         gazebo.UpdateUnblockedPoints(this.gameObject, blocked);
+    }
+
+    public bool DetectGazeboBelow()
+    {
+        Debug.Log("Checking for gazebo below");
+        bool gazeboBelow = false;
+        hitInfo = Physics.RaycastAll(this.gameObject.transform.position, new Vector3(0, -1, 0), 2f);
+        foreach(RaycastHit hitFo in hitInfo)
+        {
+            try
+            {
+                if (hitFo.transform.parent.gameObject.name == "Gazebo Colliders")
+                {
+                    Debug.Log("Gazebo collider found");
+                    gazeboBelow = true;
+                }
+                else
+                {
+                    Debug.Log("Gazebo collider not found");
+                }
+            }
+            catch(System.NullReferenceException e)
+            {
+                Debug.Log("Caught null reference exception in NavNode. Null reference when attempting to find name of " + 
+                    "parent for gameobject with collider. Will assume there are no gazebo colliders below. Error Message: " + e.Message);
+            }
+            
+        }
+        return gazeboBelow;
     }
 }

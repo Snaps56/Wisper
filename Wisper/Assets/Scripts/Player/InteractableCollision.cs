@@ -44,7 +44,7 @@ public class InteractableCollision : MonoBehaviour {
             if (dialogueManager == null)
 			{
 				// Debug.Log("null dialogueManager, checking again");
-				dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+				dialogueManager = DialogueManager.dialogueManager;
 			}
 
 			NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
