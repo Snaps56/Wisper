@@ -49,6 +49,7 @@ void Update () {
         isThrowing = abilitiesCollider.GetComponent<ObjectThrow>().GetIsThrowingObjects();
         isLifting = abilitiesCollider.GetComponent<ObjectLift>().GetIsLiftingObjects();
 
+        //Code to make passive audio
         if (playerrigidbody.velocity.magnitude > 1)
         {
             if (1 - 1 / playerrigidbody.velocity.magnitude > 0.5)
@@ -62,7 +63,9 @@ void Update () {
             source.volume = 0.25f;
             source.pitch = 1f;
         }
-        throwingAudioSource.pitch = 1;
+
+        //Code for ability noise
+        //Throw noise
         if (!isThrowing)
         {
             throwSoundPlayed = true;
@@ -76,11 +79,25 @@ void Update () {
             }
         }
 
-
-        if (isLifting && !liftAudioSource.isPlaying)
+        //Lift noise
+        if (!isLifting)
         {
-            liftAudioSource.PlayOneShot(liftAudioClip);
+            liftSoundPlayed = true;
         }
+        else if (isLifting && !liftAudioSource.isPlaying)
+        {
+            if (liftSoundPlayed)
+            {
+                liftAudioSource.PlayOneShot(liftAudioClip);
+                liftSoundPlayed = false;
+            }
+        }
+
+        ////Repeating 
+        //if (isLifting && !liftAudioSource.isPlaying)
+        //{
+        //    liftAudioSource.PlayOneShot(liftAudioClip);
+        //}
 
 
     }
