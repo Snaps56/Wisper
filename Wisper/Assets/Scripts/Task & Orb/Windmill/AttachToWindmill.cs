@@ -11,6 +11,7 @@ public class AttachToWindmill : MonoBehaviour {
     public GameObject windimllSpinner;
     public GameObject brokenPart;
     public GameObject fixedWing;
+    public GameObject wingCloth;
     private Rigidbody rb;
     private PersistantStateData persistantStateData;
     private bool attached = false;
@@ -38,6 +39,7 @@ public class AttachToWindmill : MonoBehaviour {
         //Debug.Log("ATTACHED");
         windimllSpinner.GetComponent<Windmill>().IncrementAttachCounter();
         fixedWing.SetActive(true);
+        wingCloth.SetActive(true);
         this.gameObject.SetActive(false);
         attached = false;
     }

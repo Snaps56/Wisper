@@ -15,12 +15,12 @@ public class ReferenceSetter : MonoBehaviour {
         if(this.gameObject.name.Contains("3"))
         {
             Debug.Log("Attaching the wing");
-            destroyedPart = GameObject.Find("wing3_destroyed");
+            destroyedPart = GameObject.Find("broken_wing_3");
             destroyedPart.GetComponent<AttachToWindmill>().brokenPart = this.gameObject;
         }
         else if (this.gameObject.name.Contains("5"))
         {
-            destroyedPart = GameObject.Find("wing5_destroyed");
+            destroyedPart = GameObject.Find("broken_wing_5");
             destroyedPart.GetComponent<AttachToWindmill>().brokenPart = this.gameObject;
         }
     }
