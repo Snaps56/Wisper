@@ -121,51 +121,72 @@ public class PauseMenu : MonoBehaviour
     public void DisplaySaveMenu()
     {
         Debug.Log("Save path is " + PSD.savePath);
-        string[] saveFolders = Directory.GetDirectories(PSD.savePath);
+        string[] saveFolders;
+        try
+        {
+            saveFolders = Directory.GetDirectories(PSD.savePath);
+        }
+        catch
+        {
+            saveFolders = new string[0];
+        }
+        
         GameObject loadMenu = GameObject.Find("MasterPauseMenu").transform.Find("SaveLoadMenu").gameObject;
         GameObject slb1 = loadMenu.transform.Find("SaveLoadButton1").gameObject;
         GameObject slb2 = loadMenu.transform.Find("SaveLoadButton2").gameObject;
         GameObject slb3 = loadMenu.transform.Find("SaveLoadButton3").gameObject;
         GameObject slb4 = loadMenu.transform.Find("SaveLoadButton4").gameObject;
+        bool found1 = false, found2 = false, found3 = false, found4 = false;
 
-        if (saveFolders.Length >= 1)
+        foreach (string entry in saveFolders)
         {
-            ChangeSaveLoadButton(slb1, saveFolders[0]);
+            string saveNum = SaveLoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(entry);
+            int numInt;
+            
+            if(int.TryParse(saveNum, out numInt))
+            {
+                if(numInt == 1)
+                {
+                    ChangeSaveLoadButton(slb1, entry);
+                    found1 = true;
+                }
+                else if(numInt ==2)
+                {
+                    ChangeSaveLoadButton(slb2, entry);
+                    found2 = true;
+                }
+                else if (numInt == 3)
+                {
+                    ChangeSaveLoadButton(slb3, entry);
+                    found3 = true;
+                }
+                else if (numInt == 4)
+                {
+                    ChangeSaveLoadButton(slb4, entry);
+                    found4 = true;
+                }
+            }
         }
-        else
+
+        if (!found1)
         {
             ChangeSaveLoadButton(slb1);
         }
-        slb1.SetActive(true);
-        if (saveFolders.Length >= 2)
-        {
-            ChangeSaveLoadButton(slb2, saveFolders[1]);
-            
-        }
-        else
+        if(!found2)
         {
             ChangeSaveLoadButton(slb2);
         }
-        slb2.SetActive(true);
-        if (saveFolders.Length >= 3)
-        {
-            ChangeSaveLoadButton(slb3, saveFolders[2]);
-            
-        }
-        else
+        if(!found3)
         {
             ChangeSaveLoadButton(slb3);
         }
-        slb3.SetActive(true);
-        if (saveFolders.Length > 3)
-        {
-            ChangeSaveLoadButton(slb4, saveFolders[3]);
-            
-        }
-        else
+        if(!found4)
         {
             ChangeSaveLoadButton(slb4);
         }
+        slb1.SetActive(true);
+        slb2.SetActive(true);
+        slb3.SetActive(true);
         slb4.SetActive(true);
         loadMenu.transform.Find("Panel").gameObject.SetActive(true);
     }
