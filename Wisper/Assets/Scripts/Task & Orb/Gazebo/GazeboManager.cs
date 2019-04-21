@@ -18,7 +18,7 @@ public class GazeboManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         PSD = PersistantStateData.persistantStateData;
-        instrumentCollider = this.transform.Find("Instrument Detection Zone").gameObject;
+        instrumentCollider = this.transform.Find("gazebo").Find("Instrument Detection Zone").gameObject;
         gazeboWidth = Vector3.Dot(instrumentCollider.GetComponent<Collider>().bounds.extents, new Vector3(1,0,1));
         gazeboLength = Vector3.Dot(instrumentCollider.GetComponent<Collider>().bounds.extents, new Vector3(1, 0, 1));
         waypointParent = new GameObject("waypoint parent");
