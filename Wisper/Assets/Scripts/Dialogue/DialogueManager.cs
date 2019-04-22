@@ -130,7 +130,16 @@ public class DialogueManager : MonoBehaviour {
         //Play Audio for Dialogue
         if (sentenceDisplayInProgress)
         {
-            activeNPC.GetComponent<NPCAudioManager>().Play();   
+            try
+            {
+                activeNPC.GetComponent<NPCAudioManager>().Play();
+            }
+            catch(System.NullReferenceException e)
+            {
+                Debug.Log(e.Message);
+                //Debug.LogError(e);
+            }
+               
         }
 
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
@@ -208,6 +217,7 @@ public class DialogueManager : MonoBehaviour {
             {
                 if (sentenceDisplayInProgress)
                 {
+                    Debug.Log("Set skip text to true");
                     skipText = true;
                 }
                 else

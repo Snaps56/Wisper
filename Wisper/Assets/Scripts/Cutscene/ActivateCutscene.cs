@@ -24,7 +24,7 @@ public class ActivateCutscene : MonoBehaviour {
         // If PlaygroundIntroPan should play, does it here.
         if ((bool)PSDchecker.stateConditions["DoPlaygroundIntroPan"] && !(bool)PSDchecker.stateConditions["PlaygroundIntroPan1Started"])
         {
-            Debug.Log("Playing Intro");
+            //Debug.Log("Playing Intro");
             Cursor.visible = false;
 
             Debug.Log("Disable player movement from intro cutscene");
@@ -73,14 +73,14 @@ public class ActivateCutscene : MonoBehaviour {
             {
                 if(cutsceneCamera.GetComponent<Animation>().IsPlaying(anime.name))
                 {
-                    Debug.Log("Animation " + anime.name + " detected as playing by cutscene skipper");
+                    //Debug.Log("Animation " + anime.name + " detected as playing by cutscene skipper");
                     foreach(AnimationEvent evento in anime.clip.events)
                     {
-                        Debug.Log("Checking AnimationEvent with function: " + evento.functionName);
+                        //Debug.Log("Checking AnimationEvent with function: " + evento.functionName);
                         if(!evento.isFiredByAnimator)
                         {
-                            Debug.Log(evento.functionName + " has not fired yet." + " Attempting to retrieve function from CutsceneEvents");
-                            Debug.Log("Type of CutsceneEvents is " + typeof(CutsceneEvents).Name);
+                            //Debug.Log(evento.functionName + " has not fired yet." + " Attempting to retrieve function from CutsceneEvents");
+                            //Debug.Log("Type of CutsceneEvents is " + typeof(CutsceneEvents).Name);
                             MethodInfo eventoMethod;
                             ParameterInfo[] eventoParamInfo;
                             object[] passingParams;
@@ -90,46 +90,46 @@ public class ActivateCutscene : MonoBehaviour {
                                 eventoMethod = typeof(CutsceneEvents).GetMethod(evento.functionName);
                                 if (eventoMethod == null)
                                 {
-                                    Debug.Log("Could not locate MethodInfo for " + evento.functionName + " in " + typeof(CutsceneEvents).Name);
+                                    //Debug.Log("Could not locate MethodInfo for " + evento.functionName + " in " + typeof(CutsceneEvents).Name);
                                 }
                                 else
                                 {
-                                    Debug.Log("Method info is " + eventoMethod.Name);
+                                    //Debug.Log("Method info is " + eventoMethod.Name);
                                     eventoParamInfo = eventoMethod.GetParameters();
                                     passingParams = new object[eventoParamInfo.Length];
                                     int i = 0;
                                     foreach (ParameterInfo paramFo in eventoParamInfo)
                                     {
-                                        Debug.Log("Checking ParameterInfo of " + paramFo.Name);
+                                        //Debug.Log("Checking ParameterInfo of " + paramFo.Name);
                                         if (paramFo.ParameterType == typeof(string))
                                         {
-                                            Debug.Log(paramFo.Name + " is of type string");
+                                            //Debug.Log(paramFo.Name + " is of type string");
                                             passingParams[i] = evento.stringParameter;
                                         }
                                         else if (paramFo.ParameterType == typeof(float))
                                         {
-                                            Debug.Log(paramFo.Name + " is of type float");
+                                            //Debug.Log(paramFo.Name + " is of type float");
                                             passingParams[i] = evento.floatParameter;
                                         }
                                         else if (paramFo.ParameterType == typeof(int))
                                         {
-                                            Debug.Log(paramFo.Name + " is of type int");
+                                            //Debug.Log(paramFo.Name + " is of type int");
                                             passingParams[i] = evento.intParameter;
                                         }
                                         else if (paramFo.ParameterType == typeof(object))
                                         {
-                                            Debug.Log(paramFo.Name + " is of type object");
+                                            //Debug.Log(paramFo.Name + " is of type object");
                                             passingParams[i] = evento.objectReferenceParameter;
                                         }
                                         i++;
                                     }
-                                    Debug.Log("Attempting to invoke " + eventoMethod.Name);
+                                    //Debug.Log("Attempting to invoke " + eventoMethod.Name);
                                     eventoMethod.Invoke(cutsceneCamera.GetComponent<CutsceneEvents>(), passingParams);
                                 }
                             }
                             catch (AmbiguousMatchException)
                             {
-                                Debug.Log("Ambiguous Match on Method");
+                                //Debug.Log("Ambiguous Match on Method");
                             }
                         }
                     }

@@ -13,19 +13,35 @@ public class GazeboManager : MonoBehaviour {
     private float gazeboLength;
     private GameObject waypointParent;
     private const int gridRes = 20;
-    public bool pathfindingInProgress = false;
+    private int musicianDoneCount;
 
 	// Use this for initialization
 	void Start () {
         PSD = PersistantStateData.persistantStateData;
-        instrumentCollider = this.transform.Find("Instrument Detection Zone").gameObject;
+        instrumentCollider = this.transform.Find("gazebo").Find("Instrument Detection Zone").gameObject;
         gazeboWidth = Vector3.Dot(instrumentCollider.GetComponent<Collider>().bounds.extents, new Vector3(1,0,1));
         gazeboLength = Vector3.Dot(instrumentCollider.GetComponent<Collider>().bounds.extents, new Vector3(1, 0, 1));
         waypointParent = new GameObject("waypoint parent");
         waypoints = new GameObject[gridRes, gridRes];
         unblockedWaypoints = new GameObject[gridRes, gridRes];
         GenerateWaypoints();
-	}
+        musicianDoneCount = 0;
+
+        // Initializes gazebo based on PSD
+        if ((bool)PSD.stateConditions["DrumsGot"])
+        {
+            musicianDoneCount++;
+        }
+        if ((bool)PSD.stateConditions["SaxGot"])
+        {
+            musicianDoneCount++;
+        }
+        if ((bool)PSD.stateConditions["TamboGot"])
+        {
+            musicianDoneCount++;
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -142,10 +158,10 @@ public class GazeboManager : MonoBehaviour {
 
     public void SetMusicianPath(Instrument instrument)
     {
-        Debug.Log("Looking for musician to set path");
+        Debug.Log("Looking for musician to set path for ");
         foreach(GameObject musician in gazeboMusicians)
         {
-            if(musician.GetComponent<Musician>().instrumentPlayed == instrument.instrumentType)
+            if(musician.GetComponent<Musician>().instrumentPlayed.Equals(instrument.instrumentType))
             {
                 for(int i = 0; i < gridRes; i++)
                 {
@@ -159,5 +175,28 @@ public class GazeboManager : MonoBehaviour {
             }
         }
         
+    }
+
+    public void SetMusicianPath(Musician musicPlayer, GameObject target)
+    {
+        for (int i = 0; i < gridRes; i++)
+        {
+            for (int j = 0; j < gridRes; j++)
+            {
+                waypoints[i, j].GetComponent<NavNode>().DetectBlocked();
+            }
+        }
+        Debug.Log("Setting path for music player");
+        musicPlayer.MakeAPath(target);
+    }
+
+    // Called by musicians once they are done. When all three have finished, spawns orbs
+    public void CheckIfDone()
+    {
+        musicianDoneCount++;
+        if(musicianDoneCount >= 3)
+        {
+            GetComponent<SpawnOrbs>().DropOrbs();
+        }
     }
 }

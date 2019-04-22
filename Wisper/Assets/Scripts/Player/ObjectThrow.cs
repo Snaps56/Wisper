@@ -85,7 +85,7 @@ public class ObjectThrow : MonoBehaviour {
         {
             movementVector = character.GetComponent<PlayerMovement>().GetVelocity();
             deltaMovementVector = movementVector.normalized;
-            deltaMovementVector.y *= 0;
+            //deltaMovementVector.y *= 0;
         }
     }
 
@@ -136,10 +136,21 @@ public class ObjectThrow : MonoBehaviour {
 		}
 		else 
 		{
-			// Passively apply force to objects when not "throwing"
-			float passiveModifer = .01f;
+            // Passively apply force to objects when not "throwing"
+            float passiveModifier = .01f;
+            if (playerOrbCount >= 0 && playerOrbCount < 10)
+            {
+                passiveModifier = .01f;
+            } else if (playerOrbCount >= 10 && playerOrbCount < 20)
+            {
+                passiveModifier = .005f;
+            } else if (playerOrbCount >= 20 && playerOrbCount <= 30)
+            {
+                passiveModifier = .0025f;
+            }
+            //float passiveModifer = .01f;
 			float throwAngle = verticalAimAngle / 90;
-			forceVector = (deltaMovementVector + new Vector3 (0, throwAngle, 0)) * throwForce * passiveModifer * currentPlayerVelocity;
+			forceVector = (deltaMovementVector + new Vector3 (0, throwAngle, 0)) * throwForce * passiveModifier * currentPlayerVelocity;
 			other.GetComponent<Rigidbody> ().AddForce (forceVector);
 		}
     }

@@ -8,7 +8,7 @@ public class Windmill : MonoBehaviour {
     // This script was created to handle the different states of the windmill (Broken, Fixed, and Done)
 
 
-    public GameObject abilitiesCollider;
+    private GameObject abilitiesCollider;
     public float torqueMultiplier = 5f;
     public float baseSpeed = 10f;
     public float dangerSpeed = 6f;
@@ -45,6 +45,7 @@ public class Windmill : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        abilitiesCollider = PlayerPersistance.player.transform.Find("Abilities Collider").gameObject;
         persistantStateData = PersistantStateData.persistantStateData;
         rb = GetComponent<Rigidbody>();
         hasSpawnedOrbs = (bool)persistantStateData.stateConditions["WindmillSpawnedOrbs"];
@@ -66,7 +67,6 @@ public class Windmill : MonoBehaviour {
                 audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
             }
         }
-
 
         //Windmill is fixed!
         if (attachCount == totalToFix)

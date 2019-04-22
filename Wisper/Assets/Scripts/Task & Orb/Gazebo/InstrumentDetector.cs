@@ -35,6 +35,17 @@ public class InstrumentDetector : MonoBehaviour
         }
     }
 
+    public void DestroyInstrument(GameObject instrument)
+    {
+        Debug.Log("Destroying instrument");
+        Instrument tmpInst = instrument.GetComponent<Instrument>();
+        if (tmpInst != null)
+        {
+            instrumentList.Remove(tmpInst);
+        }
+        Destroy(instrument);
+    }
+
     /*
      * If velocity is below a "resting" threshold
      * If the lastPos is null or it has moved beyond an "update" threshold

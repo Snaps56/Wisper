@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class IgnoreNPC : MonoBehaviour {
 
-	public Transform player;
+	private Transform player;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        player = PlayerPersistance.player.transform;
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		IgnoreCollision ();
 	}
 

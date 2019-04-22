@@ -15,7 +15,7 @@ public class InteractableCollision : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+		dialogueManager = DialogueManager.dialogueManager;
         dialogueBox = GameObject.Find("MainCanvas").gameObject.transform.Find("DialoguePanel").gameObject;
         interactText = GameObject.Find("MainCanvas").gameObject.transform.Find("InteractText").gameObject;
     }

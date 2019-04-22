@@ -102,12 +102,14 @@ public class OrbCount : MonoBehaviour
         //Gathers orb if orb is within range
         if (other.gameObject.CompareTag("Orb") /*&& objectDistance < orbPickupRadius*/)
         {
+            Debug.Log("Beginning orb collection process");
             //Destroys Orb
+            Destroy(other.gameObject);
             Instantiate(orbExplode, transform.position, Quaternion.identity);
             orbAudioSource.PlayOneShot(orbAudioClip);
-            Destroy(other.gameObject);
+            
 
-            //Debug.Log ("Added 1 orb");
+            Debug.Log ("Added 1 orb");
 
             ///Update UI
 
@@ -116,7 +118,7 @@ public class OrbCount : MonoBehaviour
                 orbCount++;
                 psd.ChangeStateConditions("OrbCount", orbCount);
                 psd.ChangeStateConditions("HasReachedMax", false);
-                //Debug.Log("count increased");
+                Debug.Log("count increased");
             }
             else if ((float)psd.stateConditions["OrbCount"] == (float)psd.stateConditions["TotalOrbCount"])
             {

@@ -8,16 +8,122 @@ public class Musician : MonoBehaviour {
     public InstrumentType instrumentPlayed;
     public List<GameObject> route;
     private GazeboManager gazebo;
-
+    private bool hasInstrument;
+    private Animator anim;
+    private NPCMovement mover;
+    private bool isDone;
+    public Vector3 musicianPosition;
+    public Quaternion musicianRotation;
 	// Use this for initialization
 	void Start () {
+        musicianPosition = this.gameObject.transform.position;
+        musicianRotation = this.gameObject.transform.rotation;
         gazebo = GameObject.Find("Gazebo").GetComponent<GazeboManager>();
+        hasInstrument = false;
+        isDone = false;
+        anim = GetComponent<Animator>();
+        mover = GetComponent<NPCMovement>();
+
+        Debug.Log("Instrument is " + instrumentPlayed);
+        if(instrumentPlayed.Equals(InstrumentType.Drum))
+        {
+            Debug.Log("Detect musician plays drums");
+            anim.SetBool("DrumPlayer", true);
+            if((bool)PersistantStateData.persistantStateData.stateConditions["DrumsGot"])
+            {
+                hasInstrument = true;
+                isDone = true;
+            }
+        }
+        else if(instrumentPlayed.Equals(InstrumentType.Saxophone))
+        {
+            Debug.Log("Detect musician plays saxophone");
+            anim.SetBool("SaxophonePlayer", true);
+            if ((bool)PersistantStateData.persistantStateData.stateConditions["SaxGot"])
+            {
+                hasInstrument = true;
+                isDone = true;
+            }
+        }
+        else if(instrumentPlayed.Equals(InstrumentType.Tamborine))
+        {
+            Debug.Log("Detect musician plays tamborine");
+            anim.SetBool("TamborinePlayer", true);
+            if ((bool)PersistantStateData.persistantStateData.stateConditions["TamboGot"])
+            {
+                hasInstrument = true;
+                isDone = true;
+            }
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(hasInstrument)
+        {
+            if(!mover.move && !isDone)
+            {
+                if(Quaternion.Angle(transform.rotation, musicianRotation) > 0.1)
+                {
+                    Debug.Log("rotating musician to original facing");
+                    transform.rotation = Quaternion.Slerp(transform.rotation, musicianRotation, 3 * Time.deltaTime);
+                }
+                else
+                {
+                    Debug.Log("Setting animator HasInstrument");
+                    anim.SetBool("HasInstrument", true);
+                    isDone = true;
+                    GetComponent<SpawnOrbs>().DropOrbs();
+                    gazebo.CheckIfDone();
+                    if(instrumentPlayed.Equals(InstrumentType.Drum))
+                    {
+                        PersistantStateData.persistantStateData.ChangeStateConditions("DrumsGot", true);
+                    }
+                    else if (instrumentPlayed.Equals(InstrumentType.Saxophone))
+                    {
+                        PersistantStateData.persistantStateData.ChangeStateConditions("SaxGot", true);
+                    }
+                    else if (instrumentPlayed.Equals(InstrumentType.Tamborine))
+                    {
+                        PersistantStateData.persistantStateData.ChangeStateConditions("TamboGot", true);
+                    }
+                }
+            }
+        }
 	}
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        try
+        {
+            Instrument tmpInst = other.gameObject.GetComponent<Instrument>();
+            if(tmpInst != null)
+            {
+                if (tmpInst.instrumentType == this.instrumentPlayed)
+                {
+                    Debug.Log("Musician has reached instrument");
+                    gazebo.gameObject.transform.Find("gazebo").Find("Instrument Detection Zone").GetComponent<InstrumentDetector>().DestroyInstrument(other.gameObject);
+                    Debug.Log("Instrument destroyed");
+                    hasInstrument = true;
+                    Debug.Log("Creating instrument recall point");
+                    GameObject tmpGO = new GameObject("Musician recall point");
+                    tmpGO.AddComponent<SphereCollider>();
+                    tmpGO.GetComponent<SphereCollider>().radius = 0.01f;
+                    
+                    Debug.Log("Moving instrument recall point");
+                    tmpGO.transform.SetPositionAndRotation(musicianPosition, musicianRotation);
+                    Debug.Log("Setting musician to move to recall point");
+                    gazebo.SetMusicianPath(this, tmpGO);
+                    Destroy(tmpGO);
+                }
+            }
+        }
+        catch(System.Exception e)
+        {
+            Debug.LogError(e);
+        }
+    }
 
     /*
      * A* 
@@ -91,6 +197,7 @@ public class Musician : MonoBehaviour {
             npcPath.Reverse();
             route = npcPath;
             this.gameObject.GetComponent<NPCMovement>().ReplaceWaypoints(route);
+            anim.SetBool("Walking", true);
         }
         else
         {
@@ -122,6 +229,7 @@ public class Musician : MonoBehaviour {
 
     private LocalNodeCopy FindClosestNode(GameObject target, GameObject[,] nodeList, Vector3 directingPoint)
     {
+        Debug.Log("Locating closest node to " + target.name);
         Vector3 targetPoint;
         if(directingPoint != null)
         {
@@ -154,6 +262,7 @@ public class Musician : MonoBehaviour {
         {
             closestCopy = new LocalNodeCopy(closest.GetComponent<NavNode>());
         }
+        Debug.Log("Returning node copy for " + target.name);
         return closestCopy;
     }
 
@@ -226,7 +335,7 @@ public class Musician : MonoBehaviour {
     }
 }
 
-public enum InstrumentType { Banjo, Kazooie };
+public enum InstrumentType { Banjo, Kazooie, Drum, Tamborine, Saxophone };
 
 public class LocalNodeCopy
 {

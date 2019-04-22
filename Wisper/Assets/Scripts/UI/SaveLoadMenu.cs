@@ -165,7 +165,7 @@ public class SaveLoadMenu : MonoBehaviour {
 
         if(currentFileName.Equals(""))
         {
-            // TODO get use input and create save file from name
+            // TODO get user input and create save file from name
             currentFileName = Path.Combine(fileDir, "ShamusFile.txt");
             string fileContentString = "";
             foreach (string key in PSD.stateConditions.Keys)
@@ -349,12 +349,12 @@ public class SaveLoadMenu : MonoBehaviour {
             if (loadingScreen == null)
             {
                 Debug.Log("Retrieving loading screen");
-                loadingScreen = GameObject.Find("Canvas").transform.Find("Loading Screen").gameObject;
+                loadingScreen = GameObject.Find("UI").transform.Find("MainCanvas").Find("Loading Screen").gameObject;
             }
             if (blackFade == null)
             {
                 Debug.Log("Retrieving black fade");
-                blackFade = GameObject.Find("Canvas").transform.Find("Faded").gameObject.GetComponentInChildren<CanvasGroup>();
+                blackFade = GameObject.Find("UI").transform.Find("MainCanvas").Find("Faded").gameObject.GetComponentInChildren<CanvasGroup>();
             }
             if (!blackFade.gameObject.activeSelf)
             {
