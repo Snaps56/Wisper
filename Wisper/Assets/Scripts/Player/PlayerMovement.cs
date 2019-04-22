@@ -40,9 +40,15 @@ public class PlayerMovement : MonoBehaviour {
 
 	public GameObject[] freeModeTrails;
 
+
+
+
+
     // Use this for initialization
     void Start()
     {
+
+
         // initialize the player's position if they return from the city
         if ((bool)PersistantStateData.persistantStateData.stateConditions["TutorialGateTravelled"])
         {
