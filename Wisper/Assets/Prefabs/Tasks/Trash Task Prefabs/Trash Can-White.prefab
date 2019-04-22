@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &2427649756008596136
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274918465543219400}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.15502837, y: 0.19344923, z: 0.14744076}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5153544973146416047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29,6 +16,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &8267672176304657521
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274918465543219400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: eb653ed2d7bc1b0468fd3c7f5a852a8e, type: 3}
 --- !u!1001 &274918465543319144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38,12 +39,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: eb653ed2d7bc1b0468fd3c7f5a852a8e, type: 3}
       propertyPath: m_Name
-      value: Can-White
+      value: Trash Can-White
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: eb653ed2d7bc1b0468fd3c7f5a852a8e, type: 3}
       propertyPath: m_TagString
       value: PickUp
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: eb653ed2d7bc1b0468fd3c7f5a852a8e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6430024c834d5e44a84f444c60e435dc, type: 2}
     - target: {fileID: 400000, guid: eb653ed2d7bc1b0468fd3c7f5a852a8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -69.689
@@ -88,10 +93,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: eb653ed2d7bc1b0468fd3c7f5a852a8e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6430024c834d5e44a84f444c60e435dc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb653ed2d7bc1b0468fd3c7f5a852a8e, type: 3}
 --- !u!1 &274918465543219400 stripped
