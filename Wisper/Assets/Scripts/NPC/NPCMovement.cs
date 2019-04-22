@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NPCMovement : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public List<GameObject> waypoints;
     int currentWP = 0;
     public float rotSpeed = 3.0f;
@@ -18,6 +18,7 @@ public class NPCMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        player = PlayerPersistance.player.transform.gameObject;
     }
 
     // Update is called once per frame

@@ -21,6 +21,10 @@ public class AttachToWindmill : MonoBehaviour {
     void Start () {
         persistantStateData = PersistantStateData.persistantStateData;
         rb = GetComponent<Rigidbody>();
+        if ((bool)persistantStateData.stateConditions["WindmillTaskDone"])
+        {
+            attached = true;
+        }
     }
 
     // Update is called once per frame

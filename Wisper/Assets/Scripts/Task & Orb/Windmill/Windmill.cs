@@ -68,7 +68,6 @@ public class Windmill : MonoBehaviour {
             }
         }
 
-
         //Windmill is fixed!
         if (attachCount == totalToFix)
         {
