@@ -51,13 +51,13 @@ public class NavNode : MonoBehaviour
                             {
                                 if (!(hitFo.collider is SphereCollider))
                                 {
-                                    Debug.Log("Found collision with " + hitFo.transform.name);
+                                    //Debug.Log("Found collision with " + hitFo.transform.name);
                                     blocked = true;
                                 }
                             }
                             else
                             {
-                                Debug.Log("Found collision with " + hitFo.transform.name);
+                                //Debug.Log("Found collision with " + hitFo.transform.name);
                                 blocked = true;
                             }
                         }
@@ -67,7 +67,7 @@ public class NavNode : MonoBehaviour
         }
         else
         {
-            Debug.Log("Setting node " + index1 + ":" + index2 + " to blocked as there is no gazebo below it");
+            //Debug.Log("Setting node " + index1 + ":" + index2 + " to blocked as there is no gazebo below it");
             blocked = true;
         }
         
@@ -76,7 +76,7 @@ public class NavNode : MonoBehaviour
 
     public bool DetectGazeboBelow()
     {
-        Debug.Log("Checking for gazebo below");
+        //Debug.Log("Checking for gazebo below");
         bool gazeboBelow = false;
         hitInfo = Physics.RaycastAll(this.gameObject.transform.position, new Vector3(0, -1, 0), 2f);
         foreach(RaycastHit hitFo in hitInfo)
@@ -85,12 +85,12 @@ public class NavNode : MonoBehaviour
             {
                 if (hitFo.transform.parent.gameObject.name == "Gazebo Colliders")
                 {
-                    Debug.Log("Gazebo collider found");
+                    //Debug.Log("Gazebo collider found");
                     gazeboBelow = true;
                 }
                 else
                 {
-                    Debug.Log("Gazebo collider not found");
+                    //Debug.Log("Gazebo collider not found");
                 }
             }
             catch(System.NullReferenceException e)

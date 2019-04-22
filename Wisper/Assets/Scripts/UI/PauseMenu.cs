@@ -138,6 +138,7 @@ public class PauseMenu : MonoBehaviour
         GameObject slb4 = loadMenu.transform.Find("SaveLoadButton4").gameObject;
         bool found1 = false, found2 = false, found3 = false, found4 = false;
 
+        // Foreach directory in save directory, check for a savefile's folder
         foreach (string entry in saveFolders)
         {
             string saveNum = SaveLoadMenu.GetComponent<SaveLoadMenu>().ParseFinalPathPortion(entry);
@@ -168,6 +169,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
+        // If folders for 1 - 4 were not found, set their corresponding button to default value ("empty")
         if (!found1)
         {
             ChangeSaveLoadButton(slb1);
@@ -184,6 +186,7 @@ public class PauseMenu : MonoBehaviour
         {
             ChangeSaveLoadButton(slb4);
         }
+
         slb1.SetActive(true);
         slb2.SetActive(true);
         slb3.SetActive(true);
