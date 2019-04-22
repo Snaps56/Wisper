@@ -22,6 +22,7 @@ AudioMixerController:
     - 3e06ff5df62bb4b5c8464f5961f2cbe1
     - feccaee51e7ff4776bc8d9ef1633c6d4
     - 8f024e05e451849509eddf3c74ec9682
+    - c1de2522e6f784a038f995f4de08ab86
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -36,6 +37,7 @@ AudioMixerGroupController:
   m_GroupID: b1e5124028ea54aa0bbb6d84171690fd
   m_Children:
   - {fileID: 243813618932498778}
+  - {fileID: 243469019272955444}
   m_Volume: 1d1f9f7af549645c79b65a4ebee7c442
   m_Pitch: ef1cc8a00c40d482e8d7e816adfeff96
   m_Effects:
@@ -106,6 +108,24 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!243 &243469019272955444
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TrashFall
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: c1de2522e6f784a038f995f4de08ab86
+  m_Children: []
+  m_Volume: 9b6518e36017145abb004c82f93f6bec
+  m_Pitch: 27b39115e03da444bab36cf186a1c9df
+  m_Effects:
+  - {fileID: 244023944251125996}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &243813618932498778
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -126,6 +146,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &244023944251125996
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 505b304108f6746f8b8c7e442daf69f3
+  m_EffectName: Attenuation
+  m_MixLevel: 1f107eaa0054c495ba50f8fd25103f28
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &244332736412550510
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
