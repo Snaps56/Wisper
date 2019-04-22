@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Obj_FacePlayer : MonoBehaviour {
-    public Transform mainCamera;
+    private Transform mainCamera;
+
 	// Use this for initialization
 	void Start () {
+        mainCamera = PlayerPersistance.player.transform.Find("Main Camera").gameObject.GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
