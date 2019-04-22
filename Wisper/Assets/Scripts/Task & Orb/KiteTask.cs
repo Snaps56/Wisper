@@ -42,6 +42,8 @@ public class KiteTask : MonoBehaviour {
         z1 = -394.9f;
         z2 = -432.22f;
 
+        kitePos = transform.position;
+
         //create an animator
         animator = GetComponent<Animator>();
 
@@ -80,19 +82,14 @@ public class KiteTask : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        // have the kite and NPC face each other
-        //direction = npc.transform.position - this.transform.position;
-        /*
-        if (transform.position.z > npc.transform.position.z)
+        npc.transform.LookAt(transform.position);
+        if(transform.position.y > kitePos.y)
         {
-            this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotSpeed * Time.deltaTime);
+            transform.LookAt(npc.transform.position);
         }
-        else if (transform.position.z < npc.transform.position.z)
-        {
-            this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotSpeed * Time.deltaTime);
-        }
-        */
+        
+        npc.transform.rotation = Quaternion.Euler(new Vector3(0, npc.transform.rotation.y*180, 0));
         FlyKite();
-        Debug.Log("kite Pos" + transform.position + " Rig" + GetComponent<Rigidbody>().transform.position);
+       // Debug.Log("kite Pos" + transform.position + " Rig" + GetComponent<Rigidbody>().transform.position);
 	}
 }
