@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NPCMovement : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public List<GameObject> waypoints;
     int currentWP = 0;
     public float rotSpeed = 3.0f;
@@ -18,6 +18,7 @@ public class NPCMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        player = PlayerPersistance.player.transform.gameObject;
     }
 
     // Update is called once per frame
@@ -56,6 +57,17 @@ public class NPCMovement : MonoBehaviour
                         {
                             //Debug.Log("Clearing current wp");
                             waypoints.Clear();
+
+                            // Attempt to turn off the Walking variable on this objects animator
+                            try
+                            {
+                                Debug.Log("Setting animator Walking bool false");
+                                GetComponent<Animator>().SetBool("Walking", false);
+                            }
+                            catch(System.Exception e)
+                            {
+                                Debug.LogError(e);
+                            }
                         }
                     }
                 }
@@ -64,6 +76,10 @@ public class NPCMovement : MonoBehaviour
             {
                 //Debug.Log("Exception caught in NPC movement: " + e.Message);
             }
+        }
+        else
+        {
+            move = false;
         }
     }
 
@@ -79,6 +95,7 @@ public class NPCMovement : MonoBehaviour
         {
             waypoints = newPoints;
             currentWP = 0;
+            move = true;
         }
         else
         {

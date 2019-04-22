@@ -7,11 +7,12 @@ public class LevelManager : MonoBehaviour
 {
 
     public static LevelManager Instance { set; get; }
+    public string sceneLoadOnAwake = "LS Playground";
 
     void Awake()
     {
         Instance = this;
-        Load("LS Playground");
+        Load(sceneLoadOnAwake);
     }
 
     public void Load(string sceneName)
