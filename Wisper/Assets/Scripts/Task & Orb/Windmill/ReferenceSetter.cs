@@ -13,11 +13,13 @@ public class ReferenceSetter : MonoBehaviour {
 
     // Use this for initialization
 
-    private void Awake()
-    {
-    }
     void Start () {
         persistantStateData = PersistantStateData.persistantStateData;
+
+        if ((bool)persistantStateData.stateConditions["WindmillTaskDone"])
+        {
+            this.gameObject.SetActive(false);
+        }
 
         //Debug.Log("The name of the part: " + this.gameObject.name);
         if (this.gameObject.name.Contains("3"))
@@ -33,9 +35,6 @@ public class ReferenceSetter : MonoBehaviour {
         }
 
 
-        if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == true)
-        {
-            this.gameObject.SetActive(false);
-        }
+
     }
 }

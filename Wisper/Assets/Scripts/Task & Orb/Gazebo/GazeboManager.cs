@@ -13,7 +13,7 @@ public class GazeboManager : MonoBehaviour {
     private float gazeboLength;
     private GameObject waypointParent;
     private const int gridRes = 20;
-    public bool pathfindingInProgress = false;
+    private int musicianDoneCount;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +25,23 @@ public class GazeboManager : MonoBehaviour {
         waypoints = new GameObject[gridRes, gridRes];
         unblockedWaypoints = new GameObject[gridRes, gridRes];
         GenerateWaypoints();
-	}
+        musicianDoneCount = 0;
+
+        // Initializes gazebo based on PSD
+        if ((bool)PSD.stateConditions["DrumsGot"])
+        {
+            musicianDoneCount++;
+        }
+        if ((bool)PSD.stateConditions["SaxGot"])
+        {
+            musicianDoneCount++;
+        }
+        if ((bool)PSD.stateConditions["TamboGot"])
+        {
+            musicianDoneCount++;
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -172,5 +188,15 @@ public class GazeboManager : MonoBehaviour {
         }
         Debug.Log("Setting path for music player");
         musicPlayer.MakeAPath(target);
+    }
+
+    // Called by musicians once they are done. When all three have finished, spawns orbs
+    public void CheckIfDone()
+    {
+        musicianDoneCount++;
+        if(musicianDoneCount >= 3)
+        {
+            GetComponent<SpawnOrbs>().DropOrbs();
+        }
     }
 }

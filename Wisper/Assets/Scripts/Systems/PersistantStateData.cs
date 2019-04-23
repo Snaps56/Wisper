@@ -144,8 +144,8 @@ public class PersistantStateData : MonoBehaviour
 
         /**************    City flags   ***************/
         //Windmill
-        stateConditions.Add("WindmillTaskDone", false);
-        stateConditions.Add("WindmillFixed", false);
+        stateConditions.Add("WindmillTaskDone", true);
+        stateConditions.Add("WindmillFixed", true);
         stateConditions.Add("WindmillSpawnedOrbs", false);
         //Halfpipe
         stateConditions.Add("HalfPipeTaskDone", false);
@@ -163,8 +163,10 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("KiteFlying", false);
 
         // Variables for the Gazeeeeeeeebo task
-        stateConditions.Add("NeedInstrument1", true);
-        stateConditions.Add("Instrument1Got", false);
+        stateConditions.Add("DrumsGot", false);
+        stateConditions.Add("SaxGot", false);
+        stateConditions.Add("TamboGot", false);
+        
 
 
 

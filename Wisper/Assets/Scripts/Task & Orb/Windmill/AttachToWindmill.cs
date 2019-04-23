@@ -23,7 +23,9 @@ public class AttachToWindmill : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         if ((bool)persistantStateData.stateConditions["WindmillTaskDone"])
         {
-            attached = true;
+            fixedWing.SetActive(true);
+            wingCloth.SetActive(true);
+            this.gameObject.SetActive(false);
         }
     }
 

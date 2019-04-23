@@ -11,7 +11,7 @@ public class Musician : MonoBehaviour {
     private bool hasInstrument;
     private Animator anim;
     private NPCMovement mover;
-
+    private bool isDone;
     public Vector3 musicianPosition;
     public Quaternion musicianRotation;
 	// Use this for initialization
@@ -20,6 +20,7 @@ public class Musician : MonoBehaviour {
         musicianRotation = this.gameObject.transform.rotation;
         gazebo = GameObject.Find("Gazebo").GetComponent<GazeboManager>();
         hasInstrument = false;
+        isDone = false;
         anim = GetComponent<Animator>();
         mover = GetComponent<NPCMovement>();
 
@@ -28,16 +29,31 @@ public class Musician : MonoBehaviour {
         {
             Debug.Log("Detect musician plays drums");
             anim.SetBool("DrumPlayer", true);
+            if((bool)PersistantStateData.persistantStateData.stateConditions["DrumsGot"])
+            {
+                hasInstrument = true;
+                isDone = true;
+            }
         }
         else if(instrumentPlayed.Equals(InstrumentType.Saxophone))
         {
             Debug.Log("Detect musician plays saxophone");
             anim.SetBool("SaxophonePlayer", true);
+            if ((bool)PersistantStateData.persistantStateData.stateConditions["SaxGot"])
+            {
+                hasInstrument = true;
+                isDone = true;
+            }
         }
         else if(instrumentPlayed.Equals(InstrumentType.Tamborine))
         {
             Debug.Log("Detect musician plays tamborine");
             anim.SetBool("TamborinePlayer", true);
+            if ((bool)PersistantStateData.persistantStateData.stateConditions["TamboGot"])
+            {
+                hasInstrument = true;
+                isDone = true;
+            }
         }
 	}
 	
@@ -45,7 +61,7 @@ public class Musician : MonoBehaviour {
 	void Update () {
 		if(hasInstrument)
         {
-            if(!mover.move)
+            if(!mover.move && !isDone)
             {
                 if(Quaternion.Angle(transform.rotation, musicianRotation) > 0.1)
                 {
@@ -56,6 +72,21 @@ public class Musician : MonoBehaviour {
                 {
                     Debug.Log("Setting animator HasInstrument");
                     anim.SetBool("HasInstrument", true);
+                    isDone = true;
+                    GetComponent<SpawnOrbs>().DropOrbs();
+                    gazebo.CheckIfDone();
+                    if(instrumentPlayed.Equals(InstrumentType.Drum))
+                    {
+                        PersistantStateData.persistantStateData.ChangeStateConditions("DrumsGot", true);
+                    }
+                    else if (instrumentPlayed.Equals(InstrumentType.Saxophone))
+                    {
+                        PersistantStateData.persistantStateData.ChangeStateConditions("SaxGot", true);
+                    }
+                    else if (instrumentPlayed.Equals(InstrumentType.Tamborine))
+                    {
+                        PersistantStateData.persistantStateData.ChangeStateConditions("TamboGot", true);
+                    }
                 }
             }
         }

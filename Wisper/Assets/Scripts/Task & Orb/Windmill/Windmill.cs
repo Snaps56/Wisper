@@ -149,7 +149,6 @@ public class Windmill : MonoBehaviour {
             rb.AddTorque(torque * torqueMultiplier, 0, 0);
         }
         else //If task is done, add constant passive force
-
         {
             Debug.Log("Windmill task is done. Add passive rotation to it.");
             if (-currentVelocity < maxVelocity)
