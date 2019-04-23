@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour {
     //Should only call PSD reset when a new game is started.
     private void Start()
     {
-        menuOnSnapshot.TransitionTo(fadeTime);
+        //menuOnSnapshot.TransitionTo(fadeTime);
         controlDetector = GameObject.Find("ControllerDetector").GetComponent<ControlDetector>();
         PSD = PersistantStateData.persistantStateData;
         PSD.ResetPersistantStateData();
@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame()
     {
-        menuOffSnapshot.TransitionTo(fadeTime);
+        //menuOffSnapshot.TransitionTo(fadeTime);
         FadeToLevel(2);
 
     }
