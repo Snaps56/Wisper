@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Audio;
 using System.IO;
 //using XInputDotNetPure;
 
 public class MainMenu : MonoBehaviour {
 
     public Animator animator;
+    public AudioMixerSnapshot menuOnSnapshot; //Default
+    public AudioMixerSnapshot menuOffSnapshot;
+    public float fadeTime = 3.0f;
 
     public GameObject EventSystem1;
     public GameObject EventSystem2;
@@ -21,10 +25,12 @@ public class MainMenu : MonoBehaviour {
     public PersistantStateData PSD;
     private int LeveltoLoad = 0;
     private ControlDetector controlDetector;
+
     //TODO fix this. This script seems to be on an object in every scene, and is causing PSD to reset whenever a new scene is loaded.
     //Should only call PSD reset when a new game is started.
     private void Start()
     {
+        menuOnSnapshot.TransitionTo(fadeTime);
         controlDetector = GameObject.Find("ControllerDetector").GetComponent<ControlDetector>();
         PSD = PersistantStateData.persistantStateData;
         PSD.ResetPersistantStateData();
@@ -32,7 +38,9 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame()
     {
+        menuOffSnapshot.TransitionTo(fadeTime);
         FadeToLevel(2);
+
     }
 
     public void FadeToLevel (int levelIndex)
