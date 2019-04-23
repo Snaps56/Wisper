@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 // Handles the musician's behaviour
 public class Musician : MonoBehaviour {
@@ -14,8 +15,14 @@ public class Musician : MonoBehaviour {
     private bool isDone;
     public Vector3 musicianPosition;
     public Quaternion musicianRotation;
-	// Use this for initialization
-	void Start () {
+
+    // AudioMixerSnapshots to fade in music (used in start for reloading scene after task is done, and in update for when task is complete) 
+    public AudioMixerSnapshot notPlayingInstrument;
+    public AudioMixerSnapshot playingInstrument;
+    public float fadeTime = 3.0f;
+
+    // Use this for initialization
+    void Start () {
         musicianPosition = this.gameObject.transform.position;
         musicianRotation = this.gameObject.transform.rotation;
         gazebo = GameObject.Find("Gazebo").GetComponent<GazeboManager>();
@@ -33,6 +40,8 @@ public class Musician : MonoBehaviour {
             {
                 hasInstrument = true;
                 isDone = true;
+                // Fades in this musicians instrument
+                playingInstrument.TransitionTo(fadeTime);
             }
         }
         else if(instrumentPlayed.Equals(InstrumentType.Saxophone))
@@ -43,6 +52,8 @@ public class Musician : MonoBehaviour {
             {
                 hasInstrument = true;
                 isDone = true;
+                // Fades in this musicians instrument
+                playingInstrument.TransitionTo(fadeTime);
             }
         }
         else if(instrumentPlayed.Equals(InstrumentType.Tamborine))
@@ -53,6 +64,8 @@ public class Musician : MonoBehaviour {
             {
                 hasInstrument = true;
                 isDone = true;
+                // Fades in this musicians instrument
+                playingInstrument.TransitionTo(fadeTime);
             }
         }
 	}
@@ -87,6 +100,9 @@ public class Musician : MonoBehaviour {
                     {
                         PersistantStateData.persistantStateData.ChangeStateConditions("TamboGot", true);
                     }
+
+                    // Fades in this musicians instrument
+                    playingInstrument.TransitionTo(fadeTime);
                 }
             }
         }
