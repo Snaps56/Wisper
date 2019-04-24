@@ -153,6 +153,8 @@ public class Windmill : MonoBehaviour {
             Debug.Log("Windmill task is done. Add passive rotation to it.");
             if (-currentVelocity < maxVelocity)
             {
+                rb.isKinematic = false;
+                Debug.Log("Turning blah blah blah");
                 rb.AddTorque(baseSpeed, 0, 0);
             }
         }
