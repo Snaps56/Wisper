@@ -45,6 +45,7 @@ Transform:
   - {fileID: 4005716311470064}
   - {fileID: 4215079375331332}
   - {fileID: 6547788878141035270}
+  - {fileID: 794655482307502787}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35027,6 +35028,69 @@ MonoBehaviour:
   emissionIncreaseModifier: 1
   velocityIncreaseModifier: 0
   lifetimeVelocityIncreaseModifier: 0.003
+--- !u!1 &2367429041061513537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 794655482307502787}
+  - component: {fileID: 4741083595834308098}
+  - component: {fileID: 2813951439072690105}
+  m_Layer: 0
+  m_Name: FogCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &794655482307502787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367429041061513537}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 186.13351, y: -87.03554, z: 419.425}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4417344643520358}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4741083595834308098
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367429041061513537}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2813951439072690105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367429041061513537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29ea988700f1184982cd50cf455b4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deepFogDensity: 0.04
+  lightFogDensity: 0.0004
+  changeValue: 0.0002
+  currentFogDensity: 0
+  interVal: 0
+  nearFog: 0
 --- !u!1 &7841303451165609506
 GameObject:
   m_ObjectHideFlags: 0

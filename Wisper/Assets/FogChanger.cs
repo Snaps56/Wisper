@@ -10,7 +10,7 @@ public class FogChanger : MonoBehaviour
     public float currentFogDensity;
     public float interVal;
     public bool nearFog;
-    
+    //private GameObject player;
     
     // Start is called before the first frame update
     void Start()
@@ -18,11 +18,12 @@ public class FogChanger : MonoBehaviour
         nearFog = false;
         currentFogDensity = RenderSettings.fogDensity;
         interVal = currentFogDensity;
+        //player = GameObject.Find("Player");
         //RenderSettings.fogDensity = 0.04f;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         currentFogDensity = RenderSettings.fogDensity;
         if (nearFog && interVal < deepFogDensity)
@@ -42,23 +43,24 @@ public class FogChanger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("In");
-        //if (other.tag == "Player")
-        //{
+        Debug.Log(other);
+        if (other.tag == "FogWall" || other.tag == "Border")
+        {
             Debug.Log("Player");
-        nearFog = true;
+            nearFog = true;
         //RenderSettings.fogDensity = Mathf.Lerp(lightFogDensity, deepFogDensity, Time.time);
         //RenderSettings.fogDensity = deepFogDensity;
-        //}
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("Out");
-        //if (other.tag == "Player")
-        //{
-        Debug.Log("Player");
-        nearFog = false;
+        if (other.tag == "FogWall" || other.tag == "Border")
+        {
+            Debug.Log("Player");
+            nearFog = false;
         //RenderSettings.fogDensity = lightFogDensity;
-        //}
+        }
     }
 }
