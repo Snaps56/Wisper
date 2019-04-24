@@ -154,6 +154,18 @@ public class DialogueManager : MonoBehaviour {
                
         }
 
+        if(dialogueBox == null)
+        {
+            dialogueBox = GameObject.FindGameObjectWithTag("DialogueBox");
+            HideBox();
+        }
+
+        if(player == null)
+        {
+            player = PlayerPersistance.player;
+        }
+        
+
         // Make sure reference to PSD is set (may have been created after DM's start and awake)
         if (persistantStateData == null)
         {
