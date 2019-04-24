@@ -32,11 +32,11 @@ public class Musician : MonoBehaviour {
         mover = GetComponent<NPCMovement>();
 
         Debug.Log("Instrument is " + instrumentPlayed);
-        if(instrumentPlayed.Equals(InstrumentType.Drum))
+        if (instrumentPlayed.Equals(InstrumentType.Drum))
         {
             Debug.Log("Detect musician plays drums");
             anim.SetBool("DrumPlayer", true);
-            if((bool)PersistantStateData.persistantStateData.stateConditions["DrumsGot"])
+            if ((bool)PersistantStateData.persistantStateData.stateConditions["DrumsGot"])
             {
                 hasInstrument = true;
                 isDone = true;
@@ -44,7 +44,7 @@ public class Musician : MonoBehaviour {
                 playingInstrument.TransitionTo(fadeTime);
             }
         }
-        else if(instrumentPlayed.Equals(InstrumentType.Saxophone))
+        else if (instrumentPlayed.Equals(InstrumentType.Saxophone))
         {
             Debug.Log("Detect musician plays saxophone");
             anim.SetBool("SaxophonePlayer", true);
@@ -56,11 +56,23 @@ public class Musician : MonoBehaviour {
                 playingInstrument.TransitionTo(fadeTime);
             }
         }
-        else if(instrumentPlayed.Equals(InstrumentType.Tamborine))
+        else if (instrumentPlayed.Equals(InstrumentType.Tamborine))
         {
             Debug.Log("Detect musician plays tamborine");
             anim.SetBool("TamborinePlayer", true);
             if ((bool)PersistantStateData.persistantStateData.stateConditions["TamboGot"])
+            {
+                hasInstrument = true;
+                isDone = true;
+                // Fades in this musicians instrument
+                playingInstrument.TransitionTo(fadeTime);
+            }
+        }
+        else if (instrumentPlayed.Equals(InstrumentType.Violin))
+        {
+            Debug.Log("Detect musician plays violin");
+            anim.SetBool("TamborinePlayer", true);
+            if ((bool)PersistantStateData.persistantStateData.stateConditions["ViolinGot"])
             {
                 hasInstrument = true;
                 isDone = true;
@@ -99,6 +111,10 @@ public class Musician : MonoBehaviour {
                     else if (instrumentPlayed.Equals(InstrumentType.Tamborine))
                     {
                         PersistantStateData.persistantStateData.ChangeStateConditions("TamboGot", true);
+                    }
+                    else if (instrumentPlayed.Equals(InstrumentType.Violin))
+                    {
+                        PersistantStateData.persistantStateData.ChangeStateConditions("ViolinGot", true);
                     }
 
                     // Fades in this musicians instrument
@@ -351,7 +367,7 @@ public class Musician : MonoBehaviour {
     }
 }
 
-public enum InstrumentType { Banjo, Kazooie, Drum, Tamborine, Saxophone };
+public enum InstrumentType { Banjo, Kazooie, Drum, Tamborine, Saxophone, Violin };
 
 public class LocalNodeCopy
 {

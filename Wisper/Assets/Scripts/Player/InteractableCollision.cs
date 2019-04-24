@@ -46,8 +46,13 @@ public class InteractableCollision : MonoBehaviour {
 				// Debug.Log("null dialogueManager, checking again");
 				dialogueManager = DialogueManager.dialogueManager;
 			}
+            if (dialogueManager == null)
+            {
+                Debug.Log("null dialogueManager, wtf");
+                
+            }
 
-			NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
+            NPCDialogues npcDialogues = other.gameObject.GetComponent<NPCDialogues>();
 			if (npcDialogues != null)   // If this npc has dialogues
             {
                 // set interact text active only when:

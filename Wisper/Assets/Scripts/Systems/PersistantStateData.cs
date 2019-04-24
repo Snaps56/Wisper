@@ -166,6 +166,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("DrumsGot", false);
         stateConditions.Add("SaxGot", false);
         stateConditions.Add("TamboGot", false);
+        stateConditions.Add("ViolinGot", false);
         
 
 

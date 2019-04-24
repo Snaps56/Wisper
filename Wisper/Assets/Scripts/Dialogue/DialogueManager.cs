@@ -78,6 +78,13 @@ public class DialogueManager : MonoBehaviour {
             Debug.Log("DM already exists, deleting this");
             Destroy(gameObject);
         }
+
+        Debug.Log("Dialogue manager is " + dialogueManager.name);
+
+        if (dialogueManager == null)
+        {
+            Debug.Log("Dialogue Manager could not set self reference. Value is null");
+        }
     }
 
     // Use this for initialization. Some references to other gameobject will need to be initialized in Update.
@@ -110,7 +117,11 @@ public class DialogueManager : MonoBehaviour {
         sentenceDisplayInProgress = false;
         dialogueBoxActive = false;
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = PlayerPersistance.player;
+        if(player == null)
+        {
+            Debug.Log("Could not locate player in dialogue manager");
+        }
 
         persistantStateData = GameObject.Find("PersistantStateData");
         if(persistantStateData.GetComponent<PersistantStateData>().realPSD)
