@@ -15,7 +15,7 @@ public class Waves : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        Debug.Log("It calls Start");
         //Mesh set up
         Mesh = new Mesh();
         Mesh.name = gameObject.name;
