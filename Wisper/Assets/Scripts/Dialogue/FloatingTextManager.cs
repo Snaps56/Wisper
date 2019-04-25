@@ -21,7 +21,7 @@ public class FloatingTextManager : MonoBehaviour {
     private bool killFloatingText = false;      // Functionally same as disableFloatingText, but used internally for temporary purposes such as reseting text after an update.
 
     // Exterior game objects which need to be referenced
-    private GameObject persistantStateData;
+    private PersistantStateData persistantStateData;
     private GameObject player;
 
     // Update info
@@ -36,30 +36,26 @@ public class FloatingTextManager : MonoBehaviour {
         sentenceDisplayInProgress = false;
         clearingInProgress = false;
         floatingTextCanvas.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player");
-        persistantStateData = GameObject.Find("PersistantStateData");
+        player = PlayerPersistance.player;
+        persistantStateData = PersistantStateData.persistantStateData;
     }
 
     private void Update()
     {
-        /*if (persistantStateData == null)    // Initialize persistantStateData
-        {
-            persistantStateData = GameObject.Find("PersistantStateData");
-        }*/
         if (floatingTexts == null)  // Initialize floating text if it did not properly do so in Start
         {
             floatingTexts = this.GetComponent<FloatingTexts>();
         }
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = PlayerPersistance.player;
         }
 
-        if (persistantStateDataUpdateCount != persistantStateData.GetComponent<PersistantStateData>().updateCount && !updatingFloatingTexts)
+        if (persistantStateDataUpdateCount != persistantStateData.updateCount && !updatingFloatingTexts)
         {
             //Debug.Log("Updating floating texts on " + this.gameObject.name);
             updatingFloatingTexts = true;
-            persistantStateDataUpdateCount = persistantStateData.GetComponent<PersistantStateData>().updateCount;
+            persistantStateDataUpdateCount = persistantStateData.updateCount;
             UpdateFloatingText();
             updatingFloatingTexts = false;
         }
@@ -95,7 +91,7 @@ public class FloatingTextManager : MonoBehaviour {
                 }
                 catch(System.NullReferenceException e)
                 {
-                    //Debug.LogWarning(e.Message);
+                    Debug.LogWarning("You are near something with a floating text manager that does not have a floating text to display, or is not displaying properly: " + e.Message);
                 }
             }
         }
@@ -209,7 +205,6 @@ public class FloatingTextManager : MonoBehaviour {
 
     private void UpdateFloatingText()
     {
-        // TODO: decide what errors to throw and handle if more than one dialogue would be enabled
         bool tempCheck = true;
         foreach (Dialogue d in floatingTexts.floatingTexts)
         {
@@ -238,6 +233,7 @@ public class FloatingTextManager : MonoBehaviour {
         }
         try
         {
+            newFloatingText = null;
             newFloatingText = GetEnabledText();
         }
         catch(System.NullReferenceException e)
@@ -248,7 +244,7 @@ public class FloatingTextManager : MonoBehaviour {
 
     private bool CheckCondition(TargetCondition condition)
     {
-        if ((bool)persistantStateData.GetComponent<PersistantStateData>().stateConditions[condition.conditionName] == condition.conditionValue)
+        if ((bool)persistantStateData.stateConditions[condition.conditionName] == condition.conditionValue)
         {
             return true;
         }

@@ -31,10 +31,10 @@ public class Musician : MonoBehaviour {
         anim = GetComponent<Animator>();
         mover = GetComponent<NPCMovement>();
 
-        Debug.Log("Instrument is " + instrumentPlayed);
+        //Debug.Log("Instrument is " + instrumentPlayed);
         if (instrumentPlayed.Equals(InstrumentType.Drum))
         {
-            Debug.Log("Detect musician plays drums");
+           //Debug.Log("Detect musician plays drums");
             anim.SetBool("DrumPlayer", true);
             if ((bool)PersistantStateData.persistantStateData.stateConditions["DrumsGot"])
             {
@@ -46,7 +46,7 @@ public class Musician : MonoBehaviour {
         }
         else if (instrumentPlayed.Equals(InstrumentType.Saxophone))
         {
-            Debug.Log("Detect musician plays saxophone");
+            //Debug.Log("Detect musician plays saxophone");
             anim.SetBool("SaxophonePlayer", true);
             if ((bool)PersistantStateData.persistantStateData.stateConditions["SaxGot"])
             {
@@ -58,7 +58,7 @@ public class Musician : MonoBehaviour {
         }
         else if (instrumentPlayed.Equals(InstrumentType.Tamborine))
         {
-            Debug.Log("Detect musician plays tamborine");
+            //Debug.Log("Detect musician plays tamborine");
             anim.SetBool("TamborinePlayer", true);
             if ((bool)PersistantStateData.persistantStateData.stateConditions["TamboGot"])
             {
@@ -70,7 +70,7 @@ public class Musician : MonoBehaviour {
         }
         else if (instrumentPlayed.Equals(InstrumentType.Violin))
         {
-            Debug.Log("Detect musician plays violin");
+            //Debug.Log("Detect musician plays violin");
             anim.SetBool("TamborinePlayer", true);
             if ((bool)PersistantStateData.persistantStateData.stateConditions["ViolinGot"])
             {
@@ -90,12 +90,12 @@ public class Musician : MonoBehaviour {
             {
                 if(Quaternion.Angle(transform.rotation, musicianRotation) > 0.1)
                 {
-                    Debug.Log("rotating musician to original facing");
+                    //Debug.Log("rotating musician to original facing");
                     transform.rotation = Quaternion.Slerp(transform.rotation, musicianRotation, 3 * Time.deltaTime);
                 }
                 else
                 {
-                    Debug.Log("Setting animator HasInstrument");
+                    //Debug.Log("Setting animator HasInstrument");
                     anim.SetBool("HasInstrument", true);
                     isDone = true;
                     GetComponent<SpawnOrbs>().DropOrbs();
@@ -134,18 +134,18 @@ public class Musician : MonoBehaviour {
             {
                 if (tmpInst.instrumentType == this.instrumentPlayed)
                 {
-                    Debug.Log("Musician has reached instrument");
+                    //Debug.Log("Musician has reached instrument");
                     gazebo.gameObject.transform.Find("gazebo").Find("Instrument Detection Zone").GetComponent<InstrumentDetector>().DestroyInstrument(other.gameObject);
-                    Debug.Log("Instrument destroyed");
+                    //Debug.Log("Instrument destroyed");
                     hasInstrument = true;
-                    Debug.Log("Creating instrument recall point");
+                    //Debug.Log("Creating instrument recall point");
                     GameObject tmpGO = new GameObject("Musician recall point");
                     tmpGO.AddComponent<SphereCollider>();
                     tmpGO.GetComponent<SphereCollider>().radius = 0.01f;
                     
-                    Debug.Log("Moving instrument recall point");
+                    //Debug.Log("Moving instrument recall point");
                     tmpGO.transform.SetPositionAndRotation(musicianPosition, musicianRotation);
-                    Debug.Log("Setting musician to move to recall point");
+                    //Debug.Log("Setting musician to move to recall point");
                     gazebo.SetMusicianPath(this, tmpGO);
                     Destroy(tmpGO);
                 }
