@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5883292, g: 0.7107973, b: 0.8651606, a: 1}
+  m_IndirectSpecularColor: {r: 0.58808655, g: 0.71141326, b: 0.863317, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53381c6f5c3e6d4a85ab6dcbfc2ca2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 864858994}
   LoadName: LS City
   UnloadName: LS Playground
 --- !u!65 &36079045
@@ -638,6 +639,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 579348368}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &864858994 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 135850577222098096, guid: 0fe6b442df29e2b4786625321999246d,
+    type: 3}
+  m_PrefabInstance: {fileID: 579348368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1214618111
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53381c6f5c3e6d4a85ab6dcbfc2ca2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 864858994}
   LoadName: LS Playground
   UnloadName: LS City
 --- !u!65 &1250711179

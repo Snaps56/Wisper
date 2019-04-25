@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class LoadTrigger : MonoBehaviour
 {
-
+    public Collider Player;
     public string LoadName;
     public string UnloadName;
 
 private void OnTriggerEnter(Collider col)
     {
-        if (LoadName != "")
+        if (col == Player)
         {
-            LevelManager.Instance.Load(LoadName);
-        }
-        if (UnloadName != "")
-        {
-            StartCoroutine("UnloadScene");
+            if (LoadName != "")
+            {
+                StartCoroutine("LoadScene");
+            }
+            if (UnloadName != "")
+            {
+                StartCoroutine("UnloadScene");
+            }
         }
     }
 
@@ -24,5 +27,11 @@ private void OnTriggerEnter(Collider col)
     {
         yield return new WaitForSeconds(0.10f);
         LevelManager.Instance.Unload(UnloadName);
+    }
+
+    IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(0.10f);
+        LevelManager.Instance.Load(LoadName);
     }
 }
