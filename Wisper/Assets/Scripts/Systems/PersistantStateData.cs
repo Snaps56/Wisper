@@ -176,7 +176,7 @@ public class PersistantStateData : MonoBehaviour
         /////////////////////////////////////////////////////////////
 
         stateConditions.Add("StartupShrineDialogueFinished", false);
-        stateConditions.Add("StartupShrineDialogue", false);    // Plays dialogue after opening cutscene
+        stateConditions.Add("StartupShrineDialogue", true);    // Plays dialogue after opening cutscene
         stateConditions.Add("StartupShrinePart2", false);       // Plays dialogue 3 seconds after previous opening dialogue
         stateConditions.Add("StartupShrineRepeatDirections", false);   // Plays every 1 minute after the other dialogue is finished, before player talks to shrine
 
