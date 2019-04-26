@@ -26,7 +26,8 @@ public class StatueRotation : MonoBehaviour
     void Start()
     {
         xOffset = 0f;
-        yOffset = -90f;
+        yOffset = 0f;
+        playerAbilities = GameObject.Find("Abilities Collider").GetComponent<ObjectThrow>();
         statueVector = transform.right;
         nearPlayer = false;
         taskDone = (bool)PersistantStateData.persistantStateData.stateConditions["StatueFixed"];
@@ -75,12 +76,12 @@ public class StatueRotation : MonoBehaviour
             if (finalDirection < 0 && zOffset <= 30f)
             {
                 Debug.Log("zOffset POSDIR: " + zOffset);
-                transform.RotateAround(rotatePoint.position, Vector3.right, -20 * Time.deltaTime);
+                transform.RotateAround(rotatePoint.position, Vector3.forward, 20 * Time.deltaTime);
             }
             else if (finalDirection >= 0 && zOffset >= -30f)
             {
                 Debug.Log("zOffset NEGDIR: " + zOffset);
-                transform.RotateAround(rotatePoint.position, Vector3.right, 20 * Time.deltaTime);
+                transform.RotateAround(rotatePoint.position, Vector3.forward, -20 * Time.deltaTime);
             }
         }
         else
