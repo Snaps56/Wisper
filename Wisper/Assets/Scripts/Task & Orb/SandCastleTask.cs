@@ -42,7 +42,7 @@ public class SandCastleTask : MonoBehaviour {
             FinishSandCastleTask();
         }
 
-        Debug.Log(materialInterpRate);
+        //Debug.Log(materialInterpRate);
 	}
 	
 	// Update is called once per frame
