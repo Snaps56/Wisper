@@ -38,6 +38,8 @@ public class LanternFloat : MonoBehaviour
 
     public Vector3 Uplift = new Vector3(0,-1,0);
 
+    private int Count = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,11 @@ public class LanternFloat : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Count == 10)
+        {
+            TaskisDone = true;
+            Debug.Log("Task is Done");
+        }
         float distance = Vector3.Distance(player.transform.position, transform.position);
 
         if (distance <= deactivateDistance)
@@ -55,6 +62,7 @@ public class LanternFloat : MonoBehaviour
             {
                 Rigidbody.useGravity = false;
                 Rigidbody.AddForce(Uplift);
+                Count++;
             }
         }
     }
