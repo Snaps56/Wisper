@@ -20,7 +20,7 @@ public class CutsceneEvents : MonoBehaviour {
     private void Start()
     {
         mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
-        windPowerUI = PowerBarPersistence.powerbar.transform;
+        //windPowerUI = PowerBarPersistence.powerbar.transform;
         if ((bool)PersistantStateData.persistantStateData.stateConditions["DoPlaygroundIntroPan"])
         {
             gameObject.SetActive(true);
