@@ -14,6 +14,7 @@ public class StatueRotation : MonoBehaviour
     private float finalDirection;
     private bool nearPlayer;
     private SpawnOrbs orbScript;
+    private AudioSource stoneGrind;
 
     //float rotation = 0f;
     Vector3 desiredRotation;
@@ -32,6 +33,7 @@ public class StatueRotation : MonoBehaviour
         nearPlayer = false;
         taskDone = (bool)PersistantStateData.persistantStateData.stateConditions["StatueFixed"];
         orbScript = GetComponent<SpawnOrbs>();
+        stoneGrind = GetComponent<AudioSource>();
         if (!taskDone) {
             transform.rotation = Quaternion.Euler(xOffset, yOffset, 30f);
         }
@@ -72,11 +74,16 @@ public class StatueRotation : MonoBehaviour
             {
                 stoneDustParticles.Play();
             }
+            if (!stoneGrind.isPlaying)
+            {
+                stoneGrind.Play();
+            }
 
             if (finalDirection < 0 && zOffset <= 30f)
             {
                 Debug.Log("zOffset POSDIR: " + zOffset);
                 transform.RotateAround(rotatePoint.position, Vector3.forward, 20 * Time.deltaTime);
+                
             }
             else if (finalDirection >= 0 && zOffset >= -30f)
             {
@@ -89,6 +96,10 @@ public class StatueRotation : MonoBehaviour
             if (stoneDustParticles.isPlaying)
             {
                 stoneDustParticles.Stop();
+            }
+            if (stoneGrind.isPlaying)
+            {
+                stoneGrind.Stop();
             }
         }
 
