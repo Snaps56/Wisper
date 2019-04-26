@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3802651301027136045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438724070748328111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec539fec54577c44a6bce0c28179918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8671319053284884267
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +44,7 @@ Transform:
   m_Children:
   - {fileID: 8671319054924949524}
   m_Father: {fileID: 8671319055278915285}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &8671319053284884277
 SphereCollider:
@@ -76,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 3}
+  orbSpawnClip: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -910,7 +923,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0073437677, y: -0.2640939, z: 0.000053167183}
+  m_ConnectedAnchor: {x: -0.0073442445, y: -0.26408657, z: 0.00007581695}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1055,7 +1068,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0073394757, y: -0.26408976, z: 0.00006532644}
+  m_ConnectedAnchor: {x: -0.0073461514, y: -0.26408815, z: 0.00007486319}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1844,7 +1857,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.4873414, y: -0.2600055, z: 0.00006532645}
+  m_ConnectedAnchor: {x: -0.48734188, y: -0.2600113, z: 0.000066280125}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1989,7 +2002,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0073494893, y: -0.26408696, z: 0.00005865075}
+  m_ConnectedAnchor: {x: -0.007340906, y: -0.26408967, z: 0.00007915475}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -7334,8 +7347,8 @@ Transform:
   m_LocalPosition: {x: 62.42, y: 41.34, z: -149.97}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
+  - {fileID: 6435196294188977223}
   - {fileID: 8671319053284884276}
-  - {fileID: 8671319055326398554}
   - {fileID: 8671319053348200480}
   - {fileID: 8671319053893303322}
   - {fileID: 8671319054811486806}
@@ -7406,6 +7419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 3}
+  orbSpawnClip: {fileID: 0}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -7631,442 +7645,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &8671319055326398553
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8671319055326398554}
-  - component: {fileID: 8671319055326398501}
-  - component: {fileID: 8671319055326398500}
-  - component: {fileID: 8671319055326398555}
-  m_Layer: 0
-  m_Name: DialogueTrigger
-  m_TagString: DialogueTrigger
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8671319055326398554
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8671319055326398553}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8671319055278915285}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &8671319055326398501
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8671319055326398553}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &8671319055326398500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8671319055326398553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24e404941b0bdf4588a2a37666a8f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultCharDelay: 0.06
-  followTetherMinDistance: 5
-  followTetherStrongDistance: 7
-  dialogues:
-  - dialogueName: Follow the light
-    enabled: 0
-    forceOnEnable: 1
-    follow: 0
-    autoPlay: 1
-    autoPlayDelay: 1.5
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: StartupShrineDialogue
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: StartupShrineDialogue
-      conditionValue: 0
-    - conditionName: TutorialFirstDialogueFinished
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Mysterious Voice
-      line: You... Can you hear me?... Come, find me.
-    - speaker: Mysterious Voice
-      line: Follow the light...
-  - dialogueName: Follow the light part 2
-    enabled: 0
-    forceOnEnable: 1
-    follow: 0
-    autoPlay: 1
-    autoPlayDelay: 1.5
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: StartupShrinePart2
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: StartupShrinePart2
-      conditionValue: 0
-    - conditionName: ShrineFirstConversation
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences: []
-  - dialogueName: Are you following the light?
-    enabled: 0
-    forceOnEnable: 1
-    follow: 0
-    autoPlay: 1
-    autoPlayDelay: 2
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: StartupShrineRepeatDirections
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: StartupShrineRepeatDirections
-      conditionValue: 0
-    - conditionName: ShrineFirstConversation
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Mysterious Voice
-      line: "Are you lost? Look for the light. I\u2019ll be waiting..."
-  - dialogueName: First Shrine Dialogue
-    enabled: 0
-    forceOnEnable: 0
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: ShrineFirstConversation
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: TutorialTalkedWithShrine
-      conditionValue: 1
-    - conditionName: WaitingForCleanAttempt
-      conditionValue: 1
-    - conditionName: ShrineFirstConversation
-      conditionValue: 0
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: Ah, yes...you found me!
-    - speaker: Shrine
-      line: It's been so long since anyone's visited me, so it's really good to see
-        you!
-    - speaker: Shrine
-      line: What was that? Who am I?
-    - speaker: Shrine
-      line: Hmm... before I explain a few things, I need your help.
-    - speaker: Shrine
-      line: I've been collecting dust... could you go ahead and try dusting me off?
-  - dialogueName: First Shrine Dialogue part 2
-    enabled: 0
-    forceOnEnable: 1
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: ShrineFirstConversation2
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: ShrineFirstConversation2
-      conditionValue: 0
-    - conditionName: ShrineFirstConversationOver
-      conditionValue: 1
-    options:
-    - sentenceIndex: 6
-      choices:
-      - reply: Yeah!
-        changeConditions:
-        - conditionName: ShrineFirstConversationYes
-          conditionValue: 1
-      - reply: Nope!
-        changeConditions:
-        - conditionName: ShrineFirstConversationNo
-          conditionValue: 1
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: Hmm, it doesn't seem like its quite working... The curse is stronger than
-        I thought...
-    - speaker: Shrine
-      line: Okay, I've got an idea!
-    - speaker: Shrine
-      line: Those kind shellsters down at the playground? It seems as though something's
-        bothering them...
-    - speaker: Shrine
-      line: If you could help them with their troubles, the curse could be lifted
-        enough to where you can then dust me off.
-    - speaker: Shrine
-      line: So, do a few favors for the shellsters and then come back and see if it
-        works! Sound good?
-  - dialogueName: First Shrine Dialogue Yes
-    enabled: 0
-    forceOnEnable: 1
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions: []
-    conditionChangeOnExit:
-    - conditionName: ShrineFirstConversationYes
-      conditionValue: 0
-    - conditionName: ShrineFirstConversationOver
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: Excellent. Now, hop to it!
-  - dialogueName: First Shrine Dialogue No
-    enabled: 0
-    forceOnEnable: 1
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions: []
-    conditionChangeOnExit:
-    - conditionName: ShrineFirstConversationNo
-      conditionValue: 0
-    - conditionName: ShrineFirstConversationOver
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: "If you want me to help you, you've got to help me first! I\u2019ll be
-        here when you\u2019re ready."
-  - dialogueName: Clean me!
-    enabled: 0
-    forceOnEnable: 0
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: ShamusHasHat
-      conditionValue: 1
-    - conditionName: SwingTaskDone
-      conditionValue: 1
-    - conditionName: ShrineIsClean
-      conditionValue: 0
-    conditionChangeOnExit:
-    - conditionName: TutorialAttempt2ndClean
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: Welcome back! Looks like you managed to help some folks! Good for you.
-    - speaker: Shrine
-      line: "You\u2019ve even looking gustier than before, I can tell you\u2019re
-        feeling a bit stronger!"
-    - speaker: Shrine
-      line: Alright, then try dusting me off again!
-  - dialogueName: Baby's First Deposit
-    enabled: 0
-    forceOnEnable: 1
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: ShrineIsClean
-      conditionValue: 1
-    - conditionName: ShrineFirstTurnIn
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: ShrineFirstTurnIn
-      conditionValue: 0
-    - conditionName: OrbDepositInProgress
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: "That\u2019s more like it! I forgot how nice this place is when it\u2019s
-        tidy."
-    - speaker: Shrine
-      line: Now, if you would kindly hand over those orbs.
-  - dialogueName: First Deposit Rejected
-    enabled: 0
-    forceOnEnable: 0
-    follow: 0
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions: []
-    conditionChangeOnExit:
-    - conditionName: ShrineFirstTurnInNo
-      conditionValue: 0
-    - conditionName: OrbDepositInProgress
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: "Okay, yes. I know you just collected them all on your own, but we need
-        to get rid of them. It\u2019ll make sense in a minute, I promise!"
-  - dialogueName: First Turn In Cutscene Dialogue
-    enabled: 0
-    forceOnEnable: 1
-    follow: 0
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 1
-    enableConditions:
-    - conditionName: FirstTurnInCutsceneDialogue
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: FirstTurnInCutsceneDialogue
-      conditionValue: 0
-    - conditionName: GoForth
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: "Alright, to finally answer your first question, I\u2019m the guardian
-        of this island. "
-    - speaker: Shrine
-      line: The Shellsters who live here seem to like it. They call it Sunshore.
-    - speaker: Shrine
-      line: Last night, a magical storm threatened the inhabitants of this island,
-        so I shattered the storm into tiny bits.
-    - speaker: Shrine
-      line: 'Those orbs you collected are bits of the storm. They curse the land,
-        and need to be disposed of carefully. '
-    - speaker: Shrine
-      line: When you bring them to me little by little, I can get rid of them safely.
-    - speaker: Shrine
-      line: But if you deposit too many at once, it'll cause massive damage to the
-        island. SO BE CAREFUL!
-  - dialogueName: Go forth!
-    enabled: 0
-    forceOnEnable: 1
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: GoForth
-      conditionValue: 1
-    conditionChangeOnExit:
-    - conditionName: GoForth
-      conditionValue: 0
-    - conditionName: DemoEnd
-      conditionValue: 1
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: Unfortunately, no one except you and I can see these orbs, but the Shellsters
-        tend to feel their negative effects.
-    - speaker: Shrine
-      line: "I\u2019m getting too old to go collecting all of these myself, and it
-        takes a lot out of me to keep them under control. I need your help."
-    - speaker: Shrine
-      line: "Like I said, when you bring the orbs to me, I\u2019m able to destroy
-        them for good. When that happens, a fraction of the storm reappears to rain
-        down onto the island."
-    - speaker: Shrine
-      line: Each time you help someone, their curse is lifted, you collect some orbs
-        and get a little stronger too! Sound good?
-    - speaker: Shrine
-      line: "Well, that\u2019s about all there is to that, so why don\u2019t we get
-        started gathering those orbs. In fact, I think I still sense one... actually,
-        let\u2019s not worry about that one now."
-    - speaker: Shrine
-      line: "Why don\u2019t you see if there\u2019s any fun to be had in the city?
-        I\u2019m sure there are plenty of Shellsters there who need your help."
-    - speaker: Shrine
-      line: "Have fun, Wisper! That\u2019s what I\u2019m going to be calling you from
-        now on, so get used to hearing it!"
-  - dialogueName: Deposit prompt
-    enabled: 0
-    forceOnEnable: 0
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: HasNoOrbs
-      conditionValue: 0
-    - conditionName: DemoEnd
-      conditionValue: 1
-    conditionChangeOnExit: []
-    options:
-    - sentenceIndex: 0
-      choices:
-      - reply: Yes
-        changeConditions:
-        - conditionName: OrbDepositInProgress
-          conditionValue: 1
-      - reply: No
-        changeConditions: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: Welcome back, little Wisper! Are you ready to deposit some more orbs?
-  - dialogueName: Not enough orbs
-    enabled: 0
-    forceOnEnable: 0
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: ShrineFirstConversationOver
-      conditionValue: 1
-    - conditionName: ShamusHasHat
-      conditionValue: 0
-    - conditionName: SwingTaskDone
-      conditionValue: 0
-    conditionChangeOnExit: []
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Shrine
-      line: You still aren't strong enough. You need to help some people.
---- !u!114 &8671319055326398555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8671319055326398553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec539fec54577c44a6bce0c28179918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8671319055405359617
 GameObject:
   m_ObjectHideFlags: 0
@@ -8188,7 +7766,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0073447623, y: -0.26408866, z: 0.00007518375}
+  m_ConnectedAnchor: {x: -0.007345008, y: -0.2640875, z: 0.0000521247}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -8212,3 +7790,1334 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1001 &6439766903933335077
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8671319055278915285}
+    m_Modifications:
+    - target: {fileID: 1218862510335626, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].conditionChangeOnExit.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.data[0].changeConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.data[1].changeConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].enableConditions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].conditionChangeOnExit.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].enableConditions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].conditionChangeOnExit.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].enableConditions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].options.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].options.Array.data[0].choices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].options.Array.data[0].choices.Array.data[0].changeConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].enableConditions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: defaultCharDelay
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: followTetherMinDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: followTetherStrongDistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].dialogueName
+      value: Follow the light
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].autoPlay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].autoPlayDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: StartupShrineDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].conditionChangeOnExit.Array.data[0].conditionName
+      value: StartupShrineDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].conditionChangeOnExit.Array.data[1].conditionName
+      value: TutorialFirstDialogueFinished
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].speaker
+      value: Mysterious Voice
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].line
+      value: You... Can you hear me?... Come, find me.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].speaker
+      value: Mysterious Voice
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].line
+      value: Follow the light...
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].dialogueName
+      value: Follow the light part 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].autoPlay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].autoPlayDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: StartupShrinePart2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].conditionChangeOnExit.Array.data[0].conditionName
+      value: StartupShrinePart2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].conditionChangeOnExit.Array.data[1].conditionName
+      value: ShrineFirstConversation
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].dialogueName
+      value: Are you following the light?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].autoPlay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].autoPlayDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].enableConditions.Array.data[0].conditionName
+      value: StartupShrineRepeatDirections
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].conditionChangeOnExit.Array.data[0].conditionName
+      value: StartupShrineRepeatDirections
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].conditionChangeOnExit.Array.data[1].conditionName
+      value: ShrineFirstConversation
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].sentences.Array.data[0].speaker
+      value: Mysterious Voice
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[2].sentences.Array.data[0].line
+      value: "Are you lost? Look for the light. I\u2019ll be waiting..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].dialogueName
+      value: First Shrine Dialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].enableConditions.Array.data[0].conditionName
+      value: ShrineFirstConversation
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].conditionChangeOnExit.Array.data[0].conditionName
+      value: TutorialTalkedWithShrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].conditionChangeOnExit.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].conditionChangeOnExit.Array.data[1].conditionName
+      value: WaitingForCleanAttempt
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].conditionChangeOnExit.Array.data[2].conditionName
+      value: ShrineFirstConversation
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[0].line
+      value: Ah, yes...you found me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[1].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[1].line
+      value: It's been so long since anyone's visited me, so it's really good to see
+        you!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[2].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[2].line
+      value: What was that? Who am I?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[3].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[3].line
+      value: Hmm... before I explain a few things, I need your help.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[4].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[3].sentences.Array.data[4].line
+      value: I've been collecting dust... could you go ahead and try dusting me off?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].dialogueName
+      value: First Shrine Dialogue part 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].enableConditions.Array.data[0].conditionName
+      value: ShrineFirstConversation2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].conditionChangeOnExit.Array.data[0].conditionName
+      value: ShrineFirstConversation2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].conditionChangeOnExit.Array.data[1].conditionName
+      value: ShrineFirstConversationOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].sentenceIndex
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.data[0].reply
+      value: Yeah!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.data[0].changeConditions.Array.data[0].conditionName
+      value: ShrineFirstConversationYes
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.data[0].changeConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.data[1].reply
+      value: Nope!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.data[1].changeConditions.Array.data[0].conditionName
+      value: ShrineFirstConversationNo
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].options.Array.data[0].choices.Array.data[1].changeConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[0].line
+      value: Hmm, it doesn't seem like its quite working... The curse is stronger
+        than I thought...
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[1].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[1].line
+      value: Okay, I've got an idea!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[2].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[2].line
+      value: Those kind shellsters down at the playground? It seems as though something's
+        bothering them...
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[3].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[3].line
+      value: If you could help them with their troubles, the curse could be lifted
+        enough to where you can then dust me off.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[4].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[4].sentences.Array.data[4].line
+      value: So, do a few favors for the shellsters and then come back and see if
+        it works! Sound good?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].dialogueName
+      value: First Shrine Dialogue Yes
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].conditionChangeOnExit.Array.data[0].conditionName
+      value: ShrineFirstConversationYes
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].conditionChangeOnExit.Array.data[1].conditionName
+      value: ShrineFirstConversationOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[5].sentences.Array.data[0].line
+      value: Excellent. Now, hop to it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].dialogueName
+      value: First Shrine Dialogue No
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].conditionChangeOnExit.Array.data[0].conditionName
+      value: ShrineFirstConversationNo
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].conditionChangeOnExit.Array.data[1].conditionName
+      value: ShrineFirstConversationOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[6].sentences.Array.data[0].line
+      value: "If you want me to help you, you've got to help me first! I\u2019ll be
+        here when you\u2019re ready."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].dialogueName
+      value: Clean me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].enableConditions.Array.data[0].conditionName
+      value: ShamusHasHat
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].enableConditions.Array.data[1].conditionName
+      value: SwingTaskDone
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].enableConditions.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].enableConditions.Array.data[2].conditionName
+      value: ShrineIsClean
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].conditionChangeOnExit.Array.data[0].conditionName
+      value: TutorialAttempt2ndClean
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].conditionChangeOnExit.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].sentences.Array.data[0].line
+      value: Welcome back! Looks like you managed to help some folks! Good for you.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].sentences.Array.data[1].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].sentences.Array.data[1].line
+      value: "You\u2019ve even looking gustier than before, I can tell you\u2019re
+        feeling a bit stronger!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].sentences.Array.data[2].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[7].sentences.Array.data[2].line
+      value: Alright, then try dusting me off again!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].dialogueName
+      value: Baby's First Deposit
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].enableConditions.Array.data[0].conditionName
+      value: ShrineIsClean
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].enableConditions.Array.data[1].conditionName
+      value: ShrineFirstTurnIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].enableConditions.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].conditionChangeOnExit.Array.data[0].conditionName
+      value: ShrineFirstTurnIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].conditionChangeOnExit.Array.data[1].conditionName
+      value: OrbDepositInProgress
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].sentences.Array.data[0].line
+      value: "That\u2019s more like it! I forgot how nice this place is when it\u2019s
+        tidy."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].sentences.Array.data[1].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[8].sentences.Array.data[1].line
+      value: Now, if you would kindly hand over those orbs.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].dialogueName
+      value: First Deposit Rejected
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].conditionChangeOnExit.Array.data[0].conditionName
+      value: ShrineFirstTurnInNo
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].conditionChangeOnExit.Array.data[1].conditionName
+      value: OrbDepositInProgress
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[9].sentences.Array.data[0].line
+      value: "Okay, yes. I know you just collected them all on your own, but we need
+        to get rid of them. It\u2019ll make sense in a minute, I promise!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].dialogueName
+      value: First Turn In Cutscene Dialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].progressByCutscene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].enableConditions.Array.data[0].conditionName
+      value: FirstTurnInCutsceneDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].conditionChangeOnExit.Array.data[0].conditionName
+      value: FirstTurnInCutsceneDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].conditionChangeOnExit.Array.data[1].conditionName
+      value: GoForth
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[0].line
+      value: "Alright, to finally answer your first question, I\u2019m the guardian
+        of this island. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[1].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[1].line
+      value: The Shellsters who live here seem to like it. They call it Sunshore.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[2].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[2].line
+      value: Last night, a magical storm threatened the inhabitants of this island,
+        so I shattered the storm into tiny bits.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[3].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[3].line
+      value: 'Those orbs you collected are bits of the storm. They curse the land,
+        and need to be disposed of carefully. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[4].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[4].line
+      value: When you bring them to me little by little, I can get rid of them safely.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[5].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[10].sentences.Array.data[5].line
+      value: But if you deposit too many at once, it'll cause massive damage to the
+        island. SO BE CAREFUL!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].dialogueName
+      value: Go forth!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].enableConditions.Array.data[0].conditionName
+      value: GoForth
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].conditionChangeOnExit.Array.data[0].conditionName
+      value: GoForth
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].conditionChangeOnExit.Array.data[1].conditionName
+      value: DemoEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].conditionChangeOnExit.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[0].line
+      value: Unfortunately, no one except you and I can see these orbs, but the Shellsters
+        tend to feel their negative effects.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[1].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[1].line
+      value: "I\u2019m getting too old to go collecting all of these myself, and it
+        takes a lot out of me to keep them under control. I need your help."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[2].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[2].line
+      value: "Like I said, when you bring the orbs to me, I\u2019m able to destroy
+        them for good. When that happens, a fraction of the storm reappears to rain
+        down onto the island."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[3].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[3].line
+      value: Each time you help someone, their curse is lifted, you collect some orbs
+        and get a little stronger too! Sound good?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[4].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[4].line
+      value: "Well, that\u2019s about all there is to that, so why don\u2019t we get
+        started gathering those orbs. In fact, I think I still sense one... actually,
+        let\u2019s not worry about that one now."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[5].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[5].line
+      value: "Why don\u2019t you see if there\u2019s any fun to be had in the city?
+        I\u2019m sure there are plenty of Shellsters there who need your help."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[6].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[11].sentences.Array.data[6].line
+      value: "Have fun, Wisper! That\u2019s what I\u2019m going to be calling you
+        from now on, so get used to hearing it!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].dialogueName
+      value: Deposit prompt
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].enableConditions.Array.data[0].conditionName
+      value: HasNoOrbs
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].enableConditions.Array.data[1].conditionName
+      value: DemoEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].enableConditions.Array.data[1].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].options.Array.data[0].choices.Array.data[0].reply
+      value: Yes
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].options.Array.data[0].choices.Array.data[0].changeConditions.Array.data[0].conditionName
+      value: OrbDepositInProgress
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].options.Array.data[0].choices.Array.data[0].changeConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].options.Array.data[0].choices.Array.data[1].reply
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[12].sentences.Array.data[0].line
+      value: Welcome back, little Wisper! Are you ready to deposit some more orbs?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].dialogueName
+      value: Not enough orbs
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].enableConditions.Array.data[0].conditionName
+      value: ShrineFirstConversationOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].enableConditions.Array.data[1].conditionName
+      value: ShamusHasHat
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].enableConditions.Array.data[2].conditionName
+      value: SwingTaskDone
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[13].sentences.Array.data[0].line
+      value: You still aren't strong enough. You need to help some people.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: NPCType
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+--- !u!4 &6435196294188977223 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 6439766903933335077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6438724070748328111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1218862510335626, guid: 40130c7273e405347b6d269c6e6a25fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 6439766903933335077}
+  m_PrefabAsset: {fileID: 0}
