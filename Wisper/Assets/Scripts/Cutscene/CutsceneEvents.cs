@@ -6,11 +6,10 @@ public class CutsceneEvents : MonoBehaviour {
     // Use this for initialization
 
     [Header("Cutscene Objects")]
-    public Camera mainCamera;
+    private Camera mainCamera;
     public Camera cutsceneCamera;
     public GameObject rain;
     public GameObject directionalLight1;
-    public GameObject directionalLight2;
     public GameObject windPowerUI;
     public GameObject player;
 	public GameObject cityGate;
@@ -20,6 +19,8 @@ public class CutsceneEvents : MonoBehaviour {
 
     private void Start()
     {
+        mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
+        //windPowerUI = PowerBarPersistence.powerbar.transform;
         if ((bool)PersistantStateData.persistantStateData.stateConditions["DoPlaygroundIntroPan"])
         {
             gameObject.SetActive(true);
@@ -64,7 +65,7 @@ public class CutsceneEvents : MonoBehaviour {
 
     public void PlayDeposit2 ()
     {
-        Debug.Log("Hello there");
+        //Debug.Log("Hello there");
         GetComponent<Animation>().Play("Deposit2");
     }
 
@@ -118,7 +119,6 @@ public class CutsceneEvents : MonoBehaviour {
         Color directionalLight2Color = new Color(255, 222, 170, 255);
 
         directionalLight1.GetComponent<Light>().color = Color.white;
-        directionalLight2.GetComponent<Light>().color = Color.white;
     }
 }
 
