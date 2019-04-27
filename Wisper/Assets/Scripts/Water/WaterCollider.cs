@@ -10,7 +10,7 @@ public class WaterCollider : MonoBehaviour
     {
         if (other.name == "RiverSegmentA")
         {
-            Debug.Log("Together We Made it");
+            //Debug.Log("Together We Made it");
             floating = true;
         }
     }

@@ -15,6 +15,7 @@ public class Musician : MonoBehaviour {
     private bool isDone;
     public Vector3 musicianPosition;
     public Quaternion musicianRotation;
+    public GameObject myInstrumentModel;
 
     // AudioMixerSnapshots to fade in music (used in start for reloading scene after task is done, and in update for when task is complete) 
     public AudioMixerSnapshot notPlayingInstrument;
@@ -30,6 +31,7 @@ public class Musician : MonoBehaviour {
         isDone = false;
         anim = GetComponent<Animator>();
         mover = GetComponent<NPCMovement>();
+        myInstrumentModel.SetActive(false);
 
         //Debug.Log("Instrument is " + instrumentPlayed);
         if (instrumentPlayed.Equals(InstrumentType.Drum))
@@ -40,6 +42,7 @@ public class Musician : MonoBehaviour {
             {
                 hasInstrument = true;
                 isDone = true;
+                myInstrumentModel.SetActive(true);
                 // Fades in this musicians instrument
                 playingInstrument.TransitionTo(fadeTime);
             }
@@ -52,6 +55,7 @@ public class Musician : MonoBehaviour {
             {
                 hasInstrument = true;
                 isDone = true;
+                myInstrumentModel.SetActive(true);
                 // Fades in this musicians instrument
                 playingInstrument.TransitionTo(fadeTime);
             }
@@ -64,6 +68,7 @@ public class Musician : MonoBehaviour {
             {
                 hasInstrument = true;
                 isDone = true;
+                myInstrumentModel.SetActive(true);
                 // Fades in this musicians instrument
                 playingInstrument.TransitionTo(fadeTime);
             }
@@ -76,6 +81,7 @@ public class Musician : MonoBehaviour {
             {
                 hasInstrument = true;
                 isDone = true;
+                myInstrumentModel.SetActive(true);
                 // Fades in this musicians instrument
                 playingInstrument.TransitionTo(fadeTime);
             }
@@ -138,6 +144,7 @@ public class Musician : MonoBehaviour {
                     gazebo.gameObject.transform.Find("gazebo").Find("Instrument Detection Zone").GetComponent<InstrumentDetector>().DestroyInstrument(other.gameObject);
                     //Debug.Log("Instrument destroyed");
                     hasInstrument = true;
+                    myInstrumentModel.SetActive(true);
                     //Debug.Log("Creating instrument recall point");
                     GameObject tmpGO = new GameObject("Musician recall point");
                     tmpGO.AddComponent<SphereCollider>();

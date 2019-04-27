@@ -58,7 +58,7 @@ public class Windmill : MonoBehaviour {
         isLifting = abilitiesCollider.GetComponent<ObjectLift>().GetIsLiftingObjects();
         isThrowing = abilitiesCollider.GetComponent<ObjectThrow>().GetIsThrowingObjects();
 
-        Debug.Log("current velocity: " + -currentVelocity + ", correct speed: " + correctSpeed);
+        //Debug.Log("current velocity: " + -currentVelocity + ", correct speed: " + correctSpeed);
 
         if (-currentVelocity > 0.00f)
         {
@@ -72,7 +72,7 @@ public class Windmill : MonoBehaviour {
         if (attachCount == totalToFix)
         {
             rb.isKinematic = false;
-            Debug.Log("Windmill fixed. Need to push!");
+            //Debug.Log("Windmill fixed. Need to push!");
 
             //PSD WindmillFixed set to true
             if ((bool)persistantStateData.stateConditions["WindmillFixed"] == false)
@@ -93,11 +93,11 @@ public class Windmill : MonoBehaviour {
             }
             else if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false) // Otherwise, reset torque
             {
-                Debug.Log("Player gave up pushing fixed windmill!");
+                //Debug.Log("Player gave up pushing fixed windmill!");
                 torque = 0;
             }
             currentVelocity = rb.angularVelocity.y;
-            Debug.Log("HasReachedMax: " + (bool)persistantStateData.stateConditions["HasReachedMax"]);
+            //Debug.Log("HasReachedMax: " + (bool)persistantStateData.stateConditions["HasReachedMax"]);
 
             //Windmill is Broken!
             if ((bool)persistantStateData.stateConditions["HasReachedMax"] == true && Input.GetKeyDown(KeyCode.K)) //Based on button press for testing purposes
@@ -113,17 +113,17 @@ public class Windmill : MonoBehaviour {
 
                 Instantiate(windmillParts[0], partRespawn.transform.position, Quaternion.identity);
                 Instantiate(windmillParts[1], partRespawn.transform.position, Quaternion.identity);
-                Debug.Log("Player pushed windmill too fast and broke it");
+                //Debug.Log("Player pushed windmill too fast and broke it");
                 for (int i = 0; i < windmillParts.Length; i++)
                 {
                     windmillParts[i].GetComponent<Rigidbody>().AddExplosionForce(150, windmillParts[i].transform.position, 5f);
-                    Debug.Log("detached " + windmillParts[i]);
+                    //Debug.Log("detached " + windmillParts[i]);
                 }
             }
             //Windmill task is done! 
             else if (-currentVelocity >= correctSpeed)
             {
-                Debug.Log("Player pushed windmill at correct speed and finished task.");
+                //Debug.Log("Player pushed windmill at correct speed and finished task.");
                 //Check if the player spawned the orbs
                 if (!hasSpawnedOrbs)
                 {
@@ -150,11 +150,11 @@ public class Windmill : MonoBehaviour {
         }
         else //If task is done, add constant passive force
         {
-            Debug.Log("Windmill task is done. Add passive rotation to it.");
+            //Debug.Log("Windmill task is done. Add passive rotation to it.");
             if (-currentVelocity < maxVelocity)
             {
                 rb.isKinematic = false;
-                Debug.Log("Turning blah blah blah");
+                //Debug.Log("Turning blah blah blah");
                 rb.AddTorque(baseSpeed, 0, 0);
             }
         }

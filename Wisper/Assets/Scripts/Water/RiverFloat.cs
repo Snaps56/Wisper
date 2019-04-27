@@ -36,8 +36,8 @@ public class RiverFloat : MonoBehaviour
 
             if (floating == true)
             {
-            Debug.Log("Together We Made it AGAIN");
-            Debug.Log("Weight: " + Mass);
+            //Debug.Log("Together We Made it AGAIN");
+            //Debug.Log("Weight: " + Mass);
 
             UnderwaterGravity.y = 2.5f * Mass;
 

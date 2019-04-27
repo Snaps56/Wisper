@@ -12,7 +12,7 @@ public class GazeboManager : MonoBehaviour {
     private float gazeboWidth;
     private float gazeboLength;
     private GameObject waypointParent;
-    private const int gridRes = 20;
+    private const int gridRes = 22;
     private int musicianDoneCount;
 
 	// Use this for initialization
@@ -122,12 +122,13 @@ public class GazeboManager : MonoBehaviour {
                 waypoint.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
                 /*
-                waypoint.AddComponent<MeshFilter>();
-                waypoint.AddComponent<MeshRenderer>();
-                GameObject tmpSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                waypoint.GetComponent<MeshFilter>().mesh = tmpSphere.GetComponent<MeshFilter>().mesh;
-                Destroy(tmpSphere);
+                waypoint.addcomponent<meshfilter>();
+                waypoint.addcomponent<meshrenderer>();
+                gameobject tmpsphere = gameobject.createprimitive(primitivetype.sphere);
+                waypoint.getcomponent<meshfilter>().mesh = tmpsphere.getcomponent<meshfilter>().mesh;
+                destroy(tmpsphere);
                 */
+
                 waypoint.AddComponent<NavNode>();
                 NavNode wpNavNode = waypoint.GetComponent<NavNode>();
                 wpNavNode.index1 = i;
@@ -159,8 +160,10 @@ public class GazeboManager : MonoBehaviour {
     public void SetMusicianPath(Instrument instrument)
     {
         Debug.Log("Looking for musician to set path for ");
+        Debug.Log("Instrument is " + instrument.name);
         foreach(GameObject musician in gazeboMusicians)
         {
+            Debug.Log("Musician instrument is " + musician.GetComponent<Musician>().instrumentPlayed);
             if(musician.GetComponent<Musician>().instrumentPlayed.Equals(instrument.instrumentType))
             {
                 for(int i = 0; i < gridRes; i++)
