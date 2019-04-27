@@ -7,10 +7,10 @@ using UnityEngine;
 public class ActivateCutscene : MonoBehaviour {
     [Header("Cutscene Objects")]
     public Camera cutsceneCamera;
-    public Camera mainCamera;
+    private Camera mainCamera;
     public GameObject rain;
-    public GameObject light;
-    public GameObject player;
+    public GameObject thelight;
+    private GameObject player;
     public GameObject windPB;
     public bool playOnStart;
     public PersistantStateData PSDchecker;
@@ -18,7 +18,8 @@ public class ActivateCutscene : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        player = PlayerPersistance.player.transform.gameObject;
+        mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
         PSDchecker = PersistantStateData.persistantStateData;
 
         // If PlaygroundIntroPan should play, does it here.

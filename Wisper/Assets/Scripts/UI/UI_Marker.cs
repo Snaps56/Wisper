@@ -61,9 +61,9 @@ public class UI_Marker : MonoBehaviour {
 	void Start ()
     {
         // find required game objects
-        character = GameObject.Find("Player").transform;
-        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        mainCanvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
+        character = PlayerPersistance.player.transform;
+        mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
+        mainCanvas = MainCanvasPersistance.mainCanvas.transform.GetComponent<Canvas>();
         // create waypoint icon
         waypoint = Instantiate(indicator);
         waypoint.transform.SetParent(mainCanvas.GetComponent<RectTransform>());
