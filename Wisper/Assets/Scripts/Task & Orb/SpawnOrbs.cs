@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnOrbs : MonoBehaviour
 {
     // Gameobjects required by Inspector
-    public GameObject orb;
+    private GameObject orb;
     private Transform player;
     public AudioClip orbSpawnClip;
 
@@ -19,7 +19,7 @@ public class SpawnOrbs : MonoBehaviour
     List<GameObject> orbsList = new List<GameObject>(); // a list of all active orbs in the scene
     private void Start()
     {
-        player = GameObject.Find("Player").transform;
+        player = PlayerPersistance.player.transform;
     }
     // Update is called once per frame
     void Update()

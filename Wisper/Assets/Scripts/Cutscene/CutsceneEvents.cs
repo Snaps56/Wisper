@@ -9,9 +9,9 @@ public class CutsceneEvents : MonoBehaviour {
     private Camera mainCamera;
     public Camera cutsceneCamera;
     public GameObject rain;
-    public GameObject directionalLight1;
-    public GameObject windPowerUI;
-    public GameObject player;
+    private GameObject directionalLight;
+    private GameObject windPowerUI;
+    private GameObject player;
 	public GameObject cityGate;
     public AudioSource rainSound;
 
@@ -19,7 +19,9 @@ public class CutsceneEvents : MonoBehaviour {
 
     private void Start()
     {
+        rainSound = ShrinePersistance.shrine.transform.GetComponent<AudioSource>();
         mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
+        windPowerUI = PowerBarPersistence.powerbar.transform.gameObject;
         //windPowerUI = PowerBarPersistence.powerbar.transform;
         if ((bool)PersistantStateData.persistantStateData.stateConditions["DoPlaygroundIntroPan"])
         {
@@ -118,7 +120,7 @@ public class CutsceneEvents : MonoBehaviour {
         Color directionalLight1Color = new Color(0, 253, 248, 255);
         Color directionalLight2Color = new Color(255, 222, 170, 255);
 
-        directionalLight1.GetComponent<Light>().color = Color.white;
+        //directionalLight.GetComponent<Light>().color = Color.white;
     }
 }
 
