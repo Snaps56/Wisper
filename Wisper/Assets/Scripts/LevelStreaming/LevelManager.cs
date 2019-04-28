@@ -8,10 +8,33 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager Instance { set; get; }
     public string sceneLoadOnAwake = "LS Playground";
-
+    private PersistantStateData PSD;
+    public string PlaygroundScene = "LS Playground";
+    public string CityScene = "LS City";
     void Awake()
     {
-        Instance = this;
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+        
+        PSD = PersistantStateData.persistantStateData;
+        if(PSD != null)
+        {
+            if((bool)PSD.stateConditions["InPlayground"])
+            {
+                sceneLoadOnAwake = PlaygroundScene;
+            }
+            else
+            {
+                sceneLoadOnAwake = CityScene;
+            }
+        }
+
         Load(sceneLoadOnAwake);
     }
 

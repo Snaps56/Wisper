@@ -10,7 +10,7 @@ public class SaveLoadMenu : MonoBehaviour {
     public bool isMainMenu = false;
     public SLMode mode;
     public GameObject []objectsDisableOnLoad;
-    private PauseMenu pauseMenuScript;
+    private PauseMenu pauseMenuScript; 
 
     private GameObject loadingScreen;   // Game object for displaying loading text and logo
     private CanvasGroup blackFade;      // Canvas group for black fade when loading
@@ -25,6 +25,7 @@ public class SaveLoadMenu : MonoBehaviour {
 
     private string savePath;            // Path where save data is stored
     private string targetFile = "";     // File to be loaded
+    private int mountainBuildIndex = 2;
 
     private AsyncOperation async;
 
@@ -44,6 +45,14 @@ public class SaveLoadMenu : MonoBehaviour {
         {
             pauseMenuScript = GameObject.Find("MasterPauseMenu").GetComponent<PauseMenu>();
         }
+        else
+        {
+            loadingScreen = GameObject.Find("Canvas").transform.Find("Loading Screen").gameObject;
+
+
+            blackFade = GameObject.Find("Canvas").transform.Find("Faded").gameObject.GetComponentInChildren<CanvasGroup>();
+        }
+        
     }
 	
 
@@ -381,14 +390,14 @@ public class SaveLoadMenu : MonoBehaviour {
                 //Debug.Log("Starting scene load");
                 loadingScreen.SetActive(true);
                 delayInitial = Time.time;
-                StartCoroutine(LoadAsynchronously((int)PSD.stateConditions["CurrentScene"]));
+                StartCoroutine(LoadAsynchronously(mountainBuildIndex));
             }
         }
     }
 
     IEnumerator LoadAsynchronously(int sceneBuildNumber)
     {
-        async = SceneManager.LoadSceneAsync(sceneBuildNumber);
+        async = SceneManager.LoadSceneAsync(mountainBuildIndex);
         Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
         async.allowSceneActivation = false;
         startedAsync = true;
