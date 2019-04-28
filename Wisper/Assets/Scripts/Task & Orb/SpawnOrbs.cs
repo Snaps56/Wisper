@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnOrbs : MonoBehaviour
 {
     // Gameobjects required by Inspector
-    private GameObject orb;
+    public GameObject orb;
     private Transform player;
     public AudioClip orbSpawnClip;
 
