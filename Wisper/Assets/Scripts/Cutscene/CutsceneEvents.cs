@@ -19,7 +19,7 @@ public class CutsceneEvents : MonoBehaviour {
 
     private void Start()
     {
-        rainSound = ShrinePersistance.shrine.transform.GetComponent<AudioSource>();
+        //rainSound = ShrinePersistance.shrine.transform.GetComponent<AudioSource>();
         mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
         //windPowerUI = PowerBarPersistence.powerbar.transform.gameObject;
         //windPowerUI = PowerBarPersistence.powerbar.transform;
@@ -115,7 +115,7 @@ public class CutsceneEvents : MonoBehaviour {
         //Turned rain off
         rain.SetActive(false);
         //Turn off rain sound
-        rainSound.Stop();
+        //rainSound.Stop();
         //Resets the rain tint back to normal
         Color directionalLight1Color = new Color(0, 253, 248, 255);
         Color directionalLight2Color = new Color(255, 222, 170, 255);
