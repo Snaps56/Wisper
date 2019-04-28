@@ -13,7 +13,7 @@ public class ActivateCutscene : MonoBehaviour {
     private GameObject player;
     public GameObject windPB;
     public bool playOnStart;
-    public PersistantStateData PSDchecker;
+    private PersistantStateData PSDchecker;
 
 
     // Use this for initialization
