@@ -127,6 +127,34 @@ MonoBehaviour:
   moveSpeedMultiplier: 0.5
   slowMultiplier: 1
   orbSpawnOffsetY: 1
+--- !u!64 &1085475342606725993
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537200196175475811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
+--- !u!64 &4091637552689887109
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537200196175475813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300002, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
 --- !u!1001 &5537200196175442631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,9 +170,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Can Lid
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
       propertyPath: m_Name
       value: Can Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -190,14 +234,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c3c9a8359ec9d8944928c6180d77f25e, type: 2}
-    - target: {fileID: 2300002, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a7bf1ddd6651c8e468ecb4b8646deb1b, type: 2}
     - target: {fileID: 400004, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.15
@@ -210,11 +246,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a7bf1ddd6651c8e468ecb4b8646deb1b, type: 2}
+    - target: {fileID: 2300000, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3c9a8359ec9d8944928c6180d77f25e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 668f4054b7c06ce4d8f888eaf32ea3d3, type: 3}
 --- !u!4 &5537200196175571015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 668f4054b7c06ce4d8f888eaf32ea3d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5537200196175442631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5537200196175475811 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 668f4054b7c06ce4d8f888eaf32ea3d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5537200196175442631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5537200196175475813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 668f4054b7c06ce4d8f888eaf32ea3d3,
     type: 3}
   m_PrefabInstance: {fileID: 5537200196175442631}
   m_PrefabAsset: {fileID: 0}
