@@ -13,6 +13,8 @@ AudioMixerController:
   - {fileID: 24500006}
   - {fileID: 245269917772055438}
   - {fileID: 245457660633042334}
+  - {fileID: 245508811323239062}
+  - {fileID: 245694719227304696}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -25,7 +27,7 @@ AudioMixerController:
     - 2f6587079279b402d923d32f702e6eae
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: 245508811323239062}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -159,4 +161,30 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: bf65bfce41551445dab90740f56ababd
   m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!245 &245508811323239062
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Residential_L
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: d00e4b2411d2b4adc905ffc4f6d1eef2
+  m_FloatValues:
+    69413d26c2ff04cf7bd69edf2fa04638: -80
+    d39da547d34e2411d9c345f4c81ad51a: -80
+  m_TransitionOverrides: {}
+--- !u!245 &245694719227304696
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Residential_LShaneOn
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 0088a4dd8a62941ebae88d297e2f5076
+  m_FloatValues:
+    69413d26c2ff04cf7bd69edf2fa04638: -80
+    d39da547d34e2411d9c345f4c81ad51a: -80
   m_TransitionOverrides: {}

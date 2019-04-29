@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Playground
+  m_OutputGroup: {fileID: 24300002, guid: 99f87739d1b434943a75782ef71cf6ba, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245676722577449636}
+  - {fileID: 245280183298800548}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 3671a1a0b51614bf9abcfab5d95e7a3a
+    - dee28ceb210ba40888e97066c6f23bb1
+    - 6aebb9c377d8f457a8083df9245aeb95
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 3671a1a0b51614bf9abcfab5d95e7a3a
+  m_Children:
+  - {fileID: 243682436593564054}
+  - {fileID: 243283028272873738}
+  m_Volume: ced8ecd6d68aa48578f2f76c39a53d09
+  m_Pitch: 6c28cd8ec76b3469f80421c4fdca95c4
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 3968ab33ef16f4024ad65bf53ec8f832
+  m_EffectName: Attenuation
+  m_MixLevel: e702133ee043b4801bac6445a297b233
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Playground_Off
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 99ccfd50ba8c9472fadf50116e6576e8
+  m_FloatValues:
+    ad5f312ee0f4c49649b3abc41e729a0f: -80
+    af7b939f86b2745b38b8e9864bad4554: -80
+  m_TransitionOverrides: {}
+--- !u!243 &243283028272873738
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Playground_L2
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 6aebb9c377d8f457a8083df9245aeb95
+  m_Children: []
+  m_Volume: ad5f312ee0f4c49649b3abc41e729a0f
+  m_Pitch: ebc35131a01d54d919f32ed614de78f8
+  m_Effects:
+  - {fileID: 244540012996062490}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243682436593564054
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Playground_L1
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: dee28ceb210ba40888e97066c6f23bb1
+  m_Children: []
+  m_Volume: af7b939f86b2745b38b8e9864bad4554
+  m_Pitch: 513ad1c1cda3844a3b2dac6b5ddefa47
+  m_Effects:
+  - {fileID: 244117664676667946}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244117664676667946
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 54064fb60309a441a804d79d74c10576
+  m_EffectName: Attenuation
+  m_MixLevel: 201c8222e6e46408c83f1b82231517bc
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244540012996062490
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: f14ebf7ab1ba14aacaec0bec8552fcf1
+  m_EffectName: Attenuation
+  m_MixLevel: 391c3f32748d0498c9989ef55e23b47f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245280183298800548
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Playground_L2On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 55a9d120ae0044008bf7b4a0ae74ce64
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!245 &245676722577449636
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Playground_L1On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 3a0a0d676ba5e41d098616dc58baaf8c
+  m_FloatValues:
+    ad5f312ee0f4c49649b3abc41e729a0f: -80
+  m_TransitionOverrides: {}
