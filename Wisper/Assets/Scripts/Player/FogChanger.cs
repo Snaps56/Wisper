@@ -55,7 +55,7 @@ public class FogChanger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Out");
+        //Debug.Log("Out");
         if (other.tag == "FogWall" || other.tag == "Border")
         {
             //Debug.Log("Player");
