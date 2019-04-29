@@ -43,7 +43,7 @@ public class LanternManager : MonoBehaviour
         bool AllAbove = true;
         foreach (Transform T in BeachLanters.transform)
         {
-            if (T.position.y > 10)
+            if (T.position.y > 5)
             {
 
             }

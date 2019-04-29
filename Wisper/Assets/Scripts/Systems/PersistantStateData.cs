@@ -195,6 +195,9 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("FirstTurnInCutsceneDialogue", false);  // Used to start Dialogue during trun in cutscene
         stateConditions.Add("GoForth", false);  // Used to enable dialogue telling player to leave the garden
 
+        // NightScene Dialoug
+        stateConditions.Add("NightSpeak", true); // Allows Night Shellsters to Speak
+
 
 
         /////////////////////////////////////////////////////////////
