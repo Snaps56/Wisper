@@ -133,23 +133,32 @@ public class Musician : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        try
+       
+        Instrument tmpInst = other.gameObject.GetComponent<Instrument>();
+        if(tmpInst != null)
         {
-            Instrument tmpInst = other.gameObject.GetComponent<Instrument>();
-            if(tmpInst != null)
+            if (tmpInst.instrumentType == this.instrumentPlayed)
             {
-                if (tmpInst.instrumentType == this.instrumentPlayed)
+                try
                 {
                     //Debug.Log("Musician has reached instrument");
                     gazebo.gameObject.transform.Find("gazebo").Find("Instrument Detection Zone").GetComponent<InstrumentDetector>().DestroyInstrument(other.gameObject);
                     //Debug.Log("Instrument destroyed");
+                    
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError(e);
+                }
+                finally
+                {
                     hasInstrument = true;
                     myInstrumentModel.SetActive(true);
                     //Debug.Log("Creating instrument recall point");
                     GameObject tmpGO = new GameObject("Musician recall point");
                     tmpGO.AddComponent<SphereCollider>();
                     tmpGO.GetComponent<SphereCollider>().radius = 0.01f;
-                    
+
                     //Debug.Log("Moving instrument recall point");
                     tmpGO.transform.SetPositionAndRotation(musicianPosition, musicianRotation);
                     //Debug.Log("Setting musician to move to recall point");
@@ -157,10 +166,6 @@ public class Musician : MonoBehaviour {
                     Destroy(tmpGO);
                 }
             }
-        }
-        catch(System.Exception e)
-        {
-            Debug.LogError(e);
         }
     }
 

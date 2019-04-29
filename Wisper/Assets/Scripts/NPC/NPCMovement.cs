@@ -7,6 +7,7 @@ public class NPCMovement : MonoBehaviour
 {
     private GameObject player;
     public List<GameObject> waypoints;
+    public GameObject waypointParent;
     int currentWP = 0;
     public float rotSpeed = 3.0f;
     public float speed = 0.5f;
@@ -14,6 +15,23 @@ public class NPCMovement : MonoBehaviour
 
     public bool move = true;
     public bool loop = true;    // Loop movement around waypoints or stop at final waypoint (clears waypoints at end if false)
+
+    private void Awake()
+    {
+        if (waypointParent != null)
+        {
+            foreach (Transform child in waypointParent.transform)
+            {
+                waypoints.Add(child.gameObject);
+                //Debug.Log("Added waypoint " + child.name);
+            }
+            OrderWaypoints();
+            /*foreach(GameObject wp in waypoints)
+            {
+                Debug.Log("Order waypoint is " + wp.name);
+            }*/
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -89,6 +107,7 @@ public class NPCMovement : MonoBehaviour
         StartCoroutine(SwapWaypoints(newPoints));
     }
 
+    // Replace the waypoint list with a new list
     IEnumerator SwapWaypoints(List<GameObject> newPoints)
     {
         if (System.Threading.Monitor.TryEnter(waypoints, 5000))
@@ -102,5 +121,33 @@ public class NPCMovement : MonoBehaviour
             throw new System.TimeoutException("Timeout in NPCMovement SwapWaypoints. Timeout after 5000 milli.");
         }
         yield return 0;
+    }
+
+
+    private void OrderWaypoints()
+    {
+        for(int i = 0; i < waypoints.Count; i++)
+        {
+            WaypointIndex waypointIndex = waypoints[i].GetComponent<WaypointIndex>();
+            if (waypointIndex != null)
+            {
+                if(waypointIndex.wpIndex != i)
+                {
+                    try
+                    {
+                        GameObject tmpWp = waypoints[waypointIndex.wpIndex];
+                        waypoints[waypointIndex.wpIndex] = waypoints[i];
+                        waypoints[i] = tmpWp;
+                    }
+                    catch(System.Exception e)
+                    {
+                        Debug.LogError("Exception thrown while ordering waypoints.\n"
+                            + "Likely a waypoint is incorrectly index and caused an out of bounds exception.\n"
+                            + "Here is the exception thrown: " + e);
+                    }
+                    
+                }
+            }
+        }
     }
 }
