@@ -24,7 +24,7 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
             if(Time.time > timeToStop){
                 myAudioSource.Stop();
                 needsToBeFaded = false;
-                Debug.Log("audio Stop clip: " + myAudioSource.clip.name);
+                //Debug.Log("audio Stop clip: " + myAudioSource.clip.name);
 
             }
 
