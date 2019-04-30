@@ -42,8 +42,8 @@ public class OrbCount : MonoBehaviour
         Debug.Log("PSD: " + psd + ", newOrbCount: " + newOrbCount);
         orbCount = newOrbCount;
         PersistantStateData.persistantStateData.ChangeStateConditions("OrbCount", newOrbCount);
-        //windPowerBar.fillAmount = orbCount / totalOrbs;
-        //orbCountText.text = orbCount.ToString() + "/" + totalOrbs;
+        windPowerBar.fillAmount = orbCount / totalOrbs;
+        orbCountText.text = orbCount.ToString() + "/" + totalOrbs;
     }
 
     //Increase the orb count
