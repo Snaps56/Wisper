@@ -9,6 +9,8 @@ public class LanternManager : MonoBehaviour
 
     public GameObject BeachLanterns;
 
+    public GameObject Fade;
+
     public Vector3 Uplift = new Vector3(0, 1, 0);
 
     public bool end = false;
@@ -60,6 +62,8 @@ public class LanternManager : MonoBehaviour
         if (AllAbove == true)
         {
             end = true;
+            Fade.SetActive(true);
+
         }
         if (end == true)
         {
