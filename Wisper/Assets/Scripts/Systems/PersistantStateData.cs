@@ -214,7 +214,7 @@ public class PersistantStateData : MonoBehaviour
         ////////////////////    Miscellaneous flags   ////////////////////
         //////////////////////////////////////////////////////////////////
         //stateConditions.Add("CurrentScene", 2);
-        stateConditions.Add("InPlayground", false);
+        stateConditions.Add("InPlayground", true);
         stateConditions.Add("StartupFadeFinished", false);
         stateConditions.Add("OrbDepositInProgress", false);
         stateConditions.Add("DemoEnd", false);
