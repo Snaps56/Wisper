@@ -76,6 +76,7 @@ public class Shrine : MonoBehaviour {
 	private float orbLimit;
     private bool Triggered = false;
 
+
     // Use this for initialization
     void Start () {
         persistantStateData = PersistantStateData.persistantStateData;
@@ -123,66 +124,18 @@ public class Shrine : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-		// Check that the player is near the shrine
-		if (player.GetComponentInChildren<InteractableCollision>().nearShrine) {
-			
-            /*
-			// Start playing the particles
-			foreach (ParticleSystem partPlay in coloredParticles) {
-				//Debug.Log (partPlay.name);
-				if(!partPlay.isPlaying) {
-					partPlay.Play ();
-				}
-			}
-
-			// Orb deposit animation debug command
-			if (Input.GetKeyDown(KeyCode.P))
-			{
-				Debug.Log("P pressed");
-				playerOrb = player.GetComponentInChildren<OrbCount>().GetOrbCount();
-				if (playerOrb > 0) {
-					orbDepositsInTransit = playerOrb;
-					// Function that changes orb count
-					DepositOrbs (orbDepositsInTransit);
-				}
-			}
-
-			// Check that the player is holding down the lift(clean) button
-			gettingCleaned = playerAbilities.GetComponent<ObjectLift>().GetIsLiftingObjects();
-			// Is the shrine is not clean and the player is lifting, start cleaning the shrine
-			if (!(bool)persistantStateData.stateConditions ["ShrineIsClean"]) {
-                playerOrb = player.GetComponentInChildren<OrbCount>().GetOrbCount();
-				// Change the material of the shrine over time
-				if (playerOrb >= orbLimit) {
-					if (gettingCleaned && cleanProgress < cleanThreshold * 0.02f) {
-                        cleanProgress += cleanTick;
-						shrineMeshInner.GetComponent<MeshRenderer> ().material.Lerp (dirtyMaterialInner, cleanMaterialInner, cleanProgress);
-						shrineMeshMain.GetComponent<MeshRenderer> ().material.Lerp (dirtyMaterialMain, cleanMaterialMain, cleanProgress);
-					}
-					// Once clean, drop the orb rewards and signal the PersistantStateData to change
-					if (cleanProgress >= cleanThreshold * 0.02f) {
-                        //isClean = true;
-                        persistantStateData.ChangeStateConditions ("ShrineIsClean", true);
-                        persistantStateData.ChangeStateConditions("ShrineFirstTurnIn", true);
-                        this.GetComponent<SpawnOrbs> ().DropOrbs ();
-                        GamePad.SetVibration(playerIndex, 0f, 1f);
-                        StartCoroutine(Wait());
-                    }
-				} else if (!firstTime && (bool)persistantStateData.stateConditions["WaitingForCleanAttempt"] && gettingCleaned) {
-					firstTime = true;
-                    Hashtable tmpHash = new Hashtable();
-                    tmpHash.Add("ShrineFirstConversation2Primer", true);
-					tmpHash.Add("WaitingForCleanAttempt", false);
-                    persistantStateData.ChangeStateConditions(tmpHash);
-				}
-			}
-            */
+        Debug.Log("Shrine is Clean: " + (bool)persistantStateData.stateConditions["ShrineIsClean"] + ", Orb Deposit In Progress: " + (bool)persistantStateData.stateConditions["OrbDepositInProgress"]);
+        // Check that the player is near the shrine
+        //if (player.GetComponentInChildren<InteractableCollision>().withinDialogueRange) {
+        if (true) {
 			// If the user is near the shrine after cleaning it, they can press a button to deposit an orb
 			if (/*(Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("XBOX_Button_X")) && */
 				(bool)persistantStateData.stateConditions ["ShrineIsClean"] && (bool)persistantStateData.stateConditions["OrbDepositInProgress"]) {
                 playerOrb = player.GetComponentInChildren<OrbCount>().GetOrbCount();
+                Debug.Log("Shrine is clean and orb deposit should be in progress, therefore deposit!");
                 // Make sure the player has orbs to deposit
                 if (playerOrb > 0) {
+                    Debug.Log("Player has orbs to deposit");
 					orbDepositsInTransit = playerOrb;
 					// Function that changes orb count
 					DepositOrbs (orbDepositsInTransit);
@@ -216,8 +169,10 @@ public class Shrine : MonoBehaviour {
                         //Activate the rain particle system
                         rain.SetActive(true);
                         //Change the directional light to be dimmer
+                        /*
                         directionalLight1.GetComponent<Light>().color = Color.black;
                         directionalLight2.GetComponent<Light>().color = Color.black;
+                        */
                         //Play the animation for the camera
                         cutsceneCamera.GetComponent<Animation>().Play("Deposit");
                         Triggered = true;
@@ -225,28 +180,18 @@ public class Shrine : MonoBehaviour {
 
                 }
             }
-            // If the player is not near the shrine, don't play particles
-            /*
-            } else {
-                foreach (ParticleSystem partStop in coloredParticles) {
-                    if(partStop.isPlaying) {
-                        partStop.Stop ();
-                    }
-                }
-            }
-
-            // If the player is returning to the shrine after cleaning it, set the shrine materials to the clean ones
-            if ((bool)persistantStateData.stateConditions ["ShrineIsClean"])
-            {
-                shrineMeshInner.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialInner, cleanMaterialInner, cleanProgress);
-                shrineMeshMain.GetComponent<MeshRenderer>().material.Lerp(dirtyMaterialMain, cleanMaterialMain, cleanProgress);
-            */
         }
         // Tethers player to shrine during orb turn in so that the turn in process can be completed.
         if ((bool)persistantStateData.stateConditions["OrbDepositInProgress"])
         {
             playerMovement.SetFollowTarget(gameObject, 3, 5);
         }
+        /*
+        if (Input.GetKey(KeyCode.M))
+        {
+            PersistantStateData.persistantStateData.ChangeStateConditions("DemoEnd", true);
+        }
+        */
     }
 
 	// Function to basically decrement player orb count
@@ -254,15 +199,13 @@ public class Shrine : MonoBehaviour {
 		
 		player.GetComponentInChildren<OrbCount> ().SetOrbCount (0);
         Debug.Log("Orb getting deposited");
+        PersistantStateData.persistantStateData.ChangeStateConditions("HasNoOrbs", true);
         for (int oc = 0; oc < depositCount; oc++)
         {
 			orbDepositInstance = Instantiate (orbDeposit, player.transform.position, Quaternion.identity);	
 		}
 	}
-
-	
-
-	public void destroyOrbDeposit (GameObject orbDeposit) {
+    public void destroyOrbDeposit (GameObject orbDeposit) {
         Debug.Log("Orb getting destroyed");
         Instantiate(orbExplode, orbDeposit.transform.position, Quaternion.identity);
         Destroy(orbDeposit.gameObject);

@@ -39,10 +39,11 @@ public class OrbCount : MonoBehaviour
     //Sets the orb count
     public void SetOrbCount(float newOrbCount)
     {
+        Debug.Log("PSD: " + psd + ", newOrbCount: " + newOrbCount);
         orbCount = newOrbCount;
-        psd.ChangeStateConditions("OrbCount", newOrbCount);
-        windPowerBar.fillAmount = orbCount / totalOrbs;
-        orbCountText.text = orbCount.ToString() + "/" + totalOrbs;
+        PersistantStateData.persistantStateData.ChangeStateConditions("OrbCount", newOrbCount);
+        //windPowerBar.fillAmount = orbCount / totalOrbs;
+        //orbCountText.text = orbCount.ToString() + "/" + totalOrbs;
     }
 
     //Increase the orb count
@@ -118,7 +119,7 @@ public class OrbCount : MonoBehaviour
                 orbCount++;
                 psd.ChangeStateConditions("OrbCount", orbCount);
                 psd.ChangeStateConditions("HasReachedMax", false);
-                Debug.Log("count increased");
+                //Debug.Log("count increased");
             }
             else if ((float)psd.stateConditions["OrbCount"] == (float)psd.stateConditions["TotalOrbCount"])
             {
@@ -135,7 +136,8 @@ public class OrbCount : MonoBehaviour
     //Gets the current orb count
     public float GetOrbCount()
     {
-        return orbCount;
+        return (float)PersistantStateData.persistantStateData.stateConditions["OrbCount"];
+        //return orbCount;
     }
     public float GetMaxOrbCount()
     {

@@ -28,7 +28,7 @@ public class ActivateCutscene : MonoBehaviour {
             //Debug.Log("Playing Intro");
             Cursor.visible = false;
 
-            Debug.Log("Disable player movement from intro cutscene");
+            //Debug.Log("Disable player movement from intro cutscene");
             player.GetComponent<PlayerMovement>().DisableMovement();
             mainCamera.gameObject.SetActive(false);
             cutsceneCamera.gameObject.SetActive(true);

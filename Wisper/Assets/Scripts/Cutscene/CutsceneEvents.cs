@@ -111,7 +111,7 @@ public class CutsceneEvents : MonoBehaviour {
         mainCamera.gameObject.SetActive(true);
         //Turns this game object off
         cutsceneCamera.gameObject.SetActive(false);
-        windPowerUI.SetActive(true);
+        //windPowerUI.SetActive(true);
         //Turned rain off
         rain.SetActive(false);
         //Turn off rain sound
