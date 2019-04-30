@@ -9,6 +9,7 @@ public class LanternFloat : MonoBehaviour
     public GameObject lantern;
     public GameObject player;
     public GameObject ability;
+    public GameObject BeachLantern;
 
     //Looking at Variables
     private bool isPulling;
