@@ -329,7 +329,7 @@ public class DialogueManager : MonoBehaviour {
                     //TODO: Display interact button by this npc
                     if ((Input.GetButtonDown("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_A")) && GetEnabledDialogue(nearestNPC).enabled || GetEnabledDialogue(nearestNPC).forceOnEnable)
                     {
-                        //Debug.Log("Activate Dialogue!");
+                        Debug.Log("Activate Dialogue!");
                         interactText.SetActive(false);
                         dialogueBoxActive = true;
                         activeNPC = nearestNPC;
