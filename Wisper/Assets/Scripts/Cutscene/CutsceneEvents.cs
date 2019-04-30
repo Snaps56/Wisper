@@ -21,7 +21,7 @@ public class CutsceneEvents : MonoBehaviour {
     {
         //rainSound = ShrinePersistance.shrine.transform.GetComponent<AudioSource>();
         mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
-        //windPowerUI = PowerBarPersistence.powerbar.transform.gameObject;
+        windPowerUI = PowerBarPersistence.powerbar.transform.gameObject;
         //windPowerUI = PowerBarPersistence.powerbar.transform;
         if ((bool)PersistantStateData.persistantStateData.stateConditions["DoPlaygroundIntroPan"])
         {
@@ -111,11 +111,11 @@ public class CutsceneEvents : MonoBehaviour {
         mainCamera.gameObject.SetActive(true);
         //Turns this game object off
         cutsceneCamera.gameObject.SetActive(false);
-        //windPowerUI.SetActive(true);
+        windPowerUI.SetActive(true);
         //Turned rain off
         rain.SetActive(false);
         //Turn off rain sound
-        //rainSound.Stop();
+        rainSound.Stop();
         //Resets the rain tint back to normal
         Color directionalLight1Color = new Color(0, 253, 248, 255);
         Color directionalLight2Color = new Color(255, 222, 170, 255);
