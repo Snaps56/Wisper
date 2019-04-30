@@ -83,12 +83,11 @@ public class KiteTask : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         npc.transform.LookAt(transform.position);
-        if(transform.position.y > kitePos.y)
+        npc.transform.rotation = Quaternion.Euler(new Vector3(0, npc.transform.rotation.y * 180, 0));
+        if (transform.position.y > kitePos.y)
         {
             transform.LookAt(npc.transform.position);
-        }
-        
-        npc.transform.rotation = Quaternion.Euler(new Vector3(0, npc.transform.rotation.y*180, 0));
+        }       
         FlyKite();
        // Debug.Log("kite Pos" + transform.position + " Rig" + GetComponent<Rigidbody>().transform.position);
 	}

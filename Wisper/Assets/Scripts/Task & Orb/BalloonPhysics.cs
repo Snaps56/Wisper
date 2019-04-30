@@ -57,8 +57,8 @@ public class BalloonPhysics : MonoBehaviour
     }
     void RedrawLine()
     {
-        Debug.Log(balloonBase.transform.position);
-        Debug.Log(balloonAnchor.transform.position);
+        //Debug.Log(balloonBase.transform.position);
+        //Debug.Log(balloonAnchor.transform.position);
         lineRenderer.SetPosition(0, balloonBase.transform.position);
         lineRenderer.SetPosition(1, balloonAnchor.transform.position);
     }

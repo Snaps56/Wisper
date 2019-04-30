@@ -9,7 +9,6 @@ public class BigBoulderTask : MonoBehaviour {
     private float rotSpeed = 3.0f;
     private float speed = 1.5f;
     private Animator animator;
-   // private bool move;
     private bool walk;
     private bool rotate;
     private float accuracy;
@@ -18,12 +17,9 @@ public class BigBoulderTask : MonoBehaviour {
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
-       // move = true;
         walk = true;
         rotate = false;
-        accuracy = 1.5f;
-
-        
+        accuracy = 2.5f;     
     }
 	
     public bool GetWalk()
@@ -31,23 +27,22 @@ public class BigBoulderTask : MonoBehaviour {
         return walk;
     }
 
-  
-
 	// Update is called once per frame
 	void Update () {
-        
+        parent1.transform.LookAt(transform.position);
+        parent2.transform.LookAt(transform.position);
+        parent1.transform.rotation = Quaternion.Euler(new Vector3(0, parent1.transform.rotation.y * 180, 0));
+        parent2.transform.rotation = Quaternion.Euler(new Vector3(0, parent2.transform.rotation.y * 180, 0));
 
         if (transform.position.y >= 300 && transform.position.y <= 301 && transform.position.z < -701.5 && transform.position.z > -770)
         {
             MoveToParent();
-            Debug.Log("NPC");
+            //Debug.Log("NPC");
             this.gameObject.tag = "NPC";
-            
-
         }
         else
         {
-            Debug.Log("Still needs Help!!!");
+           // Debug.Log("Still needs Help!!!");
         }      
     }
 
@@ -65,8 +60,6 @@ public class BigBoulderTask : MonoBehaviour {
 
         if (walk == true)
         {
-            this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotSpeed * Time.deltaTime);
-            this.transform.Translate(0, 0, Time.deltaTime * speed);
 
             parent1.transform.rotation = Quaternion.Slerp(parent1.transform.rotation, Quaternion.LookRotation(direction2), rotSpeed * Time.deltaTime);
             parent1.transform.Translate(0, 0, Time.deltaTime * speed);
@@ -75,13 +68,11 @@ public class BigBoulderTask : MonoBehaviour {
             parent2.transform.Translate(0, 0, Time.deltaTime * speed);
         }
 
-
-        if (Vector3.Distance(parent1.transform.position, transform.position) < accuracy || Vector3.Distance(parent2.transform.position, transform.position) < accuracy)
+        if (Vector3.Distance(parent1.transform.position, transform.position) <= accuracy || Vector3.Distance(parent2.transform.position, transform.position) <= accuracy)
         {
             walk = false;
             PersistantStateData.persistantStateData.ChangeStateConditions("BoulderBoyDown", true);
         }
-   
-        
+        Debug.Log("walk " + walk);
     }
 }
