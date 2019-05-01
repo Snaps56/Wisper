@@ -51,7 +51,14 @@ public class SandCastleTask : MonoBehaviour {
         {
             sandMeshRenderer.material.color = sandColor;
         }
-	}
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.name.Contains("SandParticle") && !finishedTask)
+        {
+            sandCastleParticles.Stop();
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.name.Contains("SandParticle") && !finishedTask)
@@ -76,6 +83,7 @@ public class SandCastleTask : MonoBehaviour {
             {
                 if (sandCastleParticles.isPlaying)
                 {
+                    sandCastleParticles.Stop();
                     FinishSandCastleTask(other);
                 }
             }
@@ -83,20 +91,27 @@ public class SandCastleTask : MonoBehaviour {
     }
     void FinishSandCastleTask(Collider other)
     {
-        sandCastleFinishParticles.Stop();
+        finishedTask = true;
+        if (sandCastleFinishParticles.isPlaying)
+        {
+            sandCastleFinishParticles.Stop();
+        }
         sandMeshRenderer.material = finalMaterial;
         other.gameObject.GetComponent<ParticleSystem>().Stop();
         other.gameObject.GetComponent<Collider>().enabled = false;
-        sandCastleParticles.Stop();
         meshCollider.enabled = true;
+        Debug.Log("Spawn Orbs from Sand CAstle");
         spawnOrbsScript.DropOrbs();
         PersistantStateData.persistantStateData.stateConditions[psdVariable] = true;
     }
     // overrided function called only from Start function
     void FinishSandCastleTask()
     {
-        sandCastleFinishParticles.Stop();
+        if (sandCastleFinishParticles.isPlaying)
+        {
+            sandCastleFinishParticles.Stop();
+        }
         sandMeshRenderer.material = finalMaterial;
-        sandCastleParticles.Stop();
+        finishedTask = true;
     }
 }
