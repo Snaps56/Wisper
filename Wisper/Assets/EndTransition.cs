@@ -10,6 +10,7 @@ public class EndTransition : MonoBehaviour
     public GameObject Camera1;
     public GameObject Camera2;
     public GameObject Camera3;
+    public GameObject PauseUI;
 
     public Animator animator1;
     //public Animator animator2;
@@ -23,13 +24,14 @@ public class EndTransition : MonoBehaviour
     {
         player.SetActive(false);
         Camera1.SetActive(true);
+        PauseUI.SetActive(false);
         FadeToEnd();
         StartCoroutine(CameraSwap01());
     }
 
     IEnumerator CameraSwap01()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(9);
         Camera1.SetActive(false);
         Camera2.SetActive(true);
         StartCoroutine(CameraSwap02());

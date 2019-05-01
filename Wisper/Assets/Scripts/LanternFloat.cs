@@ -9,7 +9,6 @@ public class LanternFloat : MonoBehaviour
     public GameObject lantern;
     public GameObject player;
     public GameObject ability;
-    public GameObject BeachLantern;
 
     //Looking at Variables
     private bool isPulling;
@@ -37,8 +36,6 @@ public class LanternFloat : MonoBehaviour
     protected Rigidbody Rigidbody;
 
     public Vector3 Uplift = new Vector3(0,1,0);
-
-    private int Count = 0;
 
     // Start is called before the first frame update
     void Start()
