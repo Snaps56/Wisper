@@ -273,7 +273,7 @@ public class PersistantStateData : MonoBehaviour
             {
                 if (stateConditions[de.Key].ToString() != de.Value.ToString())
                 {
-                    //Debug.Log("MODIFIED PSD: " + de.Key + " changed from " + stateConditions[de.Key] + " to " + de.Value);
+                    Debug.Log("MODIFIED PSD: " + de.Key + " changed from " + stateConditions[de.Key] + " to " + de.Value);
                     stateConditions[de.Key] = de.Value;
                     modified = true;
                 }

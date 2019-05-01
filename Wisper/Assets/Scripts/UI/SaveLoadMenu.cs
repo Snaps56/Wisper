@@ -292,6 +292,8 @@ public class SaveLoadMenu : MonoBehaviour {
                     psdEntries.Add(entryName, int.Parse(entry.Split(':')[1]));
                 }
             }
+
+            PSD.ResetPersistantStateData();
             PSD.ChangeStateConditions(psdEntries);
             Debug.Log("Loaded PSD data");
             doneLoad = true;
