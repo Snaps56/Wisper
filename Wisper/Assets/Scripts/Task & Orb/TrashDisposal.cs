@@ -7,7 +7,7 @@ public class TrashDisposal : MonoBehaviour
     public List<GameObject> trashAreas = new List<GameObject>(); // List of all trash areas in the scene
     public List<List<GameObject>> trashLists = new List<List<GameObject>>(); // List of trashInArea lists, which will contain all of the trash in the scene
     public List<string> pSDVariables = new List<string>(); // List of PersistentStateVariables
-    private SpawnOrbs orbScript; // Local SpawnOrbs script, to create orbs when player cleans trash area
+    public SpawnOrbs orbScript; // Local SpawnOrbs script, to create orbs when player cleans trash area
     private int emptyList = -1; // Default value for removing empty lists during play
 
     // Use this for initialization

@@ -48,54 +48,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
---- !u!136 &7787209594604972145
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7787209594604941033}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 73.093124
-  m_Height: 300.57697
-  m_Direction: 1
-  m_Center: {x: 3.7053115, y: 74.711365, z: 1.1381751e-15}
---- !u!114 &7787209594604972146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7787209594604941033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ef5714087bb9745b350cdaf5a54e0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 3}
-  orbSpawnClip: {fileID: 0}
-  orbCount: 5
-  initialForceMultiplier: 400
-  moveSpeedMultiplier: 0.5
-  slowMultiplier: 1
-  orbSpawnOffsetY: 5
---- !u!114 &7787209594604972147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7787209594604941033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a54fe144d6009d4b8561a0894f1f426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotatePoint: {fileID: 7787209595480039623}
-  playerAbilities: {fileID: 0}
-  stoneDustParticles: {fileID: 7787209595440887646}
 --- !u!82 &5702708082042267913
 AudioSource:
   m_ObjectHideFlags: 0
@@ -192,6 +144,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &7787209594604972145
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787209594604941033}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 73.093124
+  m_Height: 300.57697
+  m_Direction: 1
+  m_Center: {x: 3.7053115, y: 74.711365, z: 1.1381751e-15}
+--- !u!114 &7787209594604972146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787209594604941033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ef5714087bb9745b350cdaf5a54e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 3}
+  orbSpawnClip: {fileID: 0}
+  orbCount: 5
+  initialForceMultiplier: 400
+  moveSpeedMultiplier: 0.5
+  slowMultiplier: 1
+  orbSpawnOffsetY: 5
+--- !u!114 &7787209594604972147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787209594604941033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a54fe144d6009d4b8561a0894f1f426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatePoint: {fileID: 7787209595480039623}
+  playerAbilities: {fileID: 0}
+  stoneDustParticles: {fileID: 7787209595440887646}
 --- !u!1 &7787209595440887641
 GameObject:
   m_ObjectHideFlags: 0
@@ -5036,14 +5036,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: d9c177eec189a4c4190ae713bc5f6c08, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 91ce1abd22445f349a1506d89108f453, type: 2}
     - target: {fileID: 2300004, guid: d9c177eec189a4c4190ae713bc5f6c08, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3517be625a3ee6540adf5d0a1fd410a0, type: 2}
+    - target: {fileID: 2300000, guid: d9c177eec189a4c4190ae713bc5f6c08, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 91ce1abd22445f349a1506d89108f453, type: 2}
     - target: {fileID: 2300006, guid: d9c177eec189a4c4190ae713bc5f6c08, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5081,7 +5081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6677c385f48c65446adaea92ed6d6be4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04852295
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6677c385f48c65446adaea92ed6d6be4, type: 3}
       propertyPath: m_LocalPosition.y
