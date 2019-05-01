@@ -60,7 +60,7 @@ public class ActivateCutscene : MonoBehaviour {
             {
                 if(cutsceneCamera.GetComponent<Animation>().IsPlaying(anime.name) && skipableCutscene.Contains(anime.name))
                 {
-                    Debug.Log("Animation " + anime.name + " detected as playing by cutscene skipper");
+                    //Debug.Log("Animation " + anime.name + " detected as playing by cutscene skipper");
                     foreach(AnimationEvent evento in anime.clip.events)
                     {
                         //Debug.Log("Checking AnimationEvent with function: " + evento.functionName);
