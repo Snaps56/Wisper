@@ -29,7 +29,7 @@ public class OrbCount : MonoBehaviour
         orbAudioSource = GetComponent<AudioSource>();
         totalOrbs = (float)psd.stateConditions["TotalOrbCount"];
         orbCount = (float)psd.stateConditions["OrbCount"];
-        orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + totalOrbs;
+        orbCountText.text = psd.stateConditions["OrbCount"].ToString()/* + "/" + totalOrbs*/;
         windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / (float)psd.stateConditions["TotalOrbCount"]);
         blue = new Color32(0, 46, 255, 255);
         white = new Color32(255, 255, 255, 255);
@@ -42,8 +42,8 @@ public class OrbCount : MonoBehaviour
         Debug.Log("PSD: " + psd + ", newOrbCount: " + newOrbCount);
         orbCount = newOrbCount;
         PersistantStateData.persistantStateData.ChangeStateConditions("OrbCount", newOrbCount);
-        windPowerBar.fillAmount = orbCount / totalOrbs;
-        orbCountText.text = orbCount.ToString() + "/" + totalOrbs;
+        //windPowerBar.fillAmount = orbCount / totalOrbs;
+        orbCountText.text = orbCount.ToString(); /*+ "/" + totalOrbs;*/
     }
 
     //Increase the orb count
@@ -60,7 +60,7 @@ public class OrbCount : MonoBehaviour
 
         psd.ChangeStateConditions("OrbCount", orbCount);
         windPowerBar.fillAmount = orbCount / totalOrbs;
-        orbCountText.text = orbCount.ToString() + "/" + totalOrbs.ToString();
+        orbCountText.text = orbCount.ToString() /*+ "/" + totalOrbs.ToString()*/;
     }
 
     //Decrease the orb count
@@ -72,7 +72,7 @@ public class OrbCount : MonoBehaviour
             psd.ChangeStateConditions("OrbCount", orbCount);
         }
         windPowerBar.fillAmount = orbCount / totalOrbs;
-        orbCountText.text = orbCount.ToString() + "/" + totalOrbs.ToString();
+        orbCountText.text = orbCount.ToString() /*+ "/" + totalOrbs.ToString()*/;
     }
 
     private void Update()
@@ -127,7 +127,7 @@ public class OrbCount : MonoBehaviour
             }
 
             windPowerBar.fillAmount = ((float)psd.stateConditions["OrbCount"] / Mathf.Ceil((float)psd.stateConditions["TotalOrbCount"]));
-            orbCountText.text = (float)psd.stateConditions["OrbCount"] + "/" + Mathf.Ceil((float)psd.stateConditions["TotalOrbCount"]);
+            orbCountText.text = psd.stateConditions["OrbCount"].ToString()/* + "/" + Mathf.Ceil((float)psd.stateConditions["TotalOrbCount"])*/;
             ///End Update UI
             psd.ChangeStateConditions("HasNoOrbs", false);
         }

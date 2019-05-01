@@ -22,6 +22,7 @@ public class CutsceneEvents : MonoBehaviour {
         //rainSound = ShrinePersistance.shrine.transform.GetComponent<AudioSource>();
         mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
         windPowerUI = PowerBarPersistence.powerbar.transform.gameObject;
+        player = PlayerPersistance.player.transform.gameObject;
         //windPowerUI = PowerBarPersistence.powerbar.transform;
         if ((bool)PersistantStateData.persistantStateData.stateConditions["DoPlaygroundIntroPan"])
         {
