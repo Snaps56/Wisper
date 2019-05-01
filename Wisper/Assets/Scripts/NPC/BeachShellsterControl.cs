@@ -17,6 +17,10 @@ public class BeachShellsterControl : MonoBehaviour
             Debug.Log("Swimming");
             anim.SetBool("Swim", true);
         }
+        if(swimMode.Equals(SwimMode.Splash))
+        {
+            anim.SetBool("Splash", true);
+        }
     }
 
     // Update is called once per frame

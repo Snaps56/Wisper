@@ -14,13 +14,18 @@ public class ActivateCutscene : MonoBehaviour {
     public GameObject windPB;
     public bool playOnStart;
     private PersistantStateData PSDchecker;
-
+    private List<string> skipableCutscene;
 
     // Use this for initialization
     void Start () {
         player = PlayerPersistance.player.transform.gameObject;
         mainCamera = PlayerPersistance.player.transform.Find("Main Camera").GetComponent<Camera>();
         PSDchecker = PersistantStateData.persistantStateData;
+
+        skipableCutscene = new List<string>();
+        skipableCutscene.Add("PlaygroundIntroPan1");
+        skipableCutscene.Add("PlaygroundIntroPan2");
+        skipableCutscene.Add("PlaygroundIntroPan3");
 
         // If PlaygroundIntroPan should play, does it here.
         if ((bool)PSDchecker.stateConditions["DoPlaygroundIntroPan"] && !(bool)PSDchecker.stateConditions["PlaygroundIntroPan1Started"])
@@ -47,34 +52,15 @@ public class ActivateCutscene : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-        //Plays cutscene while pressing "N" on keyboard
-        //if (Input.GetKeyDown(KeyCode.N))
-        //{
-        //    mainCamera.gameObject.SetActive(false);
-        //    cutsceneCamera.gameObject.SetActive(true);
-        //    windPB.SetActive(false);
-        //    rain.SetActive(true);
-        //    light.GetComponent<Light>().color = Color.black;
-        //    cutsceneCamera.GetComponent<Animation>().Play();
-        //}
-        //if (Input.GetKeyDown(KeyCode.B))
-        //{
-        //    Debug.Log("Playing Intro");
-        //    mainCamera.gameObject.SetActive(false);
-        //    cutsceneCamera.gameObject.SetActive(true);
-        //    windPB.SetActive(false);
-        //    cutsceneCamera.GetComponent<Animation>().Play("Cutscene3");
-        //}
         
         //skip cutscene
-        if (/*Input.GetButton("PC_Key_Interact") || Input.GetButtonDown("XBOX_Button_X")*/ Input.GetKey(KeyCode.H) || Input.GetButtonDown("XBOX_Button_X"))
+        if (Input.GetKey(KeyCode.H) || Input.GetButtonDown("XBOX_Button_X"))
         {
             foreach(AnimationState anime in cutsceneCamera.GetComponent<Animation>())
             {
-                if(cutsceneCamera.GetComponent<Animation>().IsPlaying(anime.name))
+                if(cutsceneCamera.GetComponent<Animation>().IsPlaying(anime.name) && skipableCutscene.Contains(anime.name))
                 {
-                    //Debug.Log("Animation " + anime.name + " detected as playing by cutscene skipper");
+                    Debug.Log("Animation " + anime.name + " detected as playing by cutscene skipper");
                     foreach(AnimationEvent evento in anime.clip.events)
                     {
                         //Debug.Log("Checking AnimationEvent with function: " + evento.functionName);

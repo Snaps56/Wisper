@@ -4,31 +4,49 @@ using UnityEngine;
 
 public class GenericShellsterController : MonoBehaviour
 {
-    private Animator anim;
+    public GenericShellsterMode mode;
     public float chanceToFall = 0;
-    private float time = 0;
-    private float timeInterval = 1;
+    public bool regularLook = false;
+    
+    public bool lookAtWaypoint = false;
+    public List<GameObject> lookAtWaypoints = new List<GameObject>();
+
+    private Animator anim;
+    private float tripTime = 0;
+    private float tripTimeInterval = 1;
+
+    private float lookTime = 0;
+    public float lookTimeInterval = 3;
     private NPCMovement moveScript;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         moveScript = GetComponent<NPCMovement>();
-        if(moveScript.move)
+        if(mode.Equals(GenericShellsterMode.Walk))
         {
-            anim.SetBool("Walk", true);
+            if (moveScript.move)
+            {
+                anim.SetBool("Walk", true);
+            }
+        }
+        else if(mode.Equals(GenericShellsterMode.Idle))
+        {
+            anim.SetBool("Idle",true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if(time > timeInterval)
+        tripTime += Time.deltaTime;
+        lookTime += Time.deltaTime;
+
+        if (tripTime > tripTimeInterval)
         {
-            Debug.Log("1 second has passed");
-            time -= timeInterval;
-            if (!anim.GetBool("GetUp") && !anim.GetBool("Fall"))
+            tripTime -= tripTimeInterval;
+            //Debug.Log("1 second has passed");
+            if (chanceToFall > 0 && !anim.GetBool("GetUp") && !anim.GetBool("Fall"))
             {
                 float fallCheck = Random.Range(0f, 1f);
                 if (fallCheck < chanceToFall)
@@ -41,17 +59,30 @@ public class GenericShellsterController : MonoBehaviour
                     Debug.Log("NO FALL: " + fallCheck);
                 }
             }
-                
-            
         }
 
-        if(anim.GetBool("Fall") || anim.GetBool("GetUp") || anim.GetBool("Idle"))
+        if(lookTime > lookTimeInterval)
         {
-            moveScript.move = false;
+            lookTime -= lookTimeInterval;
+            if(regularLook)
+            {
+                if(mode.Equals(GenericShellsterMode.Walk))
+                {
+                    moveScript.move = false;
+                }
+                anim.SetBool("Look", true);
+            }
         }
-        else
+
+        if(anim.GetBool("Walk") && !(anim.GetBool("Fall") || anim.GetBool("GetUp") || anim.GetBool("Look")))
         {
             moveScript.move = true;
         }
+        else
+        {
+            moveScript.move = false;
+        }
     }
 }
+
+public enum GenericShellsterMode {Walk, Idle};
