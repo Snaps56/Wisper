@@ -7,6 +7,7 @@ public class StatueRotation : MonoBehaviour
     public Transform rotatePoint;
     public ObjectThrow playerAbilities;
     public ParticleSystem stoneDustParticles;
+    public AudioSource stoneGrind;
 
     private bool playerPushing;
     private Vector3 playerPushVector;
@@ -14,7 +15,6 @@ public class StatueRotation : MonoBehaviour
     private float finalDirection;
     private bool nearPlayer;
     private SpawnOrbs orbScript;
-    private AudioSource stoneGrind;
 
     //float rotation = 0f;
     Vector3 desiredRotation;
@@ -33,7 +33,7 @@ public class StatueRotation : MonoBehaviour
         nearPlayer = false;
         taskDone = (bool)PersistantStateData.persistantStateData.stateConditions["StatueFixed"];
         orbScript = GetComponent<SpawnOrbs>();
-        stoneGrind = GetComponent<AudioSource>();
+        //stoneGrind = GetComponent<AudioSource>();
         if (!taskDone) {
             transform.rotation = Quaternion.Euler(xOffset, yOffset, 30f);
         }
