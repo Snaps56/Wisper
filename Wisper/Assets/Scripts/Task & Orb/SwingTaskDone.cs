@@ -41,7 +41,7 @@ public class SwingTaskDone : MonoBehaviour {
                 // Task is complete
                 TaskisDone = true;
                  GetComponent<SpawnOrbs>().DropOrbs();
-                //GetComponent<AudioSource>().Play();
+                GetComponent<AudioSource>().Play();
                 persistantStateData.stateConditions["SwingTaskDone"] = true;
                 persistantStateData.updateCount++;
                 GamePad.SetVibration(playerIndex, 0f, 1f);

@@ -12,7 +12,7 @@ AudioMixerController:
   m_Snapshots:
   - {fileID: 24500006}
   - {fileID: 245986897730606266}
-  m_StartSnapshot: {fileID: 245986897730606266}
+  m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
@@ -65,12 +65,13 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MusicOff
+  m_Name: MenuMusicOff
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 5ef588418601f4d149fbf947bd43104b
   m_FloatValues:
-    81406cb2a458646d190d8e5b0f5d31c7: -80
+    81406cb2a458646d190d8e5b0f5d31c7: 0
     9334aee2b126143c1949f4ca06e072f8: -17.938717
+    53be1478955ce0145b163e9795eac6b8: -80
   m_TransitionOverrides:
     81406cb2a458646d190d8e5b0f5d31c7: 2
 --- !u!243 &243514737281148214
@@ -143,7 +144,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MusicOn
+  m_Name: MenuMusicOn
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 52b1cf0f9fed2407ea14e3a92524da00
   m_FloatValues:

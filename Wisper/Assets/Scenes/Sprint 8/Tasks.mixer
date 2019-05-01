@@ -23,6 +23,7 @@ AudioMixerController:
     - feccaee51e7ff4776bc8d9ef1633c6d4
     - 8f024e05e451849509eddf3c74ec9682
     - c1de2522e6f784a038f995f4de08ab86
+    - b82d05e3239fd4a7ca0779b8752fe04b
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -38,6 +39,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: 243813618932498778}
   - {fileID: 243469019272955444}
+  - {fileID: 243001282611126896}
   m_Volume: 1d1f9f7af549645c79b65a4ebee7c442
   m_Pitch: ef1cc8a00c40d482e8d7e816adfeff96
   m_Effects:
@@ -72,6 +74,24 @@ AudioMixerSnapshotController:
   m_FloatValues:
     523de1d8eca124251a6eb77a656c7401: -0.02577656
   m_TransitionOverrides: {}
+--- !u!243 &243001282611126896
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Statue
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: b82d05e3239fd4a7ca0779b8752fe04b
+  m_Children: []
+  m_Volume: 9d9ccc536106f4ac998a11e4285114e3
+  m_Pitch: c926ebd43529b4b60a5481e1d5ade5fa
+  m_Effects:
+  - {fileID: 244237969964107090}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &243109238079649640
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -156,6 +176,20 @@ AudioMixerEffectController:
   m_EffectID: 505b304108f6746f8b8c7e442daf69f3
   m_EffectName: Attenuation
   m_MixLevel: 1f107eaa0054c495ba50f8fd25103f28
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244237969964107090
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 54ad7ebc7d24244b5badf85a2afe8bab
+  m_EffectName: Attenuation
+  m_MixLevel: f5eab18d07d8a4dbcac70414619d93d6
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
