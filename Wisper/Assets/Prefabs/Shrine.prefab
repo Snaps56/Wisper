@@ -923,7 +923,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0073442445, y: -0.26408657, z: 0.00007581695}
+  m_ConnectedAnchor: {x: -0.0073642717, y: -0.26408663, z: 0.00007057174}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1068,7 +1068,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0073461514, y: -0.26408815, z: 0.00007486319}
+  m_ConnectedAnchor: {x: -0.007415293, y: -0.26408595, z: -0.000010013826}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1857,7 +1857,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.48734188, y: -0.2600113, z: 0.000066280125}
+  m_ConnectedAnchor: {x: -0.4873004, y: -0.26000705, z: 0.00015258764}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2002,7 +2002,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.007340906, y: -0.26408967, z: 0.00007915475}
+  m_ConnectedAnchor: {x: -0.007280348, y: -0.2640905, z: 0.00013470628}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -7766,7 +7766,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.2, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.007345008, y: -0.2640875, z: 0.0000521247}
+  m_ConnectedAnchor: {x: -0.007347411, y: -0.26408643, z: 0.00008931917}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -7797,10 +7797,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8671319055278915285}
     m_Modifications:
-    - target: {fileID: 1218862510335626, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
-      propertyPath: m_Name
-      value: DialogueTrigger
-      objectReference: {fileID: 0}
     - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7845,6 +7841,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1218862510335626, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: NPCType
@@ -7853,7 +7853,7 @@ PrefabInstance:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.size
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
@@ -8063,11 +8063,36 @@ PrefabInstance:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.data[13].enableConditions.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.data[13].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].enableConditions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].conditionChangeOnExit.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].enableConditions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].sentences.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
@@ -8869,17 +8894,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
-      propertyPath: dialogues.Array.data[10].sentences.Array.data[5].speaker
-      value: Shrine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
-        type: 3}
-      propertyPath: dialogues.Array.data[10].sentences.Array.data[5].line
-      value: But if you deposit too many at once, it'll cause massive damage to the
-        island. SO BE CAREFUL!
-      objectReference: {fileID: 0}
-    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
-        type: 3}
       propertyPath: dialogues.Array.data[11].dialogueName
       value: Go forth!
       objectReference: {fileID: 0}
@@ -8981,28 +8995,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
-      propertyPath: dialogues.Array.data[11].sentences.Array.data[5].speaker
-      value: Shrine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
-        type: 3}
-      propertyPath: dialogues.Array.data[11].sentences.Array.data[5].line
-      value: "Why don\u2019t you see if there\u2019s any fun to be had in the city?
-        I\u2019m sure there are plenty of Shellsters there who need your help."
-      objectReference: {fileID: 0}
-    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
-        type: 3}
-      propertyPath: dialogues.Array.data[11].sentences.Array.data[6].speaker
-      value: Shrine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
-        type: 3}
-      propertyPath: dialogues.Array.data[11].sentences.Array.data[6].line
-      value: "Have fun, Wisper! That\u2019s what I\u2019m going to be calling you
-        from now on, so get used to hearing it!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
-        type: 3}
       propertyPath: dialogues.Array.data[12].dialogueName
       value: Deposit prompt
       objectReference: {fileID: 0}
@@ -9064,7 +9056,7 @@ PrefabInstance:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.data[13].dialogueName
-      value: Not enough orbs
+      value: Post Tutorial No Orbs
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
@@ -9079,7 +9071,7 @@ PrefabInstance:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.data[13].enableConditions.Array.data[0].conditionName
-      value: ShrineFirstConversationOver
+      value: HasNoOrbs
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
@@ -9089,12 +9081,12 @@ PrefabInstance:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.data[13].enableConditions.Array.data[1].conditionName
-      value: ShamusHasHat
+      value: PlayerEnteredCityFirstTime
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
-      propertyPath: dialogues.Array.data[13].enableConditions.Array.data[2].conditionName
-      value: SwingTaskDone
+      propertyPath: dialogues.Array.data[13].enableConditions.Array.data[1].conditionValue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
@@ -9104,6 +9096,139 @@ PrefabInstance:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.data[13].sentences.Array.data[0].line
+      value: I still sense a bit of the curse in the City. Could you see if there
+        are more shellsters to help in the City?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].dialogueName
+      value: Completed All Tasks
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].forceOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].enableConditions.Array.data[0].conditionName
+      value: AllTasksDone
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].enableConditions.Array.data[1].conditionName
+      value: TasksCompleteDialoguePlayed
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].conditionChangeOnExit.Array.data[0].conditionName
+      value: TasksCompleteDialoguePlayed
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].conditionChangeOnExit.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.data[0].line
+      value: '...?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.data[1].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.data[1].line
+      value: The curse... I don't sense it anymore.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.data[2].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.data[2].line
+      value: You... you did it! The island... the shellsters... you've lifted the
+        curse!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.data[3].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[14].sentences.Array.data[3].line
+      value: Little Wisper... The shellsters are gathering around! I sense a new light
+        in the City.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].dialogueName
+      value: Not enough orbs
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].follow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].autoPlayDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].enableConditions.Array.data[0].conditionName
+      value: ShrineFirstConversationOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].enableConditions.Array.data[1].conditionName
+      value: ShamusHasHat
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].enableConditions.Array.data[2].conditionName
+      value: SwingTaskDone
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].sentences.Array.data[0].speaker
+      value: Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: dialogues.Array.data[15].sentences.Array.data[0].line
       value: You still aren't strong enough. You need to help some people.
       objectReference: {fileID: 0}
     m_RemovedComponents: []

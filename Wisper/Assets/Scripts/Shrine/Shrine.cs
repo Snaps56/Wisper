@@ -194,10 +194,23 @@ public class Shrine : MonoBehaviour {
         */
     }
 
+    // todo move this up!!!!!!!
+    private float totalOrbsDeposited;
+
 	// Function to basically decrement player orb count
 	void DepositOrbs (float depositCount) {
-		
-		player.GetComponentInChildren<OrbCount> ().SetOrbCount (0);
+        // have a private local variable that tracks total orbs deposited, set PSD variable equal to this variable
+        totalOrbsDeposited += player.GetComponentInChildren<OrbCount>().GetOrbCount();
+
+        PersistantStateData.persistantStateData.ChangeStateConditions("TotalOrbsDeposited", totalOrbsDeposited);
+
+        // check if total orbs deposited is greather or equal to total orb count
+        if ((float) PersistantStateData.persistantStateData.stateConditions["TotalOrbsDeposited"] >= (float)PersistantStateData.persistantStateData.stateConditions["TotalOrbCount"])
+        {
+            PersistantStateData.persistantStateData.ChangeStateConditions("AllTasksDone", true);
+        }
+
+        player.GetComponentInChildren<OrbCount> ().SetOrbCount (0);
         Debug.Log("Orb getting deposited");
         PersistantStateData.persistantStateData.ChangeStateConditions("HasNoOrbs", true);
         for (int oc = 0; oc < depositCount; oc++)

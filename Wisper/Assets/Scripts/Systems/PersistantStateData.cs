@@ -122,10 +122,11 @@ public class PersistantStateData : MonoBehaviour
         /////////////////////////////////////////////////////////
         ////////////////////    Task flags   ////////////////////
         /////////////////////////////////////////////////////////
-        stateConditions.Add("AllTasksDone", false);
+        stateConditions.Add("AllTasksDone", false); // trigger ENDGAME if this is true when talking to the shrine
         stateConditions.Add("TotalTasks", 13.0f);
         stateConditions.Add("FinishedTasks", 0.0f);
         stateConditions.Add("OrbCount", 0.0f);
+        stateConditions.Add("TotalOrbsDeposited", 0f);
         stateConditions.Add("OrbMaxDeposit", 30.0f);
         stateConditions.Add("TotalOrbCount", 65.0f);
         stateConditions.Add("HasNoOrbs", true);
@@ -198,6 +199,9 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("FirstTurnInCutsceneDialogue", false);  // Used to start Dialogue during trun in cutscene
         stateConditions.Add("GoForth", false);  // Used to enable dialogue telling player to leave the garden
 
+        // Post Tutorial Shrine Dialogue
+        stateConditions.Add("TasksCompleteDialoguePlayed", false);
+
         // NightScene Dialoug
         stateConditions.Add("NightSpeak", true); // Allows Night Shellsters to Speak
 
@@ -214,6 +218,9 @@ public class PersistantStateData : MonoBehaviour
         ////////////////////    Miscellaneous flags   ////////////////////
         //////////////////////////////////////////////////////////////////
         //stateConditions.Add("CurrentScene", 2);
+
+        stateConditions.Add("PlayerEnteredCityFirstTime", false); // Checks if player entered the city for the first time
+
         stateConditions.Add("InPlayground", true);
         stateConditions.Add("StartupFadeFinished", false);
         stateConditions.Add("OrbDepositInProgress", false);
