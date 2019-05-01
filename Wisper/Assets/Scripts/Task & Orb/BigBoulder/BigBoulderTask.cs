@@ -10,6 +10,7 @@ public class BigBoulderTask : MonoBehaviour {
     private float speed = 1.5f;
     private Animator animator;
     private bool walk;
+    private bool grounded;
     private bool rotate;
     private float accuracy;
 
@@ -18,15 +19,31 @@ public class BigBoulderTask : MonoBehaviour {
     void Start () {
         animator = GetComponent<Animator>();
         walk = true;
-        rotate = false;
-        accuracy = 2.5f;     
+        grounded = false;
+        accuracy = 3.0f;     
     }
 	
+    public bool GetGrounded()
+    {
+        return grounded;
+    }
     public bool GetWalk()
     {
         return walk;
     }
 
+    /*
+    void onEnterTrigger(Collider other)
+    {
+        if(other.gameObject.tag == "Terrain")
+        {
+            grounded = true;
+            MoveToSon();
+            //Debug.Log("NPC");
+            this.gameObject.tag = "NPC";
+        }
+    }
+    */
 	// Update is called once per frame
 	void Update () {
         parent1.transform.LookAt(transform.position);
@@ -34,19 +51,21 @@ public class BigBoulderTask : MonoBehaviour {
         parent1.transform.rotation = Quaternion.Euler(new Vector3(0, parent1.transform.rotation.y * 180, 0));
         parent2.transform.rotation = Quaternion.Euler(new Vector3(0, parent2.transform.rotation.y * 180, 0));
 
-        if (transform.position.y >= 300 && transform.position.y <= 301 && transform.position.z < -701.5 && transform.position.z > -770)
+        
+        if (transform.position.y >= 270f && transform.position.y <= 274.5f 
+            && transform.position.z > -680f && transform.position.z < -623f 
+            && transform.position.x > -300f && transform.position.x < -134f)
         {
-            MoveToParent();
-            //Debug.Log("NPC");
+            grounded = true;
+            MoveToSon();
+            Debug.Log("NPC");
             this.gameObject.tag = "NPC";
         }
-        else
-        {
-           // Debug.Log("Still needs Help!!!");
-        }      
+       
+
     }
 
-    void MoveToParent()
+    void MoveToSon()
     {
         //directions for the shellsters
         Vector3 direction = parent1.transform.position - transform.position;
@@ -71,8 +90,10 @@ public class BigBoulderTask : MonoBehaviour {
         if (Vector3.Distance(parent1.transform.position, transform.position) <= accuracy || Vector3.Distance(parent2.transform.position, transform.position) <= accuracy)
         {
             walk = false;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotSpeed * Time.deltaTime);
             PersistantStateData.persistantStateData.ChangeStateConditions("BoulderBoyDown", true);
+            GetComponent<SpawnOrbs>().DropOrbs();
         }
-        Debug.Log("walk " + walk);
+       // Debug.Log("walk " + walk);
     }
 }

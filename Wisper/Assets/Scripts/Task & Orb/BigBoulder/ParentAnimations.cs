@@ -19,11 +19,17 @@ public class ParentAnimations : MonoBehaviour
     {
         
 
-        if (bigBoulderTask.GetWalk() == false)
+        if (bigBoulderTask.GetGrounded() == true && bigBoulderTask.GetWalk() == true)
         {
-            
+            animator.SetBool("Walk",true);
+            animator.SetBool("Idle", false);
+        }
+        else
+        {
+            animator.SetBool("Idle", true);
         }
 
-        //Debug.Log(bigBoulderTask.GetMove());
+        Debug.Log("Grounded " + bigBoulderTask.GetGrounded());
+        Debug.Log("Walk " + bigBoulderTask.GetWalk());
     }
 }

@@ -7,14 +7,21 @@ public class SonAnimations : MonoBehaviour
     private Animator animator;
     public GameObject player;
     private float height;
+    private bool walk;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         Physics.IgnoreCollision(player.GetComponent<Collider>(), this.GetComponent<Collider>());
+        walk = false;
 
         //height = 0.5f + gameObject.transform.position.y;
         
+    }
+
+    public bool GetWalk()
+    {
+        return walk;
     }
 
     void OnTriggerExit(Collider other)
@@ -36,7 +43,7 @@ public class SonAnimations : MonoBehaviour
     {
         if (other.gameObject.name == "bigBoulder" || other.gameObject.tag == "Terrain")
         {
-            Debug.Log("Playing landed animation");
+            //Debug.Log("Playing landed animation");
             animator.SetTrigger("Landed");
         }
         if (other.gameObject.name == "bigBoulder")
@@ -46,6 +53,7 @@ public class SonAnimations : MonoBehaviour
         if(other.gameObject.tag == "Terrain" && other.gameObject.name !="bigBoulder")
         {
             animator.SetBool("onTerrain", true);
+           
         }
     }
 
