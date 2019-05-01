@@ -86,7 +86,7 @@ public class PauseMenu : MonoBehaviour
     // Resumes the game and resets the cursor lock
     public void Resume()
     {
-        GameObject.Find("Main Camera").GetComponent<CameraOptimized>().UnpauseCameraAxis();
+        GameObject.Find("Player").transform.Find("Main Camera").GetComponent<CameraOptimized>().UnpauseCameraAxis();
         //Debug.Log("Resume Game!");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -107,7 +107,7 @@ public class PauseMenu : MonoBehaviour
     {
         //Debug.Log("Pause Game!");
         // GamePad.SetVibration(playerIndex, 0f, 0f);
-        GameObject.Find("Main Camera").GetComponent<CameraOptimized>().PauseCameraAxis();
+        PlayerPersistance.player.transform.Find("Main Camera").gameObject.GetComponent<CameraOptimized>().PauseCameraAxis();
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
         if (!controlDetector.GetIsUsingController())
