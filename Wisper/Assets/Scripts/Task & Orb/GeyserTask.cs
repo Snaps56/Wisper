@@ -5,6 +5,13 @@ using UnityEngine;
 public class GeyserTask : MonoBehaviour {
 
     public ParticleSystem waterParticles;
+
+    public Animator [] geyserShellstersAnim;
+    public AudioSource geyserWaterLoopSound;
+    public AudioSource boulderRollingSound;
+
+    private bool isGettingPickedUp = false;
+
     private Transform boulderOffset;
     private ParticleSystem.EmissionModule waterEmission;
     private ParticleSystem.VelocityOverLifetimeModule waterVelocity;
@@ -49,7 +56,7 @@ public class GeyserTask : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log("Geyser blocked? " + geyserIsBlocked);
-		if (geyserIsBlocked)
+        if (geyserIsBlocked)
         {
             waterEmission.rateOverTime = reducedEmission;
             waterVelocityCurve = new ParticleSystem.MinMaxCurve(reducedVelocity, reducedVelocity);
@@ -68,10 +75,58 @@ public class GeyserTask : MonoBehaviour {
         {
             if (!(bool)PersistantStateData.persistantStateData.stateConditions["GeyserTask"])
             {
+                for (int i = 0; i <  geyserShellstersAnim.Length; i++)
+                {
+                    geyserShellstersAnim[i].SetTrigger("GeyserSpraying");
+                }
                 spawnOrbsScript.DropOrbs();
                 PersistantStateData.persistantStateData.ChangeStateConditions("GeyserTask", true);
             }
             geyserIsBlocked = false;
+            geyserWaterLoopSound.Play();
+        }
+        if (other.gameObject.tag == "Terrain")
+        {
+            if (boulderRollingSound.isPlaying)
+            {
+                boulderRollingSound.Stop();
+            }
+        }
+        if (other.gameObject.name == "Abilities Collider")
+        {
+            isGettingPickedUp = false;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        //Debug.Log("Boulder collided with " + other.name);
+        if (other.gameObject.name == "Geyser Trigger")
+        {
+            if (!boulderRollingSound.isPlaying)
+            {
+                if (isGettingPickedUp)
+                {
+                    Debug.Log("Play Rolling Sound!");
+                    
+                    boulderRollingSound.Play();
+                }
+            }
+        }
+        if (other.gameObject.name == "Abilities Collider")
+        {
+            Debug.Log("Boulder within player collider! Getting Picked UP? " + isGettingPickedUp);
+            if (other.gameObject.GetComponent<ObjectThrow>().GetIsThrowingObjects() || other.gameObject.GetComponent<ObjectLift>().GetIsLiftingObjects())
+            {
+                isGettingPickedUp = true;
+            }
+            else
+            {
+                if (boulderRollingSound.isPlaying)
+                {
+                    boulderRollingSound.Stop();
+                }
+                isGettingPickedUp = false;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -79,6 +134,7 @@ public class GeyserTask : MonoBehaviour {
         if (other.gameObject.name == "Geyser Trigger")
         {
             geyserIsBlocked = true;
+            geyserWaterLoopSound.Stop();
         }
     }
 }

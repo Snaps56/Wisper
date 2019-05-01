@@ -1,5 +1,289 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &728265741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728265742}
+  - component: {fileID: 728265743}
+  m_Layer: 0
+  m_Name: BoulderRollingSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &728265742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728265741}
+  m_LocalRotation: {x: -0.001427543, y: -0.98393327, z: -0.04286708, w: -0.17330812}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8807533524321748610}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &728265743
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728265741}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d4603f49c0d9087448cd6f52076e31fc, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 25
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &961696242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 961696243}
+  - component: {fileID: 961696244}
+  m_Layer: 0
+  m_Name: GeyserWaterSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &961696243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961696242}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8807533524332921154}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &961696244
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961696242}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5dc6e6df24a31ef4098739df0cc1de4a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 25
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &1521737754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1521737755}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1521737755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521737754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3045466301333977810}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &8807533523423607456
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4795,7 +5079,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8807533524321917602}
   serializedVersion: 2
-  m_Mass: 20
+  m_Mass: 4
   m_Drag: 1
   m_AngularDrag: 0.2
   m_UseGravity: 1
@@ -4848,6 +5132,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterParticles: {fileID: 8807533523084163408}
+  geyserShellstersAnim:
+  - {fileID: 8830245506842860749}
+  - {fileID: 50085588187816903}
+  - {fileID: 50085588792739621}
+  - {fileID: 50085588141042024}
+  geyserWaterLoopSound: {fileID: 961696244}
+  boulderRollingSound: {fileID: 728265743}
 --- !u!1 &8807533524332921155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4877,9 +5168,917 @@ Transform:
   m_Children:
   - {fileID: 8807533524321748610}
   - {fileID: 8807533522616041629}
+  - {fileID: 3045466301333977810}
+  - {fileID: 5798681819704034776}
+  - {fileID: 5798681818696720698}
+  - {fileID: 5798681819641007991}
+  - {fileID: 961696243}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -179.99998, z: 0}
+--- !u!1001 &858436099
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8807533524332921154}
+    m_Modifications:
+    - target: {fileID: 2647904987408091851, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Grace_Shellster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 2.1763474e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8853286
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1.4603437e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.46496594
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4800034
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -124.58401
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574273, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Grace_ShellsterAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].dialogueName
+      value: GeyserClogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].line
+      value: How did this happen?
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].dialogueName
+      value: GeyserUnclogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].line
+      value: Hooray! The geyser is working!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 87733c0ff0d6b7c428db7a400ca2c696, type: 3}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 097a2dba7260a864e93ede109fcb5e5a, type: 2}
+    - target: {fileID: 50085587727576769, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: farYOffset
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: closeYOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: disableMarkerConditions.Array.data[0]
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].dialogueName
+      value: Geyser Clogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].line
+      value: Oh no! That rock is clogging the geyser!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].line
+      value: I hope this doesn't cause the river to flood...
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].dialogueName
+      value: Geyser Unclogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].line
+      value: Yay! The geyser is flowing again!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].follow
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 163abd299bfd92c4ca49a34a6bbd2b8b, type: 3}
+--- !u!4 &5798681819704034776 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 858436099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &50085588187816903 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 858436099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &920975532
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8807533524332921154}
+    m_Modifications:
+    - target: {fileID: 2647904987408091851, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Gia_Shellster (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 1.5656947e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.97599274
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1.5186898e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.21780328
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4800034
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.80000013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.80000013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -205.15999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.79999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 2.0633146e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.007533758
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1.4128466e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999717
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.86300004
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574273, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Gia_ShellsterAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].dialogueName
+      value: GeyserFixed
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].speaker
+      value: Gia
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].line
+      value: Yay! It's flowing again!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].dialogueName
+      value: GeyserUnclogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].line
+      value: Yay! The geyser is flowing now!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].follow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].autoPlayDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.data[0].conditionValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 87733c0ff0d6b7c428db7a400ca2c696, type: 3}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 097a2dba7260a864e93ede109fcb5e5a, type: 2}
+    - target: {fileID: 50085587727576769, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: farYOffset
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: closeYOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: disableMarkerConditions.Array.data[0]
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].dialogueName
+      value: Geyser Clogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].line
+      value: Oh no! That rock is clogging the geyser!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].line
+      value: I hope this doesn't cause the river to flood...
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].dialogueName
+      value: Geyser Unclogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].line
+      value: Yay! The geyser is flowing again!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].follow
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 163abd299bfd92c4ca49a34a6bbd2b8b, type: 3}
+--- !u!95 &50085588141042024 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 920975532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5798681819641007991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 920975532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1866208993
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8807533524332921154}
+    m_Modifications:
+    - target: {fileID: 2647904987408091851, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Gwen_Shellster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 2.1798893e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.87010473
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 7.679612e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.49286693
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4800034
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -120.94201
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574273, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Gwen_ShellsterAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].dialogueName
+      value: GeyserClogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].line
+      value: The geyser! It's clogged!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].dialogueName
+      value: GeyserUnclogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].line
+      value: Yay! The geyser is flowing now!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 87733c0ff0d6b7c428db7a400ca2c696, type: 3}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 097a2dba7260a864e93ede109fcb5e5a, type: 2}
+    - target: {fileID: 50085587727576769, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: farYOffset
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: closeYOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: disableMarkerConditions.Array.data[0]
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].dialogueName
+      value: Geyser Clogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].line
+      value: Oh no! That rock is clogging the geyser!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].line
+      value: I hope this doesn't cause the river to flood...
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].dialogueName
+      value: Geyser Unclogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].line
+      value: Yay! The geyser is flowing again!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].follow
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 163abd299bfd92c4ca49a34a6bbd2b8b, type: 3}
+--- !u!4 &5798681818696720698 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1866208993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &50085588792739621 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1866208993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8807533522615654941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4890,6 +6089,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: fb65487aeb98cfd4cb566d483123355c, type: 3}
       propertyPath: m_Name
       value: geyser_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fb65487aeb98cfd4cb566d483123355c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fb65487aeb98cfd4cb566d483123355c, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fb65487aeb98cfd4cb566d483123355c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4941,17 +6148,283 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: dddcd42ac36eaa54391cf7f010e1e3d7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb65487aeb98cfd4cb566d483123355c, type: 3}
+--- !u!4 &8807533522616041629 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: fb65487aeb98cfd4cb566d483123355c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8807533522615654941}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8807533522615557309 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: fb65487aeb98cfd4cb566d483123355c,
     type: 3}
   m_PrefabInstance: {fileID: 8807533522615654941}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8807533522616041629 stripped
+--- !u!1001 &8807533524274646281
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8807533524332921154}
+    m_Modifications:
+    - target: {fileID: 2647904987408091851, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Gary_Shellster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.030426
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 2.1094235e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6910036
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -5.5511146e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.72285134
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -87.41901
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574274, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574273, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: Gary_ShellsterAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].dialogueName
+      value: GeyserClogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].line
+      value: The geyser! It's clogged!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].dialogueName
+      value: GeyserUnclogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].line
+      value: Yay! The geyser is flowing now!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 87733c0ff0d6b7c428db7a400ca2c696, type: 3}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 097a2dba7260a864e93ede109fcb5e5a, type: 2}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: farYOffset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: closeYOffset
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: disableMarkerConditions.Array.data[0]
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].dialogueName
+      value: Geyser Clogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[0].line
+      value: Oh no! That rock is clogging the geyser!
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[0].sentences.Array.data[1].line
+      value: I hope this doesn't cause the river to flood...
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].dialogueName
+      value: Geyser Unclogged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionName
+      value: GeyserTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].speaker
+      value: Gary
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085589218018335, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[0].line
+      value: Yay! The geyser is flowing again!
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 163abd299bfd92c4ca49a34a6bbd2b8b, type: 3}
+--- !u!4 &3045466301333977810 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: fb65487aeb98cfd4cb566d483123355c,
+  m_CorrespondingSourceObject: {fileID: 5798681819483420635, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
     type: 3}
-  m_PrefabInstance: {fileID: 8807533522615654941}
+  m_PrefabInstance: {fileID: 8807533524274646281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8830245506842860749 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8807533524274646281}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8807533524321885186
 PrefabInstance:
