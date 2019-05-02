@@ -13,6 +13,7 @@ public class Windmill : MonoBehaviour {
     public float baseSpeed = 10f;
     public float dangerSpeed = 6f;
     public float correctSpeed = 2f;
+    public float torqueDivider = 2f;
     public GameObject[] windmillParts;
 
     public GameObject fixedWing3;
@@ -84,7 +85,7 @@ public class Windmill : MonoBehaviour {
             {
                 Debug.Log("Player is attempting to push fixed windmill!");
                 //Set the torque to move the windmill
-                torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce();
+                torque = abilitiesCollider.GetComponent<ObjectThrow>().GetThrowForce()/torqueDivider;
                 //if (!audioSource.isPlaying)
                 //{
                 //    audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
