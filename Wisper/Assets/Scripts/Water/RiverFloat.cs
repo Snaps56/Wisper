@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RiverFloat : MonoBehaviour
 {
-    public GameObject Water;
-    public float waterLevel;
-    public float floatHeight = 100;
+   // public GameObject Water;
+    public float waterLevel = 120;
+    public float floatHeight = 120;
     public float bounceDamp = 0.05f;
     public Vector3 UnderwaterGravity;
     public Vector3 BouyancyCenterOffset;
@@ -24,8 +24,8 @@ public class RiverFloat : MonoBehaviour
     {
         // Get Component
         Rigidbody = GetComponent<Rigidbody>();
-        waterLevel = Water.GetComponent<Transform>().position.y;
-        Mass = GetComponent<Rigidbody>().mass;
+        // waterLevel = Water.GetComponent<Transform>().position.y;
+        Mass = GetComponent<Rigidbody>().mass + 2;
 }
     // Update is called once per frame
     void FixedUpdate()
