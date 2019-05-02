@@ -63,7 +63,7 @@ public class LanternManager : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         bool AllAbove = true;
         foreach (Transform T in BeachLanterns.transform)

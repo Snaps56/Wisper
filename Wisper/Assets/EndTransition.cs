@@ -13,6 +13,7 @@ public class EndTransition : MonoBehaviour
     public GameObject Camera3;
     public GameObject PauseUI;
     public GameObject CreditsCanvas;
+    public GameObject BlackScreen;
 
     public Animator animator1;
     //public Animator animator2;
@@ -33,7 +34,7 @@ public class EndTransition : MonoBehaviour
 
     IEnumerator CameraSwap01()
     {
-        yield return new WaitForSeconds(9);
+        yield return new WaitForSeconds(8);
         Camera1.SetActive(false);
         Camera2.SetActive(true);
         StartCoroutine(CameraSwap02());
@@ -41,7 +42,7 @@ public class EndTransition : MonoBehaviour
 
     IEnumerator CameraSwap02()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(7);
         Camera2.SetActive(false);
         Camera3.SetActive(true);
         CreditsCanvas.SetActive(true);
@@ -54,6 +55,7 @@ public class EndTransition : MonoBehaviour
 
     public void TheEnd()
     {
+        BlackScreen.SetActive(true);
         SceneManager.LoadScene(1);
     }
 
