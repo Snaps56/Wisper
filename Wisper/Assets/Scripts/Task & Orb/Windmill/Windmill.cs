@@ -146,7 +146,7 @@ public class Windmill : MonoBehaviour {
         if ((bool)persistantStateData.stateConditions["WindmillTaskDone"] == false)
         {
             //Debug.Log("Turning Windmill.");
-            rb.AddTorque(torque * torqueMultiplier, 0, 0);
+            rb.AddTorque(-torque * torqueMultiplier, 0, 0);
         }
         else //If task is done, add constant passive force
         {
@@ -155,7 +155,7 @@ public class Windmill : MonoBehaviour {
             {
                 rb.isKinematic = false;
                 //Debug.Log("Turning blah blah blah");
-                rb.AddTorque(baseSpeed, 0, 0);
+                rb.AddTorque(-baseSpeed, 0, 0);
             }
         }
     }
