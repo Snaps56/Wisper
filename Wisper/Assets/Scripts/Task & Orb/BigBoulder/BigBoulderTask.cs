@@ -41,7 +41,7 @@ public class BigBoulderTask : MonoBehaviour {
         parent2.transform.rotation = Quaternion.Euler(new Vector3(0, parent2.transform.rotation.y * 180, 0));
 
         
-        if (transform.position.y >= 270f && transform.position.y <= 274.5f 
+        if (transform.position.y >= 53.8f && transform.position.y <= 55f 
             && transform.position.z > -680f && transform.position.z < -623f 
             && transform.position.x > -300f && transform.position.x < -134f)
         {
