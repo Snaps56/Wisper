@@ -224,7 +224,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("InPlayground", true);
         stateConditions.Add("StartupFadeFinished", false);
         stateConditions.Add("OrbDepositInProgress", false);
-        stateConditions.Add("DemoEnd", false);
+        stateConditions.Add("DemoEnd", true);
         stateConditions.Add("DebugValue", false);
     }
 
