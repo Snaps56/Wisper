@@ -62,7 +62,7 @@ public class ShrineCleanHandler : MonoBehaviour {
         {
             cleanProgress += cleanTick;
 
-            if (cleanProgress > minCleanRequired)
+            if (cleanProgress > minCleanRequired && !(bool)persistantStateData.stateConditions["ShrineIsClean"])
             {
                 cleanProgress = 1f;
                 persistantStateData.ChangeStateConditions("ShrineIsClean", true);

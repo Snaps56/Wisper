@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using XInputDotNetPure;
 
 public class LanternFloat : MonoBehaviour
 {
@@ -19,9 +19,11 @@ public class LanternFloat : MonoBehaviour
     // Vibration Variables
     bool playerIndexSet = false;
     private bool TaskisDone = false;
+    
     PlayerIndex playerIndex;
     GamePadState state;
     GamePadState prevState;
+    
 
     //The camera's forward vector
     private Vector3 cameraForward;
