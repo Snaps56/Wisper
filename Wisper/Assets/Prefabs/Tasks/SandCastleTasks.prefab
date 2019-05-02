@@ -310,8 +310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 1257024435530406, guid: 0bd81baa043581446b440750f2e6001c, type: 3}
-  farYOffset: 7
-  closeYOffset: 5.5
+  farYOffset: 4
+  closeYOffset: 3
   minAlphaDistance: 4
   maxDrawDistance: 30
   defaultAlpha: 1
@@ -43677,8 +43677,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 1257024435530406, guid: 0bd81baa043581446b440750f2e6001c, type: 3}
-  farYOffset: 7
-  closeYOffset: 5.5
+  farYOffset: 4
+  closeYOffset: 3
   minAlphaDistance: 4
   maxDrawDistance: 30
   defaultAlpha: 1
@@ -43957,7 +43957,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: Chad
-      line: The sandcastle is ruined! Too bad it can't fix itself...
+      line: What happened here? The sand castle broke?
   - dialogueName: SandCastle 2 Fixed
     enabled: 0
     forceOnEnable: 0
@@ -43973,7 +43973,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: Chad
-      line: The wind blew the sandcastle together again!
+      line: What happened here? The sand castle got fixed?
 --- !u!114 &5406733875660374039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44297,7 +44297,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: 
-      line: The sand castle is broken!
+      line: The sand castle...?
   - dialogueName: Sand Castle 2 Fixed
     enabled: 0
     forceOnEnable: 0
@@ -44313,7 +44313,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: 
-      line: The sand castle is fixed!
+      line: The sand castle!
   range: 8
 --- !u!114 &7741884913875579268
 MonoBehaviour:
@@ -44946,7 +44946,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: Brad
-      line: The sandcastle is ruined! Too bad it can't fix itself...
+      line: Wait what? How did the sandcastle break?
   - dialogueName: SandCastle 3 Fixed
     enabled: 0
     forceOnEnable: 0
@@ -44962,7 +44962,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: Brad
-      line: The wind blew the sandcastle together again!
+      line: The sandcastle is restored! Yay!
 --- !u!114 &9208523014602329991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45473,7 +45473,7 @@ Transform:
   m_GameObject: {fileID: 9208523015849171544}
   m_LocalRotation: {x: -0, y: 0.049799357, z: -0, w: 0.99875927}
   m_LocalPosition: {x: -194.57831, y: 185.08849, z: 209.88031}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9208523015519413595}
   - {fileID: 9208523014602329988}
@@ -45610,7 +45610,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: Brad
-      line: The sand castle is broken!
+      line: How did this break?
   - dialogueName: Windmill Finished
     enabled: 0
     forceOnEnable: 0
@@ -45626,7 +45626,7 @@ MonoBehaviour:
     speedControls: []
     sentences:
     - speaker: Brad
-      line: The sand castle is fixed!
+      line: Sand castle restored!
   range: 8
 --- !u!114 &9208523015849171548
 MonoBehaviour:
@@ -46664,11 +46664,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
         type: 3}
-      propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].speaker
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
-        type: 3}
       propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].line
       value: Who broke our castle?
       objectReference: {fileID: 0}
@@ -46684,13 +46679,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
         type: 3}
-      propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].speaker
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
-        type: 3}
       propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].line
-      value: How'd it get fixed!?s
+      value: How'd it get fixed!?
       objectReference: {fileID: 0}
     - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
         type: 3}
@@ -46700,7 +46690,7 @@ PrefabInstance:
     - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
         type: 3}
       propertyPath: closeYOffset
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
         type: 3}
