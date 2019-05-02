@@ -6,7 +6,7 @@ public class KiteTask : MonoBehaviour {
 
     // public variables
     public GameObject npc;
-
+    public GameObject stringHolder;
     // private varibles
     private bool getOrbs;
     private bool changed;
@@ -14,6 +14,7 @@ public class KiteTask : MonoBehaviour {
 
     private Vector3 finalPosition;
     private Vector3 kitePos;
+    private Vector3 stringHolderPos;
 
     private float finalX;
     private float finalY;
@@ -33,7 +34,7 @@ public class KiteTask : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //initialize varibles
-        maxHeight = 234.47f;
+        maxHeight = 230.47f;
         getOrbs = true;
         changed = false;
 
@@ -43,10 +44,9 @@ public class KiteTask : MonoBehaviour {
         z2 = -432.22f;
 
         kitePos = transform.position;
-
+        
         //create an animator
         animator = GetComponent<Animator>();
-
 
         //direction = npc.transform.position - this.transform.position;
     }
@@ -75,6 +75,8 @@ public class KiteTask : MonoBehaviour {
                 GetComponent<Rigidbody>().isKinematic = true;
                 getOrbs = false;
                 animator.enabled = true;
+                stringHolder.transform.Rotate(0, -5.709f, -47.093f);
+                stringHolder.transform.position = stringHolderPos;
                 PersistantStateData.persistantStateData.ChangeStateConditions("KiteFlying", true);
 
             }               
@@ -82,7 +84,8 @@ public class KiteTask : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        
+
+        stringHolderPos = new Vector3(stringHolder.transform.position.x - 0.113f, stringHolder.transform.position.y + 0.333f, stringHolder.transform.position.z + 0.25f);
         npc.transform.LookAt(transform.position);
         npc.transform.rotation = Quaternion.Euler(new Vector3(0, npc.transform.rotation.y * 180, 0));
         if (transform.position.y > kitePos.y)
