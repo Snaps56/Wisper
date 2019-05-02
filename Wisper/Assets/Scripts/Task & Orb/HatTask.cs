@@ -24,19 +24,20 @@ public class HatTask : MonoBehaviour
     private void Start()
     {
         PSD = PersistantStateData.persistantStateData;
-        if((bool)PSD.stateConditions["ShamusHasHat"])
+        rb = GetComponent<Rigidbody>();
+        if ((bool)PSD.stateConditions["ShamusHasHat"])
         {
             PutTheGoshDarnHatOnTheGoshDarnShamus();
-            Destroy(this);
+            Destroy(gameObject);
         }
-        rb = GetComponent<Rigidbody>();
+        
     }
 
     private void OnTriggerEnter(Collider col)
     {
         if((bool)PSD.stateConditions["ShrineFirstConversationOver"])
         {
-            if (col.gameObject.tag == "NPC")
+            if (col.gameObject.tag == "NPC" && col.gameObject == npc)
             {
                 //StartCoroutine(TwoSecond());
                 if(!(bool)PSD.stateConditions["ShamusHasHat"])
@@ -51,6 +52,7 @@ public class HatTask : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         GamePad.SetVibration(playerIndex, 0f, 0f);
+        Destroy(gameObject);
     }
 
     void pickUp()
@@ -66,8 +68,10 @@ public class HatTask : MonoBehaviour
 
     private void PutTheGoshDarnHatOnTheGoshDarnShamus()
     {
-        //rb.isKinematic = true;
-        //rb.useGravity = false;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
+        rb.isKinematic = true;
+        rb.useGravity = false;
         //GetComponent<Collider>().enabled = false;
         //makeHatFollow = true;
         //transform.parent = newParentObject;
