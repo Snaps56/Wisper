@@ -18,7 +18,7 @@ public class KiteManAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Kite Pos" + kite.transform.position.y);
+        //Debug.Log("Kite Pos" + kite.transform.position.y);
         if(kite.transform.position.y > 230)
         {
             animator.SetBool("KiteInAir", true);

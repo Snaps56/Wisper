@@ -53,8 +53,6 @@ public class HatTask : MonoBehaviour
 
     void pickUp()
     {
-
-        //npc.transform.Find("garden_hat").gameObject.SetActive(true);
         
         pickedUp = false;
         npc.GetComponent<SpawnOrbs>().DropOrbs();

@@ -29,7 +29,7 @@ public class ParentAnimations : MonoBehaviour
             animator.SetBool("Idle", true);
         }
 
-        Debug.Log("Grounded " + bigBoulderTask.GetGrounded());
-        Debug.Log("Walk " + bigBoulderTask.GetWalk());
+        //Debug.Log("Grounded " + bigBoulderTask.GetGrounded());
+        //Debug.Log("Walk " + bigBoulderTask.GetWalk());
     }
 }
