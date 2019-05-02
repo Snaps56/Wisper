@@ -16,6 +16,7 @@ public class ActivateCutscene : MonoBehaviour {
     private PersistantStateData PSDchecker;
     private List<string> skipableCutscene;
 
+    public bool CutscenePlaying = false;
     // Use this for initialization
     void Start () {
         player = PlayerPersistance.player.transform.gameObject;
@@ -52,8 +53,28 @@ public class ActivateCutscene : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        
-        //skip cutscene
+
+        bool foundCutscenePlaying = false;
+        foreach (AnimationState anime in cutsceneCamera.GetComponent<Animation>())
+        {
+            if (cutsceneCamera.GetComponent<Animation>().IsPlaying(anime.name) && skipableCutscene.Contains(anime.name))
+            {
+                foundCutscenePlaying = true;
+            }
+        }
+        if(foundCutscenePlaying)
+        {
+            CutscenePlaying = true;
+        }
+        else
+        {
+            CutscenePlaying = false;
+        }
+
+        if(foundCutscenePlaying)
+
+
+                //skip cutscene
         if (Input.GetKey(KeyCode.H) || Input.GetButtonDown("XBOX_Button_X"))
         {
             foreach(AnimationState anime in cutsceneCamera.GetComponent<Animation>())
