@@ -150,4 +150,9 @@ public class NPCMovement : MonoBehaviour
             }
         }
     }
+
+    public int getCurrentWP()
+    {
+        return currentWP;
+    }
 }

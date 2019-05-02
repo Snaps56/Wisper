@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: 8988257156778744557}
   - component: {fileID: 8988257156778744528}
   - component: {fileID: 8988257156778744559}
-  - component: {fileID: 8988257156778744558}
   - component: {fileID: 302319285914458701}
   - component: {fileID: 5033114747029934923}
   m_Layer: 0
@@ -225,26 +224,6 @@ MonoBehaviour:
     sentences:
     - speaker: Beau
       line: The windmill is fixed, but it's still not moving...
---- !u!114 &8988257156778744558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8988257156778744556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a501ad1a16cffaa4a8a951043d19b744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoint:
-  - {fileID: 8988257157204749139}
-  - {fileID: 8988257157192264269}
-  - {fileID: 8988257158268737353}
-  - {fileID: 8988257157472798027}
-  - {fileID: 8988257157849375520}
-  - {fileID: 8988257157108192236}
-  - {fileID: 8988257158235443716}
 --- !u!114 &302319285914458701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +248,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff55607c9d74bc54388a82682ea2b979, type: 3}
   youngShellsterAudioClips: []
   shrineAudioClips: []
+  adultShellsterAudioClips: []
   NPCType: 0
 --- !u!82 &5033114747029934923
 AudioSource:
@@ -868,6 +848,7 @@ MonoBehaviour:
   - {fileID: 8988257157849375520}
   - {fileID: 8988257157108192236}
   - {fileID: 8988257158235443716}
+  waypointParent: {fileID: 0}
   rotSpeed: 2
   speed: 3.2
   accuracyWP: 2

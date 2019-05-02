@@ -43889,7 +43889,6 @@ GameObject:
   - component: {fileID: 4326917846779752619}
   - component: {fileID: 7910059670088819236}
   - component: {fileID: 1008056529451540654}
-  - component: {fileID: 5406733875660374039}
   - component: {fileID: 3631099195605760520}
   - component: {fileID: 7912863590002821207}
   m_Layer: 0
@@ -43974,26 +43973,6 @@ MonoBehaviour:
     sentences:
     - speaker: Chad
       line: What happened here? The sand castle got fixed?
---- !u!114 &5406733875660374039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6539024816139025379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a501ad1a16cffaa4a8a951043d19b744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &3631099195605760520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44018,6 +43997,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff55607c9d74bc54388a82682ea2b979, type: 3}
   youngShellsterAudioClips: []
   shrineAudioClips: []
+  adultShellsterAudioClips: []
   NPCType: 0
 --- !u!82 &7912863590002821207
 AudioSource:
@@ -44631,7 +44611,6 @@ GameObject:
   - component: {fileID: 9051360891812162765}
   - component: {fileID: 5768768010585521957}
   - component: {fileID: 7257074597617251194}
-  - component: {fileID: 4461895849039604013}
   - component: {fileID: 2655998944760664181}
   - component: {fileID: 4141081132870748058}
   m_Layer: 0
@@ -44716,26 +44695,6 @@ MonoBehaviour:
     sentences:
     - speaker: Smith
       line: The wind blew the sandcastle together again!
---- !u!114 &4461895849039604013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8171905767538054272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a501ad1a16cffaa4a8a951043d19b744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &2655998944760664181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44760,6 +44719,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff55607c9d74bc54388a82682ea2b979, type: 3}
   youngShellsterAudioClips: []
   shrineAudioClips: []
+  adultShellsterAudioClips: []
   NPCType: 0
 --- !u!82 &4141081132870748058
 AudioSource:
@@ -44878,7 +44838,6 @@ GameObject:
   - component: {fileID: 9208523014602329988}
   - component: {fileID: 9208523014602330041}
   - component: {fileID: 9208523014602329990}
-  - component: {fileID: 9208523014602329991}
   - component: {fileID: 523973839674609444}
   - component: {fileID: 5093216678778930722}
   m_Layer: 0
@@ -44963,26 +44922,6 @@ MonoBehaviour:
     sentences:
     - speaker: Brad
       line: The sandcastle is restored! Yay!
---- !u!114 &9208523014602329991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9208523014602329989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a501ad1a16cffaa4a8a951043d19b744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &523973839674609444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45007,6 +44946,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff55607c9d74bc54388a82682ea2b979, type: 3}
   youngShellsterAudioClips: []
   shrineAudioClips: []
+  adultShellsterAudioClips: []
   NPCType: 0
 --- !u!82 &5093216678778930722
 AudioSource:
@@ -45951,6 +45891,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7cfae02b61ae425409eb5e02a1cf4d73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7cfae02b61ae425409eb5e02a1cf4d73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 7cfae02b61ae425409eb5e02a1cf4d73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.54
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7cfae02b61ae425409eb5e02a1cf4d73, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.698343
@@ -46003,26 +45955,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 98c27c96a3be42a4b8a191bff2d23a9a, type: 2}
-    - target: {fileID: 400002, guid: 7cfae02b61ae425409eb5e02a1cf4d73, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 7cfae02b61ae425409eb5e02a1cf4d73, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 7cfae02b61ae425409eb5e02a1cf4d73, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.54
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cfae02b61ae425409eb5e02a1cf4d73, type: 3}
---- !u!1 &2855715305376349481 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: 7cfae02b61ae425409eb5e02a1cf4d73,
-    type: 3}
-  m_PrefabInstance: {fileID: 2855715305376447371}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2855715305376571663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 7cfae02b61ae425409eb5e02a1cf4d73,
@@ -46032,6 +45966,12 @@ Transform:
 --- !u!1 &2855715305376349483 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 7cfae02b61ae425409eb5e02a1cf4d73,
+    type: 3}
+  m_PrefabInstance: {fileID: 2855715305376447371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2855715305376349481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 7cfae02b61ae425409eb5e02a1cf4d73,
     type: 3}
   m_PrefabInstance: {fileID: 2855715305376447371}
   m_PrefabAsset: {fileID: 0}
@@ -46061,6 +46001,18 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
       propertyPath: m_TagString
       value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.27
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -46114,18 +46066,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 98c27c96a3be42a4b8a191bff2d23a9a, type: 2}
-    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.27
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
 --- !u!1 &2855715305963833714 stripped
@@ -46260,6 +46200,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.15
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -46312,26 +46264,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 98c27c96a3be42a4b8a191bff2d23a9a, type: 2}
-    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8afe7d74ecf3c418825944bb05efc2, type: 3}
---- !u!1 &2855715306725683139 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 5e8afe7d74ecf3c418825944bb05efc2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2855715306725583203}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2855715306725192679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 5e8afe7d74ecf3c418825944bb05efc2,
@@ -46341,6 +46275,12 @@ Transform:
 --- !u!1 &2855715306725683137 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 5e8afe7d74ecf3c418825944bb05efc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2855715306725583203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2855715306725683139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5e8afe7d74ecf3c418825944bb05efc2,
     type: 3}
   m_PrefabInstance: {fileID: 2855715306725583203}
   m_PrefabAsset: {fileID: 0}
@@ -46622,21 +46562,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abe_ShellsterAnim
       objectReference: {fileID: 0}
-    - target: {fileID: 50085587727576769, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
-        type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: 87733c0ff0d6b7c428db7a400ca2c696, type: 3}
-    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 097a2dba7260a864e93ede109fcb5e5a, type: 2}
     - target: {fileID: 50085587434574278, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
         type: 3}
       propertyPath: floatingTexts.Array.size
@@ -46681,6 +46606,21 @@ PrefabInstance:
         type: 3}
       propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].line
       value: How'd it get fixed!?
+      objectReference: {fileID: 0}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 87733c0ff0d6b7c428db7a400ca2c696, type: 3}
+    - target: {fileID: 50085587434574276, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 097a2dba7260a864e93ede109fcb5e5a, type: 2}
+    - target: {fileID: 50085587727576769, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50085587727576771, guid: 163abd299bfd92c4ca49a34a6bbd2b8b,
         type: 3}

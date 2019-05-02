@@ -9,7 +9,9 @@ public class GenericShellsterController : MonoBehaviour
     public bool regularLook = false;
     
     public bool lookAtWaypoint = false;
-    public List<GameObject> lookAtWaypoints = new List<GameObject>();
+    public List<int> lookAtWaypoints = new List<int>();
+    private bool triggerLook = false;
+    private int prepLook = -1;
 
     private Animator anim;
     private float tripTime = 0;
@@ -51,12 +53,36 @@ public class GenericShellsterController : MonoBehaviour
                 float fallCheck = Random.Range(0f, 1f);
                 if (fallCheck < chanceToFall)
                 {
-                    Debug.Log("FALL: " + fallCheck);
+                    //Debug.Log("FALL: " + fallCheck);
                     anim.SetBool("Fall", true);
                 }
                 else
                 {
-                    Debug.Log("NO FALL: " + fallCheck);
+                    //Debug.Log("NO FALL: " + fallCheck);
+                }
+            }
+        }
+
+        if(lookAtWaypoint)
+        {
+            if(prepLook >= 0)
+            {
+                if(moveScript.getCurrentWP() != prepLook)
+                {
+                    Debug.Log("Triggered shellster look at waypoint");
+                    moveScript.move = false;
+                    anim.SetBool("Look", true);
+                    prepLook = -1;
+                }
+            }
+            else
+            {
+                foreach(int wpIndex in lookAtWaypoints)
+                {
+                    if(wpIndex == moveScript.getCurrentWP())
+                    {
+                        prepLook = moveScript.getCurrentWP();
+                    }
                 }
             }
         }
