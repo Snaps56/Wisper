@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.587921, g: 0.68970907, b: 0.81886166, a: 1}
+  m_IndirectSpecularColor: {r: 0.5881364, g: 0.6891495, b: 0.81952024, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1246,6 +1246,7 @@ GameObject:
   - component: {fileID: 106205144}
   - component: {fileID: 106205143}
   - component: {fileID: 106205142}
+  - component: {fileID: 106205146}
   m_Layer: 0
   m_Name: CutsceneCamera
   m_TagString: Untagged
@@ -1359,6 +1360,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -11.248, z: 0}
+--- !u!114 &106205146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106205140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113e145f8cccc9844a6c4d227c4aaef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &130719634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4916996091353102500, guid: 3a5570f262ae17f40b45efaa95b4ff00,

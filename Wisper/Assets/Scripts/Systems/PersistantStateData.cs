@@ -213,7 +213,7 @@ public class PersistantStateData : MonoBehaviour
         /////////////////////////////////////////////////////////////
         stateConditions.Add("DoPlaygroundIntroPan", true);
         stateConditions.Add("PlaygroundIntroPan1Started", false);
-
+        stateConditions.Add("IntroCutscenePlaying", false);
 
         //////////////////////////////////////////////////////////////////
         ////////////////////    Miscellaneous flags   ////////////////////

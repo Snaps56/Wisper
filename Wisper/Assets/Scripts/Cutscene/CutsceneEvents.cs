@@ -26,6 +26,7 @@ public class CutsceneEvents : MonoBehaviour {
         //windPowerUI = PowerBarPersistence.powerbar.transform;
         if ((bool)PersistantStateData.persistantStateData.stateConditions["DoPlaygroundIntroPan"])
         {
+            PersistantStateData.persistantStateData.ChangeStateConditions("IntroCutscenePlaying", true);
             gameObject.SetActive(true);
         }
         else
@@ -103,6 +104,7 @@ public class CutsceneEvents : MonoBehaviour {
     //Event called when the animation should end
     public void EndAnimation()
     {
+        PersistantStateData.persistantStateData.ChangeStateConditions("IntroCutscenePlaying", false);
         if (cutsceneIsPlaying)
         {
             player.GetComponent<PlayerMovement>().EnableMovement();
