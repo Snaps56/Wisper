@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class LanternManager : MonoBehaviour
@@ -19,13 +20,17 @@ public class LanternManager : MonoBehaviour
 
     private List<Transform> LiftedLanters = new List<Transform>();
 
+    // AudioMixerSnapshots to fade in music (used in start for reloading scene after task is done, and in update for when task is complete) 
+    public AudioMixerSnapshot NightScene_Off;
+    public AudioMixerSnapshot NightScene_L1On;
+    public AudioMixerSnapshot NightScene_L2On;
+    public float fadeTime = 3.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        //foreach (Rigidbody rb in BeachLanterns.GetComponentsInChildren<Rigidbody>())
-        //{
-        //    rb.mass = Random.Range(11, 13);
-        //}
+        // Plays L1 by default
+        NightScene_L1On.TransitionTo(fadeTime);
     }
 
     IEnumerator Wait()
@@ -63,6 +68,9 @@ public class LanternManager : MonoBehaviour
         {
             end = true;
             Fade.SetActive(true);
+            // Starts L2 here
+
+
 
         }
         if (end == true)
