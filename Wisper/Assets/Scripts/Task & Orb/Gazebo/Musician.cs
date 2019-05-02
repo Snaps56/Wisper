@@ -46,6 +46,10 @@ public class Musician : MonoBehaviour {
                 // Fades in this musicians instrument
                 playingInstrument.TransitionTo(fadeTime);
             }
+            else
+            {
+                notPlayingInstrument.TransitionTo(0.0f);
+            }
         }
         else if (instrumentPlayed.Equals(InstrumentType.Saxophone))
         {
@@ -58,6 +62,10 @@ public class Musician : MonoBehaviour {
                 myInstrumentModel.SetActive(true);
                 // Fades in this musicians instrument
                 playingInstrument.TransitionTo(fadeTime);
+            }
+            else
+            {
+                notPlayingInstrument.TransitionTo(0.0f);
             }
         }
         else if (instrumentPlayed.Equals(InstrumentType.Tamborine))
@@ -72,6 +80,10 @@ public class Musician : MonoBehaviour {
                 // Fades in this musicians instrument
                 playingInstrument.TransitionTo(fadeTime);
             }
+            else
+            {
+                notPlayingInstrument.TransitionTo(0.0f);
+            }
         }
         else if (instrumentPlayed.Equals(InstrumentType.Violin))
         {
@@ -84,6 +96,10 @@ public class Musician : MonoBehaviour {
                 myInstrumentModel.SetActive(true);
                 // Fades in this musicians instrument
                 playingInstrument.TransitionTo(fadeTime);
+            }
+            else
+            {
+                notPlayingInstrument.TransitionTo(0.0f);
             }
         }
 	}
