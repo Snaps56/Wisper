@@ -5,28 +5,28 @@ using UnityEngine.Audio;
 
 public class PlaygroundSnapshotSwitch : MonoBehaviour {
     
-	public AudioMixerSnapshot onSnapshot; //Default
-    public AudioMixerSnapshot offSnapshot; //Snapshot on
-	public float fadeTime = 3.0f;
-    public float delayTime = 0.0f;
+    public AudioMixerSnapshot softSnapshot; 
+    public AudioMixerSnapshot normalSnapshot; 
+	public float fadeIn = 0.0f;
+    public float fadeOut = 3.0f;
     private ActivateCutscene activateCutsceneScript;
 
     bool lastCutsceneActiveState = false;
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         activateCutsceneScript = GameObject.Find("CutsceneManager").GetComponent<ActivateCutscene>();
         if(lastCutsceneActiveState != activateCutsceneScript.CutscenePlaying)
         {
             lastCutsceneActiveState = activateCutsceneScript.CutscenePlaying;
             if(lastCutsceneActiveState == true)
             {
-                // DO THING WITH OFF SNAPSHOT HERE TO TUNE DOWN THE VOLUME
+                softSnapshot.TransitionTo(fadeIn);
             }
             else
             {
-                // DO THING WITH ON SNAPSHOT HERE TO TUNE UP THE VOLUME
+                normalSnapshot.TransitionTo(fadeOut);
             }
         }
         
@@ -39,11 +39,11 @@ public class PlaygroundSnapshotSwitch : MonoBehaviour {
             lastCutsceneActiveState = activateCutsceneScript.CutscenePlaying;
             if (lastCutsceneActiveState == true)
             {
-                // DO THING WITH OFF SNAPSHOT HERE TO TUNE DOWN THE VOLUME
+                softSnapshot.TransitionTo(fadeIn);
             }
             else
             {
-                // DO THING WITH ON SNAPSHOT HERE TO TUNE UP THE VOLUME
+                normalSnapshot.TransitionTo(fadeOut);
             }
         }
 

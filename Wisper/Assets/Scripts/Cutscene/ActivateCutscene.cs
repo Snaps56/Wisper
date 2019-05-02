@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ActivateCutscene : MonoBehaviour {
     [Header("Cutscene Objects")]
@@ -15,6 +16,7 @@ public class ActivateCutscene : MonoBehaviour {
     public bool playOnStart;
     private PersistantStateData PSDchecker;
     private List<string> skipableCutscene;
+
 
     public bool CutscenePlaying = false;
     // Use this for initialization

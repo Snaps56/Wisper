@@ -41,6 +41,7 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
     void OnTriggerEnter (Collider col) {
         //Debug.Log("MusicSnapshotSwitch enter collided with: " + col.name);
         if (col == playerCollider){
+            needsToBeFaded = false;
             //Debug.Log("MusicSnapshotSwitch enter detected as player: " + col.name);
             myAudioSource.Play();
             L2AudioSource.Play();
@@ -56,7 +57,7 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
         {
             //Debug.Log("MusicSnapshotSwitch exit detected as player: " + col.name);
             mySnapshot2.TransitionTo(fadeTime);
-            timeToStop = Time.time + fadeTime + 1.0f;
+            timeToStop = Time.time + fadeTime + 0.1f;
             needsToBeFaded = true;
             //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
 

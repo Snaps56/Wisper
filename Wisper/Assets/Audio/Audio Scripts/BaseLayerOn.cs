@@ -1,25 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
-public class ResidentLayer1 : MonoBehaviour {
+public class BaseLayerOn : MonoBehaviour {
     
-	public AudioMixerSnapshot mySnapshot; //Default
-    public AudioMixerSnapshot mySnapshot2; //Snapshot on
+	public AudioMixerSnapshot mySnapshot; 
+    public AudioMixerSnapshot mySnapshot2;
+    public AudioMixerSnapshot environmentNormal;
+    public AudioMixerSnapshot environmentSoft;
 	public float fadeTime = 3.0f;
     public float delayTime = 0.0f;
-    private AudioSource myAudioSource;
-    public AudioSource L2AudioSource;
-    public AudioSource saxAudioSource;
-    public AudioSource tamboAudioSource;
-    public AudioSource panAudioSource;
-    private Collider playerCollider;
+    public AudioSource myAudioSource;
+    //public AudioSource L2AudioSource;
+    //public Collider audioCollider;
     private bool needsToBeFaded = false;
     private float timeToStop = 0.0f;
+    private Collider playerCollider;
 
 	// Use this for initialization
 	void Start () {
-        myAudioSource = GetComponent<AudioSource>();
+        //myAudioSource = GetComponent<AudioSource>();
+        //audioCollider = GetComponent<Collider>();
         playerCollider = PlayerPersistance.player.transform.Find("Abilities Collider").GetComponent<Collider>();
 	}
 	
@@ -28,10 +30,7 @@ public class ResidentLayer1 : MonoBehaviour {
         if(myAudioSource.isPlaying && needsToBeFaded){
             if(Time.time > timeToStop){
                 myAudioSource.Stop();
-                L2AudioSource.Stop();
-                saxAudioSource.Stop();
-                tamboAudioSource.Stop();
-                panAudioSource.Stop();
+                //L2AudioSource.Stop();
                 needsToBeFaded = false;
                 //Debug.Log("audio Stop clip: " + myAudioSource.clip.name);
 
@@ -42,28 +41,31 @@ public class ResidentLayer1 : MonoBehaviour {
 	}
 
     void OnTriggerEnter (Collider col) {
+        //Debug.Log("MusicSnapshotSwitch enter collided with: " + col.name);
         if (col == playerCollider){
             needsToBeFaded = false;
+            //Debug.Log("MusicSnapshotSwitch enter detected as player: " + col.name);
             myAudioSource.Play();
-            L2AudioSource.Play();
-            saxAudioSource.Play();
-            tamboAudioSource.Play();
-            panAudioSource.Play();
-            //MusicSnapshotSwitchL2.L2AudioScript.myL2AudioSource 
+            //L2AudioSource.Play();
             mySnapshot.TransitionTo(fadeTime);
-
+            environmentNormal.TransitionTo(fadeTime);
+            
         }
-       
 	}
 
-    void OnTriggerExit(Collider col){
-        if (col == playerCollider){
+    void OnTriggerExit(Collider col)
+    {
+        //Debug.Log("MusicSnapshotSwitch exit collided with: " + col.name);
+        if (col == playerCollider)
+        {
+            //Debug.Log("MusicSnapshotSwitch exit detected as player: " + col.name);
             mySnapshot2.TransitionTo(fadeTime);
+            environmentSoft.TransitionTo(fadeTime);
             timeToStop = Time.time + fadeTime + 0.1f;
             needsToBeFaded = true;
             //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
 
         }
-
+      
     }
 }
