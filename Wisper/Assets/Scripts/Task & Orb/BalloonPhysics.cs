@@ -10,6 +10,8 @@ public class BalloonPhysics : MonoBehaviour
     public GameObject overrideAnchorObject;
     public bool overrideAnchor = false;
 
+    private MeshRenderer meshRenderer;
+
     private GameObject balloonBase;
     private GameObject balloonAnchor;
     private LineRenderer lineRenderer;
@@ -19,6 +21,9 @@ public class BalloonPhysics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Color color = new Color(Random.value * 1.5f, Random.value * 1.5f, Random.value * 1.5f);
+        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.material.color = color;
         rb = GetComponent<Rigidbody>();
 
         balloonBase = transform.Find("balloonBase").gameObject;
