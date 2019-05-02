@@ -125,8 +125,10 @@ public class Musician : MonoBehaviour {
 
                     // Fades in this musicians instrument
                     playingInstrument.TransitionTo(fadeTime);
+
                 }
             }
+
         }
 	}
 

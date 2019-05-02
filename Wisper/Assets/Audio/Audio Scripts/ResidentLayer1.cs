@@ -13,12 +13,14 @@ public class ResidentLayer1 : MonoBehaviour {
     public AudioSource saxAudioSource;
     public AudioSource tamboAudioSource;
     public AudioSource panAudioSource;
+    private Collider playerCollider;
     private bool needsToBeFaded = false;
     private float timeToStop = 0.0f;
 
 	// Use this for initialization
 	void Start () {
         myAudioSource = GetComponent<AudioSource>();
+        playerCollider = PlayerPersistance.player.transform.Find("Abilities Collider").GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -39,21 +41,28 @@ public class ResidentLayer1 : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter () {
-        myAudioSource.Play();
-        L2AudioSource.Play();
-        saxAudioSource.Play();
-        tamboAudioSource.Play();
-        panAudioSource.Play();
-        //MusicSnapshotSwitchL2.L2AudioScript.myL2AudioSource 
-		mySnapshot.TransitionTo(fadeTime);
+    void OnTriggerEnter (Collider col) {
+        if (col == playerCollider){
+            myAudioSource.Play();
+            L2AudioSource.Play();
+            saxAudioSource.Play();
+            tamboAudioSource.Play();
+            panAudioSource.Play();
+            //MusicSnapshotSwitchL2.L2AudioScript.myL2AudioSource 
+            mySnapshot.TransitionTo(fadeTime);
+
+        }
+       
 	}
 
-    void OnTriggerExit()
-    {
-        mySnapshot2.TransitionTo(fadeTime);
-        timeToStop = Time.time + fadeTime + 1.0f;
-        needsToBeFaded = true;
-        //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
+    void OnTriggerExit(Collider col){
+        if (col == playerCollider){
+            mySnapshot2.TransitionTo(fadeTime);
+            timeToStop = Time.time + fadeTime + 1.0f;
+            needsToBeFaded = true;
+            //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
+
+        }
+
     }
 }
