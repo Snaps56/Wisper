@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1952731450126219456
+--- !u!1001 &6981926591063405837
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6648124159594980317, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: m_Name
-      value: Saldra
+      value: Spartus
       objectReference: {fileID: 0}
     - target: {fileID: 2919687543307574989, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
@@ -70,52 +70,57 @@ PrefabInstance:
     - target: {fileID: 8668354708333639895, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: m_Name
-      value: Saldra
+      value: Spartus
       objectReference: {fileID: 0}
     - target: {fileID: 8668354708333639888, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: floatingTexts.Array.data[0].dialogueName
-      value: Camp is Trash
+      value: Pier is Trash
       objectReference: {fileID: 0}
     - target: {fileID: 8668354708333639888, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: floatingTexts.Array.data[0].enableConditions.Array.data[0].conditionName
-      value: CampIsClean
+      value: PierIsClean
       objectReference: {fileID: 0}
     - target: {fileID: 8668354708333639888, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].speaker
-      value: Saldra
+      value: Spartus
       objectReference: {fileID: 0}
     - target: {fileID: 8668354708333639888, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: floatingTexts.Array.data[0].sentences.Array.data[0].line
-      value: My camp is in ruins!
+      value: So much trash...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668354708333639888, guid: c313ef5e14baacb488fbaba2290047c4,
+        type: 3}
+      propertyPath: floatingTexts.Array.data[1].dialogueName
+      value: Pier is Clean
       objectReference: {fileID: 0}
     - target: {fileID: 8668354708333639888, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: floatingTexts.Array.data[1].enableConditions.Array.data[0].conditionName
-      value: CampIsClean
+      value: PierIsClean
       objectReference: {fileID: 0}
     - target: {fileID: 8668354708333639888, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].speaker
-      value: Saldra
+      value: Spartus
       objectReference: {fileID: 0}
     - target: {fileID: 8668354708333639888, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: floatingTexts.Array.data[1].sentences.Array.data[0].line
-      value: My camp is whole again!
+      value: Yay! It's gone!
       objectReference: {fileID: 0}
     - target: {fileID: 8668354707757352919, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: m_Name
-      value: Saldra_Marker
+      value: Spartus_Marker
       objectReference: {fileID: 0}
     - target: {fileID: 8668354707757352917, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: disableMarkerConditions.Array.data[0]
-      value: CampIsClean
+      value: PierIsClean
       objectReference: {fileID: 0}
     - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
@@ -124,39 +129,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
+        type: 3}
       propertyPath: dialogues.Array.data[0].dialogueName
-      value: Camp is Trash
+      value: Pier is Trash
       objectReference: {fileID: 0}
     - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: dialogues.Array.data[0].enableConditions.Array.data[0].conditionName
-      value: CampIsClean
+      value: PierIsClean
       objectReference: {fileID: 0}
     - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: dialogues.Array.data[0].sentences.Array.data[0].speaker
-      value: Saldra
+      value: Spartus
       objectReference: {fileID: 0}
     - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: dialogues.Array.data[0].sentences.Array.data[0].line
-      value: My beautiful camp is in shambles! There's all this trash! I can't pick
-        it all up myself...
+      value: Man, people just don't pick up after themselves. There's so much trash
+        around...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].dialogueName
+      value: Pier is Clean
       objectReference: {fileID: 0}
     - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: dialogues.Array.data[1].enableConditions.Array.data[0].conditionName
-      value: CampIsClean
+      value: PierIsClean
       objectReference: {fileID: 0}
     - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: dialogues.Array.data[1].sentences.Array.data[0].speaker
-      value: Saldra
+      value: Spartus
       objectReference: {fileID: 0}
     - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
       propertyPath: dialogues.Array.data[1].sentences.Array.data[0].line
-      value: Hoo ray! My beautiful camp is clean once more!
+      value: Hey, where'd all the trash go? I didn't see anyone pick it up.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[1].speaker
+      value: Spartus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668354709244669193, guid: c313ef5e14baacb488fbaba2290047c4,
+        type: 3}
+      propertyPath: dialogues.Array.data[1].sentences.Array.data[1].line
+      value: Must have been the wind.
       objectReference: {fileID: 0}
     - target: {fileID: 54772328799301035, guid: c313ef5e14baacb488fbaba2290047c4,
         type: 3}
