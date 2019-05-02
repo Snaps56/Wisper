@@ -8,6 +8,7 @@ public class HatTask : MonoBehaviour
     public GameObject npc;
     public Transform newParentObject;
     public Vector3 positionOffset;
+    public GameObject theHat;
     private Rigidbody rb;
     bool playerIndexSet = false;
     PlayerIndex playerIndex;
@@ -26,6 +27,7 @@ public class HatTask : MonoBehaviour
         if((bool)PSD.stateConditions["ShamusHasHat"])
         {
             PutTheGoshDarnHatOnTheGoshDarnShamus();
+            Destroy(this);
         }
         rb = GetComponent<Rigidbody>();
     }
@@ -64,13 +66,14 @@ public class HatTask : MonoBehaviour
 
     private void PutTheGoshDarnHatOnTheGoshDarnShamus()
     {
-        rb.isKinematic = true;
-        rb.useGravity = false;
-        GetComponent<Collider>().enabled = false;
-        makeHatFollow = true;
-        transform.parent = newParentObject;
-        transform.position = newParentObject.position + positionOffset;
-        transform.rotation = newParentObject.rotation;
+        //rb.isKinematic = true;
+        //rb.useGravity = false;
+        //GetComponent<Collider>().enabled = false;
+        //makeHatFollow = true;
+        //transform.parent = newParentObject;
+        //transform.position = newParentObject.position + positionOffset;
+        //transform.rotation = newParentObject.rotation;
+        theHat.SetActive(true);
     }
 
     void Update()
