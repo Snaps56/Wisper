@@ -102,6 +102,8 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TutorialWithinShellsterRange", false); // check if player within shellster range, then end generate orb tutorial
         stateConditions.Add("TutorialHasEnoughOrbs", false); // check if player has enough orbs to deposit
         stateConditions.Add("TutorialGate", false); // check if player is within gate range
+        stateConditions.Add("HasEnoughOrbsEndgame", false); // check if player has enough orbs to deposit for endgame
+        stateConditions.Add("TutorialHasEnoughOrbsEndgame", false); // tutorial to tell player to deposit orbs to trigger endgame
 
         // Tooltips 2.0
         stateConditions.Add("ShrineReturnConversation", false);  // Marks if player began first conversation after finishing tasks
