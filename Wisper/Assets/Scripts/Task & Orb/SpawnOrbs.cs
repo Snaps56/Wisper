@@ -66,7 +66,14 @@ public class SpawnOrbs : MonoBehaviour
 
     // drop orbs called only from outside class calls or via debug button
     public void DropOrbs (){
-        this.gameObject.GetComponent<AudioSource>().PlayOneShot(orbSpawnClip);
+        try
+        {
+            this.gameObject.GetComponent<AudioSource>().PlayOneShot(orbSpawnClip);
+        }
+        catch(System.Exception e)
+        {
+            Debug.Log(e);
+        }
 
         // generate orbs based on the number of requested orbs to drop
 		for (int i = 0; i < orbCount; i++) {
