@@ -19,7 +19,7 @@ public class KiteManAnimation : MonoBehaviour
     void Update()
     {
         //Debug.Log("Kite Pos" + kite.transform.position.y);
-        if(kite.transform.position.y > 230)
+        if(kite.transform.position.y > 40)
         {
             animator.SetBool("KiteInAir", true);
         }

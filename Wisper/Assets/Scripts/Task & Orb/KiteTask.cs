@@ -34,14 +34,14 @@ public class KiteTask : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //initialize varibles
-        maxHeight = 230.47f;
+        maxHeight = 41.47f;
         getOrbs = true;
         changed = false;
 
-        x1 = -302.23f;
-        x2 = -338.61f;
-        z1 = -394.9f;
-        z2 = -432.22f;
+        x1 = -176.89f;
+        x2 = -213.27f;
+        z1 = -423.75f;
+        z2 = -461.22f;
 
         kitePos = transform.position;
         
