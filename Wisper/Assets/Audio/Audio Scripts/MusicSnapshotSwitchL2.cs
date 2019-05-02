@@ -24,12 +24,12 @@ public class MusicSnapshotSwitchL2 : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter () {
-        //myL2AudioSource.Play();
+	void OnTriggerEnter (Collider playerCollider) {
+        myL2AudioSource.Play();
 		mySnapshot.TransitionTo (fadeTime);
 	}
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider playerCollider)
     {
         mySnapshot2.TransitionTo(fadeTime);
         //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);

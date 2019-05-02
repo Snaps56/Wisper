@@ -37,19 +37,19 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
 	}
 
     void OnTriggerEnter (Collider playerCollider) {
-        if (playerCollider.tag == "Player"){
+        if (playerCollider.CompareTag("Player")){
             myAudioSource.Play();
             L2AudioSource.Play();
             //MusicSnapshotSwitchL2.L2AudioScript.myL2AudioSource 
             mySnapshot.TransitionTo(fadeTime);
             
         }
-       
 	}
 
     void OnTriggerExit(Collider playerCollider)
     {
-        if (playerCollider.tag == "Player"){
+        if (playerCollider.CompareTag("Player"))
+        {
             mySnapshot2.TransitionTo(fadeTime);
             timeToStop = Time.time + fadeTime + 2.0f;
             needsToBeFaded = true;
