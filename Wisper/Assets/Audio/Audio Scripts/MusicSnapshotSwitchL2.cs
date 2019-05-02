@@ -4,8 +4,8 @@ using UnityEngine.Audio;
 
 public class MusicSnapshotSwitchL2 : MonoBehaviour {
     
-    public static MusicSnapshotSwitchL2 L2AudioScript = null;
-    private AudioSource myL2AudioSource;
+    //public static MusicSnapshotSwitchL2 L2AudioScript = null;
+    //private AudioSource myL2AudioSource;
     public AudioMixerSnapshot mySnapshot;
     public AudioMixerSnapshot mySnapshot2;
 	public float fadeTime = 3.0f;
@@ -16,7 +16,7 @@ public class MusicSnapshotSwitchL2 : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        myL2AudioSource = GetComponent<AudioSource>();
+        //myL2AudioSource = GetComponent<AudioSource>();
         playerCollider = PlayerPersistance.player.transform.Find("Abilities Collider").GetComponent<Collider>();
     }
 	
@@ -28,7 +28,7 @@ public class MusicSnapshotSwitchL2 : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
         if(col == playerCollider)
         {
-            myL2AudioSource.Play();
+            //myL2AudioSource.Play();
             mySnapshot.TransitionTo(fadeTime);
         }
 	}

@@ -39,11 +39,12 @@ public class LanternManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Plays L1 by default
+        // Plays L1 by default, transitions (fades) from off to on
         L1.Play();
-        NightScene_L1On.TransitionTo(fadeTime);
-        NightScene_Off.TransitionTo(0f);
         L2.Play();
+        NightScene_L1On.TransitionTo(fadeTime);
+        //NightScene_Off.TransitionTo(0f);
+
     }
 
     IEnumerator Wait()
