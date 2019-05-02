@@ -476,7 +476,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8671319053356031200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727e9626c360a7c43b01d3c85e23b22c, type: 3}
   m_Name: 
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8671319053569706097}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727e9626c360a7c43b01d3c85e23b22c, type: 3}
   m_Name: 
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8671319053891419849}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727e9626c360a7c43b01d3c85e23b22c, type: 3}
   m_Name: 
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8671319054122051632}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727e9626c360a7c43b01d3c85e23b22c, type: 3}
   m_Name: 
@@ -2372,7 +2372,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8671319054825351627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727e9626c360a7c43b01d3c85e23b22c, type: 3}
   m_Name: 
@@ -7419,7 +7419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orb: {fileID: 1216158938497038, guid: b265e73def8358a4db7e21be704bb935, type: 3}
-  orbSpawnClip: {fileID: 0}
+  orbSpawnClip: {fileID: 8300000, guid: 6143c02e87e3c2c4d923dfe145cee235, type: 3}
   orbCount: 5
   initialForceMultiplier: 400
   moveSpeedMultiplier: 0.5
@@ -7437,7 +7437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a038db3982387174689570f8579a3313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indicator: {fileID: 1257024435530406, guid: 628299dbfc981694cac47aef1f4e311f, type: 3}
+  indicator: {fileID: 1257024435530406, guid: 0bd81baa043581446b440750f2e6001c, type: 3}
   farYOffset: 6
   closeYOffset: 4
   minAlphaDistance: 5
@@ -7797,6 +7797,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8671319055278915285}
     m_Modifications:
+    - target: {fileID: 1218862510335626, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
+      propertyPath: m_Name
+      value: DialogueTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 4729059880221282, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7841,10 +7845,81 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1218862510335626, guid: 40130c7273e405347b6d269c6e6a25fe, type: 3}
-      propertyPath: m_Name
-      value: DialogueTrigger
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.size
+      value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ab47e7b2d58e6645a46a5c1a0d94e16, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: db3b1d6369c6e65498d2932e9a3d1f72, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec9c1f211ec3ad348b041710cedd3b11, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 344b795b9e968a94780eee1d999240fe, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: bc22df9ab5bbf5c45bf0a305c73f7fbc, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 15ada4437b274af4ab69c5be77782a6d, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: bf7d31a92edfb154698137f38dd733ba, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cdf0ff512bd5ed488c14b0e7277512e, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e2a134a675b93e4c879c67dc23acbd7, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 56e43ab45a4afda439b7e9031ea7c2eb, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d6e7297cfb64d049b6dc5636c7b3124, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e4ce90c7d1ce674180b9d018de724f6, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[12]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1f9c3f2ef3af5254fa023b844fac337f, type: 3}
+    - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
+      propertyPath: shrineAudioClips.Array.data[13]
+      value: 
+      objectReference: {fileID: 8300000, guid: cff73d19288b6db4d9d4b1546fa6942d, type: 3}
     - target: {fileID: 6073480450634417631, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: NPCType
@@ -8063,7 +8138,7 @@ PrefabInstance:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.data[13].enableConditions.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
@@ -9090,6 +9165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
+      propertyPath: dialogues.Array.data[13].enableConditions.Array.data[2].conditionName
+      value: HasEnoughOrbsEndgame
+      objectReference: {fileID: 0}
+    - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
+        type: 3}
       propertyPath: dialogues.Array.data[13].sentences.Array.data[0].speaker
       value: Shrine
       objectReference: {fileID: 0}
@@ -9122,7 +9202,7 @@ PrefabInstance:
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}
       propertyPath: dialogues.Array.data[14].enableConditions.Array.data[0].conditionName
-      value: AllTasksDone
+      value: HasEnoughOrbsEndgame
       objectReference: {fileID: 0}
     - target: {fileID: 114286951487128216, guid: 40130c7273e405347b6d269c6e6a25fe,
         type: 3}

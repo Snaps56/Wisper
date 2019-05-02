@@ -55,16 +55,16 @@ public class FireTask : MonoBehaviour {
     void FixedUpdate()
     {
         //Update the forward vector
-        cameraForward = mainCamera.transform.forward;
+        cameraForward = PlayerPersistance.player.transform.Find("Main Camera").transform.forward;
 
         //Find direction between the shrine and camera
-        toTask = firepit.transform.position - mainCamera.transform.position;
+        toTask = firepit.transform.position - PlayerPersistance.player.transform.Find("Main Camera").transform.position;
 
         float distance = Vector3.Distance(player.transform.position, transform.position);
 
         if (Vector3.Dot(cameraForward.normalized, toTask.normalized) > (dotProductAngle) && distance <= deactivateDistance)
         {
-            if (TaskisDone == false && ability.GetComponent<ObjectThrow>().GetIsThrowingObjects() == true)
+            if (TaskisDone == false && PlayerPersistance.player.transform.Find("Abilities Collider").GetComponent<ObjectThrow>().GetIsThrowingObjects() == true)
             {
                 count++;
                 ParticleSize += 0.006f;
@@ -81,7 +81,7 @@ public class FireTask : MonoBehaviour {
                 }
             }
 
-            if (TaskisDone == false && ability.GetComponent<ObjectThrow>().GetIsThrowingObjects() == false && count != 0)
+            if (TaskisDone == false && PlayerPersistance.player.transform.Find("Abilities Collider").GetComponent<ObjectThrow>().GetIsThrowingObjects() == false && count != 0)
             {
                 count--;
                 ParticleSize -= 0.006f;
