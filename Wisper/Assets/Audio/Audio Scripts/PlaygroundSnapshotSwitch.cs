@@ -9,8 +9,6 @@ public class PlaygroundSnapshotSwitch : MonoBehaviour {
     public AudioMixerSnapshot offSnapshot; //Snapshot on
 	public float fadeTime = 3.0f;
     public float delayTime = 0.0f;
-    private AudioSource myAudioSource;
-    public AudioSource L2AudioSource;
     private ActivateCutscene activateCutsceneScript;
 
     bool lastCutsceneActiveState = false;
@@ -28,7 +26,7 @@ public class PlaygroundSnapshotSwitch : MonoBehaviour {
             }
             else
             {
-                // DO THING WITH ON SNAPSHOT HERE TO TUNE DOWN THE VOLUME
+                // DO THING WITH ON SNAPSHOT HERE TO TUNE UP THE VOLUME
             }
         }
         
@@ -45,7 +43,7 @@ public class PlaygroundSnapshotSwitch : MonoBehaviour {
             }
             else
             {
-                // DO THING WITH ON SNAPSHOT HERE TO TUNE DOWN THE VOLUME
+                // DO THING WITH ON SNAPSHOT HERE TO TUNE UP THE VOLUME
             }
         }
 
