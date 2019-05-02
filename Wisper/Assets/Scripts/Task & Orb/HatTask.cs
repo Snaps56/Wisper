@@ -78,6 +78,7 @@ public class HatTask : MonoBehaviour
         //transform.position = newParentObject.position + positionOffset;
         //transform.rotation = newParentObject.rotation;
         theHat.SetActive(true);
+        Destroy(this);
     }
 
     void Update()
