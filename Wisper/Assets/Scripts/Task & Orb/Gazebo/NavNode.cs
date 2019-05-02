@@ -34,7 +34,7 @@ public class NavNode : MonoBehaviour
         // Only counts points as unblocked if they are above the gazebo itself
         if(DetectGazeboBelow())
         {
-            hitInfo = Physics.BoxCastAll(this.gameObject.transform.position + new Vector3(0, .5f, 0), boxCastHalfExtents, new Vector3(0, 1, 0), this.gameObject.transform.parent.rotation, 3f);
+            hitInfo = Physics.BoxCastAll(this.gameObject.transform.position + new Vector3(0, .5f, 0), boxCastHalfExtents, new Vector3(0, 1, 0), this.gameObject.transform.parent.rotation, 2f);
             foreach (RaycastHit hitFo in hitInfo)
             {
                 // Ignore any instrument detection zone of gazebo
@@ -46,20 +46,24 @@ public class NavNode : MonoBehaviour
                         // Ignore DialogueTriggers
                         if (hitFo.collider.name != "DialogueTrigger")
                         {
-                            // For NPCs, ignore their sphere collider (only utilize the capsule collider)
-                            if (hitFo.transform.CompareTag("NPC"))
+                            if(hitFo.collider.name != "Residential-Trash-Area" && hitFo.collider.name != "ResidentialMusic_L1" && hitFo.collider.name != "BaseLayer" && hitFo.collider.name != "ResidentialMusic_L2" && hitFo.collider.name != "Ocean_On")
                             {
-                                if (!(hitFo.collider is SphereCollider))
+                                // For NPCs, ignore their sphere collider (only utilize the capsule collider)
+                                if (hitFo.transform.CompareTag("NPC"))
                                 {
-                                    //Debug.Log("Found collision with " + hitFo.transform.name);
+                                    if (!(hitFo.collider is SphereCollider))
+                                    {
+                                        //Debug.Log("Found collision with " + hitFo.transform.name);
+                                        blocked = true;
+                                    }
+                                }
+                                else
+                                {
+                                    Debug.Log("Found collision with " + hitFo.transform.name);
                                     blocked = true;
                                 }
                             }
-                            else
-                            {
-                                //Debug.Log("Found collision with " + hitFo.transform.name);
-                                blocked = true;
-                            }
+                            
                         }
                     }
                 }
