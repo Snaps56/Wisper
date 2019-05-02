@@ -6,8 +6,6 @@ using XInputDotNetPure;
 public class HatTask : MonoBehaviour
 {
     public GameObject npc;
-    public Transform newParentObject;
-    public Vector3 positionOffset;
     public GameObject theHat;
     private Rigidbody rb;
     bool playerIndexSet = false;
@@ -30,7 +28,6 @@ public class HatTask : MonoBehaviour
             PutTheGoshDarnHatOnTheGoshDarnShamus();
             Destroy(gameObject);
         }
-        
     }
 
     private void OnTriggerEnter(Collider col)
@@ -39,7 +36,6 @@ public class HatTask : MonoBehaviour
         {
             if (col.gameObject.tag == "NPC" && col.gameObject == npc)
             {
-                //StartCoroutine(TwoSecond());
                 if(!(bool)PSD.stateConditions["ShamusHasHat"])
                 {
                     pickedUp = true;
@@ -72,11 +68,6 @@ public class HatTask : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = false;
         rb.isKinematic = true;
         rb.useGravity = false;
-        //GetComponent<Collider>().enabled = false;
-        //makeHatFollow = true;
-        //transform.parent = newParentObject;
-        //transform.position = newParentObject.position + positionOffset;
-        //transform.rotation = newParentObject.rotation;
         theHat.SetActive(true);
         Destroy(this);
     }
@@ -89,10 +80,6 @@ public class HatTask : MonoBehaviour
         }
     }
 
-    //IEnumerator TwoSecond()
-    //{
-    //    yield return new WaitForSeconds(2.0f);
-    //    pickedUp = true;
-    //}
+    
    
 }
