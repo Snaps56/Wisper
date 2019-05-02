@@ -118,6 +118,7 @@ public class PersistantStateData : MonoBehaviour
         stateConditions.Add("TutorialAttempt2ndClean", false);
         stateConditions.Add("TutorialCleanCompleted", false);
         stateConditions.Add("TutorialGateTravelled", false); // check if player is within gate range
+        stateConditions.Add("TutorialPlayerEnterCity", false); // Checks if player entered the city for the first time
 
         /////////////////////////////////////////////////////////
         ////////////////////    Task flags   ////////////////////
