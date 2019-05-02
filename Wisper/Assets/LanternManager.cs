@@ -18,6 +18,8 @@ public class LanternManager : MonoBehaviour
 
     private int count = 0;
 
+    private bool fadeL2Called = false;
+
     private List<Transform> LiftedLanters = new List<Transform>();
 
     // AudioMixerSnapshots to fade in music (used in start for reloading scene after task is done, and in update for when task is complete) 
@@ -25,12 +27,23 @@ public class LanternManager : MonoBehaviour
     public AudioMixerSnapshot NightScene_L1On;
     public AudioMixerSnapshot NightScene_L2On;
     public float fadeTime = 3.0f;
+    private AudioSource L1;
+    public AudioSource L2;
+
+    private void Awake()
+    {
+        L1 = GetComponent<AudioSource>();
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         // Plays L1 by default
+        L1.Play();
         NightScene_L1On.TransitionTo(fadeTime);
+        NightScene_Off.TransitionTo(0f);
+        L2.Play();
     }
 
     IEnumerator Wait()
@@ -69,6 +82,13 @@ public class LanternManager : MonoBehaviour
             end = true;
             Fade.SetActive(true);
             // Starts L2 here
+            if(!fadeL2Called)
+            {
+                
+                NightScene_L2On.TransitionTo(fadeTime);
+                fadeL2Called = true;
+            }
+            
 
 
 
