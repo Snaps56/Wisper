@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NightSceneMusic
+  m_OutputGroup: {fileID: 24300002, guid: 99f87739d1b434943a75782ef71cf6ba, type: 2}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  - {fileID: 245481502226535976}
+  - {fileID: 245892931960793922}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: -80
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters: []
+  m_AudioMixerGroupViews:
+  - guids:
+    - 95b992eb47e4c4f3784dd70ab1391280
+    - 9d042928cfcd649fda110676f67eb976
+    - 56f0d57d3ec0f4fb58fb5f197e962603
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 245892931960793922}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 95b992eb47e4c4f3784dd70ab1391280
+  m_Children:
+  - {fileID: 243669252201458662}
+  - {fileID: 243128220130018706}
+  m_Volume: b847095b7d1fc4eab8fb5967d7b9a61f
+  m_Pitch: 84334729b90e04ca9ae47104dda1989a
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: bdb796e48256f452b95b10e068685abb
+  m_EffectName: Attenuation
+  m_MixLevel: 72ed10bebe730450585504adf653c4ef
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NightScene_Off
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: ff6fe78e6a5db4212bb274f380a16132
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!243 &243128220130018706
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NightScene_L2
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 56f0d57d3ec0f4fb58fb5f197e962603
+  m_Children: []
+  m_Volume: e4d0bf43da2e845ddac80b56ac2a0d66
+  m_Pitch: e949a7d8df47b48e3b42b110e5cc3535
+  m_Effects:
+  - {fileID: 244298243440871030}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &243669252201458662
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NightScene_L1
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 9d042928cfcd649fda110676f67eb976
+  m_Children: []
+  m_Volume: d9cf68af0f3234a49980625e646e1be4
+  m_Pitch: 6233090c3338647acad61800742e37d2
+  m_Effects:
+  - {fileID: 244371706692505996}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244298243440871030
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 772fb8cdff1ff4b80ab52241b8fada5b
+  m_EffectName: Attenuation
+  m_MixLevel: 453dc4b16e49b4dac9ba9791ddc9fdcc
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &244371706692505996
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: ea61114a5780e4de0b8e8d857600bad1
+  m_EffectName: Attenuation
+  m_MixLevel: 67e37fb86d2bc4d31a4f12b3b4bee13f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &245481502226535976
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NightScene_L1On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 1c33f23f3fa0b41ffa59fe8202e01ad3
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!245 &245892931960793922
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NightScene_L2On
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 618fc110b95c3410e8fd5e43b5696d77
+  m_FloatValues: {}
+  m_TransitionOverrides: {}
