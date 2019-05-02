@@ -14,12 +14,14 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
     public Collider audioCollider;
     private bool needsToBeFaded = false;
     private float timeToStop = 0.0f;
+    private Collider playerCollider;
 
 	// Use this for initialization
 	void Start () {
         myAudioSource = GetComponent<AudioSource>();
         myAudioSource.playOnAwake = false;
         //audioCollider = GetComponent<Collider>();
+        playerCollider = PlayerPersistance.player.transform.Find("Abilities Collider").GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -36,8 +38,10 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter (Collider playerCollider) {
-        if (playerCollider.CompareTag("Player")){
+    void OnTriggerEnter (Collider col) {
+        Debug.Log("MusicSnapshotSwitch enter collided with: " + col.name);
+        if (col == playerCollider){
+            Debug.Log("MusicSnapshotSwitch enter detected as player: " + col.name);
             myAudioSource.Play();
             L2AudioSource.Play();
             //MusicSnapshotSwitchL2.L2AudioScript.myL2AudioSource 
@@ -46,10 +50,12 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
         }
 	}
 
-    void OnTriggerExit(Collider playerCollider)
+    void OnTriggerExit(Collider col)
     {
-        if (playerCollider.CompareTag("Player"))
+        Debug.Log("MusicSnapshotSwitch exit collided with: " + col.name);
+        if (col == playerCollider)
         {
+            Debug.Log("MusicSnapshotSwitch exit detected as player: " + col.name);
             mySnapshot2.TransitionTo(fadeTime);
             timeToStop = Time.time + fadeTime + 2.0f;
             needsToBeFaded = true;

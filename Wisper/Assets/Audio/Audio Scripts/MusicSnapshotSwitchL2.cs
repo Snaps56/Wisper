@@ -12,26 +12,33 @@ public class MusicSnapshotSwitchL2 : MonoBehaviour {
     public float delayTime = 0.0f;
     private bool needsToBeFaded = false;
     private float timeToStop = 0.0f;
+    private Collider playerCollider;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         myL2AudioSource = GetComponent<AudioSource>();
-	
-	}
+        playerCollider = PlayerPersistance.player.transform.Find("Abilities Collider").GetComponent<Collider>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-	void OnTriggerEnter (Collider playerCollider) {
-        myL2AudioSource.Play();
-		mySnapshot.TransitionTo (fadeTime);
+	void OnTriggerEnter (Collider col) {
+        if(col == playerCollider)
+        {
+            myL2AudioSource.Play();
+            mySnapshot.TransitionTo(fadeTime);
+        }
 	}
 
-    void OnTriggerExit(Collider playerCollider)
+    void OnTriggerExit(Collider col)
     {
-        mySnapshot2.TransitionTo(fadeTime);
+        if(col == playerCollider)
+        {
+            mySnapshot2.TransitionTo(fadeTime);
+        }
         //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
     }
 
