@@ -13,6 +13,9 @@ public class NPCAudioManager : MonoBehaviour
     //Shrine Audio
     public AudioClip[] shrineAudioClips;
 
+    // Adult Shellster Audio
+    public AudioClip[] adultShellsterAudioClips;
+
     //Audio Source
     private AudioSource audioSource;
 
@@ -52,6 +55,13 @@ public class NPCAudioManager : MonoBehaviour
             audioSource.PlayOneShot(shrineAudioClips[Random.Range(0, shrineAudioClips.Length)]);
         }
     }
+    private void playAdultShellsterClip()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(adultShellsterAudioClips[Random.Range(0, adultShellsterAudioClips.Length)]);
+        }
+    }
 
     public void Play()
     {
@@ -69,6 +79,11 @@ public class NPCAudioManager : MonoBehaviour
         else if (NPCType == 2)
         {
             playShrineClip();
+        }
+        //Shrine
+        else if (NPCType == 3)
+        {
+            playAdultShellsterClip();
         }
     }
 }

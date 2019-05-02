@@ -158,7 +158,7 @@ public class PersistantStateData : MonoBehaviour
 		stateConditions.Add("CenterIsClean", false);
         stateConditions.Add("ResidentialIsClean", false);
         stateConditions.Add("PierIsClean", false);
-        stateConditions.Add("CampIsClean", false);
+        stateConditions.Add("CampIsClean", true);
         stateConditions.Add("GeyserTask", false);
         stateConditions.Add("SandCastle1Done", false);
         stateConditions.Add("SandCastle2Done", false);

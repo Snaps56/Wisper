@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 50085587434574276}
   - component: {fileID: 50085587434574275}
   m_Layer: 0
-  m_Name: Shellster
+  m_Name: Sumption
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,8 +34,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50085587434574273}
   m_LocalRotation: {x: -0, y: 0.049799357, z: -0, w: 0.99875927}
-  m_LocalPosition: {x: -194.57831, y: 185.08849, z: 209.88031}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 50085587727576770}
   - {fileID: 50085589218018333}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50085587434574273}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86ef5714087bb9745b350cdaf5a54e0f, type: 3}
   m_Name: 
@@ -113,13 +113,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50085587434574273}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 529698588e07d204995e87b4f541ea23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   waypoints: []
+  waypointParent: {fileID: 0}
   rotSpeed: 2
   speed: 3.2
   accuracyWP: 1
@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b3bb7979e4f1a40960d8736b7d4067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &50085587434574278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,60 +150,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingTexts:
-  - dialogueName: Windmill Broken
+  - dialogueName: Residential is Trash
     enabled: 0
     forceOnEnable: 0
-    follow: 1
+    follow: 0
     autoPlay: 0
-    autoPlayDelay: 1
+    autoPlayDelay: 0
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillFixed
-      conditionValue: 0
-    - conditionName: WindmillTaskDone
+    - conditionName: ResidentialIsClean
       conditionValue: 0
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: 
-      line: The windmill is broken!
-  - dialogueName: Windmill Finished
+    - speaker: Sumption
+      line: Dang trash everywhere!
+  - dialogueName: Residential is Clean
     enabled: 0
     forceOnEnable: 0
-    follow: 1
+    follow: 0
     autoPlay: 0
-    autoPlayDelay: 1
+    autoPlayDelay: 0
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillTaskDone
-      conditionValue: 1
-    - conditionName: WindmillFixed
+    - conditionName: ResidentialIsClean
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: 
-      line: The windmill is working!
-  - dialogueName: Windmill Fixed
-    enabled: 0
-    forceOnEnable: 0
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: WindmillFixed
-      conditionValue: 1
-    - conditionName: WindmillTaskDone
-      conditionValue: 0
-    conditionChangeOnExit: []
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: 
-      line: The windmill is fixed!
+    - speaker: Sumption
+      line: It's so clean again!
   range: 8
 --- !u!114 &50085587434574277
 MonoBehaviour:
@@ -230,8 +207,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50085587434574273}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d460b36b76681974e8492545e3a8cc81, type: 3}
-  m_Controller: {fileID: 9100000, guid: 62a5ac20e111c8a4a8b4addb6dba56ff, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 87733c0ff0d6b7c428db7a400ca2c696, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0b06be81cb34b0d478bdfa9673ccf735, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -347,7 +324,7 @@ GameObject:
   - component: {fileID: 50085587727576770}
   - component: {fileID: 50085587727576771}
   m_Layer: 0
-  m_Name: Shellster_Marker
+  m_Name: Sumption_Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,8 +357,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 1257024435530406, guid: 0bd81baa043581446b440750f2e6001c, type: 3}
-  farYOffset: 7
-  closeYOffset: 5.5
+  farYOffset: 0
+  closeYOffset: 3
   minAlphaDistance: 4
   maxDrawDistance: 30
   defaultAlpha: 1
@@ -393,7 +370,7 @@ MonoBehaviour:
   dependentConditions: []
   onInteractConditions: []
   disableMarkerConditions:
-  - WindmillFixed
+  - ResidentialIsClean
 --- !u!1 &50085587959923577
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbbd17f0147f74ba084f0879dd0a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
 --- !u!1 &50085588491671223
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,60 +701,40 @@ MonoBehaviour:
   followTetherMinDistance: 3
   followTetherStrongDistance: 5
   dialogues:
-  - dialogueName: Windmill Broken
-    enabled: 1
-    forceOnEnable: 0
-    follow: 1
-    autoPlay: 0
-    autoPlayDelay: 1
-    progressByCutscene: 0
-    enableConditions:
-    - conditionName: WindmillTaskDone
-      conditionValue: 0
-    - conditionName: WindmillFixed
-      conditionValue: 0
-    conditionChangeOnExit: []
-    options: []
-    speedControls: []
-    sentences:
-    - speaker: Beau
-      line: The windmill is broken! How we gonna get power!?
-  - dialogueName: Windmill Done
+  - dialogueName: Residential is Trash
     enabled: 0
     forceOnEnable: 0
-    follow: 1
+    follow: 0
     autoPlay: 0
-    autoPlayDelay: 1
+    autoPlayDelay: 0
     progressByCutscene: 0
     enableConditions:
-    - conditionName: WindmillTaskDone
-      conditionValue: 1
-    - conditionName: WindmillFixed
-      conditionValue: 1
+    - conditionName: ResidentialIsClean
+      conditionValue: 0
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: Beau
-      line: The windmill is fixed again! It's a miracle!
-  - dialogueName: Windmill Fixed
+    - speaker: Sumption
+      line: Dang kids and their parties! They left their trash all over the place!
+    - speaker: Sumption
+      line: At least the trash is only around the homes here.
+  - dialogueName: Residential is Clean
     enabled: 0
     forceOnEnable: 0
-    follow: 1
+    follow: 0
     autoPlay: 0
-    autoPlayDelay: 1
+    autoPlayDelay: 0
     progressByCutscene: 0
     enableConditions:
-    - conditionName: HalfPipeTaskDone
-      conditionValue: 0
-    - conditionName: WindmillFixed
+    - conditionName: ResidentialIsClean
       conditionValue: 1
     conditionChangeOnExit: []
     options: []
     speedControls: []
     sentences:
-    - speaker: Beau
-      line: The windmill is fixed, but it's still not moving...
+    - speaker: Sumption
+      line: Wow! Some kind soul picked up all the trash!
 --- !u!114 &50085589218018334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,7 +909,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2647904987408091851}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -184.70068, y: 184.00148, z: -1033.4613}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
