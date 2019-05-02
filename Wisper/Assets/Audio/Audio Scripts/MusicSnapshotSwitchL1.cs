@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
 public class MusicSnapshotSwitchL1 : MonoBehaviour {
@@ -10,12 +11,15 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
     public float delayTime = 0.0f;
     private AudioSource myAudioSource;
     public AudioSource L2AudioSource;
+    public Collider audioCollider;
     private bool needsToBeFaded = false;
     private float timeToStop = 0.0f;
 
 	// Use this for initialization
 	void Start () {
         myAudioSource = GetComponent<AudioSource>();
+        myAudioSource.playOnAwake = false;
+        //audioCollider = GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -32,19 +36,27 @@ public class MusicSnapshotSwitchL1 : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter () {
-        myAudioSource.Play();
-        L2AudioSource.Play();
-        //MusicSnapshotSwitchL2.L2AudioScript.myL2AudioSource 
-		mySnapshot.TransitionTo(fadeTime);
+    void OnTriggerEnter (Collider playerCollider) {
+        if (playerCollider.tag == "Player"){
+            myAudioSource.Play();
+            L2AudioSource.Play();
+            //MusicSnapshotSwitchL2.L2AudioScript.myL2AudioSource 
+            mySnapshot.TransitionTo(fadeTime);
+            
+        }
+       
 	}
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider playerCollider)
     {
-        mySnapshot2.TransitionTo(fadeTime);
-        timeToStop = Time.time + fadeTime + 2.0f;
-        needsToBeFaded = true;
-        L2AudioSource.Stop();
-        //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
+        if (playerCollider.tag == "Player"){
+            mySnapshot2.TransitionTo(fadeTime);
+            timeToStop = Time.time + fadeTime + 2.0f;
+            needsToBeFaded = true;
+            L2AudioSource.Stop();
+            //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
+
+        }
+      
     }
 }

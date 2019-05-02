@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class Closest : MonoBehaviour
@@ -14,6 +15,11 @@ public class Closest : MonoBehaviour
     // Start is called before the first frame update
     private float minDelay = 0.01f;
     private float maxDelay = 5.0f;
+    //public AudioMixerSnapshot riverFadeIn;
+    //public AudioMixerSnapshot riverFadeOut;
+    //public float fadeTime = 3.0f;
+    //public float dealyFadeTime = 7.0f;
+
     void Start()
     {
         riverLoop = GetComponent<AudioSource>();
@@ -25,6 +31,8 @@ public class Closest : MonoBehaviour
         {
             float delayTime = Random.Range(minDelay, maxDelay);
             riverLoop.PlayDelayed(delayTime);
+           
+
         }
     }
 
