@@ -21,10 +21,21 @@ public class ResidentLayer1 : MonoBehaviour {
 	void Start () {
         myAudioSource = GetComponent<AudioSource>();
         playerCollider = PlayerPersistance.player.transform.Find("Abilities Collider").GetComponent<Collider>();
+        //panAudioSource = GameObject.Find("Shane").GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if(Input.GetKeyDown("q")){
+            needsToBeFaded = false;
+            myAudioSource.Play();
+            L2AudioSource.Play();
+            saxAudioSource.Play();
+            tamboAudioSource.Play();
+            panAudioSource.Play();
+
+        }
+
         if(myAudioSource.isPlaying && needsToBeFaded){
             if(Time.time > timeToStop){
                 myAudioSource.Stop();
@@ -45,15 +56,16 @@ public class ResidentLayer1 : MonoBehaviour {
         if (col == playerCollider){
             needsToBeFaded = false;
             myAudioSource.Play();
-            L2AudioSource.Play();
+            //L2AudioSource.Play();
             saxAudioSource.Play();
             tamboAudioSource.Play();
             panAudioSource.Play();
             //MusicSnapshotSwitchL2.L2AudioScript.myL2AudioSource 
             mySnapshot.TransitionTo(fadeTime);
+            Debug.Log("audio OnTriggerEnter clip: " + myAudioSource.clip.name);
 
         }
-       
+        Debug.Log("audio OnTriggerEnter clip: " + myAudioSource.clip.name + "Outside Function");
 	}
 
     void OnTriggerExit(Collider col){
@@ -61,9 +73,10 @@ public class ResidentLayer1 : MonoBehaviour {
             mySnapshot2.TransitionTo(fadeTime);
             timeToStop = Time.time + fadeTime + 0.1f;
             needsToBeFaded = true;
-            //Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
+            Debug.Log("audio OnTriggerExit clip: " + myAudioSource.clip.name);
 
         }
+        Debug.Log("audio OnTriggerEnter clip: " + myAudioSource.clip.name + "Outside Function");
 
     }
 }
