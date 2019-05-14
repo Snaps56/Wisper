@@ -35,7 +35,7 @@ public class CurtainHandler : MonoBehaviour {
                 curtainAnimator.SetTrigger("FadeOut");
             }
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B) && PersistantStateData.persistantStateData.enableDebugMode)
         {
             curtainAnimator.SetTrigger("FadeOut");
         }

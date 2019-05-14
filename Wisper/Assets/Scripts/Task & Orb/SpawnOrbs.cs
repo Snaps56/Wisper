@@ -25,7 +25,7 @@ public class SpawnOrbs : MonoBehaviour
     void Update()
     {
         // Debug button for dropping orbs
-        if (Input.GetButtonDown("PC_Key_Orb"))
+        if (Input.GetButtonDown("PC_Key_Orb") && PersistantStateData.persistantStateData.enableDebugMode)
         {
             DropOrbs();
         }

@@ -77,11 +77,12 @@ public class PlayerMovement : MonoBehaviour {
             SetFollowTargetVelocity(followTarget);
         }
 
-        // Debug key for testing PSD
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            PersistantStateData.persistantStateData.ToggleDebugMode();
-        }
+        /***DISABLED FOR THE RELEASE OF THE GAME ~ Nick***/
+        //// Debug key for testing PSD
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    PersistantStateData.persistantStateData.ToggleDebugMode();
+        //}
     }
 
     // Physics-based Update
