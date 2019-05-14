@@ -8006,6 +8006,58 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 432451153}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &432451155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 192d6ba3a8a1bea4a821cb951d86e33c,
+    type: 3}
+  m_PrefabInstance: {fileID: 432451153}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &432451156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432451155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17fbee4ac452b0a46a06d67d4cd2ca95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilitiesCollider: {fileID: 0}
+  torqueMultiplier: 0.05
+  dangerSpeed: 6
+  correctSpeed: 4
+  shellsters: []
+--- !u!54 &432451157
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432451155}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0
+--- !u!65 &432451158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432451155}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 78.31, y: 45.22, z: 106.78}
+  m_Center: {x: 0, y: 22.8, z: 0}
 --- !u!1 &435107211
 GameObject:
   m_ObjectHideFlags: 0
@@ -22746,11 +22798,6 @@ PrefabInstance:
     - target: {fileID: 4301474100256546, guid: 10618347f04427e41badee8e2e97e66e, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.91435534
-      objectReference: {fileID: 0}
-    - target: {fileID: 54793797556715180, guid: 10618347f04427e41badee8e2e97e66e,
-        type: 3}
-      propertyPath: m_Mass
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114642067238836362, guid: 10618347f04427e41badee8e2e97e66e,
         type: 3}

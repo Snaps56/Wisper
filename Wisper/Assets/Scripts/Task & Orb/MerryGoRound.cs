@@ -27,6 +27,7 @@ public class MerryGoRound : MonoBehaviour {
     void Start () {
         persistantStateData = GameObject.Find("PersistantStateData").GetComponent<PersistantStateData>();
         rb = GetComponent<Rigidbody>();
+        abilitiesCollider = PlayerPersistance.player.transform.Find("Abilities Collider").gameObject;
 	}
 	
 	// Update is called once per frame
